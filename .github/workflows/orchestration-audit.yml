@@ -1,0 +1,36 @@
+name: orchestration-audit
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  immutable-base-audit:
+    runs-on: macos-15
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version: 1.4.0
+      - name: Run audit from immutable base
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          audit_root="$RUNNER_TEMP/open-websearch-base-audit"
+          git worktree add --detach "$audit_root" "$BASE_SHA"
+          if test -f "$audit_root/scripts/orchestration/audit.ts"; then
+            bun "$audit_root/scripts/orchestration/audit.ts" \
+              --repo "$GITHUB_WORKSPACE" --base "$BASE_SHA" --head "$HEAD_SHA"
+          else
+            bun "$audit_root/scripts/bootstrap-validator.ts" \
+              --repo "$GITHUB_WORKSPACE" --base "$BASE_SHA" --head "$HEAD_SHA"
+          fi
+

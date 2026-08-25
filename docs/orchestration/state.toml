@@ -1,0 +1,268 @@
+schema_version = 2
+project = "open-websearch-mcp"
+state = "bootstrapped"
+spec_revision = "bootstrap-root"
+last_checkpoint = "docs/orchestration/checkpoints/0000-specification-handoff.md"
+
+[environment]
+repo_initialized = true
+github_remote_connected = true
+github_auth_observed = "valid-atinseau"
+opencode_version_observed = "1.18.23"
+model_roster = "pending-bootstrap"
+npm_identity = "pending-release-phase"
+
+[artifacts]
+state_schema = "docs/orchestration/state-schema.md"
+audit_contract = "docs/orchestration/audit-contract.md"
+atomic_requirement_coverage = "pending-BOOT-002"
+checkpoint_chain_manifest = "pending-BOOT-002"
+release_ledger = "pending-release-phase"
+
+[policy]
+max_parallel_worktrees_initial = 4
+same_approach_attempts_before_redesign = 3
+review_rounds_before_arbiter = 2
+subagent_depth_initial = 1
+agent_timeout_minutes = 30
+ci_max_wait_minutes = 45
+ci_max_infrastructure_reruns = 1
+
+[tasks.BOOT-001]
+state = "verified"
+spec = "docs/spec/10-packaging-releases.md"
+depends_on = []
+write_set = [".git", "LICENSE", "NOTICE", ".gitignore", "scripts/bootstrap-validator.ts", ".github/workflows/orchestration-audit.yml", "repository-settings"]
+requirements = ["RELEASE-001"]
+acceptance_gates = ["repository-main-origin", "apache-files", "minimal-audit-ci"]
+capability_profile = "bootstrap-authority"
+attempts = []
+evidence = ["docs/orchestration/checkpoints/0000-specification-handoff.md"]
+
+[tasks.BOOT-002]
+state = "ready"
+spec = "docs/orchestration/driver-contract.md"
+depends_on = ["BOOT-001"]
+write_set = ["scripts/orchestration", ".opencode", "docs/orchestration/runs", "docs/orchestration/model-roster.toml", "docs/orchestration/coverage.toml", "docs/orchestration/state.toml"]
+requirements = ["PROD-008", "PROD-009", "PROD-010", "ORCH-009", "ORCH-010", "ORCH-011", "ORCH-012", "ORCH-013"]
+acceptance_gates = ["driver-contract", "state-schema", "model-calibration", "mechanical-audit", "crash-recovery"]
+capability_profile = "orchestration-bootstrap-no-external-write"
+attempts = []
+evidence = []
+
+[tasks.BOOT-003]
+state = "planned"
+spec = "docs/spec/02-architecture-runtime.md"
+depends_on = ["BOOT-002"]
+write_set = ["package.json", "bun.lock", "tsconfig.json", ".oxlintrc.jsonc", ".oxfmtrc.jsonc", "src", "tests/architecture"]
+evidence = []
+
+[tasks.BOOT-004]
+state = "planned"
+spec = "docs/spec/10-packaging-releases.md"
+depends_on = ["BOOT-001", "BOOT-003"]
+write_set = [".github/workflows"]
+evidence = []
+
+[tasks.SPK-001]
+state = "planned"
+spec = "docs/spec/01-feasibility-spikes.md"
+depends_on = ["BOOT-002"]
+write_set = ["benchmarks/teachers", "docs/spikes/SPK-001"]
+evidence = []
+
+[tasks.SPK-002]
+state = "planned"
+spec = "docs/spec/01-feasibility-spikes.md"
+depends_on = ["BOOT-003"]
+write_set = ["spikes/webview-obscura", "docs/spikes/SPK-002"]
+evidence = []
+
+[tasks.SPK-003]
+state = "planned"
+spec = "docs/spec/01-feasibility-spikes.md"
+depends_on = ["SPK-002"]
+write_set = ["spikes/obscura-load", "docs/spikes/SPK-003"]
+evidence = []
+
+[tasks.SPK-004]
+state = "planned"
+spec = "docs/spec/01-feasibility-spikes.md"
+depends_on = ["SPK-001", "SPK-002"]
+write_set = ["spikes/extraction", "docs/spikes/SPK-004"]
+evidence = []
+
+[tasks.SPK-005]
+state = "planned"
+spec = "docs/spec/01-feasibility-spikes.md"
+depends_on = ["BOOT-003"]
+write_set = ["spikes/compatibility", "docs/spikes/SPK-005"]
+evidence = []
+
+[tasks.FND-001]
+state = "planned"
+spec = "docs/spec/02-architecture-runtime.md"
+depends_on = ["SPK-005"]
+write_set = ["src", "tests/architecture"]
+evidence = []
+
+[tasks.FND-002]
+state = "planned"
+spec = "docs/spec/08-configuration-operations.md"
+depends_on = ["FND-001"]
+write_set = ["src/features/configuration", "src/features/logging", "tests/integration/configuration"]
+evidence = []
+
+[tasks.FND-003]
+state = "planned"
+spec = "docs/spec/06-ranking-cache-investigations.md"
+depends_on = ["FND-001", "SPK-005"]
+write_set = ["src/features/storage", "tests/integration/storage"]
+evidence = []
+
+[tasks.FND-004]
+state = "planned"
+spec = "docs/spec/06-ranking-cache-investigations.md"
+depends_on = ["FND-003"]
+write_set = ["src/features/investigation", "tests/contracts/investigation"]
+evidence = []
+
+[tasks.FND-005]
+state = "planned"
+spec = "docs/spec/02-architecture-runtime.md"
+depends_on = ["FND-001", "SPK-003"]
+write_set = ["src/features/scheduling", "tests/contracts/scheduling"]
+evidence = []
+
+[tasks.FND-006]
+state = "planned"
+spec = "docs/spec/03-mcp-contract.md"
+depends_on = ["FND-001", "SPK-005"]
+write_set = ["src/mcp", "tests/contracts/mcp"]
+evidence = []
+
+[tasks.WEB-001]
+state = "planned"
+spec = "docs/spec/05-rendering-extraction.md"
+depends_on = ["FND-002"]
+write_set = ["src/features/rendering/install", "tests/integration/installer"]
+evidence = []
+
+[tasks.WEB-002]
+state = "planned"
+spec = "docs/spec/05-rendering-extraction.md"
+depends_on = ["WEB-001", "SPK-002", "FND-005"]
+write_set = ["src/features/rendering", "tests/integration/rendering"]
+evidence = []
+
+[tasks.WEB-003]
+state = "planned"
+spec = "docs/spec/07-security-trust.md"
+depends_on = ["FND-001", "SPK-005"]
+write_set = ["src/features/security", "tests/security"]
+evidence = []
+
+[tasks.WEB-004]
+state = "planned"
+spec = "docs/spec/05-rendering-extraction.md"
+depends_on = ["FND-003", "WEB-003"]
+write_set = ["src/features/storage/downloads", "tests/integration/downloads"]
+evidence = []
+
+[tasks.WEB-005]
+state = "planned"
+spec = "docs/spec/05-rendering-extraction.md"
+depends_on = ["WEB-002", "WEB-004", "SPK-004"]
+write_set = ["src/features/extraction", "tests/contracts/extraction"]
+evidence = []
+
+[tasks.WEB-006]
+state = "planned"
+spec = "docs/spec/04-discovery-google.md"
+depends_on = ["WEB-002", "WEB-003"]
+write_set = ["src/features/discovery", "tests/integration/discovery"]
+evidence = []
+
+[tasks.WEB-007]
+state = "planned"
+spec = "docs/spec/06-ranking-cache-investigations.md"
+depends_on = ["WEB-005", "SPK-001"]
+write_set = ["src/features/ranking", "tests/contracts/ranking"]
+evidence = []
+
+[tasks.WEB-008]
+state = "planned"
+spec = "docs/spec/06-ranking-cache-investigations.md"
+depends_on = ["FND-003", "WEB-005", "WEB-007"]
+write_set = ["src/features/storage/cache", "src/features/ranking/deduplication", "tests/integration/cache"]
+evidence = []
+
+[tasks.TOOL-001]
+state = "planned"
+spec = "docs/spec/03-mcp-contract.md"
+depends_on = ["FND-004", "FND-005", "FND-006", "WEB-002", "WEB-005", "WEB-008"]
+write_set = ["src/features/open", "src/mcp/tools/web-open", "tests/e2e/web-open"]
+evidence = []
+
+[tasks.TOOL-002]
+state = "planned"
+spec = "docs/spec/03-mcp-contract.md"
+depends_on = ["TOOL-001", "WEB-006", "WEB-007", "WEB-008"]
+write_set = ["src/features/search", "src/mcp/tools/web-search", "tests/e2e/web-search"]
+evidence = []
+
+[tasks.VER-001]
+state = "planned"
+spec = "docs/spec/09-verification-benchmarks.md"
+depends_on = ["TOOL-002", "SPK-001"]
+write_set = ["tests/benchmarks", "benchmarks/reports"]
+evidence = []
+
+[tasks.VER-002]
+state = "planned"
+spec = "docs/spec/09-verification-benchmarks.md"
+depends_on = ["TOOL-001", "TOOL-002"]
+write_set = ["tests/compatibility", "benchmarks/harnesses"]
+evidence = []
+
+[tasks.VER-003]
+state = "planned"
+spec = "docs/spec/09-verification-benchmarks.md"
+depends_on = ["TOOL-002", "VER-001"]
+write_set = ["tests/security", "tests/load", "tests/live", "benchmarks/reports"]
+evidence = []
+
+[tasks.VER-004]
+state = "planned"
+spec = "docs/spec/09-verification-benchmarks.md"
+depends_on = ["VER-001", "VER-002", "VER-003", "BOOT-004"]
+write_set = ["docs/orchestration/traceability.md", "benchmarks/reports/release"]
+evidence = []
+
+[tasks.REL-001]
+state = "planned"
+spec = "docs/spec/10-packaging-releases.md"
+depends_on = ["BOOT-001", "FND-006"]
+write_set = ["package.json", "README.md", "docs/integrations"]
+evidence = []
+
+[tasks.REL-002]
+state = "planned"
+spec = "docs/spec/10-packaging-releases.md"
+depends_on = ["REL-001", "TOOL-002"]
+write_set = ["tests/package", "docs/integrations"]
+evidence = []
+
+[tasks.REL-003]
+state = "planned"
+spec = "docs/spec/10-packaging-releases.md"
+depends_on = ["BOOT-004", "REL-002", "VER-004"]
+write_set = [".github/workflows/release.yml", "docs/release"]
+evidence = []
+
+[tasks.REL-004]
+state = "planned"
+spec = "docs/spec/10-packaging-releases.md"
+depends_on = ["REL-003"]
+write_set = ["external:github-release", "external:npm-publication", "docs/orchestration/checkpoints"]
+evidence = []

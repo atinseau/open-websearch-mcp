@@ -1,0 +1,263 @@
+# Inventaire d’exigences — Open WebSearch MCP
+
+Statut : **registre normatif**. Cet inventaire transforme les
+décisions validées du brainstorming et les constats des deux notes de recherche
+en exigences vérifiables. Il ne prescrit pas de découpage de code ni de plan
+d’implémentation. Les sous-spécifications référencent ces IDs et
+ne peuvent pas contredire une exigence sans ADR explicite.
+
+## Conventions
+
+- **Source** : `B` désigne une décision de brainstorming (question Qn) ; `R1`
+  [local-websearch-architecture.md](../research/local-websearch-architecture.md)
+  et `R2` [bun-obscura-stack.md](../research/bun-obscura-stack.md) désignent les
+  rapports de recherche. Les constats de recherche sont des contraintes à
+  confirmer par spike quand ils sont marqués expérimentaux.
+- **Dépendances** : IDs à satisfaire avant l’acceptation complète. `—` signifie
+  qu’il n’y a pas de dépendance d’exigence (pas qu’il n’y a pas de travail).
+- Une exigence est atomique : son critère d’acceptation doit pouvoir être
+  contrôlé par test, inspection de configuration, artefact de benchmark ou
+  revue de release.
+
+## Produit et périmètre
+
+| ID | Exigence | Critère d’acceptation | Dépendances | Source |
+| --- | --- | --- | --- | --- |
+| PROD-001 | Le produit est un MCP de recherche Web personnel, local-first et macOS ARM64 dans sa première version. | Documentation et tests de plateforme déclarent macOS ARM64 seul ; aucun service hébergé n’est requis pour le calcul, le rendu, le cache ou le ranking. | — | B1–4, B66, B68 |
+| PROD-002 | Le MCP ne contient aucun LLM, appel d’inférence générative ou décision pilotée par LLM en runtime. | Audit de dépendances/runtime et tests ne révèlent aucun appel LLM ; les décisions de recherche sont déterministes. | TEST-018 | B11, B155 |
+| PROD-003 | La découverte Web utilise le frontend public de Google, sans API de recherche externe, comme source best-effort. | Une recherche produit une SERP Google rendue ; aucun identifiant/API Brave, Exa, SerpAPI, Hexa ou équivalent n’est requis. | SEARCH-001, RENDER-001 | B1, B6, B20–25; R1 |
+| PROD-004 | Le MCP est orienté récupération de preuves et non automatisation arbitraire de navigateur. | Les outils exposés sont limités à `web_search` et `web_open`; aucune primitive publique `evaluate`, click, login ou crawl arbitraire n’est publiée. | MCP-001 | B4, R1 |
+| PROD-005 | Le système doit rester générique pour les principaux harnesses d’agents. | La matrice de compatibilité couvre au minimum Codex, Claude Code, Gemini CLI et OpenCode avec résultat textuel portable. | MCP-008, TEST-024 | B130–131; R1 |
+| PROD-006 | Toutes les ressources visées sont publiques; aucune authentification utilisateur n’est utilisée. | Aucune option d’identifiants/login n’est exposée ; les pages demandant une authentification retournent un statut explicite. | SECURITY-011 | B21–23 |
+| PROD-007 | Une page consommée est émise au plus une fois par investigation; l'exploration seule ne la consomme pas. | Les tests de reprise, rejet et concurrence prouvent l'émission at-most-once et la distinction exploration/consommation. | CACHE-008, CACHE-009 | B12, B27 |
+| PROD-008 | Toute déclaration d'achèvement repose sur une vérification automatisée, un artefact benchmark ou une trace reproductible. | L'audit final rejette toute exigence sans preuve typée et reproductible. | TEST-024, ORCH-013 | Demande finale utilisateur |
+| PROD-009 | Chaque changement d'implémentation utilise un worktree isolé et rejoint `main` par PR revue. | Le journal d'orchestration et les PR prouvent branche/worktree/reviews pour chaque tâche hors bootstrap racine documenté. | ORCH-009, RELEASE-005 | Demande finale utilisateur |
+| PROD-010 | La boucle continue jusqu'à vérification de toutes les exigences obligatoires et ne s'arrête tôt que sur blocage d'autorité externe prouvé. | Le driver refuse `complete` si un ID reste ouvert et n'accepte `blocked_external` que selon le protocole. | ORCH-012 | Demande finale utilisateur |
+
+## Découverte Google et planification
+
+| ID | Exigence | Critère d’acceptation | Dépendances | Source |
+| --- | --- | --- | --- | --- |
+| SEARCH-001 | Une requête agent est transmise à Google sans reformulation silencieuse. | Les traces montrent que le texte de query est conservé, y compris opérateurs Google. | CONFIG-001 | B6, B135 |
+| SEARCH-002 | Les opérateurs Google (`site:`, guillemets, exclusions, dates, `filetype:`) sont séparés des termes servant au score lexical local. | Tests d’analyse montrent qu’un opérateur influence la query Google mais ne pollue pas les tokens de ranking. | RANK-001 | B139 |
+| SEARCH-003 | Le profil Google est public, persistant et séparé des contextes de destination. | Le profil Google ne contient aucune session utilisateur ; les destinations utilisent des contextes isolés. | SECURITY-010, RENDER-004 | B20, B40 |
+| SEARCH-004 | Une seule SERP Google est rendue simultanément au niveau du processus. | Test de concurrence observe au plus une navigation SERP active. | ORCH-001 | B40, B133 |
+| SEARCH-005 | Seuls les résultats SERP publics avec URL exploitable deviennent candidats. | Les publicités, trackers Google, widgets sans destination et contenus authentifiés sont exclus. | SECURITY-011 | B145 |
+| SEARCH-006 | Les résultats organiques et modules publics (news, discussion, video, academic, document, other) sont normalisés avec leur provenance. | Fixture SERP de chaque type devient un candidat avec `source_type` correct. | SEARCH-005 | B145 |
+| SEARCH-007 | Les suggestions Google liées/questions sont retournées mais jamais exécutées automatiquement. | La réponse contient au plus huit suggestions dédupliquées et aucune navigation ne leur est attribuée. | MCP-006 | B144 |
+| SEARCH-008 | Une recherche ouvre progressivement les candidats : SERP 1, meilleurs candidats, puis SERP suivante seulement si le résultat demandé reste insuffisant. | Trace de planification vérifie l’arrêt anticipé et l’avancement conditionnel. | RANK-003, ORCH-001 | B25, B138 |
+| SEARCH-009 | Le budget initial est au plus 30 pages destination analysées par appel, configurable comme paramètre expérimental. | Test de budget observe au plus 30 ouvertures malgré une SERP plus longue. | CONFIG-004 | B138 |
+| SEARCH-010 | Un résultat venant du cache local peut être retourné s’il est valide, pertinent et non consommé, avec provenance explicite `local_cache`. | Test de cache retourne une page hors SERP avec provenance correcte; requête temporelle applique la revalidation. | CACHE-001, RANK-005 | B160 |
+| SEARCH-011 | Le système abandonne une page/une source bloquée et poursuit avec les autres candidats. | Fixtures 403/CAPTCHA/WAF n’empêchent pas le retour d’autres sources. | RENDER-009 | B23, B165 |
+| SEARCH-012 | Google est un connecteur best-effort; aucun contrat de disponibilité ou bypass de CAPTCHA n’est revendiqué. | Documentation et statuts distinguent `blocked` de l’absence de résultats. | MCP-007 | B2, B23; R1 |
+
+## Rendu Obscura
+
+| ID | Exigence | Critère d’acceptation | Dépendances | Source |
+| --- | --- | --- | --- | --- |
+| RENDER-001 | Obscura est obligatoire : sans installation et smoke test réussis, aucune opération Web ne réussit. | Simulation d’Obscura absent retourne `renderer_unavailable`, sans fallback curl/fetch. | INSTALL-001 | B66, B89 |
+| RENDER-002 | Obscura est la variante macOS ARM64 stealth épinglée. | Le manifeste installé contient variante et version attendues. | INSTALL-002 | B164 |
+| RENDER-003 | Le moteur rend le JavaScript et récupère contenu rendu, texte/Markdown, liens et diagnostics nécessaires. | Test sur SPA publique vérifie contenu post-JS et liens rendus. | RENDER-005 | B2, B7; R2 |
+| RENDER-004 | Les contextes de navigation des destinations sont isolés du profil Google et entre tests. | Aucun cookie/local storage de Google n’est visible dans une destination ; tests ont profils dédiés. | SECURITY-010, TEST-023 | B40, B112 |
+| RENDER-005 | Le contrôleur de production est choisi par spike Bun.WebView ↔ Obscura; si Bun.WebView échoue, un unique adaptateur CDP WebSocket Bun le remplace. | Le spike satisfait tous les critères Q99; sinon le rapport archive l’échec et l’adaptateur alternatif est testé. | TEST-020, INSTALL-002 | B79–80, B98–100; R2 |
+| RENDER-006 | Aucun Chrome utilisateur ne peut être découvert, attaché ou fermé par le MCP. | Test avec Chrome utilisateur ouvert démontre l’usage exclusif de l’endpoint Obscura explicite. | RENDER-005 | B99; R2 |
+| RENDER-007 | Le rendu respecte navigation 15 s, settling 3 s et timeout de recherche 30 s par défaut, tous configurables. | Tests de timeout déclenchent le statut approprié et libèrent les ressources. | CONFIG-004, ORCH-006 | B40 |
+| RENDER-008 | Un unique retry est permis pour erreur réseau/target cassée; un timeout reçoit au plus un retry court avec extraction partielle disponible. | Trace d’échec compte au plus un retry correspondant. | RENDER-009 | B165 |
+| RENDER-009 | HTTP 429, CAPTCHA et WAF ne reçoivent pas de retry immédiat; deux blocages du même domaine ouvrent un circuit pour l’appel courant. | Test de domaine bloqué observe arrêt des nouvelles tentatives et poursuite ailleurs. | ORCH-001 | B165 |
+| RENDER-010 | Aucun CAPTCHA, WAF interactif, paywall ou authentification n’est contourné. | Tests/inspection excluent toute action d’interaction ou résolution de challenge. | SECURITY-011 | B2, B21–23, B164; R1/R2 |
+| RENDER-011 | Les téléchargements sont limités à 25 Mio, streamés vers disque, sans chargement intégral en mémoire. | Fixture >25 Mio est interrompue; mesure mémoire montre l’écriture streaming. | CACHE-006 | B37 |
+
+## Extraction, contenu et liens
+
+| ID | Exigence | Critère d’acceptation | Dépendances | Source |
+| --- | --- | --- | --- | --- |
+| EXTRACT-001 | V1 couvre HTML rendu, texte, Markdown, JSON/XML, GitHub et blocs de code; autres formats passent par un registre d’extracteurs. | Tests MIME valident ces sorties et un format inconnu reçoit un statut explicite. | RENDER-003 | B8, B161 |
+| EXTRACT-002 | Le PDF textuel est supporté uniquement si le spike de compatibilité Bun le valide; un PDF scanné retourne `unsupported_or_ocr_required`. | Tests PDF textuel/scanné vérifient le comportement sans OCR automatique. | TEST-023 | B161; R2 |
+| EXTRACT-003 | Image, audio et vidéo ne sont ni OCRisés, ni transcrits, ni téléchargés automatiquement en v1. | Tests de média ne déclenchent aucun téléchargement de contenu média. | — | B37, B161 |
+| EXTRACT-004 | Aucun script, style, HTML actif ou contenu caché n’est livré à l’agent. | Fuzz tests HTML confirment l’absence de balises/exécution; seules données texte/Markdown/blocs structurés sortent. | SECURITY-001 | B36, B51; R1/R2 |
+| EXTRACT-005 | Le texte Web visible demeure complet mais est marqué `external_untrusted`; aucun contenu ne peut déclencher action/navigation MCP. | Toutes les passages et blocs portent le trust attendu; test d’injection ne provoque aucune opération. | SECURITY-001 | B36, B51 |
+| EXTRACT-006 | Les blocs de code légitimes sont préservés séparément, jamais exécutés, avec langage quand identifiable et signalement de caractères invisibles. | Fixtures GitHub/docs gardent leurs blocs sans exécution et avec métadonnées. | EXTRACT-004 | B36, B51, B32 |
+| EXTRACT-007 | Les extracteurs sont sélectionnés par benchmark contre l’étalon teacher; aucune bibliothèque externe d’extraction n’est adoptée sans gain démontré. | Rapport de benchmark compare sortie Obscura et candidat sur corpus teacher; décision archivée. | TEST-013 | B65, B86, B147 |
+| EXTRACT-008 | L’extraction ne doit pas introduire de clés API ni de service externe. | Lockfile/configuration ne contient aucune clé/exigence réseau d’un extracteur. | PROD-003 | B147 |
+| EXTRACT-009 | Les passages suivent la structure document (heading, paragraphes, listes, tableaux, code), pas des fenêtres arbitraires. | Fixture structurée vérifie sections et blocs intacts. | RANK-004 | B158 |
+| EXTRACT-010 | Les deux passages retournés par page sont diversifiés et les blocs de code restent entiers dans la limite de sortie. | Test de sélection évite deux passages substantiellement identiques et garde le code valide. | RANK-004 | B16, B158 |
+| EXTRACT-011 | Les liens de contenu (≤20) sont distincts des liens de navigation (≤10), sans publicité/tracking, avec anchor/contexte quand possible. | Fixture compare les deux listes, leurs limites et l’absence de trackers. | SECURITY-006 | B29 |
+| EXTRACT-012 | Chaque passage inclut heading, fragment réel si disponible, page de document si applicable et hash de passage; aucun numéro de ligne HTML n’est inventé. | Tests HTML/PDF valident uniquement des localisateurs réels. | CACHE-004 | B159 |
+| EXTRACT-013 | Les dates de publication suivent la provenance : structurée, article, visible cohérente, en-têtes HTTP; la date de fetch n’est jamais une publication. | Fixture de dates contradictoires sélectionne la provenance prioritaire et expose sa nature. | RANK-005 | B143 |
+
+## Ranking et pertinence
+
+| ID | Exigence | Critère d’acceptation | Dépendances | Source |
+| --- | --- | --- | --- | --- |
+| RANK-001 | La normalisation de requête est Unicode/multilingue, utilise `Intl.Segmenter`, préserve expressions citées et identifiants techniques, sans traduction ni stemming agressif v1. | Tests multilingues et identifiants techniques produisent les tokens attendus. | — | B139 |
+| RANK-002 | La sélection pré-rendu et la décision post-rendu sont deux scores distincts. | Traces montrent score SERP de planification et score final de retour séparés. | SEARCH-008, EXTRACT-009 | B140 |
+| RANK-003 | Le score pré-rendu combine position Google, titre, snippet, URL, type probable et nouveauté. | Fixture SERP vérifie ordre de sélection explicable. | SEARCH-006 | B140 |
+| RANK-004 | Le score final combine passage, couverture de concepts, titre/headings, qualité de contenu, type de source, fraîcheur conditionnelle, qualité, position Google et pénalités bruit/doublon. | Chaque résultat diagnostic peut exposer ses composantes; tests vérifient les effets. | EXTRACT-009, RANK-005–007 | B18, B140 |
+| RANK-005 | La fraîcheur ne pèse que pour signaux temporels observables (date/année, mots temporels, version, profil news ou opérateur). Une date inconnue est neutre. | Tests requête temporelle/non temporelle prouvent activation conditionnelle et neutralité sans date. | EXTRACT-013 | B143 |
+| RANK-006 | La qualité de source est structurelle et page-par-page, sans whitelist/domain trust fixe. | Fixture de pages officielles/minces/copiées vérifie signaux listés sans règle de domaine fixe. | EXTRACT-009 | B142 |
+| RANK-007 | Les seuls rejets absolus sont les échecs techniques, contenu inexploitable, duplicat, contenu non supportable et absence complète de correspondance; aucune blacklist éditoriale n’est appliquée. | Tests montrent qu’une source faible mais liée peut revenir en `low`, et qu’aucun filtre de réputation n’existe. | SECURITY-011 | B141 |
+| RANK-008 | Les poids initiaux sont : passages 35 %, concepts 20 %, type 15 %, Google 15 %, qualité 10 %, fraîcheur 5 % conditionnel. | Configuration/version de scoring reproduit ces poids initiaux. | CONFIG-004 | B18 |
+| RANK-009 | Les profils `general`, `technical`, `news`, `academic`, `community`, `auto` sont des boosts souples post-extraction; `auto` ne filtre jamais la découverte. | Test même corpus avec `auto` conserve les candidats, mais peut modifier l’ordre. | RANK-004 | B24 |
+| RANK-010 | Le score de profil mélange 70 % général et 30 % profil, avec repli général. | Test de profil absent/invalide applique ce mélange/repli. | RANK-009 | B24 |
+| RANK-011 | Aucun ML ou embedding n’est utilisé initialement; une future brique locale n’est admissible que derrière un seam de reranker et après gain benchmark. | Dépendances initiales ne contiennent aucun modèle; proposition future exige rapport comparatif. | TEST-018 | B27, B43–46 |
+| RANK-012 | Une page faible mais meilleure disponible reste retournable avec confiance faible; la pertinence runtime n’affirme jamais conformité teacher hors benchmark. | Tests de résultats faibles valident `partial/low` plutôt qu’élimination. | MCP-007, TEST-017 | B58, B157 |
+
+## Cache, stockage et investigations
+
+| ID | Exigence | Critère d’acceptation | Dépendances | Source |
+| --- | --- | --- | --- | --- |
+| CACHE-001 | Le cache est global et partagé entre investigations, tandis que la consommation est isolée par investigation. | Deux investigations réutilisent contenu; une même investigation ne le reçoit pas deux fois. | CACHE-007 | B12, B17, B28 |
+| CACHE-002 | Le stockage d’état est SQLite avec fichiers adressés par hash; ni PostgreSQL, Redis ni Docker ne sont requis. | Inspection montre SQLite + chemins de blobs et aucune dépendance correspondante. | CACHE-006 | B69 |
+| CACHE-003 | Le workspace runtime est `~/.open-websearch-mcp`; code source et données runtime restent séparés. | Premier appel crée les dossiers attendus dans home, aucun cache/binaire n’est écrit dans le dépôt. | CONFIG-001, INSTALL-001 | B72, B90 |
+| CACHE-004 | SQLite conserve queries, candidats, features, extracteurs, timings, consommations, hashes et chemins; le contenu lourd reste dans le filesystem. | Schéma/fixtures de persistance vérifient les informations et références de fichiers. | CACHE-002 | B31, B87 |
+| CACHE-005 | TTL : Cache-Control/ETag/Last-Modified d’abord; news 15 min, général 24 h, docs 7 j, versionné 30 j, URL hash quasi-immuable. | Tests de type/headers appliquent le TTL attendu. | CONFIG-004 | B30 |
+| CACHE-006 | Cache par défaut 5 Go LRU; fixtures benchmark et investigations actives sont pinées; éviction : binaires puis rendu puis texte/métadonnées. | Test de pression disque vérifie ordre, plafond et protections. | CACHE-002 | B69 |
+| CACHE-007 | Une investigation est créée implicitement sans ID et son ID effectif est toujours retourné; une ID fournie reprend l’investigation. | Tests MCP vérifient création, reprise et isolement. | MCP-002 | B134 |
+| CACHE-008 | Une page retournée est consommée et ne peut jamais être renvoyée dans la même investigation; une page ouverte puis rejetée ne l’est pas. | Tests de reprise prouvent les deux cas. | CACHE-009 | B12, B27 |
+| CACHE-009 | La consommation est at-most-once concurrente : réservation courte SQLite, marquage avant émission; annulation après réservation conserve la consommation. | Test de deux appels concurrents même investigation retourne l’URL au plus une fois. | ORCH-007 | B129 |
+| CACHE-010 | Les investigations persistent sans expiration automatique; corps évincé ou redémarrage ne réautorise pas une URL consommée. | Test redémarrage/éviction conserve l’interdiction; suppression est manuelle. | CACHE-008 | B162 |
+| CACHE-011 | Déduplication : URL canonique/final + suppression tracking/fragments, hash exact, puis SimHash/MinHash à seuil 90 % expérimental. | Tests couvrent les trois niveaux et alias; mêmes domaines non dédupliqués par principe. | CONFIG-004 | B13, B146 |
+
+## Interface MCP et résultats
+
+| ID | Exigence | Critère d’acceptation | Dépendances | Source |
+| --- | --- | --- | --- | --- |
+| MCP-001 | Le serveur utilise le SDK Model Context Protocol officiel et le transport stdio. | Test de conformance initialise et appelle les outils via SDK officiel. | PROD-001 | B114, B71 |
+| MCP-002 | `web_search` accepte `query`, `investigation_id?`, `max_results?` 1–10 défaut 5, `profile?` et `locale?`. | JSON Schema MCP/refus d’arguments invalides vérifie les bornes et valeurs. | CACHE-007 | B135 |
+| MCP-012 | Par défaut, `web_search` retourne au plus cinq sources utiles, deux passages par source d’environ 1 200 caractères, avec titre/URL/date/provenance/score/liens. | Test de contrat sans options vérifie quantités, budget et métadonnées. | MCP-005, EXTRACT-010 | B16 |
+| MCP-003 | `web_open` accepte `url`, `investigation_id?`, `focus?`, `max_chars?`; défaut 12 000, maximum 25 000. | Schema/tests vérifient valeurs et sélection focus déterministe. | CACHE-007 | B136 |
+| MCP-013 | Une URL `web_open` est consommée seulement si une réponse exploitable est préparée. | Test d’échec d’ouverture ne consomme pas l’URL; test de succès la consomme. | CACHE-008 | B136 |
+| MCP-004 | `web_open` rend l’URL explicitement donnée, sans exploration/navigation automatique issue du contenu. | Test de page à liens malicieux n’ouvre aucun lien secondaire. | SECURITY-001 | B28, B51 |
+| MCP-005 | Chaque réponse contient une enveloppe stable : investigation, statut, raison typée si nécessaire, confiance, résultats, titre, URL/final URL, provenance discovery, MIME, type, dates, score, trust, passages, blocs de code, deux listes de liens et hash. | Tests de contrat valident toutes les clés/types, métadonnées code, `renderer_unavailable`, `local_cache` et la parité text/structured. | EXTRACT-006, EXTRACT-011–013 | B137 |
+| MCP-006 | Chaque réponse fournit une version `content` compacte et une `structuredContent` sémantiquement équivalente; aucune information essentielle n’est exclusive à l’une. | Tests de sérialisation comparent les deux représentations. | MCP-005 | B130 |
+| MCP-007 | Les statuts sont `success`, `partial`, `no_relevant_results`, `blocked`, `error`, avec confiance `high|medium|low`; leurs conditions sont explicitement testées. | Suite de scénarios remplit chaque statut conformément aux cas validés. | RANK-012 | B137, B157 |
+| MCP-008 | Le serveur supporte au minimum MCP 2024-11-05 et 2025-06-18; révisions ultérieures nécessitent matrice de conformance harnesses. | Tests négocient les deux versions et rejettent/cadrent les autres correctement. | TEST-024 | B131; R1 |
+| MCP-009 | `tools/list`, `tools/call`, ping et cancellation standard sont supportés; ressources, prompts, sampling, elicitation et HTTP ne sont pas implémentés en v1. | Test MCP vérifie outils et erreur standard de méthode non supportée. | MCP-001 | B115, B132 |
+| MCP-010 | La ligne JSON entrante est plafonnée à 4 Mio par défaut configurable. | Test de payload > limite échoue sans allocation non bornée. | CONFIG-004 | B120 |
+| MCP-011 | Les appels MCP peuvent être concurrents et les réponses sont corrélées par ID JSON-RPC. | Test multi-appels vérifie simultanéité et corrélation. | ORCH-001 | B121 |
+
+## Sécurité, réseau et confidentialité
+
+| ID | Exigence | Critère d’acceptation | Dépendances | Source |
+| --- | --- | --- | --- | --- |
+| SECURITY-001 | Toute donnée Web est non fiable; scripts/actif/caché sont retirés et aucune instruction Web ne peut déclencher une action MCP. | Corpus prompt-injection/XSS ne déclenche aucune action ni sortie active. | EXTRACT-004 | B36, B51; R1/R2 |
+| SECURITY-002 | Chaque passage et code Web porte `external_untrusted`. | Test de sortie inspecte ce champ partout. | EXTRACT-005 | B51 |
+| SECURITY-003 | Seules URLs HTTP(S) publiques sont autorisées. | Tests de schémas non HTTP(S) échouent. | SECURITY-004 | B39 |
+| SECURITY-004 | SSRF bloque localhost, privé, réservé, link-local, multicast, rebinding DNS et valide chaque redirect. | Suite SSRF inclut IPv4/IPv6/DNS/redirect et est bloquante. | SECURITY-003 | B39 |
+| SECURITY-005 | `robots.txt` est respecté pour les destinations ouvertes automatiquement depuis `web_search`; `web_open` explicite peut continuer avec trace. | Tests de robots confirment les deux politiques et la provenance de décision. | SEARCH-008 | B20; R2 |
+| SECURITY-006 | Les URLs de sortie retirent trackers et pubs sans confondre URLs distinctes; URL originale/canonique restent traçables. | Tests UTM/fragments et alias vérifient stockage/retour. | CACHE-011 | B13, B29 |
+| SECURITY-007 | Aucune télémétrie externe n’est envoyée. | Audit réseau ne montre que Google, sites demandés, téléchargement Obscura et dépendances explicitement déclenchées. | — | B31 |
+| SECURITY-008 | Logs, traces versionnées et artefacts d'orchestration ne contiennent ni cookies, secrets, bodies HTML complets, ni contenu extrait complet; le cache runtime privé peut conserver l'extraction sanitizée bornée nécessaire à la réutilisation. | Tests de redaction valident les sorties observables et tests de cache prouvent l'absence d'HTML actif/credentials/browser state. | LOG-001, CACHE-004 | B41, B88, B105 |
+| SECURITY-009 | Les installations ne désactivent jamais Gatekeeper/quarantaine macOS. | Test/inspection de l’installateur vérifie absence de suppression de quarantaine. | INSTALL-003 | B85; R2 |
+| SECURITY-010 | Aucune session/cookie navigateur personnel n’est lue ou réutilisée. | Test avec profils existants démontre absence d’accès. | SEARCH-003, RENDER-004 | B20, B99 |
+| SECURITY-011 | Authentification, consentement bloquant, paywall sans contenu, CAPTCHA et WAF retournent des états explicites et ne sont pas contournés. | Fixtures produisent `blocked`/raison appropriée. | MCP-007 | B21–23, B141 |
+
+## Configuration, installation, logs et maintenance
+
+| ID | Exigence | Critère d’acceptation | Dépendances | Source |
+| --- | --- | --- | --- | --- |
+| CONFIG-001 | `~/.open-websearch-mcp/config.toml` est créé au premier appel avec défauts et `schema_version`. | Premier appel crée TOML valide sans préconfiguration. | CACHE-003 | B77, B82 |
+| CONFIG-002 | TOML est lu/écrit avec APIs Bun natives; YAML n’est pas le format primaire. | Dépendances/configuration démontrent parse/stringify Bun TOML. | PROD-001 | B82; R2 |
+| CONFIG-003 | Les champs inconnus sont des erreurs; champs manquants reçoivent défauts en mémoire; config invalide conserve le dernier snapshot valide. | Tests TOML typo/incomplet/invalide vérifient ces comportements. | CONFIG-001 | B163 |
+| CONFIG-004 | Valeurs techniques, poids, seuils, limites et timeouts sont configurables; champs risqués sont dans `[experimental]`. | Exemple TOML et schema couvrent chaque paramètre public/expérimental. | CONFIG-001 | B77, B83 |
+| CONFIG-005 | La configuration est rechargée avant chaque appel, puis figée pour la durée de cet appel. | Test de modification en cours d’appel vérifie snapshot stable et appel suivant mis à jour. | CONFIG-003 | B106 |
+| CONFIG-006 | Les migrations de config sont atomiques, sauvegardent `.bak` et ne réécrivent pas un fichier actuel afin de préserver commentaires. | Test migration valide backup/atomicité/non-réécriture. | CONFIG-003 | B163 |
+| INSTALL-001 | Obscura s’installe automatiquement à la première requête; le premier appel peut être lent et les appels simultanés partagent une installation single-flight. | Test multi-premiers appels observe un seul téléchargement/install et tous attendent/résolvent correctement. | RENDER-001 | B66, B85, B97, B122 |
+| INSTALL-002 | Obscura est versionné explicitement, téléchargé HTTPS, limité en taille, inspecté avant extraction, hashé SHA-256, installé atomiquement et smoke-testé. | Test manifeste/archives malveillantes prouve chaque garde. | SECURITY-009 | B85; R2 |
+| INSTALL-003 | Les mises à jour Obscura sont déclenchées seulement par un nouveau pin de release MCP, installées côte à côte, testées, basculées atomiquement et rollbackables. | Test de changement de pin conserve ancien binaire et prouve bascule/rollback. | INSTALL-002 | B166 |
+| LOG-001 | Chaque processus MCP écrit un fichier JSONL de session conservé dans `~/.open-websearch-mcp/logs`; stdout reste exclusivement MCP. | Test de session vérifie nom horodaté/ID, JSONL et stdout propre. | CACHE-003 | B41, B88, B96 |
+| LOG-002 | Les logs gardent query, URL, scores, décisions, statuts, tailles et timings, mais respectent SECURITY-008. | Audit fixture log confirme champs présents/absents. | SECURITY-008 | B105 |
+| LOG-003 | Une CLI minimale existe pour diagnostic/maintenance (`doctor`, `benchmark`, éventuellement config check/install), mais aucune commande manuelle n’est requise pour utiliser le MCP. | Aucune sous-commande démarre un daemon requis; `doctor` vérifie dépendances sans recherche. | MCP-001 | B104, B123 |
+
+## Orchestration, concurrence et annulation
+
+| ID | Exigence | Critère d’acceptation | Dépendances | Source |
+| --- | --- | --- | --- | --- |
+| ORCH-001 | Le pool de rendu est global, partagé entre tous appels et investigations. | Test de plusieurs appels ne dépasse pas la capacité globale. | ORCH-002 | B127, B133 |
+| ORCH-002 | La concurrence est adaptative : défaut `auto`, démarre à 8, peut monter jusqu’à 40, réduit sous pression/erreur/latence et accepte override TOML. | Spike de charge et tests de contrôleur valident montée/réduction/bornes/configuration. | TEST-021, CONFIG-004 | B133 |
+| ORCH-003 | Au plus deux pages d’un même domaine sont rendues simultanément. | Test multi-URL même host vérifie plafond. | ORCH-001 | B40, B133 |
+| ORCH-004 | Le scheduler est round-robin par investigation; un `web_open` explicite reçoit une légère priorité sans monopoliser les slots. | Test file longue vérifie progression de chaque investigation. | ORCH-001 | B128 |
+| ORCH-005 | Aucun appel ne réserve tous les slots à l’avance. | Trace scheduler démontre acquisition unitaire/équitable. | ORCH-004 | B128 |
+| ORCH-006 | Toute opération dispose d’AbortController, timeout interne et annulation idempotente. | Test cancellation répétée ne fuit ni slot ni target. | MCP-009 | B132 |
+| ORCH-007 | L’annulation retire de la file, annule navigation, ferme target, libère slots et respecte CACHE-009. | Tests avant/après réservation vérifient toutes les transitions. | CACHE-009 | B129, B132 |
+| ORCH-008 | Le cycle de vie arrête proprement Obscura et ne laisse aucun processus/target/fichier temporaire orphelin. | Test shutdown/release vérifie zéro enfant/fichier temporaire restant. | RENDER-005 | B99, B167 |
+
+## Architecture et qualité de code
+
+| ID | Exigence | Critère d’acceptation | Dépendances | Source |
+| --- | --- | --- | --- | --- |
+| ARCH-001 | Le code versionné est séparé du workspace runtime et organisé par capacités métier (`features`) plutôt que par outil MCP. | Inspection d’arborescence montre `src/features` et adapters MCP minces. | CACHE-003 | B90–91 |
+| ARCH-002 | Chaque feature possède domain/application/adapters et une seule interface publique; les internals d’une feature ne sont pas importables par une autre. | Les mécanismes stables Oxlint/TypeScript sélectionnés par le spike bloquent les fixtures de cross-feature internals. | ARCH-005 | B91–93, B109 |
+| ARCH-003 | Domain ne dépend pas de l’infrastructure; application ne dépend que domain/interfaces; adapters portent Bun/Obscura/SQLite/Google/filesystem; MCP dépend des interfaces application. | Test de graphe d’import bloque chaque inversion. | ARCH-005 | B92 |
+| ARCH-004 | `shared` ne contient que primitives stables réellement partagées; aucun `utils.ts`, `helpers.ts`, `common.ts` ou `constants.ts` générique. | Lint/revue de noms et import graph vérifient la règle. | ARCH-005 | B93 |
+| ARCH-005 | Les frontières sont imposées par Oxlint/TypeScript existant, avec plugin stable seulement après POC; aucun linter maison n’est écrit. Internals, direction, imports Node, cycles et contournements par alias/import dynamique sont tous bloquants. | La matrice POC prouve chaque règle sur fixtures positives/négatives; si aucun outillage stable existant ne couvre l'une d'elles, le spike bloque la release et demande une décision externe au lieu d'assouplir ou coder un linter. | ARCH-007 | B65, B92, B94, B107 |
+| ARCH-006 | Les alias d’import utilisent `@/…` après preuve de résolution identique Bun, TS7 et Oxlint. | POC de résolution commun passe. | ARCH-005 | B110 |
+| ARCH-007 | Lint bloque : fichier >300 lignes, fonction >60, complexité >10, profondeur >4, >5 paramètres, >12 déclarations d'import; fixtures/données déclaratives/générés sont exemptés seulement des limites de lignes. | Config Oxlint et fixtures positives/négatives démontrent les seuils. | ARCH-005 | B94, B108; R2 |
+| ARCH-008 | Oxfmt, Oxlint strict, type-aware Oxlint/TS7, warnings interdits et disables inutilisés sont obligatoires; configs sont JSON/JSONC, pas JS/TS. | Gates locales/CI échouent sur warning, disable mort et config dynamique. | ARCH-007 | B81, B102; R2 |
+| ARCH-009 | Bun est l’unique runtime/outillage : pas de processus `node`, npm/npx, Yarn, pnpm, Docker ni script demandant Node; notre code n’importe pas `node:*`. | Audit scripts/source prouve ces interdictions; SDK MCP est autorisé comme dépendance Bun-compatible. | MCP-001 | B65, B101, B124 |
+| ARCH-010 | Toutes les versions Bun, TS7, Oxlint/Oxfmt, SDK MCP, Obscura et dépendances sont exactes, sans `latest`, `^` ni `~`, avec lockfile versionné. | Manifest/lockfile/revue release vérifient pins exacts. | RELEASE-003 | B103 |
+
+## Tests, spikes et benchmark
+
+| ID | Exigence | Critère d’acceptation | Dépendances | Source |
+| --- | --- | --- | --- | --- |
+| TEST-001 | Les tests unitaires sont proches du code; contrats, intégrations, e2e MCP, benchmarks et fixtures sont séparés. | Arborescence tests respecte les catégories et chaque suite est exécutable. | ARCH-001 | B95 |
+| TEST-002 | Les tests utilisent `bun test --parallel --isolate`; chaque intégration a dossier temporaire, SQLite, profil Obscura et ressources dédiées. | Test de parallélisme montre absence d’accès/collision cross-test. | ARCH-009 | B102, B112, B119 |
+| TEST-003 | Les tests ne touchent jamais `~/.open-websearch-mcp`. | Test de garde workspace échoue si chemin production est accédé. | CACHE-003 | B119 |
+| TEST-004 | Réseau réel Google est séparé : tests ordinaires déterministes, canaries live plafonnés et sérialisés/faiblement concurrents, CI normale indépendante de Google. | Scripts séparés et CI vérifient absence de Google dans suite standard. | SEARCH-004 | B111 |
+| TEST-005 | Le benchmark teacher initial contient 20 requêtes : 6 techniques/docs, 3 actualités, 3 académiques/primaires, 3 communautaires, 3 multilingues, 2 difficiles/sans réponse. | Corpus versionné contient exactement ces catégories. | TEST-006 | B148 |
+| TEST-006 | Codex et `claude -p` exécutent les mêmes questions avec WebSearch natif, en session/temp isolé, sans contexte projet, MCP, plugin, skill, shell/curl/script. | Traces capturent l’environnement et démontrent le prompt minimal. | TEST-005 | B147, B149, B154 |
+| TEST-007 | Le prompt teacher commun impose WebSearch natif et citations, sans imposer requêtes, profondeur, domaines ni nombre de recherches. | Prompt versionné est identique pour les deux teachers et satisfait ces limites. | TEST-006 | B149 |
+| TEST-008 | Les traces teacher capturent les éléments observables : queries, résultats/outils exposés, URLs ouvertes/citées, sources, preuves, réponse, modèle/version/date/locale/durée. | Schéma JSONL/fixtures vérifie champs et provenance. | TEST-006 | B48, B147 |
+| TEST-009 | Codex transforme les traces en fixtures; Claude les vérifie; seules données présentes ou validées par les deux deviennent exigences de fixture. | Pipeline de fixture archive validation et rejets. | TEST-008 | B150 |
+| TEST-010 | Traces teacher sanitizées et fixtures sont versionnées dans Git; sanitization retire seulement tokens/auth/session, chemins absolus et métadonnées locales sans rapport. | Test sanitization protège secrets tout en préservant recherche/résultats/réponses. | TEST-008 | B151–152 |
+| TEST-011 | Chaque refresh teacher est immuable et daté/provider/modèle/version CLI; déclenché changement majeur, pré-release majeure ou mensuellement au plus. | Historique benchmark conserve les runs anciens et métadonnées. | TEST-010 | B153 |
+| TEST-012 | Le benchmark runtime est entièrement déterministe et sans LLM : claims, concepts, motifs, sources équivalentes, passages et poids sont évalués lexicalement. | Exécution benchmark sans réseau/LLM produit même résultat deux fois. | TEST-009 | B155 |
+| TEST-013 | Les extracteurs sont mesurés contre l’étalon teacher, pas choisis par intuition; Obscura seul est la baseline initiale. | Rapport montre métriques contenu/bruit/code/tableaux/liens/perf et décision. | TEST-012 | B147 |
+| TEST-014 | Calibration et validation sont séparées 14/6 au corpus 20, puis 80/20 au corpus 100. | Scripts refusent d’utiliser cas validation pour optimiser poids. | TEST-012 | B156 |
+| TEST-015 | Métriques benchmark : evidence coverage 35, source/équivalent recall 25, rank 15, extraction 10, diversité 10, budget tokens 5. | Grader publie les composantes et total. | TEST-012 | B58 |
+| TEST-016 | Seuils benchmark : excellent 85–100, pertinent 70–84, dégradé 50–69, non pertinent <50. | Rapport classe tous cas selon seuils. | TEST-015 | B58 |
+| TEST-017 | Promotion de configuration : moyenne ≥75, ≥80 % des requêtes ≥70, aucun canari critique <50, gain global ≥3 et aucune catégorie ne perd >5. | Test champion/challenger applique tous les critères. | TEST-014 | B48, B58 |
+| TEST-018 | Le corpus de référence est complété par fixtures déterministes, BEIR/TREC qrels/BRIGHT pour ranking et 30–50 canaries Google publics. | Scripts/documentation déclarent les trois sources et leur isolation. | TEST-004 | B39, B52 |
+| TEST-019 | La pertinence live inconnue est exprimée par score/confiance interne; le système ne prétend pas disposer d’un oracle automatique universel. | Réponse/runtime ne contient pas de conformité teacher hors fixture. | RANK-012 | B56–58, B157 |
+| TEST-020 | Le spike Bun.WebView/Obscura valide lancement, endpoint CDP, target, fixture locale, page JS publique, evaluate, DOM.getDocument, liens/texte, 6 vues, fermeture, 100 navigations, zéro orphan/Chrome utilisateur. | Artefact de spike versionné contient résultats/logs pour chaque critère. | RENDER-005 | B99 |
+| TEST-021 | Le spike de consommation mesure 1,4,8,16,24,32,40 pages sur catégories variées : RAM, CPU, débit, P50/P95, timeouts, stabilité à 100 navigations, froid/chaud. | Rapport de charge versionné couvre tous paliers/métriques. | ORCH-002 | B133 |
+| TEST-022 | Le spike FTS5 teste support SQLite à démarrage; absence de FTS5 dégrade uniquement recherche locale avancée, sans installation Homebrew automatique. | Test simule absence et vérifie recherche Web/cache encore fonctionnels + diagnostic. | CACHE-002 | B84; R2 |
+| TEST-023 | La compatibilité PDF.js, robots parser et toute dépendance candidate est vérifiée par test Bun isolé avant adoption. | Chaque dépendance optionnelle possède résultat de compatibilité. | ARCH-009 | B65; R2 |
+| TEST-024 | La gate de release inclut format/lint/type tests, tests MCP/WebView-Obscura, absence de fuite process/temp, benchmark thresholds et non-régression catégorie. | CI release échoue pour chaque violation simulée. | TEST-017, TEST-020 | B167 |
+| TEST-025 | Canaries Google live produisent un rapport mais ne bloquent pas seuls une release à cause de l’instabilité externe. | CI distingue échec gate interne et rapport live. | TEST-004 | B167 |
+
+## Release, publication et gouvernance
+
+| ID | Exigence | Critère d’acceptation | Dépendances | Source |
+| --- | --- | --- | --- | --- |
+| RELEASE-001 | Le projet est sous licence Apache-2.0 avec notices/attributions conservées; binaires Obscura ne sont pas committés. | Licence/NOTICE présents et Git ne contient pas binaires Obscura. | INSTALL-002 | B168 |
+| RELEASE-002 | Le package est publié sur npm et peut être essayé par `bunx --bun @scope/open-websearch-mcp`. | Un paquet de test/release s’exécute avec cette commande sous Bun. | ARCH-009 | B169 (distribution) |
+| RELEASE-003 | `@latest` est acceptable pour découverte; configurations persistantes de harness utilisent une version exacte. | Documentation d’intégration comporte les deux formes et recommande pin pour config. | ARCH-010 | B169 (version) |
+| RELEASE-004 | Le flux Git est branche/worktree → PR vers `main` → CI obligatoire → merge `main` → release depuis `main`. | Protection/workflows/documentation démontrent cette séquence. | TEST-024 | Décision release utilisateur |
+| RELEASE-005 | Chaque implémentation est réalisée dans un worktree et intégrée à `main` par PR; `main` reste la seule source de release. | Guide de contribution et artefacts CI/PR vérifient branche/PR. | RELEASE-004 | Décision release utilisateur |
+| RELEASE-006 | Une release autorisée depuis `main` publie npm, crée GitHub Release, attache tarball/changelog et reprend idempotemment chaque étape; accès npm/trusted publishing sont différés à la phase de déploiement. | Une autorisation exacte commit/version/package précède publication; ledger et simulation prouvent reprise après succès npm puis échec GitHub sans republication. | RELEASE-004 | Décision release utilisateur |
+| RELEASE-007 | Avant mise en place release, un workflow GitHub PR exécute les gates de qualité applicables. | Workflow PR versionné déclenche format/lint/tests/benchmarks déterministes. | TEST-024 | Décision release utilisateur |
+
+## Orchestration agentique de l’implémentation future
+
+| ID | Exigence | Critère d’acceptation | Dépendances | Source |
+| --- | --- | --- | --- | --- |
+| ORCH-009 | L’implémentation est pilotée par une spec globale et des sous-specs traçables, avec checkpoints Markdown d’état. | Chaque ID est développé en ligne atomique machine-readable avec propriétaire, preuve attendue et checkpoint; ranges interdits à la release. | Toutes | Demande finale utilisateur |
+| ORCH-010 | Un orchestrateur sélectionne et coordonne des sous-agents selon leurs capacités/modèles disponibles dans OpenCode, avec parallélisme seulement pour tâches indépendantes. | Le journal d’orchestration indique affectation, dépendances, sorties et intégration. | ORCH-009 | Demande finale utilisateur |
+| ORCH-011 | Toute décision automatique substantielle est challengée par revue indépendante avant confirmation/intégration. | Chaque checkpoint contient proposition, revue, résolution et preuves. | ORCH-010 | Demande finale utilisateur |
+| ORCH-012 | La boucle agentique ne se termine que lorsque toutes exigences applicables sont marquées satisfaites avec preuves, ou qu’un blocage externe est explicitement enregistré. | Tableau de couverture ne permet pas de clôture avec exigence ouverte non justifiée. | ORCH-009 | Demande finale utilisateur |
+| ORCH-013 | Les changements sont effectués par étapes atomiques, testés et checkpointés afin de comparer de manière fiable l’état d’avancement. | Chaque checkpoint référence commit/PR, exigences, tests, artefacts et delta; CI interdit modification/suppression des checkpoints antérieurs et valide la chaîne. | RELEASE-005 | Demande finale utilisateur |
+
+## Questions explicitement laissées au spike ou à une future ADR
+
+Ces sujets ne sont pas des trous de périmètre : ils doivent être tranchés avec
+preuves avant d’être promus en comportement de production.
+
+| Sujet | Exigence de décision | Source |
+| --- | --- | --- |
+| Contrôle navigateur | Promouvoir Bun.WebView seulement si TEST-020 passe; sinon utiliser l’unique adapter CDP Bun prévu par RENDER-005. | B98–100, R2 |
+| Extracteur | Garder Obscura baseline; n’ajouter Readability ou autre dépendance que si TEST-013 démontre le gain. | B147, R2 |
+| PDF et robots parser | Activer uniquement après TEST-023 positif; sinon statut explicite/politique de secours. | B161, R2 |
+| FTS5 | Utiliser FTS5 seulement si disponible; aucun installateur Homebrew automatique. | B84, R2 |
+| Limites de concurrence | Ajuster les paramètres auto à partir de TEST-021, sans dépasser le plafond versionné/configuré. | B133 |
