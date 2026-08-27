@@ -7,8 +7,11 @@ current_attempt = 1
 current_worktree = ".worktree/boot-004-a1"
 current_branch = "agent/boot-004-a1"
 current_base_sha = "053e1997c53b3578e47a13795287de56f95062ad"
-current_step = 4
-last_trace = "docs/orchestration/runs/BOOT-004/0004-correction.md"
+current_head_sha = "11e3fb72686317deeee200406288c17bc3a25262"
+current_reviewed_diff = "af86b30f64bea9f198eec28ddd447e1e740092934f2542e095e82230266710e8"
+current_step = 6
+current_session = "ses_fbcd309daffefNpOT8mJECViZm"
+last_trace = "docs/orchestration/runs/BOOT-004/0006-review.md"
 
 [environment]
 repo_initialized = true
@@ -63,14 +66,14 @@ attempts = [{ attempt = 1, branch = "agent/boot-003-a1", worktree = ".worktree/b
 evidence = ["docs/orchestration/runs/BOOT-003/0001-ready.md", "docs/orchestration/runs/BOOT-003/0002-prepare.md", "docs/orchestration/runs/BOOT-003/0003-implementation.md", "docs/orchestration/runs/BOOT-003/0004-correction.md", "docs/orchestration/runs/BOOT-003/0005-correction.md", "docs/orchestration/runs/BOOT-003/0006-correction.md", "docs/orchestration/runs/BOOT-003/0007-correction.md", "docs/orchestration/runs/BOOT-003/0008-correction.md", "docs/orchestration/runs/BOOT-003/0009-review.md"]
 
 [tasks.BOOT-004]
-state = "in_progress"
+state = "verified"
 spec = "docs/spec/10-packaging-releases.md"
 depends_on = ["BOOT-001", "BOOT-003"]
 write_set = [".github/workflows"]
 requirements = ["RELEASE-007"]
 acceptance_gates = ["command:bun install --frozen-lockfile --ignore-scripts && bun run check && bun pm pack --dry-run --ignore-scripts && actionlint .github/workflows/orchestration-audit.yml"]
 attempts = [{ attempt = 1, branch = "agent/boot-004-a1", worktree = ".worktree/boot-004-a1", base_sha = "053e1997c53b3578e47a13795287de56f95062ad" }]
-evidence = ["docs/orchestration/runs/BOOT-004/0001-ready.md", "docs/orchestration/runs/BOOT-004/0002-prepare.md", "docs/orchestration/runs/BOOT-004/0003-implementation.md", "docs/orchestration/runs/BOOT-004/0004-correction.md"]
+evidence = ["docs/orchestration/runs/BOOT-004/0001-ready.md", "docs/orchestration/runs/BOOT-004/0002-prepare.md", "docs/orchestration/runs/BOOT-004/0003-implementation.md", "docs/orchestration/runs/BOOT-004/0004-correction.md", "docs/orchestration/runs/BOOT-004/0005-evidence-correction.md", "docs/orchestration/runs/BOOT-004/0006-review.md"]
 
 [tasks.SPK-001]
 state = "planned"
