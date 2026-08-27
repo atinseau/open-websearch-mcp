@@ -2,16 +2,13 @@ schema_version = 3
 project = "open-websearch-mcp"
 state = "bootstrapped"
 spec_revision = "simple-opencode-loop"
-current_task = "BOOT-002"
+current_task = "BOOT-003"
 current_attempt = 1
-current_worktree = ".worktree/boot-002-a1"
-current_branch = "agent/boot-002-a1"
-current_base_sha = "54c2d714e4e63a381a96b1778d1fd18f6b2152f6"
-current_head_sha = "d5cdddfad0c1d90d94d631f56224fafbb78ee67c"
-current_reviewed_diff = "20ccd43688a8e58a62579008d5f25c377af5ed073fb2bacf3a73d7d6392efc84"
-current_step = 3
-current_session = "ses_fbd4f81dcffehkCQ0baOJfWLGd"
-last_trace = "docs/orchestration/runs/BOOT-002/0003-review.md"
+current_worktree = ".worktree/boot-003-a1"
+current_branch = "agent/boot-003-a1"
+current_base_sha = "8bf3c3669a635aeeaf403797dc51adfad670fce0"
+current_step = 8
+last_trace = "docs/orchestration/runs/BOOT-003/0008-correction.md"
 
 [environment]
 repo_initialized = true
@@ -56,11 +53,14 @@ attempts = [{ attempt = 1, branch = "agent/boot-002-a1", worktree = ".worktree/b
 evidence = ["docs/orchestration/runs/BOOT-002/0001-prepare.md", "docs/orchestration/runs/BOOT-002/0002-implementation.md", "docs/orchestration/runs/BOOT-002/0003-review.md"]
 
 [tasks.BOOT-003]
-state = "planned"
+state = "in_progress"
 spec = "docs/spec/02-architecture-runtime.md"
 depends_on = ["BOOT-002"]
-write_set = ["package.json", "bun.lock", "tsconfig.json", ".oxlintrc.jsonc", ".oxfmtrc.jsonc", "src", "tests/architecture"]
-evidence = []
+write_set = ["package.json", "bun.lock", "tsconfig.json", ".oxlintrc.jsonc", ".oxfmtrc.jsonc", "scripts/bootstrap-validator.ts", "scripts/orchestration", "src", "tests/architecture"]
+requirements = ["ARCH-008", "ARCH-009", "ARCH-010"]
+acceptance_gates = ["command:bun run check"]
+attempts = [{ attempt = 1, branch = "agent/boot-003-a1", worktree = ".worktree/boot-003-a1", base_sha = "8bf3c3669a635aeeaf403797dc51adfad670fce0" }]
+evidence = ["docs/orchestration/runs/BOOT-003/0001-ready.md", "docs/orchestration/runs/BOOT-003/0002-prepare.md", "docs/orchestration/runs/BOOT-003/0003-implementation.md", "docs/orchestration/runs/BOOT-003/0004-correction.md", "docs/orchestration/runs/BOOT-003/0005-correction.md", "docs/orchestration/runs/BOOT-003/0006-correction.md", "docs/orchestration/runs/BOOT-003/0007-correction.md", "docs/orchestration/runs/BOOT-003/0008-correction.md"]
 
 [tasks.BOOT-004]
 state = "planned"

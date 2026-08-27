@@ -1,7 +1,13 @@
 import { afterEach, expect, test } from "bun:test";
-import { runController, type OpenCodeRequest } from "./controller";
+import { runController, validateRepository, type OpenCodeRequest } from "./controller";
 
 const fixtures: string[] = [];
+
+function task(state: Awaited<ReturnType<typeof validateRepository>>, taskId: string) {
+  const value = state.tasks[taskId];
+  if (!value) throw new Error(`Missing test task ${taskId}`);
+  return value;
+}
 
 afterEach(async () => {
   for (const fixture of fixtures.splice(0)) {
@@ -18,8 +24,13 @@ async function createRepository(): Promise<string> {
     Bun.write(`${repository}/docs/orchestration/runs/BOOT-001/0001-done.md`, "# trace\n"),
     Bun.write(`${repository}/docs/spec/task.md`, "# task\n"),
     Bun.write(`${repository}/scripts/orchestration/validate.ts`, "console.log('valid');\n"),
-    Bun.write(`${repository}/scripts/orchestration/smoke.test.ts`, "import { expect, test } from 'bun:test'; test('smoke', () => expect(true).toBe(true));\n"),
-    Bun.write(`${repository}/docs/orchestration/state.toml`, `
+    Bun.write(
+      `${repository}/scripts/orchestration/smoke.test.ts`,
+      "import { expect, test } from 'bun:test'; test('smoke', () => expect(true).toBe(true));\n",
+    ),
+    Bun.write(
+      `${repository}/docs/orchestration/state.toml`,
+      `
 schema_version = 3
 project = "fixture"
 state = "active"
@@ -53,7 +64,8 @@ spec = "docs/spec/task.md"
 depends_on = ["BOOT-002"]
 write_set = ["scripts"]
 evidence = []
-`),
+`,
+    ),
   ]);
   await Bun.$`git init -b main ${repository}`.quiet();
   await Bun.$`git -C ${repository} add .`.quiet();
@@ -91,16 +103,18 @@ test("runController selects one ready task and persists a resumable paused step"
   expect(request?.model).toBe("openai/test-model");
   expect(request?.variant).toBe("high");
 
-  const rootState = Bun.TOML.parse(await Bun.file(`${repository}/docs/orchestration/state.toml`).text());
-  const worktreeState = Bun.TOML.parse(
-    await Bun.file(`${repository}/.worktree/boot-002-a1/docs/orchestration/state.toml`).text(),
-  );
-  expect(rootState.tasks["BOOT-002"].state).toBe("ready");
-  expect(worktreeState.tasks["BOOT-002"].state).toBe("in_progress");
+  const rootState = await validateRepository(repository);
+  const worktreeState = await validateRepository(`${repository}/.worktree/boot-002-a1`);
+  const rootTask = task(rootState, "BOOT-002");
+  const worktreeTask = task(worktreeState, "BOOT-002");
+  const firstAttempt = worktreeTask.attempts?.[0];
+  if (!firstAttempt) throw new Error("Missing first BOOT-002 attempt");
+  expect(rootTask.state).toBe("ready");
+  expect(worktreeTask.state).toBe("in_progress");
   expect(worktreeState.environment.controller_model).toBe("openai/test-model");
   expect(worktreeState.environment.controller_variant).toBe("high");
-  expect(worktreeState.tasks["BOOT-002"].attempts[0].attempt).toBe(1);
-  expect(worktreeState.tasks["BOOT-002"].evidence).toEqual([
+  expect(firstAttempt.attempt).toBe(1);
+  expect(worktreeTask.evidence).toEqual([
     "docs/orchestration/runs/BOOT-002/0001-prepare.md",
     "docs/orchestration/runs/BOOT-002/0002-implementation.md",
   ]);
@@ -153,9 +167,7 @@ test("runController resumes the recorded worktree and explicit OpenCode session"
 
   expect(resumedRequest?.cwd).toBe(`${repository}/.worktree/boot-002-a1`);
   expect(resumedRequest?.session_id).toBe("session-1");
-  const state = Bun.TOML.parse(
-    await Bun.file(`${repository}/.worktree/boot-002-a1/docs/orchestration/state.toml`).text(),
-  );
+  const state = await validateRepository(`${repository}/.worktree/boot-002-a1`);
   expect(state.current_step).toBe(3);
   expect(state.last_trace).toBe("docs/orchestration/runs/BOOT-002/0003-verification.md");
 });
@@ -197,29 +209,32 @@ test("runController converts an invalid verification claim into a resumable fail
 
   expect(calls).toBe(4);
   expect(result.status).toBe("paused");
-  const state = Bun.TOML.parse(
-    await Bun.file(`${repository}/.worktree/boot-002-a1/docs/orchestration/state.toml`).text(),
-  );
-  expect(state.tasks["BOOT-002"].state).toBe("in_progress");
+  const state = await validateRepository(`${repository}/.worktree/boot-002-a1`);
+  expect(task(state, "BOOT-002").state).toBe("in_progress");
   expect(state.last_trace).toBe("docs/orchestration/runs/BOOT-002/0005-implementation.md");
 });
 
 test("runController refuses a second live controller", async () => {
   const repository = await createRepository();
   await Bun.$`mkdir -p ${repository}/.worktree`.quiet();
-  await Bun.write(`${repository}/.worktree/.controller-lock`, JSON.stringify({
-    pid: process.pid,
-    token: "live-test-owner",
-    started_at: new Date().toISOString(),
-  }));
+  await Bun.write(
+    `${repository}/.worktree/.controller-lock`,
+    JSON.stringify({
+      pid: process.pid,
+      token: "live-test-owner",
+      started_at: new Date().toISOString(),
+    }),
+  );
 
-  expect(runController({
-    repository,
-    model: "openai/test-model",
-    invokeOpenCode: async () => {
-      throw new Error("must not run");
-    },
-  })).rejects.toThrow("Another controller is already running");
+  expect(
+    runController({
+      repository,
+      model: "openai/test-model",
+      invokeOpenCode: async () => {
+        throw new Error("must not run");
+      },
+    }),
+  ).rejects.toThrow("Another controller is already running");
 });
 
 test("runController treats an ownerless new lock as an acquisition in progress", async () => {
@@ -227,13 +242,15 @@ test("runController treats an ownerless new lock as an acquisition in progress",
   await Bun.$`mkdir -p ${repository}/.worktree`.quiet();
   await Bun.write(`${repository}/.worktree/.controller-lock`, "");
 
-  expect(runController({
-    repository,
-    model: "openai/test-model",
-    invokeOpenCode: async () => {
-      throw new Error("must not run");
-    },
-  })).rejects.toThrow("Another controller is acquiring the lock");
+  expect(
+    runController({
+      repository,
+      model: "openai/test-model",
+      invokeOpenCode: async () => {
+        throw new Error("must not run");
+      },
+    }),
+  ).rejects.toThrow("Another controller is acquiring the lock");
 });
 
 test("runController records an OpenCode interruption as resumable failure", async () => {
@@ -246,10 +263,9 @@ test("runController records an OpenCode interruption as resumable failure", asyn
     invokeOpenCode: async () => {
       calls += 1;
       if (calls === 1) {
-        const state = Bun.TOML.parse(
-          await Bun.file(`${repository}/.worktree/boot-002-a1/docs/orchestration/state.toml`).text(),
-        );
-        preparedBeforeInvocation = state.current_task === "BOOT-002" &&
+        const state = await validateRepository(`${repository}/.worktree/boot-002-a1`);
+        preparedBeforeInvocation =
+          state.current_task === "BOOT-002" &&
           state.last_trace === "docs/orchestration/runs/BOOT-002/0001-prepare.md";
       }
       const error = new Error("interrupted");
@@ -262,10 +278,8 @@ test("runController records an OpenCode interruption as resumable failure", asyn
   expect(preparedBeforeInvocation).toBe(true);
   expect(result.status).toBe("paused");
   expect(result.summary).toContain("interrupted");
-  const state = Bun.TOML.parse(
-    await Bun.file(`${repository}/.worktree/boot-002-a1/docs/orchestration/state.toml`).text(),
-  );
-  expect(state.tasks["BOOT-002"].state).toBe("in_progress");
+  const state = await validateRepository(`${repository}/.worktree/boot-002-a1`);
+  expect(task(state, "BOOT-002").state).toBe("in_progress");
   expect(state.last_trace).toBe("docs/orchestration/runs/BOOT-002/0002-failure.md");
 });
 
@@ -307,7 +321,9 @@ test("runController rejects an external blocker without exact blocker evidence",
   expect(calls).toBe(2);
   expect(result.status).toBe("paused");
   expect(
-    await Bun.file(`${repository}/.worktree/boot-002-a1/docs/orchestration/runs/BOOT-002/0002-failure.md`).text(),
+    await Bun.file(
+      `${repository}/.worktree/boot-002-a1/docs/orchestration/runs/BOOT-002/0002-failure.md`,
+    ).text(),
   ).toContain("blocker evidence");
 });
 
@@ -350,10 +366,8 @@ test("runController starts review in a fresh session before verified completion"
   expect(requests[0]?.session_id).toBeUndefined();
   expect(requests[1]?.session_id).toBeUndefined();
   expect(result.status).toBe("verified");
-  const state = Bun.TOML.parse(
-    await Bun.file(`${repository}/.worktree/boot-002-a1/docs/orchestration/state.toml`).text(),
-  );
-  expect(state.tasks["BOOT-002"].state).toBe("verified");
+  const state = await validateRepository(`${repository}/.worktree/boot-002-a1`);
+  expect(task(state, "BOOT-002").state).toBe("verified");
   expect(state.current_session).toBe("review-session");
 });
 
@@ -382,9 +396,7 @@ test("runController advances the attempt when an earlier task branch remains", a
   });
 
   expect(request?.cwd).toBe(`${repository}/.worktree/boot-002-a2`);
-  const state = Bun.TOML.parse(
-    await Bun.file(`${repository}/.worktree/boot-002-a2/docs/orchestration/state.toml`).text(),
-  );
+  const state = await validateRepository(`${repository}/.worktree/boot-002-a2`);
   expect(state.current_attempt).toBe(2);
 });
 
@@ -441,7 +453,9 @@ test("runController rejects actual changed paths outside the task write set", as
   expect(calls).toBe(4);
   expect(result.status).toBe("paused");
   expect(
-    await Bun.file(`${repository}/.worktree/boot-002-a1/docs/orchestration/runs/BOOT-002/0002-failure.md`).text(),
+    await Bun.file(
+      `${repository}/.worktree/boot-002-a1/docs/orchestration/runs/BOOT-002/0002-failure.md`,
+    ).text(),
   ).toContain("outside.txt");
 });
 
@@ -496,7 +510,9 @@ test("runController independently reruns checks before verified completion", asy
   expect(calls).toBe(5);
   expect(result.status).toBe("paused");
   expect(
-    await Bun.file(`${repository}/.worktree/boot-002-a1/docs/orchestration/runs/BOOT-002/0003-failure.md`).text(),
+    await Bun.file(
+      `${repository}/.worktree/boot-002-a1/docs/orchestration/runs/BOOT-002/0003-failure.md`,
+    ).text(),
   ).toContain("false");
 });
 

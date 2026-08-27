@@ -240,7 +240,9 @@ write_set = ["b"]
 evidence = []
 `);
 
-  expect(validateRepository(repository)).rejects.toThrow("Ready task B has unverified dependency A");
+  expect(validateRepository(repository)).rejects.toThrow(
+    "Ready task B has unverified dependency A",
+  );
 });
 
 test("validateRepository enforces the single repository-local worktree policy", async () => {
@@ -303,7 +305,9 @@ write_set = ["b"]
 evidence = []
 `);
 
-  expect(validateRepository(repository)).rejects.toThrow("current_task must identify active task A");
+  expect(validateRepository(repository)).rejects.toThrow(
+    "current_task must identify active task A",
+  );
 });
 
 test("validateRepository confines the recorded worktree to .worktree", async () => {
@@ -332,7 +336,9 @@ write_set = ["a"]
 evidence = []
 `);
 
-  expect(validateRepository(repository)).rejects.toThrow("current_worktree must be below .worktree");
+  expect(validateRepository(repository)).rejects.toThrow(
+    "current_worktree must be below .worktree",
+  );
 });
 
 test("validateRepository rejects malformed task fields", async () => {
@@ -386,7 +392,9 @@ write_set = ["a"]
 evidence = []
 `);
 
-  expect(validateRepository(repository)).rejects.toThrow("Project cannot be complete while task A is planned");
+  expect(validateRepository(repository)).rejects.toThrow(
+    "Project cannot be complete while task A is planned",
+  );
 });
 
 test("validateRepository rejects current fields without a current task", async () => {
@@ -414,7 +422,9 @@ write_set = ["a"]
 evidence = ["docs/orchestration/runs/BOOT-001/0001-done.md"]
 `);
 
-  expect(validateRepository(repository)).rejects.toThrow("Current task fields require current_task");
+  expect(validateRepository(repository)).rejects.toThrow(
+    "Current task fields require current_task",
+  );
 });
 
 test("validateRepository rejects empty acceptance gate commands", async () => {
@@ -476,5 +486,36 @@ attempts = []
 evidence = ["docs/orchestration/runs/BOOT-001/0001-done.md"]
 `);
 
-  expect(validateRepository(repository)).rejects.toThrow("Current attempt is missing from BOOT-001 attempts");
+  expect(validateRepository(repository)).rejects.toThrow(
+    "Current attempt is missing from BOOT-001 attempts",
+  );
+});
+
+test("validateRepository rejects a truthy non-boolean trace policy", async () => {
+  const repository = await createRepository(`
+schema_version = 3
+project = "fixture"
+state = "active"
+spec_revision = "test"
+last_trace = "docs/orchestration/runs/BOOT-001/0001-done.md"
+[environment]
+controller_model = "openai/test"
+[artifacts]
+[policy]
+max_active_worktrees = 1
+max_step_retries = 3
+agent_timeout_minutes = 30
+trace_after_every_step = "false"
+worktree_root = ".worktree"
+[tasks.BOOT-001]
+state = "verified"
+spec = "docs/spec/task.md"
+depends_on = []
+write_set = ["a"]
+evidence = ["docs/orchestration/runs/BOOT-001/0001-done.md"]
+`);
+
+  expect(validateRepository(repository)).rejects.toThrow(
+    "Policy requires one active worktree under .worktree",
+  );
 });

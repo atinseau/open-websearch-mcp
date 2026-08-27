@@ -1,7 +1,12 @@
 const argumentsByName = new Map<string, string>();
 for (let index = 0; index < Bun.argv.length - 1; index += 1) {
   const value = Bun.argv[index];
-  if (value?.startsWith("--")) argumentsByName.set(value, Bun.argv[index + 1]!);
+  const nextValue = Bun.argv[index + 1];
+  if (value?.startsWith("--") && nextValue !== undefined) argumentsByName.set(value, nextValue);
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
 
 const repository = argumentsByName.get("--repo") ?? process.cwd();
@@ -30,11 +35,12 @@ async function run(command: string[], cwd = repository): Promise<string> {
   return stdout.trim();
 }
 
-const allowedFiles = ["docs/orchestration/state.toml", "package.json", "scripts/bootstrap-validator.ts"];
-const allowedDirectories = [
-  "docs/orchestration/runs/BOOT-002/",
-  "scripts/orchestration/",
+const allowedFiles = [
+  "docs/orchestration/state.toml",
+  "package.json",
+  "scripts/bootstrap-validator.ts",
 ];
+const allowedDirectories = ["docs/orchestration/runs/BOOT-002/", "scripts/orchestration/"];
 
 const changedPaths = (await run(["git", "diff", "--name-only", `${base}..${head}`]))
   .split("\n")
@@ -76,14 +82,19 @@ for (const path of requiredFiles) {
   if (!(await Bun.file(`${repository}/${path}`).exists())) throw new Error(`Missing ${path}`);
 }
 
-const traces = [...new Bun.Glob("[0-9][0-9][0-9][0-9]-*.md").scanSync({
-  cwd: `${repository}/docs/orchestration/runs/BOOT-002`,
-  onlyFiles: true,
-})].sort();
+const traces = [
+  ...new Bun.Glob("[0-9][0-9][0-9][0-9]-*.md").scanSync({
+    cwd: `${repository}/docs/orchestration/runs/BOOT-002`,
+    onlyFiles: true,
+  }),
+].sort();
 if (traces.length === 0) throw new Error("BOOT-002 must record at least one Markdown step trace");
 
-const latestTrace = `docs/orchestration/runs/BOOT-002/${traces.at(-1)}`;
-if (state.last_trace !== latestTrace) throw new Error("state.toml must point to the latest BOOT-002 trace");
+const latestName = traces.at(-1);
+if (!latestName) throw new Error("BOOT-002 must record a latest Markdown step trace");
+const latestTrace = `docs/orchestration/runs/BOOT-002/${latestName}`;
+if (state.last_trace !== latestTrace)
+  throw new Error("state.toml must point to the latest BOOT-002 trace");
 
 const traceText = await Bun.file(`${repository}/${latestTrace}`).text();
 const requiredTraceLabels = [
@@ -103,9 +114,10 @@ const requiredTraceLabels = [
 if (
   !/^# Step \d{4} - BOOT-002\b/m.test(traceText) ||
   requiredTraceLabels.some(
-    (label) => !traceText
-      .split("\n")
-      .some((line) => line.startsWith(`- ${label}:`) && line.slice(label.length + 3).trim()),
+    (label) =>
+      !traceText
+        .split("\n")
+        .some((line) => line.startsWith(`- ${label}:`) && line.slice(label.length + 3).trim()),
   )
 ) {
   throw new Error("Latest BOOT-002 trace is incomplete");
@@ -116,17 +128,22 @@ if (!state.tasks["BOOT-002"].evidence?.includes(latestTrace)) {
 
 const commandEvidence = traceText.match(/^- Commands and outcomes: (.+)$/mu)?.[1] ?? "";
 const findingEvidence = traceText.match(/^- Findings or blockers: (.+)$/mu)?.[1] ?? "";
-const worktreeEvidence = traceText.match(/^- Worktree \/ branch \/ base SHA \/ head SHA: (.+)$/mu)?.[1] ?? "";
-const sessionEvidence = traceText.match(/^- OpenCode model \/ variant \/ session: (.+)$/mu)?.[1] ?? "";
-const previousTrace = traces.length > 1
-  ? await Bun.file(`${repository}/docs/orchestration/runs/BOOT-002/${traces.at(-2)}`).text()
-  : "";
-const previousSession = previousTrace.match(/^- OpenCode model \/ variant \/ session: (.+)$/mu)?.[1] ?? "";
+const worktreeEvidence =
+  traceText.match(/^- Worktree \/ branch \/ base SHA \/ head SHA: (.+)$/mu)?.[1] ?? "";
+const sessionEvidence =
+  traceText.match(/^- OpenCode model \/ variant \/ session: (.+)$/mu)?.[1] ?? "";
+const previousTrace =
+  traces.length > 1
+    ? await Bun.file(`${repository}/docs/orchestration/runs/BOOT-002/${traces.at(-2)}`).text()
+    : "";
+const previousSession =
+  previousTrace.match(/^- OpenCode model \/ variant \/ session: (.+)$/mu)?.[1] ?? "";
 const evidenceCommitPaths = (await run(["git", "diff", "--name-only", `${reviewedHead}..${head}`]))
   .split("\n")
   .filter(Boolean);
-const failedExit = [...commandEvidence.matchAll(/\bexit(?:ed| code)?\s+(-?\d+)/giu)]
-  .some((match) => Number(match[1]) !== 0);
+const failedExit = [...commandEvidence.matchAll(/\bexit(?:ed| code)?\s+(-?\d+)/giu)].some(
+  (match) => Number(match[1]) !== 0,
+);
 if (
   !commandEvidence.includes("bun scripts/orchestration/validate.ts") ||
   !commandEvidence.includes("bun test scripts/orchestration") ||
@@ -136,7 +153,9 @@ if (
   /(?:^|;\s*)(?:blocker|high):/iu.test(findingEvidence) ||
   !worktreeEvidence.includes(base) ||
   !worktreeEvidence.includes(reviewedHead) ||
-  evidenceCommitPaths.some((path) => path !== "docs/orchestration/state.toml" && path !== latestTrace) ||
+  evidenceCommitPaths.some(
+    (path) => path !== "docs/orchestration/state.toml" && path !== latestTrace,
+  ) ||
   /unavailable|not-recorded|not-started/iu.test(sessionEvidence) ||
   sessionEvidence === previousSession
 ) {
@@ -149,10 +168,13 @@ const tests = [
 ];
 if (tests.length === 0) throw new Error("BOOT-002 must include focused orchestration tests");
 
-const manifest = await Bun.file(`${repository}/package.json`).json();
+const manifest: unknown = await Bun.file(`${repository}/package.json`).json();
+if (!isRecord(manifest) || !isRecord(manifest.scripts)) {
+  throw new Error("package.json must provide scripts");
+}
 if (
-  manifest.scripts?.orchestrate !== "bun scripts/orchestration/main.ts" ||
-  manifest.scripts?.["orchestration:validate"] !== "bun scripts/orchestration/validate.ts"
+  manifest.scripts.orchestrate !== "bun scripts/orchestration/main.ts" ||
+  manifest.scripts["orchestration:validate"] !== "bun scripts/orchestration/validate.ts"
 ) {
   throw new Error("package.json must provide the exact orchestration commands");
 }

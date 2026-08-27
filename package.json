@@ -1,9 +1,29 @@
 {
   "name": "open-websearch-mcp",
+  "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
+    "check": "bun run format:check && bun run lint && bun run lint:types && bun run typecheck && bun run test && bun run orchestration:validate -- --repo .",
+    "format": "oxfmt --disable-nested-config --no-error-on-unmatched-pattern src scripts tests/architecture package.json tsconfig.json .oxlintrc.jsonc .oxfmtrc.jsonc",
+    "format:check": "oxfmt --check --disable-nested-config --no-error-on-unmatched-pattern src scripts tests/architecture package.json tsconfig.json .oxlintrc.jsonc .oxfmtrc.jsonc",
+    "lint": "oxlint --disable-nested-config --deny-warnings --report-unused-disable-directives-severity off src scripts tests/architecture",
+    "lint:types": "oxlint --disable-nested-config --type-aware --type-check --deny-warnings --report-unused-disable-directives src scripts tests/architecture",
     "orchestrate": "bun scripts/orchestration/main.ts",
-    "orchestration:validate": "bun scripts/orchestration/validate.ts"
-  }
+    "orchestration:validate": "bun scripts/orchestration/validate.ts",
+    "test": "bun test --parallel --isolate",
+    "test:architecture": "bun test --parallel --isolate tests/architecture",
+    "typecheck": "bun x tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/bun": "1.4.0",
+    "oxfmt": "0.65.0",
+    "oxlint": "1.80.0",
+    "oxlint-tsgolint": "7.0.2001",
+    "typescript": "7.0.2"
+  },
+  "engines": {
+    "bun": "1.4.0"
+  },
+  "packageManager": "bun@1.4.0"
 }
