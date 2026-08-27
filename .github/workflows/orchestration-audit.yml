@@ -4,13 +4,19 @@ on:
   pull_request:
     branches: [main]
 
+concurrency:
+  group: orchestration-validation-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
 jobs:
   orchestration-validation:
     runs-on: macos-15
-    timeout-minutes: 20
+    timeout-minutes: 30
+    env:
+      REPORT_DIR: /tmp/open-websearch-reports
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
@@ -18,25 +24,91 @@ jobs:
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
         with:
           bun-version: 1.4.0
-      - name: Run orchestration validation
-        env:
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+
+      - name: Verify exact runtime and dependency pins
         run: |
           set -euo pipefail
-          if git cat-file -e "$BASE_SHA:scripts/orchestration/main.ts"; then
-            if test -f "$GITHUB_WORKSPACE/scripts/orchestration/audit.ts"; then
-              bun "$GITHUB_WORKSPACE/scripts/orchestration/audit.ts" \
-                --repo "$GITHUB_WORKSPACE" --base "$BASE_SHA" --head "$HEAD_SHA"
+          mkdir -p "$REPORT_DIR"
+          # shellcheck disable=SC2016
+          bun -e '
+            const manifest = await Bun.file("package.json").json();
+            const exact = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/;
+            if (manifest.packageManager !== `bun@${Bun.version}` || manifest.engines?.bun !== Bun.version) {
+              throw new Error(`Expected package Bun ${manifest.packageManager}, running ${Bun.version}`);
+            }
+            for (const section of ["dependencies", "devDependencies", "optionalDependencies", "peerDependencies"]) {
+              for (const [name, version] of Object.entries(manifest[section] ?? {})) {
+                if (typeof version !== "string" || !exact.test(version)) {
+                  throw new Error(`${section}.${name} is not exactly pinned: ${String(version)}`);
+                }
+              }
+            }
+            console.log(JSON.stringify({ bun: Bun.version, packageManager: manifest.packageManager }));
+          ' | tee "$REPORT_DIR/exact-versions.log"
+
+      - name: Install frozen dependencies
+        run: |
+          set -euo pipefail
+          bun install --frozen-lockfile --ignore-scripts 2>&1 | tee "$REPORT_DIR/frozen-install.log"
+          bun pm ls --all > "$REPORT_DIR/dependency-tree.log"
+
+      - name: Run static quality gates
+        run: |
+          set -euo pipefail
+          {
+            bun x oxfmt --check --disable-nested-config --no-error-on-unmatched-pattern \
+              src scripts tests package.json tsconfig.json .oxlintrc.jsonc .oxfmtrc.jsonc
+            bun x oxlint --disable-nested-config --deny-warnings \
+              --report-unused-disable-directives-severity off src scripts tests
+            bun x oxlint --disable-nested-config --type-aware --type-check --deny-warnings \
+              --report-unused-disable-directives src scripts tests
+            bun run typecheck
+            bun run orchestration:validate -- --repo .
+          } 2>&1 | tee "$REPORT_DIR/static-quality.log"
+
+      - name: Run PR-safe deterministic tests
+        run: |
+          set -euo pipefail
+          pr_test_targets=()
+          for target in src scripts tests/architecture tests/contracts tests/mcp \
+            tests/security tests/e2e tests/benchmarks; do
+            if test -d "$target"; then
+              pr_test_targets+=("$target")
+              printf '%s\n' "$target: PR-safe" | tee -a "$REPORT_DIR/suite-inventory.log"
             else
-              bun "$GITHUB_WORKSPACE/scripts/orchestration/validate.ts" \
-                --repo "$GITHUB_WORKSPACE"
+              printf '%s\n' "$target: not yet present" | tee -a "$REPORT_DIR/suite-inventory.log"
             fi
-          elif test -f "$GITHUB_WORKSPACE/scripts/orchestration/main.ts"; then
-            bun "$GITHUB_WORKSPACE/scripts/bootstrap-validator.ts" \
-              --repo "$GITHUB_WORKSPACE" --base "$BASE_SHA" --head "$HEAD_SHA"
+          done
+          bun test --no-orphans --parallel --isolate "${pr_test_targets[@]}" \
+            2>&1 | tee "$REPORT_DIR/pr-safe-tests.log"
+          if test -d tests/integration; then
+            printf '%s\n' "tests/integration: four workers" \
+              | tee -a "$REPORT_DIR/suite-inventory.log"
+            bun test --no-orphans --parallel=4 --isolate --max-concurrency=4 tests/integration \
+              2>&1 | tee "$REPORT_DIR/integration-tests.log"
           else
-            bun build "$GITHUB_WORKSPACE/scripts/bootstrap-validator.ts" \
-              --target bun --outfile /dev/null
-            git diff --check "$BASE_SHA..$HEAD_SHA"
+            printf '%s\n' "tests/integration: not yet present" \
+              | tee -a "$REPORT_DIR/suite-inventory.log"
           fi
+          printf '%s\n' "tests/live: excluded from ordinary PR gates" \
+            | tee -a "$REPORT_DIR/suite-inventory.log"
+
+      - name: Inspect package dry run
+        run: |
+          set -euo pipefail
+          bun pm pack --dry-run --ignore-scripts 2>&1 | tee "$REPORT_DIR/package-dry-run.log"
+
+      - name: Verify no generated or leaked files
+        run: |
+          set -euo pipefail
+          git status --porcelain --untracked-files=all | tee "$REPORT_DIR/git-status.log"
+          test ! -s "$REPORT_DIR/git-status.log"
+
+      - name: Upload review reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pr-validation-${{ github.event.pull_request.number }}-${{ github.run_attempt }}
+          path: ${{ env.REPORT_DIR }}
+          if-no-files-found: error
+          retention-days: 14
