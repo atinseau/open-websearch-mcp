@@ -5,7 +5,7 @@ import {
   type StepStatus,
 } from "./controller";
 
-const statuses = new Set<StepStatus>([
+const statuses = new Set<string>([
   "continue",
   "review",
   "verified",
@@ -13,7 +13,7 @@ const statuses = new Set<StepStatus>([
   "blocked_external",
   "failed",
 ]);
-const steps = new Set<OpenCodeStepResult["step"]>([
+const steps = new Set<string>([
   "plan",
   "implementation",
   "verification",
@@ -36,12 +36,37 @@ function argument(name: string): string | undefined {
   return index === -1 ? undefined : Bun.argv[index + 1];
 }
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+function isBlocker(value: unknown): value is NonNullable<OpenCodeStepResult["blocker"]> {
+  return (
+    isRecord(value) &&
+    typeof value.authority === "string" &&
+    typeof value.error === "string" &&
+    typeof value.human_action === "string"
+  );
+}
+
+function isStepStatus(value: unknown): value is StepStatus {
+  return typeof value === "string" && statuses.has(value);
+}
+
+function isStep(value: unknown): value is OpenCodeStepResult["step"] {
+  return typeof value === "string" && steps.has(value);
+}
+
+function isSeverity(value: unknown): value is OpenCodeStepResult["findings"][number]["severity"] {
+  return typeof value === "string" && ["blocker", "high", "medium", "low"].includes(value);
+}
+
 function parseResult(value: unknown, sessionId: string): OpenCodeStepResult {
-  if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("Invalid controller result");
-  const result = value as Record<string, unknown>;
+  if (!isRecord(value)) throw new Error("Invalid controller result");
+  const result = value;
   if (
-    !statuses.has(result.status as StepStatus) ||
-    !steps.has(result.step as OpenCodeStepResult["step"]) ||
+    !isStepStatus(result.status) ||
+    !isStep(result.step) ||
     typeof result.summary !== "string" ||
     typeof result.next_action !== "string" ||
     !Array.isArray(result.changed_paths) ||
@@ -54,8 +79,7 @@ function parseResult(value: unknown, sessionId: string): OpenCodeStepResult {
 
   const checks = result.checks.map((check) => {
     if (
-      !check ||
-      typeof check !== "object" ||
+      !isRecord(check) ||
       typeof check.command !== "string" ||
       typeof check.cwd !== "string" ||
       typeof check.exit_code !== "number"
@@ -71,45 +95,40 @@ function parseResult(value: unknown, sessionId: string): OpenCodeStepResult {
   });
   const findings = result.findings.map((finding) => {
     if (
-      !finding ||
-      typeof finding !== "object" ||
-      !["blocker", "high", "medium", "low"].includes(String(finding.severity)) ||
+      !isRecord(finding) ||
+      !isSeverity(finding.severity) ||
       typeof finding.summary !== "string"
     ) {
       throw new Error("OpenCode returned an invalid review finding");
     }
     return {
-      severity: finding.severity as "blocker" | "high" | "medium" | "low",
+      severity: finding.severity,
       summary: finding.summary,
     };
   });
   const blocker = result.blocker;
-  if (
-    blocker !== undefined &&
-    (!blocker ||
-      typeof blocker !== "object" ||
-      typeof blocker.authority !== "string" ||
-      typeof blocker.error !== "string" ||
-      typeof blocker.human_action !== "string")
-  ) {
+  if (blocker !== undefined && !isBlocker(blocker)) {
     throw new Error("OpenCode returned invalid external blocker evidence");
   }
 
   return {
-    status: result.status as StepStatus,
-    step: result.step as OpenCodeStepResult["step"],
+    status: result.status,
+    step: result.step,
     session_id: sessionId,
     summary: result.summary,
     changed_paths: result.changed_paths.map(String),
     checks,
     decisions: result.decisions.map(String),
     findings,
-    ...(blocker ? { blocker: blocker as OpenCodeStepResult["blocker"] } : {}),
+    ...(isBlocker(blocker) ? { blocker } : {}),
     next_action: result.next_action,
   };
 }
 
-async function invokeOpenCode(request: OpenCodeRequest, auto: boolean): Promise<OpenCodeStepResult> {
+async function invokeOpenCode(
+  request: OpenCodeRequest,
+  auto: boolean,
+): Promise<OpenCodeStepResult> {
   const command = [
     "opencode",
     "run",
@@ -146,22 +165,33 @@ async function invokeOpenCode(request: OpenCodeRequest, auto: boolean): Promise<
   if (exitCode !== 0) {
     const error = new Error(`OpenCode exited ${exitCode}: ${stderr.trim()}`);
     if (interrupted) error.name = "ControllerInterrupted";
-    else if (/model|provider|authentication|unavailable/iu.test(stderr)) error.name = "ModelUnavailable";
+    else if (/model|provider|authentication|unavailable/iu.test(stderr))
+      error.name = "ModelUnavailable";
     throw error;
   }
 
   const events = stdout
     .split("\n")
     .filter(Boolean)
-    .map((line) => JSON.parse(line) as { type?: string; sessionID?: string; part?: { text?: string } });
+    .map((line) => {
+      const value: unknown = JSON.parse(line);
+      if (!isRecord(value)) return {};
+      return {
+        ...(typeof value.type === "string" ? { type: value.type } : {}),
+        ...(typeof value.sessionID === "string" ? { sessionID: value.sessionID } : {}),
+        ...(isRecord(value.part) && typeof value.part.text === "string"
+          ? { part: { text: value.part.text } }
+          : {}),
+      };
+    });
   const sessionId = events.find((event) => event.sessionID)?.sessionID;
   const text = events
-    .filter((event) => event.type === "text" && typeof event.part?.text === "string")
-    .map((event) => event.part!.text)
+    .flatMap((event) => (event.type === "text" && event.part ? [event.part.text] : []))
     .join("\n");
   const marker = "CONTROLLER_RESULT:";
   const markerIndex = text.lastIndexOf(marker);
-  if (!sessionId || markerIndex === -1) throw new Error("OpenCode output omitted its session or controller result");
+  if (!sessionId || markerIndex === -1)
+    throw new Error("OpenCode output omitted its session or controller result");
   return parseResult(JSON.parse(text.slice(markerIndex + marker.length).trim()), sessionId);
 }
 

@@ -16,7 +16,9 @@ test("the CLI invokes OpenCode with explicit model, variant, cwd, and JSON event
     Bun.write(`${repository}/.gitignore`, ".worktree/\n"),
     Bun.write(`${repository}/docs/orchestration/runs/BOOT-001/0001-done.md`, "# trace\n"),
     Bun.write(`${repository}/docs/spec/task.md`, "# task\n"),
-    Bun.write(`${repository}/docs/orchestration/state.toml`, `
+    Bun.write(
+      `${repository}/docs/orchestration/state.toml`,
+      `
 schema_version = 3
 project = "fixture"
 state = "active"
@@ -43,8 +45,11 @@ spec = "docs/spec/task.md"
 depends_on = ["BOOT-001"]
 write_set = ["scripts"]
 evidence = []
-`),
-    Bun.write(`${repository}/bin/opencode`, `#!/usr/bin/env bun
+`,
+    ),
+    Bun.write(
+      `${repository}/bin/opencode`,
+      `#!/usr/bin/env bun
 const args = Bun.argv.slice(2);
 await Bun.write(Bun.env.CAPTURE!, JSON.stringify(args));
 console.log(JSON.stringify({
@@ -54,7 +59,8 @@ console.log(JSON.stringify({
     text: 'CONTROLLER_RESULT: {"status":"paused","step":"implementation","summary":"CLI smoke passed","changed_paths":[],"checks":[],"decisions":[],"findings":[],"next_action":"Continue"}'
   }
 }));
-`),
+`,
+    ),
   ]);
   await Bun.$`chmod +x ${repository}/bin/opencode`.quiet();
   await Bun.$`git init -b main ${repository}`.quiet();
@@ -62,21 +68,24 @@ console.log(JSON.stringify({
   await Bun.$`git -C ${repository} -c user.name=Test -c user.email=test@example.com commit -m base`.quiet();
 
   const capture = `${repository}/opencode-args.json`;
-  const child = Bun.spawn([
-    "bun",
-    `${import.meta.dir}/main.ts`,
-    "--repo",
-    repository,
-    "--model",
-    "openai/test-model",
-    "--variant",
-    "high",
-  ], {
-    cwd: repository,
-    env: { ...Bun.env, PATH: `${repository}/bin:${Bun.env.PATH}`, CAPTURE: capture },
-    stdout: "pipe",
-    stderr: "pipe",
-  });
+  const child = Bun.spawn(
+    [
+      "bun",
+      `${import.meta.dir}/main.ts`,
+      "--repo",
+      repository,
+      "--model",
+      "openai/test-model",
+      "--variant",
+      "high",
+    ],
+    {
+      cwd: repository,
+      env: { ...Bun.env, PATH: `${repository}/bin:${Bun.env.PATH}`, CAPTURE: capture },
+      stdout: "pipe",
+      stderr: "pipe",
+    },
+  );
   const [stdout, stderr, exitCode] = await Promise.all([
     new Response(child.stdout).text(),
     new Response(child.stderr).text(),
@@ -86,7 +95,10 @@ console.log(JSON.stringify({
   expect(stderr).toBe("");
   expect(exitCode).toBe(0);
   expect(JSON.parse(stdout).session_id).toBe("cli-session");
-  const args = await Bun.file(capture).json() as string[];
+  const args: unknown = await Bun.file(capture).json();
+  if (!Array.isArray(args) || !args.every((value) => typeof value === "string")) {
+    throw new TypeError("Expected captured OpenCode arguments");
+  }
   for (const expected of [
     "run",
     "--format",

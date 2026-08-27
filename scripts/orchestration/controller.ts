@@ -1,4 +1,10 @@
-export type TaskState = "planned" | "ready" | "in_progress" | "review" | "verified" | "blocked_external";
+export type TaskState =
+  | "planned"
+  | "ready"
+  | "in_progress"
+  | "review"
+  | "verified"
+  | "blocked_external";
 
 export type Task = {
   state: TaskState;
@@ -38,7 +44,14 @@ export type OrchestrationState = {
   tasks: Record<string, Task>;
 };
 
-export type StepStatus = "ready" | "continue" | "review" | "verified" | "paused" | "blocked_external" | "failed";
+export type StepStatus =
+  | "ready"
+  | "continue"
+  | "review"
+  | "verified"
+  | "paused"
+  | "blocked_external"
+  | "failed";
 
 export type OpenCodeRequest = {
   task: string;
@@ -52,7 +65,14 @@ export type OpenCodeRequest = {
 
 export type OpenCodeStepResult = {
   status: StepStatus;
-  step: "plan" | "implementation" | "verification" | "review" | "integration" | "failure" | "blocker";
+  step:
+    | "plan"
+    | "implementation"
+    | "verification"
+    | "review"
+    | "integration"
+    | "failure"
+    | "blocker";
   session_id: string;
   summary: string;
   changed_paths: string[];
@@ -71,8 +91,23 @@ export type ControllerOptions = {
   invokeOpenCode: (request: OpenCodeRequest) => Promise<OpenCodeStepResult>;
 };
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+function isStepStatus(value: unknown): value is StepStatus {
+  return (
+    typeof value === "string" &&
+    ["ready", "continue", "review", "verified", "paused", "blocked_external", "failed"].includes(
+      value,
+    )
+  );
+}
+
 export async function validateRepository(repository: string): Promise<OrchestrationState> {
   const root = repository.replace(/\/$/u, "");
+  // The complete schema is checked immediately below before this value escapes.
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
   const state = Bun.TOML.parse(
     await Bun.file(`${root}/docs/orchestration/state.toml`).text(),
   ) as OrchestrationState;
@@ -133,6 +168,8 @@ export async function validateRepository(repository: string): Promise<Orchestrat
     state.policy.max_step_retries < 1 ||
     !Number.isFinite(state.policy.agent_timeout_minutes) ||
     state.policy.agent_timeout_minutes <= 0 ||
+    // TOML input is untyped at runtime; truthy non-booleans must not satisfy the trace policy.
+    // oxlint-disable-next-line typescript/no-unnecessary-boolean-literal-compare
     state.policy.trace_after_every_step !== true
   ) {
     throw new Error("Policy requires one active worktree under .worktree");
@@ -170,30 +207,37 @@ export async function validateRepository(repository: string): Promise<Orchestrat
       !Array.isArray(task.evidence) ||
       !task.evidence.every((value) => typeof value === "string") ||
       (task.requirements !== undefined &&
-        (!Array.isArray(task.requirements) || !task.requirements.every((value) => typeof value === "string"))) ||
+        (!Array.isArray(task.requirements) ||
+          !task.requirements.every((value) => typeof value === "string"))) ||
       (task.acceptance_gates !== undefined &&
         (!Array.isArray(task.acceptance_gates) ||
-          !task.acceptance_gates.every((value) =>
-            typeof value === "string" &&
-            Boolean(value.trim()) &&
-            (!value.startsWith("command:") || Boolean(value.slice("command:".length).trim()))
+          !task.acceptance_gates.every(
+            (value) =>
+              typeof value === "string" &&
+              Boolean(value.trim()) &&
+              (!value.startsWith("command:") || Boolean(value.slice("command:".length).trim())),
           ))) ||
       (task.attempts !== undefined &&
-        (!Array.isArray(task.attempts) || task.attempts.some((attempt) =>
-          !attempt ||
-          !Number.isInteger(attempt.attempt) ||
-          attempt.attempt < 1 ||
-          typeof attempt.branch !== "string" ||
-          typeof attempt.worktree !== "string" ||
-          !/^[0-9a-f]{40}$/u.test(attempt.base_sha)
-        )))
+        (!Array.isArray(task.attempts) ||
+          task.attempts.some(
+            (attempt) =>
+              !attempt ||
+              !Number.isInteger(attempt.attempt) ||
+              attempt.attempt < 1 ||
+              typeof attempt.branch !== "string" ||
+              typeof attempt.worktree !== "string" ||
+              !/^[0-9a-f]{40}$/u.test(attempt.base_sha),
+          )))
     ) {
       throw new Error(`${taskId} has invalid task fields`);
     }
   }
   if (state.state === "complete") {
     const openTask = Object.entries(state.tasks).find(([, task]) => task.state !== "verified");
-    if (openTask) throw new Error(`Project cannot be complete while task ${openTask[0]} is ${openTask[1].state}`);
+    if (openTask)
+      throw new Error(
+        `Project cannot be complete while task ${openTask[0]} is ${openTask[1].state}`,
+      );
   }
 
   const visited = new Set<string>();
@@ -219,13 +263,18 @@ export async function validateRepository(repository: string): Promise<Orchestrat
 
   for (const [taskId, task] of Object.entries(state.tasks)) {
     if (task.state !== "ready") continue;
-    const unverified = task.depends_on.find((dependency) => state.tasks[dependency]?.state !== "verified");
+    const unverified = task.depends_on.find(
+      (dependency) => state.tasks[dependency]?.state !== "verified",
+    );
     if (unverified) throw new Error(`Ready task ${taskId} has unverified dependency ${unverified}`);
   }
   for (const [taskId, task] of Object.entries(state.tasks)) {
     if (task.state !== "in_progress" && task.state !== "review") continue;
-    const unverified = task.depends_on.find((dependency) => state.tasks[dependency]?.state !== "verified");
-    if (unverified) throw new Error(`Active task ${taskId} has unverified dependency ${unverified}`);
+    const unverified = task.depends_on.find(
+      (dependency) => state.tasks[dependency]?.state !== "verified",
+    );
+    if (unverified)
+      throw new Error(`Active task ${taskId} has unverified dependency ${unverified}`);
   }
 
   const activeTasks = Object.entries(state.tasks)
@@ -258,15 +307,16 @@ export async function validateRepository(repository: string): Promise<Orchestrat
     }
   } else {
     if (typeof state.current_task !== "string" || !state.tasks[state.current_task]) {
-      throw new Error(`Unknown current_task ${String(state.current_task)}`);
+      throw new Error(`Unknown current_task ${state.current_task}`);
     }
     const expectedAttempt = state.current_attempt;
-    const currentTask = state.tasks[state.current_task];
+    const currentTask = state.tasks[state.current_task]!;
     if (
       !Number.isInteger(expectedAttempt) ||
       expectedAttempt! < 1 ||
       state.current_branch !== `agent/${state.current_task.toLowerCase()}-a${expectedAttempt}` ||
-      state.current_worktree !== `${state.policy.worktree_root}/${state.current_task.toLowerCase()}-a${expectedAttempt}` ||
+      state.current_worktree !==
+        `${state.policy.worktree_root}/${state.current_task.toLowerCase()}-a${expectedAttempt}` ||
       !/^[0-9a-f]{40}$/u.test(state.current_base_sha ?? "") ||
       !Number.isInteger(state.current_step) ||
       state.current_step! < 1 ||
@@ -274,17 +324,21 @@ export async function validateRepository(repository: string): Promise<Orchestrat
         `docs/orchestration/runs/${state.current_task}/${String(state.current_step).padStart(4, "0")}-`,
       ) ||
       (state.current_head_sha !== undefined && !/^[0-9a-f]{40}$/u.test(state.current_head_sha)) ||
-      (state.current_reviewed_diff !== undefined && !/^[0-9a-f]{64}$/u.test(state.current_reviewed_diff)) ||
+      (state.current_reviewed_diff !== undefined &&
+        !/^[0-9a-f]{64}$/u.test(state.current_reviewed_diff)) ||
       (state.current_session !== undefined && typeof state.current_session !== "string")
     ) {
       throw new Error(`Invalid current task state for ${state.current_task}`);
     }
-    if (!currentTask.attempts.some((attempt) =>
-      attempt.attempt === expectedAttempt &&
-      attempt.branch === state.current_branch &&
-      attempt.worktree === state.current_worktree &&
-      attempt.base_sha === state.current_base_sha
-    )) {
+    if (
+      !currentTask.attempts?.some(
+        (attempt) =>
+          attempt.attempt === expectedAttempt &&
+          attempt.branch === state.current_branch &&
+          attempt.worktree === state.current_worktree &&
+          attempt.base_sha === state.current_base_sha,
+      )
+    ) {
       throw new Error(`Current attempt is missing from ${state.current_task} attempts`);
     }
     if (!currentTask.evidence.includes(state.last_trace)) {
@@ -330,8 +384,8 @@ function setRootFields(text: string, fields: Record<string, string | number>): s
     return !key || !keys.has(key);
   });
   const nextTable = filtered.findIndex((line) => line.startsWith("["));
-  const values = Object.entries(fields).map(([key, value]) =>
-    `${key} = ${typeof value === "number" ? value : JSON.stringify(value)}`
+  const values = Object.entries(fields).map(
+    ([key, value]) => `${key} = ${typeof value === "number" ? value : JSON.stringify(value)}`,
   );
   filtered.splice(nextTable === -1 ? filtered.length : nextTable, 0, ...values);
   return filtered.join("\n");
@@ -341,11 +395,13 @@ function removeRootFields(text: string, fields: string[]): string {
   const keys = new Set(fields);
   const lines = text.split("\n");
   const firstTable = lines.findIndex((line) => line.startsWith("["));
-  return lines.filter((line, index) => {
-    if (firstTable !== -1 && index >= firstTable) return true;
-    const key = line.match(/^([a-z_]+)\s*=/u)?.[1];
-    return !key || !keys.has(key);
-  }).join("\n");
+  return lines
+    .filter((line, index) => {
+      if (firstTable !== -1 && index >= firstTable) return true;
+      const key = line.match(/^([a-z_]+)\s*=/u)?.[1];
+      return !key || !keys.has(key);
+    })
+    .join("\n");
 }
 
 function setTaskState(text: string, taskId: string, state: TaskState): string {
@@ -364,19 +420,29 @@ function setTaskEvidence(text: string, taskId: string, evidence: string[]): stri
   if (start === -1) throw new Error(`Missing task ${taskId}`);
   const end = text.indexOf("\n[tasks.", start + section.length);
   const taskText = text.slice(start, end === -1 ? undefined : end);
-  const updated = taskText.replace(/^evidence = \[[^\n]*\]/mu, `evidence = ${JSON.stringify(evidence)}`);
+  const updated = taskText.replace(
+    /^evidence = \[[^\n]*\]/mu,
+    `evidence = ${JSON.stringify(evidence)}`,
+  );
   return `${text.slice(0, start)}${updated}${end === -1 ? "" : text.slice(end)}`;
 }
 
-function setTaskAttempts(text: string, taskId: string, attempts: NonNullable<Task["attempts"]>): string {
+function setTaskAttempts(
+  text: string,
+  taskId: string,
+  attempts: NonNullable<Task["attempts"]>,
+): string {
   const section = `[tasks.${taskId}]`;
   const start = text.indexOf(section);
   if (start === -1) throw new Error(`Missing task ${taskId}`);
   const end = text.indexOf("\n[tasks.", start + section.length);
   const taskText = text.slice(start, end === -1 ? undefined : end);
-  const value = attempts.map((attempt) =>
-    `{ attempt = ${attempt.attempt}, branch = ${JSON.stringify(attempt.branch)}, worktree = ${JSON.stringify(attempt.worktree)}, base_sha = ${JSON.stringify(attempt.base_sha)} }`
-  ).join(", ");
+  const value = attempts
+    .map(
+      (attempt) =>
+        `{ attempt = ${attempt.attempt}, branch = ${JSON.stringify(attempt.branch)}, worktree = ${JSON.stringify(attempt.worktree)}, base_sha = ${JSON.stringify(attempt.base_sha)} }`,
+    )
+    .join(", ");
   const line = `attempts = [${value}]`;
   const updated = /^attempts = \[[^\n]*\]/mu.test(taskText)
     ? taskText.replace(/^attempts = \[[^\n]*\]/mu, line)
@@ -419,11 +485,15 @@ function createTrace(
   headSha: string,
 ): string {
   const oneLine = (value: string): string => value.replace(/\s+/gu, " ").trim();
-  const checks = result.checks.length === 0
-    ? "none reported"
-    : result.checks.map((check) =>
-        `${oneLine(check.command)} (${check.cwd}) exited ${check.exit_code}: ${oneLine(check.output ?? "no output")}`
-      ).join("; ");
+  const checks =
+    result.checks.length === 0
+      ? "none reported"
+      : result.checks
+          .map(
+            (check) =>
+              `${oneLine(check.command)} (${check.cwd}) exited ${check.exit_code}: ${oneLine(check.output ?? "no output")}`,
+          )
+          .join("; ");
   const blocker = result.blocker
     ? `; authority=${oneLine(result.blocker.authority)}, error=${oneLine(result.blocker.error)}, human action=${oneLine(result.blocker.human_action)}`
     : "";
@@ -473,17 +543,21 @@ async function persistStep(input: {
   await atomicWrite(tracePath, input.trace, input.worktree);
 
   const statePath = `${input.worktree}/docs/orchestration/state.toml`;
+  // Controller-owned state was validated before the step and is validated again after persistence.
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
   const parsed = Bun.TOML.parse(await Bun.file(statePath).text()) as OrchestrationState;
   let stateText = await Bun.file(statePath).text();
   if (input.clearPriorOutcome) {
-    stateText = removeRootFields(stateText, ["current_session", "current_head_sha", "current_reviewed_diff"]);
+    stateText = removeRootFields(stateText, [
+      "current_session",
+      "current_head_sha",
+      "current_reviewed_diff",
+    ]);
   }
   stateText = setTaskState(stateText, input.taskId, input.taskState);
-  stateText = setTaskEvidence(
-    stateText,
-    input.taskId,
-    [...new Set([...(parsed.tasks[input.taskId]?.evidence ?? []), input.traceRelative])],
-  );
+  stateText = setTaskEvidence(stateText, input.taskId, [
+    ...new Set([...(parsed.tasks[input.taskId]?.evidence ?? []), input.traceRelative]),
+  ]);
   const attempts = parsed.tasks[input.taskId]?.attempts ?? [];
   stateText = setTaskAttempts(stateText, input.taskId, [
     ...attempts.filter((attempt) => attempt.attempt !== input.attempt),
@@ -495,7 +569,12 @@ async function persistStep(input: {
     },
   ]);
   stateText = setTableString(stateText, "environment", "controller_model", input.model);
-  stateText = setTableString(stateText, "environment", "controller_variant", input.variant ?? "default");
+  stateText = setTableString(
+    stateText,
+    "environment",
+    "controller_variant",
+    input.variant ?? "default",
+  );
   const rootFields: Record<string, string | number> = {
     current_task: input.taskId,
     current_attempt: input.attempt,
@@ -596,11 +675,13 @@ async function persistPrepare(input: {
     session_id: "not-started",
     summary: "Created or reconciled the task worktree and persisted resumable controller state",
     changed_paths: [],
-    checks: [{
-      command: `git worktree add -b ${input.branch} ${input.relativeWorktree} ${input.baseSha}`,
-      cwd: input.repository,
-      exit_code: 0,
-    }],
+    checks: [
+      {
+        command: `git worktree add -b ${input.branch} ${input.relativeWorktree} ${input.baseSha}`,
+        cwd: input.repository,
+        exit_code: 0,
+      },
+    ],
     decisions: ["Use the first dependency-complete task and one repository-local worktree"],
     findings: [],
     next_action: "Invoke OpenCode for the first task step",
@@ -638,11 +719,11 @@ async function changedPaths(worktree: string, baseSha: string): Promise<string[]
   const committed = await run(["git", "diff", "--name-only", `${baseSha}..HEAD`], worktree);
   const tracked = await run(["git", "diff", "--name-only", "HEAD"], worktree);
   const untracked = await run(["git", "ls-files", "--others", "--exclude-standard"], worktree);
-  return [...new Set([
-    ...committed.split("\n"),
-    ...tracked.split("\n"),
-    ...untracked.split("\n"),
-  ].filter(Boolean))].sort();
+  return [
+    ...new Set(
+      [...committed.split("\n"), ...tracked.split("\n"), ...untracked.split("\n")].filter(Boolean),
+    ),
+  ].sort();
 }
 
 async function contentDigest(worktree: string, paths: string[]): Promise<string> {
@@ -650,18 +731,24 @@ async function contentDigest(worktree: string, paths: string[]): Promise<string>
   for (const path of paths) {
     hash.update(`${path}\0`);
     const file = Bun.file(`${worktree}/${path}`);
-    hash.update(await file.exists() ? await file.arrayBuffer() : "<deleted>");
+    hash.update((await file.exists()) ? await file.arrayBuffer() : "<deleted>");
     hash.update("\0");
   }
   return hash.digest("hex");
 }
 
-async function reviewedContentDigest(worktree: string, baseSha: string, taskId: string): Promise<string> {
+async function reviewedContentDigest(
+  worktree: string,
+  baseSha: string,
+  taskId: string,
+): Promise<string> {
   const controllerPaths = ["docs/orchestration/state.toml", `docs/orchestration/runs/${taskId}/`];
-  const paths = (await changedPaths(worktree, baseSha)).filter((path) =>
-    !controllerPaths.some((controllerPath) =>
-      path === controllerPath || path.startsWith(`${controllerPath.replace(/\/$/u, "")}/`)
-    )
+  const paths = (await changedPaths(worktree, baseSha)).filter(
+    (path) =>
+      !controllerPaths.some(
+        (controllerPath) =>
+          path === controllerPath || path.startsWith(`${controllerPath.replace(/\/$/u, "")}/`),
+      ),
   );
   return contentDigest(worktree, paths);
 }
@@ -676,7 +763,11 @@ async function executeCheck(
   timeoutMs: number,
 ): Promise<OpenCodeStepResult["checks"][number]> {
   if (check.cwd !== worktree && !check.cwd.startsWith(`${worktree}/`)) {
-    return { ...check, exit_code: 1, output: `Check cwd is outside the task worktree: ${check.cwd}` };
+    return {
+      ...check,
+      exit_code: 1,
+      output: `Check cwd is outside the task worktree: ${check.cwd}`,
+    };
   }
   const abort = new AbortController();
   const timeout = setTimeout(() => abort.abort(), timeoutMs);
@@ -699,10 +790,14 @@ async function executeCheck(
   };
 }
 
-async function runControllerStep(options: ControllerOptions, forceFreshSession = false): Promise<OpenCodeStepResult> {
+async function runControllerStep(
+  options: ControllerOptions,
+  forceFreshSession = false,
+): Promise<OpenCodeStepResult> {
   const repository = options.repository.replace(/\/$/u, "");
   const rootBranch = await run(["git", "branch", "--show-current"], repository);
-  if (rootBranch !== "main") throw new Error(`Controller root must be factual main, found ${rootBranch}`);
+  if (rootBranch !== "main")
+    throw new Error(`Controller root must be factual main, found ${rootBranch}`);
   const rootDirty = await run(["git", "status", "--porcelain"], repository);
   if (rootDirty) throw new Error("Controller root main must be clean");
   const rootState = await validateRepository(repository);
@@ -711,17 +806,22 @@ async function runControllerStep(options: ControllerOptions, forceFreshSession =
     throw new Error(`Controller model is fixed to ${String(rootModel)}`);
   }
   const rootVariant = rootState.environment.controller_variant ?? "default";
+  if (typeof rootVariant !== "string") throw new Error("Controller variant must be a string");
   if (rootModel !== "selected-at-runtime" && rootVariant !== (options.variant ?? "default")) {
-    throw new Error(`Controller variant is fixed to ${String(rootVariant)}`);
+    throw new Error(`Controller variant is fixed to ${rootVariant}`);
   }
   const records = (await run(["git", "worktree", "list", "--porcelain"], repository))
     .split("\n\n")
-    .map((record) => Object.fromEntries(
-      record.split("\n").map((line) => {
-        const separator = line.indexOf(" ");
-        return separator === -1 ? [line, ""] : [line.slice(0, separator), line.slice(separator + 1)];
-      }),
-    ))
+    .map((record) =>
+      Object.fromEntries(
+        record.split("\n").map((line) => {
+          const separator = line.indexOf(" ");
+          return separator === -1
+            ? [line, ""]
+            : [line.slice(0, separator), line.slice(separator + 1)];
+        }),
+      ),
+    )
     .filter((record) => record.worktree);
   const [rootRecord, ...worktreeRecords] = records;
   if (worktreeRecords.length > 1) throw new Error("Only one implementation worktree may be active");
@@ -743,7 +843,11 @@ async function runControllerStep(options: ControllerOptions, forceFreshSession =
   const active = worktreeRecords[0];
   if (active) {
     const activePath = active.worktree;
-    if (!rootRecord || !activePath.startsWith(`${rootRecord.worktree}/${rootState.policy.worktree_root}/`)) {
+    if (!activePath) throw new Error("Active worktree record has no path");
+    if (
+      !rootRecord ||
+      !activePath.startsWith(`${rootRecord.worktree}/${rootState.policy.worktree_root}/`)
+    ) {
       throw new Error(`Worktree is outside ${rootState.policy.worktree_root}: ${activePath}`);
     }
     state = await validateRepository(activePath);
@@ -752,7 +856,11 @@ async function runControllerStep(options: ControllerOptions, forceFreshSession =
     const actualRelative = branchMatch
       ? `${rootState.policy.worktree_root}/${branchMatch[1]}-a${branchMatch[2]}`
       : undefined;
-    if (!state.current_task || state.current_branch !== actualBranch || state.current_worktree !== actualRelative) {
+    if (
+      !state.current_task ||
+      state.current_branch !== actualBranch ||
+      state.current_worktree !== actualRelative
+    ) {
       const recoveredTaskId = branchMatch
         ? Object.keys(rootState.tasks).find((id) => id.toLowerCase() === branchMatch[1])
         : undefined;
@@ -762,13 +870,18 @@ async function runControllerStep(options: ControllerOptions, forceFreshSession =
         !recoveredTaskId ||
         !recoveredTask ||
         (recoveredTask.state !== "ready" && recoveredTask.state !== "planned") ||
-        !recoveredTask.depends_on.every((dependency) => rootState.tasks[dependency]?.state === "verified")
+        !recoveredTask.depends_on.every(
+          (dependency) => rootState.tasks[dependency]?.state === "verified",
+        )
       ) {
         throw new Error("Active worktree has no recoverable task state");
       }
       const recoveredAttempt = Number(branchMatch[2]);
       const recoveredRelative = actualRelative!;
-      const recoveredBase = await run(["git", "merge-base", "main", `agent/${branchMatch[1]}-a${recoveredAttempt}`], repository);
+      const recoveredBase = await run(
+        ["git", "merge-base", "main", `agent/${branchMatch[1]}-a${recoveredAttempt}`],
+        repository,
+      );
       await persistPrepare({
         repository,
         worktree: activePath,
@@ -784,53 +897,67 @@ async function runControllerStep(options: ControllerOptions, forceFreshSession =
       });
       state = await validateRepository(activePath);
     }
-    if (!state.current_task || !state.current_attempt || !state.current_branch || !state.current_base_sha) {
+    if (
+      !state.current_task ||
+      !state.current_attempt ||
+      !state.current_branch ||
+      !state.current_base_sha
+    ) {
       throw new Error("Active worktree has no resumable task state");
     }
     taskId = state.current_task;
     task = state.tasks[taskId]!;
     if (!task) throw new Error(`Active worktree references unknown task ${taskId}`);
     attempt = state.current_attempt;
-    relativeWorktree = state.current_worktree ?? `${rootState.policy.worktree_root}/${taskId.toLowerCase()}-a${attempt}`;
+    relativeWorktree =
+      state.current_worktree ??
+      `${rootState.policy.worktree_root}/${taskId.toLowerCase()}-a${attempt}`;
     worktree = `${repository}/${relativeWorktree}`;
     branch = state.current_branch;
     if (active.branch !== `refs/heads/${branch}`) {
       throw new Error(`Recorded branch ${branch} does not own ${relativeWorktree}`);
     }
     baseSha = state.current_base_sha;
-    const traceNames = [...new Bun.Glob("[0-9][0-9][0-9][0-9]-*.md").scanSync({
-      cwd: `${worktree}/docs/orchestration/runs/${taskId}`,
-    })].sort();
+    const traceNames = [
+      ...new Bun.Glob("[0-9][0-9][0-9][0-9]-*.md").scanSync({
+        cwd: `${worktree}/docs/orchestration/runs/${taskId}`,
+      }),
+    ].sort();
     const latestName = traceNames.at(-1);
     if (!latestName) throw new Error(`Active task ${taskId} has no durable trace`);
-    latestTrace = await Bun.file(`${worktree}/docs/orchestration/runs/${taskId}/${latestName}`).text();
+    latestTrace = await Bun.file(
+      `${worktree}/docs/orchestration/runs/${taskId}/${latestName}`,
+    ).text();
     const latestStep = Number(latestName.slice(0, 4));
     if (latestStep > (state.current_step ?? 0)) {
-      const status = latestTrace.match(/^- Status: (\S+)$/mu)?.[1] as StepStatus | undefined;
-      if (!status) throw new Error(`Cannot reconcile ${latestName} without a recorded status`);
-      const reconciledState: TaskState = status === "ready"
-        ? "ready"
-        : status === "review"
-          ? "review"
-          : status === "verified"
-            ? "verified"
-            : status === "blocked_external"
-              ? "blocked_external"
-              : "in_progress";
+      const status = latestTrace.match(/^- Status: (\S+)$/mu)?.[1];
+      if (!isStepStatus(status))
+        throw new Error(`Cannot reconcile ${latestName} without a recorded status`);
+      const reconciledState: TaskState =
+        status === "ready"
+          ? "ready"
+          : status === "review"
+            ? "review"
+            : status === "verified"
+              ? "verified"
+              : status === "blocked_external"
+                ? "blocked_external"
+                : "in_progress";
       const traceRelative = `docs/orchestration/runs/${taskId}/${latestName}`;
-      const session = latestTrace.match(/^- OpenCode model \/ variant \/ session: .+ \/ (.+)$/mu)?.[1];
+      const session = latestTrace.match(
+        /^- OpenCode model \/ variant \/ session: .+ \/ (.+)$/mu,
+      )?.[1];
       let stateText = await Bun.file(`${activePath}/docs/orchestration/state.toml`).text();
       stateText = setTaskState(stateText, taskId, reconciledState);
-      stateText = setTaskEvidence(
-        stateText,
-        taskId,
-        [...new Set([...task.evidence, traceRelative])],
-      );
+      stateText = setTaskEvidence(stateText, taskId, [
+        ...new Set([...task.evidence, traceRelative]),
+      ]);
       const fields: Record<string, string | number> = {
         current_step: latestStep,
         last_trace: traceRelative,
       };
-      if (session && !/unavailable|not-started|not-recorded/iu.test(session)) fields.current_session = session;
+      if (session && !/unavailable|not-started|not-recorded/iu.test(session))
+        fields.current_session = session;
       if (status === "verified") {
         fields.current_head_sha = await run(["git", "rev-parse", "HEAD"], activePath);
         fields.current_reviewed_diff = await reviewedContentDigest(activePath, baseSha, taskId);
@@ -863,10 +990,12 @@ async function runControllerStep(options: ControllerOptions, forceFreshSession =
         if (
           !state.current_reviewed_diff ||
           rootState.current_reviewed_diff !== state.current_reviewed_diff ||
-          await reviewedContentDigest(activePath, state.current_base_sha!, taskId) !== state.current_reviewed_diff ||
-          await reviewedContentDigest(repository, state.current_base_sha!, taskId) !== state.current_reviewed_diff ||
-          await fullContentDigest(activePath, state.current_base_sha!) !==
-            await fullContentDigest(repository, state.current_base_sha!)
+          (await reviewedContentDigest(activePath, state.current_base_sha!, taskId)) !==
+            state.current_reviewed_diff ||
+          (await reviewedContentDigest(repository, state.current_base_sha!, taskId)) !==
+            state.current_reviewed_diff ||
+          (await fullContentDigest(activePath, state.current_base_sha!)) !==
+            (await fullContentDigest(repository, state.current_base_sha!))
         ) {
           throw new Error(`Main does not contain the exact reviewed ${taskId} content`);
         }
@@ -890,25 +1019,29 @@ async function runControllerStep(options: ControllerOptions, forceFreshSession =
       throw new Error(`Controller model is fixed to ${String(selectedModel)}`);
     }
     const selectedVariant = state.environment.controller_variant ?? "default";
+    if (typeof selectedVariant !== "string") throw new Error("Controller variant must be a string");
     if (selectedVariant !== (options.variant ?? "default")) {
-      throw new Error(`Controller variant is fixed to ${String(selectedVariant)}`);
+      throw new Error(`Controller variant is fixed to ${selectedVariant}`);
     }
     stepNumber = await nextStepNumber(worktree, taskId);
     previousTaskState = task.state;
     previousSessionId = state.current_session;
     sessionId = task.state === "review" || forceFreshSession ? undefined : state.current_session;
   } else {
-    const readyTask = Object.entries(state.tasks).find(([, candidate]) =>
-      (candidate.state === "ready" || candidate.state === "planned") &&
-      candidate.depends_on.every((dependency) => state.tasks[dependency]?.state === "verified")
+    const readyTask = Object.entries(state.tasks).find(
+      ([, candidate]) =>
+        (candidate.state === "ready" || candidate.state === "planned") &&
+        candidate.depends_on.every((dependency) => state.tasks[dependency]?.state === "verified"),
     );
     if (!readyTask) throw new Error("No dependency-ready task");
     [taskId, task] = readyTask;
     const branchPrefix = `agent/${taskId.toLowerCase()}-a`;
-    const priorAttempts = (await run(
-      ["git", "branch", "--format=%(refname:short)", "--list", `${branchPrefix}*`],
-      repository,
-    ))
+    const priorAttempts = (
+      await run(
+        ["git", "branch", "--format=%(refname:short)", "--list", `${branchPrefix}*`],
+        repository,
+      )
+    )
       .split("\n")
       .filter(Boolean)
       .map((name) => Number(name.slice(branchPrefix.length)))
@@ -1003,12 +1136,23 @@ async function runControllerStep(options: ControllerOptions, forceFreshSession =
   const gateChecks = resolvedGates
     .filter((gate): gate is { gate: string; command: string } => Boolean(gate.command))
     .map(({ command }) => ({ command, cwd: worktree, exit_code: -1 }));
-  const checksToRun = received.status === "verified"
-    ? [...new Map([...received.checks, ...requiredChecks, ...gateChecks].map((check) => [`${check.cwd}\0${check.command}`, check])).values()]
-    : received.checks;
-  const actualChecks = received.status === "verified"
-    ? await Promise.all(checksToRun.map((check) => executeCheck(check, worktree, request.timeout_ms)))
-    : checksToRun;
+  const checksToRun =
+    received.status === "verified"
+      ? [
+          ...new Map(
+            [...received.checks, ...requiredChecks, ...gateChecks].map((check) => [
+              `${check.cwd}\0${check.command}`,
+              check,
+            ]),
+          ).values(),
+        ]
+      : received.checks;
+  const actualChecks =
+    received.status === "verified"
+      ? await Promise.all(
+          checksToRun.map((check) => executeCheck(check, worktree, request.timeout_ms)),
+        )
+      : checksToRun;
   if (options.isInterrupted?.()) {
     received = {
       ...received,
@@ -1019,78 +1163,90 @@ async function runControllerStep(options: ControllerOptions, forceFreshSession =
     };
   }
   const actualPaths = await changedPaths(worktree, baseSha);
-  const controllerPaths = [
-    "docs/orchestration/state.toml",
-    `docs/orchestration/runs/${taskId}/`,
-  ];
-  const outsideWriteSet = actualPaths.filter((path) =>
-    ![...task.write_set, ...controllerPaths].some((allowed) => path === allowed || path.startsWith(`${allowed.replace(/\/$/u, "")}/`))
+  const controllerPaths = ["docs/orchestration/state.toml", `docs/orchestration/runs/${taskId}/`];
+  const outsideWriteSet = actualPaths.filter(
+    (path) =>
+      ![...task.write_set, ...controllerPaths].some(
+        (allowed) => path === allowed || path.startsWith(`${allowed.replace(/\/$/u, "")}/`),
+      ),
   );
   received = {
     ...received,
     changed_paths: actualPaths,
     checks: actualChecks,
-    findings: outsideWriteSet.length === 0
-      ? received.findings
-      : [
-          ...received.findings,
-          { severity: "high", summary: `Changed paths outside the task write set: ${outsideWriteSet.join(", ")}` },
-        ],
+    findings:
+      outsideWriteSet.length === 0
+        ? received.findings
+        : [
+            ...received.findings,
+            {
+              severity: "high",
+              summary: `Changed paths outside the task write set: ${outsideWriteSet.join(", ")}`,
+            },
+          ],
   };
-  const invalidVerification = received.status === "verified" && (
-    previousTaskState !== "review" ||
-    received.step !== "review" ||
-    !received.session_id ||
-    received.session_id === previousSessionId ||
-    !task.acceptance_gates?.length ||
-    unresolvedGates.length > 0 ||
-    received.checks.length === 0 ||
-    received.checks.some((check) => check.exit_code !== 0) ||
-    received.findings.some((finding) => finding.severity === "blocker" || finding.severity === "high")
-  );
-  const invalidBlocker = received.status === "blocked_external" && (
-    received.step !== "blocker" ||
-    !received.findings.some((finding) => finding.severity === "blocker" && finding.summary.trim()) ||
-    !received.blocker?.authority.trim() ||
-    !received.blocker.error.trim() ||
-    !received.blocker.human_action.trim()
-  );
-  const result: OpenCodeStepResult = outsideWriteSet.length > 0
-    ? {
-        ...received,
-        status: "failed",
-        step: "failure",
-        summary: `Rejected changes outside the task write set: ${received.summary}`,
-        next_action: "Move or remove undeclared changes before continuing",
-      }
-    : invalidVerification
+  const invalidVerification =
+    received.status === "verified" &&
+    (previousTaskState !== "review" ||
+      received.step !== "review" ||
+      !received.session_id ||
+      received.session_id === previousSessionId ||
+      !task.acceptance_gates?.length ||
+      unresolvedGates.length > 0 ||
+      received.checks.length === 0 ||
+      received.checks.some((check) => check.exit_code !== 0) ||
+      received.findings.some(
+        (finding) => finding.severity === "blocker" || finding.severity === "high",
+      ));
+  const invalidBlocker =
+    received.status === "blocked_external" &&
+    (received.step !== "blocker" ||
+      !received.findings.some(
+        (finding) => finding.severity === "blocker" && finding.summary.trim(),
+      ) ||
+      !received.blocker?.authority.trim() ||
+      !received.blocker.error.trim() ||
+      !received.blocker.human_action.trim());
+  const result: OpenCodeStepResult =
+    outsideWriteSet.length > 0
       ? {
-        ...received,
-        status: "failed",
-        step: "failure",
-        summary: `Rejected verification claim: ${received.summary}`,
-        next_action: "Repair failed checks or blocker/high review findings, then verify again",
-      }
-      : invalidBlocker
-        ? {
           ...received,
           status: "failed",
           step: "failure",
-          summary: `Rejected external block without exact blocker evidence: ${received.summary}`,
-          next_action: "Continue implementation or record the exact unavailable external authority",
+          summary: `Rejected changes outside the task write set: ${received.summary}`,
+          next_action: "Move or remove undeclared changes before continuing",
         }
-        : received;
-  const taskState: TaskState = result.status === "review"
-    ? "review"
-    : result.status === "verified"
-      ? "verified"
-      : result.status === "blocked_external"
-        ? "blocked_external"
-        : "in_progress";
+      : invalidVerification
+        ? {
+            ...received,
+            status: "failed",
+            step: "failure",
+            summary: `Rejected verification claim: ${received.summary}`,
+            next_action: "Repair failed checks or blocker/high review findings, then verify again",
+          }
+        : invalidBlocker
+          ? {
+              ...received,
+              status: "failed",
+              step: "failure",
+              summary: `Rejected external block without exact blocker evidence: ${received.summary}`,
+              next_action:
+                "Continue implementation or record the exact unavailable external authority",
+            }
+          : received;
+  const taskState: TaskState =
+    result.status === "review"
+      ? "review"
+      : result.status === "verified"
+        ? "verified"
+        : result.status === "blocked_external"
+          ? "blocked_external"
+          : "in_progress";
   const headSha = await run(["git", "rev-parse", "HEAD"], worktree);
-  const reviewedDiff = result.status === "verified"
-    ? await reviewedContentDigest(worktree, baseSha, taskId)
-    : undefined;
+  const reviewedDiff =
+    result.status === "verified"
+      ? await reviewedContentDigest(worktree, baseSha, taskId)
+      : undefined;
   const traceRelative = `docs/orchestration/runs/${taskId}/${String(stepNumber).padStart(4, "0")}-${result.step}.md`;
   const trace = createTrace(taskId, attempt, stepNumber, request, result, branch, baseSha, headSha);
   await persistStep({
@@ -1113,10 +1269,27 @@ async function runControllerStep(options: ControllerOptions, forceFreshSession =
   return result;
 }
 
-type LockOwner = { pid: number; token: string; candidate: string; started_at: string };
+type LockOwner = { pid: number; token: string; candidate?: string; started_at: string };
 
 async function readLock(path: string): Promise<LockOwner | undefined> {
-  return Bun.file(path).json().catch(() => undefined) as Promise<LockOwner | undefined>;
+  const value: unknown = await Bun.file(path)
+    .json()
+    .catch(() => undefined);
+  if (
+    !isRecord(value) ||
+    typeof value.pid !== "number" ||
+    typeof value.token !== "string" ||
+    (value.candidate !== undefined && typeof value.candidate !== "string") ||
+    typeof value.started_at !== "string"
+  ) {
+    return undefined;
+  }
+  return {
+    pid: value.pid,
+    token: value.token,
+    started_at: value.started_at,
+    ...(typeof value.candidate === "string" ? { candidate: value.candidate } : {}),
+  };
 }
 
 async function acquireControllerLock(repository: string): Promise<() => Promise<void>> {
@@ -1125,7 +1298,12 @@ async function acquireControllerLock(repository: string): Promise<() => Promise<
   const recovery = `${lockRoot}/.controller-lock-recovery`;
   const token = crypto.randomUUID();
   const candidate = `${lockRoot}/.controller-owner-${process.pid}-${token}.json`;
-  const owner: LockOwner = { pid: process.pid, token, candidate, started_at: new Date().toISOString() };
+  const owner: LockOwner = {
+    pid: process.pid,
+    token,
+    candidate,
+    started_at: new Date().toISOString(),
+  };
   await run(["mkdir", "-p", lockRoot], repository);
   await Bun.write(candidate, JSON.stringify(owner));
 
@@ -1133,8 +1311,11 @@ async function acquireControllerLock(repository: string): Promise<() => Promise<
     if (await Bun.file(recovery).exists()) {
       const recoveryOwner = await readLock(recovery);
       if (recoveryOwner?.pid) {
-        const probe = Bun.spawn(["kill", "-0", String(recoveryOwner.pid)], { stdout: "ignore", stderr: "ignore" });
-        if (await probe.exited === 0) {
+        const probe = Bun.spawn(["kill", "-0", String(recoveryOwner.pid)], {
+          stdout: "ignore",
+          stderr: "ignore",
+        });
+        if ((await probe.exited) === 0) {
           await Bun.sleep(20);
           continue;
         }
@@ -1167,8 +1348,11 @@ async function acquireControllerLock(repository: string): Promise<() => Promise<
           throw new Error("Another controller is acquiring the lock");
         }
       } else {
-        const probe = Bun.spawn(["kill", "-0", String(current.pid)], { stdout: "ignore", stderr: "ignore" });
-        if (await probe.exited === 0) {
+        const probe = Bun.spawn(["kill", "-0", String(current.pid)], {
+          stdout: "ignore",
+          stderr: "ignore",
+        });
+        if ((await probe.exited) === 0) {
           await run(["rm", candidate], repository).catch(() => undefined);
           throw new Error("Another controller is already running");
         }

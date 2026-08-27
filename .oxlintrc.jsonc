@@ -1,0 +1,35 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["import", "typescript"],
+  "categories": {
+    "correctness": "error",
+    "perf": "error",
+    "suspicious": "error",
+  },
+  "options": {
+    "denyWarnings": true,
+    "reportUnusedDisableDirectives": "error",
+  },
+  "ignorePatterns": [".worktree/**", "tests/architecture/fixtures/**"],
+  "rules": {
+    "import/no-cycle": "error",
+    "no-await-in-loop": "off",
+    "no-eval": "error",
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          {
+            "group": ["node:*"],
+            "message": "Project source uses Bun or Web-standard interfaces, not direct Node imports.",
+          },
+          {
+            "regex": "^(?:_[A-Za-z0-9_]+|assert|async_hooks|buffer|child_process|cluster|console|constants|crypto|dgram|diagnostics_channel|dns|domain|events|fs|http|http2|https|inspector|module|net|os|path|perf_hooks|process|punycode|querystring|readline|repl|sqlite|stream|string_decoder|sys|test|timers|tls|trace_events|tty|url|util|v8|vm|wasi|worker_threads|zlib)(?:/|$)",
+            "message": "Project source uses Bun or Web-standard interfaces, not direct Node imports.",
+          },
+        ],
+      },
+    ],
+    "typescript/no-require-imports": "error",
+  },
+}
