@@ -30,7 +30,7 @@ async function run(command: string[], cwd = repository): Promise<string> {
   return stdout.trim();
 }
 
-const allowedFiles = ["docs/orchestration/state.toml", "package.json"];
+const allowedFiles = ["docs/orchestration/state.toml", "package.json", "scripts/bootstrap-validator.ts"];
 const allowedDirectories = [
   "docs/orchestration/runs/BOOT-002/",
   "scripts/orchestration/",
@@ -39,6 +39,7 @@ const allowedDirectories = [
 const changedPaths = (await run(["git", "diff", "--name-only", `${base}..${head}`]))
   .split("\n")
   .filter(Boolean);
+const reviewedHead = await run(["git", "rev-parse", `${head}^`]);
 const outsideWriteSet = changedPaths.filter(
   (path) => !allowedFiles.includes(path) && !allowedDirectories.some((dir) => path.startsWith(dir)),
 );
@@ -50,7 +51,7 @@ type State = {
   schema_version?: number;
   last_trace?: string;
   policy?: { max_active_worktrees?: number; worktree_root?: string };
-  tasks?: Record<string, { state?: string }>;
+  tasks?: Record<string, { state?: string; evidence?: string[]; acceptance_gates?: string[] }>;
 };
 
 const state = Bun.TOML.parse(
@@ -60,7 +61,8 @@ if (
   state.schema_version !== 3 ||
   state.policy?.max_active_worktrees !== 1 ||
   state.policy.worktree_root !== ".worktree" ||
-  state.tasks?.["BOOT-002"]?.state !== "verified"
+  state.tasks?.["BOOT-002"]?.state !== "verified" ||
+  !state.tasks["BOOT-002"].acceptance_gates?.length
 ) {
   throw new Error("Invalid orchestration state schema");
 }
@@ -107,6 +109,38 @@ if (
   )
 ) {
   throw new Error("Latest BOOT-002 trace is incomplete");
+}
+if (!state.tasks["BOOT-002"].evidence?.includes(latestTrace)) {
+  throw new Error("BOOT-002 state must reference its final trace as evidence");
+}
+
+const commandEvidence = traceText.match(/^- Commands and outcomes: (.+)$/mu)?.[1] ?? "";
+const findingEvidence = traceText.match(/^- Findings or blockers: (.+)$/mu)?.[1] ?? "";
+const worktreeEvidence = traceText.match(/^- Worktree \/ branch \/ base SHA \/ head SHA: (.+)$/mu)?.[1] ?? "";
+const sessionEvidence = traceText.match(/^- OpenCode model \/ variant \/ session: (.+)$/mu)?.[1] ?? "";
+const previousTrace = traces.length > 1
+  ? await Bun.file(`${repository}/docs/orchestration/runs/BOOT-002/${traces.at(-2)}`).text()
+  : "";
+const previousSession = previousTrace.match(/^- OpenCode model \/ variant \/ session: (.+)$/mu)?.[1] ?? "";
+const evidenceCommitPaths = (await run(["git", "diff", "--name-only", `${reviewedHead}..${head}`]))
+  .split("\n")
+  .filter(Boolean);
+const failedExit = [...commandEvidence.matchAll(/\bexit(?:ed| code)?\s+(-?\d+)/giu)]
+  .some((match) => Number(match[1]) !== 0);
+if (
+  !commandEvidence.includes("bun scripts/orchestration/validate.ts") ||
+  !commandEvidence.includes("bun test scripts/orchestration") ||
+  !/^# Step \d{4} - BOOT-002 review$/mu.test(traceText) ||
+  !/^- Status: verified$/mu.test(traceText) ||
+  failedExit ||
+  /(?:^|;\s*)(?:blocker|high):/iu.test(findingEvidence) ||
+  !worktreeEvidence.includes(base) ||
+  !worktreeEvidence.includes(reviewedHead) ||
+  evidenceCommitPaths.some((path) => path !== "docs/orchestration/state.toml" && path !== latestTrace) ||
+  /unavailable|not-recorded|not-started/iu.test(sessionEvidence) ||
+  sessionEvidence === previousSession
+) {
+  throw new Error("BOOT-002 final trace does not prove successful validation and fresh review");
 }
 
 const tests = [

@@ -2,14 +2,24 @@ schema_version = 3
 project = "open-websearch-mcp"
 state = "bootstrapped"
 spec_revision = "simple-opencode-loop"
-last_trace = "docs/orchestration/runs/0000-specification-handoff.md"
+current_task = "BOOT-002"
+current_attempt = 1
+current_worktree = ".worktree/boot-002-a1"
+current_branch = "agent/boot-002-a1"
+current_base_sha = "54c2d714e4e63a381a96b1778d1fd18f6b2152f6"
+current_head_sha = "d5cdddfad0c1d90d94d631f56224fafbb78ee67c"
+current_reviewed_diff = "20ccd43688a8e58a62579008d5f25c377af5ed073fb2bacf3a73d7d6392efc84"
+current_step = 3
+current_session = "ses_fbd4f81dcffehkCQ0baOJfWLGd"
+last_trace = "docs/orchestration/runs/BOOT-002/0003-review.md"
 
 [environment]
 repo_initialized = true
 github_remote_connected = true
 github_auth_observed = "valid-atinseau"
 opencode_version_observed = "1.18.23"
-controller_model = "selected-at-runtime"
+controller_model = "openai/gpt-5.6-sol"
+controller_variant = "default"
 npm_identity = "pending-release-phase"
 
 [artifacts]
@@ -36,14 +46,14 @@ attempts = []
 evidence = ["docs/orchestration/runs/0000-specification-handoff.md"]
 
 [tasks.BOOT-002]
-state = "ready"
+state = "verified"
 spec = "docs/orchestration/driver-contract.md"
 depends_on = ["BOOT-001"]
-write_set = ["package.json", "scripts/orchestration", "docs/orchestration/runs/BOOT-002", "docs/orchestration/state.toml"]
+write_set = ["package.json", "scripts/bootstrap-validator.ts", "scripts/orchestration", "docs/orchestration/runs/BOOT-002", "docs/orchestration/state.toml"]
 requirements = ["ORCH-009", "ORCH-010", "ORCH-011", "ORCH-012", "ORCH-013"]
 acceptance_gates = ["control-loop", "state-validation", "step-traces", "compaction-resume", "worktree-confinement"]
-attempts = []
-evidence = []
+attempts = [{ attempt = 1, branch = "agent/boot-002-a1", worktree = ".worktree/boot-002-a1", base_sha = "54c2d714e4e63a381a96b1778d1fd18f6b2152f6" }]
+evidence = ["docs/orchestration/runs/BOOT-002/0001-prepare.md", "docs/orchestration/runs/BOOT-002/0002-implementation.md", "docs/orchestration/runs/BOOT-002/0003-review.md"]
 
 [tasks.BOOT-003]
 state = "planned"
