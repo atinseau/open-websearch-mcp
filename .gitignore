@@ -2,9 +2,8 @@
 .env
 .env.*
 !.env.example
-.worktrees/
+.worktree/
 node_modules/
 coverage/
 dist/
 *.log
-

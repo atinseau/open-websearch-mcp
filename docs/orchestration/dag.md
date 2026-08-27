@@ -8,14 +8,14 @@ or bypass a dependency. The machine state lives in `state.toml`.
 
 | Task | Outcome | Depends on |
 | --- | --- | --- |
-| BOOT-001 | public GitHub repository, `main`, `origin`, Apache license, initial spec commit, immutable-base bootstrap validator/PR CI | — |
-| BOOT-002 | Bun orchestration driver/audit/state migration, atomic requirement coverage, model roster and probes | BOOT-001 |
+| BOOT-001 | public GitHub repository, `main`, `origin`, Apache license, initial spec commit, bootstrap validator/PR CI | — |
+| BOOT-002 | Minimal Bun/OpenCode control loop, state validation, per-step Markdown traces, resume, and `.worktree/` discipline | BOOT-001 |
 | BOOT-003 | Bun manifests, exact pins, Oxfmt/Oxlint/TS7, base architecture fixtures | BOOT-002 |
 | BOOT-004 | complete PR CI with frozen install, quality/test/package dry run | BOOT-001, BOOT-003 |
 
 ## Feasibility frontier
 
-These tasks may run in parallel once their dependencies are verified.
+The controller takes the next dependency-ready task from this frontier.
 
 | Task | Outcome | Depends on |
 | --- | --- | --- |
@@ -67,11 +67,10 @@ These tasks may run in parallel once their dependencies are verified.
 | REL-001 | public npm identity and executable package contract | BOOT-001, FND-006 |
 | REL-002 | exact-version `bunx --bun` tarball smoke and harness examples | REL-001, TOOL-002 |
 | REL-003 | challenged release/changelog workflow from `main` | BOOT-004, REL-002, VER-004 |
-| REL-004 | authorized GitHub Release + npm publication + final checkpoint | REL-003 |
+| REL-004 | authorized GitHub Release + npm publication + final release trace | REL-003 |
 
-## Parallelism rule
+## Readiness rule
 
-A wave contains only tasks whose dependencies are `verified` and whose declared
-write sets do not overlap. Contracts/interfaces are merged before their
-consumers start. A task depending on an open PR is not ready. This deliberately
-trades speculative parallelism for conflict-free integration.
+A task is ready only when all dependencies are `verified`. Contracts/interfaces
+are merged before their consumers start, and a task depending on an open PR is
+not ready. The controller completes one ready task before selecting another.

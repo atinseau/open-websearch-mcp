@@ -1,128 +1,71 @@
-# Durable orchestration driver contract
+# Minimal OpenCode controller contract
 
-## Why a driver exists
+## Outcome
 
-OpenCode 1.18.23 can run agents, models, JSON sessions, and subagents, but it has
-no native worktree scheduler or guarantee that one conversational turn will
-continue until a multi-PR project is complete. A small Bun driver supplies
-durability and policy enforcement; OpenCode models supply planning,
-implementation, challenge, review, and verification.
-
-The driver is orchestration infrastructure, not product runtime. It does not
-decide product behavior or generate code.
-
-## One-shot entrypoint
-
-`BOOT-002` must create one documented Bun command such as:
+`BOOT-002` creates a small Bun entrypoint such as:
 
 ```text
 bun run orchestrate
 ```
 
-Running it acquires a single-repo lease, reconciles state, and continues until
-`complete` or `blocked_external`. A crash or machine restart is recovered by
-running the same command again. A second concurrent driver exits without
-changing state.
+The command repeatedly invokes OpenCode with the user-selected powerful model,
+persists each completed step, and resumes from repository state after a crash or
+OpenCode context compaction.
 
 ## Responsibilities
 
-The driver alone:
+The controller:
 
-1. reads/validates specs, DAG, state schema, checkpoint chain, and model roster;
-2. queries OpenCode version/models/agents and runs required capability probes;
-3. computes ready non-overlapping task waves;
-4. creates/leases/archives worktrees using the worktree protocol;
-5. invokes `opencode run --format json` with explicit agent/model/variant/cwd,
-   per-step timeout, task prompt, and never global `--continue`;
-6. captures exit status, JSON events, session ID, token/cost metadata, diff, and
-   artifacts, then exports/sanitizes consequential sessions;
-7. validates proposed state transitions rather than trusting an agent's
-   `complete` message;
-8. runs challenges, reviews, verification, PR/CI integration, checkpoints, and
-   escalation according to their protocols;
-9. handles SIGINT/SIGTERM by stopping new work, cancelling children, persisting
-   state, and leaving worktrees recoverable;
-10. emits a concise progress heartbeat without page/user secrets.
+1. validates `state.toml`, the DAG, and task dependencies;
+2. acquires one local controller lock;
+3. selects one ready task;
+4. creates or resumes its worktree under `.worktree/`;
+5. starts OpenCode with an explicit cwd, model, prompt, and optional session ID;
+6. captures the session ID, exit status, changed files, commands, and results;
+7. writes a Markdown trace after each plan, implementation, verification,
+   review, integration, failure, or blocker step;
+8. validates tests and review verdicts before advancing state;
+9. handles interruption by finishing the current trace and exiting resumably;
+10. continues until completion, user pause, or a proven external blocker.
 
-The process implements a concrete reconcile/dispatch/wait cycle. It launches
-independent ready attempts with `Bun.spawn`, awaits their JSON streams
-concurrently, validates each terminal object, and persists state after every
-ownership-changing event. Agent timeout defaults to 30 minutes, CI polling to
-30 seconds with capped five-minute backoff, and provider retry to three
-transient attempts; all are configurable. Child exit `0` still requires schema
-and audit success. Driver exits `0` only for verified `complete`, `20` for
-proven `blocked_external`, `30` when safely interrupted/resumable, and nonzero
-`4x/5x` for external/internal faults handled by the same idempotent resume.
+OpenCode provides native context management and compaction. The controller does
+not reimplement model memory, token management, agent scheduling, or a generic
+workflow engine.
 
-Every child and verification command passes through the capability executor
-defined by the mechanical audit. Agent-proposed argv is data, never authority.
-The driver rejects undeclared executables, transitive package scripts, roots,
-network classes, credential reads, GitHub writes, and publication operations
-before spawn. BOOT-002 must prove its macOS sandbox with read/write/network/
-process escape fixtures; failure prevents agent implementation from starting.
+## Execution Model
 
-## State durability
+Only one implementation task is active. Subagents may perform
+bounded parallel reads or reviews inside that task, but the controller does not
+schedule independent worktrees.
 
-In-flight state is written atomically under:
+Each OpenCode call has a timeout and returns a small structured result containing
+status, task, session, changed paths, checks, findings, and next action. Free-form
+text may explain the result but cannot replace failed checks.
 
-```text
-~/.open-websearch-mcp/orchestration/<repo-id>/
-├── state.toml
-├── lease.toml
-├── sessions/
-├── raw-logs/
-└── archives/
-```
+## Resume
 
-The versioned `docs/orchestration/state.toml` is the latest checkpoint snapshot,
-not a lock file. At each merged checkpoint, sanitize and commit the state
-snapshot. If local state disappears, reconstruct it from main, checkpoints,
-open/merged PRs, branches, worktrees, and CI; uncertain work returns to review,
-not silently to verified.
+On startup the controller reads state, the latest task trace, Git status, and
+the recorded worktree. It then either resumes the explicit OpenCode session or
+starts a fresh session with the trace as durable context. It never depends on a
+global conversational `--continue`.
 
-## Structured agent results
+## Non-goals
 
-Every agent invocation must produce a schema-validated result for its role:
-task/attempt, verdict or status, requirement IDs, changed paths, commands and
-exit codes, artifact paths/hashes, decisions/findings, session ID, and requested
-next transition. Free-form prose may accompany this object but cannot mutate
-state.
+BOOT-002 does not provide:
 
-All attempts use the versioned prompt/result envelope and explicit OpenCode
-session ID. Parallel output is written to attempt-specific files, never
-interleaved on stdout. Requested transitions remain proposals until
-`bun run orchestration:audit` accepts them independently.
+- model benchmarking or automatic provider ranking;
+- a multi-repository or reusable orchestration product;
+- a custom security sandbox, capability broker, signing service, or relay;
+- automatic branch protection, release credentials, or unrestricted GitHub
+  mutation;
+- cryptographic checkpoint chains or a second PR for every state update.
 
-## Liveness without spinning
+Normal process permissions, Git isolation, review, and project tests are the
+appropriate controls for this local development loop.
 
-Each invocation has timeout, cancellation, and an approach fingerprint. Three
-failures with the same fingerprint force a different plan/model/implementation
-strategy. Repeated infrastructure flakiness applies bounded retry/backoff.
-There is no project-wide attempt budget that permits incomplete termination.
+## Bootstrap Acceptance
 
-When no task is ready, the driver proves one of three conditions:
-
-- all mandatory tasks verified → run final audits;
-- dependencies are in active/review/CI states → wait with bounded polling;
-- an exact external authority blocks every remaining path → create the blocker
-  checkpoint.
-
-Any other empty frontier is a DAG/state defect and creates an orchestration
-repair task.
-
-CI attempts have a 45-minute default absolute deadline persisted in state.
-During it the driver snapshots check state and may request one rerun only when
-the provider reports a completed/retriable infrastructure failure. At deadline,
-it diagnoses whether workflow/configuration is internal (create a repair task)
-or GitHub/runner authority is externally unavailable. It then records
-`blocked_external` after independent work completes; it never polls a pending
-check without an absolute horizon.
-
-## Safety
-
-The driver uses explicit validated paths and arguments, never shell interpolation
-of agent/page content. Model agents receive minimal permissions. Publishing,
-branch-protection changes, credentials, and destructive cleanup are unavailable
-until their authorized task. Driver tests simulate crashes, duplicated starts,
-malformed model output, hung agents, stale leases, conflicting write sets,
-failed CI, and partial GitHub outages.
+BOOT-002 includes focused tests below `scripts/orchestration/`. The bootstrap
+validator checks its write set and persisted trace, runs
+`scripts/orchestration/validate.ts`, then runs those tests. The PR receives the
+normal fresh review described by the review protocol.

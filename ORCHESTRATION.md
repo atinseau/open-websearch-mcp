@@ -1,139 +1,96 @@
-# Autonomous implementation orchestration
+# OpenCode implementation loop
 
-## Mission
+## Owned Requirements
 
-Implement every mandatory requirement reachable from [SPEC.md](SPEC.md) through
-an autonomous OpenCode run. The orchestrator coordinates agents; it does not
-write feature code. Progress is reconstructed from Git, PRs, the task manifest,
-and immutable checkpoints rather than conversation memory.
+This contract owns `ORCH-009` through `ORCH-013`. Their atomic acceptance
+criteria and dependencies are registered in `docs/spec/requirements.md`.
 
-The loop is completion-driven, not literally infinite. A failed approach causes
-challenge, replanning, stronger-model escalation, or replacement. It never
-marks incomplete work complete and never spins the same attempt indefinitely.
-Only a missing external authority such as GitHub/npm authentication may end the
-run as `blocked`; independent branches continue first.
+## Purpose
 
-## Required reading order
+Use one powerful OpenCode model to drive the project from the specification to
+completion. The loop exists to preserve direction across long runs and context
+compaction, not to build a generic agent platform.
 
-1. Read [SPEC.md](SPEC.md) and [CONTEXT.md](CONTEXT.md).
-2. Read `docs/orchestration/state.toml` and the latest checkpoint.
-3. Read [the DAG](docs/orchestration/dag.md) and only the sub-specs owned by the
-   current frontier tasks.
-4. Load the specialized policy when its branch fires:
-   - model discovery or assignment → [model routing](docs/orchestration/model-routing.md);
-   - starting, supervising, or resuming the one-shot loop → [driver contract](docs/orchestration/driver-contract.md);
-   - state, leases, transitions, or proof → [state schema](docs/orchestration/state-schema.md) and [mechanical audit](docs/orchestration/audit-contract.md);
-   - worktree, branch, PR, or integration → [worktree protocol](docs/orchestration/worktree-protocol.md);
-   - proposal, challenge, or review → [review protocol](docs/orchestration/review-protocol.md);
-   - progress persistence or resume → [checkpoint protocol](docs/orchestration/checkpoint-protocol.md).
+The controller may use OpenCode subagents for bounded research, implementation,
+or review. OpenCode owns context compaction. Repository traces preserve the
+facts needed to resume without relying on conversation memory.
 
-## Bootstrap
+## Principles
 
-Before product work:
+- Work on exactly one DAG task at a time.
+- Keep the controller on a strong model selected by the user at runtime.
+- Start fresh role sessions when implementation or review benefits from a clean
+  context; a model roster or calibration system is not required.
+- Record a Markdown trace after every meaningful step before continuing.
+- Trust source files, Git, commands, tests, and recorded artifacts over prose.
+- Prefer the smallest implementation that satisfies the current task.
+- Do not create security infrastructure, native brokers, signing ceremonies, or
+  generic orchestration frameworks unless a product requirement explicitly
+  needs them.
 
-1. Verify the directory is a Git repository with `main` and a GitHub `origin`.
-   If it is not, execute task `BOOT-001` from the DAG. The root bootstrap commit
-   establishes `main`, commits this specification, and installs the minimal
-   orchestration-audit PR workflow; every subsequent change uses a PR.
-2. Verify `gh` authentication, OpenCode provider authentication, Codex/Claude
-   teacher availability, Bun, and macOS ARM64. Record failures without hiding
-   them and continue tasks that do not require the missing authority.
-3. Run `opencode models` and the available-agent inspection described by the
-   model-routing policy. Persist the roster; never hardcode model names in this
-   document.
-4. Reconcile `state.toml` against merged PRs, open PRs, worktrees, and
-   checkpoints. Git/PR evidence wins over stale state.
-5. Compute the ready frontier: tasks whose dependencies are all `verified` and
-   whose declared write sets do not overlap.
+## Required Reading
 
-OpenCode does not itself guarantee a durable multi-worktree loop. `BOOT-002`
-therefore establishes the Bun orchestration driver defined by the driver
-contract. The initial primary session bootstraps that driver, then the driver
-owns repeated OpenCode invocations and recovery until a terminal state.
+At the beginning of a run, after compaction, or when resuming:
 
-## State machine
+1. Read `AGENTS.md`, `SPEC.md`, and `CONTEXT.md`.
+2. Read `docs/orchestration/state.toml`.
+3. Read `docs/orchestration/dag.md` and the sub-spec owned by the current task.
+4. Read the latest trace under `docs/orchestration/runs/<task-id>/`.
+5. Inspect Git status, branches, PR state when relevant, and `.worktree/`.
 
-Each task transitions through:
+## Control Loop
 
-```text
-planned → ready → challenged → claimed → implementing → reviewing
-                 ^                           |             |
-                 └──── replan / repair ──────┴─────────────┘
-                                                             \
-                                                              → integrated_pending_checkpoint
-                                                                → verified
-                                                              → blocked_external
-```
+Repeat until the product definition of done is proven:
 
-`integrated_pending_checkpoint` means the task PR is merged and accepted, but
-dependents remain closed. `verified` additionally requires its finalized
-checkpoint transaction and committed state snapshot. `blocked_external` requires a falsifiable missing
-permission/credential/upstream capability and a minimal handoff. Difficulty,
-test failure, disagreement, or an exhausted approach is not an external block.
+1. **Reconcile.** Compare state and the latest trace with Git and test facts.
+2. **Select.** Pick the first dependency-complete task. Do not start parallel
+   implementation merely to increase throughput.
+3. **Prepare.** Create one worktree under `.worktree/<task-id>-a<attempt>` and
+   record its branch, base SHA, goal, and session in the task trace.
+4. **Implement.** Let the controller or a fresh implementation session make the
+   smallest complete change and run focused checks regularly.
+5. **Verify.** Run the task's full declared checks. A failed check returns to
+   implementation; it is never converted into success by explanation.
+6. **Review.** Use a fresh OpenCode session for a concise spec and quality review
+   of substantial changes. Repair blocker/high findings before integration.
+7. **Trace.** Write the step result, files, commands, decisions, open questions,
+   and exact next action before the controller continues or compacts.
+8. **Integrate.** After checks and review, commit a projected `verified` state in
+   the PR. Merge makes that state factual for the exact reviewed SHA; reconcile
+   it from `main`, then remove the worktree safely.
+9. **Continue.** Re-read state and the latest trace, then select the next task.
 
-## Main loop
+## Persistence
 
-Repeat these steps until the project definition of done is proven:
+`docs/orchestration/state.toml` stores compact machine-readable progress.
+`docs/orchestration/runs/<task-id>/NNNN-<step>.md` stores the human- and
+agent-readable history. Each trace includes:
 
-1. **Reconcile.** Refresh `main`, PR status, state, leases, and evidence. Archive
-   abandoned diffs before replacing a worktree.
-2. **Select.** Choose the non-overlapping ready frontier. Prefer tasks that
-   unlock the most downstream requirements and spikes that remove uncertainty.
-3. **Propose.** Assign an implementer to write a bounded plan, affected
-   requirement IDs, tests, write set, assumptions, and completion evidence.
-4. **Challenge.** Assign an independent, sufficiently capable model to attack
-   the plan. Resolve every contract-affecting objection before code is written.
-5. **Implement.** Create a task worktree/branch, implement the smallest complete
-   increment, and run its local gates. The implementer updates no global state.
-6. **Review.** Run independent spec-compliance and quality/security reviews.
-   Findings return to implementation; repeated disagreement escalates to a
-   stronger independent arbiter with the original evidence.
-7. **Verify.** Reproduce the gates from a clean verification worktree. Generated
-   claims without command output or artifacts do not count as evidence.
-8. **Integrate.** Open/update the single-purpose PR, wait for CI, merge only when
-   current with `main`, then delete the task worktree safely.
-9. **Checkpoint.** Move the source task to `integrated_pending_checkpoint`, then
-   open its schema-governed checkpoint transaction PR. Mechanical audit verifies
-   merge SHA, append-only chain, evidence hashes, and state delta. Merge it to
-   mark the task `verified`, then recompute the frontier.
-10. **Audit completion.** When no ready task remains, run the traceability and
-    release audit. If any required ID lacks evidence, create repair tasks and
-    continue the loop.
+- task, attempt, branch/worktree, base/head SHA, OpenCode session;
+- goal and completed work;
+- files changed;
+- commands and outcomes;
+- decisions and reasons;
+- unresolved findings or blockers;
+- the exact next action.
 
-## Decision discipline
+Write traces atomically. Existing traces are historical facts and should not be
+silently rewritten; add a correction step when needed.
 
-- A specified choice is implemented, not reopened because an agent prefers an
-  alternative.
-- A new reversible implementation choice is proposed with evidence and receives
-  one independent challenge before acceptance.
-- Security, public interfaces, persistence, concurrency, dependencies, and
-  release decisions receive two independent challenges and an arbiter when they
-  conflict.
-- An agent may propose a spec amendment but cannot merge it together with the
-  implementation that depends on it. The amendment is reviewed as its own PR and
-  must preserve the master outcome and invariants.
-- Three failed versions of the same approach trigger redesign and model
-  escalation. They do not permit weakening a gate or declaring the task blocked.
+## Stop Conditions
 
-## Agent independence
+The loop stops only when:
 
-The plan author, implementer, spec reviewer, and quality reviewer are separate
-agent identities. For high-risk tasks, the challenger/reviewer uses a different
-model family when the roster permits it. Reviewers receive the spec, diff, and
-test evidence, not the implementer's persuasive narrative.
+- every mandatory requirement is verified and final checks pass;
+- the user pauses or redirects the work; or
+- an exact external dependency or permission prevents all useful progress.
 
-## Persistence and recovery
+Difficulty, a failed approach, test failures, or context compaction are not
+terminal conditions. Record the failure, choose a different approach, and
+continue.
 
-`docs/orchestration/state.toml` is the current machine-readable state.
-Checkpoints are append-only historical proof. Runs and model rosters are
-versioned artifacts. On restart or compaction, the orchestrator reads these
-files and GitHub state before issuing new work. It never infers task completion
-from an absent worktree or a previous chat statement.
+## Scope Of BOOT-002
 
-## Terminal states
-
-`complete` is legal only when SPEC's product definition of done and every
-sub-spec acceptance criterion pass. `blocked_external` is legal only after all
-independent work is complete and the remaining requirement names the exact
-external action required. There is no `best_effort_complete`, skipped mandatory
-task, or release with waived benchmark/security gates.
+`BOOT-002` implements this small local loop, state validation, trace writing,
+resume behavior, and worktree discipline. It does not implement product runtime
+behavior and is not a reusable orchestration product.

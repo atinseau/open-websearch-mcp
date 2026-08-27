@@ -36,13 +36,13 @@ that exception, every change follows:
 
 ```text
 fresh main → dedicated worktree/branch → single-purpose PR
-           → required CI + independent agent reviews
-           → merge to main → checkpoint/reconcile
+           → required CI + risk-appropriate fresh review
+           → merge to main → final release trace
 ```
 
 `main` is the only release source. No feature implementation, spec amendment,
-version bump, or release fix is committed directly. Parallel PRs must own
-non-overlapping write sets and reverify after updating to current main.
+version bump, or release fix is committed directly. A PR reverifies after
+updating to current `main`.
 
 ## PR CI now
 
@@ -68,7 +68,7 @@ manual dispatch or a version PR, but it must deterministically:
 5. publish the public npm package using the configured npm authority;
 6. create the matching Git tag and GitHub Release;
 7. attach the generated changelog, exact npm tarball, and verification artifacts;
-8. record package integrity/version/commit in the release checkpoint.
+8. record package integrity/version/commit in the final release trace.
 
 External publication requires a versioned `release-authorization` artifact
 naming the exact `main` commit, SemVer, npm package, dist-tag, and approving

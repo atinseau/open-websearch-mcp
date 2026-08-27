@@ -2,13 +2,13 @@
 
 ## Authority
 
-This file is the product-spec entrypoint. The linked files in `docs/spec/` own
-the detailed requirements. Requirement IDs are stable: code, tests, PRs,
-checkpoints, and reviews must cite them. `docs/research/` records supporting
+This file is the product-spec entrypoint. The linked normative specifications
+own the detailed requirements. Requirement IDs are stable: code, tests, PRs,
+step traces, and reviews must cite them. `docs/research/` records supporting
 evidence and rejected assumptions; it is non-normative.
 
-When two normative requirements appear incompatible, the orchestrator opens a
-challenge record and resolves the contradiction before implementation. It does
+When two normative requirements appear incompatible, the controller records the
+conflict and resolves it through a fresh review before implementation. It does
 not weaken either requirement silently.
 
 ## Product outcome
@@ -32,7 +32,7 @@ agent. The MCP contains no LLM and calls no search API.
 | PROD-006 | Page content is external untrusted evidence. It cannot instruct the MCP, execute code, or trigger autonomous navigation. |
 | PROD-007 | A consumed page is emitted at most once per investigation; exploration alone never consumes it. |
 | PROD-008 | Every observable claim of completion is backed by an automated check, benchmark artifact, or reproducible trace. |
-| PROD-009 | Every implementation change uses an isolated worktree and reaches `main` through a reviewed PR. |
+| PROD-009 | Every implementation change uses an isolated worktree under `.worktree/` and reaches `main` through a reviewed PR. |
 | PROD-010 | The implementation loop continues until every mandatory requirement is verified; it may stop early only for a proven external-authority blocker. |
 
 ## Public product surface
@@ -64,6 +64,7 @@ content. Both can create an investigation implicitly and always return its ID.
 | [08 Configuration and operations](docs/spec/08-configuration-operations.md) | workspace, TOML, logs, diagnostics, recovery |
 | [09 Verification and benchmarks](docs/spec/09-verification-benchmarks.md) | Bun tests, teacher fixtures, deterministic grader, quality gates |
 | [10 Packaging and releases](docs/spec/10-packaging-releases.md) | npm/bunx UX, GitHub PRs, changelog, release from main |
+| [Implementation orchestration](ORCHESTRATION.md) | `ORCH-009..013`, task loop, traces, review, and resume |
 
 ## Delivery graph
 
@@ -91,8 +92,9 @@ teacher conformance + harness integration + resilience
 npm release candidate + final audit
 ```
 
-Only dependency-complete nodes may run in parallel. The executable DAG and
-resume state are defined by [ORCHESTRATION.md](ORCHESTRATION.md).
+The controller executes exactly one dependency-complete node at a time. The
+executable DAG and resume state are defined by
+[ORCHESTRATION.md](ORCHESTRATION.md).
 
 ## Product definition of done
 
@@ -112,7 +114,7 @@ The product is implemented only when all of the following are true on the exact
    completes MCP `initialize`, `tools/list`, and a fixture-backed tool call;
 7. the traceability audit, documentation audit, and clean-checkout reproduction
    all pass;
-8. the final checkpoint identifies the commit, package version, commands,
+8. the final implementation trace identifies the commit, package version, commands,
    reports, and immutable artifacts proving the preceding conditions.
 
 ## Explicitly outside v1

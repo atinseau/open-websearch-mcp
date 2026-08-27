@@ -1,89 +1,34 @@
-# OpenCode model routing
+# OpenCode model policy
 
-## Purpose
+## Controller
 
-Distribute work across the models actually available to the user's OpenCode
-installation. Model names are runtime inventory, never spec constants.
+Use one powerful model chosen by the user for the control loop. Keep that model
+selection fixed across controller, implementation, review, and subagent sessions,
+and record the exact model and variant in each run trace.
+There is no calibration suite, scoring table, provider roster, or automatic
+cost-based routing in BOOT-002.
 
-## Preflight inventory
+## Sessions
 
-Archive these outputs with exact OpenCode version before every implementation
-run and after provider/model configuration changes:
+The controller may:
 
-```text
-opencode --version
-opencode models --refresh --verbose
-opencode agent list
-opencode run --help
-opencode export --help
-```
+- implement directly for bounded work;
+- start a fresh implementation session for a large task;
+- start a fresh review session to reduce confirmation bias;
+- delegate bounded searches or independent checks to subagents.
 
-Read configured favorite models when OpenCode exposes them. If favorites are not
-machine-readable, include every authenticated model returned by `models` and
-mark the missing favorite signal; do not guess credentials or availability.
+The same selected model fills these roles in separate sessions. The controller
+does not route work across model families or providers.
 
-Run the versioned calibration pack on plausible candidates: one architecture
-challenge, one bounded code/test task, one defect review, and one research
-source-check. Record correctness, tool reliability, latency, context limit,
-provider, variant/effort, and reported cost. Calibration chooses routing; it
-does not change product benchmarks.
+## Context And Compaction
 
-Persist the result to `docs/orchestration/model-roster.toml` with the raw model
-inventory hash. A model assignment remains fixed for one task attempt.
+OpenCode manages context and auto-compaction natively. Before a long transition
+and after every meaningful step, persist the durable facts in the task trace.
+After compaction, re-read state and the latest trace instead of trying to rebuild
+conversation history from model exports.
 
-The roster schema is versioned and records, per exact provider/model/variant:
-availability/auth probe, family, context limit, reported cost, favorite signal,
-four calibration scores, tool-success rate, P50/P95 latency, timeout, last
-observation, and eligible tiers/roles. It also stores calibration fixture hashes
-and OpenCode version. Selection first filters eligibility and availability, then
-maximizes correctness, breaking ties by tool reliability, latency, then cost.
-Provider timeout/unavailability returns the task to `ready` and selects the next
-eligible entry; it never lowers a gate. `BOOT-002` must first prove that the
-installed OpenCode version can invoke explicit agents/models/sessions; no
-subagent behavior is assumed from `agent list` alone.
+## Failure
 
-## Capability tiers
-
-| Tier | Work |
-| --- | --- |
-| A — frontier reasoning | primary orchestrator, architecture/security challenge, hard blockers, final audit, arbitration |
-| B — strong coding | bounded feature implementation, integration, difficult test repair |
-| C — fast/reliable | inventory, fixtures, mechanical tests, docs, command verification |
-
-Cost never promotes a weaker result over correctness. Use the cheapest model
-that has passed the relevant calibration. Reserve Tier A for leverage points.
-
-## Role separation
-
-- `orchestrator`: strongest reliable reasoning/tool model; owns state and
-  integration, writes no feature code.
-- `planner`: analyzes one ready task and proposes its bounded implementation.
-- `challenger`: attacks the proposal before implementation.
-- `implementer`: writes only in its assigned worktree.
-- `spec-reviewer`: read-only comparison of diff/evidence to requirement IDs.
-- `quality-reviewer`: read-only bug/security/architecture/test review.
-- `verifier`: reproduces commands in a clean worktree and records artifacts.
-- `arbiter`: Tier A model used after unresolved independent disagreement.
-
-An agent cannot review or approve its own output. For security, persistence,
-concurrency, MCP contract, dependency, and release tasks, use a different model
-family/provider for at least one challenger when available.
-
-## Parallelism
-
-Start with at most four implementation worktrees. Increase only after the
-OpenCode orchestration and provider-rate probes show stable completion. Agents
-may read shared specs concurrently; one writer owns each worktree. Subagent
-depth begins at one. Only the durable primary orchestrator schedules further
-work.
-
-Do not use global `--continue` between worktrees. Resume a recorded unit with
-its explicit `--session <id>` and cwd/worktree. Export every consequential
-session with sanitization; Git/checkpoints remain authoritative.
-
-## Degradation
-
-If a chosen model becomes unavailable, return the task to `ready`, record the
-failed assignment, and select another model that passed the same capability
-calibration. A fallback model may not combine implementer and reviewer roles or
-lower the acceptance gate.
+If the selected model is unavailable, record the exact error and pause so the
+user can explicitly replace the selection. Do not route automatically or weaken
+task checks to keep the loop moving.
