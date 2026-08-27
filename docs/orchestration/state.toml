@@ -7,8 +7,8 @@ current_attempt = 1
 current_worktree = ".worktree/boot-004-a1"
 current_branch = "agent/boot-004-a1"
 current_base_sha = "053e1997c53b3578e47a13795287de56f95062ad"
-current_step = 3
-last_trace = "docs/orchestration/runs/BOOT-004/0003-implementation.md"
+current_step = 4
+last_trace = "docs/orchestration/runs/BOOT-004/0004-correction.md"
 
 [environment]
 repo_initialized = true
@@ -70,7 +70,7 @@ write_set = [".github/workflows"]
 requirements = ["RELEASE-007"]
 acceptance_gates = ["command:bun install --frozen-lockfile --ignore-scripts && bun run check && bun pm pack --dry-run --ignore-scripts && actionlint .github/workflows/orchestration-audit.yml"]
 attempts = [{ attempt = 1, branch = "agent/boot-004-a1", worktree = ".worktree/boot-004-a1", base_sha = "053e1997c53b3578e47a13795287de56f95062ad" }]
-evidence = ["docs/orchestration/runs/BOOT-004/0001-ready.md", "docs/orchestration/runs/BOOT-004/0002-prepare.md", "docs/orchestration/runs/BOOT-004/0003-implementation.md"]
+evidence = ["docs/orchestration/runs/BOOT-004/0001-ready.md", "docs/orchestration/runs/BOOT-004/0002-prepare.md", "docs/orchestration/runs/BOOT-004/0003-implementation.md", "docs/orchestration/runs/BOOT-004/0004-correction.md"]
 
 [tasks.SPK-001]
 state = "planned"
