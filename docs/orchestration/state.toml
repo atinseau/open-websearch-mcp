@@ -1,32 +1,29 @@
-schema_version = 2
+schema_version = 3
 project = "open-websearch-mcp"
 state = "bootstrapped"
-spec_revision = "bootstrap-root"
-last_checkpoint = "docs/orchestration/checkpoints/0000-specification-handoff.md"
+spec_revision = "simple-opencode-loop"
+last_trace = "docs/orchestration/runs/0000-specification-handoff.md"
 
 [environment]
 repo_initialized = true
 github_remote_connected = true
 github_auth_observed = "valid-atinseau"
 opencode_version_observed = "1.18.23"
-model_roster = "pending-bootstrap"
+controller_model = "selected-at-runtime"
 npm_identity = "pending-release-phase"
 
 [artifacts]
 state_schema = "docs/orchestration/state-schema.md"
 audit_contract = "docs/orchestration/audit-contract.md"
 atomic_requirement_coverage = "pending-BOOT-002"
-checkpoint_chain_manifest = "pending-BOOT-002"
 release_ledger = "pending-release-phase"
 
 [policy]
-max_parallel_worktrees_initial = 4
-same_approach_attempts_before_redesign = 3
-review_rounds_before_arbiter = 2
-subagent_depth_initial = 1
+max_active_worktrees = 1
+max_step_retries = 3
 agent_timeout_minutes = 30
-ci_max_wait_minutes = 45
-ci_max_infrastructure_reruns = 1
+trace_after_every_step = true
+worktree_root = ".worktree"
 
 [tasks.BOOT-001]
 state = "verified"
@@ -35,18 +32,16 @@ depends_on = []
 write_set = [".git", "LICENSE", "NOTICE", ".gitignore", "scripts/bootstrap-validator.ts", ".github/workflows/orchestration-audit.yml", "repository-settings"]
 requirements = ["RELEASE-001"]
 acceptance_gates = ["repository-main-origin", "apache-files", "minimal-audit-ci"]
-capability_profile = "bootstrap-authority"
 attempts = []
-evidence = ["docs/orchestration/checkpoints/0000-specification-handoff.md"]
+evidence = ["docs/orchestration/runs/0000-specification-handoff.md"]
 
 [tasks.BOOT-002]
 state = "ready"
 spec = "docs/orchestration/driver-contract.md"
 depends_on = ["BOOT-001"]
-write_set = ["scripts/orchestration", ".opencode", "docs/orchestration/runs", "docs/orchestration/model-roster.toml", "docs/orchestration/coverage.toml", "docs/orchestration/state.toml"]
-requirements = ["PROD-008", "PROD-009", "PROD-010", "ORCH-009", "ORCH-010", "ORCH-011", "ORCH-012", "ORCH-013"]
-acceptance_gates = ["driver-contract", "state-schema", "model-calibration", "mechanical-audit", "crash-recovery"]
-capability_profile = "orchestration-bootstrap-no-external-write"
+write_set = ["package.json", "scripts/orchestration", "docs/orchestration/runs/BOOT-002", "docs/orchestration/state.toml"]
+requirements = ["ORCH-009", "ORCH-010", "ORCH-011", "ORCH-012", "ORCH-013"]
+acceptance_gates = ["control-loop", "state-validation", "step-traces", "compaction-resume", "worktree-confinement"]
 attempts = []
 evidence = []
 
@@ -264,5 +259,5 @@ evidence = []
 state = "planned"
 spec = "docs/spec/10-packaging-releases.md"
 depends_on = ["REL-003"]
-write_set = ["external:github-release", "external:npm-publication", "docs/orchestration/checkpoints"]
+write_set = ["external:github-release", "external:npm-publication", "docs/orchestration/runs/REL-004"]
 evidence = []

@@ -1,74 +1,43 @@
-# Worktree and PR protocol
+# Worktree protocol
 
-## Ownership
+## Required Root
 
-The orchestrator alone creates/removes worktrees, pushes branches, opens PRs,
-updates orchestration state, and merges. An implementer commits inside one
-assigned worktree and never operates on `main` or another task branch.
+Every project worktree must live inside:
 
-## Bootstrap exception
+```text
+open-websearch-mcp/.worktree/
+```
 
-When no repository exists, create the public repository and a root bootstrap
-commit establishing `main`, committing the specification plus a minimal pinned
-bootstrap validator and PR workflow. This is the sole
-direct-main exception and prevents the first PR from depending on absent CI.
-For BOOT-002, CI extracts and runs the validator from the immutable base `main`
-SHA, never from PR-head code. It enforces the BOOT-002 write set, state/spec link
-integrity, safe command manifest, and two independent review results tied to
-sanitized OpenCode export hashes. Only after BOOT-002 merges may branch
-protection promote its stronger audit as the required gate.
-Apply every subsequent change through PRs. If GitHub or
-npm authority is absent, record the external blocker; never create a substitute
-account or remote.
+Sibling worktree directories and broad temporary roots are forbidden. The
+repository ignores `.worktree/`.
 
 ## Creation
 
-For ready task `<ID>`:
+For task `<ID>` and attempt `<N>`:
 
-1. fetch and verify `origin/main`, clean repository, absent branch/path, and
-   non-overlapping write set;
-2. create branch `agent/<id-lowercase>-<slug>-a<attempt>` from current
-   `origin/main`;
-3. create a sibling worktree under one explicit worktree root, never under a
-   broad home/root path;
-4. persist branch, base SHA, path, lease/run ID, assigned agent/model, and write
-   set in state before launching OpenCode;
-5. start OpenCode with the worktree as cwd and explicit directory/session ID.
+1. verify the main checkout and current base SHA;
+2. create branch `agent/<id-lower>-a<n>`;
+3. create `.worktree/<id-lower>-a<n>` with `git worktree add`;
+4. record path, branch, base SHA, and OpenCode session in the first step trace;
+5. start OpenCode with that worktree as cwd.
 
-No two tasks write the same declared path. A contract change merges before
-consumer work begins.
+Only one implementation worktree is active. A task never writes in
+another task's worktree or directly implements from the main checkout.
 
-## Task branch
+## Integration
 
-The branch contains one DAG task, its tests, required docs, and task-local
-checkpoint proposal. Commits are reviewable and use stable requirement IDs.
-Generated or raw benchmark artifacts follow their owning spec.
+Before integration, run required tests and any fresh review required by the
+review protocol, commit intended files, and use the normal PR/CI path. The trace
+records the PR and final commit when available. `main` remains the release source.
 
-Before review, require clean status after commits, no unexpected files, no
-secret scan findings, and all task gates. Before merge, update from latest main
-without history destruction and rerun gates affected by the update.
+## Cleanup
 
-## Pull request
+After merge or an explicit abandonment decision:
 
-The PR records task/spec IDs, base SHA, behavior delivered, excluded scope,
-commands/results, spike/benchmark artifacts, automatic decisions/challenges,
-known risks, and proposed checkpoint. Two independent agent review reports and
-required CI statuses must be attached.
+1. record the final status and any useful diff or commit in the task trace;
+2. verify no unrecorded user work would be lost;
+3. run `git worktree remove` on the exact `.worktree/` path;
+4. prune worktree metadata and delete the task branch only when safe.
 
-The mechanical audit in `audit-contract.md` verifies identities, evidence,
-gates, and changed paths; Markdown declarations alone do not count.
-
-The orchestrator merges automatically only when the review protocol says
-`accept`, CI is green on current head, branch is current with main, and no
-mandatory finding remains. It never force-pushes shared history or bypasses
-branch protection.
-
-## Cleanup and recovery
-
-After merge, verify the task worktree is clean and commit reachable from main,
-then use normal `git worktree remove` and prune metadata. Never use recursive
-deletion, `git reset --hard`, or checkout-based discarding.
-
-For expired/crashed work, archive status, diff, commits, OpenCode session export,
-and logs before creating a replacement attempt. An absent process does not mean
-the work is safe to delete.
+Never use broad recursive cleanup, `git reset --hard`, or deletion outside
+`.worktree/` as part of normal orchestration.

@@ -1,8 +1,8 @@
 # Initial requirement traceability
 
-This is the pre-implementation ownership map. The orchestrator expands every
+This is the pre-implementation ownership map. The controller expands every
 range into one row per atomic ID and adds code, test, evidence, PR, commit, and
-checkpoint links as tasks merge. No range may remain as a substitute for atomic
+step-trace links as tasks complete. No range may remain as a substitute for atomic
 release traceability.
 
 | Requirement IDs | Normative owner | Primary DAG tasks |
@@ -20,7 +20,7 @@ release traceability.
 | INSTALL-001..003 | SPEC-08 | WEB-001, WEB-002 |
 | LOG-001..003 | SPEC-08 | FND-002, VER-003 |
 | ORCH-001..008 | SPEC-02 | SPK-003, FND-005, TOOL-001, TOOL-002 |
-| ORCH-009..013 | ORCHESTRATION | BOOT-002, every task checkpoint, VER-004 |
+| ORCH-009..013 | ORCHESTRATION | BOOT-002, every task trace, VER-004 |
 | ARCH-001..010 | SPEC-02 | BOOT-003, SPK-005, FND-001, VER-004 |
 | TEST-001..025 | SPEC-09 | BOOT-004, all SPK tasks, VER-001..004 |
 | RELEASE-001..007 | SPEC-10 | BOOT-001, BOOT-004, REL-001..004 |

@@ -1,14 +1,3 @@
-type ReviewEvidence = {
-  role: "challenger" | "spec-reviewer" | "quality-reviewer" | "verifier";
-  verdict: "accept";
-  agent: string;
-  model: string;
-  provider: string;
-  session_id: string;
-  export_path: string;
-  export_sha256: string;
-};
-
 const argumentsByName = new Map<string, string>();
 for (let index = 0; index < Bun.argv.length - 1; index += 1) {
   const value = Bun.argv[index];
@@ -23,8 +12,9 @@ if (!base || !/^[0-9a-f]{40}$/u.test(base) || !/^[0-9a-f]{40}$/u.test(head)) {
   throw new Error("Expected full --base and --head Git SHAs");
 }
 
-async function git(args: string[]): Promise<string> {
-  const child = Bun.spawn(["git", "-C", repository, ...args], {
+async function run(command: string[], cwd = repository): Promise<string> {
+  const child = Bun.spawn(command, {
+    cwd,
     stdout: "pipe",
     stderr: "pipe",
     env: { PATH: process.env.PATH ?? "/usr/bin:/bin" },
@@ -34,82 +24,106 @@ async function git(args: string[]): Promise<string> {
     new Response(child.stderr).text(),
     child.exited,
   ]);
-  if (exitCode !== 0) throw new Error(`git ${args[0]} failed: ${stderr.trim()}`);
+  if (exitCode !== 0) {
+    throw new Error(`${command.join(" ")} failed:\n${stderr.trim()}\n${stdout.trim()}`);
+  }
   return stdout.trim();
 }
 
-const allowedPaths = [
-  ".opencode/",
-  "docs/orchestration/coverage.toml",
-  "docs/orchestration/model-roster.toml",
+const allowedFiles = ["docs/orchestration/state.toml", "package.json"];
+const allowedDirectories = [
   "docs/orchestration/runs/BOOT-002/",
-  "docs/orchestration/state.toml",
   "scripts/orchestration/",
 ];
 
-const changedPaths = (await git(["diff", "--name-only", `${base}..${head}`]))
+const changedPaths = (await run(["git", "diff", "--name-only", `${base}..${head}`]))
   .split("\n")
   .filter(Boolean);
 const outsideWriteSet = changedPaths.filter(
-  (path) => !allowedPaths.some((allowed) => path === allowed || path.startsWith(allowed)),
+  (path) => !allowedFiles.includes(path) && !allowedDirectories.some((dir) => path.startsWith(dir)),
 );
 if (outsideWriteSet.length > 0) {
   throw new Error(`BOOT-002 changed paths outside its write set: ${outsideWriteSet.join(", ")}`);
 }
 
-const state = Bun.TOML.parse(await Bun.file(`${repository}/docs/orchestration/state.toml`).text());
-if (state.schema_version !== 2 || typeof state.tasks !== "object") {
+type State = {
+  schema_version?: number;
+  last_trace?: string;
+  policy?: { max_active_worktrees?: number; worktree_root?: string };
+  tasks?: Record<string, { state?: string }>;
+};
+
+const state = Bun.TOML.parse(
+  await Bun.file(`${repository}/docs/orchestration/state.toml`).text(),
+) as State;
+if (
+  state.schema_version !== 3 ||
+  state.policy?.max_active_worktrees !== 1 ||
+  state.policy.worktree_root !== ".worktree" ||
+  state.tasks?.["BOOT-002"]?.state !== "verified"
+) {
   throw new Error("Invalid orchestration state schema");
 }
 
-const requiredEvidence = new Map<string, ReviewEvidence["role"]>([
-  ["challenge.json", "challenger"],
-  ["spec-review.json", "spec-reviewer"],
-  ["quality-review.json", "quality-reviewer"],
-  ["verification.json", "verifier"],
-]);
-const reviews: ReviewEvidence[] = [];
-for (const [filename, expectedRole] of requiredEvidence) {
-  const path = `${repository}/docs/orchestration/runs/BOOT-002/${filename}`;
-  const evidence = await Bun.file(path).json() as ReviewEvidence;
-  if (
-    evidence.role !== expectedRole ||
-    evidence.verdict !== "accept" ||
-    !evidence.agent ||
-    !evidence.model ||
-    !evidence.provider ||
-    !evidence.session_id ||
-    !/^[0-9a-f]{64}$/u.test(evidence.export_sha256) ||
-    !/^docs\/orchestration\/runs\/BOOT-002\/exports\/[a-zA-Z0-9._-]+\.jsonl$/u.test(
-      evidence.export_path,
-    )
-  ) {
-    throw new Error(`Invalid BOOT-002 evidence: ${filename}`);
-  }
-  const exportFile = Bun.file(`${repository}/${evidence.export_path}`);
-  if (!(await exportFile.exists())) throw new Error(`Missing export for ${filename}`);
-  const actualHash = new Bun.CryptoHasher("sha256")
-    .update(await exportFile.arrayBuffer())
-    .digest("hex");
-  if (actualHash !== evidence.export_sha256) throw new Error(`Export hash mismatch: ${filename}`);
-  reviews.push(evidence);
-}
-
-const reviewIdentities = new Set(reviews.map(({ agent, session_id }) => `${agent}:${session_id}`));
-if (reviewIdentities.size !== reviews.length) {
-  throw new Error("BOOT-002 evidence roles must use independent agent sessions");
-}
-
 const requiredFiles = [
-  "docs/orchestration/coverage.toml",
-  "docs/orchestration/model-roster.toml",
-  "docs/orchestration/runs/BOOT-002/implementation.json",
-  "docs/orchestration/runs/BOOT-002/plan.json",
-  "scripts/orchestration/audit.ts",
+  "package.json",
   "scripts/orchestration/main.ts",
+  "scripts/orchestration/validate.ts",
 ];
 for (const path of requiredFiles) {
   if (!(await Bun.file(`${repository}/${path}`).exists())) throw new Error(`Missing ${path}`);
 }
 
-console.log(JSON.stringify({ status: "accepted", task: "BOOT-002", changedPaths }));
+const traces = [...new Bun.Glob("[0-9][0-9][0-9][0-9]-*.md").scanSync({
+  cwd: `${repository}/docs/orchestration/runs/BOOT-002`,
+  onlyFiles: true,
+})].sort();
+if (traces.length === 0) throw new Error("BOOT-002 must record at least one Markdown step trace");
+
+const latestTrace = `docs/orchestration/runs/BOOT-002/${traces.at(-1)}`;
+if (state.last_trace !== latestTrace) throw new Error("state.toml must point to the latest BOOT-002 trace");
+
+const traceText = await Bun.file(`${repository}/${latestTrace}`).text();
+const requiredTraceLabels = [
+  "Timestamp",
+  "Attempt",
+  "Worktree / branch / base SHA / head SHA",
+  "OpenCode model / variant / session",
+  "Goal",
+  "Completed work",
+  "Files changed",
+  "Commands and outcomes",
+  "Decisions and reasons",
+  "Findings or blockers",
+  "Remaining work",
+  "Exact next action",
+];
+if (
+  !/^# Step \d{4} - BOOT-002\b/m.test(traceText) ||
+  requiredTraceLabels.some(
+    (label) => !traceText
+      .split("\n")
+      .some((line) => line.startsWith(`- ${label}:`) && line.slice(label.length + 3).trim()),
+  )
+) {
+  throw new Error("Latest BOOT-002 trace is incomplete");
+}
+
+const tests = [
+  ...new Bun.Glob("**/*.test.ts").scanSync({ cwd: `${repository}/scripts/orchestration` }),
+  ...new Bun.Glob("**/*.spec.ts").scanSync({ cwd: `${repository}/scripts/orchestration` }),
+];
+if (tests.length === 0) throw new Error("BOOT-002 must include focused orchestration tests");
+
+const manifest = await Bun.file(`${repository}/package.json`).json();
+if (
+  manifest.scripts?.orchestrate !== "bun scripts/orchestration/main.ts" ||
+  manifest.scripts?.["orchestration:validate"] !== "bun scripts/orchestration/validate.ts"
+) {
+  throw new Error("package.json must provide the exact orchestration commands");
+}
+
+await run(["bun", "scripts/orchestration/validate.ts", "--repo", repository]);
+await run(["bun", "test", "scripts/orchestration"]);
+
+console.log(JSON.stringify({ status: "accepted", task: "BOOT-002", changedPaths, traces }));

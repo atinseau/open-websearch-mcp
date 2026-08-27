@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 jobs:
-  immutable-base-audit:
+  orchestration-validation:
     runs-on: macos-15
     timeout-minutes: 20
     steps:
@@ -18,19 +18,25 @@ jobs:
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
         with:
           bun-version: 1.4.0
-      - name: Run audit from immutable base
+      - name: Run orchestration validation
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           set -euo pipefail
-          audit_root="$RUNNER_TEMP/open-websearch-base-audit"
-          git worktree add --detach "$audit_root" "$BASE_SHA"
-          if test -f "$audit_root/scripts/orchestration/audit.ts"; then
-            bun "$audit_root/scripts/orchestration/audit.ts" \
+          if git cat-file -e "$BASE_SHA:scripts/orchestration/main.ts"; then
+            if test -f "$GITHUB_WORKSPACE/scripts/orchestration/audit.ts"; then
+              bun "$GITHUB_WORKSPACE/scripts/orchestration/audit.ts" \
+                --repo "$GITHUB_WORKSPACE" --base "$BASE_SHA" --head "$HEAD_SHA"
+            else
+              bun "$GITHUB_WORKSPACE/scripts/orchestration/validate.ts" \
+                --repo "$GITHUB_WORKSPACE"
+            fi
+          elif test -f "$GITHUB_WORKSPACE/scripts/orchestration/main.ts"; then
+            bun "$GITHUB_WORKSPACE/scripts/bootstrap-validator.ts" \
               --repo "$GITHUB_WORKSPACE" --base "$BASE_SHA" --head "$HEAD_SHA"
           else
-            bun "$audit_root/scripts/bootstrap-validator.ts" \
-              --repo "$GITHUB_WORKSPACE" --base "$BASE_SHA" --head "$HEAD_SHA"
+            bun build "$GITHUB_WORKSPACE/scripts/bootstrap-validator.ts" \
+              --target bun --outfile /dev/null
+            git diff --check "$BASE_SHA..$HEAD_SHA"
           fi
-

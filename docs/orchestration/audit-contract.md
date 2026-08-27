@@ -1,56 +1,36 @@
-# Mechanical orchestration audit
+# Orchestration validation
 
-Agent prose is never proof. `BOOT-002` implements a Bun audit command that the
-driver and required PR CI run against every attempt and checkpoint transaction.
+The controller performs a small factual validation before a task advances. It
+does not attempt to become a security boundary around OpenCode.
 
-For a task PR it must:
+## Step Validation
 
-1. resolve base/head SHAs and reject every changed path outside the normalized
-   write set (task-local plan, reviews, evidence, and checkpoint proposal paths
-   are scoped automatically to that task ID);
-2. require schema-valid plan, independent challenge, implementation result,
-   spec review, quality/security review, and clean verification result;
-3. prove role/session separation from attempt identities; high-risk tasks also
-   prove a different model family when the roster permits it;
-4. rerun declared gates and capture argv, cwd, exit status, timestamps, and
-   SHA-256 hashes rather than trusting pasted output;
-5. verify clean committed status, current base, no secrets, no forbidden Node
-   imports/tooling, and no undeclared generated files;
-6. map every owned requirement to its expected proof and reject missing or
-   duplicate primary ownership.
+For each recorded step, validate:
 
-For checkpoint transactions it additionally verifies that existing checkpoint
-files are byte-identical, exactly one next-numbered checkpoint is added, its
-`previous` hash matches the chain head, source task/PR/merge SHA are factual,
-and the state transition is `integrated_pending_checkpoint → verified`.
+1. the task and attempt exist in `state.toml`;
+2. the worktree is below `.worktree/` and belongs to the recorded branch;
+3. changed paths are relevant to the task or explicitly explained;
+4. commands record cwd, exit code, and concise output or artifact location;
+5. required focused and full checks passed;
+6. no obvious secret or generated-file leak is present;
+7. review findings and the next action agree with the state transition.
 
-Branch protection requires this audit after BOOT-001 installs the minimal
-workflow. A failed or unavailable audit cannot be replaced by an agent-authored
-Markdown verdict.
+Agent prose is useful context, not proof that a failing command passed.
 
-## Root-of-trust promotion
+## Task Completion
 
-BOOT-002 cannot certify itself. Its PR is checked by the bootstrap validator
-read from the PR base SHA and committed by BOOT-001. That validator accepts only
-the fixed BOOT-002 scope/capabilities and proves two reviewer identities and
-session-export hashes. After merge, a separate checkpoint transaction verifies
-the installed audit against its contract; only then does branch protection use
-the new audit for later PRs. Subsequent audit changes are high-risk tasks checked
-by the previous `main` version, never solely by the proposed version.
+A task becomes `verified` when its implementation is integrated, required checks
+pass, blocker/high review findings are closed, and its final trace identifies the
+commit or PR plus relevant evidence. No separate checkpoint PR or cryptographic
+session export is required.
 
-## Command and capability policy
+Inside a PR, `verified` is a projected transition conditioned on that exact head
+passing CI/review and merging unchanged. It becomes factual only when `main`
+contains that SHA. Dependents are selected from factual `main` state, never from
+an open PR.
 
-Every task has a reviewed capability manifest. It enumerates exact executable
-and argv prefixes, cwd roots, writable roots, network class, readable credential
-roots, Git/GitHub operations, and maximum duration/output. Default is no network,
-no credential reads, no external writes, no push/merge/release/publish, and
-worktree-only writes. The auditor rejects undeclared commands before execution.
+## BOOT-002 Validation
 
-The driver runs agents and reproduced gates through a macOS sandbox profile
-generated from that manifest and validated by BOOT-002 escape fixtures. Network
-tasks may receive outbound network without access to user credential stores.
-Only the orchestrator owns GitHub integration. Only an exact verified
-release-authorization can grant the release executor narrowly scoped npm/tag/
-GitHub Release operations. Package scripts are inspected as transitive command
-capabilities; allowing `bun run <name>` does not implicitly allow arbitrary
-executables or paths invoked by that script.
+The bootstrap validator checks that BOOT-002 stays within its declared paths,
+provides the controller and state validator, writes a resumable progress trace,
+then runs its validator and focused tests. Standard code review checks BOOT-002.
