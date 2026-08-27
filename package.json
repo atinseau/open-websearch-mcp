@@ -1,0 +1,9 @@
+{
+  "name": "open-websearch-mcp",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "orchestrate": "bun scripts/orchestration/main.ts",
+    "orchestration:validate": "bun scripts/orchestration/validate.ts"
+  }
+}
