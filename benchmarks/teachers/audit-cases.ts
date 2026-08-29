@@ -191,22 +191,7 @@ async function auditFixture(context: AuditContext, teacherCase: TeacherCase): Pr
   const fixture = await Bun.file(`${directory}/fixture.json`).json();
   validateFixture(fixture);
   if (context.legacy) {
-    const expected = assembleLegacyFixture(teacherCase, context.date, draft, verification);
-    if (JSON.stringify(fixture) !== JSON.stringify(expected)) {
-      throw new Error(`${teacherCase.id} legacy fixture differs from its archived derivation`);
-    }
-    const legacyEnvelope = record(
-      await Bun.file(`${directory}/claude-result.sanitized.json`).json(),
-      "legacy Claude verification envelope",
-    );
-    const expectedLegacyVerification = verificationFromLegacyClaudeEnvelope(
-      legacyEnvelope,
-      legacyClaudeModel,
-    );
-    if (JSON.stringify(verification) !== JSON.stringify(expectedLegacyVerification)) {
-      throw new Error(`${teacherCase.id} verification differs from the archived Claude output`);
-    }
-    await assertFixtureFiles(directory, teacherCase.id, true);
+    await auditLegacyFixture({ context, teacherCase, directory, draft, verification, fixture });
     return;
   }
   const evidence = await Bun.file(`${directory}/evidence.json`).json();
@@ -319,3 +304,35 @@ async function verifyArtifacts(
 }
 
 export { assertLegacySanitized } from "./audit-legacy.ts";
+
+/**
+ * Audits a case from the sealed pre-ADR-0006 refresh. Its fixture was derived
+ * and verified by Claude, so it is checked against the archived Claude
+ * envelope rather than the deterministic grounding verifier used since.
+ */
+async function auditLegacyFixture(input: {
+  context: AuditContext;
+  teacherCase: TeacherCase;
+  directory: string;
+  draft: unknown;
+  verification: unknown;
+  fixture: unknown;
+}): Promise<void> {
+  const { context, teacherCase, directory, draft, verification, fixture } = input;
+  const expected = assembleLegacyFixture(teacherCase, context.date, draft, verification);
+  if (JSON.stringify(fixture) !== JSON.stringify(expected)) {
+    throw new Error(`${teacherCase.id} legacy fixture differs from its archived derivation`);
+  }
+  const legacyEnvelope = record(
+    await Bun.file(`${directory}/claude-result.sanitized.json`).json(),
+    "legacy Claude verification envelope",
+  );
+  const expectedLegacyVerification = verificationFromLegacyClaudeEnvelope(
+    legacyEnvelope,
+    legacyClaudeModel,
+  );
+  if (JSON.stringify(verification) !== JSON.stringify(expectedLegacyVerification)) {
+    throw new Error(`${teacherCase.id} verification differs from the archived Claude output`);
+  }
+  await assertFixtureFiles(directory, teacherCase.id, true);
+}
