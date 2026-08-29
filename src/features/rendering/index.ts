@@ -23,6 +23,14 @@ export interface RenderRequest {
   readonly explicitOpen: boolean;
   /** Google-only anonymous profile, kept distinct from destination contexts. */
   readonly profile?: "google-public";
+  /**
+   * Validators from a stored copy. When present the renderer asks the origin
+   * whether that copy is still current instead of fetching the page again.
+   */
+  readonly conditional?: {
+    readonly etag?: string;
+    readonly lastModified?: string;
+  };
 }
 
 export interface RenderedDocument {
@@ -43,6 +51,11 @@ export interface RenderedDocument {
    * revalidated conditionally instead of refetched whole.
    */
   readonly cacheHeaders?: Readonly<Record<string, string>>;
+  /**
+   * The origin answered that the conditional request's copy is unchanged, so
+   * this document carries no new body and the stored evidence still stands.
+   */
+  readonly notModified?: boolean;
 }
 
 export interface RenderedLink {

@@ -11,7 +11,7 @@ import {
   renderDestination,
   storeRenderedEvidence,
 } from "./search-pipeline.ts";
-import type { RenderedDocument, Renderer } from "@/features/rendering";
+import type { RenderedDocument, Renderer, RenderRequest } from "@/features/rendering";
 import { decideRobots, type RobotsPolicy } from "@/features/security";
 import { canonicalizeUrl, type Storage } from "@/features/storage";
 
@@ -241,8 +241,9 @@ class WebResearchApplication implements InvestigationApplication {
     url: URL,
     context: CallContext,
     explicitOpen: boolean,
+    conditional?: RenderRequest["conditional"],
   ): Promise<RenderedDocument> {
-    return renderDestination(this.#renderer, url, context, explicitOpen);
+    return renderDestination(this.#renderer, url, context, explicitOpen, conditional);
   }
 
   private prepareCandidate(
@@ -255,7 +256,8 @@ class WebResearchApplication implements InvestigationApplication {
         robots: this.#robots,
         extractor: this.#extractor,
         now: this.#now,
-        render: (url, callContext) => this.render(url, callContext, false),
+        render: (url, callContext, conditional) =>
+          this.render(url, callContext, false, conditional),
       },
       candidate,
       context,
