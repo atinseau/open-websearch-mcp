@@ -238,6 +238,53 @@ async function invokeControllerStep(
   }
 }
 
+/** Maps a recorded trace status onto the task state it implies. */
+function reconciledTaskState(status: StepStatus): TaskState {
+  if (status === "ready") return "ready";
+  if (status === "review") return "review";
+  if (status === "verified") return "verified";
+  if (status === "blocked_external") return "blocked_external";
+  return "in_progress";
+}
+
+/**
+ * Folds a durable trace the controller has not yet recorded back into the
+ * worktree ledger, so an interrupted run resumes from what actually happened.
+ */
+async function reconcileTraceIntoState(input: {
+  activePath: string;
+  taskId: string;
+  task: Task;
+  baseSha: string;
+  latestName: string;
+  latestTrace: string;
+  latestStep: number;
+}): Promise<void> {
+  const { activePath, taskId, task, baseSha, latestName, latestTrace, latestStep } = input;
+  const status = latestTrace.match(/^- Status: (\S+)$/mu)?.[1];
+  if (!isStepStatus(status)) {
+    throw new Error(`Cannot reconcile ${latestName} without a recorded status`);
+  }
+  const traceRelative = `docs/orchestration/runs/${taskId}/${latestName}`;
+  const session = latestTrace.match(/^- OpenCode model \/ variant \/ session: .+ \/ (.+)$/mu)?.[1];
+  let stateText = await Bun.file(`${activePath}/docs/orchestration/state.toml`).text();
+  stateText = setTaskState(stateText, taskId, reconciledTaskState(status));
+  stateText = setTaskEvidence(stateText, taskId, [...new Set([...task.evidence, traceRelative])]);
+  const fields: Record<string, string | number> = {
+    current_step: latestStep,
+    last_trace: traceRelative,
+  };
+  if (session && !/unavailable|not-started|not-recorded/iu.test(session)) {
+    fields.current_session = session;
+  }
+  if (status === "verified") {
+    fields.current_head_sha = await run(["git", "rev-parse", "HEAD"], activePath);
+    fields.current_reviewed_diff = await reviewedContentDigest(activePath, baseSha, taskId);
+  }
+  stateText = setRootFields(stateText, fields);
+  await atomicWrite(`${activePath}/docs/orchestration/state.toml`, stateText, activePath);
+}
+
 async function runControllerStep(
   options: ControllerOptions,
   forceFreshSession = false,
@@ -351,40 +398,15 @@ async function runControllerStep(
     ).text();
     const latestStep = Number(latestName.slice(0, 4));
     if (latestStep > (state.current_step ?? 0)) {
-      const status = latestTrace.match(/^- Status: (\S+)$/mu)?.[1];
-      if (!isStepStatus(status))
-        throw new Error(`Cannot reconcile ${latestName} without a recorded status`);
-      const reconciledState: TaskState =
-        status === "ready"
-          ? "ready"
-          : status === "review"
-            ? "review"
-            : status === "verified"
-              ? "verified"
-              : status === "blocked_external"
-                ? "blocked_external"
-                : "in_progress";
-      const traceRelative = `docs/orchestration/runs/${taskId}/${latestName}`;
-      const session = latestTrace.match(
-        /^- OpenCode model \/ variant \/ session: .+ \/ (.+)$/mu,
-      )?.[1];
-      let stateText = await Bun.file(`${activePath}/docs/orchestration/state.toml`).text();
-      stateText = setTaskState(stateText, taskId, reconciledState);
-      stateText = setTaskEvidence(stateText, taskId, [
-        ...new Set([...task.evidence, traceRelative]),
-      ]);
-      const fields: Record<string, string | number> = {
-        current_step: latestStep,
-        last_trace: traceRelative,
-      };
-      if (session && !/unavailable|not-started|not-recorded/iu.test(session))
-        fields.current_session = session;
-      if (status === "verified") {
-        fields.current_head_sha = await run(["git", "rev-parse", "HEAD"], activePath);
-        fields.current_reviewed_diff = await reviewedContentDigest(activePath, baseSha, taskId);
-      }
-      stateText = setRootFields(stateText, fields);
-      await atomicWrite(`${activePath}/docs/orchestration/state.toml`, stateText, activePath);
+      await reconcileTraceIntoState({
+        activePath,
+        taskId,
+        task,
+        baseSha,
+        latestName,
+        latestTrace,
+        latestStep,
+      });
       state = await validateRepository(activePath);
       task = state.tasks[taskId]!;
     }
