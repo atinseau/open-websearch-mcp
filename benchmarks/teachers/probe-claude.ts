@@ -103,15 +103,7 @@ export function inspectClaudeProbe(events: unknown[]): ClaudeInspection {
 
   const { authenticationFailed } = state;
   return {
-    accepted: claudeAccepted(
-      state.initAccepted,
-      state.successfulResult,
-      state.initEvents,
-      state.resultEvents,
-      state.validSearches,
-      state.searchResults,
-      forbidden,
-    ),
+    accepted: claudeAccepted(state),
     tool_calls: calls,
     forbidden_tool_calls: [...forbidden],
     authentication_failed: authenticationFailed,
@@ -127,28 +119,14 @@ export function inspectLegacyClaudeProbe(events: unknown[]): ClaudeInspection {
   for (const candidate of events) {
     const event = record(candidate, "legacy Claude event");
     if (event.type === "system" && event.subtype === "init") {
-      const tools = array(event.tools, "legacy Claude tools", true);
-      initAccepted =
-        tools.every((tool) => typeof tool === "string" && claudeAllowedTools.has(tool)) &&
-        array(event.mcp_servers, "legacy Claude MCP servers", true).length === 0 &&
-        array(event.skills, "legacy Claude skills", true).length === 0 &&
-        array(event.plugins, "legacy Claude plugins", true).length === 0;
+      initAccepted = legacyInitAccepted(event);
     }
-    if (event.type === "assistant") {
-      const message = record(event.message, "legacy Claude assistant message");
-      for (const candidateContent of array(message.content, "legacy Claude content", true)) {
-        const content = record(candidateContent, "legacy Claude content item");
-        if (content.type !== "tool_use" || typeof content.name !== "string") continue;
-        calls.push(content.name);
-        if (!claudeAllowedTools.has(content.name)) forbidden.add(content.name);
-      }
-    }
+    if (event.type === "assistant") collectLegacyCalls(event, calls, forbidden);
     if (typeof event.type === "string" && event.type.startsWith("hook_")) {
       forbidden.add(event.type);
     }
     if (event.type === "result") {
-      const result = typeof event.result === "string" ? event.result : "";
-      authenticationFailed = /failed to authenticate|oauth session expired/i.test(result);
+      authenticationFailed = claudeAuthenticationFailed(event);
       successfulResult = event.is_error === false && !authenticationFailed;
     }
   }
@@ -158,6 +136,31 @@ export function inspectLegacyClaudeProbe(events: unknown[]): ClaudeInspection {
     forbidden_tool_calls: [...forbidden],
     authentication_failed: authenticationFailed,
   };
+}
+
+/** The sealed refresh proved isolation through its init event alone. */
+function legacyInitAccepted(event: Record<string, unknown>): boolean {
+  const tools = array(event.tools, "legacy Claude tools", true);
+  return (
+    tools.every((tool) => typeof tool === "string" && claudeAllowedTools.has(tool)) &&
+    array(event.mcp_servers, "legacy Claude MCP servers", true).length === 0 &&
+    array(event.skills, "legacy Claude skills", true).length === 0 &&
+    array(event.plugins, "legacy Claude plugins", true).length === 0
+  );
+}
+
+function collectLegacyCalls(
+  event: Record<string, unknown>,
+  calls: string[],
+  forbidden: Set<string>,
+): void {
+  const message = record(event.message, "legacy Claude assistant message");
+  for (const candidateContent of array(message.content, "legacy Claude content", true)) {
+    const content = record(candidateContent, "legacy Claude content item");
+    if (content.type !== "tool_use" || typeof content.name !== "string") continue;
+    calls.push(content.name);
+    if (!claudeAllowedTools.has(content.name)) forbidden.add(content.name);
+  }
 }
 
 function inspectClaudeResult(event: Record<string, unknown>): {
@@ -188,23 +191,16 @@ function collectClaudeHook(event: Record<string, unknown>, forbidden: Set<string
   if (typeof event.type === "string" && event.type.startsWith("hook_")) forbidden.add(event.type);
 }
 
-function claudeAccepted(
-  initAccepted: boolean,
-  successfulResult: boolean,
-  initEvents: number,
-  resultEvents: number,
-  validSearches: number,
-  searchResults: number,
-  forbidden: Set<string>,
-): boolean {
+/** A probe is accepted only on exactly one clean init and result with real searches. */
+function claudeAccepted(state: ClaudeProbeState): boolean {
   return (
-    initAccepted &&
-    successfulResult &&
-    initEvents === 1 &&
-    resultEvents === 1 &&
-    validSearches > 0 &&
-    searchResults > 0 &&
-    forbidden.size === 0
+    state.initAccepted &&
+    state.successfulResult &&
+    state.initEvents === 1 &&
+    state.resultEvents === 1 &&
+    state.validSearches > 0 &&
+    state.searchResults > 0 &&
+    state.forbidden.size === 0
   );
 }
 
