@@ -175,3 +175,29 @@ function unavailableFts(): StorageOptions["fts5Database"] {
 function failFts(): never {
   throw new Error("no fts5");
 }
+
+test("CACHE-005 never writes a no-store response to disk", async () => {
+  // `no-store` forbids storing the response at all, unlike `no-cache` which
+  // only forbids reusing it without revalidation. Expiring the entry left the
+  // body, its text, and its validators on disk, surviving a restart.
+  const shared = workspace();
+  const storage = await openStorage({ workspace: shared });
+  await storage.cache.put({
+    ...document("https://private.example/session", await storage.blobs.put("secret"), "secret"),
+    headers: new Headers({ "cache-control": "no-store", etag: "private-etag" }),
+  });
+  await storage.cache.put({
+    ...document("https://public.example/page", await storage.blobs.put("public"), "public body"),
+    headers: new Headers({ "cache-control": "no-cache" }),
+  });
+  storage.close();
+
+  const reopened = await openStorage({ workspace: shared });
+  const read = { now: fetchedAt, ttls };
+  expect(
+    await reopened.cache.get(new URL("https://private.example/session"), read),
+  ).toBeUndefined();
+  // `no-cache` is still stored; it is merely stale, so revalidation can reuse it.
+  expect(await reopened.cache.get(new URL("https://public.example/page"), read)).toBeDefined();
+  reopened.close();
+});

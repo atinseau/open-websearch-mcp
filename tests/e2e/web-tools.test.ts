@@ -1,57 +1,11 @@
 import { expect, test } from "bun:test";
 
-import { createWebResearchApplication, type CallContext } from "@/features/investigation";
+import { createWebResearchApplication } from "@/features/investigation";
 import type { GoogleDiscoveryService } from "@/features/discovery";
-import type { RenderedDocument, Renderer } from "@/features/rendering";
+import type { Renderer } from "@/features/rendering";
 import { openStorage } from "@/features/storage";
 import { structuredToolResultSchema } from "@/mcp/contracts";
-
-function context(): CallContext {
-  return { abortController: new AbortController(), configuration: { scheduler: scheduler() } };
-}
-function scheduler() {
-  return {
-    startCapacity: 1,
-    maximumCapacity: 2,
-    lastSafeCapacity: 1,
-    perHostCapacity: 2,
-    googleSerpCapacity: 1,
-    safeRssBudgetBytes: 1,
-    warmP95BaselineMs: 1,
-    memoryTelemetryAbsentMaximumCapacity: 1,
-    growthStep: 1,
-    healthyWindowsRequired: 1,
-    windowCompletedNavigations: 1,
-    minimumWindowMs: 1,
-    backpressure: {
-      errorRate: 1,
-      timeoutRate: 1,
-      p95WarmBaselineMultiplier: 1,
-      rssSafeBudgetFraction: 1,
-      action: "halve_ceiling_minimum_1" as const,
-    },
-  };
-}
-function document(url: URL): RenderedDocument {
-  return {
-    url,
-    text: "",
-    markdown: "# First\n\nordinary material\n\n# Focus\n\nneedle evidence appears here",
-    links: [],
-    diagnostics: { title: "Fixture", transferBytes: 1, settledMs: 1 },
-  };
-}
-function renderer(fail = false): Renderer {
-  return {
-    render: async (request) => {
-      if (fail) throw new Error("render_failure");
-      return document(request.url);
-    },
-  };
-}
-function workspace() {
-  return `/private/tmp/open-websearch-tools-${crypto.randomUUID()}`;
-}
+import { context, document, fixtureDiscovery, renderer, workspace } from "./web-tools-fixture.ts";
 
 test("TOOL-001 emits a focused page once and failures do not consume it", async () => {
   const storage = await openStorage({ workspace: workspace() });
@@ -132,73 +86,6 @@ test("TOOL-002 returns a fast page before a slow candidate settles", async () =>
   storage.close();
 });
 
-test("CACHE/SECURITY cached evidence avoids rerendering and robots override is durable", async () => {
-  const storage = await openStorage({ workspace: workspace() });
-  let renders = 0;
-  const counting: Renderer = {
-    render: async (request) => {
-      renders++;
-      return document(request.url);
-    },
-  };
-  const discovery = fixtureDiscovery(["https://cache.example/needle"]);
-  const overridden = createWebResearchApplication({
-    storage,
-    renderer: counting,
-    robots: { canCrawl: async () => false },
-  });
-  const opened = structuredToolResultSchema.parse(
-    await overridden
-      .webOpen({ url: new URL("https://robots.example/open") }, context())
-      .then((value) => value.structuredContent),
-  );
-  expect(await storage.listRobotsOverrides(opened.investigation_id)).toMatchObject([
-    { url: new URL("https://robots.example/open") },
-  ]);
-  const application = createWebResearchApplication({ storage, renderer: counting, discovery });
-  await application.webSearch(
-    { query: "needle", maxResults: 1, investigationId: "cache-a" },
-    context(),
-  );
-  const before = renders;
-  const cached = structuredToolResultSchema.parse(
-    await application
-      .webSearch({ query: "needle", maxResults: 1, investigationId: "cache-b" }, context())
-      .then((value) => value.structuredContent),
-  );
-  expect(renders).toBe(before);
-  expect(cached.results[0]?.discovery).toBe("local_cache");
-  storage.close();
-});
-
-test("CACHE expired evidence revalidates through the renderer", async () => {
-  const storage = await openStorage({ workspace: workspace() });
-  const url = new URL("https://expired.example/needle");
-  const body = await storage.blobs.put("needle old evidence");
-  await storage.cache.put({
-    url,
-    body,
-    contentClass: "general",
-    bodyKind: "rendered",
-    fetchedAt: new Date(Date.now() - 172_800_000),
-    mainContent: "needle old evidence",
-  });
-  let renders = 0;
-  const application = createWebResearchApplication({
-    storage,
-    renderer: {
-      render: async (request) => {
-        renders++;
-        return document(request.url);
-      },
-    },
-    discovery: fixtureDiscovery([]),
-  });
-  await application.webSearch({ query: "needle", maxResults: 1 }, context());
-  expect(renders).toBe(1);
-  storage.close();
-});
-
 test("PROD-007 concurrent progressive searches emit a page once", async () => {
   const storage = await openStorage({ workspace: workspace() });
   const application = createWebResearchApplication({
@@ -272,18 +159,3 @@ test("TOOL-002 aborts outstanding candidate preparation once the quota is met", 
   await slowAborted.promise;
   storage.close();
 });
-
-function fixtureDiscovery(urls: readonly string[]): GoogleDiscoveryService {
-  return {
-    profile: () => ({ id: "google-public", persistent: true, importsUserCredentials: false }),
-    discover: async () => ({
-      status: "success",
-      candidates: urls.map((url) => ({
-        url: new URL(url),
-        sourceType: "organic" as const,
-        title: "needle",
-      })),
-      suggestedQueries: [],
-    }),
-  };
-}

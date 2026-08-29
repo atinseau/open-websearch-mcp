@@ -4,7 +4,13 @@ import {
   type ExtractionResult,
   type ExtractorRegistry,
 } from "@/features/extraction";
-import { selectPreRenderCandidates } from "@/features/ranking";
+import {
+  cachedCandidates,
+  mergedCandidates,
+  prepareCandidate as prepareOneCandidate,
+  renderDestination,
+  storeRenderedEvidence,
+} from "./search-pipeline.ts";
 import type { RenderedDocument, Renderer } from "@/features/rendering";
 import { decideRobots, type RobotsPolicy } from "@/features/security";
 import { canonicalizeUrl, type Storage } from "@/features/storage";
@@ -23,8 +29,6 @@ import {
   empty,
   ExpectedFailure,
   extractionInput,
-  cachedPrepared,
-  cacheRead,
   pageResult,
   discoveryFailure,
   reasonForRuntimeFailure,
@@ -116,6 +120,10 @@ class WebResearchApplication implements InvestigationApplication {
         );
         if (extracted.status !== "success")
           throw new ExpectedFailure(reasonForExtraction(extracted));
+        // An explicitly opened page is evidence the product has already paid to
+        // fetch. Storing it lets a later search answer from cache when Google
+        // is unavailable, which is what makes the fallback above useful.
+        await this.cache(document, extracted);
         return pageResult({
           document,
           extracted,
@@ -145,8 +153,38 @@ class WebResearchApplication implements InvestigationApplication {
       locale: input.locale,
     });
     const unavailable = discoveryFailure(discovered.status, discovered.reason);
-    if (unavailable) return tool(investigation.id, unavailable);
+    if (unavailable) {
+      // SEARCH-011 requires abandoning a blocked source and continuing with the
+      // remaining candidates. The local cache is such a candidate: refusing to
+      // consult it meant a CAPTCHA at Google discarded evidence the product had
+      // already fetched and stored. Google stays best-effort per SEARCH-012;
+      // the blocked status is still reported when nothing local can answer.
+      const local = await this.cachedOnlySearch(input, context, investigation.id);
+      return local ?? tool(investigation.id, unavailable);
+    }
     return this.searchCandidates(input, context, investigation.id, discovered);
+  }
+
+  /**
+   * Answers from stored evidence when discovery is unavailable. Returns
+   * undefined when the cache holds nothing for the query, so the caller can
+   * report the real discovery failure rather than an empty success.
+   */
+  private async cachedOnlySearch(
+    input: WebSearchInput,
+    context: CallContext,
+    investigationId: string,
+  ): Promise<ToolResult | undefined> {
+    const cached = await this.#storage.cache.search(input.query, input.maxResults ?? 5);
+    if (cached.results.length === 0) return undefined;
+    const results = await this.progressiveCandidates(
+      cachedCandidates(cached, input, context),
+      input,
+      investigationId,
+      context,
+    );
+    if (results.length === 0) return undefined;
+    return tool(investigationId, success(results));
   }
 
   private async searchCandidates(
@@ -156,24 +194,12 @@ class WebResearchApplication implements InvestigationApplication {
     discovered: Awaited<ReturnType<GoogleDiscoveryService["discover"]>>,
   ): Promise<ToolResult> {
     const cached = await this.#storage.cache.search(input.query, input.maxResults ?? 5);
-    const cachedUrls = new Set(cached.results.map((item) => item.document.url.href));
-    const candidates = selectPreRenderCandidates(
-      [
-        ...discovered.candidates.filter((candidate) => !cachedUrls.has(candidate.url.href)),
-        ...cached.results.map((item) => ({
-          url: item.document.url,
-          sourceType: "local_cache" as const,
-          title: item.document.url.hostname,
-        })),
-      ].map((candidate, index) => ({
-        ...candidate,
-        googlePosition: index + 1,
-      })),
-      input.query,
-      input.profile,
-      context.configuration.configuration?.search.candidate_budget ?? 30,
+    const results = await this.progressiveCandidates(
+      mergedCandidates(discovered, cached, input, context),
+      input,
+      investigationId,
+      context,
     );
-    const results = await this.progressiveCandidates(candidates, input, investigationId, context);
     return tool(investigationId, searchResponse(investigationId, results, input, discovered));
   }
 
@@ -216,48 +242,24 @@ class WebResearchApplication implements InvestigationApplication {
     context: CallContext,
     explicitOpen: boolean,
   ): Promise<RenderedDocument> {
-    if (!this.#renderer) throw new ExpectedFailure("renderer_unavailable");
-    try {
-      return await this.#renderer.render({
-        url,
-        signal: context.abortController.signal,
-        investigationId: "pending",
-        kind: "destination",
-        explicitOpen,
-      });
-    } catch (error) {
-      if (error instanceof Error && error.message.includes("renderer_unavailable"))
-        throw new ExpectedFailure("renderer_unavailable");
-      throw error;
-    }
+    return renderDestination(this.#renderer, url, context, explicitOpen);
   }
 
-  private async prepareCandidate(
+  private prepareCandidate(
     candidate: Candidate,
     context: CallContext,
   ): Promise<Prepared | undefined> {
-    const robots = await decideRobots(
-      this.#robots,
-      candidate.url,
-      "OpenWebSearchMCP",
-      "automatic_search",
+    return prepareOneCandidate(
+      {
+        storage: this.#storage,
+        robots: this.#robots,
+        extractor: this.#extractor,
+        now: this.#now,
+        render: (url, callContext) => this.render(url, callContext, false),
+      },
+      candidate,
+      context,
     );
-    if (!robots.allowed) return undefined;
-    try {
-      const cached =
-        candidate.sourceType === "local_cache"
-          ? await this.#storage.cache.get(candidate.url, cacheRead(this.#now()))
-          : undefined;
-      if (cached?.fresh && cached.document.mainContent)
-        return cachedPrepared(candidate, cached.document.mainContent);
-      const document = await this.render(candidate.url, context, false);
-      const extracted = await this.#extractor.extract(extractionInput(document));
-      if (extracted.status !== "success") return undefined;
-      await this.cache(document, extracted);
-      return { candidate, document, extracted };
-    } catch {
-      return undefined;
-    }
   }
 
   private async consumeSearchPage(
@@ -287,14 +289,6 @@ class WebResearchApplication implements InvestigationApplication {
   }
 
   private async cache(document: RenderedDocument, extracted: ExtractionResult): Promise<void> {
-    const body = await this.#storage.blobs.put(document.markdown);
-    await this.#storage.cache.put({
-      url: document.url,
-      body,
-      contentClass: "general",
-      bodyKind: "rendered",
-      fetchedAt: this.#now(),
-      mainContent: extracted.passages.map((passage) => passage.text).join("\n"),
-    });
+    await storeRenderedEvidence(this.#storage, document, extracted, this.#now());
   }
 }

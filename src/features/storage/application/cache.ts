@@ -9,6 +9,7 @@ import type {
 } from "../domain/types.ts";
 import type { StorageDatabaseConnection } from "./storage.ts";
 import { cacheEntryValues } from "./cache-entry.ts";
+import { column, expiration, isFresh, noStore } from "./cache-freshness.ts";
 
 export interface StorageCache {
   put(document: CachedDocument, options?: CachePutOptions): Promise<void>;
@@ -37,6 +38,11 @@ export class SqliteCache implements StorageCache {
   ) {}
 
   async put(document: CachedDocument, options: CachePutOptions = {}): Promise<void> {
+    // `no-store` forbids writing the response down at all, unlike `no-cache`
+    // which only forbids reusing it without revalidation. Expiring the entry
+    // was not enough: the body, text, and validators still reached disk and
+    // survived a restart.
+    if (noStore(document)) return;
     const canonicalUrl = canonicalizeUrl(document.url);
     const representative = this.representative(canonicalUrl, document.mainContent, options);
     const stored = { ...document, url: representative };
@@ -164,15 +170,6 @@ export class SqliteCache implements StorageCache {
   }
 }
 
-function expiration(document: CachedDocument): Date | undefined {
-  const control = document.headers?.get("cache-control") ?? "";
-  if (/no-store|no-cache/iu.test(control)) return document.fetchedAt;
-  const match = /max-age=(\d+)/iu.exec(control);
-  return match === null
-    ? undefined
-    : new Date(document.fetchedAt.getTime() + Number(match[1]) * 1000);
-}
-
 function duplicateCandidates(
   database: StorageDatabaseConnection,
 ): readonly { readonly canonicalUrl: URL; readonly signature: readonly number[] }[] {
@@ -209,25 +206,6 @@ function ftsQuery(query: string): string {
 
 function searchSql(): string {
   return "SELECT cache_entries.* FROM cache_search JOIN cache_entries ON cache_entries.canonical_url = cache_search.canonical_url WHERE cache_search MATCH ? ORDER BY bm25(cache_search), cache_entries.canonical_url LIMIT ?";
-}
-
-function isFresh(row: unknown, now: Date, ttls: CacheTtls): boolean {
-  const expiry = column(row, "expires_at");
-  const until =
-    typeof expiry === "string" && expiry !== "" ? new Date(expiry) : classExpiry(row, ttls);
-  return until.getTime() > now.getTime();
-}
-
-function classExpiry(row: unknown, ttls: CacheTtls): Date {
-  const seconds = ttlFor(String(column(row, "content_class")), ttls);
-  return new Date(new Date(String(column(row, "fetched_at"))).getTime() + seconds * 1000);
-}
-
-function ttlFor(kind: string, ttls: CacheTtls): number {
-  if (kind === "news") return ttls.newsTtlSeconds;
-  if (kind === "docs") return ttls.docsTtlSeconds;
-  if (kind === "versioned") return ttls.versionedTtlSeconds;
-  return ttls.generalTtlSeconds;
 }
 
 function readDocument(row: unknown): CachedDocument {
@@ -285,10 +263,4 @@ async function removeUnreferencedBlob(
   const path = String(column(row, "blob_path"));
   if (await Bun.file(path).exists()) await Bun.file(path).delete();
   database.prepare("DELETE FROM cache_blobs WHERE digest = ?").run(digest);
-}
-
-function column(row: unknown, name: string): unknown {
-  if (typeof row !== "object" || row === null || !(name in row))
-    throw new Error(`Expected SQLite column ${name}`);
-  return Object.entries(row).find(([key]) => key === name)?.[1];
 }
