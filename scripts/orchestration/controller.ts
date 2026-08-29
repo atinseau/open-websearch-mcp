@@ -556,19 +556,38 @@ function verificationClaimIsInvalid(
   },
 ): boolean {
   if (received.status !== "verified") return false;
-  const freshReviewSession =
+  return !(
+    hasFreshReviewSession(received, context) &&
+    hasResolvedGates(context) &&
+    hasPassingChecks(received) &&
+    hasNoSeriousFindings(received)
+  );
+}
+
+function hasFreshReviewSession(
+  received: OpenCodeStepResult,
+  context: { previousTaskState: TaskState; previousSessionId: string | undefined },
+): boolean {
+  return (
     context.previousTaskState === "review" &&
     received.step === "review" &&
     Boolean(received.session_id) &&
-    received.session_id !== context.previousSessionId;
-  const gatesResolved =
-    Boolean(context.task.acceptance_gates?.length) && context.unresolvedGates.length === 0;
-  const checksPassed =
-    received.checks.length > 0 && received.checks.every((check) => check.exit_code === 0);
-  const noSeriousFindings = !received.findings.some(
+    received.session_id !== context.previousSessionId
+  );
+}
+
+function hasResolvedGates(context: { task: Task; unresolvedGates: string[] }): boolean {
+  return Boolean(context.task.acceptance_gates?.length) && context.unresolvedGates.length === 0;
+}
+
+function hasPassingChecks(received: OpenCodeStepResult): boolean {
+  return received.checks.length > 0 && received.checks.every((check) => check.exit_code === 0);
+}
+
+function hasNoSeriousFindings(received: OpenCodeStepResult): boolean {
+  return !received.findings.some(
     (finding) => finding.severity === "blocker" || finding.severity === "high",
   );
-  return !(freshReviewSession && gatesResolved && checksPassed && noSeriousFindings);
 }
 
 /** An external block requires an exact authority, error, and human action. */
@@ -625,6 +644,63 @@ function enforceClaimEvidence(
     );
   }
   return received;
+}
+
+function taskStateForStatus(status: StepStatus): TaskState {
+  if (status === "review") return "review";
+  if (status === "verified") return "verified";
+  if (status === "blocked_external") return "blocked_external";
+  return "in_progress";
+}
+
+/**
+ * Runs one OpenCode step, reruns the declared checks when it claims
+ * verification, records what actually changed, and downgrades any claim the
+ * evidence does not support.
+ */
+async function executeAndValidateStep(input: {
+  options: ControllerOptions;
+  request: OpenCodeRequest;
+  task: Task;
+  taskId: string;
+  worktree: string;
+  baseSha: string;
+  previousTaskState: TaskState;
+  previousSessionId: string | undefined;
+}): Promise<OpenCodeStepResult> {
+  const { options, request, task, taskId, worktree, baseSha } = input;
+  let received = await invokeControllerStep(options, request);
+  const { unresolvedGates, checksToRun } = resolveTaskChecks(task, worktree, received);
+  const actualChecks =
+    received.status === "verified"
+      ? await Promise.all(
+          checksToRun.map((check) => executeCheck(check, worktree, request.timeout_ms)),
+        )
+      : checksToRun;
+  if (options.isInterrupted?.()) {
+    received = {
+      ...received,
+      status: "paused",
+      step: "failure",
+      summary: "Controller interrupted after the current operation",
+      next_action: "Resume the recorded task from this trace",
+    };
+  }
+  const actualPaths = await changedPaths(worktree, baseSha);
+  const writeSetViolations = writeSetFindings(actualPaths, task, taskId);
+  received = {
+    ...received,
+    changed_paths: actualPaths,
+    checks: actualChecks,
+    findings: [...received.findings, ...writeSetViolations],
+  };
+  return enforceClaimEvidence(received, {
+    writeSetViolations,
+    previousTaskState: input.previousTaskState,
+    previousSessionId: input.previousSessionId,
+    task,
+    unresolvedGates,
+  });
 }
 
 async function runControllerStep(
@@ -760,46 +836,17 @@ async function runControllerStep(
     prompt: createPrompt(taskId, task, latestTrace),
     timeout_ms: state.policy.agent_timeout_minutes * 60_000,
   };
-  let received = await invokeControllerStep(options, request);
-  const { unresolvedGates, checksToRun } = resolveTaskChecks(task, worktree, received);
-  const actualChecks =
-    received.status === "verified"
-      ? await Promise.all(
-          checksToRun.map((check) => executeCheck(check, worktree, request.timeout_ms)),
-        )
-      : checksToRun;
-  if (options.isInterrupted?.()) {
-    received = {
-      ...received,
-      status: "paused",
-      step: "failure",
-      summary: "Controller interrupted after the current operation",
-      next_action: "Resume the recorded task from this trace",
-    };
-  }
-  const actualPaths = await changedPaths(worktree, baseSha);
-  const writeSetViolations = writeSetFindings(actualPaths, task, taskId);
-  received = {
-    ...received,
-    changed_paths: actualPaths,
-    checks: actualChecks,
-    findings: [...received.findings, ...writeSetViolations],
-  };
-  const result = enforceClaimEvidence(received, {
-    writeSetViolations,
+  const result = await executeAndValidateStep({
+    options,
+    request,
+    task,
+    taskId,
+    worktree,
+    baseSha,
     previousTaskState,
     previousSessionId,
-    task,
-    unresolvedGates,
   });
-  const taskState: TaskState =
-    result.status === "review"
-      ? "review"
-      : result.status === "verified"
-        ? "verified"
-        : result.status === "blocked_external"
-          ? "blocked_external"
-          : "in_progress";
+  const taskState = taskStateForStatus(result.status);
   const headSha = await run(["git", "rev-parse", "HEAD"], worktree);
   const reviewedDiff =
     result.status === "verified"
