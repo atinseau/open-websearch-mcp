@@ -1,15 +1,12 @@
 import { inspectCodexProbe, sanitizeJsonl } from "./contract.ts";
 import { probePolicyDocument } from "./capture-probe-policy.ts";
+import { scheduleMalformedArchive } from "./capture-probe-malformed.ts";
 import { buildTeacherRun } from "./capture-probe-run.ts";
 import type { ProbePlan } from "./capture-probe-plan.ts";
 import { withRefreshMutation } from "./refresh-lifecycle.ts";
 import { prepareProbeInvocation } from "./capture-probe-invocation.ts";
 import { commandOutput, runProcess } from "./process-controls.ts";
-import {
-  failureOutput,
-  writeCaptureArtifacts,
-  writeMalformedCapture,
-} from "./capture-probe-publication.ts";
+import { failureOutput, writeCaptureArtifacts } from "./capture-probe-publication.ts";
 
 type CaptureInspection = ReturnType<typeof inspectCodexProbe>;
 
@@ -91,41 +88,14 @@ export async function runPlannedProbe(input: {
   try {
     sanitizedEvents = sanitizeJsonl(stdout, paths);
   } catch (error) {
-    const archivedOutput = failureOutput(target, startedAt);
-    const sanitizedStdout = JSON.parse(sanitizeJsonl(JSON.stringify({ stdout }), paths)).stdout;
-    const failure = JSON.parse(
-      sanitizeJsonl(
-        JSON.stringify({
-          failure: error instanceof Error ? error.message : String(error),
-        }),
-        paths,
-      ),
-    ).failure;
-    schedulePublication(async () => {
-      await withRefreshMutation(root, date, async () => {
-        await writeMalformedCapture(archivedOutput, {
-          schema_version: 1,
-          provider,
-          cli_version: cliVersion,
-          started_at: startedAt,
-          duration_ms: durationMs,
-          stdout_sha256: new Bun.CryptoHasher("sha256").update(stdout).digest("hex"),
-          stdout_bytes: new TextEncoder().encode(stdout).byteLength,
-          stdout: sanitizedStdout,
-          controls: {
-            environment_keys: Object.keys(environment).sort(),
-            isolated_account_state: true,
-            isolated_config_state: true,
-            allowed_child_executables: ["codex-code-mode-host"],
-          },
-          process: {
-            exit_code: exitCode,
-            stderr: sanitizedStderr,
-            ...(result.failure === undefined ? {} : { failure: result.failure }),
-          },
-          failure,
-        });
-      });
+    scheduleMalformedArchive({
+      target,
+      root,
+      date,
+      stdout,
+      error,
+      observation,
+      schedulePublication,
     });
     throw error;
   }
