@@ -31,6 +31,7 @@ import { verifyDraftGrounding } from "./fixture-grounding.ts";
 import { codexDisabledFeatures, codexSkillControls } from "./policy-controls.ts";
 import { inspectLegacyClaudeProbe, inspectLegacyCodexProbe } from "./contract-probes.ts";
 import { readRefreshInputs } from "./refresh-inputs.ts";
+import { assertKnownCaseArtifacts } from "./audit-case-artifacts.ts";
 
 type TeacherCase = { id: string; locale: string; question: string };
 type AuditContext = {
@@ -78,49 +79,7 @@ export async function auditTeacherCorpus(
   };
 }
 
-export async function assertKnownCaseArtifacts(
-  root: string,
-  date: string,
-  caseIds: string[],
-): Promise<void> {
-  const expected = new Set(caseIds);
-  for (const scope of ["fixtures", "runs"] as const) {
-    const base = `${root}/${scope}/${date}`;
-    const casePaths = await Array.fromAsync(
-      new Bun.Glob("cases/**/*").scan({ cwd: base, onlyFiles: true }),
-    );
-    for (const path of casePaths) {
-      const caseId = path.split("/")[1];
-      if (caseId === undefined || !expected.has(caseId)) {
-        throw new Error(`unexpected ${scope} case artifact: ${path}`);
-      }
-    }
-
-    const failurePaths = await Array.fromAsync(
-      new Bun.Glob("failures/**/*").scan({ cwd: base, onlyFiles: true }),
-    );
-    const series = new Set(
-      failurePaths.flatMap((path) => {
-        const segments = path.split("/").slice(1);
-        return segments.includes("cases") && segments[0] !== undefined ? [segments[0]] : [];
-      }),
-    );
-    for (const path of failurePaths) {
-      const segments = path.split("/").slice(1);
-      const nestedCases = segments.indexOf("cases");
-      const caseId = nestedCases === -1 ? segments[0] : segments[nestedCases + 1];
-      // SPEC-01 requires retaining failed probes that belong to no corpus case,
-      // such as the pre-corpus tool-policy probe.
-      if (caseId === "probe") continue;
-      if (
-        caseId === undefined ||
-        (!expected.has(caseId) && !(nestedCases === -1 && series.has(caseId)))
-      ) {
-        throw new Error(`unexpected ${scope} failure case artifact: ${path}`);
-      }
-    }
-  }
-}
+export { assertKnownCaseArtifacts } from "./audit-case-artifacts.ts";
 
 async function readAuditInputs(
   root: string,
