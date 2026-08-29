@@ -127,3 +127,36 @@ test("SEARCH-011 answers from stored evidence when Google is blocked", async () 
   cold.close();
   storage.close();
 });
+
+test("CACHE-005 honours the origin's own cache directives end to end", async () => {
+  // The renderer now surfaces the response's cache headers, so freshness follows
+  // the origin instead of a content-class TTL guess. A `no-store` page must not
+  // reach disk at all, even though its render succeeded.
+  const storage = await openStorage({ workspace: workspace() });
+  const privateRenderer: Renderer = {
+    render: async (request) => ({
+      ...document(request.url),
+      cacheHeaders: { "cache-control": "no-store", etag: "private" },
+    }),
+  };
+  const application = createWebResearchApplication({ storage, renderer: privateRenderer });
+  const opened = structuredToolResultSchema.parse(
+    await application
+      .webOpen({ url: new URL("https://private.example/session") }, context())
+      .then((value) => value.structuredContent),
+  );
+  expect(opened.status).toBe("success");
+  expect((await storage.cache.search("needle", 5)).results).toBeEmpty();
+
+  // A cacheable page is still stored and remains searchable.
+  const publicRenderer: Renderer = {
+    render: async (request) => ({
+      ...document(request.url),
+      cacheHeaders: { "cache-control": "max-age=3600" },
+    }),
+  };
+  const second = createWebResearchApplication({ storage, renderer: publicRenderer });
+  await second.webOpen({ url: new URL("https://public.example/page") }, context());
+  expect((await storage.cache.search("needle", 5)).results.length).toBeGreaterThan(0);
+  storage.close();
+});

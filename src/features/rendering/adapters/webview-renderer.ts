@@ -11,6 +11,7 @@ type TransferMonitor = {
   readonly bytes: () => number;
   readonly exceeded: () => boolean;
   readonly contentType: () => string | undefined;
+  readonly cacheHeaders: () => Record<string, string>;
   readonly stop: () => void;
 };
 
@@ -50,13 +51,11 @@ export class WebViewRenderer implements Renderer {
       const settledAt = Date.now();
       await pause(this.#options.configuration.settleTimeoutMs, signal);
       if (monitor.exceeded()) throw new Error("download_budget_exceeded");
-      const document = await documentFrom(
-        view,
-        url,
-        monitor.bytes(),
-        settledAt,
-        monitor.contentType(),
-      );
+      const document = await documentFrom(view, url, settledAt, {
+        transferBytes: monitor.bytes(),
+        contentType: monitor.contentType(),
+        cacheHeaders: monitor.cacheHeaders(),
+      });
       // WebView resolves redirects internally. Rejecting the resolved URL prevents any
       // redirected document from becoming evidence; production Obscura itself has no
       // private-network exemption, so a private redirect cannot be loaded either.
@@ -97,6 +96,7 @@ function monitorTransfer(view: Bun.WebView, maximumBytes: number): TransferMonit
   let transferBytes = 0;
   let overBudget = false;
   let documentType: string | undefined;
+  let documentCacheHeaders: Record<string, string> = {};
   const dataRequests = new Set<string>();
   const observe = (bytes: unknown): void => {
     if (typeof bytes !== "number" || !Number.isFinite(bytes)) return;
@@ -123,6 +123,8 @@ function monitorTransfer(view: Bun.WebView, maximumBytes: number): TransferMonit
     const payload = messageData(event);
     const headers = responseHeaders(payload);
     documentType ??= declaredDocumentType(payload, headers);
+    if (isDocumentResponse(payload) && Object.keys(documentCacheHeaders).length === 0)
+      documentCacheHeaders = cacheDirectives(headers);
     const length = headerValue(headers, "content-length");
     if (typeof length === "string" && Number(length) > maximumBytes) {
       overBudget = true;
@@ -136,6 +138,7 @@ function monitorTransfer(view: Bun.WebView, maximumBytes: number): TransferMonit
     bytes: () => transferBytes,
     exceeded: () => overBudget,
     contentType: () => documentType,
+    cacheHeaders: () => documentCacheHeaders,
     stop: () => {
       view.removeEventListener("Network.dataReceived", data);
       view.removeEventListener("Network.loadingFinished", finished);
@@ -167,9 +170,28 @@ function declaredDocumentType(
   payload: unknown,
   headers: Record<string, unknown>,
 ): string | undefined {
-  if (!isRecord(payload) || payload.type !== "Document") return undefined;
+  if (!isDocumentResponse(payload)) return undefined;
   const declared = headerValue(headers, "content-type");
   return typeof declared === "string" ? declared : undefined;
+}
+
+function isDocumentResponse(payload: unknown): boolean {
+  return isRecord(payload) && payload.type === "Document";
+}
+
+/**
+ * Keeps the response headers that decide cache freshness. Without them the
+ * cache can only fall back to content-class TTLs, so an origin's own expiry and
+ * validators are ignored and a conditional revalidation is impossible.
+ */
+function cacheDirectives(headers: Record<string, unknown>): Record<string, string> {
+  const wanted = ["cache-control", "etag", "last-modified", "expires", "date"];
+  const kept: Record<string, string> = {};
+  for (const name of wanted) {
+    const value = headerValue(headers, name);
+    if (typeof value === "string") kept[name] = value;
+  }
+  return kept;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -179,9 +201,12 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 async function documentFrom(
   view: Bun.WebView,
   url: URL,
-  transferBytes: number,
   settledAt: number,
-  contentType: string | undefined,
+  observed: {
+    readonly transferBytes: number;
+    readonly contentType: string | undefined;
+    readonly cacheHeaders: Readonly<Record<string, string>>;
+  },
 ): Promise<RenderedDocument> {
   const content = await view.evaluate<{ text?: unknown; links?: unknown }>(
     // `innerText` on the live body captures inline script and style bodies on
@@ -196,8 +221,13 @@ async function documentFrom(
     text,
     markdown: text,
     links: links(content.links),
-    contentType,
-    diagnostics: { title: view.title, transferBytes, settledMs: Date.now() - settledAt },
+    contentType: observed.contentType,
+    cacheHeaders: observed.cacheHeaders,
+    diagnostics: {
+      title: view.title,
+      transferBytes: observed.transferBytes,
+      settledMs: Date.now() - settledAt,
+    },
   };
 }
 

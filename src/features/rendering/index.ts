@@ -37,6 +37,12 @@ export interface RenderedDocument {
    * path; assuming `text/html` made binary bytes surface as page evidence.
    */
   readonly contentType?: string;
+  /**
+   * Cache directives the origin sent for the main document. Freshness follows
+   * these when present, so a page is not held past its own expiry and can be
+   * revalidated conditionally instead of refetched whole.
+   */
+  readonly cacheHeaders?: Readonly<Record<string, string>>;
 }
 
 export interface RenderedLink {

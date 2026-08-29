@@ -21,8 +21,17 @@ export async function storeRenderedEvidence(
     bodyKind: "rendered",
     fetchedAt,
     mainContent: extracted.passages.map((passage) => passage.text).join("\n"),
-    ...(document.contentType === undefined
-      ? {}
-      : { headers: new Headers({ "content-type": document.contentType }) }),
+    headers: originHeaders(document),
   });
+}
+
+/**
+ * Rebuilds the origin's cache-relevant headers. Freshness and revalidation
+ * follow these; without them the cache can only apply a content-class TTL, and
+ * a `no-store` page would be written down despite forbidding it.
+ */
+function originHeaders(document: RenderedDocument): Headers {
+  const headers = new Headers(document.cacheHeaders ?? {});
+  if (document.contentType !== undefined) headers.set("content-type", document.contentType);
+  return headers;
 }

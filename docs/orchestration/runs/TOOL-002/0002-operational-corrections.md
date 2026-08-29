@@ -60,10 +60,21 @@ Regression tests were added for the fallback and its honest-failure case, for
 
 `bun run check`: 242 pass, 1 informational live skip, 0 fail.
 
+## Origin cache directives, now wired
+
+The renderer surfaces the main document's `cache-control`, `etag`,
+`last-modified`, `expires`, and `date` headers, and the store passes them to
+the cache. Freshness therefore follows the origin's own expiry rather than a
+content-class TTL guess, and a `no-store` page is refused before it reaches
+disk even though its render succeeded. Covered end to end by a test that opens
+a `no-store` page and proves the cache stays empty while a cacheable page
+remains searchable.
+
 ## Still open
 
-Cache eviction and HTTP revalidation exist in storage but are not driven by the
-product path: the renderer does not yet surface `ETag`/`Last-Modified`, so
-freshness relies on content-class TTLs. That is real remaining work, recorded
-here rather than claimed as done.
-
+LRU eviction exists in storage and is unit-tested, but no product path calls
+it, so the 5 GiB ceiling in `CACHE-006` is not enforced at runtime.
+Conditional revalidation is likewise not issued: the validators are now stored,
+but no `If-None-Match`/`If-Modified-Since` request is made, so a stale entry is
+re-rendered in full rather than revalidated. Both are real remaining work,
+recorded here rather than claimed as done.
