@@ -14,18 +14,29 @@ credentials.
   affiché désactivé dans le worktree non fiable. Le tour non interactif a choisi
   `google_web_search`, pas `web_search`, puis a échoué sur `429
   RESOURCE_EXHAUSTED`. Aucun appel au produit n'est prouvé.
-- OpenCode `1.18.25` a accepté l'enregistrement et affiché le serveur comme
-  `connected`, preuve partielle que le serveur stdio a été lancé et connecté.
-  Son tour non interactif s'est arrêté avant la sélection d'outil avec
-  `ProviderAuthError`: la clé Google Generative AI est absente. Aucun appel à
-  `web_search` n'est prouvé.
+- OpenCode `1.18.25` est un **PASS**. L'enregistrement, la connexion, la
+  découverte d'outil et un appel `web_search` complet ont réussi. Le premier
+  tour s'était arrêté sur `ProviderAuthError` faute de credential ; OpenCode
+  publie aussi des modèles sans clé, et le tour rejoué avec
+  `opencode/hy3-free` a appelé l'outil sans aucune authentification. La sortie
+  JSON brute montre `status: "completed"` et l'enveloppe portable
+  `status=blocked; reason=captcha`, résultat attendu sous SEARCH-012 et
+  PROD-002.
 - Claude Code reste `UNAVAILABLE`: ADR-0006 interdit toute réauthentification
   par un agent.
 
 La matrice mise à jour est
 `benchmarks/harnesses/2026-08-29-mcp-compatibility-matrix.md`; elle contient
-les commandes et sorties brutes. Les deux résultats sont `UNAVAILABLE`, et non
-des PASS, car aucun des deux harnais n'a complété l'appel réel demandé.
+les commandes et sorties brutes.
+
+Bilan : deux harnais sur quatre exécutent réellement le produit (Codex et
+OpenCode). Les deux restants sont bloqués par une autorité externe, pas par un
+défaut du produit : le quota de compte Gemini et l'interdiction de
+réauthentifier Claude. Le blocage Gemini a été retesté après expiration du
+quota et sur un autre modèle avant d'être consigné.
+
+Les configurations temporaires ont été supprimées, y compris le `.gemini/`
+que l'enregistrement Gemini avait écrit dans le worktree.
 
 ## Vérification
 

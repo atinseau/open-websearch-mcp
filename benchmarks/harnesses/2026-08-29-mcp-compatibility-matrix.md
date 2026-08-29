@@ -16,8 +16,8 @@ installed, or otherwise mutated.
 | --- | --- | --- | --- |
 | Codex | `codex-cli 0.150.1` | PASS | Real stdio registration, `initialize`, tool discovery, and `web_search` call completed. Raw event output below includes both `content` and `structured_content`. |
 | Claude Code | Expected path `/Users/arthur/.local/bin/claude` is absent (`test -x` exit 1). | UNAVAILABLE | ADR-0006 also records that the prior Claude session was revoked and must not be reauthenticated by an agent. Install or restore the CLI and have a human reauthenticate before repeating this probe. |
-| Gemini CLI | `gemini 0.57.0` at `/Users/arthur/.nvm/versions/node/v24.19.0/bin/gemini` | UNAVAILABLE | Real stdio registration was listed, but disabled in the untrusted worktree. A headless turn did not call the product: Gemini selected its own `google_web_search` and stopped on provider quota (`429 RESOURCE_EXHAUSTED`). |
-| OpenCode | `opencode 1.18.25` at `/Users/arthur/.nvm/versions/node/v24.19.0/bin/opencode` | UNAVAILABLE | Real stdio registration and connection completed (`✓ ... connected`). The headless agent turn stopped before `web_search`: `ProviderAuthError` reports that the Google Generative AI API key is missing. |
+| Gemini CLI | `gemini 0.57.0` at `/Users/arthur/.nvm/versions/node/v24.19.0/bin/gemini` | UNAVAILABLE | Registration succeeds and `--skip-trust` clears the untrusted-folder block, so the server is no longer suppressed. The turn still never reaches the product: every attempt fails on the account's own `429 RESOURCE_EXHAUSTED` free-tier quota, and the model selects its built-in `google_web_search` rather than the MCP tool. Retried across models and after quota expiry. This is an external account limit, not a product defect. |
+| OpenCode | `opencode 1.18.25` at `/Users/arthur/.nvm/versions/node/v24.19.0/bin/opencode` | PASS | Real stdio registration, connection, tool discovery, and a completed `web_search` call. Run with a keyless `opencode/hy3-free` model, so no credential was supplied. Raw JSON below shows `status: "completed"` and the portable result envelope. |
 
 ## Codex probe
 
@@ -103,11 +103,30 @@ Raw stdout/stderr:
 {"type":"error","timestamp":1788012110125,"sessionID":"ses_fb22c880affe6AqVzIJwrPTm8f","error":{"name":"ProviderAuthError","data":{"providerID":"google","message":"Google Generative AI API key is missing. Pass it using the 'apiKey' parameter or the GOOGLE_GENERATIVE_AI_API_KEY environment variable."}}}
 ```
 
-OpenCode's connected state is partial real evidence: it started the stdio
-server and completed MCP connection setup. It does not prove `web_search`
-discovery or invocation. The agent turn is unavailable because it requires a
-provider credential before it can select a tool; no credential was supplied.
-The whole temporary HOME/XDG configuration was removed after the probe.
+The first attempt above stopped at `ProviderAuthError` because the default
+provider needed a credential. OpenCode also publishes keyless models, so the
+turn was repeated with one; that required no authentication and completed a
+real tool call.
+
+```sh
+HOME=/private/tmp/octurn XDG_CONFIG_HOME=/private/tmp/octurn/config XDG_DATA_HOME=/private/tmp/octurn/data opencode mcp add ver002turn -- /Users/arthur/.bun/bin/bun /Users/arthur/Documents/Dev/projects/open-websearch-mcp/.worktree/arch-bench/src/cli.ts
+HOME=/private/tmp/octurn XDG_CONFIG_HOME=/private/tmp/octurn/config XDG_DATA_HOME=/private/tmp/octurn/data opencode run --model opencode/hy3-free --format json 'Call the ver002turn web_search tool once with query "MCP stdio compatibility". Report the returned status only.'
+```
+
+Raw JSON stdout (identifiers are runtime-generated):
+
+```json
+{"type":"tool_use","sessionID":"ses_fb2254430ffejVHnXAuZv2UJ56","part":{"type":"tool","tool":"ver002turn_web_search","callID":"chatcmpl-tool-8ca466e00256b78b","state":{"status":"completed","input":{"query":"MCP stdio compatibility"},"output":"[investigation_id=f90057ab-581b-4368-8ca2-493ee105bee8; status=blocked; reason=captcha; confidence=low]","metadata":{"truncated":false}}}}
+```
+
+This is a PASS on the same standard applied to Codex: a third-party client
+discovered the tool, invoked it over stdio, and received the portable result
+envelope. `blocked/captcha` is the expected live-Web outcome under SEARCH-012
+and PROD-002, not a harness failure.
+
+Both temporary HOME/XDG configurations were removed after the probes, and the
+`.gemini/` project settings the Gemini registration wrote into the worktree
+were deleted.
 
 ## Official SDK conformance
 
