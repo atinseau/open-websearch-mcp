@@ -1,12 +1,7 @@
-import {
-  inspectCodexProbe,
-  normalizeTeacherRun,
-  sanitizeJsonl,
-  teacherCases,
-  validateTeacherRun,
-} from "./contract.ts";
+import { inspectCodexProbe, sanitizeJsonl, teacherCases } from "./contract.ts";
 import { requiredDate } from "./contract-json.ts";
 import { probePolicyDocument } from "./capture-probe-policy.ts";
+import { buildTeacherRun } from "./capture-probe-run.ts";
 import { assertRefreshWritable, withRefreshMutation } from "./refresh-lifecycle.ts";
 import { ensureRefreshInputs } from "./refresh-inputs.ts";
 import { prepareProbeInvocation } from "./capture-probe-invocation.ts";
@@ -177,28 +172,18 @@ export async function captureProbe(
     let run: unknown;
     try {
       if (teacherCase !== undefined && accepted) {
-        const normalized = normalizeTeacherRun(provider, events, "gpt-5.4");
-        const promptSha256 = new Bun.CryptoHasher("sha256").update(commonPrompt).digest("hex");
-        run = {
-          schema_version: 1,
-          run_id: `${date}_${provider}_${teacherCase.id}`,
-          case_id: teacherCase.id,
+        run = buildTeacherRun({
+          teacherCase,
           provider,
-          ...normalized,
-          cli_version: cliVersion,
-          locale: teacherCase.locale,
-          started_at: startedAt,
-          duration_ms: durationMs,
-          prompt_sha256: promptSha256,
-          raw_trace: "events.sanitized.jsonl",
-          policy_evidence: "policy.json",
-          isolation: {
-            temporary_cwd: true,
-            cwd_unchanged: cwdContents.length === 0,
-            forbidden_tool_calls: inspection.forbidden_tool_calls,
-          },
-        };
-        validateTeacherRun(run);
+          events,
+          date,
+          cliVersion,
+          startedAt,
+          durationMs,
+          prompt: commonPrompt,
+          cwdUnchanged: cwdContents.length === 0,
+          forbiddenToolCalls: inspection.forbidden_tool_calls,
+        });
       }
     } catch (error) {
       const failure = JSON.parse(
