@@ -66,14 +66,14 @@ The table above is preserved as historical pre-implementation context only. This
 | CONFIG-005 | src/features/configuration/; tests/architecture/configuration.test.ts | Located; linked task traces are the artifact |
 | CONFIG-006 | src/features/configuration/; tests/architecture/configuration.test.ts | Located; linked task traces are the artifact |
 | EXTRACT-001 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
-| EXTRACT-002 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
+| EXTRACT-002 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | **Verified against a live PDF.** A declared `application/pdf` returns `unsupported_or_ocr_required` with no passages; it previously returned binary bytes as evidence. See WEB-005 trace 0002. |
 | EXTRACT-003 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
-| EXTRACT-004 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
+| EXTRACT-004 | src/features/extraction/; tests/extraction/extractor-registry.test.ts; tests/security/public-network.test.ts | **Verified adversarially.** Eleven concealment vectors are covered, including unquoted style values, `noscript`, bare `hidden`, entity-encoded rules, and a lying `application/json` content type. `aria-hidden=false` content is proven to survive. |
 | EXTRACT-005 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
 | EXTRACT-006 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
 | EXTRACT-007 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
 | EXTRACT-008 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
-| EXTRACT-009 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
+| EXTRACT-009 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | **Verified on unstructured pages.** Headingless blocks no longer deduplicate against each other, so navigation chrome cannot displace a page's substantive text. Live `bun.sh/docs` returns five passages, four substantive, where it previously returned one. |
 | EXTRACT-010 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
 | EXTRACT-011 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
 | EXTRACT-012 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
