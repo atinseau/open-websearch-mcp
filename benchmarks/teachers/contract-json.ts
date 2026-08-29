@@ -1,4 +1,13 @@
-export type JsonRecord = Record<string, unknown>;
+import { requiredString, type JsonRecord } from "./contract-json-validation.ts";
+
+export {
+  array,
+  exactRecord,
+  record,
+  requiredDate,
+  requiredString,
+  type JsonRecord,
+} from "./contract-json-validation.ts";
 
 const sensitiveKeySuffixes = [
   "accountid",
@@ -83,22 +92,37 @@ const standaloneCredentialPattern =
 export function isSensitiveKey(key: string, container?: object): boolean {
   const normalized = key.replaceAll(/[^a-z0-9]/gi, "").toLowerCase();
   if (normalized === "producttoken") return false;
-  if (normalized === "uuid" || normalized === "signature") return sensitiveContextKey(normalized, container);
+  if (normalized === "uuid" || normalized === "signature")
+    return sensitiveContextKey(normalized, container);
   if (telemetryKey(normalized)) return false;
   return genericSensitiveKey(normalized);
 }
 
 function sensitiveContextKey(key: string, container?: object): boolean {
   if (key === "uuid") return container === undefined || "session_id" in container;
-  return key === "signature" && (container === undefined || ("type" in container && container.type === "thinking"));
+  return (
+    key === "signature" &&
+    (container === undefined || ("type" in container && container.type === "thinking"))
+  );
 }
 
 function telemetryKey(key: string): boolean {
-  return tokenTelemetryKeys.has(key) || key.endsWith("inputtokens") || key.endsWith("outputtokens") || key === "estimatedtokens";
+  return (
+    tokenTelemetryKeys.has(key) ||
+    key.endsWith("inputtokens") ||
+    key.endsWith("outputtokens") ||
+    key === "estimatedtokens"
+  );
 }
 
 function genericSensitiveKey(key: string): boolean {
-  return sensitiveKeys.has(key) || sensitivePluralKeys.has(key) || sensitiveKeySuffixes.some((suffix) => key.endsWith(suffix)) || sensitivePluralSuffixes.some((suffix) => key.endsWith(suffix)) || key.endsWith("tokens");
+  return (
+    sensitiveKeys.has(key) ||
+    sensitivePluralKeys.has(key) ||
+    sensitiveKeySuffixes.some((suffix) => key.endsWith(suffix)) ||
+    sensitivePluralSuffixes.some((suffix) => key.endsWith(suffix)) ||
+    key.endsWith("tokens")
+  );
 }
 
 export function isSafeSensitiveMetadataKey(key: string): boolean {
@@ -179,56 +203,6 @@ export function webUrl(value: unknown, label: string): string {
   return candidate;
 }
 
-export function record(value: unknown, label: string): JsonRecord {
-  if (typeof value !== "object" || value === null || Array.isArray(value)) {
-    throw new Error(`${label} must be an object`);
-  }
-  const result: JsonRecord = {};
-  for (const [key, entry] of Object.entries(value)) result[key] = entry;
-  return result;
-}
-
-export function exactRecord(value: unknown, label: string, keys: readonly string[]): JsonRecord {
-  const result = record(value, label);
-  const expected = new Set(keys);
-  for (const key of Object.keys(result)) {
-    if (!expected.has(key)) throw new Error(`${label} contains unexpected property: ${key}`);
-  }
-  for (const key of expected) {
-    if (!(key in result)) throw new Error(`${label} is missing property: ${key}`);
-  }
-  return result;
-}
-
-export function requiredString(value: unknown, label: string): string {
-  if (typeof value !== "string" || value.length === 0) {
-    throw new Error(`${label} must not be empty`);
-  }
-  return value;
-}
-
-export function array(value: unknown, label: string, allowEmpty = false): unknown[] {
-  if (!Array.isArray(value) || (!allowEmpty && value.length === 0)) {
-    throw new Error(`${label} must ${allowEmpty ? "be an array" : "not be empty"}`);
-  }
-  return value;
-}
-
-export function requiredDate(value: unknown, label: string, includeTime = false): string {
-  const candidate = requiredString(value, label);
-  const pattern = includeTime
-    ? /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$/
-    : /^\d{4}-\d{2}-\d{2}$/;
-  const parsed = Date.parse(candidate);
-  const roundTrip = Number.isNaN(parsed)
-    ? ""
-    : new Date(parsed).toISOString().slice(0, includeTime ? 19 : 10);
-  if (!pattern.test(candidate) || roundTrip !== candidate.slice(0, includeTime ? 19 : 10)) {
-    throw new Error(`${label} must be a valid ${includeTime ? "date-time" : "date"}`);
-  }
-  return candidate;
-}
-
 function sanitizeString(value: string, absolutePaths: readonly string[]): string {
   let sanitized = sanitizeCredentials(value.replaceAll(machinePathPattern, "[REDACTED_PATH]"));
   for (const path of absolutePaths) {
@@ -295,7 +269,11 @@ function sanitize(
   return sanitizeRecord(value, absolutePaths, sensitiveContainer, sensitiveKey);
 }
 
-function sanitizeArray(value: unknown[], absolutePaths: readonly string[], sensitiveContainer: boolean): unknown[] {
+function sanitizeArray(
+  value: unknown[],
+  absolutePaths: readonly string[],
+  sensitiveContainer: boolean,
+): unknown[] {
   return value.map((item) => sanitize(item, absolutePaths, undefined, sensitiveContainer, false));
 }
 
@@ -320,9 +298,16 @@ function sanitizeRecord(
   return result;
 }
 
-function redactedScalar(value: unknown, key: string | undefined, sensitiveContainer: boolean, sensitiveKey: boolean): boolean {
+function redactedScalar(
+  value: unknown,
+  key: string | undefined,
+  sensitiveContainer: boolean,
+  sensitiveKey: boolean,
+): boolean {
   if (typeof value === "object" && value !== null && !Array.isArray(value)) return false;
-  return sensitiveKey || (sensitiveContainer && key !== undefined && !isSafeSensitiveMetadataKey(key));
+  return (
+    sensitiveKey || (sensitiveContainer && key !== undefined && !isSafeSensitiveMetadataKey(key))
+  );
 }
 
 export function hasUnsanitizedString(value: string): boolean {
