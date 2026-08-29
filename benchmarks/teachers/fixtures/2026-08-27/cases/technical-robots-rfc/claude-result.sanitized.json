@@ -1,0 +1,116 @@
+{
+  "duration_api_ms": 58804,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.3788295,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 25381,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 4262,
+    "output_tokens_details": {
+      "thinking_tokens": 2852
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 25381,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 4262,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 25381,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 25381
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 17916,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.018001000000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 4262,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 25381,
+      "webSearchRequests": 0,
+      "costUSD": 0.3608285,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 2,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"c1\",\"c2\",\"c3\",\"c5\",\"c6\",\"c7\",\"c8\"],\"rejected_claims\":[{\"id\":\"c4\",\"reason\":\"The claim's leading assertion — that RFC 9309 says the `allow` rule should be used when an `allow` and a `disallow` rule are equivalent — is supported only by the Codex run's own narrative prose, whose tool payloads were never exposed (opened_urls is empty; all three web_search results are recorded as unavailable). The Claude run, which performed multiple real fetches of Section 2.2.2 from rfc9309.txt, rfc9309.html, and the datatracker rendering, states explicitly that the retrieved text contains no tie-break rule for equal-octet allow/disallow matches and advises treating 'allow wins ties' as not an RFC 9309 requirement absent independent confirmation. Accepting the claim would encode a contested, unverified normative rule, and because required_concepts includes 'equivalent-rules', it would penalize responses that faithfully report the verified 'most specific match / most octets' precedence without the tie-break. The claim's other two components (default-allow when no rule matches or the group has no rules, and `/robots.txt` being implicitly allowed) are well supported by both runs and could be re-scoped into a separate bounded claim with patterns such as 'URI is allowed' and '/robots\\\\.txt'.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": ["c1", "c2", "c3", "c5", "c6", "c7", "c8"],
+    "rejected_claims": [
+      {
+        "id": "c4",
+        "reason": "The claim's leading assertion — that RFC 9309 says the `allow` rule should be used when an `allow` and a `disallow` rule are equivalent — is supported only by the Codex run's own narrative prose, whose tool payloads were never exposed (opened_urls is empty; all three web_search results are recorded as unavailable). The Claude run, which performed multiple real fetches of Section 2.2.2 from rfc9309.txt, rfc9309.html, and the datatracker rendering, states explicitly that the retrieved text contains no tie-break rule for equal-octet allow/disallow matches and advises treating 'allow wins ties' as not an RFC 9309 requirement absent independent confirmation. Accepting the claim would encode a contested, unverified normative rule, and because required_concepts includes 'equivalent-rules', it would penalize responses that faithfully report the verified 'most specific match / most octets' precedence without the tie-break. The claim's other two components (default-allow when no rule matches or the group has no rules, and `/robots.txt` being implicitly allowed) are well supported by both runs and could be re-scoped into a separate bounded claim with patterns such as 'URI is allowed' and '/robots\\.txt'."
+      }
+    ]
+  },
+  "ttft_ms": 39853,
+  "type": "result",
+  "duration_ms": 57227,
+  "uuid": "[REDACTED]",
+  "ttft_stream_ms": 1420,
+  "time_to_request_ms": 9,
+  "queued_turn_count": 0
+}

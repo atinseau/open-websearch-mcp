@@ -1,0 +1,674 @@
+{
+  "schema_version": 1,
+  "case_id": "academic-bm25",
+  "runs": [
+    {
+      "run_id": "2026-08-27_codex_academic-bm25",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "BM25 original paper Robertson Walker primary literature PDF Okapi BM25",
+        "site:microsoft.com BM25 TREC-3 pdf Robertson Walker",
+        "https://www.semanticscholar.org/paper/Some-simple-effective-approximations-to-the-model-Robertson-Walker/c0a48ed7577a7b48288dfb2711cbd86e30636b5f",
+        "\"Some simple effective approximations to the 2-Poisson model for probabilistic weighted retrieval\" pdf",
+        "\"A probabilistic model of information retrieval: development and status\" pdf Robertson Walker Jones",
+        "https://trec.nist.gov/pubs/trec3/t3_proceedings.html",
+        "'BM11' in https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec4.pdf",
+        "https://dl.acm.org/doi/pdf/10.5555/188490.188561",
+        "site:cl.cam.ac.uk Robertson k3 qtf BM25 pdf",
+        "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec6_auto.pdf",
+        "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec4.pdf",
+        "'CFW' in https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [],
+      "cited_urls": [
+        "https://link.springer.com/chapter/10.1007/978-1-4471-2099-5_24",
+        "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf",
+        "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec4.pdf",
+        "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec6_auto.pdf"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://link.springer.com/chapter/10.1007/978-1-4471-2099-5_24",
+          "title": "https://link.springer.com/chapter/10.1007/978-1-4471-2099-5_24"
+        },
+        {
+          "url": "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf",
+          "title": "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf"
+        },
+        {
+          "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec4.pdf",
+          "title": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec4.pdf"
+        },
+        {
+          "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec6_auto.pdf",
+          "title": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec6_auto.pdf"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://link.springer.com/chapter/10.1007/978-1-4471-2099-5_24",
+          "text": "**Supported Facts**\n\n- In the primary BM25 paper, Robertson and Walker say their goal is to use the 2-Poisson model to incorporate three variables into probabilistic retrieval weighting: within-document term frequency, document length, and within-query term frequency. They also report that the resulting simple weighting functions produced “considerable performance improvements” over simple inverse collection-frequency weighting on TREC. Source: https://link.springer.com/chapter/10.1007/978-1-4471-2099-5_24\n\n- In a later author-written technical note, Robertson and Sparck Jones describe BM25 as a formula for combining three kinds of per-term evidence into a request-document matching score: collection frequency weight, within-document term frequency, and document length; document scores are then the sum of the query-term weights present in the document, and documents are ranked by descending score. Source: https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf\n\n- That same technical note defines the three core evidence sources explicitly:\n  `CFW(i) = log N - log n` for collection frequency / inverse document frequency style weighting; `TF(i,j)` as the number of occurrences of term `t(i)` in document `d(j)`; and normalized document length `NDL(j) = DL(j) / Average DL`. Source: https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf\n\n- The author-written TREC-4 paper gives a BM25 variant with these scoring factors: Robertson-Sparck Jones relevance weight `w(1)`, document term frequency `tf`, query term frequency `qtf`, and document-length normalization through `K = k1((1-b)+b*dl/avdl)`. It defines `tf`, `qtf`, `dl`, and `avdl` directly. Source: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec4.pdf\n\n- The TREC-6 paper by the same authors says the Okapi BM25 function was “first used in TREC-3.” Source: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec6_auto.pdf\n\n- The authors explicitly interpret `k1` as controll"
+        },
+        {
+          "url": "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf",
+          "text": "**Supported Facts**\n\n- In the primary BM25 paper, Robertson and Walker say their goal is to use the 2-Poisson model to incorporate three variables into probabilistic retrieval weighting: within-document term frequency, document length, and within-query term frequency. They also report that the resulting simple weighting functions produced “considerable performance improvements” over simple inverse collection-frequency weighting on TREC. Source: https://link.springer.com/chapter/10.1007/978-1-4471-2099-5_24\n\n- In a later author-written technical note, Robertson and Sparck Jones describe BM25 as a formula for combining three kinds of per-term evidence into a request-document matching score: collection frequency weight, within-document term frequency, and document length; document scores are then the sum of the query-term weights present in the document, and documents are ranked by descending score. Source: https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf\n\n- That same technical note defines the three core evidence sources explicitly:\n  `CFW(i) = log N - log n` for collection frequency / inverse document frequency style weighting; `TF(i,j)` as the number of occurrences of term `t(i)` in document `d(j)`; and normalized document length `NDL(j) = DL(j) / Average DL`. Source: https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf\n\n- The author-written TREC-4 paper gives a BM25 variant with these scoring factors: Robertson-Sparck Jones relevance weight `w(1)`, document term frequency `tf`, query term frequency `qtf`, and document-length normalization through `K = k1((1-b)+b*dl/avdl)`. It defines `tf`, `qtf`, `dl`, and `avdl` directly. Source: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec4.pdf\n\n- The TREC-6 paper by the same authors says the Okapi BM25 function was “first used in TREC-3.” Source: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec6_auto.pdf\n\n- The authors explicitly interpret `k1` as controll"
+        },
+        {
+          "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec4.pdf",
+          "text": "**Supported Facts**\n\n- In the primary BM25 paper, Robertson and Walker say their goal is to use the 2-Poisson model to incorporate three variables into probabilistic retrieval weighting: within-document term frequency, document length, and within-query term frequency. They also report that the resulting simple weighting functions produced “considerable performance improvements” over simple inverse collection-frequency weighting on TREC. Source: https://link.springer.com/chapter/10.1007/978-1-4471-2099-5_24\n\n- In a later author-written technical note, Robertson and Sparck Jones describe BM25 as a formula for combining three kinds of per-term evidence into a request-document matching score: collection frequency weight, within-document term frequency, and document length; document scores are then the sum of the query-term weights present in the document, and documents are ranked by descending score. Source: https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf\n\n- That same technical note defines the three core evidence sources explicitly:\n  `CFW(i) = log N - log n` for collection frequency / inverse document frequency style weighting; `TF(i,j)` as the number of occurrences of term `t(i)` in document `d(j)`; and normalized document length `NDL(j) = DL(j) / Average DL`. Source: https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf\n\n- The author-written TREC-4 paper gives a BM25 variant with these scoring factors: Robertson-Sparck Jones relevance weight `w(1)`, document term frequency `tf`, query term frequency `qtf`, and document-length normalization through `K = k1((1-b)+b*dl/avdl)`. It defines `tf`, `qtf`, `dl`, and `avdl` directly. Source: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec4.pdf\n\n- The TREC-6 paper by the same authors says the Okapi BM25 function was “first used in TREC-3.” Source: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec6_auto.pdf\n\n- The authors explicitly interpret `k1` as controll"
+        },
+        {
+          "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec6_auto.pdf",
+          "text": "**Supported Facts**\n\n- In the primary BM25 paper, Robertson and Walker say their goal is to use the 2-Poisson model to incorporate three variables into probabilistic retrieval weighting: within-document term frequency, document length, and within-query term frequency. They also report that the resulting simple weighting functions produced “considerable performance improvements” over simple inverse collection-frequency weighting on TREC. Source: https://link.springer.com/chapter/10.1007/978-1-4471-2099-5_24\n\n- In a later author-written technical note, Robertson and Sparck Jones describe BM25 as a formula for combining three kinds of per-term evidence into a request-document matching score: collection frequency weight, within-document term frequency, and document length; document scores are then the sum of the query-term weights present in the document, and documents are ranked by descending score. Source: https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf\n\n- That same technical note defines the three core evidence sources explicitly:\n  `CFW(i) = log N - log n` for collection frequency / inverse document frequency style weighting; `TF(i,j)` as the number of occurrences of term `t(i)` in document `d(j)`; and normalized document length `NDL(j) = DL(j) / Average DL`. Source: https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf\n\n- The author-written TREC-4 paper gives a BM25 variant with these scoring factors: Robertson-Sparck Jones relevance weight `w(1)`, document term frequency `tf`, query term frequency `qtf`, and document-length normalization through `K = k1((1-b)+b*dl/avdl)`. It defines `tf`, `qtf`, `dl`, and `avdl` directly. Source: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec4.pdf\n\n- The TREC-6 paper by the same authors says the Okapi BM25 function was “first used in TREC-3.” Source: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec6_auto.pdf\n\n- The authors explicitly interpret `k1` as controll"
+        }
+      ],
+      "final_answer": "**Supported Facts**\n\n- In the primary BM25 paper, Robertson and Walker say their goal is to use the 2-Poisson model to incorporate three variables into probabilistic retrieval weighting: within-document term frequency, document length, and within-query term frequency. They also report that the resulting simple weighting functions produced “considerable performance improvements” over simple inverse collection-frequency weighting on TREC. Source: https://link.springer.com/chapter/10.1007/978-1-4471-2099-5_24\n\n- In a later author-written technical note, Robertson and Sparck Jones describe BM25 as a formula for combining three kinds of per-term evidence into a request-document matching score: collection frequency weight, within-document term frequency, and document length; document scores are then the sum of the query-term weights present in the document, and documents are ranked by descending score. Source: https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf\n\n- That same technical note defines the three core evidence sources explicitly:\n  `CFW(i) = log N - log n` for collection frequency / inverse document frequency style weighting; `TF(i,j)` as the number of occurrences of term `t(i)` in document `d(j)`; and normalized document length `NDL(j) = DL(j) / Average DL`. Source: https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf\n\n- The author-written TREC-4 paper gives a BM25 variant with these scoring factors: Robertson-Sparck Jones relevance weight `w(1)`, document term frequency `tf`, query term frequency `qtf`, and document-length normalization through `K = k1((1-b)+b*dl/avdl)`. It defines `tf`, `qtf`, `dl`, and `avdl` directly. Source: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec4.pdf\n\n- The TREC-6 paper by the same authors says the Okapi BM25 function was “first used in TREC-3.” Source: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec6_auto.pdf\n\n- The authors explicitly interpret `k1` as controlling the influence of within-document term frequency: higher `k1` increases TF influence, and `k1=0` removes TF influence. Source: https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf\n\n- The authors explicitly interpret `b` as controlling document-length normalization, with `b` ranging from 0 to 1. They say `b=1` corresponds to the assumption that long documents are long because they are repetitive, while `b=0` corresponds to the assumption that long documents are long because they are multi-topic. They further say that moving `b` toward 1 reduces TF’s effect on the view that extra length is mostly verbosity, and they report that `b=.75` was helpful in TREC. Source: https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf\n\n- The authors report a practical interpretation of `k3` through query-term repetition: in TREC-4, terms occurring more than once in the topic statement were given a bonus by setting `k3 = 8`; the same paper lists typical TREC-4 values `k1` in `1.0-2.0`, `k3 = 8`, `b` in `0.6-0.75`, and `k2 = 0` throughout. Source: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec4.pdf\n\n**Inference**\n\n- The best-supported answer to “what problem does BM25 solve?” is: BM25 is a probabilistic ranking function for document retrieval that was introduced to improve on simpler weighting schemes by combining term rarity with within-document term frequency, document length normalization, and sometimes within-query term frequency. This is an inference from the authors’ statements about the variables added, the ranking use, and the reported improvement over simple inverse collection-frequency weighting. Sources: https://link.springer.com/chapter/10.1007/978-1-4471-2099-5_24 ; https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf ; https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec6_auto.pdf\n\n**Disagreement / Uncertainty**\n\n- There is no strong disagreement in the primary sources I found about the main factors: all accessible author sources consistently point to term rarity / relevance weight, document TF, and document length normalization; TREC-era BM25 variants also include query term frequency `qtf`. Sources: https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf ; https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec4.pdf\n\n- There is some uncertainty about whether `qtf` should be treated as part of “core BM25” in the narrowest sense, because the Cambridge technical note presents a simplified BM25 form with `K1` and `b`, while the TREC-4/TREC-6 Okapi BM25 formula also includes `k3` and `qtf`. Both are author sources, so the safest reading is that `qtf` is part of at least some primary Okapi BM25 formulations, but not always present in simplified presentations. Sources: https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf ; https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec4.pdf ; https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec6_auto.pdf\n\n**Lack of Good Evidence**\n\n- I found clear author-supported interpretations for `k1`, `b`, and the practical use of `k3`, but not a comparably clear author explanation of the semantic role of `k2` in the accessible primary pages I could open. What is directly supported is only that `k2` appears in the TREC-4/TREC-6 formula and was set to zero in TREC-4. Sources: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec4.pdf ; https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec6_auto.pdf\n\n**Short Answer**\n\n- Problem solved: probabilistic document ranking with better weighting than simple inverse collection frequency, by incorporating TF, length normalization, and in some primary Okapi formulations query TF. Sources: https://link.springer.com/chapter/10.1007/978-1-4471-2099-5_24 ; https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf\n\n- Core scoring factors: term rarity / RSJ relevance weight, within-document term frequency, document length normalization, and sometimes within-query term frequency. Sources: https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf ; https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec4.pdf\n\n- Supported parameter interpretations: `k1` controls TF saturation strength; `b` controls the length-normalization assumption from multi-topic (`b=0`) to verbosity/repetition (`b=1`); `k3` controls the bonus for repeated query terms; good primary evidence for `k2`’s interpretation was not found in the accessible sources. Sources: https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf ; https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec4.pdf"
+    },
+    {
+      "run_id": "2026-08-27_claude_academic-bm25",
+      "provider": "claude",
+      "model": "claude-opus-5[1m]",
+      "queries": [
+        "Robertson Zaragoza \"The Probabilistic Relevance Framework: BM25 and Beyond\" pdf",
+        "Robertson Walker 1994 \"Some simple effective approximations to the 2-Poisson model for probabilistic weighted retrieval\"",
+        "Okapi at TREC-3 Robertson Walker Jones Hancock-Beaulieu Gatford BM25 k1 b values 2.0 0.75",
+        "\"Okapi at TREC-3\" full text \"BM25\" \"k1\" \"b\" formula site:trec.nist.gov OR pdf city university"
+      ],
+      "tool_results": [
+        {
+          "tool": "WebSearch",
+          "summary": "Some Simple Effective Approximations to the 2-Poisson Model for Probabilistic Weighted Retrieval - IR Anthology: https://ir.webis.de/anthology/1994.sigirconf_conference-94.24/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "dblp: Some Simple Effective Approximations to the 2-Poisson Model for Probabilistic Weighted Retrieval.: https://dblp.uni-trier.de/rec/conf/sigir/RobertsonW94.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Some simple effective approximations to the 2-poisson model for probabilistic weighted retrieval | CiNii Research: https://cir.nii.ac.jp/crid/1571417126653300224"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Generalized Weak Supervision for Neural Information Retrieval: https://arxiv.org/pdf/2304.08912"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Some Simple Effective Approximations to the 2-Poisson Model for Probabilistic Weighted Retrieval: https://scite.ai/reports/some-simple-effective-approximations-to-vRppp4"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Local Term Weight Models from Power Transformations: Development of   BM25IR: A Best Match Model based on Inverse Regression: https://arxiv.org/pdf/1608.01573"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "A Polya Urn Document Language Model for Improved Information Retrieval: https://arxiv.org/pdf/1502.00804"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Some Simple Effective Approximations to the 2-Poisson Model for Probabilistic Weighted Retrieval | Springer Nature Link: https://link.springer.com/chapter/10.1007/978-1-4471-2099-5_24"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Improving Content Retrievability in Search with Controllable Query   Generation: https://arxiv.org/pdf/2303.11648"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Some simple effective approximations to the 2-Poisson model for probabilistic weighted retrieval | Proceedings of the 17th annual international ACM SIGIR conference on Research and development in information retrieval: https://dl.acm.org/doi/10.5555/188490.188561"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "(PDF) The Probabilistic Relevance Framework: BM25 and Beyond: https://www.academia.edu/12720255/The_Probabilistic_Relevance_Framework_BM25_and_Beyond"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The Probabilistic Relevance Framework: BM25 and Beyond - Stephen Robertson, Hugo Zaragoza - Google Books: https://books.google.com/books/about/The_Probabilistic_Relevance_Framework.html?id=yK6HxUEaZ9gC"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The Probabilistic Relevance Framework: BM25 and Beyond - IR Anthology: https://ir.webis.de/anthology/2009.ftir_journal-ir0anthology0volumeA3A4.0/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The Probabilistic Relevance Framework: BM25 and Beyond: Foundations and Trends in Information Retrieval: Vol 3, No 4: https://dl.acm.org/doi/abs/10.1561/1500000019"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The Probabilistic Relevance Framework: BM25 and Beyond: https://scispace.com/pdf/the-probabilistic-relevance-framework-290mics7xy.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The Probabilistic Relevance Framework: BM25 and Beyond | Foundations and Trends in Information Retrieval | Emerald Publishing: https://www.nowpublishers.com/article/Details/INR-019"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Beyond Relevance: Evaluate and Improve Retrievers on Perspective   Awareness: https://arxiv.org/pdf/2405.02714"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "(PDF) The Probabilistic Relevance Framework: BM25 and Beyond: https://www.researchgate.net/publication/220613776_The_Probabilistic_Relevance_Framework_BM25_and_Beyond"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "[PDF] The Probabilistic Relevance Framework: BM25 and Beyond | Semantic Scholar: https://www.semanticscholar.org/paper/The-Probabilistic-Relevance-Framework:-BM25-and-Robertson-Zaragoza/47ced790a563344efae66588b5fb7fe6cca29ed3"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "A Unified Framework for Learned Sparse Retrieval: https://arxiv.org/pdf/2303.13416"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "I apologize, but I cannot extract the requested information from the provided content. The text appears to be raw PDF binary data and embedded font definitions rather than readable document text about BM25 or probabilistic relevance frameworks.\n\nTo properly address your request, I would need:\n\n1. **Readable text content** — The current input consists of PDF structural elements, font objects, and compressed streams that don't render as human-readable prose about BM25.\n\n2. **Clear source identific"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "okapi at trec: https://www.staff.city.ac.uk/~sbrp622/papers/ipm00.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Pretrained Transformers for Text Ranking: BERT and Beyond: https://arxiv.org/pdf/2010.06467"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Okapi at TREC-3 | Semantic Scholar: https://www.semanticscholar.org/paper/Okapi-at-TREC-3-Robertson-Walker/fa8ffa9f8d8367b987845ae88f2adcac2689f110"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "A Unified Framework for Learned Sparse Retrieval: https://arxiv.org/pdf/2303.13416"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Method for retrieving answers from an information retrieval system: https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7269545"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "CS630 Lecture 6: The BM25/Okapi method Date: February 14th, 2006: https://www.cs.cornell.edu/courses/cs630/2006sp/guides/lec6.kr.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Direct Optimization of Ranking Measures: https://arxiv.org/pdf/0704.3359"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Okapi at TREC-3 - Microsoft Research: https://www.microsoft.com/en-us/research/publication/okapi-at-trec-3/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "(PDF) Okapi at TREC-3.: https://www.researchgate.net/publication/221037764_Okapi_at_TREC-3"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "A Tutorial on OKAPI BM25 Model: http://www.minerazzi.com/tutorials/okapi-bm25-model.pdf"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Okapi at TREC-3\n\n## Abstract\nAn abstract is not provided on this page. The publication description states: \"The Okapi software used for TREC-3 was similar to that used in previous TRECs, comprising a low level basic search system and a user interface for the manual search experiments, together with data conversion and inversion utilities.\"\n\n## Publication Details\n- **Authors:** Stephen Robertson, S. Walker, S. Jones, M. M. Hancock-Beaulieu, M. Gatford\n- **Published:** January 1995\n- **Publishe"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "I appreciate your request, but I need to be transparent: the content you've provided appears to be a PDF file encoded in a binary/compressed format rather than readable text. The text shown contains primarily PDF stream data, object references, and encoded image information - not the actual article content about BM25 and TREC.\n\nTo properly extract the BM25 formula and its component descriptions from the \"Okapi/Keenbow at TREC\" paper, I would need:\n\n1. A properly decoded/readable version of the P"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# City University (Okapi) Paper Details\n\n**Link/Filename:** `papers/city.ps.gz`\n\n**Available Format:** PostScript (compressed with gzip)\n\n**Paper Reference:** The document lists this as paper #11, titled \"Okapi at TREC-3\" by S. E. Robertson, S. Walker, S. Jones, M. M. Hancock-Beaulieu, and M. Gatford from City University, appearing on page 109 of the proceedings.\n\nThe file is provided in compressed PostScript format and would need to be unzipped before viewing in appropriate software, as noted i"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# The Probabilistic Relevance Framework and BM25\n\n## Problem Solved\n\nThe probabilistic relevance framework addresses how to rank documents for retrieval by estimating \"the probability of relevance for each pair\" of query and document. Rather than attempting direct relevance assessment, the system uses observable document and query properties to infer probabilistic evidence about relevance, then ranks documents by this estimated probability.\n\n## The BM25 Formula\n\nThe complete BM25 weighting funct"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "IIT at TREC-2003 Task Classification & Document Structure for: https://trec.nist.gov/pubs/trec12/papers/iit.web.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "University of Waterloo at the TREC 2013 Temporal Summarization Track: https://trec.nist.gov/pubs/trec22/papers/waterloomds-ts.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "IIT at TREC-2002 Linear Combinations Based on Document Structure and: https://trec.nist.gov/pubs/trec11/papers/iit.grossman.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "York University at TREC 2008: Blog Track Mladen Kovacevic1, Xiangji Huang2: https://trec.nist.gov/pubs/trec17/papers/yorku.blog.rev.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "RMIT University at TREC 2004 Bodo Billerbeck Adam Cannane Abhijit Chattaraj: https://trec.nist.gov/pubs/trec13/papers/rmit.tera.geo.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "University of Washington at TREC 2020 Fairness Ranking Track: https://arxiv.org/pdf/2011.02066"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Eﬃciency vs. Eﬀectiveness in Terabyte-Scale Information Retrieval: https://trec.nist.gov/pubs/trec14/papers/uwaterloo-tera.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "University of Waterloo: Logistic Regression and Reciprocal Rank: https://trec.nist.gov/pubs/trec21/papers/UWaterlooMDS.microblog.nb.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "NLPR at TREC 2005: HARD Experiments Bibo Lv, Jun Zhao: https://trec.nist.gov/pubs/trec14/papers/chinese-acad-sci-nlpr.hard.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "trec.nist.gov: https://trec.nist.gov/pubs/trec2/papers/txt/02.txt"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# BM25 Framework: Key Concepts\n\n## (a) Probability Ranking Principle & Problem Address\n\n**PRP Statement:**\n\"If retrieved documents are ordered by decreasing probability of relevance on the data available, then the system's effectiveness is the best that can be obtained for the data.\" (Section 2.3)\n\n**Problem Addressed:** The framework tackles document retrieval by estimating relevance probability for each query-document pair when the actual relevance property remains unobservable, then ranking d"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Term-Weighting Formulae in Okapi at TREC-2\n\n## BM11 and BM15 Formulae\n\n**BM11:** \"2-Poisson termweights with document length normalisation as equation 4\"\n\n**BM15:** \"2-Poisson termweights as equation 3 with document length correction as equation 5\"\n\n## Key Equations\n\nThe basic 2-Poisson formula (Equation 3) is:\n```\nw = (tf / (k1 + tf)) × w(i)\n```\n\nWith document length normalization (Equation 4):\n```\nw = (k1(avdl - dl) + tf) / (k1 × ((avdl - dl) / avdl + dl) + tf)) × w(i)\n```\n\nThe correction fa"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "I apologize, but I cannot provide the requested information. While you've shared metadata about a document (title, URL, publication date, and page count), the actual markdown content of the webpage is empty—no text, formulas, or descriptions are included in what was provided.\n\nTo quote the BM25 formula, parameter descriptions, TREC values, and theoretical justification, I would need the document's actual content to be present in your submission.\n\nIf you'd like me to analyze this paper, please pr"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "The server returned HTTP 404 Not Found.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# BM25 Formula and Constants\n\n**The Combined Weight formula (BM25):**\n\n\"CW (i,j) =[ CFW (i) * TF (i,j) * (K1+1) ] / [ K1 * ( (1-b) + (b * (NDL (j)) ) ) + TF (i,j) ]\"\n\n**About the constants:**\n\nThe document discusses only two tuning parameters: K1 and b. There is no K2 or K3 mentioned in relation to this weighting formula.\n\n**K1 parameter:** \"modifies the extent of the influence of term frequency.\" The recommended starting value is K1=2, found effective in TREC tests. Higher values increase term "
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# BM25 Formula and Parameters from Okapi at TREC-3\n\n## The Formula\n\nThe document presents BM25 as a combination of two previous functions (BM11 and BM15). The term frequency component is implemented as:\n\n\"tf cK c + tf c\" where \"K = k1 ((1 − b) + b dl av dl )\"\n\nThe complete weighting function incorporates: \"s1 s3 tf (k1 dl avdl + tf) · w(1) qtf (k3 + qtf) and k2 · nq (avdl − dl)(avdl + dl)\"\n\n## Parameter Values and Interpretations\n\n**k1**: \"a parameter to be guessed\"; values \"around 0.75 were usu"
+        }
+      ],
+      "opened_urls": [
+        "http://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf",
+        "https://www.staff.city.ac.uk/~sbrp622/papers/ipm00.pdf",
+        "https://www.microsoft.com/en-us/research/publication/okapi-at-trec-3/",
+        "https://r.jina.ai/http://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf",
+        "https://trec.nist.gov/pubs/trec3/t3_proceedings.html",
+        "https://trec.nist.gov/pubs/trec2/papers/txt/02.txt",
+        "https://r.jina.ai/https://www.staff.city.ac.uk/~sbrp622/papers/ipm00.pdf",
+        "https://trec.nist.gov/pubs/trec3/papers/txt/11.txt",
+        "https://r.jina.ai/https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf",
+        "https://r.jina.ai/https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec3.pdf"
+      ],
+      "cited_urls": [
+        "http://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf",
+        "https://trec.nist.gov/pubs/trec2/papers/txt/02.txt",
+        "https://www.microsoft.com/en-us/research/publication/okapi-at-trec-3/",
+        "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec3.pdf",
+        "https://trec.nist.gov/pubs/trec3/t3_proceedings.html",
+        "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf",
+        "https://ir.webis.de/anthology/1994.sigirconf_conference-94.24/"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://ir.webis.de/anthology/1994.sigirconf_conference-94.24/",
+          "title": "Some Simple Effective Approximations to the 2-Poisson Model for Probabilistic Weighted Retrieval - IR Anthology"
+        },
+        {
+          "url": "https://dblp.uni-trier.de/rec/conf/sigir/RobertsonW94.html",
+          "title": "dblp: Some Simple Effective Approximations to the 2-Poisson Model for Probabilistic Weighted Retrieval."
+        },
+        {
+          "url": "https://cir.nii.ac.jp/crid/1571417126653300224",
+          "title": "Some simple effective approximations to the 2-poisson model for probabilistic weighted retrieval | CiNii Research"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2304.08912",
+          "title": "Generalized Weak Supervision for Neural Information Retrieval"
+        },
+        {
+          "url": "https://scite.ai/reports/some-simple-effective-approximations-to-vRppp4",
+          "title": "Some Simple Effective Approximations to the 2-Poisson Model for Probabilistic Weighted Retrieval"
+        },
+        {
+          "url": "https://arxiv.org/pdf/1608.01573",
+          "title": "Local Term Weight Models from Power Transformations: Development of   BM25IR: A Best Match Model based on Inverse Regression"
+        },
+        {
+          "url": "https://arxiv.org/pdf/1502.00804",
+          "title": "A Polya Urn Document Language Model for Improved Information Retrieval"
+        },
+        {
+          "url": "https://link.springer.com/chapter/10.1007/978-1-4471-2099-5_24",
+          "title": "Some Simple Effective Approximations to the 2-Poisson Model for Probabilistic Weighted Retrieval | Springer Nature Link"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2303.11648",
+          "title": "Improving Content Retrievability in Search with Controllable Query   Generation"
+        },
+        {
+          "url": "https://dl.acm.org/doi/10.5555/188490.188561",
+          "title": "Some simple effective approximations to the 2-Poisson model for probabilistic weighted retrieval | Proceedings of the 17th annual international ACM SIGIR conference on Research and development in information retrieval"
+        },
+        {
+          "url": "https://www.academia.edu/12720255/The_Probabilistic_Relevance_Framework_BM25_and_Beyond",
+          "title": "(PDF) The Probabilistic Relevance Framework: BM25 and Beyond"
+        },
+        {
+          "url": "https://books.google.com/books/about/The_Probabilistic_Relevance_Framework.html?id=yK6HxUEaZ9gC",
+          "title": "The Probabilistic Relevance Framework: BM25 and Beyond - Stephen Robertson, Hugo Zaragoza - Google Books"
+        },
+        {
+          "url": "https://ir.webis.de/anthology/2009.ftir_journal-ir0anthology0volumeA3A4.0/",
+          "title": "The Probabilistic Relevance Framework: BM25 and Beyond - IR Anthology"
+        },
+        {
+          "url": "https://dl.acm.org/doi/abs/10.1561/1500000019",
+          "title": "The Probabilistic Relevance Framework: BM25 and Beyond: Foundations and Trends in Information Retrieval: Vol 3, No 4"
+        },
+        {
+          "url": "https://scispace.com/pdf/the-probabilistic-relevance-framework-290mics7xy.pdf",
+          "title": "The Probabilistic Relevance Framework: BM25 and Beyond"
+        },
+        {
+          "url": "https://www.nowpublishers.com/article/Details/INR-019",
+          "title": "The Probabilistic Relevance Framework: BM25 and Beyond | Foundations and Trends in Information Retrieval | Emerald Publishing"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2405.02714",
+          "title": "Beyond Relevance: Evaluate and Improve Retrievers on Perspective   Awareness"
+        },
+        {
+          "url": "https://www.researchgate.net/publication/220613776_The_Probabilistic_Relevance_Framework_BM25_and_Beyond",
+          "title": "(PDF) The Probabilistic Relevance Framework: BM25 and Beyond"
+        },
+        {
+          "url": "https://www.semanticscholar.org/paper/The-Probabilistic-Relevance-Framework:-BM25-and-Robertson-Zaragoza/47ced790a563344efae66588b5fb7fe6cca29ed3",
+          "title": "[PDF] The Probabilistic Relevance Framework: BM25 and Beyond | Semantic Scholar"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2303.13416",
+          "title": "A Unified Framework for Learned Sparse Retrieval"
+        },
+        {
+          "url": "http://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf",
+          "title": "http://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf"
+        },
+        {
+          "url": "https://www.staff.city.ac.uk/~sbrp622/papers/ipm00.pdf",
+          "title": "https://www.staff.city.ac.uk/~sbrp622/papers/ipm00.pdf"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2010.06467",
+          "title": "Pretrained Transformers for Text Ranking: BERT and Beyond"
+        },
+        {
+          "url": "https://www.semanticscholar.org/paper/Okapi-at-TREC-3-Robertson-Walker/fa8ffa9f8d8367b987845ae88f2adcac2689f110",
+          "title": "Okapi at TREC-3 | Semantic Scholar"
+        },
+        {
+          "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7269545",
+          "title": "Method for retrieving answers from an information retrieval system"
+        },
+        {
+          "url": "https://www.cs.cornell.edu/courses/cs630/2006sp/guides/lec6.kr.pdf",
+          "title": "CS630 Lecture 6: The BM25/Okapi method Date: February 14th, 2006"
+        },
+        {
+          "url": "https://arxiv.org/pdf/0704.3359",
+          "title": "Direct Optimization of Ranking Measures"
+        },
+        {
+          "url": "https://www.microsoft.com/en-us/research/publication/okapi-at-trec-3/",
+          "title": "https://www.microsoft.com/en-us/research/publication/okapi-at-trec-3/"
+        },
+        {
+          "url": "https://www.researchgate.net/publication/221037764_Okapi_at_TREC-3",
+          "title": "(PDF) Okapi at TREC-3."
+        },
+        {
+          "url": "http://www.minerazzi.com/tutorials/okapi-bm25-model.pdf",
+          "title": "A Tutorial on OKAPI BM25 Model"
+        },
+        {
+          "url": "https://trec.nist.gov/pubs/trec3/t3_proceedings.html",
+          "title": "https://trec.nist.gov/pubs/trec3/t3_proceedings.html"
+        },
+        {
+          "url": "https://r.jina.ai/http://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf",
+          "title": "https://r.jina.ai/http://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf"
+        },
+        {
+          "url": "https://trec.nist.gov/pubs/trec12/papers/iit.web.pdf",
+          "title": "IIT at TREC-2003 Task Classification & Document Structure for"
+        },
+        {
+          "url": "https://trec.nist.gov/pubs/trec22/papers/waterloomds-ts.pdf",
+          "title": "University of Waterloo at the TREC 2013 Temporal Summarization Track"
+        },
+        {
+          "url": "https://trec.nist.gov/pubs/trec11/papers/iit.grossman.pdf",
+          "title": "IIT at TREC-2002 Linear Combinations Based on Document Structure and"
+        },
+        {
+          "url": "https://trec.nist.gov/pubs/trec17/papers/yorku.blog.rev.pdf",
+          "title": "York University at TREC 2008: Blog Track Mladen Kovacevic1, Xiangji Huang2"
+        },
+        {
+          "url": "https://trec.nist.gov/pubs/trec13/papers/rmit.tera.geo.pdf",
+          "title": "RMIT University at TREC 2004 Bodo Billerbeck Adam Cannane Abhijit Chattaraj"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2011.02066",
+          "title": "University of Washington at TREC 2020 Fairness Ranking Track"
+        },
+        {
+          "url": "https://trec.nist.gov/pubs/trec14/papers/uwaterloo-tera.pdf",
+          "title": "Eﬃciency vs. Eﬀectiveness in Terabyte-Scale Information Retrieval"
+        },
+        {
+          "url": "https://trec.nist.gov/pubs/trec21/papers/UWaterlooMDS.microblog.nb.pdf",
+          "title": "University of Waterloo: Logistic Regression and Reciprocal Rank"
+        },
+        {
+          "url": "https://trec.nist.gov/pubs/trec14/papers/chinese-acad-sci-nlpr.hard.pdf",
+          "title": "NLPR at TREC 2005: HARD Experiments Bibo Lv, Jun Zhao"
+        },
+        {
+          "url": "https://trec.nist.gov/pubs/trec2/papers/txt/02.txt",
+          "title": "https://trec.nist.gov/pubs/trec2/papers/txt/02.txt"
+        },
+        {
+          "url": "https://r.jina.ai/https://www.staff.city.ac.uk/~sbrp622/papers/ipm00.pdf",
+          "title": "https://r.jina.ai/https://www.staff.city.ac.uk/~sbrp622/papers/ipm00.pdf"
+        },
+        {
+          "url": "https://trec.nist.gov/pubs/trec3/papers/txt/11.txt",
+          "title": "https://trec.nist.gov/pubs/trec3/papers/txt/11.txt"
+        },
+        {
+          "url": "https://r.jina.ai/https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf",
+          "title": "https://r.jina.ai/https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf"
+        },
+        {
+          "url": "https://r.jina.ai/https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec3.pdf",
+          "title": "https://r.jina.ai/https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec3.pdf"
+        },
+        {
+          "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec3.pdf",
+          "title": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec3.pdf"
+        },
+        {
+          "url": "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf",
+          "title": "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://ir.webis.de/anthology/1994.sigirconf_conference-94.24/",
+          "text": "Some Simple Effective Approximations to the 2-Poisson Model for Probabilistic Weighted Retrieval - IR Anthology"
+        },
+        {
+          "url": "https://dblp.uni-trier.de/rec/conf/sigir/RobertsonW94.html",
+          "text": "dblp: Some Simple Effective Approximations to the 2-Poisson Model for Probabilistic Weighted Retrieval."
+        },
+        {
+          "url": "https://cir.nii.ac.jp/crid/1571417126653300224",
+          "text": "Some simple effective approximations to the 2-poisson model for probabilistic weighted retrieval | CiNii Research"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2304.08912",
+          "text": "Generalized Weak Supervision for Neural Information Retrieval"
+        },
+        {
+          "url": "https://scite.ai/reports/some-simple-effective-approximations-to-vRppp4",
+          "text": "Some Simple Effective Approximations to the 2-Poisson Model for Probabilistic Weighted Retrieval"
+        },
+        {
+          "url": "https://arxiv.org/pdf/1608.01573",
+          "text": "Local Term Weight Models from Power Transformations: Development of   BM25IR: A Best Match Model based on Inverse Regression"
+        },
+        {
+          "url": "https://arxiv.org/pdf/1502.00804",
+          "text": "A Polya Urn Document Language Model for Improved Information Retrieval"
+        },
+        {
+          "url": "https://link.springer.com/chapter/10.1007/978-1-4471-2099-5_24",
+          "text": "Some Simple Effective Approximations to the 2-Poisson Model for Probabilistic Weighted Retrieval | Springer Nature Link"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2303.11648",
+          "text": "Improving Content Retrievability in Search with Controllable Query   Generation"
+        },
+        {
+          "url": "https://dl.acm.org/doi/10.5555/188490.188561",
+          "text": "Some simple effective approximations to the 2-Poisson model for probabilistic weighted retrieval | Proceedings of the 17th annual international ACM SIGIR conference on Research and development in information retrieval"
+        },
+        {
+          "url": "https://www.academia.edu/12720255/The_Probabilistic_Relevance_Framework_BM25_and_Beyond",
+          "text": "(PDF) The Probabilistic Relevance Framework: BM25 and Beyond"
+        },
+        {
+          "url": "https://books.google.com/books/about/The_Probabilistic_Relevance_Framework.html?id=yK6HxUEaZ9gC",
+          "text": "The Probabilistic Relevance Framework: BM25 and Beyond - Stephen Robertson, Hugo Zaragoza - Google Books"
+        },
+        {
+          "url": "https://ir.webis.de/anthology/2009.ftir_journal-ir0anthology0volumeA3A4.0/",
+          "text": "The Probabilistic Relevance Framework: BM25 and Beyond - IR Anthology"
+        },
+        {
+          "url": "https://dl.acm.org/doi/abs/10.1561/1500000019",
+          "text": "The Probabilistic Relevance Framework: BM25 and Beyond: Foundations and Trends in Information Retrieval: Vol 3, No 4"
+        },
+        {
+          "url": "https://scispace.com/pdf/the-probabilistic-relevance-framework-290mics7xy.pdf",
+          "text": "The Probabilistic Relevance Framework: BM25 and Beyond"
+        },
+        {
+          "url": "https://www.nowpublishers.com/article/Details/INR-019",
+          "text": "The Probabilistic Relevance Framework: BM25 and Beyond | Foundations and Trends in Information Retrieval | Emerald Publishing"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2405.02714",
+          "text": "Beyond Relevance: Evaluate and Improve Retrievers on Perspective   Awareness"
+        },
+        {
+          "url": "https://www.researchgate.net/publication/220613776_The_Probabilistic_Relevance_Framework_BM25_and_Beyond",
+          "text": "(PDF) The Probabilistic Relevance Framework: BM25 and Beyond"
+        },
+        {
+          "url": "https://www.semanticscholar.org/paper/The-Probabilistic-Relevance-Framework:-BM25-and-Robertson-Zaragoza/47ced790a563344efae66588b5fb7fe6cca29ed3",
+          "text": "[PDF] The Probabilistic Relevance Framework: BM25 and Beyond | Semantic Scholar"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2303.13416",
+          "text": "A Unified Framework for Learned Sparse Retrieval"
+        },
+        {
+          "url": "http://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf",
+          "text": "I apologize, but I cannot extract the requested information from the provided content. The text appears to be raw PDF binary data and embedded font definitions rather than readable document text about BM25 or probabilistic relevance frameworks.\n\nTo properly address your request, I would need:\n\n1. **Readable text content** — The current input consists of PDF structural elements, font objects, and compressed streams that don't render as human-readable prose about BM25.\n\n2. **Clear source identification** — You've asked for quotes with page/section numbers, but the PDF metadata shown doesn't reveal which document this is (likely a research paper on information retrieval, but unconfirmed).\n\n**Recommendation:** Please provide either:\n- The extracted plain text from the PDF, or\n- A direct link to the source document, or\n- The document title and authors so I can reference standard BM25 literature\n\nIf you're seeking information on BM25, I can discuss it from standard IR textbooks and papers (Robertson & Zaragoza, 2009; Croft, Metzler & Strohman, 2015), but I should confirm those are your intended sources first.\n\n[Binary content (application/pdf, 414.1KB) also saved to [REDACTED_PATH]"
+        },
+        {
+          "url": "https://www.staff.city.ac.uk/~sbrp622/papers/ipm00.pdf",
+          "text": "okapi at trec"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2010.06467",
+          "text": "Pretrained Transformers for Text Ranking: BERT and Beyond"
+        },
+        {
+          "url": "https://www.semanticscholar.org/paper/Okapi-at-TREC-3-Robertson-Walker/fa8ffa9f8d8367b987845ae88f2adcac2689f110",
+          "text": "Okapi at TREC-3 | Semantic Scholar"
+        },
+        {
+          "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7269545",
+          "text": "Method for retrieving answers from an information retrieval system"
+        },
+        {
+          "url": "https://www.cs.cornell.edu/courses/cs630/2006sp/guides/lec6.kr.pdf",
+          "text": "CS630 Lecture 6: The BM25/Okapi method Date: February 14th, 2006"
+        },
+        {
+          "url": "https://arxiv.org/pdf/0704.3359",
+          "text": "Direct Optimization of Ranking Measures"
+        },
+        {
+          "url": "https://www.microsoft.com/en-us/research/publication/okapi-at-trec-3/",
+          "text": "Okapi at TREC-3 - Microsoft Research"
+        },
+        {
+          "url": "https://www.researchgate.net/publication/221037764_Okapi_at_TREC-3",
+          "text": "(PDF) Okapi at TREC-3."
+        },
+        {
+          "url": "http://www.minerazzi.com/tutorials/okapi-bm25-model.pdf",
+          "text": "A Tutorial on OKAPI BM25 Model"
+        }
+      ],
+      "final_answer": "## Sources consulted (primary/author-written)\n\n- Robertson & Zaragoza, *The Probabilistic Relevance Framework: BM25 and Beyond*, FnTIR 3(4), 2009 — the authors' own retrospective monograph: [staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf](http://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf)\n- Robertson, Walker, Jones, Hancock-Beaulieu, Gatford, *Okapi at TREC-2* (full text): [trec.nist.gov/pubs/trec2/papers/txt/02.txt](https://trec.nist.gov/pubs/trec2/papers/txt/02.txt)\n- Same authors, *Okapi at TREC-3* (the paper that names BM25): [microsoft.com/en-us/research/publication/okapi-at-trec-3/](https://www.microsoft.com/en-us/research/publication/okapi-at-trec-3/) (PDF: [okapi_trec3.pdf](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec3.pdf)); proceedings listing: [trec.nist.gov/pubs/trec3/t3_proceedings.html](https://trec.nist.gov/pubs/trec3/t3_proceedings.html)\n- Robertson & Sparck Jones, *Simple, proven approaches to text retrieval*, Cambridge UCAM-CL-TR-356: [cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf)\n- Robertson & Walker, SIGIR '94, *Some simple effective approximations to the 2-Poisson model* (metadata/abstract only — see caveats): [ir.webis.de/anthology/1994.sigirconf_conference-94.24/](https://ir.webis.de/anthology/1994.sigirconf_conference-94.24/)\n\n**Method caveat (affects confidence in quotes):** the PDFs would not render as text directly; I read them through a text-extraction path, and formula rendering from the TREC‑3 PDF came back visibly garbled. Prose quotes below are reliable enough to rely on; the *numeric* values I attribute to TREC‑3 specifically should be spot-checked against the PDF before you quote them anywhere.\n\n---\n\n## 1. What problem BM25 solves — supported\n\n**Supported.** BM25 is a ranking function within the Probabilistic Relevance Framework, whose goal is to rank documents by estimated probability of relevance when relevance itself is unobservable. The governing principle the authors invoke is the Probability Ranking Principle: *\"If retrieved documents are ordered by decreasing probability of relevance on the data available, then the system's effectiveness is the best that can be obtained for the data\"* (§2.3, [foundations_bm25_review.pdf](http://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf)).\n\n**Supported.** The concrete gap BM25 fills is that the earlier Binary Independence Model used only presence/absence of terms. The SIGIR '94 abstract states the paper's aim as incorporating *within-document term frequency, document length, and within-query term frequency* into probabilistic weighting, tested on TREC, showing *\"considerable performance improvements over simple inverse collection frequency weighting\"* ([IR Anthology record](https://ir.webis.de/anthology/1994.sigirconf_conference-94.24/)). So: BM25 = how to fold tf, document length, and query tf into a relevance-weighting scheme without abandoning the probabilistic derivation.\n\n**Supported.** The practical framing in the authors' tech report is plainer: produce a *\"matching score for the particular document against the request\"* by combining collection frequency, term frequency and document length evidence ([TR-356](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf)).\n\n## 2. Core scoring factors — supported\n\nFrom §3.4 of the monograph ([source](http://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf)), BM25 is a per-term product summed over query terms:\n\n**(a) The RSJ / relevance weight (the \"IDF-like\" factor).** With relevance judgements, `w_RSJ = log[(r+0.5)(N−R−n+r+0.5) / ((n−r+0.5)(R−r+0.5))]`; with no relevance information it reduces to the IDF approximation `log[(N−n+0.5)/(n+0.5)]`.\n\n**(b) Term-frequency saturation.** The factor `tf'/(k1 + tf')`. The authors' description: it *\"increases monotonically with tf\"* but *\"asymptotically approaches a maximum value as tf → ∞\"* (§3.4.2). Crucially, this is not an ad-hoc damping choice — it is derived as an approximation to the **2-Poisson / eliteness** model: eliteness is a hidden binary property of whether a document is \"about\" the term's concept; term frequency is Poisson with a higher mean for elite documents (λ₁ > λ₀), and tf is conditionally independent of relevance given eliteness (§3.4). The saturating curve approaches the BIM weight in the limit.\n\n**(c) Soft document-length normalisation.** `tf' = tf / B`, where `B = (1−b) + b·(dl/avdl)`. The authors justify the interpolation by two competing hypotheses (§3.4.5): the **verbosity hypothesis** (some authors are simply wordier, saying the same thing in more words → normalise) and the **scope hypothesis** (some documents cover more ground, effectively concatenated documents → do not normalise). Because real length variation is *\"a combination\"* of both, they adopt *\"soft normalisation\"* via b.\n\n**(d) Query term frequency.** A separate saturating factor `qtf/(k3 + qtf)`, relevant for long queries.\n\nHistorical note, **supported**: this is a merger of two earlier functions. In *Okapi at TREC-2*, BM11 was the length-normalised variant and BM15 the version with an additive length correction ([TREC-2 text](https://trec.nist.gov/pubs/trec2/papers/txt/02.txt)); the TREC-3 paper describes BM25 as combining them, with **b = 1 giving BM11 and b = 0 giving BM15** ([Okapi at TREC-3](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec3.pdf)).\n\n## 3. Parameter interpretations the authors actually endorse\n\n**k1 — controls tf saturation rate. Supported.**\n- Monograph §3.4.4: *\"for high k, increments in tf continue to contribute significantly to the score, whereas for low k, the additional contribution … tails off very rapidly.\"*\n- TREC-2 states it *\"determines the strength of the relationship between weight and tf,\"* where *\"a large constant will make for a relation close to proportionality … a small k1 will mean that tf has relatively little effect\"* ([TREC-2](https://trec.nist.gov/pubs/trec2/papers/txt/02.txt)).\n- TR-356: K1 *\"modifies the extent of the influence of term frequency\"*; **K1 = 0 eliminates the tf contribution entirely** (score collapses to the binary/RSJ weight), and the design ensures *\"doubling TF does not double the weight\"* ([TR-356](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf)).\n- Values endorsed by the authors: monograph §3.5 says *\"values such as 1.2 < k₁ < 2 are reasonably good in many circumstances\"*; TR-356 recommends K1 = 2 as a starting value found effective in TREC.\n\n**b — strength of length normalisation, 0 ≤ b ≤ 1. Supported.**\n- Monograph: *\"setting b = 1 will perform full document-length normalisation, while b = 0 will switch normalisation off.\"*\n- The *semantic* reading is the authors' own: TR-356 says b = 1 corresponds to assuming documents are long because of repetition (verbosity), b = 0 to assuming they are long because they cover multiple topics (scope) ([TR-356](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf)).\n- Values: monograph §3.5 gives *\"0.5 < b < 0.8\"* as generally reasonable; TR-356 recommends b = .75.\n\n**k3 — query-term-frequency saturation. Supported, and the authors effectively deprecate it.** TREC-2 reports that *\"a large value proved best overall, giving the limiting case … in which the term weight is simply multiplied by qtf\"* ([TREC-2](https://trec.nist.gov/pubs/trec2/papers/txt/02.txt)); the monograph concurs that the *\"saturation effect for qtf was unimportant, leading to a formula which was linear in qtf.\"*\n\n**k2 — a document-length correction factor in the older BM11/BM15 line. Supported, and abandoned.** TREC-2 reports values *\"in the range 0.0–0.3 appear about right for the TREC databases\"* ([TREC-2](https://trec.nist.gov/pubs/trec2/papers/txt/02.txt)); TREC-3's best configurations set k2 = 0.0, and k2 does not appear at all in the monograph's BM25.\n\n**The authors' own limiting caveat — supported and important.** Monograph §3.5: *\"the model provides no guidance on how these should be set. This may be regarded as a limitation\"* — i.e. the parameters are empirical, **not** derived from the probabilistic theory. They offset this by noting BM25 is *\"quite robust with respect to their parameters, meaning that small changes … do not produce large changes in accuracy.\"* They also warn (§2.5) that the rank-preserving derivation *\"is not easily reversible to give us an explicit estimate\"* of the probability of relevance, so BM25 scores are not calibrated probabilities.\n\n---\n\n## 4. Inference, disagreement, uncertainty, weak evidence\n\n**My inference, not stated as such in these sources:** TR-356's formula carries a `(K1+1)` numerator that the monograph's BM25 form omits. Since that factor is constant across documents and terms, the two are rank-equivalent; only absolute score magnitudes differ. The authors do not, in what I read, explicitly flag this — treat the equivalence as my reading, though it is arithmetically straightforward.\n\n**Mild tension in stated k1 values, not a substantive disagreement:** TR-356 recommends K1 = 2, the monograph gives 1.2 < k1 < 2, and TREC-3 tables use k1 = 2.0. All are author-endorsed; the monograph's range is the later and broader statement, and both explicitly say optima depend on collection and query type.\n\n**Weak evidence / do not attribute to the original papers:** the ubiquitous \"defaults k1 = 1.2, b = 0.75.\" b = 0.75 *is* author-recommended (TR-356). The k1 = 1.2 default appeared in my search results only via summaries of later systems and secondary write-ups, not from a primary Robertson/Walker statement I verified. Calling 1.2 an *original* default is unsupported by what I read.\n\n**Uncertain:** exact numeric parameter settings in *Okapi at TREC-3*. My extraction returned mangled text (e.g. it attached \"around 0.75\" to k1, which is almost certainly b, and it mis-rendered the formula). The qualitative statements from that paper — that BM25 interpolates BM11/BM15 via b, that k2 = 0 in best runs, that k3 = 1 was implemented as plain qtf — are consistent with TREC-2 and the monograph and I regard them as sound; the digits are not.\n\n**No good evidence found (not pursued further given budget):** I did not verify from primary text why the function is numbered \"25\" (the \"BM\" = Best Match series numbering), nor could I read the SIGIR '94 paper's full derivation — only its abstract. The monograph is the authors' own restatement of that derivation and is the better citation for it anyway.\n\n**Not a disagreement, but worth noting:** the framework's *unsupervised* IDF form is a special case of the RSJ weight when no relevance judgements exist. Presenting BM25 as \"TF-IDF with saturation\" is a post-hoc description; the authors derive it from eliteness/2-Poisson, and the IDF resemblance is a consequence, not the premise."
+    }
+  ]
+}

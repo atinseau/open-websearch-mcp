@@ -1,0 +1,15 @@
+{
+  "accepted_claim_ids": [
+    "claim_jprs_punycode_dns",
+    "claim_whatwg_host_parse_ascii",
+    "claim_whatwg_uts46_toascii",
+    "claim_whatwg_ascii_serialize_unicode_display",
+    "claim_chromium_ascii_dns"
+  ],
+  "rejected_claims": [
+    {
+      "id": "claim_chromium_display_policy",
+      "reason": "Substance étayée (décision par label Unicode/Punycode, mélange de scripts, caractères invisibles, confusables), mais le motif de notation est invalide car trop étroit : il exige sept jetons lexicaux conjoints, dont « ToUnicode », qui n'apparaît dans aucun extrait réellement récupéré (seule la reformulation Codex, non sourcée par une page ouverte, le mentionne), et une énumération de détail (不可視文字|invisible, confusable). Une réponse correcte et complète sur la politique d'affichage de Chrome échouerait sur cette conjonction, ce qui rend la notation lexicale non fiable. Le fait Chromium essentiel reste couvert par claim_chromium_ascii_dns."
+    }
+  ]
+}

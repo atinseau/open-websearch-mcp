@@ -1,0 +1,9 @@
+{
+  "accepted_claim_ids": ["c1", "c2", "c3", "c5", "c6", "c7", "c8"],
+  "rejected_claims": [
+    {
+      "id": "c4",
+      "reason": "The claim's leading assertion — that RFC 9309 says the `allow` rule should be used when an `allow` and a `disallow` rule are equivalent — is supported only by the Codex run's own narrative prose, whose tool payloads were never exposed (opened_urls is empty; all three web_search results are recorded as unavailable). The Claude run, which performed multiple real fetches of Section 2.2.2 from rfc9309.txt, rfc9309.html, and the datatracker rendering, states explicitly that the retrieved text contains no tie-break rule for equal-octet allow/disallow matches and advises treating 'allow wins ties' as not an RFC 9309 requirement absent independent confirmation. Accepting the claim would encode a contested, unverified normative rule, and because required_concepts includes 'equivalent-rules', it would penalize responses that faithfully report the verified 'most specific match / most octets' precedence without the tie-break. The claim's other two components (default-allow when no rule matches or the group has no rules, and `/robots.txt` being implicitly allowed) are well supported by both runs and could be re-scoped into a separate bounded claim with patterns such as 'URI is allowed' and '/robots\\.txt'."
+    }
+  ]
+}

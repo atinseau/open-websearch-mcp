@@ -1,0 +1,124 @@
+{
+  "duration_api_ms": 71673,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.3439975,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 19042,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 5567,
+    "output_tokens_details": {
+      "thinking_tokens": 4386
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 19042,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 5567,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 19042,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 19042
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 13849,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.013934,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 5567,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 19042,
+      "webSearchRequests": 0,
+      "costUSD": 0.3300635,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 2,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"claim_1\",\"claim_2\",\"claim_3\",\"claim_4\",\"claim_6\",\"claim_7\",\"claim_8\"],\"rejected_claims\":[{\"id\":\"claim_5\",\"reason\":\"Performance figures are partly contradicted by the fetched release-post evidence and the grading patterns are exact-string matches on those disputed numbers. The independently fetched summary of https://bun.com/blog/bun-v1.4 reports HTTP-server memory reductions of 13-48% (Fastify -48%, Express -46%), which conflicts with 'up to 35% lower memory usage', and reports Linux startup as '2x faster', which the required pattern '50% faster startup on Linux' would not match in any faithful answer. Only '5x lower idle CPU usage' is corroborated, leaving the claim as written unsupported and lexically ungradeable.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": [
+      "claim_1",
+      "claim_2",
+      "claim_3",
+      "claim_4",
+      "claim_6",
+      "claim_7",
+      "claim_8"
+    ],
+    "rejected_claims": [
+      {
+        "id": "claim_5",
+        "reason": "Performance figures are partly contradicted by the fetched release-post evidence and the grading patterns are exact-string matches on those disputed numbers. The independently fetched summary of https://bun.com/blog/bun-v1.4 reports HTTP-server memory reductions of 13-48% (Fastify -48%, Express -46%), which conflicts with 'up to 35% lower memory usage', and reports Linux startup as '2x faster', which the required pattern '50% faster startup on Linux' would not match in any faithful answer. Only '5x lower idle CPU usage' is corroborated, leaving the claim as written unsupported and lexically ungradeable."
+      }
+    ]
+  },
+  "ttft_ms": 57013,
+  "type": "result",
+  "duration_ms": 70430,
+  "uuid": "[REDACTED]",
+  "ttft_stream_ms": 918,
+  "time_to_request_ms": 12,
+  "queued_turn_count": 0
+}

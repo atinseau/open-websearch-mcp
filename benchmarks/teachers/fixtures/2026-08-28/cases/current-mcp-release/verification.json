@@ -1,0 +1,25 @@
+{
+  "accepted_claim_ids": ["claim_1"],
+  "rejected_claims": [
+    {
+      "id": "claim_2",
+      "reason": "grading pattern matches no teacher-run evidence: changes since\\s+2025-11-25"
+    },
+    {
+      "id": "claim_3",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "claim_4",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "claim_5",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "claim_6",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    }
+  ]
+}

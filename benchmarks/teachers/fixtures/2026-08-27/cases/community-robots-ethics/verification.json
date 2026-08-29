@@ -1,0 +1,17 @@
+{
+  "accepted_claim_ids": [
+    "claim_rfc9309_advisory",
+    "claim_google_limits",
+    "claim_publishers_operators_mixed_language"
+  ],
+  "rejected_claims": [
+    {
+      "id": "claim_w3c_separate_rights_protocol",
+      "reason": "Rests entirely on Codex self-quotation with no attestation: the Codex run exposed no tool payloads and opened no URLs, and its evidence_passages are the final answer duplicated under each URL, so the quoted strings ('complementary solution', 'remains subject to interpretation') are unverifiable and are attributed to a W3C Community Group landing page (w3.org/community/tdmrep/) that is an implausible host for that prose; nothing in the Claude run corroborates them. The claim text also generalizes a narrow statement about using robots.txt as a search opt-in into a broad assertion that 'robots.txt complementarity remains interpretive', an interpretive leap requiring unstated context, and it conflates two distinct documents (the CG-FINAL report and the CG status page) into one position. The pattern 'not a W3C Standard' is near-boilerplate status text that could match answers not making this claim."
+    },
+    {
+      "id": "claim_ietf_edrlab_legal_signal",
+      "reason": "The acceptable_patterns bind grading to an unverifiable, source-specific legal quotation ('AI-Pref signal in robots.txt ... logically sufficient to express a reservation of rights' under EU CDSM Article 4) attributed to an EDRLab blog post that no tool result, opened URL, or passage in either run attests to; the Codex evidence_passages are only the final answer restated. That attribution also overstates against the one directly fetched AIPREF text in the bundle, where draft-ietf-aipref-vocab says the spec does not 'address technical, legal, contractual, or other mechanisms that might create a stronger requirement' and that a recipient 'has a choice whether to follow those preferences'. Although the claim's summary text and the first pattern (robots.txt carrying 'usage preferences' via an update to RFC 9309) are supportable, the disjunctive pattern set would credit the unsupported rights-reservation assertion on its own."
+    }
+  ]
+}

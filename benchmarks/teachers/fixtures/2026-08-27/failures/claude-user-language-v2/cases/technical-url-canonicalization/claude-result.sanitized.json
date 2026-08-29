@@ -1,0 +1,123 @@
+{
+  "is_error": false,
+  "duration_api_ms": 47514,
+  "num_turns": 2,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.36264749999999996,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 25638,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 3509,
+    "output_tokens_details": {
+      "thinking_tokens": 2001
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 25638,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 3509,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 25638,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 25638
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 17989,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.018074,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 3509,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 25638,
+      "webSearchRequests": 0,
+      "costUSD": 0.3445735,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"claim_scheme_lowercased\",\"claim_default_https_port\",\"claim_dot_segments\",\"claim_fragment_percent_encoding\"],\"rejected_claims\":[{\"id\":\"claim_unicode_host_idna\",\"reason\":\"Le mécanisme général (percent-decoding, décodage UTF-8, domain parser / Unicode IDNA) est étayé par les extraits récupérés, mais la claim s'appuie sur des éléments non vérifiables dans les preuves : la source https://www.unicode.org/reports/tr46/tr46-35.html est une URL versionnée n'apparaissant que dans la réponse auto-citée de Codex (aucun payload d'outil, aucune page ouverte), et les exemples `xn--53h.example` / `xn--fa-hia.example` ne figurent dans aucun extrait réellement récupéré. De plus, l'un des acceptable_patterns exige littéralement ces exemples, ce qui constitue un motif de notation trop étroit : une réponse correcte à la question posée n'a pas à citer ces cas particuliers.\"},{\"id\":\"claim_path_percent20_preserved\",\"reason\":\"L'exemple `file:///ada/Analytical%20Engine/README.md` et la « parsed-components table » ne sont corroborés par aucun extrait de page effectivement récupéré ; l'exemple porte en outre sur le schéma `file:` et non sur une URL HTTPS. L'extrait réellement récupéré du path state indique l'usage du fragment percent-encode set, ce qui entre en tension avec la formulation de la claim. Enfin, le volet « %20 reste encodé plutôt que décodé » relève de l'inférence explicitement signalée comme non explicitement normative dans les preuves, et recoupe une affirmation déjà présente dans rejected_claims. Le pattern requis dépend de l'exemple non vérifié, donc trop étroit.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": [
+      "claim_scheme_lowercased",
+      "claim_default_https_port",
+      "claim_dot_segments",
+      "claim_fragment_percent_encoding"
+    ],
+    "rejected_claims": [
+      {
+        "id": "claim_unicode_host_idna",
+        "reason": "Le mécanisme général (percent-decoding, décodage UTF-8, domain parser / Unicode IDNA) est étayé par les extraits récupérés, mais la claim s'appuie sur des éléments non vérifiables dans les preuves : la source https://www.unicode.org/reports/tr46/tr46-35.html est une URL versionnée n'apparaissant que dans la réponse auto-citée de Codex (aucun payload d'outil, aucune page ouverte), et les exemples `xn--53h.example` / `xn--fa-hia.example` ne figurent dans aucun extrait réellement récupéré. De plus, l'un des acceptable_patterns exige littéralement ces exemples, ce qui constitue un motif de notation trop étroit : une réponse correcte à la question posée n'a pas à citer ces cas particuliers."
+      },
+      {
+        "id": "claim_path_percent20_preserved",
+        "reason": "L'exemple `file:///ada/Analytical%20Engine/README.md` et la « parsed-components table » ne sont corroborés par aucun extrait de page effectivement récupéré ; l'exemple porte en outre sur le schéma `file:` et non sur une URL HTTPS. L'extrait réellement récupéré du path state indique l'usage du fragment percent-encode set, ce qui entre en tension avec la formulation de la claim. Enfin, le volet « %20 reste encodé plutôt que décodé » relève de l'inférence explicitement signalée comme non explicitement normative dans les preuves, et recoupe une affirmation déjà présente dans rejected_claims. Le pattern requis dépend de l'exemple non vérifié, donc trop étroit."
+      }
+    ]
+  },
+  "ttft_ms": 27801,
+  "ttft_stream_ms": 1487,
+  "time_to_request_ms": 20,
+  "type": "result",
+  "duration_ms": 46066,
+  "uuid": "[REDACTED]",
+  "queued_turn_count": 0
+}

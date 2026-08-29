@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>SPK-002 deterministic fixture</title>
+  </head>
+  <body>
+    <main id="fixture-root">Loading fixture JavaScript.</main>
+    <script>
+      document.querySelector("#fixture-root").innerHTML = `
+        <h1>Rendered fixture heading</h1>
+        <p id="rendered-text">The fixture was rendered by JavaScript.</p>
+        <nav>
+          <a href="/fixture-link">Fixture relative link</a>
+          <a href="https://example.com/">Example external link</a>
+          <a href="https://bun.sh/">Bun external link</a>
+        </nav>`;
+      document.body.dataset.rendered = "true";
+    </script>
+  </body>
+</html>

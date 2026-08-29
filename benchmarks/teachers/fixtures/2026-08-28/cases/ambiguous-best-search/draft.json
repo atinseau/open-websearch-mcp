@@ -1,0 +1,157 @@
+{
+  "claims": [
+    {
+      "id": "claim_no_universal_best",
+      "text": "The supplied evidence supports that there is no objectively best Web search engine for every kind of research question today.",
+      "required_concepts": ["no universal best", "depends on task"],
+      "acceptable_patterns": [
+        "no objectively best Web search engine",
+        "no objectively best.*every kind of research question",
+        "there is no objectively best.*today",
+        "trade-?off view, not a universal winner"
+      ],
+      "sources": [
+        {
+          "url": "https://wires.onlinelibrary.wiley.com/doi/10.1002/widm.1541",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://link.springer.com/chapter/10.1007/978-3-642-37688-7_9",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://arxiv.org/abs/1405.2210",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://arxiv.org/pdf/2512.03793",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "claim_market_share_not_proof",
+      "text": "The supplied evidence says StatCounter reported worldwide search-engine market share for July 2026 as Google 91.31%, Bing 4.47%, and DuckDuckGo 0.65%, and that this shows dominance in use rather than universal superiority for all research tasks.",
+      "required_concepts": ["market share", "not universal superiority"],
+      "acceptable_patterns": [
+        "Google 91\\.31%",
+        "Bing 4\\.47%",
+        "DuckDuckGo 0\\.65%",
+        "dominance in use, not universal superiority"
+      ],
+      "sources": [
+        {
+          "url": "https://gs.statcounter.com/search-engine-market-share",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.8
+    },
+    {
+      "id": "claim_ddg_bing_sources",
+      "text": "The supplied evidence says DuckDuckGo states that its traditional links and images are largely sourced from Bing, while DuckDuckGo also maintains DuckDuckBot and many indexes.",
+      "required_concepts": ["DuckDuckGo", "Bing sourcing"],
+      "acceptable_patterns": [
+        "traditional links and images.*largely sourced from Bing",
+        "DuckDuckBot",
+        "many indexes"
+      ],
+      "sources": [
+        {
+          "url": "https://duckduckgo.com/duckduckgo-help-pages/results/sources",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.75
+    },
+    {
+      "id": "claim_brave_vendor_independent",
+      "text": "The supplied evidence says Brave claims Brave Search is powered by a completely independent index of the Web and fetches millions of webpages every day, while noting this is a vendor claim rather than an independent benchmark.",
+      "required_concepts": ["Brave", "independent index", "vendor claim"],
+      "acceptable_patterns": [
+        "completely independent index of the Web",
+        "millions of webpages every day",
+        "vendor claim"
+      ],
+      "sources": [
+        {
+          "url": "https://brave.com/search/api/",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.65
+    },
+    {
+      "id": "claim_specialized_systems",
+      "text": "The supplied evidence says some research tasks use specialized search systems instead of a general Web engine, including Google Scholar for scholarly literature and PubMed for biomedical and life-sciences literature.",
+      "required_concepts": ["specialized systems", "Google Scholar", "PubMed"],
+      "acceptable_patterns": [
+        "specialized search systems",
+        "Google Scholar.*scholarly literature",
+        "PubMed.*biomedical and life-?sciences literature"
+      ],
+      "sources": [
+        {
+          "url": "https://scholar.google.com/intl/en/scholar/about.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://pubmed.ncbi.nlm.nih.gov/about/",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.8
+    },
+    {
+      "id": "claim_studies_different_winners",
+      "text": "The supplied evidence says different studies identify different winners under different metrics, including Google outperforming Bing overall in one representative-query study and Bing performing best for coding-advice search in a 2025 Python-query study.",
+      "required_concepts": ["different winners", "Google vs Bing", "coding advice"],
+      "acceptable_patterns": [
+        "Google outperformed Bing overall",
+        "Bing performed best",
+        "1,467 Python queries",
+        "different winners under different metrics"
+      ],
+      "sources": [
+        {
+          "url": "https://arxiv.org/abs/1405.2210",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://arxiv.org/pdf/2512.03793",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.9
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Google is objectively the best Web search engine for every research question today.",
+      "reason": "Contradicted by the supplied final answer, which explicitly says there is no objectively best Web search engine for every kind of research question today."
+    },
+    {
+      "text": "Brave Search is proven by independent benchmarks to be the best broad research engine.",
+      "reason": "The supplied evidence only presents Brave's own vendor claim about an independent index and explicitly says this is not an independent benchmark."
+    },
+    {
+      "text": "DuckDuckGo has a fully independent general Web index for its traditional links and images.",
+      "reason": "The supplied evidence says DuckDuckGo's traditional links and images are largely sourced from Bing."
+    },
+    {
+      "text": "Market-share dominance proves universal research superiority.",
+      "reason": "The supplied evidence explicitly says the market-share figures show dominance in use, not universal superiority in all research tasks."
+    },
+    {
+      "text": "One benchmark covers every query type, language, geography, domain, and success metric across today's major search engines.",
+      "reason": "The supplied evidence explicitly says it did not find a credible benchmark covering every query type, language, geography, domain, and success metric."
+    }
+  ]
+}

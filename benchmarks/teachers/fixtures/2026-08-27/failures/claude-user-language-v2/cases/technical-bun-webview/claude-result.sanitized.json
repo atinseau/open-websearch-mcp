@@ -1,0 +1,128 @@
+{
+  "is_error": false,
+  "duration_api_ms": 54736,
+  "num_turns": 2,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.294433,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 17367,
+    "cache_read_input_tokens": 0,
+    "output_tokens": 4395,
+    "output_tokens_details": {
+      "thinking_tokens": 2282
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 17367,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 4395,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 17367,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 17367
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 10788,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.010878,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 4395,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 17367,
+      "webSearchRequests": 0,
+      "costUSD": 0.283555,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"claim_explicit_ws_connect\",\"claim_autodetect_running_browser\",\"claim_enable_remote_debugging\",\"claim_close_semantics\",\"claim_closeall_semantics\"],\"rejected_claims\":[{\"id\":\"claim_url_false_and_no_fallback\",\"reason\":\"Claim composite dont seule la partie `url: false` (« skip auto-detect ») est corroborée par un extrait fetché. Le « forces Bun to spawn a fresh headless Chrome » et le « does not fall back to spawning… instead, it throws » ne reposent que sur la reformulation auto-générée du run Codex (aucune opened_url) et durcissent une preuve contradictoire : l'extrait WebFetch de bun.com/docs/runtime/webview indique au contraire « the WebSocket connect fails and Bun transparently falls back to spawning its own Chrome ».\"},{\"id\":\"claim_path_argv_spawn_mode\",\"reason\":\"Aucun extrait de documentation récupéré ne mentionne `path` ni `argv`, ni la contrainte d'incompatibilité avec `url: \\\"ws://...\\\"`. Assertion présente uniquement dans la reformulation Codex sans citation d'ancrage : risque de fait inventé, non vérifiable à partir des preuves fournies.\"},{\"id\":\"claim_lifecycle_operations_list\",\"reason\":\"L'exhaustivité affirmée (les opérations de cycle de vie documentées « sont » close() et closeAll()) est directement contredite par l'extrait WebFetch de la même page, qui liste sous « Lifecycle methods/operations » : navigate(url), goBack(), goForward(), reload(), close(), Symbol.dispose/asyncDispose et WebView.closeAll(). De plus, le pattern « explicitly documented lifecycle operations » impose une tournure de prose spécifique, trop étroite pour une notation lexicale fiable.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": [
+      "claim_explicit_ws_connect",
+      "claim_autodetect_running_browser",
+      "claim_enable_remote_debugging",
+      "claim_close_semantics",
+      "claim_closeall_semantics"
+    ],
+    "rejected_claims": [
+      {
+        "id": "claim_url_false_and_no_fallback",
+        "reason": "Claim composite dont seule la partie `url: false` (« skip auto-detect ») est corroborée par un extrait fetché. Le « forces Bun to spawn a fresh headless Chrome » et le « does not fall back to spawning… instead, it throws » ne reposent que sur la reformulation auto-générée du run Codex (aucune opened_url) et durcissent une preuve contradictoire : l'extrait WebFetch de bun.com/docs/runtime/webview indique au contraire « the WebSocket connect fails and Bun transparently falls back to spawning its own Chrome »."
+      },
+      {
+        "id": "claim_path_argv_spawn_mode",
+        "reason": "Aucun extrait de documentation récupéré ne mentionne `path` ni `argv`, ni la contrainte d'incompatibilité avec `url: \"ws://...\"`. Assertion présente uniquement dans la reformulation Codex sans citation d'ancrage : risque de fait inventé, non vérifiable à partir des preuves fournies."
+      },
+      {
+        "id": "claim_lifecycle_operations_list",
+        "reason": "L'exhaustivité affirmée (les opérations de cycle de vie documentées « sont » close() et closeAll()) est directement contredite par l'extrait WebFetch de la même page, qui liste sous « Lifecycle methods/operations » : navigate(url), goBack(), goForward(), reload(), close(), Symbol.dispose/asyncDispose et WebView.closeAll(). De plus, le pattern « explicitly documented lifecycle operations » impose une tournure de prose spécifique, trop étroite pour une notation lexicale fiable."
+      }
+    ]
+  },
+  "ttft_ms": 29296,
+  "ttft_stream_ms": 856,
+  "time_to_request_ms": 20,
+  "type": "result",
+  "duration_ms": 53360,
+  "uuid": "[REDACTED]",
+  "queued_turn_count": 0
+}

@@ -1,0 +1,25 @@
+{
+  "accepted_claim_ids": ["c5", "c6", "c8"],
+  "rejected_claims": [
+    {
+      "id": "c1",
+      "reason": "required concept is absent from teacher-run evidence: utf8_decode"
+    },
+    {
+      "id": "c2",
+      "reason": "required concept is absent from teacher-run evidence: ascii_lowercase"
+    },
+    {
+      "id": "c3",
+      "reason": "required concept is absent from teacher-run evidence: punycode_example"
+    },
+    {
+      "id": "c4",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "c7",
+      "reason": "required concept is absent from teacher-run evidence: hash"
+    }
+  ]
+}

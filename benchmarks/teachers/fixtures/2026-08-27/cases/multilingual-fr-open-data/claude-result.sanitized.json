@@ -1,0 +1,116 @@
+{
+  "duration_api_ms": 85728,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.6516905000000001,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 45223,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 6605,
+    "output_tokens_details": {
+      "thinking_tokens": 5363
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 45223,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 6605,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 45223,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 45223
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 33757,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.033867,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 6605,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 45223,
+      "webSearchRequests": 0,
+      "costUSD": 0.6178235000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 2,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"claim_1\",\"claim_2\",\"claim_3\",\"claim_4\",\"claim_5\",\"claim_6\"],\"rejected_claims\":[{\"id\":\"claim_7\",\"reason\":\"Grading patterns are invalid/overly narrow and the support is single-run and unverified. The alternatives 'ne sont pas librement réutilisables' and 'ne sont pas considérées publiques' are Codex paraphrases, not statutory wording: the CRPA text reads 'Ne sont pas considérées comme des informations publiques...', which fails both alternatives, so a correct answer would be graded wrong. Support is also weak: the Codex run never opened https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000032255212/2022-06-10 (opened_urls is empty) and its evidence_passages for that URL contain the duplicated final-answer text rather than section content; the Claude run only retrieved a partial, truncated L321-2 summary. The claim additionally bundles two distinct exclusion limbs (non-communicable documents and third-party IP rights) whose exact scope depends on unstated interpretation of the CRPA title, making it insufficiently deterministic for lexical grading.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": ["claim_1", "claim_2", "claim_3", "claim_4", "claim_5", "claim_6"],
+    "rejected_claims": [
+      {
+        "id": "claim_7",
+        "reason": "Grading patterns are invalid/overly narrow and the support is single-run and unverified. The alternatives 'ne sont pas librement réutilisables' and 'ne sont pas considérées publiques' are Codex paraphrases, not statutory wording: the CRPA text reads 'Ne sont pas considérées comme des informations publiques...', which fails both alternatives, so a correct answer would be graded wrong. Support is also weak: the Codex run never opened https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000032255212/2022-06-10 (opened_urls is empty) and its evidence_passages for that URL contain the duplicated final-answer text rather than section content; the Claude run only retrieved a partial, truncated L321-2 summary. The claim additionally bundles two distinct exclusion limbs (non-communicable documents and third-party IP rights) whose exact scope depends on unstated interpretation of the CRPA title, making it insufficiently deterministic for lexical grading."
+      }
+    ]
+  },
+  "ttft_ms": 69699,
+  "type": "result",
+  "duration_ms": 84000,
+  "uuid": "[REDACTED]",
+  "ttft_stream_ms": 1940,
+  "time_to_request_ms": 11,
+  "queued_turn_count": 0
+}

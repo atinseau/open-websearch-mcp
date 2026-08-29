@@ -1,0 +1,15 @@
+# Step 0012 - SPK-001 eighth review correction
+
+- Timestamp: `2026-08-28T02:10:54Z`
+- Attempt: `1`
+- Status: continue
+- Worktree / branch / base SHA / head SHA: `.worktree/spk-001-a1` / `agent/spk-001-a1` / `eb30c3a28554740a6512116d0b29521ed610c553` / `d2c1ce0` plus uncommitted corrections
+- OpenCode model / variant / session: `openai/gpt-5.6-sol` / default / `interactive-spk-001-a1`
+- Goal: close the seventh review's plural-sensitive-key, Claude result-correlation, nested server-tool/progress, atomic manifest publication, rollover-date, and Codex model-evidence findings
+- Completed work: matched explicit plural credential/session/account key forms without treating telemetry counters such as input_tokens as secrets; preserved a plain research `account` field while continuing to redact account IDs; tracked every Claude tool-use ID and rejected every unknown result ID, malformed or mismatched structured result, nested server-tool use, and forbidden progress event; published the manifest through a complete temporary file and same-filesystem rename; centralized strict calendar date parsing across capture, normalization, derivation, assembly, audit, refresh metadata, and lifecycle paths; required the captured Codex command's model to equal the normalized run model; and added adversarial coverage for plural secrets, mixed correlated/uncorrelated results, server tools, tool progress, legal research account fields, and rollover dates
+- Files changed: `benchmarks/teachers/**`, `docs/spikes/SPK-001/report.md`, `docs/orchestration/state.toml`, and this trace
+- Commands and outcomes: cwd `.worktree/spk-001-a1`, focused tests exited `0` with `20` tests / `99` assertions and clean type-aware lint/typecheck; same cwd, sealed audit exited `0` with `20` cases / `40` runs / `20` fixtures / `1,893` artifacts; same cwd, final teacher tests exited `0` with `21` tests / `100` assertions; same cwd, `bun run check` exited `0` with `56` tests / `224` assertions and valid orchestration
+- Decisions and reasons: plural sensitivity is enumerated by security-relevant key and suffix rather than singularizing every trailing `s`, which would incorrectly redact token-count telemetry; every result ID is correlated independently rather than accepting a whole message when one ID matches; a fully written manifest may safely become the seal in one rename, while a temporary partial file is never a seal; every entry point uses the same calendar-validating date primitive
+- Findings or blockers: the seventh Standards review found three high and three medium issues; the seventh Spec review found two high and one medium issue. All blocker/high findings are repaired; process timeout/output limits remain a non-spec operational medium and helper deduplication remains low priority
+- Remaining work: run fresh independent Standards and Spec reviews on the complete corrected diff; if zero blocker/high findings remain, record final review and prepare integration
+- Exact next action: run parallel Standards and Spec reviews against `eb30c3a28554740a6512116d0b29521ed610c553` using this trace and the sealed manifest as evidence

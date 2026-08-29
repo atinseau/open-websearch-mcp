@@ -1,0 +1,11 @@
+{
+  "accepted_claim_ids": [
+    "claim_current_revision",
+    "claim_previous_revision",
+    "claim_stateless_core",
+    "claim_per_request_meta",
+    "claim_server_discover",
+    "claim_subscriptions_listen"
+  ],
+  "rejected_claims": []
+}

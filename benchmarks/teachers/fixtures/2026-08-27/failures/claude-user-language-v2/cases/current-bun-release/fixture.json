@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "case_id": "current-bun-release",
+  "question": "What is the latest stable Bun release as of today, when was it published, and what are its most consequential changes according to official release sources?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim_latest_release",
+      "text": "The latest stable Bun release in the supplied official-source evidence is Bun v1.4.0, also referred to as Bun 1.4.",
+      "required_concepts": ["bun", "v1.4.0", "latest"],
+      "acceptable_patterns": ["\\bBun\\s+v?1\\.4(?:\\.0)?\\b", "\\blatest stable\\b|\\bLatest\\b"],
+      "sources": [
+        {
+          "url": "https://github.com/oven-sh/bun/releases/tag/bun-v1.4.0",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://bun.com/blog",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://github.com/oven-sh/bun/releases/tag/bun-v1.4.0",
+          "text": "The latest stable Bun release I found as of August 27, 2026 is Bun v1.4.0 (marketed as Bun 1.4). The official GitHub release page marks Bun v1.4 as “Latest”..."
+        },
+        {
+          "url": "https://bun.com/blog",
+          "text": "The latest stable Bun release I found as of August 27, 2026 is Bun v1.4.0 (marketed as Bun 1.4). ... the official Bun blog lists “Bun 1.4” as the latest release and shows “Install Bun v1.4.0.”"
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_current-bun-release",
+        "claude_run": "2026-08-27_claude_current-bun-release"
+      }
+    },
+    {
+      "id": "claim_publish_date",
+      "text": "According to the Bun 1.4 release post, Bun 1.4 was published on August 20, 2026.",
+      "required_concepts": ["publish_date", "august_20_2026", "bun_1.4"],
+      "acceptable_patterns": ["\\bAugust\\s+20,\\s+2026\\b", "\\breleased on August 20, 2026\\b"],
+      "sources": [
+        {
+          "url": "https://bun.com/blog/bun-v1.4",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://bun.com/blog/bun-v1.4",
+          "text": "It was published on August 20, 2026 according to the dated official release post for Bun 1.4."
+        },
+        {
+          "url": "https://bun.com/blog/bun-v1.4",
+          "text": "**Version & Date:** Bun 1.4 was released on August 20, 2026."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_current-bun-release",
+        "claude_run": "2026-08-27_claude_current-bun-release"
+      }
+    },
+    {
+      "id": "claim_rust_rewrite",
+      "text": "Bun 1.4 is described as the first Bun release written in Rust.",
+      "required_concepts": ["rust", "first_release"],
+      "acceptable_patterns": ["\\bwritten in Rust\\b", "\\bfirst release\\b"],
+      "sources": [
+        {
+          "url": "https://bun.com/blog/bun-v1.4",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://bun.com/blog/bun-v1.4",
+          "text": "Bun 1.4 is the first Bun release written in Rust; the release post says, “Bun is now written in Rust.”"
+        },
+        {
+          "url": "https://bun.com/blog/bun-v1.4",
+          "text": "\"Bun is now written in Rust - and this is the first release ...\""
+        }
+      ],
+      "weight": 0.93,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_current-bun-release",
+        "claude_run": "2026-08-27_claude_current-bun-release"
+      }
+    },
+    {
+      "id": "claim_node_compat",
+      "text": "The Bun 1.4 release highlights a major Node.js compatibility increase, including 1,517 newly passing tests from the Node.js test suite.",
+      "required_concepts": ["nodejs_compat", "1517_tests"],
+      "acceptable_patterns": [
+        "\\b1,517\\b",
+        "\\bNode\\.js compatibility\\b",
+        "\\bnewly passing tests\\b"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.com/blog/bun-v1.4",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://bun.com/blog/bun-v1.4",
+          "text": "The release post highlights a major Node.js compatibility jump: Bun 1.4 adds 1,517 newly passing tests from the Node.js v26.3.0 test suite, which the post calls Bun’s biggest compatibility jump since 1.0."
+        },
+        {
+          "url": "https://bun.com/blog/bun-v1.4",
+          "text": "\"Bun 1.4 adds +1,517 tests from the Node.js test suite - our biggest jump in Node.js compatibility since Bun 1.0.\""
+        }
+      ],
+      "weight": 0.9,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_current-bun-release",
+        "claude_run": "2026-08-27_claude_current-bun-release"
+      }
+    },
+    {
+      "id": "claim_new_builtins",
+      "text": "Bun 1.4 adds several major built-in APIs, including Bun.Image, Bun.WebView, Bun.markdown, Bun.cron(), and Bun.Terminal.",
+      "required_concepts": [
+        "builtins",
+        "bun_image",
+        "bun_webview",
+        "bun_markdown",
+        "bun_cron",
+        "bun_terminal"
+      ],
+      "acceptable_patterns": [
+        "\\bBun\\.Image\\b",
+        "\\bBun\\.WebView\\b",
+        "\\bBun\\.markdown\\b",
+        "\\bBun\\.cron\\(\\)\\b",
+        "\\bBun\\.Terminal\\b"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.com/blog/bun-v1.4",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://bun.com/blog",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://bun.com/blog/bun-v1.4",
+          "text": "The release introduced several developer tools: `Bun.Image` for image processing, `Bun.WebView` for browser automation, `Bun.markdown` for parsing, `Bun.cron()` for scheduling, and `Bun.Terminal` for pseudo-terminal support."
+        },
+        {
+          "url": "https://bun.com/blog",
+          "text": "Bun 1.4 adds several major built-ins that replace common external tools, including `Bun.Image` for image processing, `Bun.WebView` for headless browser automation, `Bun.markdown` for Markdown parsing/rendering, `Bun.cron()` for scheduling, and `Bun.Terminal` for pseudo-terminal control."
+        }
+      ],
+      "weight": 0.84,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_current-bun-release",
+        "claude_run": "2026-08-27_claude_current-bun-release"
+      }
+    },
+    {
+      "id": "claim_parallel_and_pkg",
+      "text": "Bun 1.4 adds parallel script and test execution and new package-management commands such as bun audit fix, bun dedupe, and bun prune.",
+      "required_concepts": [
+        "parallel",
+        "bun_run_parallel",
+        "bun_test_parallel",
+        "bun_audit_fix",
+        "bun_dedupe",
+        "bun_prune"
+      ],
+      "acceptable_patterns": [
+        "\\bbun run --parallel\\b",
+        "\\bbun test --parallel\\b",
+        "\\bbun audit fix\\b",
+        "\\bbun dedupe\\b",
+        "\\bbun prune\\b"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.com/blog/bun-v1.4",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://bun.com/blog/bun-v1.4",
+          "text": "Bun 1.4 adds parallel script execution via `bun run --parallel`, parallel test execution via `bun test --parallel`, and package-management commands such as `bun audit fix`, `bun dedupe`, and `bun prune`."
+        },
+        {
+          "url": "https://bun.com/blog/bun-v1.4",
+          "text": "New CLI features include `bun run --parallel` for concurrent script execution, enhanced `bun test --parallel` with worker support... New commands include `bun audit fix`, `bun dedupe`, and `bun prune`."
+        }
+      ],
+      "weight": 0.8,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_current-bun-release",
+        "claude_run": "2026-08-27_claude_current-bun-release"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Bun 1.4 introduces an opt-in global virtual store that can deliver up to 7x faster installs.",
+      "reason": "The supplied evidence mentions this only in a truncated passage (\"introduces an opt-in g...\") without a complete supporting quote."
+    },
+    {
+      "text": "The official release sources explicitly rank the Rust rewrite, compatibility jump, performance gains, and built-ins as the most consequential changes.",
+      "reason": "The supplied evidence supports these changes being highlighted, but not an explicit official ranking of importance."
+    },
+    {
+      "text": "Bun v1.4.0 was published on August 19, 2026.",
+      "reason": "This date appears only in non-official evidence and conflicts with the official Bun 1.4 release post dated August 20, 2026."
+    },
+    {
+      "text": "No Bun 1.4.1 or 1.4.2 release exists as of today.",
+      "reason": "This is a negative claim based on absence of evidence in the supplied material, not directly supported by an official quoted source."
+    },
+    {
+      "text": "The Bun 1.4 release foregrounds runtime performance improvements including 5x lower idle CPU usage, up to 35% lower memory usage, and 50% faster startup on Linux.",
+      "reason": "Le chiffre mémoire est contredit à l'intérieur de la même source : un extrait de https://bun.com/blog/bun-v1.4 indique « up to 35% memory reduction » tandis qu'un autre extrait de la même page indique « 13% - 48% memory usage reduction » (Fastify −48 %, Express −46 %, node:http −40 %). Affirmer « up to 35% » exige un arbitrage non explicité entre deux passages concurrents. De plus, le pattern de notation `\\b5x\\b.*\\bidle CPU\\b` impose un ordre lexical que la formulation attestée du billet (« idle CPU usage drops by 5x ») ne satisfait pas, ce qui le rend invalide/trop étroit."
+    }
+  ]
+}

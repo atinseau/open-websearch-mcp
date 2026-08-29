@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "case_id": "multilingual-ja-web-standards",
+  "question": "日本語の一次情報と公式仕様を使って、URL の国際化ドメイン名がブラウザーでどのように解析・表示されるか説明してください。",
+  "locale": "ja-JP",
+  "derived_by": "codex",
+  "verified_by": "grounding",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "c2",
+      "text": "PunycodeはUnicode文字列をASCIIだけで表す方式で、A-labelはPunycode結果にxn--を付けたラベルである。",
+      "required_concepts": ["Punycode", "ASCII", "A-label", "xn--"],
+      "acceptable_patterns": [
+        "Punycode[^。\\n]{0,40}ASCII",
+        "A-label[^。\\n]{0,40}xn--",
+        "xn--[^。\\n]{0,20}A-label"
+      ],
+      "sources": [
+        {
+          "url": "https://www.nic.ad.jp/ja/dom/idn.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://jprs.jp/glossary/index.php?ID=0051",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/rfc5890/",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/html/rfc3492",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1,
+      "provenance": {
+        "mode": "trace_grounded",
+        "codex_run": "2026-08-28_codex_multilingual-ja-web-standards"
+      }
+    },
+    {
+      "id": "c4",
+      "text": "そのdomain parserはUTS #46に従うUnicode ToASCIIを使い、URL標準での解析後のdomainやserializerの結果はASCII stringとして扱われる。",
+      "required_concepts": ["domain parser", "UTS #46", "ToASCII", "ASCII string"],
+      "acceptable_patterns": [
+        "Unicode ToASCII[^。\\n]{0,40}UTS ?#46",
+        "domain[^。\\n]{0,20}ASCII string",
+        "serializer[^。\\n]{0,20}ASCII string"
+      ],
+      "sources": [
+        {
+          "url": "https://url.spec.whatwg.org/",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://unicode.org/reports/tr46/",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1,
+      "provenance": {
+        "mode": "trace_grounded",
+        "codex_run": "2026-08-28_codex_multilingual-ja-web-standards"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "現在のMicrosoft EdgeのIDN表示規則はChromeと同じである。",
+      "reason": "提示証拠では推論に留まり、MicrosoftのIDN表示規則そのものを明記した公式資料が確認されていない。"
+    },
+    {
+      "text": "現在のSafariの厳密なIDN表示条件はこの証拠だけで確定できる。",
+      "reason": "提示証拠自身が、確認できたApple資料はアーカイブ文書や旧情報であり断定不能としている。"
+    },
+    {
+      "text": "現在のFirefoxの細部実装はMozilla Wikiの説明と完全一致する。",
+      "reason": "提示証拠自身が現行Firefoxとの完全一致は不確実としている。"
+    },
+    {
+      "text": "すべてのブラウザーは常にIDNをPunycodeで表示する。",
+      "reason": "提示証拠は、表示はブラウザーごとの安全性判定によりUnicodeまたはPunycodeに切り替わるとしており、常時Punycode表示ではない。"
+    },
+    {
+      "text": "Web上のIDN解析仕様は現在もNameprep + Punycode + IDNA (RFC 3490/3491)が中心である。",
+      "reason": "提示証拠は、現行Webプラットフォームの解析共通基盤としてWHATWG URL StandardとUTS #46を挙げ、古いJPRS説明は歴史的情報として扱っている。"
+    },
+    {
+      "text": "国際化ドメイン名の処理は、DNS自体ではなくWebブラウザなどのアプリケーション側で行われる。",
+      "reason": "required concept is absent from teacher-run evidence: application"
+    },
+    {
+      "text": "WHATWG URL Standardでは、special URLのホスト解析で入力ホストをpercent-decodingし、UTF-8 decode without BOMした後にdomain parserへ渡す。",
+      "reason": "grading pattern matches no teacher-run evidence: special URL[^。\\n]{0,40}domain parser"
+    },
+    {
+      "text": "UTS #46は、.だけでなくU+FF0E、U+3002、U+FF61もラベル区切りとして扱い、それらを.に写像し、非ASCIIラベルをPunycode化してxn--を付ける。",
+      "reason": "required concept is absent from teacher-run evidence: label separator"
+    },
+    {
+      "text": "ブラウザーの表示は解析とは別で、安全性判定に応じてUnicodeのまま見せるかPunycodeで見せるかを決める。",
+      "reason": "required concept is absent from teacher-run evidence: safety"
+    },
+    {
+      "text": "Chromeの公開文書では、各ラベルごとにUnicode表示かPunycode表示かを決め、禁止文字や複数スクリプト混在などではPunycode表示にすると説明されている。",
+      "reason": "grading pattern matches no teacher-run evidence: 禁止文字[^。\\n]{0,20}Punycode"
+    },
+    {
+      "text": "Firefoxの公開説明でも各IDNラベルをUnicodeで見せるかPunycodeで見せるかを決める方式だが、提示証拠では現行実装と完全一致するかは不確実とされている。",
+      "reason": "required concept is absent from teacher-run evidence: uncertainty"
+    }
+  ]
+}

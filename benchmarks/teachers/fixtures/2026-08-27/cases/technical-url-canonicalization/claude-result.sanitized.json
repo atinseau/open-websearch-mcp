@@ -1,0 +1,123 @@
+{
+  "duration_api_ms": 136603,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.5818025,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 28898,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 10887,
+    "output_tokens_details": {
+      "thinking_tokens": 9332
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 28898,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 10887,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 28898,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 28898
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 20104,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.020179,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 10887,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 28898,
+      "webSearchRequests": 0,
+      "costUSD": 0.5616235,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 2,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"claim_scheme_lowercased\",\"claim_default_https_port_dropped\",\"claim_unicode_host_to_ascii_idna\",\"claim_ascii_host_lowercased\",\"claim_dot_segments_normalized\",\"claim_fragment_percent_encoded\"],\"rejected_claims\":[{\"id\":\"claim_path_bytes_not_decoded_explicitly\",\"reason\":\"The claim is framed as a statement about the evidence corpus ('The supplied evidence supports... but it does not provide a direct normative rule') rather than about the WHATWG URL Standard, so it is not deterministic for lexical grading of an answer; its key pattern 'does not provide.{0,30}direct normative rule' demands meta-commentary that a correct topical answer would not produce. Its supporting apparatus is also weak: the listed source https://github.com/whatwg/url/issues/565 has no retrieved payload in either run (the Codex run's tool results expose no search results and opened_urls is empty, and the independent run surfaced issue #281 on this topic, never #565), and its second evidence passage attributed to https://url.spec.whatwg.org/ is the model's own first-person narration ('In the current parsing steps I reviewed, I found... I did not find...') rather than spec text. The underlying fact (path code points are percent-encoded with the path percent-encode set and existing %XX bytes are not decoded) is supported and could be re-drafted as a direct, non-meta claim citing only https://url.spec.whatwg.org/.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": [
+      "claim_scheme_lowercased",
+      "claim_default_https_port_dropped",
+      "claim_unicode_host_to_ascii_idna",
+      "claim_ascii_host_lowercased",
+      "claim_dot_segments_normalized",
+      "claim_fragment_percent_encoded"
+    ],
+    "rejected_claims": [
+      {
+        "id": "claim_path_bytes_not_decoded_explicitly",
+        "reason": "The claim is framed as a statement about the evidence corpus ('The supplied evidence supports... but it does not provide a direct normative rule') rather than about the WHATWG URL Standard, so it is not deterministic for lexical grading of an answer; its key pattern 'does not provide.{0,30}direct normative rule' demands meta-commentary that a correct topical answer would not produce. Its supporting apparatus is also weak: the listed source https://github.com/whatwg/url/issues/565 has no retrieved payload in either run (the Codex run's tool results expose no search results and opened_urls is empty, and the independent run surfaced issue #281 on this topic, never #565), and its second evidence passage attributed to https://url.spec.whatwg.org/ is the model's own first-person narration ('In the current parsing steps I reviewed, I found... I did not find...') rather than spec text. The underlying fact (path code points are percent-encoded with the path percent-encode set and existing %XX bytes are not decoded) is supported and could be re-drafted as a direct, non-meta claim citing only https://url.spec.whatwg.org/."
+      }
+    ]
+  },
+  "ttft_ms": 117561,
+  "type": "result",
+  "duration_ms": 135227,
+  "uuid": "[REDACTED]",
+  "ttft_stream_ms": 1616,
+  "time_to_request_ms": 9,
+  "queued_turn_count": 0
+}

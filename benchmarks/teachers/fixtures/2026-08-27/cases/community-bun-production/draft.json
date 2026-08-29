@@ -1,0 +1,221 @@
+{
+  "claims": [
+    {
+      "id": "claim_prod_ready_unix_not_windows",
+      "text": "Bun maintainers said Bun 1.0 was stable and production-ready for macOS and Linux, while Windows was still highly experimental.",
+      "required_concepts": ["bun_1_0", "production_ready", "macos_linux", "windows_experimental"],
+      "acceptable_patterns": [
+        "Bun 1\\.0 .*stable and production-ready.*macOS and Linux.*Windows .*highly experimental",
+        "production-ready .*macOS/Linux.*Windows .*experimental"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.sh/blog/bun-v1.0",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://bun.sh/blog/bun-v1.0",
+          "text": "Maintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0"
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "claim_compat_incomplete",
+      "text": "Bun maintainers also say Node.js compatibility is still incomplete and ongoing.",
+      "required_concepts": ["node_compat", "ongoing_effort", "not_100_percent"],
+      "acceptable_patterns": [
+        "Node\\.js compatibility .*ongoing effort",
+        "not 100% compatible with Node\\.js yet",
+        "compatibility is incomplete"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.sh/docs",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://bun.sh/blog/bun-v1.4",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://bun.com/docs/runtime/nodejs-compat",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://bun.com/docs/runtime/nodejs-compat",
+          "text": "Maintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat"
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "claim_named_production_use",
+      "text": "Maintainers publicly point to named production use cases for Bun, including Claude Code, Midjourney notifications, and Railway Functions.",
+      "required_concepts": ["homepage_claims", "claude_code", "midjourney", "railway"],
+      "acceptable_patterns": [
+        "Claude Code ships as a Bun executable",
+        "Midjourney sends every image notification through Bun[’']s WebSocket server",
+        "Railway built its Functions product on Bun"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.com/",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://bun.com/",
+          "text": "Maintainers provide concrete production-use claims on the Bun homepage: it says Claude Code ships as a Bun executable, Midjourney sends every image notification through Bun’s WebSocket server, and Railway built its Functions product on Bun. https://bun.com/"
+        }
+      ],
+      "weight": 0.9
+    },
+    {
+      "id": "claim_user_reports_crashes_leaks_fallback",
+      "text": "Users also report production problems with Bun, including crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback.",
+      "required_concepts": ["user_reports", "crashes", "memory_leaks", "node_fallback"],
+      "acceptable_patterns": [
+        "users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback",
+        "production workloads still surface bugs serious enough to require Node fallback"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/oven-sh/bun/issues/19930",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/20912",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/25948",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/discussions/3955",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/discussions/17485",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://github.com/oven-sh/bun/issues/19930",
+          "text": "The conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback."
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/discussions/3955",
+          "text": "There are also user reports of mixed migration outcomes: one user said they migrated a monorepo with 300+ packages and about 100,000 lines of code, but hit missing APIs, memory-corruption suspicions, packaging problems, and ended up saying they still used Node \"in production.\" https://github.com/oven-sh/bun/discussions/3955"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/discussions/17485",
+          "text": "Another user said they keep a wrapper because there are still occasions where they need to use Node \"because of a bug.\" https://github.com/oven-sh/bun/discussions/17485"
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "claim_concrete_compat_limits",
+      "text": "Bun documents concrete compatibility limits that can matter in production, including unimplemented `node:sea`, missing `Request` options, and lifecycle scripts being blocked by default unless trusted or allow-listed.",
+      "required_concepts": ["node_sea", "request_limits", "lifecycle_scripts"],
+      "acceptable_patterns": [
+        "node:sea .*not implemented",
+        "Request .*missing `keepalive` and `duplex`",
+        "lifecycle scripts are blocked by default"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.com/docs/runtime/nodejs-compat",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://bun.com/docs/pm/lifecycle",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://bun.com/docs/runtime/nodejs-compat",
+          "text": "Maintainers also document concrete compatibility limits that can matter in production: `node:sea` is not implemented, Bun’s `Request` support is missing `keepalive` and `duplex`, and lifecycle scripts are blocked by default except for allow-listed or explicitly trusted packages. https://bun.com/docs/runtime/nodejs-compat, https://bun.com/docs/pm/lifecycle"
+        }
+      ],
+      "weight": 0.8
+    },
+    {
+      "id": "claim_no_support_for_extremes",
+      "text": "The supplied evidence supports both successful production use and production pain, but does not support the extreme claims that Bun is broadly proven everywhere or unusable in production.",
+      "required_concepts": ["both_sides_evidenced", "not_broadly_proven", "not_unusable"],
+      "acceptable_patterns": [
+        "does not support the strongest version of either side",
+        "not support .*broadly proven everywhere.*unusable in production"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.sh/blog/bun-v1.0",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://bun.com/",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/19930",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/20912",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/25948",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/discussions/3955",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/discussions/17485",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://bun.sh/blog/bun-v1.0",
+          "text": "The conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback. The evidence supports both of these narrower statements, but it does **not** support the strongest version of either side (\"Bun is broadly proven everywhere\" or \"Bun is unusable in production\")."
+        }
+      ],
+      "weight": 1
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Bun is broadly proven everywhere in production.",
+      "reason": "Overly broad; the supplied evidence explicitly says it does not support that strongest version."
+    },
+    {
+      "text": "Bun is unusable in production.",
+      "reason": "Contradicted by supplied evidence of named production adopters and explicit note that this strongest version is not supported."
+    },
+    {
+      "text": "GitHub issue reports prove how common Bun production failures are.",
+      "reason": "Unsupported by the supplied evidence; the evidence discusses concrete reports, not prevalence."
+    },
+    {
+      "text": "Bun is 100% compatible with Node.js.",
+      "reason": "Contradicted by supplied evidence saying compatibility is an ongoing effort and Bun is not 100% compatible with Node.js yet."
+    }
+  ]
+}

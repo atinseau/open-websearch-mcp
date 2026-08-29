@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "provider": "claude",
+  "cli_version": "2.1.247 (Claude Code)",
+  "started_at": "2026-08-28T14:40:31.253Z",
+  "duration_ms": 1328,
+  "command": [
+    "claude",
+    "-p",
+    "--safe-mode",
+    "--setting-sources",
+    "",
+    "--settings",
+    "{\"enabledPlugins\":{\"typescript-lsp@claude-plugins-official\":false,\"chrome-devtools-mcp@claude-plugins-official\":false,\"rust-analyzer-lsp@claude-plugins-official\":false,\"claude-hud@claude-hud\":false,\"claude-md-management@claude-plugins-official\":false,\"skill-creator@claude-plugins-official\":false,\"pennylane-api@pennylane-mcp\":false}}",
+    "--tools",
+    "WebSearch,WebFetch",
+    "--allowedTools",
+    "WebSearch,WebFetch",
+    "--disallowedTools",
+    "mcp__*",
+    "--permission-mode",
+    "dontAsk",
+    "--disable-slash-commands",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "{\"mcpServers\":{}}",
+    "--no-chrome",
+    "--no-session-persistence",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-partial-messages",
+    "--include-hook-events",
+    "--max-budget-usd",
+    "1.00",
+    "Research this question using only your native Web search and page-opening tools:\n\nWhat is the latest stable Bun release as of today, when was it published, and what are its most consequential changes according to official release sources?\n\nCite every factual claim with its source URL. Distinguish supported fact from\ninference, disagreement, uncertainty, and lack of good evidence. Answer in the\nquestion's language. Do not use local files or any non-Web tool.\n"
+  ],
+  "controls": {
+    "isolated_temporary_cwd": true,
+    "cwd_unchanged": true,
+    "wrapper_shim_bypassed": true,
+    "session_persistence_disabled": true,
+    "user_project_settings_disabled": true,
+    "environment_keys": ["COLORTERM", "HOME", "LANG", "LOGNAME", "PATH", "TERM", "TMPDIR", "USER"],
+    "isolated_account_state": true,
+    "allowed_child_executables": []
+  },
+  "process": {
+    "exit_code": 1,
+    "stderr": ""
+  },
+  "inspection": {
+    "accepted": false,
+    "tool_calls": [],
+    "forbidden_tool_calls": [],
+    "authentication_failed": false
+  }
+}

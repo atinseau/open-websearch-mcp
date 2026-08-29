@@ -1,0 +1,15 @@
+# Step 0018 - SPK-001 release review correction
+
+- Timestamp: `2026-08-28T11:00:36Z`
+- Attempt: `1`
+- Status: continue
+- Worktree / branch / base SHA / head SHA: `.worktree/spk-001-a1` / `agent/spk-001-a1` / `eb30c3a28554740a6512116d0b29521ed610c553` / `d2c1ce0` plus uncommitted corrections
+- OpenCode model / variant / session: `openai/gpt-5.6-sol` / default / `interactive-spk-001-a1`
+- Goal: repair the three high Standards findings and historical-audit compatibility finding from the release-gate review
+- Completed work: denied subprocess creation by default with the macOS process sandbox; retained explicit subprocess permission only for controlled internal orchestration and a closed leaf-utility exemption; kept process-group, opaque-scope, PID monitoring, bounded rescans, and fail-closed cleanup as secondary controls; added standalone Anthropic and GitHub credential redaction; made provider inspection total over malformed events and moved it inside the failed-capture archival boundary; and versioned the sealed pre-snapshot corpus inspection and sanitization semantics so 2026-08-27 remains fully auditable without mutation
+- Files changed: `benchmarks/teachers/process-controls.ts`, `benchmarks/teachers/process-controls.test.ts`, `benchmarks/teachers/capture-corpus.ts`, `benchmarks/teachers/capture-probe.ts`, `benchmarks/teachers/contract-json.ts`, `benchmarks/teachers/contract-probes.ts`, `benchmarks/teachers/contract.test.ts`, `benchmarks/teachers/audit-cases.ts`, `benchmarks/teachers/corpus-artifacts.test.ts`, `benchmarks/teachers/sanitization.test.ts`, `docs/spikes/SPK-001/report.md`, `docs/orchestration/state.toml`, and this trace
+- Commands and outcomes: each new regression failed before its repair; focused tests passed; the declared teacher suite passed three consecutive runs with `31` tests / `155` assertions; `bun run check` passed with `66` tests / `279` assertions and valid orchestration; audits reproduced 2026-08-27 with `740` artifacts and 2026-08-28 with `307` artifacts; the immutable 2026-08-27 tree comparison was empty; and package dry-run reported `1,191` files / `36.41 MB`
+- Decisions and reasons: polling alone cannot close the race created by an immediately exiting detached child that clears its environment, so commands that do not concretely require children cannot fork; legacy audit behavior is selected only when a sealed manifest declares no input snapshots, while current corpora remain subject to the stronger current contracts
+- Findings or blockers: the preceding Spec review had no findings; the preceding Standards review had three high findings and one medium finding, all repaired with red regressions. Fresh independent Standards and Spec reviews remain required before commit.
+- Remaining work: run fresh parallel release-gate reviews over the complete delta; if neither reports a blocker/high, commit and integrate through PR and CI
+- Exact next action: run independent Standards and Spec reviews against the post-0018 worktree

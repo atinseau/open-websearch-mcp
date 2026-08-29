@@ -1,0 +1,29 @@
+{
+  "accepted_claim_ids": [],
+  "rejected_claims": [
+    {
+      "id": "c1",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "c2",
+      "reason": "required concept is absent from teacher-run evidence: lambda"
+    },
+    {
+      "id": "c3",
+      "reason": "required concept is absent from teacher-run evidence: lambda"
+    },
+    {
+      "id": "c4",
+      "reason": "required concept is absent from teacher-run evidence: lambda"
+    },
+    {
+      "id": "c5",
+      "reason": "required concept is absent from teacher-run evidence: not statistically significant"
+    },
+    {
+      "id": "c6",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    }
+  ]
+}

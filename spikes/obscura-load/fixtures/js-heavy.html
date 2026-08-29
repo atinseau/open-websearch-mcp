@@ -1,0 +1,4 @@
+<!doctype html><title>JavaScript fixture</title><main id="app">loading</main><script>
+const values = Array.from({ length: 12000 }, (_, index) => ({ index, label: `item-${index}` }));
+document.querySelector('#app').textContent = `JS heavy fixture rendered ${values.filter((value) => value.index % 3 === 0).length} values`;
+</script>

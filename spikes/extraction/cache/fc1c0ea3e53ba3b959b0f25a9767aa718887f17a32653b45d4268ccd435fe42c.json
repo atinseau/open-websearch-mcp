@@ -1,0 +1,6 @@
+{
+  "url": "https://www.nic.ad.jp/ja/dom/idn.html",
+  "fetchedAt": "2026-08-29T07:09:12.056Z",
+  "exitCode": 139,
+  "error": "2026-08-29T07:09:02.707011Z  WARN obscura_browser::page: Refusing to execute script https://kit.fontawesome.com/fe243a6da8.js after HTTP 403\n2026-08-29T07:09:08.300824Z  WARN obscura_js::runtime: Script killed after 5s timeout"
+}

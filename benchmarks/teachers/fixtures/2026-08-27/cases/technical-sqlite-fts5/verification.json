@@ -1,0 +1,17 @@
+{
+  "accepted_claim_ids": [
+    "c1_module_list_runtime",
+    "c2_compile_options_enable_fts5",
+    "c3_compileoption_used_api",
+    "c4_fts5_loadable_extension",
+    "c5_external_content_definition",
+    "c6_external_content_consistency",
+    "c8_external_content_replace_abort"
+  ],
+  "rejected_claims": [
+    {
+      "id": "c7_external_content_sync_and_rebuild",
+      "reason": "The evidence_passages attributed to https://www.sqlite.org/fts5.html are not documentation text; they are the Codex run's own paraphrased answer sentences (\"Triggers are one documented way to keep an external-content FTS5 table synchronized...\", \"the documented `rebuild` command can discard the existing FTS index...\") presented as source quotes. The supplied evidence contains different actual wording (\"creating the triggers does not copy existing rows from the content table into the FTS index\"; \"This command first deletes the entire full-text index, then rebuilds it based on the contents of the table or content table\"). The acceptable_patterns inherit this flaw: \"Triggers are one documented way\" and \"rebuilds? (it )?from the current content table\" are overly narrow patterns keyed to the paraphrase rather than the documented language, while the bare \"rebuild\" alternative is too broad to grade the claim. The underlying facts are supported and the claim could be re-drafted with the real fts5.html quotes."
+    }
+  ]
+}

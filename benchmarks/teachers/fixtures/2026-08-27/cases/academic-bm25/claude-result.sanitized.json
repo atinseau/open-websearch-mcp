@@ -1,0 +1,116 @@
+{
+  "duration_api_ms": 82666,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.49072550000000004,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 30690,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 6461,
+    "output_tokens_details": {
+      "thinking_tokens": 4971
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 30690,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 6461,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 30690,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 30690
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 21727,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.021832,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 6461,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 30690,
+      "webSearchRequests": 0,
+      "costUSD": 0.4688935,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 2,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"c1\",\"c2\",\"c3\",\"c5\",\"c6\"],\"rejected_claims\":[{\"id\":\"c4\",\"reason\":\"Attribution rests only on the Codex run's self-reported final answer: Codex's opened_urls is empty and its tool payloads were not exposed, and neither run fetched okapi_trec4.pdf (the Claude run recovered only the analogous TREC-3 formula), so the TREC-4-specific details (w(1), qtf, and the direct definitions of tf/qtf/dl/avdl) are not independently supported. Additionally the discriminating grading pattern K\\\\s*=\\\\s*k1\\\\s*\\\\(\\\\(1-b\\\\)\\\\+b\\\\*dl/avdl\\\\) is overly narrow: it permits no whitespace inside the parentheses and requires a literal '*' for multiplication that the source formula does not use, so a faithful restatement such as 'K = k1((1 - b) + b·dl/avdl)' would fail to match, while the remaining patterns ('tf', 'qtf') are too generic to carry the claim.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": ["c1", "c2", "c3", "c5", "c6"],
+    "rejected_claims": [
+      {
+        "id": "c4",
+        "reason": "Attribution rests only on the Codex run's self-reported final answer: Codex's opened_urls is empty and its tool payloads were not exposed, and neither run fetched okapi_trec4.pdf (the Claude run recovered only the analogous TREC-3 formula), so the TREC-4-specific details (w(1), qtf, and the direct definitions of tf/qtf/dl/avdl) are not independently supported. Additionally the discriminating grading pattern K\\s*=\\s*k1\\s*\\(\\(1-b\\)\\+b\\*dl/avdl\\) is overly narrow: it permits no whitespace inside the parentheses and requires a literal '*' for multiplication that the source formula does not use, so a faithful restatement such as 'K = k1((1 - b) + b·dl/avdl)' would fail to match, while the remaining patterns ('tf', 'qtf') are too generic to carry the claim."
+      }
+    ]
+  },
+  "ttft_ms": 64829,
+  "type": "result",
+  "duration_ms": 81195,
+  "uuid": "[REDACTED]",
+  "ttft_stream_ms": 1023,
+  "time_to_request_ms": 11,
+  "queued_turn_count": 0
+}

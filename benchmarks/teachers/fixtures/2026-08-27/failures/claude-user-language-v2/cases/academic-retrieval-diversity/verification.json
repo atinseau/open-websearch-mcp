@@ -1,0 +1,13 @@
+{
+  "accepted_claim_ids": ["claim_mmr_tradeoff", "claim_lambda_extremes"],
+  "rejected_claims": [
+    {
+      "id": "claim_lambda_usage",
+      "reason": "Les valeurs specifiques lambda = 0.3 puis lambda = 0.7 et la distinction sampling/focus ne proviennent que de la prose finale de Codex : opened_urls est vide, aucun payload de recherche n'est expose, et les evidence_passages sont des copies du final_answer plutot que du texte de page recupere. Le run Claude indique explicitement n'avoir pu extraire ni la formule ni les valeurs de lambda du papier primaire, donc aucune corroboration croisee. De plus le pattern de grading est invalide en pratique : 'smaller lambda is for sampling the information space' ne correspond pas au passage de reference, qui ecrit \"sampling\" avec des guillemets typographiques, et les motifs contenant des backticks optionnels autour de lambda = 0.3 / 0.7 sont trop etroits pour une notation lexicale fiable."
+    },
+    {
+      "id": "claim_original_evidence",
+      "reason": "La claim agrege des details quantitatifs tres precis (exemple Reuters, etude pilote de 5 etudiants, 9 taches de recherche, 4 sur 5, lambda = 0.5) attribues a un PDF dont aucun contenu n'a ete effectivement ouvert dans le dossier de preuves. Le seul examen reel de materiel primaire de 1998 present dans le dossier (run Claude sur l'abstract SIGIR'98) ne rapporte que des 'preliminary results' sans metrique, jeu de donnees ni comparaison chiffree, ce qui ne soutient pas ces chiffres. La composante limitation ('trop petit pour des tendances statistiquement significatives') serait defendable isolement, mais elle est indissociable des chiffres non verifies au sein de la meme claim, et les required_concepts (5_users, 9_tasks, 4_of_5) imposent de noter ces elements non etayes."
+    }
+  ]
+}

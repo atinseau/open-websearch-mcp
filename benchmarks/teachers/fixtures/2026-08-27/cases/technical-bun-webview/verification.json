@@ -1,0 +1,16 @@
+{
+  "accepted_claim_ids": [
+    "claim_connect_explicit_ws",
+    "claim_auto_detect_existing_browser",
+    "claim_enable_remote_debugging",
+    "claim_url_false_and_no_fallback",
+    "claim_lifecycle_ops_list",
+    "claim_close_and_closeall_behavior"
+  ],
+  "rejected_claims": [
+    {
+      "id": "claim_path_argv_spawn_mode",
+      "reason": "The supplied evidence supports only that passing `path` or `argv` skips auto-detect entirely (bun.com/docs/runtime/webview.md). Neither teacher run documents that `path`/`argv` cannot be combined with `url: \"ws://...\"` — that mutual-exclusivity constraint is invented. The claim also grades on it via the required pattern `cannot be combined|can't be combined`, so the unsupported portion is load-bearing for lexical grading."
+    }
+  ]
+}

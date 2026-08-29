@@ -1,0 +1,905 @@
+{
+  "schema_version": 1,
+  "case_id": "community-bun-production",
+  "runs": [
+    {
+      "run_id": "2026-08-27_codex_community-bun-production",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "Bun production maintainers users discussion issue production compatibility reliability site:github.com/oven-sh/bun",
+        "site:bun.sh \"production\" \"Bun\"",
+        "https://bun.com/",
+        "site:bun.com/docs node compatibility bun status tests",
+        "https://bun.com/docs/runtime/nodejs-compat",
+        "'memory leak' in https://bun.sh/blog/bun-v1.4",
+        "site:github.com/oven-sh/bun/discussions migrated to bun production success",
+        "https://github.com/oven-sh/bun/discussions/3955",
+        "Railway Bun production function cold start Bun source",
+        "site:anthropic.com Claude Code Bun executable",
+        "https://github.com/oven-sh/bun/issues/4949",
+        "site:github.com/oven-sh/bun issue trustedDependencies postinstall production package broken",
+        "https://bun.com/docs/pm/lifecycle",
+        "https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone",
+        "https://docs.railway.com/functions"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [],
+      "cited_urls": [
+        "https://bun.sh/blog/bun-v1.0",
+        "https://bun.com/",
+        "https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone",
+        "https://github.com/oven-sh/bun/issues/19930",
+        "https://github.com/oven-sh/bun/issues/20912",
+        "https://github.com/oven-sh/bun/issues/25948",
+        "https://github.com/oven-sh/bun/discussions/3955",
+        "https://github.com/oven-sh/bun/discussions/17485",
+        "https://bun.sh/docs",
+        "https://bun.sh/blog/bun-v1.4",
+        "https://bun.com/docs/runtime/nodejs-compat",
+        "https://blog.railway.com/p/introducing-railway-functions",
+        "https://bun.com/docs/pm/lifecycle",
+        "https://github.com/oven-sh/bun/issues/16339",
+        "https://github.com/oven-sh/bun/issues/4949",
+        "https://github.com/oven-sh/bun/issues/798",
+        "https://github.com/oven-sh/bun/issues",
+        "https://github.com/oven-sh/bun/discussions"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://bun.sh/blog/bun-v1.0",
+          "title": "https://bun.sh/blog/bun-v1.0"
+        },
+        {
+          "url": "https://bun.com/",
+          "title": "https://bun.com/"
+        },
+        {
+          "url": "https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone",
+          "title": "https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/19930",
+          "title": "https://github.com/oven-sh/bun/issues/19930"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/20912",
+          "title": "https://github.com/oven-sh/bun/issues/20912"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/25948",
+          "title": "https://github.com/oven-sh/bun/issues/25948"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/discussions/3955",
+          "title": "https://github.com/oven-sh/bun/discussions/3955"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/discussions/17485",
+          "title": "https://github.com/oven-sh/bun/discussions/17485"
+        },
+        {
+          "url": "https://bun.sh/docs",
+          "title": "https://bun.sh/docs"
+        },
+        {
+          "url": "https://bun.sh/blog/bun-v1.4",
+          "title": "https://bun.sh/blog/bun-v1.4"
+        },
+        {
+          "url": "https://bun.com/docs/runtime/nodejs-compat",
+          "title": "https://bun.com/docs/runtime/nodejs-compat"
+        },
+        {
+          "url": "https://blog.railway.com/p/introducing-railway-functions",
+          "title": "https://blog.railway.com/p/introducing-railway-functions"
+        },
+        {
+          "url": "https://bun.com/docs/pm/lifecycle",
+          "title": "https://bun.com/docs/pm/lifecycle"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/16339",
+          "title": "https://github.com/oven-sh/bun/issues/16339"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/4949",
+          "title": "https://github.com/oven-sh/bun/issues/4949"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/798",
+          "title": "https://github.com/oven-sh/bun/issues/798"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues",
+          "title": "https://github.com/oven-sh/bun/issues"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/discussions",
+          "title": "https://github.com/oven-sh/bun/discussions"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://bun.sh/blog/bun-v1.0",
+          "text": "**Short answer**\n\nThe conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback. The evidence supports both of these narrower statements, but it does **not** support the strongest version of either side (\"Bun is broadly proven everywhere\" or \"Bun is unusable in production\").  \nSources: https://bun.sh/blog/bun-v1.0, https://bun.com/, https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\n**Supported fact**\n\nMaintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0\n\nMaintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat\n\nMaintainers provide concrete production-use claims on the Bun homepage: it says Claude Code ships as a Bun executable, Midjourney sends every image notification through Bun’s WebSocket server, and Railway built its Functions product on Bun. https://bun.com/\n\nAnthropic independently said on December 3, 2025 that Bun had been \"key\" to scaling Claude Code’s infrastructure and that Anthropic was acquiring Bun. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone\n\nRailway independently said its Functions product runs user cod"
+        },
+        {
+          "url": "https://bun.com/",
+          "text": "**Short answer**\n\nThe conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback. The evidence supports both of these narrower statements, but it does **not** support the strongest version of either side (\"Bun is broadly proven everywhere\" or \"Bun is unusable in production\").  \nSources: https://bun.sh/blog/bun-v1.0, https://bun.com/, https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\n**Supported fact**\n\nMaintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0\n\nMaintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat\n\nMaintainers provide concrete production-use claims on the Bun homepage: it says Claude Code ships as a Bun executable, Midjourney sends every image notification through Bun’s WebSocket server, and Railway built its Functions product on Bun. https://bun.com/\n\nAnthropic independently said on December 3, 2025 that Bun had been \"key\" to scaling Claude Code’s infrastructure and that Anthropic was acquiring Bun. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone\n\nRailway independently said its Functions product runs user cod"
+        },
+        {
+          "url": "https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone",
+          "text": "**Short answer**\n\nThe conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback. The evidence supports both of these narrower statements, but it does **not** support the strongest version of either side (\"Bun is broadly proven everywhere\" or \"Bun is unusable in production\").  \nSources: https://bun.sh/blog/bun-v1.0, https://bun.com/, https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\n**Supported fact**\n\nMaintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0\n\nMaintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat\n\nMaintainers provide concrete production-use claims on the Bun homepage: it says Claude Code ships as a Bun executable, Midjourney sends every image notification through Bun’s WebSocket server, and Railway built its Functions product on Bun. https://bun.com/\n\nAnthropic independently said on December 3, 2025 that Bun had been \"key\" to scaling Claude Code’s infrastructure and that Anthropic was acquiring Bun. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone\n\nRailway independently said its Functions product runs user cod"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/19930",
+          "text": "**Short answer**\n\nThe conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback. The evidence supports both of these narrower statements, but it does **not** support the strongest version of either side (\"Bun is broadly proven everywhere\" or \"Bun is unusable in production\").  \nSources: https://bun.sh/blog/bun-v1.0, https://bun.com/, https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\n**Supported fact**\n\nMaintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0\n\nMaintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat\n\nMaintainers provide concrete production-use claims on the Bun homepage: it says Claude Code ships as a Bun executable, Midjourney sends every image notification through Bun’s WebSocket server, and Railway built its Functions product on Bun. https://bun.com/\n\nAnthropic independently said on December 3, 2025 that Bun had been \"key\" to scaling Claude Code’s infrastructure and that Anthropic was acquiring Bun. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone\n\nRailway independently said its Functions product runs user cod"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/20912",
+          "text": "**Short answer**\n\nThe conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback. The evidence supports both of these narrower statements, but it does **not** support the strongest version of either side (\"Bun is broadly proven everywhere\" or \"Bun is unusable in production\").  \nSources: https://bun.sh/blog/bun-v1.0, https://bun.com/, https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\n**Supported fact**\n\nMaintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0\n\nMaintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat\n\nMaintainers provide concrete production-use claims on the Bun homepage: it says Claude Code ships as a Bun executable, Midjourney sends every image notification through Bun’s WebSocket server, and Railway built its Functions product on Bun. https://bun.com/\n\nAnthropic independently said on December 3, 2025 that Bun had been \"key\" to scaling Claude Code’s infrastructure and that Anthropic was acquiring Bun. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone\n\nRailway independently said its Functions product runs user cod"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/25948",
+          "text": "**Short answer**\n\nThe conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback. The evidence supports both of these narrower statements, but it does **not** support the strongest version of either side (\"Bun is broadly proven everywhere\" or \"Bun is unusable in production\").  \nSources: https://bun.sh/blog/bun-v1.0, https://bun.com/, https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\n**Supported fact**\n\nMaintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0\n\nMaintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat\n\nMaintainers provide concrete production-use claims on the Bun homepage: it says Claude Code ships as a Bun executable, Midjourney sends every image notification through Bun’s WebSocket server, and Railway built its Functions product on Bun. https://bun.com/\n\nAnthropic independently said on December 3, 2025 that Bun had been \"key\" to scaling Claude Code’s infrastructure and that Anthropic was acquiring Bun. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone\n\nRailway independently said its Functions product runs user cod"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/discussions/3955",
+          "text": "**Short answer**\n\nThe conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback. The evidence supports both of these narrower statements, but it does **not** support the strongest version of either side (\"Bun is broadly proven everywhere\" or \"Bun is unusable in production\").  \nSources: https://bun.sh/blog/bun-v1.0, https://bun.com/, https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\n**Supported fact**\n\nMaintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0\n\nMaintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat\n\nMaintainers provide concrete production-use claims on the Bun homepage: it says Claude Code ships as a Bun executable, Midjourney sends every image notification through Bun’s WebSocket server, and Railway built its Functions product on Bun. https://bun.com/\n\nAnthropic independently said on December 3, 2025 that Bun had been \"key\" to scaling Claude Code’s infrastructure and that Anthropic was acquiring Bun. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone\n\nRailway independently said its Functions product runs user cod"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/discussions/17485",
+          "text": "**Short answer**\n\nThe conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback. The evidence supports both of these narrower statements, but it does **not** support the strongest version of either side (\"Bun is broadly proven everywhere\" or \"Bun is unusable in production\").  \nSources: https://bun.sh/blog/bun-v1.0, https://bun.com/, https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\n**Supported fact**\n\nMaintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0\n\nMaintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat\n\nMaintainers provide concrete production-use claims on the Bun homepage: it says Claude Code ships as a Bun executable, Midjourney sends every image notification through Bun’s WebSocket server, and Railway built its Functions product on Bun. https://bun.com/\n\nAnthropic independently said on December 3, 2025 that Bun had been \"key\" to scaling Claude Code’s infrastructure and that Anthropic was acquiring Bun. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone\n\nRailway independently said its Functions product runs user cod"
+        },
+        {
+          "url": "https://bun.sh/docs",
+          "text": "**Short answer**\n\nThe conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback. The evidence supports both of these narrower statements, but it does **not** support the strongest version of either side (\"Bun is broadly proven everywhere\" or \"Bun is unusable in production\").  \nSources: https://bun.sh/blog/bun-v1.0, https://bun.com/, https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\n**Supported fact**\n\nMaintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0\n\nMaintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat\n\nMaintainers provide concrete production-use claims on the Bun homepage: it says Claude Code ships as a Bun executable, Midjourney sends every image notification through Bun’s WebSocket server, and Railway built its Functions product on Bun. https://bun.com/\n\nAnthropic independently said on December 3, 2025 that Bun had been \"key\" to scaling Claude Code’s infrastructure and that Anthropic was acquiring Bun. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone\n\nRailway independently said its Functions product runs user cod"
+        },
+        {
+          "url": "https://bun.sh/blog/bun-v1.4",
+          "text": "**Short answer**\n\nThe conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback. The evidence supports both of these narrower statements, but it does **not** support the strongest version of either side (\"Bun is broadly proven everywhere\" or \"Bun is unusable in production\").  \nSources: https://bun.sh/blog/bun-v1.0, https://bun.com/, https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\n**Supported fact**\n\nMaintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0\n\nMaintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat\n\nMaintainers provide concrete production-use claims on the Bun homepage: it says Claude Code ships as a Bun executable, Midjourney sends every image notification through Bun’s WebSocket server, and Railway built its Functions product on Bun. https://bun.com/\n\nAnthropic independently said on December 3, 2025 that Bun had been \"key\" to scaling Claude Code’s infrastructure and that Anthropic was acquiring Bun. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone\n\nRailway independently said its Functions product runs user cod"
+        },
+        {
+          "url": "https://bun.com/docs/runtime/nodejs-compat",
+          "text": "**Short answer**\n\nThe conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback. The evidence supports both of these narrower statements, but it does **not** support the strongest version of either side (\"Bun is broadly proven everywhere\" or \"Bun is unusable in production\").  \nSources: https://bun.sh/blog/bun-v1.0, https://bun.com/, https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\n**Supported fact**\n\nMaintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0\n\nMaintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat\n\nMaintainers provide concrete production-use claims on the Bun homepage: it says Claude Code ships as a Bun executable, Midjourney sends every image notification through Bun’s WebSocket server, and Railway built its Functions product on Bun. https://bun.com/\n\nAnthropic independently said on December 3, 2025 that Bun had been \"key\" to scaling Claude Code’s infrastructure and that Anthropic was acquiring Bun. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone\n\nRailway independently said its Functions product runs user cod"
+        },
+        {
+          "url": "https://blog.railway.com/p/introducing-railway-functions",
+          "text": "**Short answer**\n\nThe conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback. The evidence supports both of these narrower statements, but it does **not** support the strongest version of either side (\"Bun is broadly proven everywhere\" or \"Bun is unusable in production\").  \nSources: https://bun.sh/blog/bun-v1.0, https://bun.com/, https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\n**Supported fact**\n\nMaintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0\n\nMaintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat\n\nMaintainers provide concrete production-use claims on the Bun homepage: it says Claude Code ships as a Bun executable, Midjourney sends every image notification through Bun’s WebSocket server, and Railway built its Functions product on Bun. https://bun.com/\n\nAnthropic independently said on December 3, 2025 that Bun had been \"key\" to scaling Claude Code’s infrastructure and that Anthropic was acquiring Bun. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone\n\nRailway independently said its Functions product runs user cod"
+        },
+        {
+          "url": "https://bun.com/docs/pm/lifecycle",
+          "text": "**Short answer**\n\nThe conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback. The evidence supports both of these narrower statements, but it does **not** support the strongest version of either side (\"Bun is broadly proven everywhere\" or \"Bun is unusable in production\").  \nSources: https://bun.sh/blog/bun-v1.0, https://bun.com/, https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\n**Supported fact**\n\nMaintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0\n\nMaintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat\n\nMaintainers provide concrete production-use claims on the Bun homepage: it says Claude Code ships as a Bun executable, Midjourney sends every image notification through Bun’s WebSocket server, and Railway built its Functions product on Bun. https://bun.com/\n\nAnthropic independently said on December 3, 2025 that Bun had been \"key\" to scaling Claude Code’s infrastructure and that Anthropic was acquiring Bun. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone\n\nRailway independently said its Functions product runs user cod"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/16339",
+          "text": "**Short answer**\n\nThe conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback. The evidence supports both of these narrower statements, but it does **not** support the strongest version of either side (\"Bun is broadly proven everywhere\" or \"Bun is unusable in production\").  \nSources: https://bun.sh/blog/bun-v1.0, https://bun.com/, https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\n**Supported fact**\n\nMaintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0\n\nMaintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat\n\nMaintainers provide concrete production-use claims on the Bun homepage: it says Claude Code ships as a Bun executable, Midjourney sends every image notification through Bun’s WebSocket server, and Railway built its Functions product on Bun. https://bun.com/\n\nAnthropic independently said on December 3, 2025 that Bun had been \"key\" to scaling Claude Code’s infrastructure and that Anthropic was acquiring Bun. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone\n\nRailway independently said its Functions product runs user cod"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/4949",
+          "text": "**Short answer**\n\nThe conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback. The evidence supports both of these narrower statements, but it does **not** support the strongest version of either side (\"Bun is broadly proven everywhere\" or \"Bun is unusable in production\").  \nSources: https://bun.sh/blog/bun-v1.0, https://bun.com/, https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\n**Supported fact**\n\nMaintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0\n\nMaintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat\n\nMaintainers provide concrete production-use claims on the Bun homepage: it says Claude Code ships as a Bun executable, Midjourney sends every image notification through Bun’s WebSocket server, and Railway built its Functions product on Bun. https://bun.com/\n\nAnthropic independently said on December 3, 2025 that Bun had been \"key\" to scaling Claude Code’s infrastructure and that Anthropic was acquiring Bun. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone\n\nRailway independently said its Functions product runs user cod"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/798",
+          "text": "**Short answer**\n\nThe conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback. The evidence supports both of these narrower statements, but it does **not** support the strongest version of either side (\"Bun is broadly proven everywhere\" or \"Bun is unusable in production\").  \nSources: https://bun.sh/blog/bun-v1.0, https://bun.com/, https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\n**Supported fact**\n\nMaintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0\n\nMaintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat\n\nMaintainers provide concrete production-use claims on the Bun homepage: it says Claude Code ships as a Bun executable, Midjourney sends every image notification through Bun’s WebSocket server, and Railway built its Functions product on Bun. https://bun.com/\n\nAnthropic independently said on December 3, 2025 that Bun had been \"key\" to scaling Claude Code’s infrastructure and that Anthropic was acquiring Bun. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone\n\nRailway independently said its Functions product runs user cod"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues",
+          "text": "**Short answer**\n\nThe conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback. The evidence supports both of these narrower statements, but it does **not** support the strongest version of either side (\"Bun is broadly proven everywhere\" or \"Bun is unusable in production\").  \nSources: https://bun.sh/blog/bun-v1.0, https://bun.com/, https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\n**Supported fact**\n\nMaintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0\n\nMaintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat\n\nMaintainers provide concrete production-use claims on the Bun homepage: it says Claude Code ships as a Bun executable, Midjourney sends every image notification through Bun’s WebSocket server, and Railway built its Functions product on Bun. https://bun.com/\n\nAnthropic independently said on December 3, 2025 that Bun had been \"key\" to scaling Claude Code’s infrastructure and that Anthropic was acquiring Bun. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone\n\nRailway independently said its Functions product runs user cod"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/discussions",
+          "text": "**Short answer**\n\nThe conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback. The evidence supports both of these narrower statements, but it does **not** support the strongest version of either side (\"Bun is broadly proven everywhere\" or \"Bun is unusable in production\").  \nSources: https://bun.sh/blog/bun-v1.0, https://bun.com/, https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\n**Supported fact**\n\nMaintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0\n\nMaintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat\n\nMaintainers provide concrete production-use claims on the Bun homepage: it says Claude Code ships as a Bun executable, Midjourney sends every image notification through Bun’s WebSocket server, and Railway built its Functions product on Bun. https://bun.com/\n\nAnthropic independently said on December 3, 2025 that Bun had been \"key\" to scaling Claude Code’s infrastructure and that Anthropic was acquiring Bun. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone\n\nRailway independently said its Functions product runs user cod"
+        }
+      ],
+      "final_answer": "**Short answer**\n\nThe conflict is real: Bun’s maintainers market it as production-ready on macOS/Linux and point to named production adopters, while multiple users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback. The evidence supports both of these narrower statements, but it does **not** support the strongest version of either side (\"Bun is broadly proven everywhere\" or \"Bun is unusable in production\").  \nSources: https://bun.sh/blog/bun-v1.0, https://bun.com/, https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\n**Supported fact**\n\nMaintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0\n\nMaintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat\n\nMaintainers provide concrete production-use claims on the Bun homepage: it says Claude Code ships as a Bun executable, Midjourney sends every image notification through Bun’s WebSocket server, and Railway built its Functions product on Bun. https://bun.com/\n\nAnthropic independently said on December 3, 2025 that Bun had been \"key\" to scaling Claude Code’s infrastructure and that Anthropic was acquiring Bun. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone\n\nRailway independently said its Functions product runs user code on Bun, installs dependencies with `bun install`, and that Bun outperformed other package managers in its internal testing for that workflow. https://blog.railway.com/p/introducing-railway-functions\n\nMaintainers also document concrete compatibility limits that can matter in production: `node:sea` is not implemented, Bun’s `Request` support is missing `keepalive` and `duplex`, and lifecycle scripts are blocked by default except for allow-listed or explicitly trusted packages. https://bun.com/docs/runtime/nodejs-compat, https://bun.com/docs/pm/lifecycle\n\nUser reports with concrete symptoms exist in Bun’s own tracker:\n- An Express app in Docker was reported as crashing 4 GB pods from memory growth in production on Bun 1.2.14. https://github.com/oven-sh/bun/issues/19930\n- A large `fetch` workload on Bun 1.2.18 was reported with RSS at 2.46 GB followed by a segmentation fault, and Bun’s own crash message said this indicated a bug in Bun. https://github.com/oven-sh/bun/issues/20912\n- A Mongoose production build on Bun was reported as growing from about 50 MB to 170 MB in 12 hours, and another container from 300 MB to 1.5 GB in a day, even while idle, leading to container death. https://github.com/oven-sh/bun/issues/25948\n- A Next.js site migration report said static generation performance was \"outstanding\" but also reported steadily growing memory after deploy. https://github.com/oven-sh/bun/issues/16339\n- A user trying to use PM2 with Bun 1.0.0 in Docker reported a crash when invoking `bunx --bun pm2 --help`. https://github.com/oven-sh/bun/issues/4949\n\nThere are also user reports of mixed migration outcomes: one user said they migrated a monorepo with 300+ packages and about 100,000 lines of code, but hit missing APIs, memory-corruption suspicions, packaging problems, and ended up saying they still used Node \"in production.\" https://github.com/oven-sh/bun/discussions/3955\n\nAnother user said they keep a wrapper because there are still occasions where they need to use Node \"because of a bug.\" https://github.com/oven-sh/bun/discussions/17485\n\nMaintainers themselves have long acknowledged reliability and depth-of-compatibility problems: Jarred Sumner wrote that Bun should not segfault, that `bun install` should work as reliably as npm, and that Bun’s Node compatibility had breadth but not enough depth. https://github.com/oven-sh/bun/issues/798\n\nMaintainers also point to concrete remediation work in Bun 1.4: they say it adds 1,517 Node.js test-suite tests, fixes over 2,900 issues, reduces idle CPU usage by 5x, lowers memory use for HTTP-server workloads by 13% to 48% in their benchmarks, and fixes many named memory leaks and crashes. https://bun.sh/blog/bun-v1.4\n\n**Disagreement**\n\nThe maintainers’ public framing is: Bun is already fit for real production use on major Unix platforms, major frameworks work, and named companies are using it. https://bun.sh/blog/bun-v1.0, https://bun.com/, https://bun.com/docs/runtime/nodejs-compat\n\nThe dissatisfied-user framing is: Bun can be fast and attractive, but production workloads still surface bugs serious enough to require Node fallback, hybrid deployments, or rollback. https://github.com/oven-sh/bun/issues/16339, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\nBoth framings are evidenced. What conflicts is the implied generalization from each side. Sources above.\n\n**Inference**\n\nA reasonable inference is that Bun is credible for at least some production workloads, because Anthropic and Railway publicly describe production use and Bun’s own site names additional deployments. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://blog.railway.com/p/introducing-railway-functions, https://bun.com/\n\nA separate reasonable inference is that long-running, high-load, or ecosystem-edge workloads have been a genuine reliability pain point, because Bun’s issue tracker contains repeated production-like reports of memory growth, crashes, and fallback-to-Node behavior, and Bun 1.4 devotes substantial release-note space to leak/crash fixes. https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://bun.sh/blog/bun-v1.4\n\n**Uncertainty**\n\nThe issue tracker does **not** tell us prevalence. A GitHub issue proves that a user reported a concrete problem; it does not prove how common that problem is across all Bun production deployments. The same is true in the other direction: a customer quote or vendor case study proves some successful use, not broad reliability across the ecosystem. Sources: https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://bun.com/, https://blog.railway.com/p/introducing-railway-functions\n\nSome official claims are benchmark-backed but still vendor-run, not neutral third-party audits. That is true for Bun’s install/performance claims and its Bun 1.4 CPU/memory reductions. https://bun.com/, https://bun.sh/blog/bun-v1.4\n\n**Lack of good evidence**\n\nI did **not** find a neutral, large-scale study comparing Bun’s production incident rate against Node or Deno. I also did **not** find a rigorous public dataset showing how often Bun compatibility bugs force production rollback. The available evidence is mostly vendor documentation, release notes, product announcements, and user issue reports. Sources sampled: https://bun.com/, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat, https://github.com/oven-sh/bun/issues, https://github.com/oven-sh/bun/discussions\n\n**Bottom line**\n\nEvidence supports this narrower conclusion: Bun is already used in production by some real organizations, and some maintainers and users report strong performance or deployment advantages. https://bun.com/, https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone, https://blog.railway.com/p/introducing-railway-functions, https://github.com/oven-sh/bun/issues/16339\n\nEvidence also supports this narrower conclusion: compatibility gaps and reliability bugs have been serious enough for some users to hit crashes, memory leaks, missing APIs, packaging/script issues, or continued Node fallback. https://bun.com/docs/runtime/nodejs-compat, https://bun.com/docs/pm/lifecycle, https://github.com/oven-sh/bun/issues/19930, https://github.com/oven-sh/bun/issues/20912, https://github.com/oven-sh/bun/issues/25948, https://github.com/oven-sh/bun/discussions/3955, https://github.com/oven-sh/bun/discussions/17485\n\nThe strongest defensible summary is therefore: Bun-in-production success is evidenced, Bun-in-production pain is also evidenced, and broad claims about universal readiness or universal unreliability are not well supported by the public record above."
+    },
+    {
+      "run_id": "2026-08-27_claude_community-bun-production",
+      "provider": "claude",
+      "model": "claude-opus-5[1m]",
+      "queries": [
+        "Bun in production experience problems memory leak 2025",
+        "\"Bun\" production \"we moved back to Node\" postmortem issues",
+        "opencode \"moving to Node and Electron\" away from Bun Tauri Jay V",
+        "Hacker News Bun production reliability discussion 2026 maintainer Jarred Sumner response memory",
+        "bun.com blog \"rewriting bun in rust\" July 2026 unsafe blocks audit",
+        "Prisma Compute built on Bun production launch 2026"
+      ],
+      "tool_results": [
+        {
+          "tool": "WebSearch",
+          "summary": "Bun 1.2 in Production: What Actually Broke When We Migrated from Node - DEV Community: https://dev.to/whoffagents/bun-12-in-production-what-actually-broke-when-we-migrated-from-node-6nh"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "We Moved Our Node App to Bun. Real numbers, real gotchas: what sped… | by Neurobyte | Medium: https://medium.com/@kaushalsinh73/we-moved-our-node-app-to-bun-401ee4f1bd2e"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "We Moved Our API from Node to Bun. Here's What Broke (and What Got 3x Faster). - DEV Community: https://dev.to/alanwest/we-moved-our-api-from-node-to-bun-heres-what-broke-and-what-got-3x-faster-3hg6"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun vs Node.js in Production: What Three Months of Real Traffic Taught Me - DEV Community: https://dev.to/synsun/bun-vs-nodejs-in-production-what-three-months-of-real-traffic-taught-me-3d96"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Why using Bun in production (maybe) isn't the best idea - DEV Community: https://dev.to/wojtekmaj/why-using-bun-in-production-maybe-isnt-the-best-idea-3deb"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun vs Node.js in 2026: Should You Actually Migrate? · Softronic: https://softronic.dev/blog/bun-vs-node-2026-migration"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun 1.1.13 out with memory fixes as dev complain of leaks: https://www.theregister.com/software/2026/04/21/bun-1113-out-with-memory-fixes-as-dev-complain-of-leaks/5221154"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Anthropic bakes memory fixes into Bun 1.1.13 as developers complain of leaks: https://www.devclass.com/ci-cd/2026/04/22/anthropic-bakes-memory-fixes-into-bun-1113-as-developers-complain-of-leaks/5218433"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun 1.1.13 addresses memory leaks as developers report production crashes | LavX News: https://news.lavx.hu/article/bun-1-1-13-addresses-memory-leaks-as-developers-report-production-crashes"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun memory leak with Nest.js · Issue #24216 · oven-sh/bun: https://github.com/oven-sh/bun/issues/24216"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Possible memory leak · Issue #16503 · oven-sh/bun: https://github.com/oven-sh/bun/issues/16503"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Memory leak with Mongoose and Bun (Production build / No Hot Reload) · Issue #25948 · oven-sh/bun: https://github.com/oven-sh/bun/issues/25948"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Memory leak since miggration from node 20 to bun 1.1.43 of a nextjs website · Issue #16339 · oven-sh/bun: https://github.com/oven-sh/bun/issues/16339"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "DEV Community: https://dev.to/last9/is-bun-production-ready-in-2026-a-practical-assessment-181h"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "i don t know how to call this memory leak 1415743: https://community.adobe.com/questions-729/i-don-t-know-how-to-call-this-memory-leak-1415743"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Bun Memory Leak Issue with Nest.js (#24216)\n\n## Summary\n\nA user reported a critical memory leak in Bun affecting their Nest.js application running on Google Cloud Run.\n\n**Issue Details:**\n- **Reported:** October 30, 2025\n- **Status:** Closed\n- **Bun Version:** 1.3.1 (also tested 1.2.21)\n- **Environment:** Docker container with 512Mi memory and 1 CPU\n\n## The Problem\n\nMemory consumption \"steadily and consistently goes to 100%\" alongside CPU spikes. The application is a Nest.js service that:\n- Pr"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Bun 1.1.13 Release Article Summary\n\n**Date:** Tuesday, April 21, 2026\n\n**Author:** Tim Anderson\n\n**Key Claims About Memory Issues:**\nBun 1.1.13 addresses significant memory problems that have plagued developers. The runtime now uses 5% less memory and features an upgraded allocator that returns unused memory to the OS faster. According to Bun creator Jared Sumner, these improvements \"reduce baseline memory usage and fix a class of hangs and crashes in long-running processes.\"\n\n**Released By:**"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Recent Bun Release Posts (2026 & Notable Memory-Related)\n\n## 2026 Releases\n\n**Bun 1.4** (August 20, 2026)\n- Rewrites Bun in Rust, adds headless browser automation (Bun.WebView), Bun.Image, Bun.markdown, JSON5, JSONL, Terminal and cron APIs\n- Node.js 26.3.0 compatibility with 1,517 newly passing tests\n- \"opt-in global virtual store for up to 7× faster installs\"\n\n**Rewriting Bun in Rust** (July 8, 2026)\n- Article explaining the migration from Zig to Rust\n\n## Memory-Related Highlights\n\n**Bun v1.3"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Bun 1.1.13 Release Summary\n\n**Version & Date:** Bun 1.1.13, published April 22, 2026\n\n**Key Claims:**\n- Runtime memory usage reduced by 5 percent\n- Upgraded memory allocator with Libpas scavenger implementation returns unused memory faster\n- Changes \"reduce baseline memory usage and fix a class of hangs and crashes in long-running processes\"\n\n**New Features:**\n- Enhanced Jest-compatible test runner with isolate flag, parallel flag, and shard flag\n- Compression now uses zlib-ng (next generation"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Bun v1.3.13 Release Summary\n\n**Release Date:** April 20, 2026\n\n## Key Performance Improvements\n\n**Memory Optimization:**\n- Runtime memory usage reduced by 5% through upgraded allocators (mimalloc v2→v3) and libpas scavenger implementation\n- Source maps now consume 8x less memory via bit-packed binary format (~2.4 bytes per mapping vs. 20 bytes previously)\n\n**Compression Speed:**\nUpgraded to zlib-ng 2.3.3 delivers substantial gzip speedups: \"deflate 123K L6 (async)\" improved from 373 µs to 68 µ"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Summary of GitHub Issue #29083\n\n**Title:** \"Bun.S3File.arrayBuffer() retains RSS and reaches OOM in a 1 GiB Linux container despite forced GC\"\n\n**Date:** April 9, 2026\n\n**Bun Version:** 1.3.11\n\n**What is Reported:**\nThe issue describes persistent memory growth (RSS) when repeatedly calling `Bun.S3File.arrayBuffer()`. Despite forced garbage collection via `Bun.gc(true)`, the resident set size climbs toward out-of-memory conditions in a 1 GiB container, eventually triggering an OOM kill (exit co"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun 1.1.13 out with memory fixes as dev complain of leaks: https://www.theregister.com/software/2026/04/21/bun-1113-out-with-memory-fixes-as-dev-complain-of-leaks/5221154"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "DEV Community: https://dev.to/marcin_codes/tauri-nodejs-alternative-to-electron-2l9l"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Buntralino Alternatives: https://alternativeto.net/software/buntralino"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "github.com: https://github.com/marcincodes/taurine"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "github.com: https://github.com/ProtonMail/inbox-desktop/issues/2"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "electron joins openjs foundation: https://www.infoq.com/news/2020/01/electron-joins-openjs-foundation/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "DEV Community: https://dev.to/raftlabs/tauri-vs-electron-23d1"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "DEV Community: https://dev.to/rerere_l_f165d08cdc06148/typst-studio-desktop-90-smaller-100-native-same-wasm-codebase-with-tauri-3len"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The Changelog: https://dev.to/changelog/tauris-next-big-move"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun's Rust Rewrite: Where It Stands (Updated July 2026): https://www.cosmicjs.com/blog/bun-rust-rewrite-javascript-runtime"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Jarred Sumner (bun creator, bun was recently acquired by Anthropic) has been wor... | Hacker News: https://news.ycombinator.com/item?id=46906006"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun (software): https://en.wikipedia.org/wiki/Bun_(software)"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Jarred Sumner on X: \"there will be a blog post about this. on what this means for bun, benchmarks, memory usage, maintainability going forward, and also the literal process of doing this (it wasn’t just “claude, rewrite bun in rust. make no mistakes”) this is a 960,000 LOC rewrite, the code truly\" / X: https://x.com/jarredsumner/status/2053063524826620129?lang=en"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Six Weeks After the Bun Rust Rewrite: Is It Done Yet? - Developers Digest: https://www.developersdigest.tech/blog/bun-rust-rewrite-status-check-hn-analysis"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun is Rewriting Itself in Rust And It Might Change Everything | by John Philip | Rustaceans | Medium: https://medium.com/rustaceans/bun-is-rewriting-itself-in-rust-and-it-might-change-everything-e1c80ef4b8aa"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The one story that never left Hacker News: https://heylefty.com/blog/the-one-story-that-never-left"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The Bun Story: From 45-Second Frustration to a Billion-Dollar AI Infrastructure | Ihor Chyshkala: https://chyshkala.com/blog/the-bun-story"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "The server returned HTTP 404 Not Found.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "The server returned HTTP 429 Too Many Requests.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Bun's Node.js Compatibility Claims\n\nBun asserts that **\"If a package works in Node.js but doesn't work in Bun, we consider it a bug in Bun.\"** The project runs extensive tests from Node.js' test suite before each release to validate compatibility with Node.js v26.\n\n## Fully Implemented Modules (🟢)\n\nThese include: `node:assert`, `node:buffer`, `node:console`, `node:dgram`, `node:dns`, `node:events`, `node:fs`, `node:http`, `node:os`, `node:path`, `node:querystring`, `node:readline`, `node:stre"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Rewriting Bun in Rust | Bun Blog: https://bun.com/blog/bun-in-rust"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun's unreleased Rust port has 13,365 unsafe blocks. Most can be removed.: https://bun.com/bun-unsafe-audit"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Rewriting Bun in Rust: https://simonwillison.net/2026/Jul/8/rewriting-bun-in-rust/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun's Rust Rewrite: Where It Stands (Updated July 2026): https://www.cosmicjs.com/blog/bun-rust-rewrite-javascript-runtime"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun’s 1M-line AI Rust rewrite has 13,365 unsafe blocks—and it made me glad I chose to learn Deno | daily.dev: https://app.daily.dev/posts/bun-s-1m-line-ai-rust-rewrite-has-13-365-unsafe-blocks-and-it-made-me-glad-i-chose-to-learn-deno-hm88vuqle"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun's Rust Rewrite: Engineering Reality, Unsafe Blocks, and the AI-Speed Migration · Technical news about AI, coding and all: https://dasroot.net/posts/2026/05/bun-rust-rewrite-engineering-reality-unsafe-blocks-ai-migration/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun Rust Rewrite Merged: The 13,000 Unsafe Block Problem | byteiota: https://byteiota.com/bun-rust-rewrite-merged-the-13000-unsafe-block-problem/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun Has Been Converted to Rust. Now What? | bytecode.news: https://bytecode.news/posts/2026/06/bun-has-been-converted-to-rust-now-what"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Bun 1.4 Release Analysis\n\n**Date:** August 20, 2026\n\n## Node.js Compatibility\nBun 1.4 added **+1,517 newly passing tests** from Node's test suite, bringing total passing files to 3,743 (up from 1,450 in v1.2.0). Key modules show strong compatibility:\n- `node:quic`: 99% pass rate (235/237 tests)\n- `node:events`, `node:trace_events`, `node:sqlite`: 100% pass rate\n- `node:http`, `node:fs`, `node:cluster`: 97% pass rate\n\nThe release notes acknowledge \"Bun is not 100% compatible with Node.js yet\" b"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Concrete Evidence Cited in the Article\n\nThe author provides **surprisingly little concrete evidence** for most claims. Here's what's actually cited:\n\n## Specific Evidence Provided:\n\n1. **GitHub Issue Reference**: A single link to a \"[Support Vitest](https://github.com/oven-sh/bun/issues/4145)\" request \"opened before Bun 1.0 and remains open today\"\n\n2. **Version-Specific Changes**: Named examples of breaking changes in patch/minor releases:\n   - Bun 1.1 changed `NODE_ENV` default\n   - Bun 1.1 a"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Open and Closed Issues Display\n\nBased on the webpage content provided, **no closed issues are shown** on this page. The display only presents open issues from the Bun repository.\n\nThe page shows approximately **11 open issues** in the visible search results, though the header indicates there are \"3.4k\" total issues in the repository.\n\n## Labels and Crash/Memory Information\n\nThe page does not display any aggregate counts or labels specifically for \"crash\" or \"memory\" categories. However, indivi"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Launching Prisma Compute in Public Beta: https://www.prisma.io/blog/launching-prisma-compute-public-beta"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "We put Bun's Rust rewrite in production on Prisma Compute: https://www.prisma.io/blog/bun-rust-rewrite-prisma-compute"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Prisma Compute — Prisma Blog | Articles & Updates | Prisma, ORMs, Databases: https://www.prisma.io/blog/series/prisma-compute"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Deploy Prisma Apps with create-prisma: https://www.prisma.io/blog/create-prisma-deploy-prisma-compute"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Prisma | LinkedIn: https://www.linkedin.com/company/prisma-io/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Prisma Compute: Deploy TypeScript apps on Bun: https://www.prisma.io/compute"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Image Transformations with Bun on Prisma Compute: https://www.prisma.io/blog/image-transformations-with-bun-on-prisma-compute"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Prisma Compute: Deploy TypeScript apps on Bun: https://www.prismagraphql.com/compute"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun 1.4 at Scrydon: A Quiet Upgrade With Loud Early Numbers - Scrydon: https://scrydon.com/insights/2026/08/21/bun-1-4-at-scrydon/"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Concrete Issues Prisma Found Running Bun in Production\n\n## Memory Leaks\n\n**Issue #29083**: Using `Bun.S3File.arrayBuffer()` to repeatedly read the same S3 object caused RSS to climb past 900 MiB in a 1 GiB container on stable Bun 1.3.14, eventually triggering an out-of-memory kill. The article notes that \"you can read a body into memory, drop every reference to it, force a full GC, and still watch the process grow well beyond anything the JavaScript heap can account for.\"\n\n## Connection Pool D"
+        }
+      ],
+      "opened_urls": [
+        "https://github.com/oven-sh/bun/issues/24216",
+        "https://www.theregister.com/software/2026/04/21/bun-1113-out-with-memory-fixes-as-dev-complain-of-leaks/5221154",
+        "https://bun.com/blog",
+        "https://www.devclass.com/ci-cd/2026/04/22/anthropic-bakes-memory-fixes-into-bun-1113-as-developers-complain-of-leaks/5218433",
+        "https://bun.com/blog/bun-v1.3.13",
+        "https://github.com/oven-sh/bun/issues/29083",
+        "https://bun.com/blog/rewriting-bun-in-rust",
+        "https://news.ycombinator.com/item?id=46906006",
+        "https://bun.com/docs/runtime/nodejs-apis",
+        "https://bun.com/blog/bun-v1.4",
+        "https://dev.to/wojtekmaj/why-using-bun-in-production-maybe-isnt-the-best-idea-3deb",
+        "https://github.com/oven-sh/bun/issues",
+        "https://www.prisma.io/blog/bun-rust-rewrite-prisma-compute"
+      ],
+      "cited_urls": [
+        "https://www.prisma.io/blog/bun-rust-rewrite-prisma-compute",
+        "https://github.com/oven-sh/bun/issues/29083",
+        "https://bun.com/blog/bun-v1.3.13",
+        "https://bun.com/blog/bun-v1.4",
+        "https://bun.com/docs/runtime/nodejs-apis",
+        "https://dev.to/whoffagents/bun-12-in-production-what-actually-broke-when-we-migrated-from-node-6nh",
+        "https://github.com/oven-sh/bun/issues/24216",
+        "https://github.com/oven-sh/bun/issues/25948",
+        "https://github.com/oven-sh/bun/issues/16339",
+        "https://www.prisma.io/blog/launching-prisma-compute-public-beta",
+        "https://www.theregister.com/software/2026/04/21/bun-1113-out-with-memory-fixes-as-dev-complain-of-leaks/5221154",
+        "https://www.devclass.com/ci-cd/2026/04/22/anthropic-bakes-memory-fixes-into-bun-1113-as-developers-complain-of-leaks/5218433",
+        "https://dev.to/wojtekmaj/why-using-bun-in-production-maybe-isnt-the-best-idea-3deb",
+        "https://github.com/oven-sh/bun/issues/4145",
+        "https://bun.com/blog/bun-in-rust",
+        "https://bun.com/bun-unsafe-audit"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://dev.to/whoffagents/bun-12-in-production-what-actually-broke-when-we-migrated-from-node-6nh",
+          "title": "Bun 1.2 in Production: What Actually Broke When We Migrated from Node - DEV Community"
+        },
+        {
+          "url": "https://medium.com/@kaushalsinh73/we-moved-our-node-app-to-bun-401ee4f1bd2e",
+          "title": "We Moved Our Node App to Bun. Real numbers, real gotchas: what sped… | by Neurobyte | Medium"
+        },
+        {
+          "url": "https://dev.to/alanwest/we-moved-our-api-from-node-to-bun-heres-what-broke-and-what-got-3x-faster-3hg6",
+          "title": "We Moved Our API from Node to Bun. Here's What Broke (and What Got 3x Faster). - DEV Community"
+        },
+        {
+          "url": "https://dev.to/synsun/bun-vs-nodejs-in-production-what-three-months-of-real-traffic-taught-me-3d96",
+          "title": "Bun vs Node.js in Production: What Three Months of Real Traffic Taught Me - DEV Community"
+        },
+        {
+          "url": "https://dev.to/wojtekmaj/why-using-bun-in-production-maybe-isnt-the-best-idea-3deb",
+          "title": "https://dev.to/wojtekmaj/why-using-bun-in-production-maybe-isnt-the-best-idea-3deb"
+        },
+        {
+          "url": "https://softronic.dev/blog/bun-vs-node-2026-migration",
+          "title": "Bun vs Node.js in 2026: Should You Actually Migrate? · Softronic"
+        },
+        {
+          "url": "https://www.theregister.com/software/2026/04/21/bun-1113-out-with-memory-fixes-as-dev-complain-of-leaks/5221154",
+          "title": "Bun 1.1.13 out with memory fixes as dev complain of leaks"
+        },
+        {
+          "url": "https://www.devclass.com/ci-cd/2026/04/22/anthropic-bakes-memory-fixes-into-bun-1113-as-developers-complain-of-leaks/5218433",
+          "title": "https://www.devclass.com/ci-cd/2026/04/22/anthropic-bakes-memory-fixes-into-bun-1113-as-developers-complain-of-leaks/5218433"
+        },
+        {
+          "url": "https://news.lavx.hu/article/bun-1-1-13-addresses-memory-leaks-as-developers-report-production-crashes",
+          "title": "Bun 1.1.13 addresses memory leaks as developers report production crashes | LavX News"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/24216",
+          "title": "https://github.com/oven-sh/bun/issues/24216"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/16503",
+          "title": "Possible memory leak · Issue #16503 · oven-sh/bun"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/25948",
+          "title": "Memory leak with Mongoose and Bun (Production build / No Hot Reload) · Issue #25948 · oven-sh/bun"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/16339",
+          "title": "Memory leak since miggration from node 20 to bun 1.1.43 of a nextjs website · Issue #16339 · oven-sh/bun"
+        },
+        {
+          "url": "https://dev.to/last9/is-bun-production-ready-in-2026-a-practical-assessment-181h",
+          "title": "DEV Community"
+        },
+        {
+          "url": "https://community.adobe.com/questions-729/i-don-t-know-how-to-call-this-memory-leak-1415743",
+          "title": "i don t know how to call this memory leak 1415743"
+        },
+        {
+          "url": "https://bun.com/blog",
+          "title": "https://bun.com/blog"
+        },
+        {
+          "url": "https://bun.com/blog/bun-v1.3.13",
+          "title": "https://bun.com/blog/bun-v1.3.13"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/29083",
+          "title": "https://github.com/oven-sh/bun/issues/29083"
+        },
+        {
+          "url": "https://dev.to/marcin_codes/tauri-nodejs-alternative-to-electron-2l9l",
+          "title": "DEV Community"
+        },
+        {
+          "url": "https://alternativeto.net/software/buntralino",
+          "title": "Buntralino Alternatives"
+        },
+        {
+          "url": "https://github.com/marcincodes/taurine",
+          "title": "github.com"
+        },
+        {
+          "url": "https://github.com/ProtonMail/inbox-desktop/issues/2",
+          "title": "github.com"
+        },
+        {
+          "url": "https://www.infoq.com/news/2020/01/electron-joins-openjs-foundation/",
+          "title": "electron joins openjs foundation"
+        },
+        {
+          "url": "https://dev.to/raftlabs/tauri-vs-electron-23d1",
+          "title": "DEV Community"
+        },
+        {
+          "url": "https://dev.to/rerere_l_f165d08cdc06148/typst-studio-desktop-90-smaller-100-native-same-wasm-codebase-with-tauri-3len",
+          "title": "DEV Community"
+        },
+        {
+          "url": "https://dev.to/changelog/tauris-next-big-move",
+          "title": "The Changelog"
+        },
+        {
+          "url": "https://www.cosmicjs.com/blog/bun-rust-rewrite-javascript-runtime",
+          "title": "Bun's Rust Rewrite: Where It Stands (Updated July 2026)"
+        },
+        {
+          "url": "https://news.ycombinator.com/item?id=46906006",
+          "title": "https://news.ycombinator.com/item?id=46906006"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Bun_(software)",
+          "title": "Bun (software)"
+        },
+        {
+          "url": "https://x.com/jarredsumner/status/2053063524826620129?lang=en",
+          "title": "Jarred Sumner on X: \"there will be a blog post about this. on what this means for bun, benchmarks, memory usage, maintainability going forward, and also the literal process of doing this (it wasn’t just “claude, rewrite bun in rust. make no mistakes”) this is a 960,000 LOC rewrite, the code truly\" / X"
+        },
+        {
+          "url": "https://www.developersdigest.tech/blog/bun-rust-rewrite-status-check-hn-analysis",
+          "title": "Six Weeks After the Bun Rust Rewrite: Is It Done Yet? - Developers Digest"
+        },
+        {
+          "url": "https://medium.com/rustaceans/bun-is-rewriting-itself-in-rust-and-it-might-change-everything-e1c80ef4b8aa",
+          "title": "Bun is Rewriting Itself in Rust And It Might Change Everything | by John Philip | Rustaceans | Medium"
+        },
+        {
+          "url": "https://heylefty.com/blog/the-one-story-that-never-left",
+          "title": "The one story that never left Hacker News"
+        },
+        {
+          "url": "https://chyshkala.com/blog/the-bun-story",
+          "title": "The Bun Story: From 45-Second Frustration to a Billion-Dollar AI Infrastructure | Ihor Chyshkala"
+        },
+        {
+          "url": "https://bun.com/blog/rewriting-bun-in-rust",
+          "title": "https://bun.com/blog/rewriting-bun-in-rust"
+        },
+        {
+          "url": "https://bun.com/docs/runtime/nodejs-apis",
+          "title": "https://bun.com/docs/runtime/nodejs-apis"
+        },
+        {
+          "url": "https://bun.com/blog/bun-in-rust",
+          "title": "Rewriting Bun in Rust | Bun Blog"
+        },
+        {
+          "url": "https://bun.com/bun-unsafe-audit",
+          "title": "Bun's unreleased Rust port has 13,365 unsafe blocks. Most can be removed."
+        },
+        {
+          "url": "https://simonwillison.net/2026/Jul/8/rewriting-bun-in-rust/",
+          "title": "Rewriting Bun in Rust"
+        },
+        {
+          "url": "https://app.daily.dev/posts/bun-s-1m-line-ai-rust-rewrite-has-13-365-unsafe-blocks-and-it-made-me-glad-i-chose-to-learn-deno-hm88vuqle",
+          "title": "Bun’s 1M-line AI Rust rewrite has 13,365 unsafe blocks—and it made me glad I chose to learn Deno | daily.dev"
+        },
+        {
+          "url": "https://dasroot.net/posts/2026/05/bun-rust-rewrite-engineering-reality-unsafe-blocks-ai-migration/",
+          "title": "Bun's Rust Rewrite: Engineering Reality, Unsafe Blocks, and the AI-Speed Migration · Technical news about AI, coding and all"
+        },
+        {
+          "url": "https://byteiota.com/bun-rust-rewrite-merged-the-13000-unsafe-block-problem/",
+          "title": "Bun Rust Rewrite Merged: The 13,000 Unsafe Block Problem | byteiota"
+        },
+        {
+          "url": "https://bytecode.news/posts/2026/06/bun-has-been-converted-to-rust-now-what",
+          "title": "Bun Has Been Converted to Rust. Now What? | bytecode.news"
+        },
+        {
+          "url": "https://bun.com/blog/bun-v1.4",
+          "title": "https://bun.com/blog/bun-v1.4"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues",
+          "title": "https://github.com/oven-sh/bun/issues"
+        },
+        {
+          "url": "https://www.prisma.io/blog/launching-prisma-compute-public-beta",
+          "title": "Launching Prisma Compute in Public Beta"
+        },
+        {
+          "url": "https://www.prisma.io/blog/bun-rust-rewrite-prisma-compute",
+          "title": "https://www.prisma.io/blog/bun-rust-rewrite-prisma-compute"
+        },
+        {
+          "url": "https://www.prisma.io/blog/series/prisma-compute",
+          "title": "Prisma Compute — Prisma Blog | Articles & Updates | Prisma, ORMs, Databases"
+        },
+        {
+          "url": "https://www.prisma.io/blog/create-prisma-deploy-prisma-compute",
+          "title": "Deploy Prisma Apps with create-prisma"
+        },
+        {
+          "url": "https://www.linkedin.com/company/prisma-io/",
+          "title": "Prisma | LinkedIn"
+        },
+        {
+          "url": "https://www.prisma.io/compute",
+          "title": "Prisma Compute: Deploy TypeScript apps on Bun"
+        },
+        {
+          "url": "https://www.prisma.io/blog/image-transformations-with-bun-on-prisma-compute",
+          "title": "Image Transformations with Bun on Prisma Compute"
+        },
+        {
+          "url": "https://www.prismagraphql.com/compute",
+          "title": "Prisma Compute: Deploy TypeScript apps on Bun"
+        },
+        {
+          "url": "https://scrydon.com/insights/2026/08/21/bun-1-4-at-scrydon/",
+          "title": "Bun 1.4 at Scrydon: A Quiet Upgrade With Loud Early Numbers - Scrydon"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/4145",
+          "title": "https://github.com/oven-sh/bun/issues/4145"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://dev.to/whoffagents/bun-12-in-production-what-actually-broke-when-we-migrated-from-node-6nh",
+          "text": "Bun 1.2 in Production: What Actually Broke When We Migrated from Node - DEV Community"
+        },
+        {
+          "url": "https://medium.com/@kaushalsinh73/we-moved-our-node-app-to-bun-401ee4f1bd2e",
+          "text": "We Moved Our Node App to Bun. Real numbers, real gotchas: what sped… | by Neurobyte | Medium"
+        },
+        {
+          "url": "https://dev.to/alanwest/we-moved-our-api-from-node-to-bun-heres-what-broke-and-what-got-3x-faster-3hg6",
+          "text": "We Moved Our API from Node to Bun. Here's What Broke (and What Got 3x Faster). - DEV Community"
+        },
+        {
+          "url": "https://dev.to/synsun/bun-vs-nodejs-in-production-what-three-months-of-real-traffic-taught-me-3d96",
+          "text": "Bun vs Node.js in Production: What Three Months of Real Traffic Taught Me - DEV Community"
+        },
+        {
+          "url": "https://dev.to/wojtekmaj/why-using-bun-in-production-maybe-isnt-the-best-idea-3deb",
+          "text": "Why using Bun in production (maybe) isn't the best idea - DEV Community"
+        },
+        {
+          "url": "https://softronic.dev/blog/bun-vs-node-2026-migration",
+          "text": "Bun vs Node.js in 2026: Should You Actually Migrate? · Softronic"
+        },
+        {
+          "url": "https://www.theregister.com/software/2026/04/21/bun-1113-out-with-memory-fixes-as-dev-complain-of-leaks/5221154",
+          "text": "Bun 1.1.13 out with memory fixes as dev complain of leaks"
+        },
+        {
+          "url": "https://www.devclass.com/ci-cd/2026/04/22/anthropic-bakes-memory-fixes-into-bun-1113-as-developers-complain-of-leaks/5218433",
+          "text": "Anthropic bakes memory fixes into Bun 1.1.13 as developers complain of leaks"
+        },
+        {
+          "url": "https://news.lavx.hu/article/bun-1-1-13-addresses-memory-leaks-as-developers-report-production-crashes",
+          "text": "Bun 1.1.13 addresses memory leaks as developers report production crashes | LavX News"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/24216",
+          "text": "Bun memory leak with Nest.js · Issue #24216 · oven-sh/bun"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/16503",
+          "text": "Possible memory leak · Issue #16503 · oven-sh/bun"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/25948",
+          "text": "Memory leak with Mongoose and Bun (Production build / No Hot Reload) · Issue #25948 · oven-sh/bun"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/16339",
+          "text": "Memory leak since miggration from node 20 to bun 1.1.43 of a nextjs website · Issue #16339 · oven-sh/bun"
+        },
+        {
+          "url": "https://dev.to/last9/is-bun-production-ready-in-2026-a-practical-assessment-181h",
+          "text": "DEV Community"
+        },
+        {
+          "url": "https://community.adobe.com/questions-729/i-don-t-know-how-to-call-this-memory-leak-1415743",
+          "text": "i don t know how to call this memory leak 1415743"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/24216",
+          "text": "# Bun Memory Leak Issue with Nest.js (#24216)\n\n## Summary\n\nA user reported a critical memory leak in Bun affecting their Nest.js application running on Google Cloud Run.\n\n**Issue Details:**\n- **Reported:** October 30, 2025\n- **Status:** Closed\n- **Bun Version:** 1.3.1 (also tested 1.2.21)\n- **Environment:** Docker container with 512Mi memory and 1 CPU\n\n## The Problem\n\nMemory consumption \"steadily and consistently goes to 100%\" alongside CPU spikes. The application is a Nest.js service that:\n- Processes PubSub events\n- Interacts with MongoDB using the JavaScript driver\n- Runs scheduled email dispatches via cron\n- Uses mutex locks to ensure single event processing\n\n## Timeline\n\nThe memory issues emerged in mid-September when the user upgraded from Bun 1.2.2 to 1.2.21. Upgrading to 1.3.1 did not resolve the problem.\n\n## Reproduction\n\nThe reporter states: \"Don't know how to reproduce it. Not sure how find the culprit.\" They requested assistance identifying the root cause but provided no minimal reproduction case.\n\n## Maintainer Response\n\nNo maintainer responses are visible in the provided content, and the issue remains unresolved with no actionable debugging information documented."
+        },
+        {
+          "url": "https://www.theregister.com/software/2026/04/21/bun-1113-out-with-memory-fixes-as-dev-complain-of-leaks/5221154",
+          "text": "# Bun 1.1.13 Release Article Summary\n\n**Date:** Tuesday, April 21, 2026\n\n**Author:** Tim Anderson\n\n**Key Claims About Memory Issues:**\nBun 1.1.13 addresses significant memory problems that have plagued developers. The runtime now uses 5% less memory and features an upgraded allocator that returns unused memory to the OS faster. According to Bun creator Jared Sumner, these improvements \"reduce baseline memory usage and fix a class of hangs and crashes in long-running processes.\"\n\n**Released By:** Anthropic (which acquired Bun in December 2025)\n\n**Notable Quotes:**\n\n- One Reddit user stated: \"Bun is not stable enough for production nor faster than Node in production,\" citing memory leaks as the core issue.\n\n- Jay V, founder of OpenCode, commented: \"we are moving to Node and Electron, away from Bun and Tauri,\" and added \"Bun is not a good fit for apps with a large user base, you should just stick to Node.\"\n\n- A satisfied user noted: \"I've been very satisfied since I switched to Bun. It's fast and has a great standard library.\"\n\nThe article emphasizes that while Bun excels in speed, production deployments with long-running processes have experienced problematic memory behavior."
+        },
+        {
+          "url": "https://bun.com/blog",
+          "text": "# Recent Bun Release Posts (2026 & Notable Memory-Related)\n\n## 2026 Releases\n\n**Bun 1.4** (August 20, 2026)\n- Rewrites Bun in Rust, adds headless browser automation (Bun.WebView), Bun.Image, Bun.markdown, JSON5, JSONL, Terminal and cron APIs\n- Node.js 26.3.0 compatibility with 1,517 newly passing tests\n- \"opt-in global virtual store for up to 7× faster installs\"\n\n**Rewriting Bun in Rust** (July 8, 2026)\n- Article explaining the migration from Zig to Rust\n\n## Memory-Related Highlights\n\n**Bun v1.3.10** (February 26, 2026)\n- Reduced memory consumption through upgrades to JavaScriptCore\n- \"structuredClone up to 25x faster for arrays\"\n- Fewer closures in bundled output\n\n**Bun v1.3.7** (January 27, 2026)\n- Notable performance improvements: \"50% faster `Buffer.from(array)`, 35% faster async/await\"\n- New JSON parsing APIs (JSON5, JSONL)\n\nThe 2026 posts emphasize performance optimization and the strategic Rust rewrite, though specific allocator details aren't detailed in the blog summaries provided."
+        },
+        {
+          "url": "https://www.devclass.com/ci-cd/2026/04/22/anthropic-bakes-memory-fixes-into-bun-1113-as-developers-complain-of-leaks/5218433",
+          "text": "# Bun 1.1.13 Release Summary\n\n**Version & Date:** Bun 1.1.13, published April 22, 2026\n\n**Key Claims:**\n- Runtime memory usage reduced by 5 percent\n- Upgraded memory allocator with Libpas scavenger implementation returns unused memory faster\n- Changes \"reduce baseline memory usage and fix a class of hangs and crashes in long-running processes\"\n\n**New Features:**\n- Enhanced Jest-compatible test runner with isolate flag, parallel flag, and shard flag\n- Compression now uses zlib-ng (next generation), yielding up to 5x faster compression\n\n**Context:**\nBun was acquired by Anthropic in December 2025. It competes with Node.js (version 25.9) and Deno.\n\n**Developer Complaints (Evidence):**\n- Reddit user: \"Bun is not stable enough for production nor faster than Node in production,\" citing memory leaks in long-running workloads\n- Jay V (OpenCode founder): \"we are moving to Node and Electron, away from Bun and Tauri,\" citing \"memory issues, crashes, and terrible Windows support\"\n- GitHub issue #29083 documented garbage collection failures resulting in OOM errors\n\n**Positive Feedback:**\nOne user stated: \"I've been very satisfied since I switched to Bun. It's fast and has a great standard library\"\n\n**Broader Issue:**\nSome developers prefer slower feature development in favor of stability improvements."
+        },
+        {
+          "url": "https://bun.com/blog/bun-v1.3.13",
+          "text": "# Bun v1.3.13 Release Summary\n\n**Release Date:** April 20, 2026\n\n## Key Performance Improvements\n\n**Memory Optimization:**\n- Runtime memory usage reduced by 5% through upgraded allocators (mimalloc v2→v3) and libpas scavenger implementation\n- Source maps now consume 8x less memory via bit-packed binary format (~2.4 bytes per mapping vs. 20 bytes previously)\n\n**Compression Speed:**\nUpgraded to zlib-ng 2.3.3 delivers substantial gzip speedups: \"deflate 123K L6 (async)\" improved from 373 µs to 68 µs (5.48× faster), with most operations seeing 1.4-2.6× improvements.\n\n## Test Runner Enhancements\n\nThree powerful new testing flags:\n\n- **`--isolate`**: Fresh global environment per test file within same process\n- **`--parallel[=N]`**: Distribute tests across N worker processes with automatic load balancing\n- **`--shard=M/N`**: Split tests across CI jobs with deterministic round-robin distribution\n- **`--changed`**: Run only tests affected by git changes, with optional commit/branch comparison\n\n## Notable Fixes\n\nThe release addresses critical stability issues: \"Worker lifecycle crashes\" when terminating workers or sending messages, socket timeout bugs affecting HTTP response handling, HTTP/2 compatibility problems with strict peers, and memory leaks in WebSocket and file operations.\n\n**New Cryptography Support:**\nSHA3-224/256/384/512 algorithms added to WebCrypto and node:crypto; X25519 key derivation fully implemented."
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/29083",
+          "text": "# Summary of GitHub Issue #29083\n\n**Title:** \"Bun.S3File.arrayBuffer() retains RSS and reaches OOM in a 1 GiB Linux container despite forced GC\"\n\n**Date:** April 9, 2026\n\n**Bun Version:** 1.3.11\n\n**What is Reported:**\nThe issue describes persistent memory growth (RSS) when repeatedly calling `Bun.S3File.arrayBuffer()`. Despite forced garbage collection via `Bun.gc(true)`, the resident set size climbs toward out-of-memory conditions in a 1 GiB container, eventually triggering an OOM kill (exit code 137). The JavaScript heap remains relatively small, suggesting memory is being retained outside the managed heap.\n\n**Status:** Closed (issue is labeled as a bug requiring triage)\n\n**Maintainer Responses:** None visible in the provided content\n\n**Reproduction Available:** Yes—the reporter included `run.sh` and `repro.ts` scripts demonstrating the behavior, with structured output tracking RSS, heap metrics, and container memory limits across iterations.\n\n**Key Observation:** The reporter notes that no explicit cleanup API (like `close()` or `dispose()`) exists for `S3File` or `S3Client` in Bun's public type surface."
+        },
+        {
+          "url": "https://dev.to/marcin_codes/tauri-nodejs-alternative-to-electron-2l9l",
+          "text": "DEV Community"
+        },
+        {
+          "url": "https://alternativeto.net/software/buntralino",
+          "text": "Buntralino Alternatives"
+        },
+        {
+          "url": "https://github.com/marcincodes/taurine",
+          "text": "github.com"
+        },
+        {
+          "url": "https://github.com/ProtonMail/inbox-desktop/issues/2",
+          "text": "github.com"
+        },
+        {
+          "url": "https://www.infoq.com/news/2020/01/electron-joins-openjs-foundation/",
+          "text": "electron joins openjs foundation"
+        },
+        {
+          "url": "https://dev.to/raftlabs/tauri-vs-electron-23d1",
+          "text": "DEV Community"
+        },
+        {
+          "url": "https://dev.to/rerere_l_f165d08cdc06148/typst-studio-desktop-90-smaller-100-native-same-wasm-codebase-with-tauri-3len",
+          "text": "DEV Community"
+        },
+        {
+          "url": "https://dev.to/changelog/tauris-next-big-move",
+          "text": "The Changelog"
+        },
+        {
+          "url": "https://www.cosmicjs.com/blog/bun-rust-rewrite-javascript-runtime",
+          "text": "Bun's Rust Rewrite: Where It Stands (Updated July 2026)"
+        }
+      ],
+      "final_answer": "# Bun en production : expériences contradictoires et état des preuves\n\n## 1. Ce qui est solidement établi (sources primaires ouvertes)\n\n### Fuites mémoire réelles, reproductibles, en production\n\nLe cas le mieux documenté est celui de **Prisma**, qui a déployé Bun comme runtime de son offre d'hébergement Prisma Compute. Leur rapport public est précis et vérifiable :\n\n- `Bun.S3File.arrayBuffer()` appelé en boucle sur le même objet S3 faisait grimper le RSS au-delà de 900 MiB dans un conteneur de 1 GiB sur **Bun 1.3.14 stable**, jusqu'à l'OOM kill. Formulation de Prisma : « you can read a body into memory, drop every reference to it, force a full GC, and still watch the process grow well beyond anything the JavaScript heap can account for » ([prisma.io](https://www.prisma.io/blog/bun-rust-rewrite-prisma-compute)).\n- Un **deadlock du pool de connexions SQL** : après des cycles de pause/reprise de VM, le pool comptait des connexions mortes comme vivantes ; les requêtes s'empilaient sans erreur ni tentative de reconnexion ([prisma.io](https://www.prisma.io/blog/bun-rust-rewrite-prisma-compute)).\n\nCe cas est le seul de mon corpus où un problème de production est accompagné d'une **reproduction publique**. Le ticket correspondant, [oven-sh/bun#29083](https://github.com/oven-sh/bun/issues/29083) (9 avril 2026, Bun 1.3.11), fournit `run.sh` et `repro.ts`, un suivi RSS/heap itération par itération, et note qu'aucune API de libération (`close()`, `dispose()`) n'existe sur `S3File`/`S3Client`. Il est aujourd'hui fermé.\n\n### Les correctifs mémoire côté mainteneurs\n\nLes notes de version de **Bun v1.3.13 (20 avril 2026)** confirment côté éditeur : −5 % de mémoire runtime via mimalloc v2→v3 et le scavenger libpas, source maps 8× moins gourmandes (~2,4 octets/mapping contre ~20), plus des correctifs explicites de « memory leaks in WebSocket and file operations » et de « worker lifecycle crashes » ([bun.com](https://bun.com/blog/bun-v1.3.13)).\n\n**Bun 1.4 (20 août 2026)** avance des chiffres plus larges : −13 à −48 % de mémoire pour les serveurs HTTP, SSR Next.js à 238 MB contre 410 MB pour Node, CPU au repos divisé par 5 en production, p99 de Claude Code passant de 24 % à 10 % ([bun.com](https://bun.com/blog/bun-v1.4)).\n\n> ⚠️ **Nature de la preuve** : ce sont des mesures d'éditeur, non reproduites de manière indépendante dans ce que j'ai pu ouvrir. Le fait que le correctif du problème Prisma soit confirmé par un tiers (Prisma a validé une mémoire plate sur le canary `1.3.14-canary.1+172afa532`) est plus probant que les benchmarks d'auto-évaluation.\n\n### Compatibilité Node : des chiffres traçables\n\nC'est le point où la preuve est la meilleure, car Bun publie un compteur mesurable :\n\n- Doctrine affichée : « If a package works in Node.js but doesn't work in Bun, we consider it a bug in Bun » ([docs Bun](https://bun.com/docs/runtime/nodejs-apis)).\n- Bun 1.4 : **+1 517 fichiers de tests Node nouvellement passants, 3 743 au total, contre 1 450 en v1.2.0**, sur la suite de tests de Node 26 ([bun.com](https://bun.com/blog/bun-v1.4)).\n- Taux par module publiés : `node:quic` 99 % (235/237), `node:events`/`node:trace_events`/`node:sqlite` 100 %, `node:http`/`node:fs`/`node:cluster` 97 % ([bun.com](https://bun.com/blog/bun-v1.4)).\n- Les mainteneurs reconnaissent explicitement : « Bun is not 100% compatible with Node.js yet » ([bun.com](https://bun.com/blog/bun-v1.4)).\n\nLes **trous documentés par Bun lui-même** recoupent précisément ce dont se plaignent les utilisateurs ([docs Bun](https://bun.com/docs/runtime/nodejs-apis)) :\n\n| Module | État déclaré |\n|---|---|\n| `node:async_hooks` | `AsyncLocalStorage` fonctionne, `createHook` et les async IDs sont des **stubs** |\n| `node:cluster` | fonctionnel mais **« not battle-tested »** |\n| `node:vm` | fonctionnel, `measureMemory()` imprécis |\n| `node:crypto` | Ed448, X448, secp256k1, CCM, OCB manquants |\n| `node:worker_threads` | `resourceLimits`, `moveMessagePortToContext` manquants |\n| `node:sea` | non implémenté |\n\nC'est le point où une **opinion devient une affirmation traçable** : quand un billet affirme que les agents APM sont « partiellement aveugles » sous Bun parce qu'ils dépendent de `vm` et des cas limites d'`async_hooks` ([dev.to](https://dev.to/whoffagents/bun-12-in-production-what-actually-broke-when-we-migrated-from-node-6nh)), la documentation officielle confirme le mécanisme sous-jacent — `createHook` est un stub. L'inférence est raisonnable, mais je n'ai vu **aucune mesure publique** de l'ampleur réelle de cette perte d'observabilité.\n\n## 2. Le désaccord de fond\n\nIl ne porte pas sur les faits mais sur **le type de charge**.\n\n**Côté « Bun casse en production »** : la plainte convergente est celle des processus longue durée. Le ticket [#24216](https://github.com/oven-sh/bun/issues/24216) (30 octobre 2025) rapporte, sur une application Nest.js + MongoDB sur Cloud Run en conteneur 512 Mi, une mémoire qui « steadily and consistently goes to 100% » avec des pics CPU, apparue au passage de Bun 1.2.2 à 1.2.21 et non résolue en 1.3.1. Le rapporteur écrit lui-même : *« Don't know how to reproduce it. Not sure how to find the culprit. »* — **aucune reproduction, aucune réponse de mainteneur visible, ticket fermé**. D'autres tickets similaires existent (Mongoose [#25948](https://github.com/oven-sh/bun/issues/25948), Next.js [#16339](https://github.com/oven-sh/bun/issues/16339)) mais je ne les ai pas ouverts.\n\n**Côté mainteneurs / gros utilisateurs** : Prisma a mis Bun en production sur son offre d'hébergement ([prisma.io](https://www.prisma.io/blog/launching-prisma-compute-public-beta)), et Claude Code tourne dessus depuis des mois selon les notes de la 1.4 ([bun.com](https://bun.com/blog/bun-v1.4)).\n\n**La ligne de partage la plus honnête** que je peux tracer à partir des preuves : les problèmes signalés touchent des **serveurs longue durée avec charge soutenue et conteneurs à mémoire contrainte**, pas l'usage de Bun comme outillage (installeur, test runner, bundler). Cette distinction est explicite dans plusieurs sources et cohérente avec les deux cas reproduits (S3, pool SQL) — mais c'est **mon inférence**, pas une conclusion établie par une source.\n\n## 3. Ce que je n'ai pas pu vérifier, et une erreur de presse à signaler\n\n**Erreur factuelle dans la presse spécialisée.** *The Register* ([21 avril 2026](https://www.theregister.com/software/2026/04/21/bun-1113-out-with-memory-fixes-as-dev-complain-of-leaks/5221154)) et *DevClass* ([22 avril 2026](https://www.devclass.com/ci-cd/2026/04/22/anthropic-bakes-memory-fixes-into-bun-1113-as-developers-complain-of-leaks/5218433)) titrent tous deux sur **« Bun 1.1.13 »**. La version décrite (−5 % mémoire, scavenger libpas, zlib-ng, flags de test `--isolate`/`--parallel`/`--shard`) est en réalité **Bun 1.3.13**, sortie le 20 avril 2026 ([bun.com](https://bun.com/blog/bun-v1.3.13)). Bun 1.1.13 date de 2024. Si vous citez ces articles, corrigez le numéro.\n\n**Non vérifié en source primaire :**\n- La citation de **Jay V (fondateur d'OpenCode)** — « we are moving to Node and Electron, away from Bun and Tauri », motifs invoqués : problèmes mémoire, crashes, « terrible Windows support » — ne m'est connue que par la presse secondaire ci-dessus. Le post X original n'a pas été ouvert. **Traitez-la comme rapportée, non confirmée.**\n- La citation Reddit « Bun is not stable enough for production nor faster than Node in production » : idem, secondaire, sans lien vers le fil original, sans profil de charge ni version. **Opinion sans valeur probante.**\n- Le fil Hacker News sur la réécriture Rust (429 sur ycombinator).\n\n**Preuve faible à écarter.** Le billet [« Why using Bun in production (maybe) isn't the best idea »](https://dev.to/wojtekmaj/why-using-bun-in-production-maybe-isnt-the-best-idea-3deb) est très cité mais s'appuie presque uniquement sur l'assertion. Ses seuls éléments vérifiables sont : le ticket [#4145](https://github.com/oven-sh/bun/issues/4145) (support Vitest, ouvert avant Bun 1.0, toujours ouvert), et des changements de comportement en versions mineures/patch (défaut `NODE_ENV` en 1.1, résolution des conditional exports en 1.1, `idleTimeout` de `node:http` en 1.1.26). Sa comparaison « Node ~1,7k tickets ouverts vs Bun ~4,7k » est **sans date ni pondération par sévérité** ; la page GitHub actuelle affiche d'ailleurs ~3,4k, ce qui rend le chiffre invérifiable en l'état.\n\n**Une inconnue structurelle importante et non résolue.** Bun 1.4 est *« the first release »* du portage Rust, une réécriture de ~960 000 lignes depuis Zig ([bun.com](https://bun.com/blog/bun-in-rust), 8 juillet 2026). L'audit publié le 21 mai 2026 recense **13 365 blocs `unsafe`** (~4 % du code, 78 % d'une seule ligne), dont **~9 300 pourraient devenir du code sûr et ~4 000 resteront `unsafe`**, plus **cinq fonctions aujourd'hui *unsound*** — UB atteignable depuis du Rust sûr ([bun.com/bun-unsafe-audit](https://bun.com/bun-unsafe-audit)). C'est une transparence remarquable de la part des mainteneurs. Mais cela signifie que **les données de fiabilité antérieures à août 2026 portent sur une base de code différente** : ni les plaintes ni les succès pré-1.4 ne se transposent mécaniquement. Il n'existe pas encore, à ma connaissance, de retour d'expérience de production longue durée sur la version Rust en dehors de Prisma et Claude Code.\n\n## En résumé\n\n| Affirmation | Statut |\n|---|---|\n| Bun a eu de vraies fuites mémoire en production sur processus longue durée | **Établi** (Prisma + #29083, reproduction publique) |\n| Bun avait un bug de pool SQL silencieux après pause/reprise VM | **Établi** (Prisma) |\n| Trous de compatibilité sur `async_hooks`, `cluster`, `vm`, `crypto` | **Établi** — par la doc de Bun elle-même |\n| Compatibilité Node en progression mesurable (1 450 → 3 743 tests) | **Établi**, source éditeur mais métrique vérifiable |\n| Les gains mémoire de 1.4 (−13 à −48 %) | **Non répliqué indépendamment** |\n| « Bun est instable / plus lent que Node en production » | **Opinion** — aucune charge, version ni mesure attachée |\n| Le mauvais support Windows a fait fuir OpenCode | **Rapporté par la presse**, non vérifié en source primaire |\n| Les tickets mémoire Nest.js/Mongoose sont des bugs Bun | **Incertain** — pas de repro, pas de triage public |\n| Fiabilité de Bun 1.4 (Rust) en production longue durée | **Preuves insuffisantes** — trop récent |\n\nLe biais dominant du corpus mérite d'être noté : les sources les plus rigoureuses sont **favorables ou neutres** (Prisma, docs, notes de version), les sources les plus critiques sont **anecdotiques** (Reddit, X, billets DEV sans liens). Cela ne veut pas dire que les critiques ont tort — cela veut dire que **l'asymétrie de preuve reflète surtout qui prend le temps d'écrire une reproduction**."
+    }
+  ]
+}

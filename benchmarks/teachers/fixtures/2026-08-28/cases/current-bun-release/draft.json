@@ -1,0 +1,112 @@
+{
+  "claims": [
+    {
+      "id": "claim_latest_release",
+      "text": "The latest official Bun release identified in the supplied evidence is Bun v1.4.0, with the GitHub releases page marking `bun-v1.4.0` as `Latest`.",
+      "required_concepts": ["bun", "v1.4.0", "latest"],
+      "acceptable_patterns": ["Bun\\s+v?1\\.4(?:\\.0)?", "bun-v1\\.4\\.0", "Latest"],
+      "sources": [
+        {
+          "url": "https://github.com/oven-sh/bun/releases",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/releases/tag/bun-v1.4",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "claim_publish_date",
+      "text": "The official Bun blog post for Bun v1.4 is dated August 20, 2026, and the supplied evidence says the GitHub release entry also shows August 20 at 14:07.",
+      "required_concepts": ["publish_date", "august_20_2026", "14:07"],
+      "acceptable_patterns": ["August\\s+20,\\s+2026", "August\\s+20", "14:07"],
+      "sources": [
+        {
+          "url": "https://bun.sh/blog/bun-v1.4",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/releases",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "claim_node_compat",
+      "text": "According to the supplied official-release summary, Bun 1.4 adds 1,517 Node.js test-suite passes and describes this as its biggest jump in Node.js compatibility since Bun 1.0.",
+      "required_concepts": ["node_compatibility", "1517", "since_1_0"],
+      "acceptable_patterns": [
+        "1,517",
+        "Node\\.js",
+        "biggest jump in Node\\.js compatibility since Bun 1\\.0"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.sh/blog/bun-v1.4",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.9
+    },
+    {
+      "id": "claim_perf_and_fixes",
+      "text": "The supplied official-release summary says Bun 1.4 fixes over 2,900 issues, reduces idle CPU usage by 5x, reduces memory usage by up to 35%, and starts 50% faster on Linux.",
+      "required_concepts": ["issues_fixed", "cpu", "memory", "linux_startup"],
+      "acceptable_patterns": [
+        "over\\s+2,900\\s+issues",
+        "5x",
+        "35%",
+        "50%\\s+faster\\s+on\\s+Linux"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.sh/blog/bun-v1.4",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.9
+    },
+    {
+      "id": "claim_rewrite_and_builtins",
+      "text": "The supplied official-release summary highlights a rewrite from Zig to Rust and a larger built-in standard library, including built-in features such as `Bun.Image`, `Bun.WebView`, `Bun.markdown`, `Bun.cron()`, `Bun.Terminal`, `bun run --parallel`, and `bun test --parallel`.",
+      "required_concepts": ["rust_rewrite", "builtins", "bun_image", "bun_webview", "parallel"],
+      "acceptable_patterns": [
+        "rewrite[s]? Bun from Zig to Rust",
+        "written in Rust",
+        "Bun\\.Image",
+        "Bun\\.WebView",
+        "bun run --parallel",
+        "bun test --parallel"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.sh/blog/bun-v1.4",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.8
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Bun 1.4.0 is explicitly labeled `stable` on the cited Bun 1.4 release pages.",
+      "reason": "Unsupported by the supplied evidence; the teacher-run answer says `stable` is inferred from the stable 1.x line and the GitHub `Latest` marker, not explicitly stated on the cited Bun 1.4 pages."
+    },
+    {
+      "text": "Bun 1.4 is unquestionably the latest stable release without any inference or ambiguity.",
+      "reason": "Overstated relative to the supplied evidence; the teacher-run answer notes a terminology uncertainty around `stable` even though `bun-v1.4.0` is marked `Latest`."
+    },
+    {
+      "text": "Bun 1.4 includes exactly 15 new built-in dependencies and this is among the most consequential changes.",
+      "reason": "Partly unsupported for this fixture as written: the `15 dependencies now built in` detail appears in the supplied summary, but ranking it as consequential is a judgment call and the exact dependency list is not provided in evidence passages."
+    }
+  ]
+}

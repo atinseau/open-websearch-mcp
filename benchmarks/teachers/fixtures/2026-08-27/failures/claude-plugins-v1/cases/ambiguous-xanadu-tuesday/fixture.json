@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "case_id": "ambiguous-xanadu-tuesday",
+  "question": "What happened to Project Xanadu last Tuesday, and why did it happen?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "The teacher-run evidence interprets \"last Tuesday\" as August 25, 2026.",
+      "required_concepts": ["last_tuesday", "aug_25_2026"],
+      "acceptable_patterns": [
+        "last Tuesday[\\s\\S]*August 25, 2026",
+        "Assuming .last Tuesday. means \\*\\*August 25, 2026\\*\\*"
+      ],
+      "sources": [
+        {
+          "url": "https://www.xanadu.com/xuhome.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.aus.xanadu.com/xanadu/faq.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://xanadu.com/xuDemoPage.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.xanadu.com/xuhome.html",
+          "text": "Assuming “last Tuesday” means **August 25, 2026**, my best answer is:"
+        }
+      ],
+      "weight": 0.76,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_ambiguous-xanadu-tuesday",
+        "claude_run": "2026-08-27_claude_ambiguous-xanadu-tuesday"
+      }
+    },
+    {
+      "id": "c2",
+      "text": "The supplied evidence found no good web evidence of a new public Project Xanadu event on August 25, 2026.",
+      "required_concepts": ["no_web_evidence", "project_xanadu", "aug_25_2026"],
+      "acceptable_patterns": [
+        "no good web evidence of a new public Project Xanadu event on that date",
+        "no good web evidence[\\s\\S]*Project Xanadu[\\s\\S]*August 25, 2026"
+      ],
+      "sources": [
+        {
+          "url": "https://www.xanadu.com/xuhome.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.aus.xanadu.com/xanadu/faq.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://xanadu.com/xuDemoPage.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.xanadu.com/xuhome.html",
+          "text": "**Supported fact:** I found **no good web evidence of a new public Project Xanadu event on that date**."
+        }
+      ],
+      "weight": 0.98,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_ambiguous-xanadu-tuesday",
+        "claude_run": "2026-08-27_claude_ambiguous-xanadu-tuesday"
+      }
+    },
+    {
+      "id": "c6",
+      "text": "The clearly dated August 25, 2026 Xanadu news in the supplied evidence was about Xanadu Quantum Technologies and Mitsubishi Chemical, not about Project Xanadu.",
+      "required_concepts": [
+        "aug_25_2026",
+        "xanadu_quantum_technologies",
+        "mitsubishi_chemical",
+        "not_project_xanadu"
+      ],
+      "acceptable_patterns": [
+        "clearly dated \\*\\*August 25, 2026\\*\\* .Xanadu. news[\\s\\S]*Xanadu Quantum Technologies[\\s\\S]*Mitsubishi Chemical[\\s\\S]*not about \\*\\*Project Xanadu\\*\\*",
+        "Canada-Japan Funding Fuels Xanadu and Mitsubishi Chemical Partnership on Quantum Semiconductor Research"
+      ],
+      "sources": [
+        {
+          "url": "https://investors.xanadu.ai/news-releases/news-release-details/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://thequantuminsider.com/2026/08/25/xanadu-mitsubishi-quantum-semiconductor-manufacturing/",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://investors.xanadu.ai/news-releases/news-release-details/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical",
+          "text": "**Supported fact:** The clearly dated **August 25, 2026** “Xanadu” news I did find was about **Xanadu Quantum Technologies** and Mitsubishi Chemical expanding a quantum-semiconductor collaboration, not about **Project Xanadu**."
+        }
+      ],
+      "weight": 0.95,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_ambiguous-xanadu-tuesday",
+        "claude_run": "2026-08-27_claude_ambiguous-xanadu-tuesday"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Project Xanadu definitely had no event last Tuesday.",
+      "reason": "Too strong. The supplied evidence says no good public web evidence was found, and explicitly notes this does not prove nothing happened privately or off-web."
+    },
+    {
+      "text": "Last Tuesday, Project Xanadu announced or participated in the Mitsubishi Chemical quantum-semiconductor collaboration.",
+      "reason": "Contradicted by the supplied evidence, which says the August 25, 2026 Xanadu news was about Xanadu Quantum Technologies, not Project Xanadu."
+    },
+    {
+      "text": "The reason something happened to Project Xanadu last Tuesday was Canadian and Japanese government funding.",
+      "reason": "Unsupported for Project Xanadu. That funding explanation appears only in evidence about Xanadu Quantum Technologies, not Project Xanadu."
+    },
+    {
+      "text": "Project Xanadu's website proves the project is inactive or abandoned.",
+      "reason": "Overly broad and unsupported. The evidence only supports that the located web presence looks old or archival, not a definitive project status."
+    },
+    {
+      "text": "The Project Xanadu homepage evidence is archival-looking rather than a dated August 2026 announcement: it includes a `crudcheck 01.05.23` marker and a \"WE FIGHT ON\" message.",
+      "reason": "Fait de contenu de page non vérifié. Le run Codex a opened_urls vide et tous les tool_results indiquent que le payload de recherche n'est pas exposé ; le passage cité pour https://www.xanadu.com/xuhome.html est la réponse finale du modèle recopiée, pas un extrait de la page. Les chaînes littérales `crudcheck 01.05.23` et « WE FIGHT ON » ne sont donc étayées par aucune source réellement consultée, et le run Claude ne les corrobore pas. Risque de citation fabriquée."
+    },
+    {
+      "text": "One public Xanadu FAQ page says `Last-modified: 2002/04/12`.",
+      "reason": "Même défaut circulaire : `Last-modified: 2002/04/12` n'apparaît que dans l'auto-assertion du modèle, republiée comme evidence_passage sous l'URL de la FAQ, qui n'a jamais été ouverte. Aucune corroboration indépendante. Le pattern impose une chaîne littérale précise qui n'est vérifiable dans aucune preuve fournie."
+    },
+    {
+      "text": "A Xanadu demo page says it was created for the Future of Text Conference on August 25, 2016 and says, \"We do not have a product, but a preliminary capability.\"",
+      "reason": "Les citations exactes « Future of Text Conference, August 25, 2016 » et « We do not have a product, but a preliminary capability » proviennent uniquement de la réponse finale du modèle ; xanadu.com/xuDemoPage.html n'est ni dans opened_urls ni assorti d'un extrait réel. De plus la coïncidence 25 août 2016 / 25 août 2026 est exactement le type de détail qu'il faudrait vérifier avant de le graduer lexicalement."
+    },
+    {
+      "text": "Within the supplied evidence, the reason no specific \"why\" can be given for Project Xanadu last Tuesday is that no solid public evidence of a Project Xanadu event was found and the located Project Xanadu web presence appears largely historical rather than actively updated with current news.",
+      "reason": "Revendication composée dont le second volet — « la présence web localisée de Project Xanadu apparaît largement historique plutôt qu'activement mise à jour » — dépend entièrement des inspections de pages non vérifiées de c3 à c5, et le pattern correspondant exige cette formulation. La source l'étiquette elle-même explicitement comme « Why it happened (inference) », soit une interprétation non établie. Le volet recevable (absence de « pourquoi » faute d'événement documenté) est déjà couvert de façon bornée par c2."
+    }
+  ]
+}

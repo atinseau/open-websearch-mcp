@@ -1,0 +1,29 @@
+{
+  "accepted_claim_ids": [],
+  "rejected_claims": [
+    {
+      "id": "c1",
+      "reason": "required concept is absent from teacher-run evidence: community_conflict"
+    },
+    {
+      "id": "c2",
+      "reason": "required concept is absent from teacher-run evidence: qualified_claim"
+    },
+    {
+      "id": "c3",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "c4",
+      "reason": "required concept is absent from teacher-run evidence: general_prevention_contradicted"
+    },
+    {
+      "id": "c5",
+      "reason": "required concept is absent from teacher-run evidence: public_comparison"
+    },
+    {
+      "id": "c6",
+      "reason": "required concept is absent from teacher-run evidence: anecdotal_failures"
+    }
+  ]
+}

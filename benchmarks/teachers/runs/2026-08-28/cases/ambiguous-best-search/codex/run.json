@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "run_id": "2026-08-28_codex_ambiguous-best-search",
+  "case_id": "ambiguous-best-search",
+  "provider": "codex",
+  "model": "gpt-5.4",
+  "queries": [
+    "web search engine benchmark academic evaluation Google Bing DuckDuckGo Brave Search independent study 2025",
+    "independent study compare Google Bing DuckDuckGo Brave search relevance 2025 pdf",
+    "site:arxiv.org web search engine retrieval effectiveness Google Bing DuckDuckGo pdf",
+    "DuckDuckGo help sources search results official",
+    "Google Scholar official about search scholarly literature",
+    "\"retrieval effectiveness\" web search engines representative query sample pdf google bing duckduckgo",
+    "Lewandowski representative query sample search engine retrieval effectiveness summary"
+  ],
+  "tool_results": [
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    }
+  ],
+  "opened_urls": [
+    "https://gs.statcounter.com/search-engine-market-share",
+    "https://arxiv.org/pdf/2512.03793",
+    "https://www.google.com/intl/en_us/search/howsearchworks/features",
+    "https://arxiv.org/abs/1405.2210",
+    "https://link.springer.com/chapter/10.1007/978-3-031-26438-2_39"
+  ],
+  "cited_urls": [
+    "https://wires.onlinelibrary.wiley.com/doi/10.1002/widm.1541",
+    "https://link.springer.com/chapter/10.1007/978-3-642-37688-7_9",
+    "https://gs.statcounter.com/search-engine-market-share",
+    "https://duckduckgo.com/duckduckgo-help-pages/results/sources",
+    "https://brave.com/search/api/",
+    "https://www.google.com/intl/en_us/search/howsearchworks/features/",
+    "https://support.google.com/websearch/answer/14901683?co=GENIE.Platform%3DAndroid&hl=en",
+    "https://support.google.com/websearch/answer/16011537?co=GENIE.Platform%3DAndroid&hl=en",
+    "https://scholar.google.com/intl/en/scholar/about.html",
+    "https://pubmed.ncbi.nlm.nih.gov/about/",
+    "https://arxiv.org/abs/1405.2210",
+    "https://www.researchgate.net/publication/366121641_Proposing_a_New_Combined_Indicator_for_Measuring_Search_Engine_Performance_and_Evaluating_Google_Yahoo_DuckDuckGo_and_Bing_Search_Engines_based_on_Combined_Indicator",
+    "https://arxiv.org/pdf/2512.03793",
+    "https://arxiv.org/pdf/2011.00650",
+    "https://link.springer.com/chapter/10.1007/978-3-031-26438-2_39",
+    "https://wires.onlinelibrary.wiley.com/doi/10.1002/widm.1541",
+    "https://link.springer.com/chapter/10.1007/978-3-642-37688-7_9",
+    "https://arxiv.org/abs/1405.2210",
+    "https://arxiv.org/pdf/2512.03793",
+    "https://gs.statcounter.com/search-engine-market-share",
+    "https://www.google.com/intl/en_us/search/howsearchworks/features/",
+    "https://arxiv.org/abs/1405.2210",
+    "https://brave.com/search/api/",
+    "https://duckduckgo.com/duckduckgo-help-pages/results/sources",
+    "https://link.springer.com/chapter/10.1007/978-3-642-37688-7_9",
+    "https://wires.onlinelibrary.wiley.com/doi/10.1002/widm.1541",
+    "https://arxiv.org/abs/1405.2210",
+    "https://arxiv.org/pdf/2512.03793",
+    "https://wires.onlinelibrary.wiley.com/doi/10.1002/widm.1541",
+    "https://link.springer.com/chapter/10.1007/978-3-642-37688-7_9",
+    "https://scholar.google.com/intl/en/scholar/about.html",
+    "https://pubmed.ncbi.nlm.nih.gov/about/"
+  ],
+  "selected_sources": [
+    {
+      "url": "https://gs.statcounter.com/search-engine-market-share",
+      "title": "https://gs.statcounter.com/search-engine-market-share"
+    },
+    {
+      "url": "https://arxiv.org/pdf/2512.03793",
+      "title": "https://arxiv.org/pdf/2512.03793"
+    },
+    {
+      "url": "https://www.google.com/intl/en_us/search/howsearchworks/features",
+      "title": "https://www.google.com/intl/en_us/search/howsearchworks/features"
+    },
+    {
+      "url": "https://arxiv.org/abs/1405.2210",
+      "title": "https://arxiv.org/abs/1405.2210"
+    },
+    {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-031-26438-2_39",
+      "title": "https://link.springer.com/chapter/10.1007/978-3-031-26438-2_39"
+    },
+    {
+      "url": "https://wires.onlinelibrary.wiley.com/doi/10.1002/widm.1541",
+      "title": "https://wires.onlinelibrary.wiley.com/doi/10.1002/widm.1541"
+    },
+    {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-642-37688-7_9",
+      "title": "https://link.springer.com/chapter/10.1007/978-3-642-37688-7_9"
+    },
+    {
+      "url": "https://duckduckgo.com/duckduckgo-help-pages/results/sources",
+      "title": "https://duckduckgo.com/duckduckgo-help-pages/results/sources"
+    },
+    {
+      "url": "https://brave.com/search/api/",
+      "title": "https://brave.com/search/api/"
+    },
+    {
+      "url": "https://www.google.com/intl/en_us/search/howsearchworks/features/",
+      "title": "https://www.google.com/intl/en_us/search/howsearchworks/features/"
+    },
+    {
+      "url": "https://support.google.com/websearch/answer/14901683?co=GENIE.Platform%3DAndroid&hl=en",
+      "title": "https://support.google.com/websearch/answer/14901683?co=GENIE.Platform%3DAndroid&hl=en"
+    },
+    {
+      "url": "https://support.google.com/websearch/answer/16011537?co=GENIE.Platform%3DAndroid&hl=en",
+      "title": "https://support.google.com/websearch/answer/16011537?co=GENIE.Platform%3DAndroid&hl=en"
+    },
+    {
+      "url": "https://scholar.google.com/intl/en/scholar/about.html",
+      "title": "https://scholar.google.com/intl/en/scholar/about.html"
+    },
+    {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/about/",
+      "title": "https://pubmed.ncbi.nlm.nih.gov/about/"
+    },
+    {
+      "url": "https://www.researchgate.net/publication/366121641_Proposing_a_New_Combined_Indicator_for_Measuring_Search_Engine_Performance_and_Evaluating_Google_Yahoo_DuckDuckGo_and_Bing_Search_Engines_based_on_Combined_Indicator",
+      "title": "https://www.researchgate.net/publication/366121641_Proposing_a_New_Combined_Indicator_for_Measuring_Search_Engine_Performance_and_Evaluating_Google_Yahoo_DuckDuckGo_and_Bing_Search_Engines_based_on_Combined_Indicator"
+    },
+    {
+      "url": "https://arxiv.org/pdf/2011.00650",
+      "title": "https://arxiv.org/pdf/2011.00650"
+    }
+  ],
+  "evidence_passages": [],
+  "final_answer": "**Answer**\n\nNo. As of **August 28, 2026**, I did **not** find good evidence that any one Web search engine is **objectively best for every kind of research question**. That conclusion is consistent with information-retrieval research saying relevance is **multidimensional** and depends on the **user, task, and domain**, and with search-evaluation research saying comparisons must account for **different query intents** and **different result presentations**.  \nSources: https://wires.onlinelibrary.wiley.com/doi/10.1002/widm.1541 , https://link.springer.com/chapter/10.1007/978-3-642-37688-7_9\n\n**Supported fact**\n\n- In worldwide usage for **July 2026**, StatCounter reports **Google 91.31%**, **Bing 4.47%**, and **DuckDuckGo 0.65%** search-engine market share. That shows dominance in use, not universal superiority in all research tasks.  \nSource: https://gs.statcounter.com/search-engine-market-share\n\n- DuckDuckGo says it maintains **DuckDuckBot** and “many indexes,” but its “traditional links and images” are **largely sourced from Bing**.  \nSource: https://duckduckgo.com/duckduckgo-help-pages/results/sources\n\n- Brave says Brave Search is powered by a **“completely independent index of the Web”** and fetches **millions of webpages every day**. This is a **vendor claim**, not an independent benchmark.  \nSource: https://brave.com/search/api/\n\n- Google says Search includes **maps**, **local businesses**, and other direct-answer features when appropriate, and Google’s AI search features provide linked summaries. Google also says **AI responses may include mistakes** and advises checking important information in more than one place.  \nSources: https://www.google.com/intl/en_us/search/howsearchworks/features/ , https://support.google.com/websearch/answer/14901683?co=GENIE.Platform%3DAndroid&hl=en , https://support.google.com/websearch/answer/16011537?co=GENIE.Platform%3DAndroid&hl=en\n\n- For some research tasks, people use **specialized search systems** instead of a general Web engine: Google Scholar says it searches **scholarly literature** across disciplines, and PubMed says it supports search and retrieval of **biomedical and life-sciences literature** and contains **more than 40 million citations and abstracts**.  \nSources: https://scholar.google.com/intl/en/scholar/about.html , https://pubmed.ncbi.nlm.nih.gov/about/\n\n**Disagreement in the evidence**\n\n- A representative-query study found **Google outperformed Bing** overall, but the gap on **informational queries** was “rather low”; on **navigational queries**, Google found the correct answer in **95.3%** of cases versus **76.6%** for Bing.  \nSource: https://arxiv.org/abs/1405.2210\n\n- Another study using **40 search terms** across **10 categories** ranked **Google first** and **Bing second** on its combined indicator.  \nSource: https://www.researchgate.net/publication/366121641_Proposing_a_New_Combined_Indicator_for_Measuring_Search_Engine_Performance_and_Evaluating_Google_Yahoo_DuckDuckGo_and_Bing_Search_Engines_based_on_Combined_Indicator\n\n- A 2025 coding-advice study using **1,467 Python queries** found **Bing performed best** for that domain under its Stack-Overflow-based quality proxy, and concluded coding-search quality was higher on Bing than on Google or Apple Search.  \nSource: https://arxiv.org/pdf/2512.03793\n\n- A similarity study on **300 queries** found **Google stands apart**, while **Bing and DuckDuckGo are largely indistinguishable** from each other.  \nSource: https://arxiv.org/pdf/2011.00650\n\n- A personalization study found cookie-based personalization of first-page results was about **37% for Google** and about **20% for DuckDuckGo**, and the overlap between Google and DuckDuckGo results was only about **2% to 8%** depending on category and condition.  \nSource: https://link.springer.com/chapter/10.1007/978-3-031-26438-2_39\n\n**Inference**\n\nBecause the literature says evaluation depends on **task, domain, and intent**, and because the studies above produce **different winners under different metrics**, the evidence supports a **trade-off view**, not a universal winner.  \nSources: https://wires.onlinelibrary.wiley.com/doi/10.1002/widm.1541 , https://link.springer.com/chapter/10.1007/978-3-642-37688-7_9 , https://arxiv.org/abs/1405.2210 , https://arxiv.org/pdf/2512.03793\n\nIf you force a practical answer for **general-purpose Web research**, **Google** has the strongest evidence for broad coverage, ecosystem features, and mainstream usage, but that is still **not proof** that it is best for **every** research question.  \nSources: https://gs.statcounter.com/search-engine-market-share , https://www.google.com/intl/en_us/search/howsearchworks/features/ , https://arxiv.org/abs/1405.2210\n\nIf you optimize for **privacy/independence**, **Brave** and **DuckDuckGo** have stronger privacy positioning, but I did **not** find equally strong independent evidence that either is best on broad research quality across all question types.  \nSources: https://brave.com/search/api/ , https://duckduckgo.com/duckduckgo-help-pages/results/sources\n\n**Uncertainty / lack of good evidence**\n\n- I did **not** find a credible benchmark covering **every query type, every language, every geography, every domain, and every success metric** across today’s major search engines. The sources I found all used **specific query samples**, **specific domains**, or **specific evaluation metrics**.  \nSources: https://link.springer.com/chapter/10.1007/978-3-642-37688-7_9 , https://wires.onlinelibrary.wiley.com/doi/10.1002/widm.1541 , https://arxiv.org/abs/1405.2210 , https://arxiv.org/pdf/2512.03793\n\n**Bottom line**\n\nThe evidence-based answer is: **there is no objectively best Web search engine for every kind of research question today**. The defensible choice depends on what you mean by “best”: **broad general Web coverage**, **privacy**, **local/commercial lookup**, **coding help**, or **scholarly/biomedical literature search**.  \nSources: https://wires.onlinelibrary.wiley.com/doi/10.1002/widm.1541 , https://link.springer.com/chapter/10.1007/978-3-642-37688-7_9 , https://scholar.google.com/intl/en/scholar/about.html , https://pubmed.ncbi.nlm.nih.gov/about/",
+  "cli_version": "codex-cli 0.149.1",
+  "locale": "en-US",
+  "started_at": "2026-08-28T15:10:15.734Z",
+  "duration_ms": 135993,
+  "prompt_sha256": "9d86936210d2176c8a30e1567f3964ae8f1a0db1b67a43a5aa5627f10ca15f4a",
+  "raw_trace": "events.sanitized.jsonl",
+  "policy_evidence": "policy.json",
+  "isolation": {
+    "temporary_cwd": true,
+    "cwd_unchanged": true,
+    "forbidden_tool_calls": []
+  }
+}

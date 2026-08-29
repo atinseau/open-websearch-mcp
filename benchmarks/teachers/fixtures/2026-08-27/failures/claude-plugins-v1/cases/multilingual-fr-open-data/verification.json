@@ -1,0 +1,9 @@
+{
+  "accepted_claim_ids": ["claim_1", "claim_2", "claim_3", "claim_4", "claim_6", "claim_7"],
+  "rejected_claims": [
+    {
+      "id": "claim_5",
+      "reason": "Le noyau (réutilisation de données à caractère personnel sous réserve du cadre légal) est étayé par data.gouv.fr, mais la revendication exige comme concepts et patterns « RGPD » et « Informatique et Libertés » attribués à la CNIL et à la CADA. Dans le run Codex, ces URL n'ont jamais été ouvertes (opened_urls vide) et les tool_results ne contiennent aucun payload ; les evidence_passages rattachés à cnil.fr et cada.fr/sites/default/files/guide_pratique.pdf sont une simple duplication de la réponse finale, non du contenu récupéré. Le run Claude ne consulte ni la CNIL ni la CADA. L'attribution est donc non vérifiée et le pattern littéral « Informatique et Libertés » est trop étroit pour une graduation lexicale."
+    }
+  ]
+}

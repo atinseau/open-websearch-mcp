@@ -1,0 +1,114 @@
+{
+  "is_error": false,
+  "duration_api_ms": 61290,
+  "num_turns": 2,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.5422325,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 39925,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 4515,
+    "output_tokens_details": {
+      "thinking_tokens": 2593
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 39925,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 4515,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 39925,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 39925
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 29509,
+      "outputTokens": 26,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.029639000000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 4515,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 39925,
+      "webSearchRequests": 0,
+      "costUSD": 0.5125935,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"claim_1\",\"claim_2\",\"claim_3\",\"claim_4\",\"claim_6\",\"claim_7\"],\"rejected_claims\":[{\"id\":\"claim_5\",\"reason\":\"Le noyau (réutilisation de données à caractère personnel sous réserve du cadre légal) est étayé par data.gouv.fr, mais la revendication exige comme concepts et patterns « RGPD » et « Informatique et Libertés » attribués à la CNIL et à la CADA. Dans le run Codex, ces URL n'ont jamais été ouvertes (opened_urls vide) et les tool_results ne contiennent aucun payload ; les evidence_passages rattachés à cnil.fr et cada.fr/sites/default/files/guide_pratique.pdf sont une simple duplication de la réponse finale, non du contenu récupéré. Le run Claude ne consulte ni la CNIL ni la CADA. L'attribution est donc non vérifiée et le pattern littéral « Informatique et Libertés » est trop étroit pour une graduation lexicale.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": ["claim_1", "claim_2", "claim_3", "claim_4", "claim_6", "claim_7"],
+    "rejected_claims": [
+      {
+        "id": "claim_5",
+        "reason": "Le noyau (réutilisation de données à caractère personnel sous réserve du cadre légal) est étayé par data.gouv.fr, mais la revendication exige comme concepts et patterns « RGPD » et « Informatique et Libertés » attribués à la CNIL et à la CADA. Dans le run Codex, ces URL n'ont jamais été ouvertes (opened_urls vide) et les tool_results ne contiennent aucun payload ; les evidence_passages rattachés à cnil.fr et cada.fr/sites/default/files/guide_pratique.pdf sont une simple duplication de la réponse finale, non du contenu récupéré. Le run Claude ne consulte ni la CNIL ni la CADA. L'attribution est donc non vérifiée et le pattern littéral « Informatique et Libertés » est trop étroit pour une graduation lexicale."
+      }
+    ]
+  },
+  "ttft_ms": 35876,
+  "ttft_stream_ms": 1680,
+  "time_to_request_ms": 23,
+  "type": "result",
+  "duration_ms": 59503,
+  "uuid": "[REDACTED]",
+  "queued_turn_count": 0
+}

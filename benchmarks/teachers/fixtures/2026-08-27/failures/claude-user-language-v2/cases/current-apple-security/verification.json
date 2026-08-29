@@ -1,0 +1,13 @@
+{
+  "accepted_claim_ids": [
+    "claim_latest_macos_update",
+    "claim_affected_systems",
+    "claim_no_apple_identified_active_exploitation"
+  ],
+  "rejected_claims": [
+    {
+      "id": "claim_fixed_components",
+      "reason": "Non corroboré et motifs de notation invalides. La liste des composants (Audio, ImageIO, IOGPUFamily, Kernel, WebKit, WebKit History, WebKit Storage) ne provient que du résumé auto-rapporté du run Codex, dont les tool_results indiquent que la charge utile des recherches n'est pas exposée et dont opened_urls est vide ; le run Claude, qui a réellement récupéré https://support.apple.com/en-us/148281, ne rapporte que le nombre de CVE (30) sans aucun de ces composants. De plus, les acceptable_patterns 'Audio', 'Kernel' et 'WebKit' sont des sous-chaînes génériques non discriminantes ('WebKit' matche à l'intérieur de 'WebKit History'/'WebKit Storage'), tandis que l'exigence simultanée des sept composants est trop étroite pour une notation lexicale déterministe."
+    }
+  ]
+}

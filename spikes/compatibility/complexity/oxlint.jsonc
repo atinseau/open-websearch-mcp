@@ -1,0 +1,12 @@
+{
+  "plugins": ["import", "typescript"],
+  "rules": {
+    "complexity": ["error", 1],
+    "max-depth": ["error", 1],
+    "max-lines": ["error", 3],
+    "max-lines-per-function": ["error", 3],
+    "max-params": ["error", 1],
+    "max-statements": ["error", 1],
+    "import/max-dependencies": ["error", { "max": 1 }]
+  }
+}

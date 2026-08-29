@@ -1,0 +1,13 @@
+{
+  "accepted_claim_ids": ["claim_1", "claim_3", "claim_4", "claim_6", "claim_7"],
+  "rejected_claims": [
+    {
+      "id": "claim_2",
+      "reason": "Les evidence_passages attribuent au PDF des Search Quality Evaluator Guidelines un texte qui est en réalité la réponse finale de Codex ; le PDF n'a jamais été ouvert (opened_urls vide, aucune charge utile de résultat). De plus, les acceptable_patterns exigent la formulation exacte d'une paraphrase ('very different intents.*researching a topic in depth', 'need a diverse set of helpful results') mêlant citations partielles et reformulation : trop étroits pour une notation lexicale robuste, une réponse correcte paraphrasée échouerait."
+    },
+    {
+      "id": "claim_5",
+      "reason": "Source non vérifiable et à fort risque de fabrication : la publication ResearchGate 410481017 décrivant une étude « 2026 » n'a jamais été ouverte, et la requête ciblée de Codex sur un DOI Emerald apparemment construit (10.1108/PMM-01-2026-0010) n'a produit aucun résultat exploitable. Aucune corroboration dans l'autre run. Les détails métriques (précision, rappel relatif, F-measure, fall-out) reposent uniquement sur l'auto-citation du modèle."
+    }
+  ]
+}

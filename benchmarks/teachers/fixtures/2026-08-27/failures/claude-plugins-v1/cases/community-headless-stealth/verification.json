@@ -1,0 +1,9 @@
+{
+  "accepted_claim_ids": ["claim_1", "claim_2", "claim_3", "claim_5", "claim_6", "claim_7"],
+  "rejected_claims": [
+    {
+      "id": "claim_4",
+      "reason": "Étayage insuffisant et patterns trop étroits. Le run Codex n'a ouvert aucune URL (opened_urls vide, payloads de recherche absents) et les evidence_passages ne sont que des copies de la réponse finale ré-étiquetées ; l'article Vastel 2023 n'est corroboré par aucune autre source du dossier (absent du run Claude), alors que la claim avance des détails de dump très spécifiques (empty plugins, hasChrome: false, webDriver: true). De plus, les acceptable_patterns ('new headless Chrome removed several older tells', 'older public fingerprint tests became less discriminating') notent la paraphrase éditoriale de Codex plutôt qu'un texte source vérifiable, ce qui constitue un ancrage de notation invalide/trop étroit."
+    }
+  ]
+}

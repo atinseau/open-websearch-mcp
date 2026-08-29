@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-08-27T16:38:00Z",
+  "claude_code_version": "2.1.247",
+  "invocation_controls": ["--safe-mode", "--setting-sources", ""],
+  "runtime_status": {
+    "setting_sources": ["Command line arguments"],
+    "enterprise_managed_settings_source": null
+  },
+  "runtime_hooks": {
+    "configured_user_hooks": 3,
+    "settings_hooks_suspended_by_safe_mode": true,
+    "managed_hooks_observed": 0
+  },
+  "endpoint_checks": {
+    "managed_settings_file": false,
+    "managed_settings_drop_ins": false,
+    "macos_managed_preferences_domain": false,
+    "macos_configuration_profiles": 0,
+    "claude_doctor_installation_issues": 0
+  },
+  "probe_stream": {
+    "hook_events_observed": 0,
+    "plugins": [],
+    "skills": [],
+    "mcp_servers": []
+  },
+  "conclusion": "No managed settings source or managed hook applied to the accepted Claude invocation. User settings hooks were visible to the interactive diagnostic but suspended, and user/project/local settings were excluded from the teacher process.",
+  "references": [
+    "https://code.claude.com/docs/en/managed-settings#verify-that-a-policy-is-in-force",
+    "https://code.claude.com/docs/en/debug-your-config#check-hooks",
+    "https://code.claude.com/docs/en/debug-your-config#test-against-a-clean-configuration"
+  ]
+}

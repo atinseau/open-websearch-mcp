@@ -1,0 +1,395 @@
+{
+  "schema_version": 1,
+  "mode": "offline-source-only-mechanics-probe",
+  "metric_weights": {
+    "evidenceCoverage": 35,
+    "sourceRecall": 25,
+    "rank": 15,
+    "extraction": 10,
+    "diversity": 10,
+    "tokenBudget": 5
+  },
+  "calibration_case_ids": [
+    "technical-bun-webview",
+    "technical-mcp-stdio",
+    "technical-pdfjs",
+    "technical-robots-rfc",
+    "technical-sqlite-fts5",
+    "technical-url-canonicalization",
+    "current-bun-release",
+    "current-mcp-release",
+    "academic-bm25",
+    "academic-browser-fingerprinting",
+    "academic-retrieval-diversity",
+    "community-bun-production",
+    "community-headless-stealth",
+    "community-robots-ethics"
+  ],
+  "validation_case_ids": [
+    "multilingual-es-climate",
+    "multilingual-fr-open-data",
+    "multilingual-ja-web-standards",
+    "ambiguous-best-search",
+    "ambiguous-xanadu-tuesday",
+    "current-apple-security"
+  ],
+  "scores": [
+    {
+      "category": "technical_docs",
+      "split": "calibration",
+      "case_id": "technical-bun-webview",
+      "components": {
+        "evidenceCoverage": 0,
+        "sourceRecall": 25,
+        "rank": 15,
+        "extraction": "unmeasurable",
+        "diversity": 10,
+        "tokenBudget": 5
+      },
+      "total": "unmeasurable",
+      "classification": "unmeasurable",
+      "reasons": ["no URL-located expected evidence passages"]
+    },
+    {
+      "category": "technical_docs",
+      "split": "calibration",
+      "case_id": "technical-mcp-stdio",
+      "components": {
+        "evidenceCoverage": 0,
+        "sourceRecall": 25,
+        "rank": 11.25,
+        "extraction": "unmeasurable",
+        "diversity": 7.5,
+        "tokenBudget": 5
+      },
+      "total": "unmeasurable",
+      "classification": "unmeasurable",
+      "reasons": ["no URL-located expected evidence passages"]
+    },
+    {
+      "category": "technical_docs",
+      "split": "calibration",
+      "case_id": "technical-sqlite-fts5",
+      "components": {
+        "evidenceCoverage": 0,
+        "sourceRecall": 25,
+        "rank": 15,
+        "extraction": "unmeasurable",
+        "diversity": 10,
+        "tokenBudget": 5
+      },
+      "total": "unmeasurable",
+      "classification": "unmeasurable",
+      "reasons": ["no URL-located expected evidence passages"]
+    },
+    {
+      "category": "technical_docs",
+      "split": "calibration",
+      "case_id": "technical-robots-rfc",
+      "components": {
+        "evidenceCoverage": 0,
+        "sourceRecall": 25,
+        "rank": 15,
+        "extraction": "unmeasurable",
+        "diversity": 10,
+        "tokenBudget": 5
+      },
+      "total": "unmeasurable",
+      "classification": "unmeasurable",
+      "reasons": ["no URL-located expected evidence passages"]
+    },
+    {
+      "category": "technical_docs",
+      "split": "calibration",
+      "case_id": "technical-pdfjs",
+      "components": {
+        "evidenceCoverage": 0,
+        "sourceRecall": 25,
+        "rank": 15,
+        "extraction": "unmeasurable",
+        "diversity": 10,
+        "tokenBudget": 5
+      },
+      "total": "unmeasurable",
+      "classification": "unmeasurable",
+      "reasons": ["no URL-located expected evidence passages"]
+    },
+    {
+      "category": "technical_docs",
+      "split": "calibration",
+      "case_id": "technical-url-canonicalization",
+      "components": {
+        "evidenceCoverage": 0,
+        "sourceRecall": 25,
+        "rank": 8.75,
+        "extraction": "unmeasurable",
+        "diversity": 8.333,
+        "tokenBudget": 5
+      },
+      "total": "unmeasurable",
+      "classification": "unmeasurable",
+      "reasons": ["no URL-located expected evidence passages"]
+    },
+    {
+      "category": "current_news",
+      "split": "calibration",
+      "case_id": "current-bun-release",
+      "components": {
+        "evidenceCoverage": "unmeasurable",
+        "sourceRecall": "unmeasurable",
+        "rank": "unmeasurable",
+        "extraction": "unmeasurable",
+        "diversity": "unmeasurable",
+        "tokenBudget": 5
+      },
+      "total": "unmeasurable",
+      "classification": "unmeasurable",
+      "reasons": [
+        "fixture contains no accepted claims",
+        "no URL-located expected evidence passages"
+      ]
+    },
+    {
+      "category": "current_news",
+      "split": "validation",
+      "case_id": "current-apple-security",
+      "components": {
+        "evidenceCoverage": "unmeasurable",
+        "sourceRecall": "unmeasurable",
+        "rank": "unmeasurable",
+        "extraction": "unmeasurable",
+        "diversity": "unmeasurable",
+        "tokenBudget": 5
+      },
+      "total": "unmeasurable",
+      "classification": "unmeasurable",
+      "reasons": [
+        "fixture contains no accepted claims",
+        "no URL-located expected evidence passages"
+      ]
+    },
+    {
+      "category": "current_news",
+      "split": "calibration",
+      "case_id": "current-mcp-release",
+      "components": {
+        "evidenceCoverage": 0,
+        "sourceRecall": 25,
+        "rank": 15,
+        "extraction": "unmeasurable",
+        "diversity": 6.667,
+        "tokenBudget": 5
+      },
+      "total": "unmeasurable",
+      "classification": "unmeasurable",
+      "reasons": ["no URL-located expected evidence passages"]
+    },
+    {
+      "category": "academic_primary",
+      "split": "calibration",
+      "case_id": "academic-bm25",
+      "components": {
+        "evidenceCoverage": "unmeasurable",
+        "sourceRecall": "unmeasurable",
+        "rank": "unmeasurable",
+        "extraction": "unmeasurable",
+        "diversity": "unmeasurable",
+        "tokenBudget": 5
+      },
+      "total": "unmeasurable",
+      "classification": "unmeasurable",
+      "reasons": [
+        "fixture contains no accepted claims",
+        "no URL-located expected evidence passages"
+      ]
+    },
+    {
+      "category": "academic_primary",
+      "split": "calibration",
+      "case_id": "academic-browser-fingerprinting",
+      "components": {
+        "evidenceCoverage": 0,
+        "sourceRecall": 25,
+        "rank": 15,
+        "extraction": "unmeasurable",
+        "diversity": 10,
+        "tokenBudget": 5
+      },
+      "total": "unmeasurable",
+      "classification": "unmeasurable",
+      "reasons": ["no URL-located expected evidence passages"]
+    },
+    {
+      "category": "academic_primary",
+      "split": "calibration",
+      "case_id": "academic-retrieval-diversity",
+      "components": {
+        "evidenceCoverage": "unmeasurable",
+        "sourceRecall": "unmeasurable",
+        "rank": "unmeasurable",
+        "extraction": "unmeasurable",
+        "diversity": "unmeasurable",
+        "tokenBudget": 5
+      },
+      "total": "unmeasurable",
+      "classification": "unmeasurable",
+      "reasons": [
+        "fixture contains no accepted claims",
+        "no URL-located expected evidence passages"
+      ]
+    },
+    {
+      "category": "community_contradictory",
+      "split": "calibration",
+      "case_id": "community-bun-production",
+      "components": {
+        "evidenceCoverage": 0,
+        "sourceRecall": 25,
+        "rank": 15,
+        "extraction": "unmeasurable",
+        "diversity": 10,
+        "tokenBudget": 5
+      },
+      "total": "unmeasurable",
+      "classification": "unmeasurable",
+      "reasons": ["no URL-located expected evidence passages"]
+    },
+    {
+      "category": "community_contradictory",
+      "split": "calibration",
+      "case_id": "community-robots-ethics",
+      "components": {
+        "evidenceCoverage": "unmeasurable",
+        "sourceRecall": "unmeasurable",
+        "rank": "unmeasurable",
+        "extraction": "unmeasurable",
+        "diversity": "unmeasurable",
+        "tokenBudget": 5
+      },
+      "total": "unmeasurable",
+      "classification": "unmeasurable",
+      "reasons": [
+        "fixture contains no accepted claims",
+        "no URL-located expected evidence passages"
+      ]
+    },
+    {
+      "category": "community_contradictory",
+      "split": "calibration",
+      "case_id": "community-headless-stealth",
+      "components": {
+        "evidenceCoverage": "unmeasurable",
+        "sourceRecall": "unmeasurable",
+        "rank": "unmeasurable",
+        "extraction": "unmeasurable",
+        "diversity": "unmeasurable",
+        "tokenBudget": 5
+      },
+      "total": "unmeasurable",
+      "classification": "unmeasurable",
+      "reasons": [
+        "fixture contains no accepted claims",
+        "no URL-located expected evidence passages"
+      ]
+    },
+    {
+      "category": "multilingual",
+      "split": "validation",
+      "case_id": "multilingual-fr-open-data",
+      "components": {
+        "evidenceCoverage": "unmeasurable",
+        "sourceRecall": "unmeasurable",
+        "rank": "unmeasurable",
+        "extraction": "unmeasurable",
+        "diversity": "unmeasurable",
+        "tokenBudget": 5
+      },
+      "total": "unmeasurable",
+      "classification": "unmeasurable",
+      "reasons": [
+        "fixture contains no accepted claims",
+        "no URL-located expected evidence passages"
+      ]
+    },
+    {
+      "category": "multilingual",
+      "split": "validation",
+      "case_id": "multilingual-es-climate",
+      "components": {
+        "evidenceCoverage": "unmeasurable",
+        "sourceRecall": "unmeasurable",
+        "rank": "unmeasurable",
+        "extraction": "unmeasurable",
+        "diversity": "unmeasurable",
+        "tokenBudget": 5
+      },
+      "total": "unmeasurable",
+      "classification": "unmeasurable",
+      "reasons": [
+        "fixture contains no accepted claims",
+        "no URL-located expected evidence passages"
+      ]
+    },
+    {
+      "category": "multilingual",
+      "split": "validation",
+      "case_id": "multilingual-ja-web-standards",
+      "components": {
+        "evidenceCoverage": 0,
+        "sourceRecall": 25,
+        "rank": 9.375,
+        "extraction": "unmeasurable",
+        "diversity": 8.75,
+        "tokenBudget": 5
+      },
+      "total": "unmeasurable",
+      "classification": "unmeasurable",
+      "reasons": ["no URL-located expected evidence passages"]
+    },
+    {
+      "category": "ambiguous_difficult",
+      "split": "validation",
+      "case_id": "ambiguous-best-search",
+      "components": {
+        "evidenceCoverage": "unmeasurable",
+        "sourceRecall": "unmeasurable",
+        "rank": "unmeasurable",
+        "extraction": "unmeasurable",
+        "diversity": "unmeasurable",
+        "tokenBudget": 5
+      },
+      "total": "unmeasurable",
+      "classification": "unmeasurable",
+      "reasons": [
+        "fixture contains no accepted claims",
+        "no URL-located expected evidence passages"
+      ]
+    },
+    {
+      "category": "ambiguous_difficult",
+      "split": "validation",
+      "case_id": "ambiguous-xanadu-tuesday",
+      "components": {
+        "evidenceCoverage": "unmeasurable",
+        "sourceRecall": "unmeasurable",
+        "rank": "unmeasurable",
+        "extraction": "unmeasurable",
+        "diversity": "unmeasurable",
+        "tokenBudget": 5
+      },
+      "total": "unmeasurable",
+      "classification": "unmeasurable",
+      "reasons": [
+        "fixture contains no accepted claims",
+        "no URL-located expected evidence passages"
+      ]
+    }
+  ],
+  "corpus": {
+    "cases": 20,
+    "cases_with_accepted_claims": 10,
+    "accepted_claims": 18,
+    "claims_with_url_located_evidence_passages": 0
+  },
+  "verdict": "not_gateable: every accepted claim lacks a URL-located expected evidence passage; total conformity scores are therefore unmeasurable by design."
+}

@@ -1,0 +1,33 @@
+{
+  "accepted_claim_ids": [],
+  "rejected_claims": [
+    {
+      "id": "claim_1",
+      "reason": "required concept is absent from teacher-run evidence: not_access_auth"
+    },
+    {
+      "id": "claim_2",
+      "reason": "required concept is absent from teacher-run evidence: crawl_control"
+    },
+    {
+      "id": "claim_3",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "claim_4",
+      "reason": "required concept is absent from teacher-run evidence: recheck"
+    },
+    {
+      "id": "claim_5",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "claim_6",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "claim_7",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    }
+  ]
+}

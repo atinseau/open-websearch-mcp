@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "run_id": "2026-08-28_codex_current-apple-security",
+  "case_id": "current-apple-security",
+  "provider": "codex",
+  "model": "gpt-5.4",
+  "queries": [
+    "site:support.apple.com Apple security updates macOS August 2026 actively exploited",
+    "site:support.apple.com \"About the security content of macOS Sequoia 15.7.9\"",
+    "site:support.apple.com \"About the security content of macOS Sonoma 14.8.9\""
+  ],
+  "tool_results": [
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    }
+  ],
+  "opened_urls": [
+    "https://support.apple.com/en-us/100100",
+    "https://support.apple.com/en-us/148281"
+  ],
+  "cited_urls": [
+    "https://support.apple.com/en-us/100100",
+    "https://support.apple.com/en-us/148281",
+    "https://support.apple.com/en-us/148281",
+    "https://support.apple.com/en-us/148281",
+    "https://support.apple.com/en-us/100100",
+    "https://support.apple.com/en-us/148281",
+    "https://support.apple.com/en-us/100100",
+    "https://support.apple.com/en-us/148281"
+  ],
+  "selected_sources": [
+    {
+      "url": "https://support.apple.com/en-us/100100",
+      "title": "https://support.apple.com/en-us/100100"
+    },
+    {
+      "url": "https://support.apple.com/en-us/148281",
+      "title": "https://support.apple.com/en-us/148281"
+    }
+  ],
+  "evidence_passages": [],
+  "final_answer": "**Supported fact**\n\nApple’s current security-releases index says the latest version of macOS is **macOS Tahoe 26.6.2**, and in the security-updates table it lists **macOS Tahoe 26.6.2** as a macOS security release with release date **August 17, 2026**. (https://support.apple.com/en-us/100100)\n\nApple’s security-content page for that update identifies the affected system as **macOS Tahoe** and says **macOS Tahoe 26.6.2** was **released August 17, 2026**. (https://support.apple.com/en-us/148281)\n\nApple’s security-content page for **macOS Tahoe 26.6.2** lists multiple fixed issues, including **Audio**, **ImageIO**, **IOGPUFamily**, **Kernel**, **WebKit**, **WebKit History**, and **WebKit Storage** vulnerabilities. (https://support.apple.com/en-us/148281)\n\n**Inference from Apple’s page**\n\nI do **not** see Apple mark any **macOS Tahoe 26.6.2** issue as actively exploited on that page. This is an **inference from absence**: Apple’s page lists the CVEs and impacts, but the page does not include Apple’s usual exploitation language such as “Apple is aware of a report that this issue may have been actively exploited” or “...exploited in an extremely sophisticated attack...” anywhere in the listed entries I reviewed. (https://support.apple.com/en-us/148281)\n\nSo, based on Apple’s own published security-content page, the most recent macOS security update is **macOS Tahoe 26.6.2**, it affects **macOS Tahoe systems**, and **Apple does not identify any actively exploited issues in that update**. The last clause is still an **inference from the page’s omission**, not an explicit Apple sentence saying “none.” (https://support.apple.com/en-us/100100, https://support.apple.com/en-us/148281)\n\n**Uncertainty / lack of good evidence**\n\nThere is no good evidence on the **macOS Tahoe 26.6.2** page that Apple intended this update for **macOS Sequoia** or **macOS Sonoma**; Apple’s releases index separately lists newer Sequoia and Sonoma security updates only up to **August 6, 2026**, not August 17, 2026. (https://support.apple.com/en-us/100100)\n\nI found no disagreement within the Apple pages I checked, but Apple’s wording does not explicitly state “this update contains no actively exploited vulnerabilities,” so that specific conclusion remains an **absence-based inference** rather than a direct quotation. (https://support.apple.com/en-us/148281)",
+  "cli_version": "codex-cli 0.149.1",
+  "locale": "en-US",
+  "started_at": "2026-08-28T14:42:25.353Z",
+  "duration_ms": 51572,
+  "prompt_sha256": "3672f8a04f810285155bc7c45e0ef12ee5373f3cd5fb88c0d95c9c8beca6ed9c",
+  "raw_trace": "events.sanitized.jsonl",
+  "policy_evidence": "policy.json",
+  "isolation": {
+    "temporary_cwd": true,
+    "cwd_unchanged": true,
+    "forbidden_tool_calls": []
+  }
+}

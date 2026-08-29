@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "case_id": "current-apple-security",
+  "question": "What is Apple's most recent macOS security update as of today, which systems does it affect, and which actively exploited issues does Apple identify?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim_1",
+      "text": "Apple’s security-releases index says the latest version of macOS is 26.6.2 and lists macOS Tahoe 26.6.2 with a release date of August 17, 2026.",
+      "required_concepts": ["latest macos", "26.6.2", "macos tahoe", "august 17 2026"],
+      "acceptable_patterns": [
+        "latest version of macos is 26\\.6\\.2",
+        "macos tahoe 26\\.6\\.2",
+        "August 17, 2026"
+      ],
+      "sources": [
+        {
+          "url": "https://support.apple.com/en-us/100100",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://support.apple.com/en-us/100100",
+          "text": "As of August 27, 2026, Apple’s security-releases index says “The latest version of macOS is 26.6.2” and lists macOS Tahoe 26.6.2 with a release date of August 17, 2026."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_current-apple-security",
+        "claude_run": "2026-08-27_claude_current-apple-security"
+      }
+    },
+    {
+      "id": "claim_2",
+      "text": "Apple’s security-content page for macOS Tahoe 26.6.2 says it was released August 17, 2026 and is available for macOS Tahoe.",
+      "required_concepts": ["macos tahoe 26.6.2", "available for", "macos tahoe"],
+      "acceptable_patterns": [
+        "macos tahoe 26\\.6\\.2",
+        "released August 17, 2026",
+        "Available for: macOS Tahoe"
+      ],
+      "sources": [
+        {
+          "url": "https://support.apple.com/en-us/148281",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://support.apple.com/en-us/148281",
+          "text": "Apple’s security-content page for macOS Tahoe 26.6.2 says the update was released August 17, 2026 and is “Available for: macOS Tahoe.”"
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_current-apple-security",
+        "claude_run": "2026-08-27_claude_current-apple-security"
+      }
+    },
+    {
+      "id": "claim_3",
+      "text": "Apple’s security-releases index also lists Safari 26.6.1, dated August 18, 2026, for macOS Sonoma and macOS Sequoia.",
+      "required_concepts": ["safari 26.6.1", "august 18 2026", "macos sonoma", "macos sequoia"],
+      "acceptable_patterns": [
+        "Safari 26\\.6\\.1",
+        "August 18, 2026",
+        "macOS Sonoma and macOS Sequoia"
+      ],
+      "sources": [
+        {
+          "url": "https://support.apple.com/en-us/100100",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://support.apple.com/en-us/148286",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://support.apple.com/en-us/100100",
+          "text": "Apple’s security-releases index also lists a newer Mac-related security release, Safari 26.6.1, dated August 18, 2026, and says it is available for macOS Sonoma and macOS Sequoia."
+        },
+        {
+          "url": "https://support.apple.com/en-us/148286",
+          "text": "Apple’s security-content page for Safari 26.6.1 says it was released August 18, 2026 and is “Available for: macOS Sonoma and macOS Sequoia.”"
+        }
+      ],
+      "weight": 0.8,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_current-apple-security",
+        "claude_run": "2026-08-27_claude_current-apple-security"
+      }
+    },
+    {
+      "id": "claim_4",
+      "text": "Using the operating-system reading of the question, the best-supported most recent macOS security update is macOS Tahoe 26.6.2 for macOS Tahoe, and the supplied Apple pages do not identify any actively exploited issues for macOS Tahoe 26.6.2 or Safari 26.6.1.",
+      "required_concepts": [
+        "most recent macos operating-system security update",
+        "macos tahoe 26.6.2",
+        "macos tahoe",
+        "no actively exploited issues identified"
+      ],
+      "acceptable_patterns": [
+        "most recent macOS operating-system security update",
+        "macos tahoe 26\\.6\\.2",
+        "systems running macOS Tahoe",
+        "no Apple statement.*actively exploited"
+      ],
+      "sources": [
+        {
+          "url": "https://support.apple.com/en-us/100100",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://support.apple.com/en-us/148281",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://support.apple.com/en-us/148286",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://support.apple.com/en-us/100100",
+          "text": "If you mean the most recent macOS operating-system security update, the answer is macOS Tahoe 26.6.2 for systems running macOS Tahoe. This is the strongest reading because Apple’s index separately says the latest version of macOS is 26.6.2."
+        },
+        {
+          "url": "https://support.apple.com/en-us/100100",
+          "text": "I found no Apple statement on either page identifying any actively exploited issue in macOS Tahoe 26.6.2 or Safari 26.6.1."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_current-apple-security",
+        "claude_run": "2026-08-27_claude_current-apple-security"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Safari 26.6.1 is Apple’s most recent macOS security update.",
+      "reason": "Ambiguous and not the strongest reading for the question; the supplied evidence distinguishes the newest Mac-related release from the most recent macOS operating-system security update."
+    },
+    {
+      "text": "Apple identified CVE-2026-65400 or any other issue as actively exploited in its most recent macOS security update.",
+      "reason": "Unsupported by the supplied Apple-page evidence; the evidence says no Apple statement on the cited pages identifies actively exploited issues."
+    },
+    {
+      "text": "macOS Tahoe 26.6.2 affects macOS Sonoma and macOS Sequoia.",
+      "reason": "Contradicted by the supplied evidence, which says macOS Tahoe 26.6.2 is available for macOS Tahoe."
+    }
+  ]
+}

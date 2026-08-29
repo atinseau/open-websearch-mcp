@@ -1,0 +1,192 @@
+{
+  "claims": [
+    {
+      "id": "c1",
+      "text": "In the primary BM25 paper, Robertson and Walker present BM25 as an approximation to the 2-Poisson probabilistic retrieval model that incorporates within-document term frequency, document length, and within-query term frequency into probabilistic weighting, and they report considerable performance improvements over simple inverse collection-frequency weighting on TREC.",
+      "required_concepts": [
+        "2-poisson",
+        "probabilistic_weighting",
+        "term_frequency",
+        "document_length",
+        "query_term_frequency",
+        "trec_improvement"
+      ],
+      "acceptable_patterns": [
+        "2-Poisson",
+        "within-document term frequency",
+        "document length",
+        "within-query term frequency",
+        "considerable performance improvements",
+        "inverse collection[- ]frequency weighting"
+      ],
+      "sources": [
+        {
+          "url": "https://link.springer.com/chapter/10.1007/978-1-4471-2099-5_24",
+          "equivalent_urls": ["https://dl.acm.org/doi/pdf/10.5555/188490.188561"]
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://link.springer.com/chapter/10.1007/978-1-4471-2099-5_24",
+          "text": "In the primary BM25 paper, Robertson and Walker say their goal is to use the 2-Poisson model to incorporate three variables into probabilistic retrieval weighting: within-document term frequency, document length, and within-query term frequency. They also report that the resulting simple weighting functions produced “considerable performance improvements” over simple inverse collection-frequency weighting on TREC."
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "c2",
+      "text": "An author-written technical note describes BM25 as combining three kinds of per-term evidence into a request-document matching score: collection frequency weight, within-document term frequency, and document length; document scores are the sum of the query-term weights present in the document and documents are ranked by descending score.",
+      "required_concepts": [
+        "collection_frequency",
+        "document_tf",
+        "document_length",
+        "matching_score",
+        "sum_over_query_terms",
+        "rank_descending"
+      ],
+      "acceptable_patterns": [
+        "collection frequency weight",
+        "within-document term frequency",
+        "document length",
+        "matching score",
+        "sum of the query-term weights",
+        "ranked by descending score"
+      ],
+      "sources": [
+        {
+          "url": "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf",
+          "text": "Robertson and Sparck Jones describe BM25 as a formula for combining three kinds of per-term evidence into a request-document matching score: collection frequency weight, within-document term frequency, and document length; document scores are then the sum of the query-term weights present in the document, and documents are ranked by descending score."
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "c3",
+      "text": "The same technical note explicitly defines BM25's core evidence sources as collection-frequency weight CFW(i) = log N - log n, term frequency TF(i,j) as the number of occurrences of term t(i) in document d(j), and normalized document length NDL(j) = DL(j) / Average DL.",
+      "required_concepts": ["cfw", "tf_definition", "ndl", "log_n", "occurrences", "average_dl"],
+      "acceptable_patterns": [
+        "CFW\\(i\\)\\s*=\\s*log N\\s*-\\s*log n",
+        "TF\\(i,j\\)",
+        "number of occurrences",
+        "NDL\\(j\\)\\s*=\\s*DL\\(j\\)\\s*/\\s*Average DL"
+      ],
+      "sources": [
+        {
+          "url": "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf",
+          "text": "That same technical note defines the three core evidence sources explicitly: `CFW(i) = log N - log n` for collection frequency / inverse document frequency style weighting; `TF(i,j)` as the number of occurrences of term `t(i)` in document `d(j)`; and normalized document length `NDL(j) = DL(j) / Average DL`."
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "c4",
+      "text": "An author-written TREC-4 BM25 variant uses Robertson-Sparck Jones relevance weight w(1), document term frequency tf, query term frequency qtf, and document-length normalization through K = k1((1-b)+b*dl/avdl).",
+      "required_concepts": ["rsj_weight", "tf", "qtf", "length_normalization", "k1", "b"],
+      "acceptable_patterns": [
+        "w\\(1\\)",
+        "qtf",
+        "tf",
+        "K\\s*=\\s*k1\\s*\\(\\(1-b\\)\\+b\\*dl/avdl\\)",
+        "document-length normalization"
+      ],
+      "sources": [
+        {
+          "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec4.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/okapi_trec4.pdf",
+          "text": "The author-written TREC-4 paper gives a BM25 variant with these scoring factors: Robertson-Sparck Jones relevance weight `w(1)`, document term frequency `tf`, query term frequency `qtf`, and document-length normalization through `K = k1((1-b)+b*dl/avdl)`. It defines `tf`, `qtf`, `dl`, and `avdl` directly."
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "c5",
+      "text": "The authors explicitly interpret k1 as controlling the influence of within-document term frequency: higher k1 increases TF influence, and k1 = 0 removes TF influence.",
+      "required_concepts": ["k1", "tf_influence", "higher_increases", "zero_removes"],
+      "acceptable_patterns": [
+        "k1",
+        "controlling the influence",
+        "TF influence",
+        "k1\\s*=\\s*0",
+        "removes TF influence"
+      ],
+      "sources": [
+        {
+          "url": "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf",
+          "text": "The authors explicitly interpret `k1` as controlling the influence of within-document term frequency: higher `k1` increases TF influence, and `k1=0` removes TF influence."
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "c6",
+      "text": "The authors explicitly interpret b as the document-length normalization parameter on a 0 to 1 scale: b = 1 corresponds to treating extra length as repetition or verbosity, while b = 0 corresponds to treating extra length as multi-topic scope; they also report that b = .75 was helpful in TREC.",
+      "required_concepts": [
+        "b",
+        "length_normalization",
+        "verbosity",
+        "scope",
+        "range_0_1",
+        "b_.75"
+      ],
+      "acceptable_patterns": [
+        "b",
+        "0 to 1",
+        "b\\s*=\\s*1",
+        "b\\s*=\\s*0",
+        "repetition|verbosity",
+        "multi-topic|scope",
+        "b\\s*=\\s*\\.75"
+      ],
+      "sources": [
+        {
+          "url": "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf",
+          "text": "The authors explicitly interpret `b` as controlling document-length normalization, with `b` ranging from 0 to 1. They say `b=1` corresponds to the assumption that long documents are long because they are repetitive, while `b=0` corresponds to the assumption that long documents are long because they are multi-topic. They further say that moving `b` toward 1 reduces TF’s effect on the view that extra length is mostly verbosity, and they report that `b=.75` was helpful in TREC."
+        }
+      ],
+      "weight": 1
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "BM25's original authors gave a clear semantic interpretation for k2.",
+      "reason": "Unsupported by the supplied evidence. The codex final answer says clear author-supported interpretations were found for k1, b, and practical use of k3, but not a comparably clear author explanation of k2."
+    },
+    {
+      "text": "Within-query term frequency is always part of core BM25 in every primary formulation.",
+      "reason": "Overly broad. The supplied evidence says qtf appears in some author-written Okapi BM25 formulations, while a simplified BM25 form in the Cambridge technical note does not include it."
+    },
+    {
+      "text": "The original papers establish k1 = 1.2 as the default BM25 setting.",
+      "reason": "Unsupported by the supplied evidence. The supplied text supports ranges such as 1.0-2.0 or recommendations around 2 and notes that the common 1.2 default was not verified from primary author statements."
+    }
+  ]
+}

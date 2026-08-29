@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "run_id": "2026-08-28_codex_technical-sqlite-fts5",
+  "case_id": "technical-sqlite-fts5",
+  "provider": "codex",
+  "model": "gpt-5.4",
+  "queries": [
+    "site:sqlite.org FTS5 support runtime detect sqlite documentation",
+    "site:sqlite.org sqlite3_compileoption_used FTS5 runtime detect official docs",
+    "site:sqlite.org \"no such module: fts5\" sqlite official"
+  ],
+  "tool_results": [
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    }
+  ],
+  "opened_urls": [
+    "https://www.sqlite.org/fts5.html",
+    "https://sqlite.org/compile.html",
+    "https://sqlite.org/c3ref/compileoption_get.html",
+    "https://sqlite.org/pragma.html",
+    "https://sqlite.org/lang_corefunc.html"
+  ],
+  "cited_urls": [
+    "https://sqlite.org/c3ref/compileoption_get.html",
+    "https://sqlite.org/lang_corefunc.html",
+    "https://sqlite.org/pragma.html",
+    "https://sqlite.org/compile.html",
+    "https://sqlite.org/fts5.html",
+    "https://sqlite.org/lang_corefunc.html",
+    "https://sqlite.org/fts5.html",
+    "https://sqlite.org/fts5.html",
+    "https://sqlite.org/fts5.html",
+    "https://sqlite.org/fts5.html",
+    "https://sqlite.org/fts5.html",
+    "https://sqlite.org/fts5.html",
+    "https://sqlite.org/fts5.html",
+    "https://sqlite.org/fts5.html",
+    "https://sqlite.org/fts5.html",
+    "https://sqlite.org/fts5.html",
+    "https://sqlite.org/c3ref/compileoption_get.html",
+    "https://sqlite.org/compile.html",
+    "https://sqlite.org/fts5.html",
+    "https://sqlite.org/lang_corefunc.html",
+    "https://sqlite.org/c3ref/compileoption_get.html",
+    "https://sqlite.org/lang_corefunc.html",
+    "https://sqlite.org/compile.html",
+    "https://sqlite.org/fts5.html",
+    "https://sqlite.org/lang_corefunc.html",
+    "https://sqlite.org/c3ref/compileoption_get.html",
+    "https://sqlite.org/lang_corefunc.html",
+    "https://sqlite.org/pragma.html",
+    "https://sqlite.org/fts5.html",
+    "https://sqlite.org/compile.html"
+  ],
+  "selected_sources": [
+    {
+      "url": "https://www.sqlite.org/fts5.html",
+      "title": "https://www.sqlite.org/fts5.html"
+    },
+    {
+      "url": "https://sqlite.org/compile.html",
+      "title": "https://sqlite.org/compile.html"
+    },
+    {
+      "url": "https://sqlite.org/c3ref/compileoption_get.html",
+      "title": "https://sqlite.org/c3ref/compileoption_get.html"
+    },
+    {
+      "url": "https://sqlite.org/pragma.html",
+      "title": "https://sqlite.org/pragma.html"
+    },
+    {
+      "url": "https://sqlite.org/lang_corefunc.html",
+      "title": "https://sqlite.org/lang_corefunc.html"
+    },
+    {
+      "url": "https://sqlite.org/fts5.html",
+      "title": "https://sqlite.org/fts5.html"
+    }
+  ],
+  "evidence_passages": [],
+  "final_answer": "**Supported Facts**\n\nTo detect whether the *running SQLite library* was built with built-in FTS5 support, SQLite documents three compile-option diagnostics:\n\n1. `sqlite3_compileoption_used(\"ENABLE_FTS5\")` or `sqlite3_compileoption_used(\"SQLITE_ENABLE_FTS5\")`. The C API returns `0` or `1` depending on whether the option was defined at compile time, and the `SQLITE_` prefix may be omitted.  \nSource: https://sqlite.org/c3ref/compileoption_get.html\n\n2. `sqlite_compileoption_used('ENABLE_FTS5')` in SQL. SQLite documents this SQL function as a wrapper around `sqlite3_compileoption_used()` and says it returns `1` or `0` depending on whether the named compile-time option was used during the build.  \nSource: https://sqlite.org/lang_corefunc.html\n\n3. `PRAGMA compile_options;` and then look for `ENABLE_FTS5` in the result set. SQLite documents that this pragma returns the compile-time options used to build SQLite, one per row, and that the `SQLITE_` prefix is omitted.  \nSource: https://sqlite.org/pragma.html\n\nWhy `ENABLE_FTS5` matters: SQLite documents that defining `SQLITE_ENABLE_FTS5` in the amalgamation adds FTS5 to the build automatically.  \nSource: https://sqlite.org/compile.html\n\nSQLite also documents that FTS5 can be built as a loadable extension instead of being compiled into SQLite, and that the extension exposes entry points `sqlite3_fts_init` and `sqlite3_fts5_init`.  \nSource: https://sqlite.org/fts5.html\n\nSQLite separately documents that `load_extension(X,Y)` loads an extension by entry point name, and that extension loading is disabled by default until enabled by `sqlite3_enable_load_extension()`.  \nSource: https://sqlite.org/lang_corefunc.html\n\nFor external-content FTS5 tables, SQLite documents these guarantees and limitations:\n\n- An external-content FTS5 table is created by setting `content=` to the name of a table, virtual table, or view in the same database.  \nSource: https://sqlite.org/fts5.html\n\n- When FTS5 needs column values, it queries the content object with a lookup of the form `SELECT <content_rowid>, <cols> FROM <content> WHERE <content_rowid> = ?;`.  \nSource: https://sqlite.org/fts5.html\n\n- For external-content tables, “all FTS5 functionality may be used,” but the user is responsible for keeping the full-text index consistent with the content table; otherwise query results “may be unpredictable.”  \nSource: https://sqlite.org/fts5.html\n\n- Triggers are one documented way to keep the index in sync.  \nSource: https://sqlite.org/fts5.html\n\n- Those triggers only fire for later `INSERT`, `UPDATE`, and `DELETE` operations on the content table; creating the triggers does not backfill existing rows into the FTS index.  \nSource: https://sqlite.org/fts5.html\n\n- If the FTS index and content table become inconsistent, SQLite documents the `'rebuild'` command, which deletes the full-text index and rebuilds it from the table or content table.  \nSource: https://sqlite.org/fts5.html\n\n- External-content tables do not support `REPLACE` conflict handling; operations that specify `REPLACE` are handled using `ABORT`.  \nSource: https://sqlite.org/fts5.html\n\n- If a query does **not** use the full-text index, for example no `MATCH` and no equivalent table-valued-function syntax, SQLite says the query is effectively passed through to the external content table.  \nSource: https://sqlite.org/fts5.html\n\n- If a query **does** use the full-text index, FTS5 first gets matching `rowid` values from the index and then fetches column values from the content table. If the row is missing from the content table, returned text columns may be `NULL`.  \nSource: https://sqlite.org/fts5.html\n\n- For deletes and updates that affect both the content table and the external-content FTS5 table, SQLite says the FTS5 table must be updated first, because FTS5 may need the old content-table row in order to remove old tokens correctly.  \nSource: https://sqlite.org/fts5.html\n\n**Inference**\n\nA compile-option check is a good way to detect **built-in** FTS5 support in the running library, but it is not a complete test of whether FTS5 is currently usable on a connection, because SQLite also allows FTS5 to exist as a loadable extension. That conclusion follows from combining the compile-option docs with the FTS5 loadable-extension docs.  \nSources: https://sqlite.org/c3ref/compileoption_get.html , https://sqlite.org/compile.html , https://sqlite.org/fts5.html , https://sqlite.org/lang_corefunc.html\n\nSo, the safest practical interpretation is:\n\n- `sqlite3_compileoption_used(\"ENABLE_FTS5\") == 1` or `sqlite_compileoption_used('ENABLE_FTS5') == 1` strongly indicates built-in FTS5 support.  \nSources: https://sqlite.org/c3ref/compileoption_get.html , https://sqlite.org/lang_corefunc.html , https://sqlite.org/compile.html\n\n- A `0` result does **not** prove FTS5 is unavailable, because FTS5 may instead be supplied by a loaded extension.  \nSources: https://sqlite.org/fts5.html , https://sqlite.org/lang_corefunc.html\n\n**Uncertainty / Lack of Good Evidence**\n\nI did **not** find an official SQLite page that explicitly names one single canonical API for “is FTS5 currently usable on this specific connection right now, regardless of whether it was built-in or loaded later?”. The official docs clearly cover compile-option diagnostics and extension loading, but not that exact combined question.  \nSources reviewed: https://sqlite.org/c3ref/compileoption_get.html , https://sqlite.org/lang_corefunc.html , https://sqlite.org/pragma.html , https://sqlite.org/fts5.html , https://sqlite.org/compile.html\n\n**Disagreement**\n\nI found no disagreement among the official SQLite documentation pages reviewed.",
+  "cli_version": "codex-cli 0.149.1",
+  "locale": "en-US",
+  "started_at": "2026-08-28T14:27:08.414Z",
+  "duration_ms": 89628,
+  "prompt_sha256": "a1c2a0c406d4d5eb295f7a52b1d348a402f64020604b28b48d7d6cc2dd60ef81",
+  "raw_trace": "events.sanitized.jsonl",
+  "policy_evidence": "policy.json",
+  "isolation": {
+    "temporary_cwd": true,
+    "cwd_unchanged": true,
+    "forbidden_tool_calls": []
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "accepted_claim_ids": ["c1", "c2", "c4", "c5", "c6", "c7", "c8"],
+  "rejected_claims": [
+    {
+      "id": "c3",
+      "reason": "Le concept requis 'disabled_by_default' et les motifs 'extension loading is disabled by default' / 'sqlite3_enable_load_extension()' ne sont appuyés que par les evidence_passages du run Codex, qui recopient sa propre réponse finale (opened_urls vide, aucun payload d'outil exposé) — support circulaire. La récupération de lang_corefunc.html dans le run Claude ne documente que sqlite_compileoption_get/used, sans mention de load_extension. La partie corroborée (FTS5 disponible en extension chargeable, donc test d'option de compilation insuffisant au niveau connexion) est déjà couverte par c1 et c2."
+    }
+  ]
+}

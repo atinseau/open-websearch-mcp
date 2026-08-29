@@ -1,0 +1,13 @@
+{
+  "accepted_claim_ids": ["c1", "c4", "c5", "c6", "c7"],
+  "rejected_claims": [
+    {
+      "id": "c2",
+      "reason": "Grading patterns are prose-specific to the teacher run ('sum of the query-term weights', 'ranked by descending score') and too narrow for reliable lexical matching; the aggregation/ranking procedure it asserts depends on non-deterministic paraphrase rather than a stable, checkable fact."
+    },
+    {
+      "id": "c3",
+      "reason": "Patterns require verbatim transcription of formulas with idiosyncratic notation and spacing ('CFW(i) = log N - log n', 'NDL(j) = DL(j) / Average DL'), which is not deterministic enough for lexical grading; no run could extract primary-source text corroborating this exact notation."
+    }
+  ]
+}

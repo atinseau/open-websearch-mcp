@@ -1,0 +1,596 @@
+{
+  "schema_version": 1,
+  "run_id": "2026-08-27_claude_current-apple-security",
+  "case_id": "current-apple-security",
+  "provider": "claude",
+  "model": "claude-opus-5[1m]",
+  "queries": [
+    "macOS security update August 2026 actively exploited",
+    "Apple \"macOS Tahoe 26.6.2\" security content support.apple.com",
+    "Apple security content \"macOS Tahoe 26.6.1\" CVE-2026-65400",
+    "CISA KEV CVE-2026-65400 macOS Screen Sharing known exploited",
+    "\"Safari 26.6.1\" Apple security content August 18 2026 CVE"
+  ],
+  "tool_results": [
+    {
+      "tool": "WebFetch",
+      "summary": "# Recent macOS Security Releases (2026)\n\nBased on the Apple security page, here are the most recent macOS updates from 2026:\n\n**August 2026:**\n- macOS Tahoe 26.6.2 (17 Aug 2026)\n- macOS Tahoe 26.6.1 (6 Aug 2026)\n- macOS Sequoia 15.7.9 (6 Aug 2026)\n- macOS Sonoma 14.8.9 (6 Aug 2026)\n\n**July 2026:**\n- macOS Tahoe 26.6 (27 Jul 2026)\n- macOS Sequoia 15.7.8 (27 Jul 2026)\n- macOS Sonoma 14.8.8 (27 Jul 2026)\n\nThe document notes that \"Keeping your software up to date is one of the most important things "
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Apple macOS Screen Sharing Flaw Exploited on Internet-Exposed Macs to Install Monero Miner: https://thehackernews.com/2026/08/apple-macos-screen-sharing-flaw.html"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Apple macOS vulnerability: how to find impacted assets: https://www.runzero.com/blog/apple-macos/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "A serious Mac screen sharing vulnerability is being actively exploited: https://9to5mac.com/2026/08/17/a-serious-mac-screen-sharing-vulnerability-is-being-actively-exploited/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Critical macOS Screen Sharing flaw gives attackers remote root access — CISA bumps bug to 9.8 severity following active Monero cryptojacking attacks | Tom's Hardware: https://www.tomshardware.com/tech-industry/cyber-security/macos-screen-sharing-flaw-exploited-to-root-macs-and-plant-monero-miners"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Update your Mac: Screen Sharing vulnerability exploited in the wild | Malwarebytes: https://www.malwarebytes.com/blog/bugs/2026/08/update-your-mac-screen-sharing-vulnerability-exploited-in-the-wild"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Attackers exploit patched macOS Screen Sharing flaw to deploy cryptominer - Help Net Security: https://www.helpnetsecurity.com/2026/08/17/apple-macos-screen-sharing-flaw/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Update your Mac now: Hackers are actively exploiting a critical flaw to mine crypto | The Star: https://www.thestar.com.my/tech/tech-news/2026/08/21/update-your-mac-now-hackers-are-actively-exploiting-a-critical-flaw-to-mine-crypto"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "macOS Screen Sharing flaw already exploited in the wild to install crypto miners: https://macdailynews.com/2026/08/18/macos-screen-sharing-flaw-already-exploited-in-the-wild-to-install-crypto-miners/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Security Alert: Urgent MacOS patch: https://itservicealerts.hosting.cornell.edu/view/6726"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "wiki.lepp.cornell.edu: https://wiki.lepp.cornell.edu/Computing/ImportantAnnouncement"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "About the security content of macOS Tahoe 26.6.1 - Apple Support: https://support.apple.com/en-us/148170"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "About the security content of macOS Tahoe 26.6.2 - Apple Support: https://support.apple.com/en-us/148281"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "About the security content of macOS Tahoe 26.6 - Apple Support: https://support.apple.com/en-us/128067"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "What's new in the updates for macOS Tahoe 26 - Apple Support: https://support.apple.com/en-us/122868"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "About the security content of macOS Tahoe 26 - Apple Support: https://support.apple.com/en-us/125110"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "About the security content of macOS Tahoe 26.5.2 - Apple Support: https://support.apple.com/en-us/127595"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "What's new for enterprise in macOS Tahoe 26 - Apple Support: https://support.apple.com/en-us/124963"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "About the security content of macOS Tahoe 26.0.1 - Apple Support: https://support.apple.com/en-us/125328"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "macOS Tahoe 26.6.1 Now Available - Brings Security Fixes: https://www.mactrast.com/2026/08/macos-tahoe-26-6-1-now-available-brings-security-fixes/amp/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "About the security content of macOS Tahoe 26.2 - Apple Support: https://support.apple.com/en-us/125886"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "About the security content of macOS Tahoe 26.6.1 - Apple Support: https://support.apple.com/en-us/148170"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "About the security content of macOS Tahoe 26 - Apple Support: https://support.apple.com/en-us/125110"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "macOS Tahoe 26.6.1 UPDATE NOW!: https://mrmacintosh.com/macos-tahoe-26-6-1-update-everything-you-need-to-know/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "macOS Tahoe 26.6.1 Security Fixes: No Advisory Published << Apple :: Gadget Hacks: https://apple.gadgethacks.com/news/macos-tahoe-2661-security-fixes-no-advisory-published/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Apple Releases macOS Tahoe 26.6.1 With Important Security Fix: https://www.macobserver.com/news/apple-releases-macos-tahoe-26-6-1-with-important-security-fix/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Security Updates MacOS Tahoe 26.6.1, macOS Sequoia 15.7.9, macOS Sonoma 14.8.9 Released - OS X Daily: https://osxdaily.com/2026/08/06/security-updates-macos-tahoe-26-6-1-macos-sequoia-15-7-9-macos-sonoma-14-8-9-released-for-mac/"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# macOS Tahoe 26.6.1 Security Update\n\n**Release Date:** August 6, 2026\n\n**Affected System:** macOS Tahoe\n\n**Vulnerability Details:**\n\nOne security issue was addressed in this update:\n\n- **Screen Sharing Authentication Flaw (CVE-2026-65400)**\n  - Impact: \"An attacker on the network may be able to authenticate to Screen Sharing without valid credentials\"\n  - Fix: Improved state management resolved the authentication problem\n  - Researcher Credit: Alfredo Pesoli (@__rev) via Bynario Atlas\n\n**Exploi"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# macOS Tahoe 26.6.2 Security Update Summary\n\n**Release Date:** August 17, 2026\n\n**Affected System:** macOS Tahoe\n\n**Number of Vulnerabilities:** 30 CVEs addressed\n\n## Key Vulnerabilities\n\n**Critical Issues:**\n- ImageIO arbitrary code execution (CVE-2026-65346): \"An integer overflow was addressed with improved input validation.\"\n- IOGPUFamily memory corruption (CVE-2026-64788): Affects web content processing\n- Multiple WebKit vulnerabilities enabling Safari crashes and memory corruption\n\n**Notab"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# 12 Most Recent Apple Security Releases\n\n1. **Safari 26.6.1** | macOS Sonoma and macOS Sequoia | August 18, 2026\n\n2. **iOS 26.6.1 and iPadOS 26.6.1** | \"iPhone 11 and later, iPad Pro 12.9-inch 3rd generation and later\" | August 17, 2026\n\n3. **iOS 18.7.10 and iPadOS 18.7.10** | iPhone XS, iPhone XS Max, iPhone XR, iPad 7th generation | August 17, 2026\n\n4. **macOS Tahoe 26.6.2** | macOS Tahoe | August 17, 2026\n\n5. **visionOS 26.6.1** | Apple Vision Pro (all models) | August 17, 2026\n\n6. **macOS T"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Critical macOS Screen Sharing Authentication Bypass — Under Active Exploitation (CVE-2026-65400) | Tanium: https://www.tanium.com/blog/guardian-critical-macos-screen-sharing-authentication-bypass-cve-2026-65400"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "CVE-2026-65400 - Apple macOS Screen Sharing Authentication Bypass: https://cvefeed.io/vuln/detail/CVE-2026-65400"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Critical macOS Screen Sharing flaw gives attackers remote root access — CISA bumps bug to 9.8 severity following active Monero cryptojacking attacks | Tom's Hardware: https://www.tomshardware.com/tech-industry/cyber-security/macos-screen-sharing-flaw-exploited-to-root-macs-and-plant-monero-miners"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Update your Mac: Screen Sharing vulnerability exploited in the wild | Malwarebytes: https://www.malwarebytes.com/blog/bugs/2026/08/update-your-mac-screen-sharing-vulnerability-exploited-in-the-wild"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "From Screen Share to Root Access: Breaking Down CVE-2026-43760 and CVE-2026-65400 on macOS | Huntress: https://www.huntress.com/blog/macos-screen-sharing-rce-patched"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Apple macOS Screen Sharing Flaw Exploited on Internet-Exposed Macs to Install Monero Miner: https://thehackernews.com/2026/08/apple-macos-screen-sharing-flaw.html"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "CVE-2026-65400: When macOS Screen Sharing Becomes Remote Root — Hive Security: https://hivesecurity.gitlab.io/blog/macos-screen-sharing-cve-2026-65400/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "CVE-2026-65400: Apple macOS Screen Sharing Pre-Authentication: https://techjacksolutions.com/scc-intel/apple-macos-screen-sharing-pre-authentication-bypass-cve-2026-65400/"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Search Results\n\nThe page does **not** contain the words \"exploited,\" \"exploitation,\" or \"Apple is aware of a report.\"\n\n**\"Available for:\" line:**\n\nEvery security vulnerability listed uses the identical phrasing: **\"Available for: macOS Tahoe\"**"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "About the security content of Safari 26.6.1 - Apple Support: https://support.apple.com/en-us/148286"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "About the security content of iOS 26.6.1 and iPadOS 26.6.1 - Apple Support: https://support.apple.com/en-us/148282"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Apple security releases - Apple Support: https://support.apple.com/en-us/100100"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "About the security content of Safari 26.6 - Apple Support: https://support.apple.com/en-us/128073"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "About the security content of iOS 26.6 and iPadOS 26.6 - Apple Support: https://support.apple.com/en-us/128066"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "About the security content of Safari 26.2 - Apple Support: https://support.apple.com/en-us/125892"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "About the security content of Safari 26.5.2 - Apple Support: https://support.apple.com/en-us/127685"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "About the security content of Safari 18.6 - Apple Support: https://support.apple.com/en-us/124152"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "About the security content of macOS Sierra 10.12.4, Security Update 2017-001 El Capitan, and Security Update 2017-001 Yosemite - Apple Support (GU): https://support.apple.com/en-gu/103447"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "About the security content of macOS Sierra 10.12.4, Security Update 2017-001 El Capitan, and Security Update 2017-001 Yosemite - Apple Support: https://support.apple.com/en-afri/103447"
+    }
+  ],
+  "opened_urls": [
+    "https://support.apple.com/en-us/100100",
+    "https://support.apple.com/en-us/148281",
+    "https://support.apple.com/en-us/148170"
+  ],
+  "cited_urls": [
+    "https://support.apple.com/en-us/100100",
+    "https://support.apple.com/en-us/148281",
+    "https://support.apple.com/en-us/148170",
+    "https://thehackernews.com/2026/08/apple-macos-screen-sharing-flaw.html",
+    "https://www.helpnetsecurity.com/2026/08/17/apple-macos-screen-sharing-flaw/",
+    "https://www.tomshardware.com/tech-industry/cyber-security/macos-screen-sharing-flaw-exploited-to-root-macs-and-plant-monero-miners",
+    "https://www.malwarebytes.com/blog/bugs/2026/08/update-your-mac-screen-sharing-vulnerability-exploited-in-the-wild",
+    "https://www.huntress.com/blog/macos-screen-sharing-rce-patched"
+  ],
+  "selected_sources": [
+    {
+      "url": "https://support.apple.com/en-us/100100",
+      "title": "Apple security releases - Apple Support"
+    },
+    {
+      "url": "https://thehackernews.com/2026/08/apple-macos-screen-sharing-flaw.html",
+      "title": "Apple macOS Screen Sharing Flaw Exploited on Internet-Exposed Macs to Install Monero Miner"
+    },
+    {
+      "url": "https://www.runzero.com/blog/apple-macos/",
+      "title": "Apple macOS vulnerability: how to find impacted assets"
+    },
+    {
+      "url": "https://9to5mac.com/2026/08/17/a-serious-mac-screen-sharing-vulnerability-is-being-actively-exploited/",
+      "title": "A serious Mac screen sharing vulnerability is being actively exploited"
+    },
+    {
+      "url": "https://www.tomshardware.com/tech-industry/cyber-security/macos-screen-sharing-flaw-exploited-to-root-macs-and-plant-monero-miners",
+      "title": "Critical macOS Screen Sharing flaw gives attackers remote root access — CISA bumps bug to 9.8 severity following active Monero cryptojacking attacks | Tom's Hardware"
+    },
+    {
+      "url": "https://www.malwarebytes.com/blog/bugs/2026/08/update-your-mac-screen-sharing-vulnerability-exploited-in-the-wild",
+      "title": "Update your Mac: Screen Sharing vulnerability exploited in the wild | Malwarebytes"
+    },
+    {
+      "url": "https://www.helpnetsecurity.com/2026/08/17/apple-macos-screen-sharing-flaw/",
+      "title": "Attackers exploit patched macOS Screen Sharing flaw to deploy cryptominer - Help Net Security"
+    },
+    {
+      "url": "https://www.thestar.com.my/tech/tech-news/2026/08/21/update-your-mac-now-hackers-are-actively-exploiting-a-critical-flaw-to-mine-crypto",
+      "title": "Update your Mac now: Hackers are actively exploiting a critical flaw to mine crypto | The Star"
+    },
+    {
+      "url": "https://macdailynews.com/2026/08/18/macos-screen-sharing-flaw-already-exploited-in-the-wild-to-install-crypto-miners/",
+      "title": "macOS Screen Sharing flaw already exploited in the wild to install crypto miners"
+    },
+    {
+      "url": "https://itservicealerts.hosting.cornell.edu/view/6726",
+      "title": "Security Alert: Urgent MacOS patch"
+    },
+    {
+      "url": "https://wiki.lepp.cornell.edu/Computing/ImportantAnnouncement",
+      "title": "wiki.lepp.cornell.edu"
+    },
+    {
+      "url": "https://support.apple.com/en-us/148170",
+      "title": "https://support.apple.com/en-us/148170"
+    },
+    {
+      "url": "https://support.apple.com/en-us/148281",
+      "title": "https://support.apple.com/en-us/148281"
+    },
+    {
+      "url": "https://support.apple.com/en-us/128067",
+      "title": "About the security content of macOS Tahoe 26.6 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/122868",
+      "title": "What's new in the updates for macOS Tahoe 26 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/125110",
+      "title": "About the security content of macOS Tahoe 26 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/127595",
+      "title": "About the security content of macOS Tahoe 26.5.2 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/124963",
+      "title": "What's new for enterprise in macOS Tahoe 26 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/125328",
+      "title": "About the security content of macOS Tahoe 26.0.1 - Apple Support"
+    },
+    {
+      "url": "https://www.mactrast.com/2026/08/macos-tahoe-26-6-1-now-available-brings-security-fixes/amp/",
+      "title": "macOS Tahoe 26.6.1 Now Available - Brings Security Fixes"
+    },
+    {
+      "url": "https://support.apple.com/en-us/125886",
+      "title": "About the security content of macOS Tahoe 26.2 - Apple Support"
+    },
+    {
+      "url": "https://mrmacintosh.com/macos-tahoe-26-6-1-update-everything-you-need-to-know/",
+      "title": "macOS Tahoe 26.6.1 UPDATE NOW!"
+    },
+    {
+      "url": "https://apple.gadgethacks.com/news/macos-tahoe-2661-security-fixes-no-advisory-published/",
+      "title": "macOS Tahoe 26.6.1 Security Fixes: No Advisory Published << Apple :: Gadget Hacks"
+    },
+    {
+      "url": "https://www.macobserver.com/news/apple-releases-macos-tahoe-26-6-1-with-important-security-fix/",
+      "title": "Apple Releases macOS Tahoe 26.6.1 With Important Security Fix"
+    },
+    {
+      "url": "https://osxdaily.com/2026/08/06/security-updates-macos-tahoe-26-6-1-macos-sequoia-15-7-9-macos-sonoma-14-8-9-released-for-mac/",
+      "title": "Security Updates MacOS Tahoe 26.6.1, macOS Sequoia 15.7.9, macOS Sonoma 14.8.9 Released - OS X Daily"
+    },
+    {
+      "url": "https://www.tanium.com/blog/guardian-critical-macos-screen-sharing-authentication-bypass-cve-2026-65400",
+      "title": "Critical macOS Screen Sharing Authentication Bypass — Under Active Exploitation (CVE-2026-65400) | Tanium"
+    },
+    {
+      "url": "https://cvefeed.io/vuln/detail/CVE-2026-65400",
+      "title": "CVE-2026-65400 - Apple macOS Screen Sharing Authentication Bypass"
+    },
+    {
+      "url": "https://www.huntress.com/blog/macos-screen-sharing-rce-patched",
+      "title": "From Screen Share to Root Access: Breaking Down CVE-2026-43760 and CVE-2026-65400 on macOS | Huntress"
+    },
+    {
+      "url": "https://hivesecurity.gitlab.io/blog/macos-screen-sharing-cve-2026-65400/",
+      "title": "CVE-2026-65400: When macOS Screen Sharing Becomes Remote Root — Hive Security"
+    },
+    {
+      "url": "https://techjacksolutions.com/scc-intel/apple-macos-screen-sharing-pre-authentication-bypass-cve-2026-65400/",
+      "title": "CVE-2026-65400: Apple macOS Screen Sharing Pre-Authentication"
+    },
+    {
+      "url": "https://support.apple.com/en-us/148286",
+      "title": "About the security content of Safari 26.6.1 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/148282",
+      "title": "About the security content of iOS 26.6.1 and iPadOS 26.6.1 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/128073",
+      "title": "About the security content of Safari 26.6 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/128066",
+      "title": "About the security content of iOS 26.6 and iPadOS 26.6 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/125892",
+      "title": "About the security content of Safari 26.2 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/127685",
+      "title": "About the security content of Safari 26.5.2 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/124152",
+      "title": "About the security content of Safari 18.6 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-gu/103447",
+      "title": "About the security content of macOS Sierra 10.12.4, Security Update 2017-001 El Capitan, and Security Update 2017-001 Yosemite - Apple Support (GU)"
+    },
+    {
+      "url": "https://support.apple.com/en-afri/103447",
+      "title": "About the security content of macOS Sierra 10.12.4, Security Update 2017-001 El Capitan, and Security Update 2017-001 Yosemite - Apple Support"
+    }
+  ],
+  "evidence_passages": [
+    {
+      "url": "https://support.apple.com/en-us/100100",
+      "text": "# Recent macOS Security Releases (2026)\n\nBased on the Apple security page, here are the most recent macOS updates from 2026:\n\n**August 2026:**\n- macOS Tahoe 26.6.2 (17 Aug 2026)\n- macOS Tahoe 26.6.1 (6 Aug 2026)\n- macOS Sequoia 15.7.9 (6 Aug 2026)\n- macOS Sonoma 14.8.9 (6 Aug 2026)\n\n**July 2026:**\n- macOS Tahoe 26.6 (27 Jul 2026)\n- macOS Sequoia 15.7.8 (27 Jul 2026)\n- macOS Sonoma 14.8.8 (27 Jul 2026)\n\nThe document notes that \"Keeping your software up to date is one of the most important things you can do to maintain your Apple product's security.\" The latest macOS version listed is 26.6.2 for Tahoe, with updates also available for Sequoia and Sonoma variants."
+    },
+    {
+      "url": "https://thehackernews.com/2026/08/apple-macos-screen-sharing-flaw.html",
+      "text": "Apple macOS Screen Sharing Flaw Exploited on Internet-Exposed Macs to Install Monero Miner"
+    },
+    {
+      "url": "https://www.runzero.com/blog/apple-macos/",
+      "text": "Apple macOS vulnerability: how to find impacted assets"
+    },
+    {
+      "url": "https://9to5mac.com/2026/08/17/a-serious-mac-screen-sharing-vulnerability-is-being-actively-exploited/",
+      "text": "A serious Mac screen sharing vulnerability is being actively exploited"
+    },
+    {
+      "url": "https://www.tomshardware.com/tech-industry/cyber-security/macos-screen-sharing-flaw-exploited-to-root-macs-and-plant-monero-miners",
+      "text": "Critical macOS Screen Sharing flaw gives attackers remote root access — CISA bumps bug to 9.8 severity following active Monero cryptojacking attacks | Tom's Hardware"
+    },
+    {
+      "url": "https://www.malwarebytes.com/blog/bugs/2026/08/update-your-mac-screen-sharing-vulnerability-exploited-in-the-wild",
+      "text": "Update your Mac: Screen Sharing vulnerability exploited in the wild | Malwarebytes"
+    },
+    {
+      "url": "https://www.helpnetsecurity.com/2026/08/17/apple-macos-screen-sharing-flaw/",
+      "text": "Attackers exploit patched macOS Screen Sharing flaw to deploy cryptominer - Help Net Security"
+    },
+    {
+      "url": "https://www.thestar.com.my/tech/tech-news/2026/08/21/update-your-mac-now-hackers-are-actively-exploiting-a-critical-flaw-to-mine-crypto",
+      "text": "Update your Mac now: Hackers are actively exploiting a critical flaw to mine crypto | The Star"
+    },
+    {
+      "url": "https://macdailynews.com/2026/08/18/macos-screen-sharing-flaw-already-exploited-in-the-wild-to-install-crypto-miners/",
+      "text": "macOS Screen Sharing flaw already exploited in the wild to install crypto miners"
+    },
+    {
+      "url": "https://itservicealerts.hosting.cornell.edu/view/6726",
+      "text": "Security Alert: Urgent MacOS patch"
+    },
+    {
+      "url": "https://wiki.lepp.cornell.edu/Computing/ImportantAnnouncement",
+      "text": "wiki.lepp.cornell.edu"
+    },
+    {
+      "url": "https://support.apple.com/en-us/148170",
+      "text": "About the security content of macOS Tahoe 26.6.1 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/148281",
+      "text": "About the security content of macOS Tahoe 26.6.2 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/128067",
+      "text": "About the security content of macOS Tahoe 26.6 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/122868",
+      "text": "What's new in the updates for macOS Tahoe 26 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/125110",
+      "text": "About the security content of macOS Tahoe 26 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/127595",
+      "text": "About the security content of macOS Tahoe 26.5.2 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/124963",
+      "text": "What's new for enterprise in macOS Tahoe 26 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/125328",
+      "text": "About the security content of macOS Tahoe 26.0.1 - Apple Support"
+    },
+    {
+      "url": "https://www.mactrast.com/2026/08/macos-tahoe-26-6-1-now-available-brings-security-fixes/amp/",
+      "text": "macOS Tahoe 26.6.1 Now Available - Brings Security Fixes"
+    },
+    {
+      "url": "https://support.apple.com/en-us/125886",
+      "text": "About the security content of macOS Tahoe 26.2 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/148170",
+      "text": "About the security content of macOS Tahoe 26.6.1 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/125110",
+      "text": "About the security content of macOS Tahoe 26 - Apple Support"
+    },
+    {
+      "url": "https://mrmacintosh.com/macos-tahoe-26-6-1-update-everything-you-need-to-know/",
+      "text": "macOS Tahoe 26.6.1 UPDATE NOW!"
+    },
+    {
+      "url": "https://apple.gadgethacks.com/news/macos-tahoe-2661-security-fixes-no-advisory-published/",
+      "text": "macOS Tahoe 26.6.1 Security Fixes: No Advisory Published << Apple :: Gadget Hacks"
+    },
+    {
+      "url": "https://www.macobserver.com/news/apple-releases-macos-tahoe-26-6-1-with-important-security-fix/",
+      "text": "Apple Releases macOS Tahoe 26.6.1 With Important Security Fix"
+    },
+    {
+      "url": "https://osxdaily.com/2026/08/06/security-updates-macos-tahoe-26-6-1-macos-sequoia-15-7-9-macos-sonoma-14-8-9-released-for-mac/",
+      "text": "Security Updates MacOS Tahoe 26.6.1, macOS Sequoia 15.7.9, macOS Sonoma 14.8.9 Released - OS X Daily"
+    },
+    {
+      "url": "https://support.apple.com/en-us/148170",
+      "text": "# macOS Tahoe 26.6.1 Security Update\n\n**Release Date:** August 6, 2026\n\n**Affected System:** macOS Tahoe\n\n**Vulnerability Details:**\n\nOne security issue was addressed in this update:\n\n- **Screen Sharing Authentication Flaw (CVE-2026-65400)**\n  - Impact: \"An attacker on the network may be able to authenticate to Screen Sharing without valid credentials\"\n  - Fix: Improved state management resolved the authentication problem\n  - Researcher Credit: Alfredo Pesoli (@__rev) via Bynario Atlas\n\n**Exploitation in the Wild:** No information about active exploitation is mentioned in this security advisory."
+    },
+    {
+      "url": "https://support.apple.com/en-us/148281",
+      "text": "# macOS Tahoe 26.6.2 Security Update Summary\n\n**Release Date:** August 17, 2026\n\n**Affected System:** macOS Tahoe\n\n**Number of Vulnerabilities:** 30 CVEs addressed\n\n## Key Vulnerabilities\n\n**Critical Issues:**\n- ImageIO arbitrary code execution (CVE-2026-65346): \"An integer overflow was addressed with improved input validation.\"\n- IOGPUFamily memory corruption (CVE-2026-64788): Affects web content processing\n- Multiple WebKit vulnerabilities enabling Safari crashes and memory corruption\n\n**Notable Kernel Issues:**\n- Use-after-free vulnerability (CVE-2026-65343) allowing remote system termination\n- Out-of-bounds read (CVE-2026-65349) potentially exposing kernel memory\n\n**WebKit Component:** Received the most patches (18 CVEs), primarily addressing maliciously crafted web content processing\n\n## Exploitation Status\n\nThe document contains no statements regarding active exploitation in the wild or Apple's awareness of real-world attacks.\n\n## Additional Context\n\nThis update delivers fixes originally introduced in macOS Golden Gate 27 beta, indicating these vulnerabilities were being addressed across multiple OS versions."
+    },
+    {
+      "url": "https://support.apple.com/en-us/100100",
+      "text": "# 12 Most Recent Apple Security Releases\n\n1. **Safari 26.6.1** | macOS Sonoma and macOS Sequoia | August 18, 2026\n\n2. **iOS 26.6.1 and iPadOS 26.6.1** | \"iPhone 11 and later, iPad Pro 12.9-inch 3rd generation and later\" | August 17, 2026\n\n3. **iOS 18.7.10 and iPadOS 18.7.10** | iPhone XS, iPhone XS Max, iPhone XR, iPad 7th generation | August 17, 2026\n\n4. **macOS Tahoe 26.6.2** | macOS Tahoe | August 17, 2026\n\n5. **visionOS 26.6.1** | Apple Vision Pro (all models) | August 17, 2026\n\n6. **macOS Tahoe 26.6.1** | macOS Tahoe | August 6, 2026\n\n7. **macOS Sequoia 15.7.9** | macOS Sequoia | August 6, 2026\n\n8. **macOS Sonoma 14.8.9** | macOS Sonoma | August 6, 2026\n\n9. **iOS 26.6 and iPadOS 26.6** | \"iPhone 11 and later, iPad Pro 12.9-inch 3rd generation and later\" | July 27, 2026\n\n10. **macOS Tahoe 26.6** | macOS Tahoe | July 27, 2026\n\n11. **macOS Sequoia 15.7.8** | macOS Sequoia | July 27, 2026\n\n12. **macOS Sonoma 14.8.8** | macOS Sonoma | July 27, 2026"
+    },
+    {
+      "url": "https://www.tanium.com/blog/guardian-critical-macos-screen-sharing-authentication-bypass-cve-2026-65400",
+      "text": "Critical macOS Screen Sharing Authentication Bypass — Under Active Exploitation (CVE-2026-65400) | Tanium"
+    },
+    {
+      "url": "https://cvefeed.io/vuln/detail/CVE-2026-65400",
+      "text": "CVE-2026-65400 - Apple macOS Screen Sharing Authentication Bypass"
+    },
+    {
+      "url": "https://www.tomshardware.com/tech-industry/cyber-security/macos-screen-sharing-flaw-exploited-to-root-macs-and-plant-monero-miners",
+      "text": "Critical macOS Screen Sharing flaw gives attackers remote root access — CISA bumps bug to 9.8 severity following active Monero cryptojacking attacks | Tom's Hardware"
+    },
+    {
+      "url": "https://www.malwarebytes.com/blog/bugs/2026/08/update-your-mac-screen-sharing-vulnerability-exploited-in-the-wild",
+      "text": "Update your Mac: Screen Sharing vulnerability exploited in the wild | Malwarebytes"
+    },
+    {
+      "url": "https://www.huntress.com/blog/macos-screen-sharing-rce-patched",
+      "text": "From Screen Share to Root Access: Breaking Down CVE-2026-43760 and CVE-2026-65400 on macOS | Huntress"
+    },
+    {
+      "url": "https://thehackernews.com/2026/08/apple-macos-screen-sharing-flaw.html",
+      "text": "Apple macOS Screen Sharing Flaw Exploited on Internet-Exposed Macs to Install Monero Miner"
+    },
+    {
+      "url": "https://hivesecurity.gitlab.io/blog/macos-screen-sharing-cve-2026-65400/",
+      "text": "CVE-2026-65400: When macOS Screen Sharing Becomes Remote Root — Hive Security"
+    },
+    {
+      "url": "https://techjacksolutions.com/scc-intel/apple-macos-screen-sharing-pre-authentication-bypass-cve-2026-65400/",
+      "text": "CVE-2026-65400: Apple macOS Screen Sharing Pre-Authentication"
+    },
+    {
+      "url": "https://support.apple.com/en-us/148281",
+      "text": "# Search Results\n\nThe page does **not** contain the words \"exploited,\" \"exploitation,\" or \"Apple is aware of a report.\"\n\n**\"Available for:\" line:**\n\nEvery security vulnerability listed uses the identical phrasing: **\"Available for: macOS Tahoe\"**"
+    },
+    {
+      "url": "https://support.apple.com/en-us/148286",
+      "text": "About the security content of Safari 26.6.1 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/148282",
+      "text": "About the security content of iOS 26.6.1 and iPadOS 26.6.1 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/100100",
+      "text": "Apple security releases - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/128073",
+      "text": "About the security content of Safari 26.6 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/128066",
+      "text": "About the security content of iOS 26.6 and iPadOS 26.6 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/125892",
+      "text": "About the security content of Safari 26.2 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/127685",
+      "text": "About the security content of Safari 26.5.2 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-us/124152",
+      "text": "About the security content of Safari 18.6 - Apple Support"
+    },
+    {
+      "url": "https://support.apple.com/en-gu/103447",
+      "text": "About the security content of macOS Sierra 10.12.4, Security Update 2017-001 El Capitan, and Security Update 2017-001 Yosemite - Apple Support (GU)"
+    },
+    {
+      "url": "https://support.apple.com/en-afri/103447",
+      "text": "About the security content of macOS Sierra 10.12.4, Security Update 2017-001 El Capitan, and Security Update 2017-001 Yosemite - Apple Support"
+    }
+  ],
+  "final_answer": "## Short answer\n\n**Two things are competing for \"most recent,\" depending on what counts as a macOS security update:**\n\n| Release | Date | Available for |\n|---|---|---|\n| **macOS Tahoe 26.6.2** — most recent macOS *OS* update | 17 Aug 2026 | macOS Tahoe only |\n| **Safari 26.6.1** — most recent security release *affecting macOS* | 18 Aug 2026 | macOS Sonoma and macOS Sequoia |\n\n**Apple identifies no actively exploited issues in either one.** ([Apple security releases](https://support.apple.com/en-us/100100))\n\n---\n\n## macOS Tahoe 26.6.2 (17 Aug 2026)\n\n- Every entry on the advisory carries the line \"Available for: macOS Tahoe\" — so this update targets Tahoe only. Sequoia and Sonoma did **not** get a same-day OS counterpart; their most recent OS updates remain 15.7.9 and 14.8.9 from 6 Aug ([Apple](https://support.apple.com/en-us/148281), [release list](https://support.apple.com/en-us/100100)).\n- It fixes roughly 30 CVEs, the largest cluster (~18) in WebKit, plus ImageIO (CVE-2026-65346, integer overflow → arbitrary code execution), IOGPUFamily (CVE-2026-64788), and Kernel issues CVE-2026-65343 (use-after-free) and CVE-2026-65349 (out-of-bounds read). *Caveat: I read this advisory through a page-summarizing fetch rather than transcribing it line by line, so treat the exact count and the completeness of this CVE list as approximate — the advisory itself is authoritative* ([Apple](https://support.apple.com/en-us/148281)).\n- **The page contains no \"exploited,\" \"exploitation,\" or \"Apple is aware of a report that this issue may have been exploited\" language** — Apple's standard formula for in-the-wild attacks is absent ([Apple](https://support.apple.com/en-us/148281)).\n\n## The actively exploited issue — and why it is *not* Apple identifying it\n\nThere **is** an actively exploited macOS flaw right now, but the exploitation finding does not come from Apple:\n\n- **CVE-2026-65400**, Screen Sharing: \"An attacker on the network may be able to authenticate to Screen Sharing without valid credentials.\" Fixed via improved state management; credited to Alfredo Pesoli (@\\_\\_rev) via Bynario Atlas. Patched **6 Aug 2026** in **macOS Tahoe 26.6.1, macOS Sequoia 15.7.9, and macOS Sonoma 14.8.9** ([Apple](https://support.apple.com/en-us/148170)).\n- Apple's advisory for it **also carries no exploitation notice** ([Apple](https://support.apple.com/en-us/148170)).\n- Exploitation was reported externally: NCSC-NL warned on 12 Aug that attackers are hitting Macs with port 5900 exposed to the internet, gaining root and installing a Monero miner; CISA rescored the bug from 7.1 to 9.8 on 14 Aug and added it to the KEV catalog on 18 Aug with a 21 Aug federal remediation deadline ([The Hacker News](https://thehackernews.com/2026/08/apple-macos-screen-sharing-flaw.html), [Help Net Security](https://www.helpnetsecurity.com/2026/08/17/apple-macos-screen-sharing-flaw/), [Tom's Hardware](https://www.tomshardware.com/tech-industry/cyber-security/macos-screen-sharing-flaw-exploited-to-root-macs-and-plant-monero-miners), [Malwarebytes](https://www.malwarebytes.com/blog/bugs/2026/08/update-your-mac-screen-sharing-vulnerability-exploited-in-the-wild)).\n\nSo the precise answer to your question as asked: **Apple identifies zero actively exploited issues in its most recent macOS security update.** The one macOS vulnerability known to be under attack was already patched eleven days earlier, and its exploited status was established by NCSC-NL and CISA rather than by Apple.\n\n## Fact vs. inference vs. uncertainty\n\n- **Supported fact:** release dates, \"Available for\" scoping, CVE-2026-65400's description and credit, absence of exploitation language on Apple's pages, KEV addition.\n- **Inference (mine):** that Sequoia/Sonoma were deliberately left at 15.7.9/14.8.9 for the 26.6.2 content — I infer this from the release list showing no 17 Aug counterpart for them; Apple does not explain the split, and one could still ship later.\n- **Disagreement in sources:** the CVSS score for CVE-2026-65400 moved 7.1 → 9.8; that is a CISA rescoring, not two sources contradicting each other, but you'll see both numbers in circulation ([Tom's Hardware](https://www.tomshardware.com/tech-industry/cyber-security/macos-screen-sharing-flaw-exploited-to-root-macs-and-plant-monero-miners)). One secondary write-up characterizes the flaw as pre-auth **remote root code execution** via a Secure Remote Password implementation bug, which is stronger than Apple's own wording of \"authenticate without valid credentials\" ([Huntress](https://www.huntress.com/blog/macos-screen-sharing-rce-patched)).\n- **Weak evidence:** a related second Screen Sharing CVE (CVE-2026-43760) appears in third-party analysis; I did not verify it against an Apple advisory, so don't rely on it.\n- **Not established:** whether Apple will retroactively annotate advisory 148170 with an exploitation note, as it has done occasionally in the past. As of today it has not.\n\n**Practical upshot:** Tahoe users should be on 26.6.2; Sequoia/Sonoma users need 15.7.9 / 14.8.9 for the exploited Screen Sharing bug plus Safari 26.6.1. If Screen Sharing/VNC (port 5900) is reachable from the internet on any unpatched Mac, treat that as urgent.",
+  "cli_version": "2.1.247 (Claude Code)",
+  "locale": "en-US",
+  "started_at": "2026-08-27T17:00:41.665Z",
+  "duration_ms": 96017,
+  "prompt_sha256": "3672f8a04f810285155bc7c45e0ef12ee5373f3cd5fb88c0d95c9c8beca6ed9c",
+  "raw_trace": "events.sanitized.jsonl",
+  "policy_evidence": "policy.json",
+  "isolation": {
+    "temporary_cwd": true,
+    "cwd_unchanged": true,
+    "forbidden_tool_calls": []
+  }
+}

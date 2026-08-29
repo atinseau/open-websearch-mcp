@@ -1,0 +1,120 @@
+{
+  "is_error": false,
+  "duration_api_ms": 49909,
+  "num_turns": 2,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.4783184999999999,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 36180,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 3504,
+    "output_tokens_details": {
+      "thinking_tokens": 1902
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 36180,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 3504,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 36180,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 36180
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 28360,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.02845,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 3504,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 36180,
+      "webSearchRequests": 0,
+      "costUSD": 0.44986849999999995,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"claim_jprs_punycode_dns\",\"claim_whatwg_host_parse_ascii\",\"claim_whatwg_uts46_toascii\",\"claim_whatwg_ascii_serialize_unicode_display\",\"claim_chromium_ascii_dns\"],\"rejected_claims\":[{\"id\":\"claim_chromium_display_policy\",\"reason\":\"Substance étayée (décision par label Unicode/Punycode, mélange de scripts, caractères invisibles, confusables), mais le motif de notation est invalide car trop étroit : il exige sept jetons lexicaux conjoints, dont « ToUnicode », qui n'apparaît dans aucun extrait réellement récupéré (seule la reformulation Codex, non sourcée par une page ouverte, le mentionne), et une énumération de détail (不可視文字|invisible, confusable). Une réponse correcte et complète sur la politique d'affichage de Chrome échouerait sur cette conjonction, ce qui rend la notation lexicale non fiable. Le fait Chromium essentiel reste couvert par claim_chromium_ascii_dns.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": [
+      "claim_jprs_punycode_dns",
+      "claim_whatwg_host_parse_ascii",
+      "claim_whatwg_uts46_toascii",
+      "claim_whatwg_ascii_serialize_unicode_display",
+      "claim_chromium_ascii_dns"
+    ],
+    "rejected_claims": [
+      {
+        "id": "claim_chromium_display_policy",
+        "reason": "Substance étayée (décision par label Unicode/Punycode, mélange de scripts, caractères invisibles, confusables), mais le motif de notation est invalide car trop étroit : il exige sept jetons lexicaux conjoints, dont « ToUnicode », qui n'apparaît dans aucun extrait réellement récupéré (seule la reformulation Codex, non sourcée par une page ouverte, le mentionne), et une énumération de détail (不可視文字|invisible, confusable). Une réponse correcte et complète sur la politique d'affichage de Chrome échouerait sur cette conjonction, ce qui rend la notation lexicale non fiable. Le fait Chromium essentiel reste couvert par claim_chromium_ascii_dns."
+      }
+    ]
+  },
+  "ttft_ms": 27544,
+  "ttft_stream_ms": 1577,
+  "time_to_request_ms": 18,
+  "type": "result",
+  "duration_ms": 47994,
+  "uuid": "[REDACTED]",
+  "queued_turn_count": 0
+}

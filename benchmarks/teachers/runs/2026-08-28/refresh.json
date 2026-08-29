@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "date": "2026-08-28",
+  "trigger": "major-change",
+  "reason": "Codex teacher policy hardening (explicit skill disablement) and the ADR-0006 move to a single Codex teacher with deterministic grounding verification.",
+  "immutable": true
+}

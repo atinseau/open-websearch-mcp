@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "case_id": "technical-bun-webview",
+  "runs": [
+    {
+      "run_id": "2026-08-27_codex_technical-bun-webview",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "site:bun.com Bun.WebView browser-level CDP WebSocket URL official docs",
+        "https://bun.com/docs/runtime/webview"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [],
+      "cited_urls": ["https://bun.com/docs/runtime/webview"],
+      "selected_sources": [
+        {
+          "url": "https://bun.com/docs/runtime/webview",
+          "title": "https://bun.com/docs/runtime/webview"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://bun.com/docs/runtime/webview",
+          "text": "**Supported facts**\n\nTo make `Bun.WebView` connect to an already-running browser over a CDP WebSocket, Bun documents the `backend` object form with `type: \"chrome\"` and a `url` field set to a `ws://...` DevTools endpoint; the example shown is `ws://127.0.0.1:9222/devtools/browser/abc123...`. The docs say this is how to “Connect to a specific DevTools WebSocket URL.”  \nSource: https://bun.com/docs/runtime/webview\n\nBun also documents an auto-connect path: before spawning Chrome, it checks `DevToolsActivePort` in standard profile directories, and if it finds a running browser with remote debugging enabled, it connects over WebSocket instead of spawning a new browser.  \nSource: https://bun.com/docs/runtime/webview\n\nTo enable that remote debugging on a running Chrome, the docs say to either use `chrome://inspect/#remote-debugging` and enable the toggle, or launch Chrome with `--remote-debugging-port=9222`.  \nSource: https://bun.com/docs/runtime/webview\n\nThe docs state that `url: false` disables auto-detect and forces Bun to spawn a fresh headless Chrome instead. They also state that an explicit `url: \"ws://...\"` does **not** fall back to spawning if the connection fails; instead, it throws.  \nSource: https://bun.com/docs/runtime/webview\n\nThe docs further state that `path` or `argv` imply spawn mode, skip auto-detect, and cannot be combined with `url: \"ws://...\"`.  \nSource: https://bun.com/docs/runtime/webview\n\n**Documented lifecycle operations**\n\nThe explicitly documented lifecycle operations are `view.close()` and `Bun.WebView.closeAll()`.  \nSource: https://bun.com/docs/runtime/webview\n\nFor `view.close()`, the docs say closing is synchronous and idempotent, destroys the page’s renderer process, rejects pending promises on that view with `Error(\"WebView closed\")`, and makes later method calls throw `ERR_INVALID_STATE`. They also say `Symbol.dispose` and `Symbol.asyncDispose` both point to `close()`, so `using` and `await using` perform automatic cleanup.  \nSource: https:"
+        }
+      ],
+      "final_answer": "**Supported facts**\n\nTo make `Bun.WebView` connect to an already-running browser over a CDP WebSocket, Bun documents the `backend` object form with `type: \"chrome\"` and a `url` field set to a `ws://...` DevTools endpoint; the example shown is `ws://127.0.0.1:9222/devtools/browser/abc123...`. The docs say this is how to “Connect to a specific DevTools WebSocket URL.”  \nSource: https://bun.com/docs/runtime/webview\n\nBun also documents an auto-connect path: before spawning Chrome, it checks `DevToolsActivePort` in standard profile directories, and if it finds a running browser with remote debugging enabled, it connects over WebSocket instead of spawning a new browser.  \nSource: https://bun.com/docs/runtime/webview\n\nTo enable that remote debugging on a running Chrome, the docs say to either use `chrome://inspect/#remote-debugging` and enable the toggle, or launch Chrome with `--remote-debugging-port=9222`.  \nSource: https://bun.com/docs/runtime/webview\n\nThe docs state that `url: false` disables auto-detect and forces Bun to spawn a fresh headless Chrome instead. They also state that an explicit `url: \"ws://...\"` does **not** fall back to spawning if the connection fails; instead, it throws.  \nSource: https://bun.com/docs/runtime/webview\n\nThe docs further state that `path` or `argv` imply spawn mode, skip auto-detect, and cannot be combined with `url: \"ws://...\"`.  \nSource: https://bun.com/docs/runtime/webview\n\n**Documented lifecycle operations**\n\nThe explicitly documented lifecycle operations are `view.close()` and `Bun.WebView.closeAll()`.  \nSource: https://bun.com/docs/runtime/webview\n\nFor `view.close()`, the docs say closing is synchronous and idempotent, destroys the page’s renderer process, rejects pending promises on that view with `Error(\"WebView closed\")`, and makes later method calls throw `ERR_INVALID_STATE`. They also say `Symbol.dispose` and `Symbol.asyncDispose` both point to `close()`, so `using` and `await using` perform automatic cleanup.  \nSource: https://bun.com/docs/runtime/webview\n\nFor `Bun.WebView.closeAll()`, the docs say it force-kills the Chrome subprocess and the WebKit host subprocess with `SIGKILL`, causes pending promises on every view to reject on the next event-loop tick, and allows later `new Bun.WebView()` calls to respawn browsers as needed. The docs also say Bun calls `closeAll()` automatically at process exit.  \nSource: https://bun.com/docs/runtime/webview\n\nThe same lifecycle section also documents behavior, not separate operations: browser subprocesses do not keep Bun’s event loop alive by themselves, and if the subprocess dies unexpectedly, pending promises reject and further operations on affected views throw.  \nSource: https://bun.com/docs/runtime/webview\n\n**Inference**\n\nThe example URL path `/devtools/browser/...` is evidence that Bun expects a **browser-level** CDP WebSocket endpoint, but the docs do not literally define “browser-level” in those words in the `backend.url` option table. That label is an inference from the example and the surrounding text.  \nSource: https://bun.com/docs/runtime/webview\n\n**Disagreement / uncertainty**\n\nThere is a small wording mismatch in the docs: the auto-detect text refers to a “Chrome-family browser,” while the `backend.url` reference says `url` is the `ws://` URL of an existing Chrome’s DevTools endpoint. The page does not clearly state whether an explicit `url` is supported for every Chrome-family browser named elsewhere on the page or only for Chrome-compatible DevTools endpoints generally.  \nSource: https://bun.com/docs/runtime/webview\n\n**Lack of good evidence**\n\nI did not find current official Bun documentation on that page specifying support for a non-`ws://` scheme, a tab-level `devtools/page/...` URL, authentication on the WebSocket URL, or any lifecycle operation beyond `close()` and `closeAll()`.  \nSource: https://bun.com/docs/runtime/webview"
+    },
+    {
+      "run_id": "2026-08-27_claude_technical-bun-webview",
+      "provider": "claude",
+      "model": "claude-opus-5[1m]",
+      "queries": ["Bun.WebView documentation", "bun.sh docs WebView CDP WebSocket connect browser"],
+      "tool_results": [
+        {
+          "tool": "WebSearch",
+          "summary": "Bun.WebView Makes Browser Automation Ridiculously Simple: https://jsdevspace.substack.com/p/bunwebview-makes-browser-automation"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "WebView | Bun Docs: https://bun.com/docs/runtime/webview"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "WebSockets | Bun Docs: https://bun.com/docs/runtime/http/websockets"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun v1.3.12 | Bun Blog: https://bun.com/blog/bun-v1.3.12"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "WebView.cdp method | Bun module | Bun: https://bun.com/reference/bun/WebView/cdp"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Debugging Bun with the web debugger - Bun: https://bun.com/docs/guides/runtime/web-debugger"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "WebView API | oven-sh/bun | DeepWiki: https://deepwiki.com/oven-sh/bun/9.10-webview-api"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun.WebView: Zero-Dependency Headless Browser Automation: https://bunjs.run/bun-webview-headless-browser/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "WebView.click method | Bun module | Bun: https://bun.com/reference/bun/WebView/click"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "GitHub - tr1ckydev/webview-bun: Bun bindings for webview, a tiny library for creating web-based desktop GUIs. · GitHub: https://github.com/tr1ckydev/webview-bun"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun.WebView Makes Browser Automation Ridiculously Simple: https://jsdevspace.substack.com/p/bunwebview-makes-browser-automation"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "webview-bun - npm: https://www.npmjs.com/package/webview-bun"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "WebView | Bun Docs: https://bun.com/docs/runtime/webview"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun.WebView object | API Reference | Bun: https://bun.com/reference/bun/WebView"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Bun WebView: Browser Connection & Lifecycle\n\n## Connecting to Existing Browser\n\nYes, the documentation describes connecting to an already-running browser via CDP WebSocket URL. The option is part of the `backend` object configuration:\n\n**Option name:** `url`\n\n**Exact text:** \"Connect to a specific DevTools WebSocket URL\" using the format `backend: { type: \"chrome\", url: \"ws://127.0.0.1:9222/devtools/browser/abc123...\" }`\n\nThe docs explain: \"By default, before spawning, Bun reads the `DevToolsA"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Bun.WebView: Methods, Properties & Options\n\n## Constructor Options\nThe provided documentation shows these **ConstructorOptions**:\n- `backend` – Browser backend selection (webkit or chrome)\n- `console` – Capture page-side console calls\n- `dataStore` – Storage for cookies, localStorage, IndexedDB\n- `headless` – Headless mode (true only)\n- `height` – Viewport height in pixels\n- `width` – Viewport width in pixels\n- `url` – Initial URL to navigate to\n\n## Interfaces & Types Documented\n- **ClickOptio"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "The server returned HTTP 404 Not Found.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Chrome Backend & Lifecycle Information\n\n## Connecting to an Existing Browser\n\nRegarding auto-detection: \"By default, before spawning, Bun reads the `DevToolsActivePort` file from standard profile directories to check whether a Chrome-family browser is **already running**\" with remote debugging enabled.\n\nTo enable this feature, users should \"visit `chrome://inspect/#remote-debugging` and flip the toggle, or launch Chrome with `--remote-debugging-port=9222`.\"\n\nFor explicit control, developers ca"
+        }
+      ],
+      "opened_urls": [
+        "https://bun.com/docs/runtime/webview",
+        "https://bun.com/reference/bun/WebView",
+        "https://bun.com/reference/bun/WebView.Backend"
+      ],
+      "cited_urls": [
+        "https://bun.com/docs/runtime/webview",
+        "https://bun.com/reference/bun/WebView/cdp",
+        "https://bun.com/reference/bun/WebView",
+        "https://bun.com/reference/bun/WebView/click"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://jsdevspace.substack.com/p/bunwebview-makes-browser-automation",
+          "title": "Bun.WebView Makes Browser Automation Ridiculously Simple"
+        },
+        {
+          "url": "https://bun.com/docs/runtime/webview",
+          "title": "https://bun.com/docs/runtime/webview"
+        },
+        {
+          "url": "https://bun.com/docs/runtime/http/websockets",
+          "title": "WebSockets | Bun Docs"
+        },
+        {
+          "url": "https://bun.com/blog/bun-v1.3.12",
+          "title": "Bun v1.3.12 | Bun Blog"
+        },
+        {
+          "url": "https://bun.com/reference/bun/WebView/cdp",
+          "title": "WebView.cdp method | Bun module | Bun"
+        },
+        {
+          "url": "https://bun.com/docs/guides/runtime/web-debugger",
+          "title": "Debugging Bun with the web debugger - Bun"
+        },
+        {
+          "url": "https://deepwiki.com/oven-sh/bun/9.10-webview-api",
+          "title": "WebView API | oven-sh/bun | DeepWiki"
+        },
+        {
+          "url": "https://bunjs.run/bun-webview-headless-browser/",
+          "title": "Bun.WebView: Zero-Dependency Headless Browser Automation"
+        },
+        {
+          "url": "https://bun.com/reference/bun/WebView/click",
+          "title": "WebView.click method | Bun module | Bun"
+        },
+        {
+          "url": "https://github.com/tr1ckydev/webview-bun",
+          "title": "GitHub - tr1ckydev/webview-bun: Bun bindings for webview, a tiny library for creating web-based desktop GUIs. · GitHub"
+        },
+        {
+          "url": "https://www.npmjs.com/package/webview-bun",
+          "title": "webview-bun - npm"
+        },
+        {
+          "url": "https://bun.com/reference/bun/WebView",
+          "title": "https://bun.com/reference/bun/WebView"
+        },
+        {
+          "url": "https://bun.com/reference/bun/WebView.Backend",
+          "title": "https://bun.com/reference/bun/WebView.Backend"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://jsdevspace.substack.com/p/bunwebview-makes-browser-automation",
+          "text": "Bun.WebView Makes Browser Automation Ridiculously Simple"
+        },
+        {
+          "url": "https://bun.com/docs/runtime/webview",
+          "text": "WebView | Bun Docs"
+        },
+        {
+          "url": "https://bun.com/docs/runtime/http/websockets",
+          "text": "WebSockets | Bun Docs"
+        },
+        {
+          "url": "https://bun.com/blog/bun-v1.3.12",
+          "text": "Bun v1.3.12 | Bun Blog"
+        },
+        {
+          "url": "https://bun.com/reference/bun/WebView/cdp",
+          "text": "WebView.cdp method | Bun module | Bun"
+        },
+        {
+          "url": "https://bun.com/docs/guides/runtime/web-debugger",
+          "text": "Debugging Bun with the web debugger - Bun"
+        },
+        {
+          "url": "https://deepwiki.com/oven-sh/bun/9.10-webview-api",
+          "text": "WebView API | oven-sh/bun | DeepWiki"
+        },
+        {
+          "url": "https://bunjs.run/bun-webview-headless-browser/",
+          "text": "Bun.WebView: Zero-Dependency Headless Browser Automation"
+        },
+        {
+          "url": "https://bun.com/reference/bun/WebView/click",
+          "text": "WebView.click method | Bun module | Bun"
+        },
+        {
+          "url": "https://github.com/tr1ckydev/webview-bun",
+          "text": "GitHub - tr1ckydev/webview-bun: Bun bindings for webview, a tiny library for creating web-based desktop GUIs. · GitHub"
+        },
+        {
+          "url": "https://www.npmjs.com/package/webview-bun",
+          "text": "webview-bun - npm"
+        },
+        {
+          "url": "https://bun.com/reference/bun/WebView",
+          "text": "Bun.WebView object | API Reference | Bun"
+        },
+        {
+          "url": "https://bun.com/docs/runtime/webview",
+          "text": "# Bun WebView: Browser Connection & Lifecycle\n\n## Connecting to Existing Browser\n\nYes, the documentation describes connecting to an already-running browser via CDP WebSocket URL. The option is part of the `backend` object configuration:\n\n**Option name:** `url`\n\n**Exact text:** \"Connect to a specific DevTools WebSocket URL\" using the format `backend: { type: \"chrome\", url: \"ws://127.0.0.1:9222/devtools/browser/abc123...\" }`\n\nThe docs explain: \"By default, before spawning, Bun reads the `DevToolsActivePort` file from standard profile directories to check whether a Chrome-family browser is **already running**.\"\n\n## Documented Lifecycle Operations\n\n**Constructor options:**\n- `width`, `height`, `url`, `headless`, `backend`, `console`, `dataStore`\n\n**Lifecycle methods/operations:**\n- `navigate(url)`\n- `goBack()`\n- `goForward()`\n- `reload()`\n- `close()`\n- `close()` via `Symbol.dispose` and `Symbol.asyncDispose` (for `using`/`await using`)\n- `WebView.closeAll()` (static method)\n\n**Related properties:**\n- `url` (readonly)\n- `title` (readonly)\n- `loading` (readonly)\n- `onNavigated` callback\n- `onNavigationFailed` callback"
+        },
+        {
+          "url": "https://bun.com/reference/bun/WebView",
+          "text": "# Bun.WebView: Methods, Properties & Options\n\n## Constructor Options\nThe provided documentation shows these **ConstructorOptions**:\n- `backend` – Browser backend selection (webkit or chrome)\n- `console` – Capture page-side console calls\n- `dataStore` – Storage for cookies, localStorage, IndexedDB\n- `headless` – Headless mode (true only)\n- `height` – Viewport height in pixels\n- `width` – Viewport width in pixels\n- `url` – Initial URL to navigate to\n\n## Interfaces & Types Documented\n- **ClickOptions** / **ClickSelectorOptions** – Click interaction parameters\n- **PressOptions** – Keyboard press modifiers\n- **ScrollToOptions** – Element scroll alignment and timeout\n- **Backend type** – Detailed backend configuration including Chrome DevTools Protocol\n- **ConsoleCapture type** – Console callback handling\n- **Modifier & VirtualKey types** – Input modifiers and key names\n\n## Connection Options\n**No connection parameters documented** – The page contains no references to `webSocketURL`, `browserWSEndpoint`, `cdpUrl`, or explicit connection methods.\n\n## Lifecycle Methods\n**Not visible in provided content** – The reference page shown focuses on interfaces and constructor options. Methods like `close()` or `dispose()` are not included in this excerpt.\n\n**Note:** The full API likely extends beyond what's displayed here. Check the complete Bun.WebView documentation for comprehensive method listings."
+        },
+        {
+          "url": "https://bun.com/reference/bun/WebView.Backend",
+          "text": "The server returned HTTP 404 Not Found.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+        },
+        {
+          "url": "https://bun.com/docs/runtime/webview",
+          "text": "# Chrome Backend & Lifecycle Information\n\n## Connecting to an Existing Browser\n\nRegarding auto-detection: \"By default, before spawning, Bun reads the `DevToolsActivePort` file from standard profile directories to check whether a Chrome-family browser is **already running**\" with remote debugging enabled.\n\nTo enable this feature, users should \"visit `chrome://inspect/#remote-debugging` and flip the toggle, or launch Chrome with `--remote-debugging-port=9222`.\"\n\nFor explicit control, developers can use the object form: `backend: { type: \"chrome\", url: false }` to skip auto-detect, or provide a specific WebSocket URL like `url: \"ws://127.0.0.1:9222/devtools/browser/abc123...\"`.\n\nThe documentation notes: \"If auto-detect finds a stale `DevToolsActivePort` file (Chrome crashed or restarted), the WebSocket connect fails and Bun transparently falls back to spawning its own Chrome.\"\n\n## Lifecycle Management\n\nKey lifecycle methods include:\n\n- `close()` — \"Closing is synchronous and idempotent. It destroys the page's renderer process, rejects any pending promises on the view\"\n- `Bun.WebView.closeAll()` — \"Force-kills (`SIGKILL`) both the Chrome subprocess and the WebKit host subprocess\"\n\nThe documentation emphasizes: \"Bun calls this automatically at process exit, so browser subprocesses never outlive your script.\"\n\nRegarding automatic cleanup, the `using` keyword works because \"`Bun.WebView` implements `Symbol.dispose` and `Symbol.asyncDispose`.\""
+        }
+      ],
+      "final_answer": "## Réponse\n\n### 1. Connexion à un navigateur déjà lancé via une URL WebSocket CDP de niveau navigateur\n\n**Fait documenté.** `Bun.WebView` accepte une option de constructeur `backend`, qui peut prendre une forme objet permettant de pointer explicitement vers une URL WebSocket DevTools ([bun.com/docs/runtime/webview](https://bun.com/docs/runtime/webview)) :\n\n```js\nusing view = new Bun.WebView({\n  backend: {\n    type: \"chrome\",\n    url: \"ws://127.0.0.1:9222/devtools/browser/abc123...\",\n  },\n});\n```\n\nLa doc décrit ce champ comme servant à « Connect to a specific DevTools WebSocket URL ». Il s'agit bien d'un *endpoint de niveau navigateur* (chemin `/devtools/browser/<id>`), et non d'une cible page.\n\n**Fait documenté — détection automatique.** Par défaut, il n'est pas nécessaire de fournir cette URL : « By default, before spawning, Bun reads the `DevToolsActivePort` file from standard profile directories to check whether a Chrome-family browser is already running » avec le débogage distant activé ; le cas échéant, Bun s'y connecte par WebSocket au lieu de lancer son propre processus, et les vues s'ouvrent comme onglets du navigateur existant ([doc](https://bun.com/docs/runtime/webview)).\n\n**Fait documenté — activation côté navigateur.** Pour rendre un Chrome existant détectable/connectable : « visit `chrome://inspect/#remote-debugging` and flip the toggle, or launch Chrome with `--remote-debugging-port=9222` » ([doc](https://bun.com/docs/runtime/webview)).\n\n**Fait documenté — désactivation et repli.** `backend: { type: \"chrome\", url: false }` désactive l'auto-détection. Et : « If auto-detect finds a stale `DevToolsActivePort` file (Chrome crashed or restarted), the WebSocket connect fails and Bun transparently falls back to spawning its own Chrome » ([doc](https://bun.com/docs/runtime/webview)).\n\n**Portée de la plateforme.** Ce chemin CDP concerne Linux et Windows, où Bun pilote un Chrome/Chromium/Edge/Brave installé via le Chrome DevTools Protocol ; sur macOS, le backend par défaut est `WKWebView` du système ([doc](https://bun.com/docs/runtime/webview)).\n\n**Commandes CDP brutes.** Une fois connecté, `view.cdp(...)` permet d'envoyer des commandes CDP directement, p. ex. `view.cdp(\"DOM.getDocument\")` ([référence `WebView.cdp`](https://bun.com/reference/bun/WebView/cdp)).\n\n### 2. Opérations de cycle de vie documentées\n\nD'après la [documentation officielle](https://bun.com/docs/runtime/webview) et la [référence API](https://bun.com/reference/bun/WebView) :\n\n| Opération | Statut |\n|---|---|\n| `navigate(url)` | documentée |\n| `reload()` | documentée |\n| `goBack()` / `goForward()` | documentées |\n| `close()` | documentée : « Closing is synchronous and idempotent. It destroys the page's renderer process, rejects any pending promises on the view » |\n| `Symbol.dispose` / `Symbol.asyncDispose` | documentés : `using` / `await using` ferment la vue en sortie de portée |\n| `Bun.WebView.closeAll()` (statique) | documentée : « Force-kills (`SIGKILL`) both the Chrome subprocess and the WebKit host subprocess » ; « Bun calls this automatically at process exit, so browser subprocesses never outlive your script » |\n\nPropriétés/callbacks liés au cycle de vie : `url`, `title`, `loading` (lecture seule), `onNavigated`, `onNavigationFailed` ([doc](https://bun.com/docs/runtime/webview)).\n\nAutres options du constructeur : `width`, `height`, `url`, `headless`, `backend`, `console`, `dataStore` ([référence](https://bun.com/reference/bun/WebView)).\n\n### 3. Réserves, incertitudes et limites de preuve\n\n- **Statut expérimental (fait).** La doc qualifie `Bun.WebView` d'expérimental, l'API pouvant évoluer ([doc](https://bun.com/docs/runtime/webview)) — donc tout ce qui précède est daté du jour.\n- **Ambiguïté de nommage (fait, à souligner).** `url` existe à deux niveaux différents : au niveau du constructeur c'est l'URL de page initiale, au niveau de `backend` c'est l'endpoint WebSocket CDP. Ne pas les confondre.\n- **Incertitude — sémantique de `close()` sur un navigateur *attaché*.** Je n'ai pas trouvé de texte officiel précisant si `close()`/`closeAll()` se comporte différemment quand Bun s'est *connecté* à un navigateur préexistant plutôt que de l'avoir lancé lui-même. La formulation de `closeAll()` (« force-kills the Chrome subprocess ») suggère un processus enfant de Bun ; **il s'agit d'une inférence**, non d'un fait établi. Prudence si vous attachez Bun à votre navigateur de travail quotidien.\n- **Preuve partielle sur la page de référence.** La page [bun.com/reference/bun/WebView](https://bun.com/reference/bun/WebView) que j'ai pu récupérer exposait surtout les interfaces et options du constructeur ; les méthodes de cycle de vie y étaient listées par sous-pages (p. ex. [`WebView/click`](https://bun.com/reference/bun/WebView/click), [`WebView/cdp`](https://bun.com/reference/bun/WebView/cdp)). La page de type `WebView.Backend` que j'ai tentée renvoie 404, donc **je n'ai pas de signature TypeScript exacte** du champ `backend` (types acceptés pour `url` au-delà de `string | false`, présence éventuelle d'un champ `port` ou `executable`). Traitez la forme exacte du type comme non vérifiée.\n- **Sources tierces écartées.** Des articles de blog/Substack décrivent la même fonctionnalité, mais je ne les ai pas utilisés comme base factuelle ; aucune contradiction notable entre eux et la doc officielle n'a été relevée.\n\n**Sources :**\n- [WebView | Bun Docs](https://bun.com/docs/runtime/webview)\n- [Bun.WebView object | API Reference](https://bun.com/reference/bun/WebView)\n- [WebView.cdp method | Bun](https://bun.com/reference/bun/WebView/cdp)\n- [WebView.click method | Bun](https://bun.com/reference/bun/WebView/click)"
+    }
+  ]
+}

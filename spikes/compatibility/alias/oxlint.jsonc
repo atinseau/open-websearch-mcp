@@ -1,0 +1,4 @@
+{
+  "plugins": ["import", "typescript"],
+  "rules": { "import/no-cycle": "error" }
+}

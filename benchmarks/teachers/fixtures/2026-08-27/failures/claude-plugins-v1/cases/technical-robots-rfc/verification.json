@@ -1,0 +1,10 @@
+{
+  "accepted_claim_ids": [
+    "claim_user_agent_merge",
+    "claim_user_agent_fallback",
+    "claim_allow_disallow_precedence",
+    "claim_percent_encoding",
+    "claim_unavailable_handling"
+  ],
+  "rejected_claims": []
+}

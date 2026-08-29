@@ -1,0 +1,14 @@
+{
+  "accepted_claim_ids": [
+    "claim_conflicting_marketing",
+    "claim_qualified_counterclaims",
+    "claim_public_tests_scope",
+    "claim_reproducible_failures"
+  ],
+  "rejected_claims": [
+    {
+      "id": "claim_best_supported_conclusion",
+      "reason": "Conclusion interprétative dont les trois acceptable_patterns reprennent des formulations rédactionnelles propres à la réponse Codex (« narrower claim much better than the broad one », « older or narrower fingerprint checks ») plutôt que des chaînes citables depuis une source ; le pattern « contradicts the claim that they broadly prevent bot detection » ne peut pas correspondre au texte de l'évidence, qui contient des guillemets typographiques autour de « prevent bot detection ». Deux des passages d'appui sont en outre explicitement étiquetés « Inference » dans l'évidence fournie, ce qui rend la revendication insuffisamment déterministe pour une notation lexicale."
+    }
+  ]
+}

@@ -1,0 +1,696 @@
+{
+  "schema_version": 1,
+  "case_id": "ambiguous-best-search",
+  "runs": [
+    {
+      "run_id": "2026-08-27_codex_ambiguous-best-search",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "search engine comparison study web search relevance benchmark 2025 research questions",
+        "https://www.nature.com/articles/s41746-025-01546-w",
+        "site:doi.org search engine performance navigational informational query study Bing Google DuckDuckGo",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC7079055/",
+        "\"How effective are web search engines? A metric-based comparative study of Google, Bing and Yandex for informational queries in business studies\"",
+        "site:emerald.com/insight/content/doi/10.1108/PMM-01-2026-0010 \"How effective are web search engines\"",
+        "Gusenbauer which academic search systems are suitable for systematic reviews abstract web search engines not sufficient",
+        "https://doi.org/10.1002/jrsm.1378",
+        "'Google' in https://www.nature.com/articles/s41746-025-01546-w"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [],
+      "cited_urls": [
+        "https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf",
+        "https://journals.sagepub.com/doi/abs/10.1177/09610006221138579",
+        "https://www.emerald.com/dta/article-abstract/54/2/133/509916/Retrieval-performance-of-Google-Yahoo-and-Bing-for?redirectedFrom=fulltext",
+        "https://www.researchgate.net/publication/410481017_How_effective_are_web_search_engines_A_metric-based_comparative_study_of_Google_Bing_and_Yandex_for_informational_queries_in_business_studies",
+        "https://www.nature.com/articles/s41746-025-01546-w",
+        "https://onlinelibrary.wiley.com/doi/10.1002/jrsm.1378",
+        "https://gs.statcounter.com/search-engine-market-share"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf",
+          "title": "https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf"
+        },
+        {
+          "url": "https://journals.sagepub.com/doi/abs/10.1177/09610006221138579",
+          "title": "https://journals.sagepub.com/doi/abs/10.1177/09610006221138579"
+        },
+        {
+          "url": "https://www.emerald.com/dta/article-abstract/54/2/133/509916/Retrieval-performance-of-Google-Yahoo-and-Bing-for?redirectedFrom=fulltext",
+          "title": "https://www.emerald.com/dta/article-abstract/54/2/133/509916/Retrieval-performance-of-Google-Yahoo-and-Bing-for?redirectedFrom=fulltext"
+        },
+        {
+          "url": "https://www.researchgate.net/publication/410481017_How_effective_are_web_search_engines_A_metric-based_comparative_study_of_Google_Bing_and_Yandex_for_informational_queries_in_business_studies",
+          "title": "https://www.researchgate.net/publication/410481017_How_effective_are_web_search_engines_A_metric-based_comparative_study_of_Google_Bing_and_Yandex_for_informational_queries_in_business_studies"
+        },
+        {
+          "url": "https://www.nature.com/articles/s41746-025-01546-w",
+          "title": "https://www.nature.com/articles/s41746-025-01546-w"
+        },
+        {
+          "url": "https://onlinelibrary.wiley.com/doi/10.1002/jrsm.1378",
+          "title": "https://onlinelibrary.wiley.com/doi/10.1002/jrsm.1378"
+        },
+        {
+          "url": "https://gs.statcounter.com/search-engine-market-share",
+          "title": "https://gs.statcounter.com/search-engine-market-share"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf",
+          "text": "**Verdict**\n\nNo Web search engine can be supported as the **objectively best for every kind of research question** based on the evidence I found. That conclusion is an **inference from mixed, task-specific evidence**, not a directly stated result of any one source.\n\n**Supported facts**\n\nGoogle’s own search-quality guidelines say people use Web search for very different intents, from quick tasks to “researching a topic in depth” to urgent health questions, and that search engines therefore need a “diverse set” of helpful results. https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf\n\nA 2024 study evaluating Google, Bing, Yahoo, and DuckDuckGo on 40 search terms across 10 general categories reported that, on its combined indicator, **Google ranked first and Bing second**. https://journals.sagepub.com/doi/abs/10.1177/09610006221138579\n\nA 2020 study of **navigational queries** in life science and biomedicine reported the highest mean precision and mean relative recall for **Google**, ahead of Yahoo and Bing. https://www.emerald.com/dta/article-abstract/54/2/133/509916/Retrieval-performance-of-Google-Yahoo-and-Bing-for?redirectedFrom=fulltext\n\nA 2026 study of **informational queries** in business studies reported that differences among **Google, Bing, and Yandex were not statistically significant** on precision, relative recall, F-measure, and fall-out ratio, although descriptive statistics favored Google on some measures. https://www.researchgate.net/publication/410481017_How_effective_are_web_search_engines_A_metric-based_comparative_study_of_Google_Bing_and_Yandex_for_informational_queries_in_business_studies\n\nA 2025 health-question study comparing **Google, Bing, Yahoo, and DuckDuckGo** said **“Bing seems to be the most solid choice”** in that evaluation, but also said it was **not significantly better than the others**. https://www.nature.com/articles/s41746-025-01546-w\n\nThat same 2025 health-question study said "
+        },
+        {
+          "url": "https://journals.sagepub.com/doi/abs/10.1177/09610006221138579",
+          "text": "**Verdict**\n\nNo Web search engine can be supported as the **objectively best for every kind of research question** based on the evidence I found. That conclusion is an **inference from mixed, task-specific evidence**, not a directly stated result of any one source.\n\n**Supported facts**\n\nGoogle’s own search-quality guidelines say people use Web search for very different intents, from quick tasks to “researching a topic in depth” to urgent health questions, and that search engines therefore need a “diverse set” of helpful results. https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf\n\nA 2024 study evaluating Google, Bing, Yahoo, and DuckDuckGo on 40 search terms across 10 general categories reported that, on its combined indicator, **Google ranked first and Bing second**. https://journals.sagepub.com/doi/abs/10.1177/09610006221138579\n\nA 2020 study of **navigational queries** in life science and biomedicine reported the highest mean precision and mean relative recall for **Google**, ahead of Yahoo and Bing. https://www.emerald.com/dta/article-abstract/54/2/133/509916/Retrieval-performance-of-Google-Yahoo-and-Bing-for?redirectedFrom=fulltext\n\nA 2026 study of **informational queries** in business studies reported that differences among **Google, Bing, and Yandex were not statistically significant** on precision, relative recall, F-measure, and fall-out ratio, although descriptive statistics favored Google on some measures. https://www.researchgate.net/publication/410481017_How_effective_are_web_search_engines_A_metric-based_comparative_study_of_Google_Bing_and_Yandex_for_informational_queries_in_business_studies\n\nA 2025 health-question study comparing **Google, Bing, Yahoo, and DuckDuckGo** said **“Bing seems to be the most solid choice”** in that evaluation, but also said it was **not significantly better than the others**. https://www.nature.com/articles/s41746-025-01546-w\n\nThat same 2025 health-question study said "
+        },
+        {
+          "url": "https://www.emerald.com/dta/article-abstract/54/2/133/509916/Retrieval-performance-of-Google-Yahoo-and-Bing-for?redirectedFrom=fulltext",
+          "text": "**Verdict**\n\nNo Web search engine can be supported as the **objectively best for every kind of research question** based on the evidence I found. That conclusion is an **inference from mixed, task-specific evidence**, not a directly stated result of any one source.\n\n**Supported facts**\n\nGoogle’s own search-quality guidelines say people use Web search for very different intents, from quick tasks to “researching a topic in depth” to urgent health questions, and that search engines therefore need a “diverse set” of helpful results. https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf\n\nA 2024 study evaluating Google, Bing, Yahoo, and DuckDuckGo on 40 search terms across 10 general categories reported that, on its combined indicator, **Google ranked first and Bing second**. https://journals.sagepub.com/doi/abs/10.1177/09610006221138579\n\nA 2020 study of **navigational queries** in life science and biomedicine reported the highest mean precision and mean relative recall for **Google**, ahead of Yahoo and Bing. https://www.emerald.com/dta/article-abstract/54/2/133/509916/Retrieval-performance-of-Google-Yahoo-and-Bing-for?redirectedFrom=fulltext\n\nA 2026 study of **informational queries** in business studies reported that differences among **Google, Bing, and Yandex were not statistically significant** on precision, relative recall, F-measure, and fall-out ratio, although descriptive statistics favored Google on some measures. https://www.researchgate.net/publication/410481017_How_effective_are_web_search_engines_A_metric-based_comparative_study_of_Google_Bing_and_Yandex_for_informational_queries_in_business_studies\n\nA 2025 health-question study comparing **Google, Bing, Yahoo, and DuckDuckGo** said **“Bing seems to be the most solid choice”** in that evaluation, but also said it was **not significantly better than the others**. https://www.nature.com/articles/s41746-025-01546-w\n\nThat same 2025 health-question study said "
+        },
+        {
+          "url": "https://www.researchgate.net/publication/410481017_How_effective_are_web_search_engines_A_metric-based_comparative_study_of_Google_Bing_and_Yandex_for_informational_queries_in_business_studies",
+          "text": "**Verdict**\n\nNo Web search engine can be supported as the **objectively best for every kind of research question** based on the evidence I found. That conclusion is an **inference from mixed, task-specific evidence**, not a directly stated result of any one source.\n\n**Supported facts**\n\nGoogle’s own search-quality guidelines say people use Web search for very different intents, from quick tasks to “researching a topic in depth” to urgent health questions, and that search engines therefore need a “diverse set” of helpful results. https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf\n\nA 2024 study evaluating Google, Bing, Yahoo, and DuckDuckGo on 40 search terms across 10 general categories reported that, on its combined indicator, **Google ranked first and Bing second**. https://journals.sagepub.com/doi/abs/10.1177/09610006221138579\n\nA 2020 study of **navigational queries** in life science and biomedicine reported the highest mean precision and mean relative recall for **Google**, ahead of Yahoo and Bing. https://www.emerald.com/dta/article-abstract/54/2/133/509916/Retrieval-performance-of-Google-Yahoo-and-Bing-for?redirectedFrom=fulltext\n\nA 2026 study of **informational queries** in business studies reported that differences among **Google, Bing, and Yandex were not statistically significant** on precision, relative recall, F-measure, and fall-out ratio, although descriptive statistics favored Google on some measures. https://www.researchgate.net/publication/410481017_How_effective_are_web_search_engines_A_metric-based_comparative_study_of_Google_Bing_and_Yandex_for_informational_queries_in_business_studies\n\nA 2025 health-question study comparing **Google, Bing, Yahoo, and DuckDuckGo** said **“Bing seems to be the most solid choice”** in that evaluation, but also said it was **not significantly better than the others**. https://www.nature.com/articles/s41746-025-01546-w\n\nThat same 2025 health-question study said "
+        },
+        {
+          "url": "https://www.nature.com/articles/s41746-025-01546-w",
+          "text": "**Verdict**\n\nNo Web search engine can be supported as the **objectively best for every kind of research question** based on the evidence I found. That conclusion is an **inference from mixed, task-specific evidence**, not a directly stated result of any one source.\n\n**Supported facts**\n\nGoogle’s own search-quality guidelines say people use Web search for very different intents, from quick tasks to “researching a topic in depth” to urgent health questions, and that search engines therefore need a “diverse set” of helpful results. https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf\n\nA 2024 study evaluating Google, Bing, Yahoo, and DuckDuckGo on 40 search terms across 10 general categories reported that, on its combined indicator, **Google ranked first and Bing second**. https://journals.sagepub.com/doi/abs/10.1177/09610006221138579\n\nA 2020 study of **navigational queries** in life science and biomedicine reported the highest mean precision and mean relative recall for **Google**, ahead of Yahoo and Bing. https://www.emerald.com/dta/article-abstract/54/2/133/509916/Retrieval-performance-of-Google-Yahoo-and-Bing-for?redirectedFrom=fulltext\n\nA 2026 study of **informational queries** in business studies reported that differences among **Google, Bing, and Yandex were not statistically significant** on precision, relative recall, F-measure, and fall-out ratio, although descriptive statistics favored Google on some measures. https://www.researchgate.net/publication/410481017_How_effective_are_web_search_engines_A_metric-based_comparative_study_of_Google_Bing_and_Yandex_for_informational_queries_in_business_studies\n\nA 2025 health-question study comparing **Google, Bing, Yahoo, and DuckDuckGo** said **“Bing seems to be the most solid choice”** in that evaluation, but also said it was **not significantly better than the others**. https://www.nature.com/articles/s41746-025-01546-w\n\nThat same 2025 health-question study said "
+        },
+        {
+          "url": "https://onlinelibrary.wiley.com/doi/10.1002/jrsm.1378",
+          "text": "**Verdict**\n\nNo Web search engine can be supported as the **objectively best for every kind of research question** based on the evidence I found. That conclusion is an **inference from mixed, task-specific evidence**, not a directly stated result of any one source.\n\n**Supported facts**\n\nGoogle’s own search-quality guidelines say people use Web search for very different intents, from quick tasks to “researching a topic in depth” to urgent health questions, and that search engines therefore need a “diverse set” of helpful results. https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf\n\nA 2024 study evaluating Google, Bing, Yahoo, and DuckDuckGo on 40 search terms across 10 general categories reported that, on its combined indicator, **Google ranked first and Bing second**. https://journals.sagepub.com/doi/abs/10.1177/09610006221138579\n\nA 2020 study of **navigational queries** in life science and biomedicine reported the highest mean precision and mean relative recall for **Google**, ahead of Yahoo and Bing. https://www.emerald.com/dta/article-abstract/54/2/133/509916/Retrieval-performance-of-Google-Yahoo-and-Bing-for?redirectedFrom=fulltext\n\nA 2026 study of **informational queries** in business studies reported that differences among **Google, Bing, and Yandex were not statistically significant** on precision, relative recall, F-measure, and fall-out ratio, although descriptive statistics favored Google on some measures. https://www.researchgate.net/publication/410481017_How_effective_are_web_search_engines_A_metric-based_comparative_study_of_Google_Bing_and_Yandex_for_informational_queries_in_business_studies\n\nA 2025 health-question study comparing **Google, Bing, Yahoo, and DuckDuckGo** said **“Bing seems to be the most solid choice”** in that evaluation, but also said it was **not significantly better than the others**. https://www.nature.com/articles/s41746-025-01546-w\n\nThat same 2025 health-question study said "
+        },
+        {
+          "url": "https://gs.statcounter.com/search-engine-market-share",
+          "text": "**Verdict**\n\nNo Web search engine can be supported as the **objectively best for every kind of research question** based on the evidence I found. That conclusion is an **inference from mixed, task-specific evidence**, not a directly stated result of any one source.\n\n**Supported facts**\n\nGoogle’s own search-quality guidelines say people use Web search for very different intents, from quick tasks to “researching a topic in depth” to urgent health questions, and that search engines therefore need a “diverse set” of helpful results. https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf\n\nA 2024 study evaluating Google, Bing, Yahoo, and DuckDuckGo on 40 search terms across 10 general categories reported that, on its combined indicator, **Google ranked first and Bing second**. https://journals.sagepub.com/doi/abs/10.1177/09610006221138579\n\nA 2020 study of **navigational queries** in life science and biomedicine reported the highest mean precision and mean relative recall for **Google**, ahead of Yahoo and Bing. https://www.emerald.com/dta/article-abstract/54/2/133/509916/Retrieval-performance-of-Google-Yahoo-and-Bing-for?redirectedFrom=fulltext\n\nA 2026 study of **informational queries** in business studies reported that differences among **Google, Bing, and Yandex were not statistically significant** on precision, relative recall, F-measure, and fall-out ratio, although descriptive statistics favored Google on some measures. https://www.researchgate.net/publication/410481017_How_effective_are_web_search_engines_A_metric-based_comparative_study_of_Google_Bing_and_Yandex_for_informational_queries_in_business_studies\n\nA 2025 health-question study comparing **Google, Bing, Yahoo, and DuckDuckGo** said **“Bing seems to be the most solid choice”** in that evaluation, but also said it was **not significantly better than the others**. https://www.nature.com/articles/s41746-025-01546-w\n\nThat same 2025 health-question study said "
+        }
+      ],
+      "final_answer": "**Verdict**\n\nNo Web search engine can be supported as the **objectively best for every kind of research question** based on the evidence I found. That conclusion is an **inference from mixed, task-specific evidence**, not a directly stated result of any one source.\n\n**Supported facts**\n\nGoogle’s own search-quality guidelines say people use Web search for very different intents, from quick tasks to “researching a topic in depth” to urgent health questions, and that search engines therefore need a “diverse set” of helpful results. https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf\n\nA 2024 study evaluating Google, Bing, Yahoo, and DuckDuckGo on 40 search terms across 10 general categories reported that, on its combined indicator, **Google ranked first and Bing second**. https://journals.sagepub.com/doi/abs/10.1177/09610006221138579\n\nA 2020 study of **navigational queries** in life science and biomedicine reported the highest mean precision and mean relative recall for **Google**, ahead of Yahoo and Bing. https://www.emerald.com/dta/article-abstract/54/2/133/509916/Retrieval-performance-of-Google-Yahoo-and-Bing-for?redirectedFrom=fulltext\n\nA 2026 study of **informational queries** in business studies reported that differences among **Google, Bing, and Yandex were not statistically significant** on precision, relative recall, F-measure, and fall-out ratio, although descriptive statistics favored Google on some measures. https://www.researchgate.net/publication/410481017_How_effective_are_web_search_engines_A_metric-based_comparative_study_of_Google_Bing_and_Yandex_for_informational_queries_in_business_studies\n\nA 2025 health-question study comparing **Google, Bing, Yahoo, and DuckDuckGo** said **“Bing seems to be the most solid choice”** in that evaluation, but also said it was **not significantly better than the others**. https://www.nature.com/articles/s41746-025-01546-w\n\nThat same 2025 health-question study said search engines in its test **correctly answered 50% to 70% of questions**. https://www.nature.com/articles/s41746-025-01546-w\n\nFor systematic evidence synthesis, a 2020 open-access study of **28 academic search systems** found **substantial differences** in suitability, said only about **half** could be recommended without major caveats, and concluded that **Google Scholar is inappropriate as the principal search system** for that use case. https://onlinelibrary.wiley.com/doi/10.1002/jrsm.1378\n\nAs a popularity datapoint, Statcounter’s worldwide snapshot for **July 2026** reports **Google 91.31%**, **Bing 4.47%**, **Yahoo 1.24%**, **Yandex 1.00%**, and **DuckDuckGo 0.65%** market share. https://gs.statcounter.com/search-engine-market-share\n\n**Inference**\n\nThe evidence supports **“best for some tasks in some studies”**, not **“best for every kind of research question.”** That inference follows because the available studies use different engines, different domains, and different query types, and they do not agree on a single winner across contexts. Sources: https://journals.sagepub.com/doi/abs/10.1177/09610006221138579 , https://www.emerald.com/dta/article-abstract/54/2/133/509916/Retrieval-performance-of-Google-Yahoo-and-Bing-for?redirectedFrom=fulltext , https://www.researchgate.net/publication/410481017_How_effective_are_web_search_engines_A_metric-based_comparative_study_of_Google_Bing_and_Yandex_for_informational_queries_in_business_studies , https://www.nature.com/articles/s41746-025-01546-w\n\n**Disagreement**\n\nSome evidence favors **Google** overall or on navigational/general-category tests. https://journals.sagepub.com/doi/abs/10.1177/09610006221138579 , https://www.emerald.com/dta/article-abstract/54/2/133/509916/Retrieval-performance-of-Google-Yahoo-and-Bing-for?redirectedFrom=fulltext\n\nSome evidence says **Bing** looks strongest for a specific health QA benchmark, while still not significantly better than peers. https://www.nature.com/articles/s41746-025-01546-w\n\nSome evidence finds **no statistically significant difference** among major engines for a specific informational-query benchmark. https://www.researchgate.net/publication/410481017_How_effective_are_web_search_engines_A_metric-based_comparative_study_of_Google_Bing_and_Yandex_for_informational_queries_in_business_studies\n\n**Uncertainty**\n\nI found no cited source showing a head-to-head, current, comprehensive benchmark across **all major Web search engines** and **all major research-question types** that establishes one engine as universally best. That is a **lack-of-good-evidence judgment** based on the limited scopes of the cited studies above.\n\n**Bottom line**\n\nIf you force a single-name answer, the strongest evidence for a general-purpose default is **Google**, because multiple comparative studies place it first or near first and it remains the dominant engine by usage. https://journals.sagepub.com/doi/abs/10.1177/09610006221138579 , https://www.emerald.com/dta/article-abstract/54/2/133/509916/Retrieval-performance-of-Google-Yahoo-and-Bing-for?redirectedFrom=fulltext , https://gs.statcounter.com/search-engine-market-share\n\nBut the best evidence-based answer to your exact question is: **none is objectively best for every kind of research question today**. That is an **inference supported by disagreement across studies, task-specific results, and the absence of a universal benchmark**."
+    },
+    {
+      "run_id": "2026-08-27_claude_ambiguous-best-search",
+      "provider": "claude",
+      "model": "claude-opus-5[1m]",
+      "queries": [
+        "search engine comparison Google Bing quality study 2025 2026 which is best",
+        "academic study evaluating search engine result quality Google vs Bing vs DuckDuckGo comparison research",
+        "Google Scholar not adequate alone systematic review searching recall study Gusenbauer Haddaway",
+        "Tow Center study AI search engines cite sources incorrectly percentage 2025",
+        "how many search engines have their own independent index Google Bing Brave Mojeek Yandex 2025",
+        "StatCounter search engine market share by country 2026 Baidu China Yandex Russia Naver Korea"
+      ],
+      "tool_results": [
+        {
+          "tool": "WebSearch",
+          "summary": "Bing vs Google: Search Engine Comparison 2026 | Impression: https://www.impressiondigital.com/blog/bing-differ-google/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Google vs Bing: The 2026 SEO & AI Comparison Guide - Surnex: https://surnex.io/blog/google-vs-bing"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Google vs Bing vs DuckDuckGo Privacy, AI & Performance Tested: https://bemysocial.com/compare-google-bing-duckduckgo-privacy-power-performance/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bing vs. Google Statistics 2026: Who Dominates Now?: https://sqmagazine.co.uk/bing-vs-google-statistics/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Google vs Bing search engine comparison in 2025: https://www.flatlineagency.com/blog/google-vs-bing-comparison-2025/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bing vs Google in 2026: Which Is Actually Better? | Lawrence Hitches: https://www.lawrencehitches.com/google-vs-bing/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Google Vs Bing: Search Engine Comparison (2026): https://rankxdigital.com/seo-basics/how-search-engines-work/google-vs-bing/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "(PDF) A Comparative Analysis: DuckDuckGo Vs. Google Search Engine: https://www.academia.edu/30447218/A_Comparative_Analysis_DuckDuckGo_Vs_Google_Search_Engine"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Google Scholar: https://scholar.google.com/scholar_lookup?doi=10.1002/pra2.758"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The enshittification of online search? Privacy and quality of Google, Bing and Apple in coding advice: https://arxiv.org/pdf/2512.03793"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Proposing a New Combined Indicator for Measuring Search Engine Performance and Evaluating Google, Yahoo, DuckDuckGo, and Bing Search Engines based on Combined Indicator - Azadeh Hajian Hoseinabadi, Mehrdad CheshmehSohrabi, 2024: https://journals.sagepub.com/doi/abs/10.1177/09610006221138579"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Google vs Bing vs DuckDuckGo Privacy, AI & Performance Tested: https://bemysocial.com/compare-google-bing-duckduckgo-privacy-power-performance/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Search Engine Similarity Analysis: A Combined Content and Rankings   Approach: https://arxiv.org/pdf/2011.00650"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "A Comparison of Source Distribution and Result Overlap in Web Search   Engines: https://arxiv.org/pdf/2207.07330"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Google vs. Bing vs. DuckDuckGo: Which Is Best? - Make Tech Easier: https://maketecheasier.com/google-vs-bing-vs-duck-duck-go/"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "I appreciate your request, but I'm unable to provide the analysis you've asked for. The content provided appears to be a PDF file in raw binary/encoded format rather than readable text about search engine overlap and source distribution.\n\nTo complete this task accurately, I would need:\n\n1. **Readable text content** describing the research findings on Google, Bing, DuckDuckGo, and Metager\n2. **Specific numerical data** about source overlap percentages or distributions\n3. **Clear study methodology"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "(PDF) Commentary to Gusenbauer and Haddaway 2020: Evaluating retrieval qualities of Google Scholar and PubMed: https://www.researchgate.net/publication/346034177_Commentary_to_Gusenbauer_and_Haddaway_2020_Evaluating_retrieval_qualities_of_Google_Scholar_and_PubMed"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "(PDF) Which Academic Search Systems are Suitable for Systematic Reviews or Meta‐Analyses? Evaluating Retrieval Qualities of Google Scholar, PubMed and 26 other Resources [OPEN ACCESS]: https://www.researchgate.net/publication/336586189_Which_Academic_Search_Systems_are_Suitable_for_Systematic_Reviews_or_Meta-Analyses_Evaluating_Retrieval_Qualities_of_Google_Scholar_PubMed_and_26_other_Resources_OPEN_ACCESS"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Which academic search systems are suitable for systematic reviews or meta‐analyses? Evaluating retrieval qualities of Google Scholar, PubMed, and 26 other resources - Gusenbauer - 2020 - Research Synthesis Methods - Wiley Online Library: https://onlinelibrary.wiley.com/doi/full/10.1002/jrsm.1378"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Commentary to Gusenbauer and Haddaway 2020: Evaluating retrieval qualities of Google Scholar and PubMed - Klopfenstein - 2021 - Research Synthesis Methods - Wiley Online Library: https://onlinelibrary.wiley.com/doi/abs/10.1002/jrsm.1456"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "[PDF] Which academic search systems are suitable for systematic reviews or meta‐analyses? Evaluating retrieval qualities of Google Scholar, PubMed, and 26 other resources | Semantic Scholar: https://www.semanticscholar.org/paper/Which-academic-search-systems-are-suitable-for-or-Gusenbauer-Haddaway/f60654fba58a7b02c5d9cc08fb3b7410dd8e4dc3"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Evolution of the \"long tail\" concept for scientific data: https://arxiv.org/pdf/2412.13307"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Which academic search systems are suitable for systematic reviews or meta‐analyses? Evaluating retrieval qualities of Google Scholar, PubMed, and 26 other resources | SEI: https://www.sei.org/publications/academic-search-suitablesystematic-reviews-analyses-google-scholar-pubmed/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Reassessing the Role of Google Scholar in PRISMA-Informed Systematic Reviews Through a Critical Analysis of Influential Research Identifying Its Limitations and Empirical Evidence: https://www.mdpi.com/2304-6775/14/2/29"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Key Findings from the Search Engine Comparison Study\n\n**Overlap Statistics:**\n- \"The overlap between Google and Bing is always under 32%\" while \"Metager has a higher overlap with Bing than DuckDuckGo, going up to 78%\"\n\n**Source Distribution:**\n- Google displays more unique domains in its top 10 results compared to competitors\n- Wikipedia and news websites rank as the most popular sources across all engines\n- Domain distribution remains consistent across all four search engines tested, despite "
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "AI search engines fail to produce accurate citations in over 60% of tests, according to new Tow Center study | Nieman Journalism Lab: https://www.niemanlab.org/2025/03/ai-search-engines-fail-to-produce-accurate-citations-in-over-60-of-tests-according-to-new-tow-center-study/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How often do AI search engines cite incorrect sources?: https://www.govtech.com/question-of-the-day/how-often-do-ai-search-engines-cite-incorrect-sources"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Study: AI Search Engines Cite Incorrect Sources at a 60% Rate: https://www.breitbart.com/tech/2025/03/15/study-ai-search-engines-cite-incorrect-sources-at-a-60-rate/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "AI Search Has a Citation Problem - Columbia Journalism Review: https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The Rise of AI Search: Implications for Information Markets and Human Judgement at Scale: https://arxiv.org/pdf/2602.13415"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Tow Center's Latest Report on AI Search Engines | Columbia Journalism School: https://journalism.columbia.edu/news/tow-ai-report-2025"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "AI search engines cite incorrect sources at an alarming 60% rate, study says: https://neuron.expert/news/ai-search-engines-cite-incorrect-sources-at-an-alarming-60-rate-study-says/11700/en/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "AI search engines cite incorrect sources at an alarming 60% rate, study says – Read: https://www.obnews.co/Flow/News/id/9415167.html?val=40c2f56b18356c5eb5d074adf609a4cb&ch=oppo&g_v=iy3Cy__DZqzSnfFvdbOaUfl4neIuuQOt1KYlHDwL0X1G_9WMU-j5IyOVxSiiipZg"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "New on Yahoo: https://tech.yahoo.com/ai/articles/ai-search-engines-confidently-wrong-122456267.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "New on Yahoo: https://tech.yahoo.com/ai/articles/study-finds-ai-search-engines-151517475.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Updated 8-15-2026 – Big Search Engine List: Who Indexes What?: https://www.searchengineworld.com/the-big-search-engine-list-who-indexes-what"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "25 Alternative Search Engines You Can Use Instead Of Google: https://www.searchenginejournal.com/alternative-search-engines/271409/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Search engines beyond Google: what the alternatives are really worth: https://www.softmaker.com/en/blog/friday-chat/blog-google-alternatives"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "9 Alternative Search Engines That Are Better Than Google: https://www.monsterinsights.com/alternative-search-engines/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The Switch to Alternative Search Engines - Official Mojeek Blog: https://blog.mojeek.com/2026/05/the-switch-to-alternative-search-engine.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "16 Top Search Engines in 2025 (Including Google Alternatives) - Impreza: https://www.imprezaconsulting.in/blog/16-top-search-engines-in-2025-including-google-alternatives/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Search Engines Other Than Google | SearchEngines.Net: https://www.searchengines.net/guides/search-engines-other-than-google/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Mojeek, the independent search engine worth trying: https://tagteam.harvard.edu/hub_feeds/2087/feed_items/17161911"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "alternative search engines 5df7: https://dev.to/rosgluk/alternative-search-engines-5df7"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "global ai video generation market size: https://www.statista.com/statistics/1386805/global-ai-video-generation-market-size"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Global search engine referral share 2026| Statista: https://www.statista.com/statistics/1381664/worldwide-all-devices-market-share-of-search-engines/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Google desktop search market share 2026, by selected countries: https://www.statista.com/statistics/220534/googles-share-of-search-market-in-selected-countries/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Desktop search engines market share worldwide 2026| Statista: https://www.statista.com/statistics/216573/worldwide-market-share-of-search-engines/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Search Engine Statistics 2026: Market Share, Volume & AI Shift • SQ Magazine: https://sqmagazine.co.uk/search-engine-statistics/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Search Engine Statistics by Country [2026 report] 🌍: https://serpsculpt.com/search-engine-statistics-by-country/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Search Engine Market Share by Country | SearchEngines.Net: https://www.searchengines.net/guides/search-engine-market-share-by-country/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Search Engine Market Share (2026): Google, Bing & More: https://resourcera.com/data/search/search-engine-market-share/"
+        }
+      ],
+      "opened_urls": ["https://arxiv.org/pdf/2207.07330", "https://arxiv.org/abs/2207.07330"],
+      "cited_urls": [
+        "https://www.statista.com/statistics/1381664/worldwide-all-devices-market-share-of-search-engines/",
+        "https://sqmagazine.co.uk/bing-vs-google-statistics/",
+        "https://arxiv.org/abs/2207.07330",
+        "https://journals.sagepub.com/doi/abs/10.1177/09610006221138579",
+        "https://onlinelibrary.wiley.com/doi/full/10.1002/jrsm.1378",
+        "https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php",
+        "https://www.niemanlab.org/2025/03/ai-search-engines-fail-to-produce-accurate-citations-in-over-60-of-tests-according-to-new-tow-center-study/",
+        "https://www.searchengines.net/guides/search-engine-market-share-by-country/",
+        "https://www.statista.com/statistics/220534/googles-share-of-search-market-in-selected-countries/",
+        "https://www.searchenginejournal.com/alternative-search-engines/271409/",
+        "https://blog.mojeek.com/2026/05/the-switch-to-alternative-search-engine.html",
+        "https://www.impressiondigital.com/blog/bing-differ-google/",
+        "https://www.lawrencehitches.com/google-vs-bing/",
+        "https://surnex.io/blog/google-vs-bing"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://www.impressiondigital.com/blog/bing-differ-google/",
+          "title": "Bing vs Google: Search Engine Comparison 2026 | Impression"
+        },
+        {
+          "url": "https://surnex.io/blog/google-vs-bing",
+          "title": "Google vs Bing: The 2026 SEO & AI Comparison Guide - Surnex"
+        },
+        {
+          "url": "https://bemysocial.com/compare-google-bing-duckduckgo-privacy-power-performance/",
+          "title": "Google vs Bing vs DuckDuckGo Privacy, AI & Performance Tested"
+        },
+        {
+          "url": "https://sqmagazine.co.uk/bing-vs-google-statistics/",
+          "title": "Bing vs. Google Statistics 2026: Who Dominates Now?"
+        },
+        {
+          "url": "https://www.flatlineagency.com/blog/google-vs-bing-comparison-2025/",
+          "title": "Google vs Bing search engine comparison in 2025"
+        },
+        {
+          "url": "https://www.lawrencehitches.com/google-vs-bing/",
+          "title": "Bing vs Google in 2026: Which Is Actually Better? | Lawrence Hitches"
+        },
+        {
+          "url": "https://rankxdigital.com/seo-basics/how-search-engines-work/google-vs-bing/",
+          "title": "Google Vs Bing: Search Engine Comparison (2026)"
+        },
+        {
+          "url": "https://www.academia.edu/30447218/A_Comparative_Analysis_DuckDuckGo_Vs_Google_Search_Engine",
+          "title": "(PDF) A Comparative Analysis: DuckDuckGo Vs. Google Search Engine"
+        },
+        {
+          "url": "https://scholar.google.com/scholar_lookup?doi=10.1002/pra2.758",
+          "title": "Google Scholar"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2512.03793",
+          "title": "The enshittification of online search? Privacy and quality of Google, Bing and Apple in coding advice"
+        },
+        {
+          "url": "https://journals.sagepub.com/doi/abs/10.1177/09610006221138579",
+          "title": "Proposing a New Combined Indicator for Measuring Search Engine Performance and Evaluating Google, Yahoo, DuckDuckGo, and Bing Search Engines based on Combined Indicator - Azadeh Hajian Hoseinabadi, Mehrdad CheshmehSohrabi, 2024"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2011.00650",
+          "title": "Search Engine Similarity Analysis: A Combined Content and Rankings   Approach"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2207.07330",
+          "title": "https://arxiv.org/pdf/2207.07330"
+        },
+        {
+          "url": "https://maketecheasier.com/google-vs-bing-vs-duck-duck-go/",
+          "title": "Google vs. Bing vs. DuckDuckGo: Which Is Best? - Make Tech Easier"
+        },
+        {
+          "url": "https://www.researchgate.net/publication/346034177_Commentary_to_Gusenbauer_and_Haddaway_2020_Evaluating_retrieval_qualities_of_Google_Scholar_and_PubMed",
+          "title": "(PDF) Commentary to Gusenbauer and Haddaway 2020: Evaluating retrieval qualities of Google Scholar and PubMed"
+        },
+        {
+          "url": "https://www.researchgate.net/publication/336586189_Which_Academic_Search_Systems_are_Suitable_for_Systematic_Reviews_or_Meta-Analyses_Evaluating_Retrieval_Qualities_of_Google_Scholar_PubMed_and_26_other_Resources_OPEN_ACCESS",
+          "title": "(PDF) Which Academic Search Systems are Suitable for Systematic Reviews or Meta‐Analyses? Evaluating Retrieval Qualities of Google Scholar, PubMed and 26 other Resources [OPEN ACCESS]"
+        },
+        {
+          "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/jrsm.1378",
+          "title": "Which academic search systems are suitable for systematic reviews or meta‐analyses? Evaluating retrieval qualities of Google Scholar, PubMed, and 26 other resources - Gusenbauer - 2020 - Research Synthesis Methods - Wiley Online Library"
+        },
+        {
+          "url": "https://onlinelibrary.wiley.com/doi/abs/10.1002/jrsm.1456",
+          "title": "Commentary to Gusenbauer and Haddaway 2020: Evaluating retrieval qualities of Google Scholar and PubMed - Klopfenstein - 2021 - Research Synthesis Methods - Wiley Online Library"
+        },
+        {
+          "url": "https://www.semanticscholar.org/paper/Which-academic-search-systems-are-suitable-for-or-Gusenbauer-Haddaway/f60654fba58a7b02c5d9cc08fb3b7410dd8e4dc3",
+          "title": "[PDF] Which academic search systems are suitable for systematic reviews or meta‐analyses? Evaluating retrieval qualities of Google Scholar, PubMed, and 26 other resources | Semantic Scholar"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2412.13307",
+          "title": "Evolution of the \"long tail\" concept for scientific data"
+        },
+        {
+          "url": "https://www.sei.org/publications/academic-search-suitablesystematic-reviews-analyses-google-scholar-pubmed/",
+          "title": "Which academic search systems are suitable for systematic reviews or meta‐analyses? Evaluating retrieval qualities of Google Scholar, PubMed, and 26 other resources | SEI"
+        },
+        {
+          "url": "https://www.mdpi.com/2304-6775/14/2/29",
+          "title": "Reassessing the Role of Google Scholar in PRISMA-Informed Systematic Reviews Through a Critical Analysis of Influential Research Identifying Its Limitations and Empirical Evidence"
+        },
+        {
+          "url": "https://arxiv.org/abs/2207.07330",
+          "title": "https://arxiv.org/abs/2207.07330"
+        },
+        {
+          "url": "https://www.niemanlab.org/2025/03/ai-search-engines-fail-to-produce-accurate-citations-in-over-60-of-tests-according-to-new-tow-center-study/",
+          "title": "AI search engines fail to produce accurate citations in over 60% of tests, according to new Tow Center study | Nieman Journalism Lab"
+        },
+        {
+          "url": "https://www.govtech.com/question-of-the-day/how-often-do-ai-search-engines-cite-incorrect-sources",
+          "title": "How often do AI search engines cite incorrect sources?"
+        },
+        {
+          "url": "https://www.breitbart.com/tech/2025/03/15/study-ai-search-engines-cite-incorrect-sources-at-a-60-rate/",
+          "title": "Study: AI Search Engines Cite Incorrect Sources at a 60% Rate"
+        },
+        {
+          "url": "https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php",
+          "title": "AI Search Has a Citation Problem - Columbia Journalism Review"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2602.13415",
+          "title": "The Rise of AI Search: Implications for Information Markets and Human Judgement at Scale"
+        },
+        {
+          "url": "https://journalism.columbia.edu/news/tow-ai-report-2025",
+          "title": "Tow Center's Latest Report on AI Search Engines | Columbia Journalism School"
+        },
+        {
+          "url": "https://neuron.expert/news/ai-search-engines-cite-incorrect-sources-at-an-alarming-60-rate-study-says/11700/en/",
+          "title": "AI search engines cite incorrect sources at an alarming 60% rate, study says"
+        },
+        {
+          "url": "https://www.obnews.co/Flow/News/id/9415167.html?val=40c2f56b18356c5eb5d074adf609a4cb&ch=oppo&g_v=iy3Cy__DZqzSnfFvdbOaUfl4neIuuQOt1KYlHDwL0X1G_9WMU-j5IyOVxSiiipZg",
+          "title": "AI search engines cite incorrect sources at an alarming 60% rate, study says – Read"
+        },
+        {
+          "url": "https://tech.yahoo.com/ai/articles/ai-search-engines-confidently-wrong-122456267.html",
+          "title": "New on Yahoo"
+        },
+        {
+          "url": "https://tech.yahoo.com/ai/articles/study-finds-ai-search-engines-151517475.html",
+          "title": "New on Yahoo"
+        },
+        {
+          "url": "https://www.searchengineworld.com/the-big-search-engine-list-who-indexes-what",
+          "title": "Updated 8-15-2026 – Big Search Engine List: Who Indexes What?"
+        },
+        {
+          "url": "https://www.searchenginejournal.com/alternative-search-engines/271409/",
+          "title": "25 Alternative Search Engines You Can Use Instead Of Google"
+        },
+        {
+          "url": "https://www.softmaker.com/en/blog/friday-chat/blog-google-alternatives",
+          "title": "Search engines beyond Google: what the alternatives are really worth"
+        },
+        {
+          "url": "https://www.monsterinsights.com/alternative-search-engines/",
+          "title": "9 Alternative Search Engines That Are Better Than Google"
+        },
+        {
+          "url": "https://blog.mojeek.com/2026/05/the-switch-to-alternative-search-engine.html",
+          "title": "The Switch to Alternative Search Engines - Official Mojeek Blog"
+        },
+        {
+          "url": "https://www.imprezaconsulting.in/blog/16-top-search-engines-in-2025-including-google-alternatives/",
+          "title": "16 Top Search Engines in 2025 (Including Google Alternatives) - Impreza"
+        },
+        {
+          "url": "https://www.searchengines.net/guides/search-engines-other-than-google/",
+          "title": "Search Engines Other Than Google | SearchEngines.Net"
+        },
+        {
+          "url": "https://tagteam.harvard.edu/hub_feeds/2087/feed_items/17161911",
+          "title": "Mojeek, the independent search engine worth trying"
+        },
+        {
+          "url": "https://dev.to/rosgluk/alternative-search-engines-5df7",
+          "title": "alternative search engines 5df7"
+        },
+        {
+          "url": "https://www.statista.com/statistics/1386805/global-ai-video-generation-market-size",
+          "title": "global ai video generation market size"
+        },
+        {
+          "url": "https://www.statista.com/statistics/1381664/worldwide-all-devices-market-share-of-search-engines/",
+          "title": "Global search engine referral share 2026| Statista"
+        },
+        {
+          "url": "https://www.statista.com/statistics/220534/googles-share-of-search-market-in-selected-countries/",
+          "title": "Google desktop search market share 2026, by selected countries"
+        },
+        {
+          "url": "https://www.statista.com/statistics/216573/worldwide-market-share-of-search-engines/",
+          "title": "Desktop search engines market share worldwide 2026| Statista"
+        },
+        {
+          "url": "https://sqmagazine.co.uk/search-engine-statistics/",
+          "title": "Search Engine Statistics 2026: Market Share, Volume & AI Shift • SQ Magazine"
+        },
+        {
+          "url": "https://serpsculpt.com/search-engine-statistics-by-country/",
+          "title": "Search Engine Statistics by Country [2026 report] 🌍"
+        },
+        {
+          "url": "https://www.searchengines.net/guides/search-engine-market-share-by-country/",
+          "title": "Search Engine Market Share by Country | SearchEngines.Net"
+        },
+        {
+          "url": "https://resourcera.com/data/search/search-engine-market-share/",
+          "title": "Search Engine Market Share (2026): Google, Bing & More"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.impressiondigital.com/blog/bing-differ-google/",
+          "text": "Bing vs Google: Search Engine Comparison 2026 | Impression"
+        },
+        {
+          "url": "https://surnex.io/blog/google-vs-bing",
+          "text": "Google vs Bing: The 2026 SEO & AI Comparison Guide - Surnex"
+        },
+        {
+          "url": "https://bemysocial.com/compare-google-bing-duckduckgo-privacy-power-performance/",
+          "text": "Google vs Bing vs DuckDuckGo Privacy, AI & Performance Tested"
+        },
+        {
+          "url": "https://sqmagazine.co.uk/bing-vs-google-statistics/",
+          "text": "Bing vs. Google Statistics 2026: Who Dominates Now?"
+        },
+        {
+          "url": "https://www.flatlineagency.com/blog/google-vs-bing-comparison-2025/",
+          "text": "Google vs Bing search engine comparison in 2025"
+        },
+        {
+          "url": "https://www.lawrencehitches.com/google-vs-bing/",
+          "text": "Bing vs Google in 2026: Which Is Actually Better? | Lawrence Hitches"
+        },
+        {
+          "url": "https://rankxdigital.com/seo-basics/how-search-engines-work/google-vs-bing/",
+          "text": "Google Vs Bing: Search Engine Comparison (2026)"
+        },
+        {
+          "url": "https://www.academia.edu/30447218/A_Comparative_Analysis_DuckDuckGo_Vs_Google_Search_Engine",
+          "text": "(PDF) A Comparative Analysis: DuckDuckGo Vs. Google Search Engine"
+        },
+        {
+          "url": "https://scholar.google.com/scholar_lookup?doi=10.1002/pra2.758",
+          "text": "Google Scholar"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2512.03793",
+          "text": "The enshittification of online search? Privacy and quality of Google, Bing and Apple in coding advice"
+        },
+        {
+          "url": "https://journals.sagepub.com/doi/abs/10.1177/09610006221138579",
+          "text": "Proposing a New Combined Indicator for Measuring Search Engine Performance and Evaluating Google, Yahoo, DuckDuckGo, and Bing Search Engines based on Combined Indicator - Azadeh Hajian Hoseinabadi, Mehrdad CheshmehSohrabi, 2024"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2011.00650",
+          "text": "Search Engine Similarity Analysis: A Combined Content and Rankings   Approach"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2207.07330",
+          "text": "A Comparison of Source Distribution and Result Overlap in Web Search   Engines"
+        },
+        {
+          "url": "https://maketecheasier.com/google-vs-bing-vs-duck-duck-go/",
+          "text": "Google vs. Bing vs. DuckDuckGo: Which Is Best? - Make Tech Easier"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2207.07330",
+          "text": "I appreciate your request, but I'm unable to provide the analysis you've asked for. The content provided appears to be a PDF file in raw binary/encoded format rather than readable text about search engine overlap and source distribution.\n\nTo complete this task accurately, I would need:\n\n1. **Readable text content** describing the research findings on Google, Bing, DuckDuckGo, and Metager\n2. **Specific numerical data** about source overlap percentages or distributions\n3. **Clear study methodology** explaining how the comparison was conducted\n\nIf you have a document with this information, please share it in a text-readable format (plain text, markdown, or readable PDF content), and I'll be happy to:\n- Summarize key findings with precise numbers\n- Properly cite sources with quotations limited to 125 characters\n- Maintain accuracy and avoid paraphrasing verbatim content\n\nWould you be able to provide the source material in a more accessible format?\n\n[Binary content (application/pdf, 644.8KB) also saved to [REDACTED_PATH]"
+        },
+        {
+          "url": "https://www.researchgate.net/publication/346034177_Commentary_to_Gusenbauer_and_Haddaway_2020_Evaluating_retrieval_qualities_of_Google_Scholar_and_PubMed",
+          "text": "(PDF) Commentary to Gusenbauer and Haddaway 2020: Evaluating retrieval qualities of Google Scholar and PubMed"
+        },
+        {
+          "url": "https://www.researchgate.net/publication/336586189_Which_Academic_Search_Systems_are_Suitable_for_Systematic_Reviews_or_Meta-Analyses_Evaluating_Retrieval_Qualities_of_Google_Scholar_PubMed_and_26_other_Resources_OPEN_ACCESS",
+          "text": "(PDF) Which Academic Search Systems are Suitable for Systematic Reviews or Meta‐Analyses? Evaluating Retrieval Qualities of Google Scholar, PubMed and 26 other Resources [OPEN ACCESS]"
+        },
+        {
+          "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/jrsm.1378",
+          "text": "Which academic search systems are suitable for systematic reviews or meta‐analyses? Evaluating retrieval qualities of Google Scholar, PubMed, and 26 other resources - Gusenbauer - 2020 - Research Synthesis Methods - Wiley Online Library"
+        },
+        {
+          "url": "https://onlinelibrary.wiley.com/doi/abs/10.1002/jrsm.1456",
+          "text": "Commentary to Gusenbauer and Haddaway 2020: Evaluating retrieval qualities of Google Scholar and PubMed - Klopfenstein - 2021 - Research Synthesis Methods - Wiley Online Library"
+        },
+        {
+          "url": "https://www.semanticscholar.org/paper/Which-academic-search-systems-are-suitable-for-or-Gusenbauer-Haddaway/f60654fba58a7b02c5d9cc08fb3b7410dd8e4dc3",
+          "text": "[PDF] Which academic search systems are suitable for systematic reviews or meta‐analyses? Evaluating retrieval qualities of Google Scholar, PubMed, and 26 other resources | Semantic Scholar"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2412.13307",
+          "text": "Evolution of the \"long tail\" concept for scientific data"
+        },
+        {
+          "url": "https://www.sei.org/publications/academic-search-suitablesystematic-reviews-analyses-google-scholar-pubmed/",
+          "text": "Which academic search systems are suitable for systematic reviews or meta‐analyses? Evaluating retrieval qualities of Google Scholar, PubMed, and 26 other resources | SEI"
+        },
+        {
+          "url": "https://www.mdpi.com/2304-6775/14/2/29",
+          "text": "Reassessing the Role of Google Scholar in PRISMA-Informed Systematic Reviews Through a Critical Analysis of Influential Research Identifying Its Limitations and Empirical Evidence"
+        },
+        {
+          "url": "https://arxiv.org/abs/2207.07330",
+          "text": "# Key Findings from the Search Engine Comparison Study\n\n**Overlap Statistics:**\n- \"The overlap between Google and Bing is always under 32%\" while \"Metager has a higher overlap with Bing than DuckDuckGo, going up to 78%\"\n\n**Source Distribution:**\n- Google displays more unique domains in its top 10 results compared to competitors\n- Wikipedia and news websites rank as the most popular sources across all engines\n- Domain distribution remains consistent across all four search engines tested, despite some top sources dominating results\n\n**Study Scope:**\nThe research examined top 10 results from Google, Bing, DuckDuckGo, and Metager using 3,537 queries sourced from Google Trends data from Germany and the US.\n\n**Practical Implication:**\nUsing alternative search engines alongside Google \"provides a wider variety in sources and might lead the user to find new perspectives.\""
+        },
+        {
+          "url": "https://www.niemanlab.org/2025/03/ai-search-engines-fail-to-produce-accurate-citations-in-over-60-of-tests-according-to-new-tow-center-study/",
+          "text": "AI search engines fail to produce accurate citations in over 60% of tests, according to new Tow Center study | Nieman Journalism Lab"
+        },
+        {
+          "url": "https://www.govtech.com/question-of-the-day/how-often-do-ai-search-engines-cite-incorrect-sources",
+          "text": "How often do AI search engines cite incorrect sources?"
+        },
+        {
+          "url": "https://www.breitbart.com/tech/2025/03/15/study-ai-search-engines-cite-incorrect-sources-at-a-60-rate/",
+          "text": "Study: AI Search Engines Cite Incorrect Sources at a 60% Rate"
+        },
+        {
+          "url": "https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php",
+          "text": "AI Search Has a Citation Problem - Columbia Journalism Review"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2602.13415",
+          "text": "The Rise of AI Search: Implications for Information Markets and Human Judgement at Scale"
+        },
+        {
+          "url": "https://journalism.columbia.edu/news/tow-ai-report-2025",
+          "text": "Tow Center's Latest Report on AI Search Engines | Columbia Journalism School"
+        }
+      ],
+      "final_answer": "**Note de langue :** ma configuration impose le français ; je réponds donc en français, bien que la question soit en anglais.\n\n## Réponse courte\n\nLa question repose sur une prémisse qui ne tient pas : **il n'existe pas de moteur « objectivement meilleur pour tout type de question de recherche »**. Les preuves disponibles montrent que la performance dépend du type de requête, de la langue, du pays et du critère d'évaluation retenu. Ce n'est pas une esquive : c'est le résultat le plus solide que la littérature comparative produise.\n\n---\n\n## Faits étayés\n\n**1. Google domine en part de marché, ce qui n'est pas une mesure de qualité.**\nGoogle est mesuré autour de 90–91 % des recherches mondiales en 2026, Bing autour de 5 % ([Statista](https://www.statista.com/statistics/1381664/worldwide-all-devices-market-share-of-search-engines/), [SQ Magazine](https://sqmagazine.co.uk/bing-vs-google-statistics/)). La part de marché mesure l'usage et les positions par défaut, pas la pertinence des résultats.\n\n**2. Les moteurs ne renvoient pas les mêmes résultats — le recoupement est faible.**\nUne étude sur 3 537 requêtes (Allemagne et États-Unis) comparant les 10 premiers résultats de Google, Bing, DuckDuckGo et Metager trouve un recouvrement Google/Bing **toujours inférieur à 32 %**, et jusqu'à 78 % entre Metager et Bing. Google affiche davantage de domaines uniques. Les auteurs concluent explicitement qu'utiliser des moteurs alternatifs *en complément* de Google élargit la variété des sources ([arXiv:2207.07330](https://arxiv.org/abs/2207.07330)). C'est un argument direct contre le « moteur unique optimal ».\n\n**3. Sur des critères composites, Google arrive en tête — mais le classement dépend des critères choisis.**\nUne étude publiée dans *Journal of Information Science* construit un indicateur combiné (pertinence, classement, nouveauté, couverture, documents non pertinents, doublons) et place Google devant Bing, sur Google/Yahoo/DuckDuckGo/Bing ([SAGE](https://journals.sagepub.com/doi/abs/10.1177/09610006221138579)). Fait important : le résultat est conditionné par la pondération de six critères choisis par les auteurs — changer les critères peut changer le classement.\n\n**4. Pour la recherche systématique et académique, les moteurs web généralistes sont inadaptés.**\nGusenbauer & Haddaway ont évalué 28 systèmes de recherche : Google Scholar, malgré une couverture large, **ne doit pas être utilisé comme source unique** dans une revue systématique, faute de rappel complet et de reproductibilité (la méthode de sélection et de classement est inconnue) ([Research Synthesis Methods, 2020](https://onlinelibrary.wiley.com/doi/full/10.1002/jrsm.1378)). Pour ce type de question, la bonne réponse est PubMed/Scopus/Web of Science avec des requêtes booléennes — pas un moteur web.\n\n**5. Les moteurs « IA » ne résolvent pas le problème et en ajoutent un.**\nL'étude du Tow Center (Columbia) sur 1 600 requêtes et 8 outils de recherche IA trouve un taux d'erreur global d'environ 60 % dans l'attribution des sources, avec de fortes disparités : ~37 % pour Perplexity, 67 % pour ChatGPT Search, 94 % pour Grok 3 — le tout exprimé avec une confiance trompeuse ([CJR](https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php), [Nieman Lab](https://www.niemanlab.org/2025/03/ai-search-engines-fail-to-produce-accurate-citations-in-over-60-of-tests-according-to-new-tow-center-study/)).\n\n**6. Le « meilleur » moteur dépend du pays et de la langue.**\nYandex détient ~73 % en Russie (avril 2026), Baidu ~51 % en Chine, et Naver est au coude-à-coude avec Google en Corée du Sud ([SearchEngines.Net](https://www.searchengines.net/guides/search-engine-market-share-by-country/), [Statista](https://www.statista.com/statistics/220534/googles-share-of-search-market-in-selected-countries/)). Un moteur qui n'indexe pas bien le web sinophone ou russophone ne peut pas être « le meilleur » pour une question posée dans ces langues.\n\n**7. Très peu de moteurs ont un index propre.**\nGoogle, Bing, Yandex, Baidu, Brave et Mojeek exploitent leur propre crawl ; beaucoup d'autres (DuckDuckGo, Ecosia, Startpage…) revendent des résultats Bing ou Google ([Search Engine Journal](https://www.searchenginejournal.com/alternative-search-engines/271409/), [Mojeek](https://blog.mojeek.com/2026/05/the-switch-to-alternative-search-engine.html)). Conséquence : « changer de moteur » ne garantit pas de changer de source d'information.\n\n---\n\n## Ce qui relève de l'inférence (mon raisonnement, pas une source)\n\n- Combiner les points 2 et 7 implique que **la diversification n'a de valeur que si l'on croise des index réellement distincts** (p. ex. Google + Bing/Brave + Mojeek), pas des revendeurs du même index.\n- Le point 4 généralise raisonnablement au-delà du domaine biomédical : toute question exigeant **reproductibilité et exhaustivité** (revue de littérature, recherche juridique, brevets, veille réglementaire) est mal servie par un moteur web dont l'algorithme de classement est opaque et personnalisé.\n- Aucune source consultée ne teste la performance sur les requêtes **de code**, **de données factuelles récentes** et **de littérature scientifique** avec un protocole unique — d'où l'impossibilité empirique d'un classement « pour tout type de question ».\n\n## Désaccords et incertitudes\n\n- **Les comparatifs commerciaux se contredisent** et ne sont pas des preuves : les blogs SEO consultés ([Impression](https://www.impressiondigital.com/blog/bing-differ-google/), [Lawrence Hitches](https://www.lawrencehitches.com/google-vs-bing/), [Surnex](https://surnex.io/blog/google-vs-bing)) concluent en faveur de Google, mais sans méthodologie publiée, avec un conflit d'intérêt structurel (agences SEO) — à traiter comme opinion.\n- **Les chiffres de parts de marché sont disputés.** Une source relève que l'échantillon StatCounter pour la Chine est biaisé (sites destinés aux expatriés, trafic VPN) et que les mesures pour la Corée du Sud divergent de plus de 20 points selon la méthodologie ([SearchEngines.Net](https://www.searchengines.net/guides/search-engine-market-share-by-country/)). Je n'ai pas vérifié ces chiffres directement sur StatCounter.\n- **Effet de fraîcheur.** Les études méthodologiquement solides que je cite datent de 2020–2025 ; les moteurs ont beaucoup changé depuis (AI Overviews, AI Mode, Copilot Search). Leurs conclusions sur les *classements* peuvent être périmées ; leurs conclusions sur la *structure du problème* (faible recouvrement, non-reproductibilité) restent plausibles.\n\n## Où les preuves manquent vraiment\n\nJe n'ai trouvé **aucune évaluation indépendante, récente et transparente** qui compare les grands moteurs (y compris les modes IA) sur un panel varié de types de tâches avec des annotateurs humains. Sans cela, toute affirmation du type « X est le meilleur moteur » est une opinion, y compris quand elle est confortée par les parts de marché.\n\n## Recommandation pratique\n\n| Type de question | Outil adapté |\n|---|---|\n| Question factuelle courante, navigation | Google (meilleur classement composite mesuré) |\n| Sujet controversé, besoin de pluralité de sources | Croiser Google + un index indépendant (Brave, Mojeek) |\n| Revue de littérature, exhaustivité, reproductibilité | Bases booléennes (PubMed, Scopus, Web of Science) — **pas** un moteur web |\n| Contenu en chinois / russe / coréen | Baidu, Yandex, Naver |\n| Vie privée | DuckDuckGo/Startpage — en sachant qu'ils redistribuent Bing/Google |\n| Sortie de moteur IA | Vérifier systématiquement les citations (taux d'erreur ~60 % mesuré) |\n\n**Sources :**\n- [arXiv:2207.07330 — Source Distribution and Result Overlap in Web Search Engines](https://arxiv.org/abs/2207.07330)\n- [Gusenbauer & Haddaway, Research Synthesis Methods (2020)](https://onlinelibrary.wiley.com/doi/full/10.1002/jrsm.1378)\n- [Hoseinabadi & CheshmehSohrabi, indicateur combiné (SAGE, 2024)](https://journals.sagepub.com/doi/abs/10.1177/09610006221138579)\n- [Columbia Journalism Review — AI Search Has a Citation Problem](https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php)\n- [Nieman Lab — AI search engines fail in over 60% of tests](https://www.niemanlab.org/2025/03/ai-search-engines-fail-to-produce-accurate-citations-in-over-60-of-tests-according-to-new-tow-center-study/)\n- [Statista — parts de marché mondiales](https://www.statista.com/statistics/1381664/worldwide-all-devices-market-share-of-search-engines/) · [par pays](https://www.statista.com/statistics/220534/googles-share-of-search-market-in-selected-countries/)\n- [SearchEngines.Net — parts de marché par pays](https://www.searchengines.net/guides/search-engine-market-share-by-country/)\n- [SQ Magazine — Bing vs Google](https://sqmagazine.co.uk/bing-vs-google-statistics/)\n- [Search Engine Journal — moteurs alternatifs](https://www.searchenginejournal.com/alternative-search-engines/271409/) · [Blog Mojeek](https://blog.mojeek.com/2026/05/the-switch-to-alternative-search-engine.html)\n- Opinions non méthodologiques : [Impression](https://www.impressiondigital.com/blog/bing-differ-google/), [Surnex](https://surnex.io/blog/google-vs-bing), [Lawrence Hitches](https://www.lawrencehitches.com/google-vs-bing/)"
+    }
+  ]
+}

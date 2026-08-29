@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 2,
+  "informational": true,
+  "serialized": true,
+  "stoppedAfterBlock": true,
+  "corpusSize": 32,
+  "results": [
+    {
+      "query": "Bun WebView documentation",
+      "status": "blocked",
+      "detail": "bytes=903809"
+    }
+  ]
+}

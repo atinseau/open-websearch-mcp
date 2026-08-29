@@ -1,0 +1,23 @@
+{
+  "accepted_claim_ids": [
+    "claim_explicit_ws_connect",
+    "claim_autodetect_running_browser",
+    "claim_enable_remote_debugging",
+    "claim_close_semantics",
+    "claim_closeall_semantics"
+  ],
+  "rejected_claims": [
+    {
+      "id": "claim_url_false_and_no_fallback",
+      "reason": "Claim composite dont seule la partie `url: false` (« skip auto-detect ») est corroborée par un extrait fetché. Le « forces Bun to spawn a fresh headless Chrome » et le « does not fall back to spawning… instead, it throws » ne reposent que sur la reformulation auto-générée du run Codex (aucune opened_url) et durcissent une preuve contradictoire : l'extrait WebFetch de bun.com/docs/runtime/webview indique au contraire « the WebSocket connect fails and Bun transparently falls back to spawning its own Chrome »."
+    },
+    {
+      "id": "claim_path_argv_spawn_mode",
+      "reason": "Aucun extrait de documentation récupéré ne mentionne `path` ni `argv`, ni la contrainte d'incompatibilité avec `url: \"ws://...\"`. Assertion présente uniquement dans la reformulation Codex sans citation d'ancrage : risque de fait inventé, non vérifiable à partir des preuves fournies."
+    },
+    {
+      "id": "claim_lifecycle_operations_list",
+      "reason": "L'exhaustivité affirmée (les opérations de cycle de vie documentées « sont » close() et closeAll()) est directement contredite par l'extrait WebFetch de la même page, qui liste sous « Lifecycle methods/operations » : navigate(url), goBack(), goForward(), reload(), close(), Symbol.dispose/asyncDispose et WebView.closeAll(). De plus, le pattern « explicitly documented lifecycle operations » impose une tournure de prose spécifique, trop étroite pour une notation lexicale fiable."
+    }
+  ]
+}

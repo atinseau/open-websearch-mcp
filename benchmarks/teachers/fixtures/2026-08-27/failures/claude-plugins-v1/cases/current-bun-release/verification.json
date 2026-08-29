@@ -1,0 +1,12 @@
+{
+  "accepted_claim_ids": [
+    "claim_latest_release",
+    "claim_pub_date",
+    "claim_rust_rewrite",
+    "claim_node_compat",
+    "claim_perf",
+    "claim_builtins",
+    "claim_dev_tools"
+  ],
+  "rejected_claims": []
+}

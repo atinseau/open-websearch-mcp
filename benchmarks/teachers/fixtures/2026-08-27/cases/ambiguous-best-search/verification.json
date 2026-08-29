@@ -1,0 +1,12 @@
+{
+  "accepted_claim_ids": [
+    "claim_no_universal_best",
+    "claim_diverse_intents",
+    "claim_2024_google_first",
+    "claim_2020_navigational_google",
+    "claim_2026_no_sig_diff",
+    "claim_2025_bing_not_sig_better",
+    "claim_systematic_reviews_not_single_engine"
+  ],
+  "rejected_claims": []
+}

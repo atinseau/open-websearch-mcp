@@ -1,0 +1,33 @@
+{
+  "accepted_claim_ids": [],
+  "rejected_claims": [
+    {
+      "id": "claim_1",
+      "reason": "required concept is absent from teacher-run evidence: no_verified_event"
+    },
+    {
+      "id": "claim_2",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "claim_3",
+      "reason": "required concept is absent from teacher-run evidence: stamp_16_11_22"
+    },
+    {
+      "id": "claim_4",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "claim_5",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "claim_6",
+      "reason": "required concept is absent from teacher-run evidence: wikipedia_edit_date"
+    },
+    {
+      "id": "claim_7",
+      "reason": "required concept is absent from teacher-run evidence: historical_reasons"
+    }
+  ]
+}

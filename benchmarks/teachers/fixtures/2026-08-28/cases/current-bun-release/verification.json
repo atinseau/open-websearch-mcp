@@ -1,0 +1,25 @@
+{
+  "accepted_claim_ids": [],
+  "rejected_claims": [
+    {
+      "id": "claim_latest_release",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "claim_publish_date",
+      "reason": "required concept is absent from teacher-run evidence: publish_date"
+    },
+    {
+      "id": "claim_node_compat",
+      "reason": "required concept is absent from teacher-run evidence: 1517"
+    },
+    {
+      "id": "claim_perf_and_fixes",
+      "reason": "required concept is absent from teacher-run evidence: issues_fixed"
+    },
+    {
+      "id": "claim_rewrite_and_builtins",
+      "reason": "required concept is absent from teacher-run evidence: builtins"
+    }
+  ]
+}

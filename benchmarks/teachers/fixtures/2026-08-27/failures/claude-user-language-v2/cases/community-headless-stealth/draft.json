@@ -1,0 +1,260 @@
+{
+  "claims": [
+    {
+      "id": "claim_conflicting_marketing",
+      "text": "Community project materials make conflicting broad effectiveness claims: some say stealth patches pass public bot tests or even all bot-mitigation systems.",
+      "required_concepts": ["stealth", "pass public bot tests", "all bot mitigation systems"],
+      "acceptable_patterns": [
+        "(?i)stealth patches? .*pass(?:es)? all public bot tests",
+        "(?i)pass(?:es)? ALL bot mitigation systems",
+        "(?i)prevent almost all selenium detections"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/diprajpatra/selenium-stealth",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/ultrafunkamsterdam/undetected-chromedriver",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md",
+          "text": "- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`."
+        },
+        {
+          "url": "https://github.com/diprajpatra/selenium-stealth",
+          "text": "- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`."
+        },
+        {
+          "url": "https://github.com/ultrafunkamsterdam/undetected-chromedriver",
+          "text": "- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`."
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "claim_qualified_counterclaims",
+      "text": "Other community materials, including from the same stealth lineage, qualify or narrow those claims by saying full prevention is probably impossible or that the tools only bypass simple detection.",
+      "required_concepts": ["impossible to prevent all ways", "simplest bot detection"],
+      "acceptable_patterns": [
+        "(?i)probably impossible to prevent all ways",
+        "(?i)don't expect this to bypass anything but the simplest"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/mattwmaster58/playwright_stealth/blob/main/README.md",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md",
+          "text": "- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it."
+        },
+        {
+          "url": "https://github.com/mattwmaster58/playwright_stealth/blob/main/README.md",
+          "text": "- **Much weaker claim:** `playwright_stealth` says: “Don’t expect this to bypass anything but the simplest of bot detection methods” and calls itself a “proof-of-concept starting point.”"
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "claim_public_tests_scope",
+      "text": "Publicly reproducible bot-test pages check different scopes: some are fingerprint-only, while others add interaction, CDP, worker, and framework-indicator checks.",
+      "required_concepts": [
+        "fingerprinting signals",
+        "HTTP headers",
+        "interaction page",
+        "CDP mouse leak"
+      ],
+      "acceptable_patterns": [
+        "(?i)uses only fingerprinting signals and HTTP headers",
+        "(?i)adds mouse movements, typing speed",
+        "(?i)CDP mouse leak"
+      ],
+      "sources": [
+        {
+          "url": "https://deviceandbrowserinfo.com/are_you_a_bot",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://deviceandbrowserinfo.com/are_you_a_bot_interactions",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://bot.sannysoft.com/",
+          "equivalent_urls": ["https://bot.sannysoft.com"]
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://deviceandbrowserinfo.com/are_you_a_bot",
+          "text": "- **Supported fact:** `deviceandbrowserinfo` explicitly says its `Are you a bot?` page uses only fingerprinting signals and HTTP headers, and does **not** use IP reputation or user behavior."
+        },
+        {
+          "url": "https://deviceandbrowserinfo.com/are_you_a_bot_interactions",
+          "text": "- **Supported fact:** `deviceandbrowserinfo` also has a separate interaction page that adds mouse movements, typing speed, form submission, `CDP mouse leak`, automation-framework stack traces, worker checks, and Playwright/CDP indicators."
+        },
+        {
+          "url": "https://bot.sannysoft.com/",
+          "text": "- **Supported fact:** old/public fingerprint-test pages do exist and are easy to reproduce. `bot.sannysoft.com` publicly reports checks such as `WebDriver (New)`, `WebDriver Advanced`, and `Chrome (New)`."
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "claim_reproducible_failures",
+      "text": "Public issue reports and test observations contradict broad claims that stealth patches prevent detection generally: multiple projects have public reports of detection on bot tests or defended sites.",
+      "required_concepts": [
+        "detected",
+        "bot.sannysoft.com",
+        "Cloudflare",
+        "Google Meet",
+        "Runtime.enable"
+      ],
+      "acceptable_patterns": [
+        "(?i)README example itself was detected on `?bot\\.sannysoft\\.com",
+        "(?i)Cloudflare detects puppeteer too",
+        "(?i)Google Meet detected automation",
+        "(?i)DataDome flags the CDP command `?Runtime\\.enable",
+        "(?i)detected by Cloudflare"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/867",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/764",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/898",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/788",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/ultrafunkamsterdam/undetected-chromedriver/issues/46",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/diprajpatra/selenium-stealth/issues/9",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/diprajpatra/selenium-stealth/issues",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/867",
+          "text": "- **Supported fact:** a public `puppeteer-extra` issue from January 10, 2024 says the README example itself was detected on `bot.sannysoft.com`, and the reporter also says `Cloudflare detects puppeteer too`; the issue includes the reproduction script and package versions."
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/898",
+          "text": "- **Supported fact:** a June 20, 2024 `puppeteer-extra` issue says `puppeteer-extra-plugin-stealth` worked for `meet.google.com` with Puppeteer `22.1.0` / Chrome-for-Testing `121.0.6167.85`, but with Puppeteer `22.2.0` / Chrome-for-Testing `122.0.6261.57` Google Meet detected automation and blocked access; the issue includes steps to reproduce."
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/788",
+          "text": "- **Supported fact:** another public `puppeteer-extra` issue says DataDome flags the CDP command `Runtime.enable`, and the issue includes a concrete code path and a proposed tweak."
+        },
+        {
+          "url": "https://github.com/ultrafunkamsterdam/undetected-chromedriver/issues/46",
+          "text": "- **Supported fact:** a public `undetected-chromedriver` issue from November 4, 2020 says the driver was detected by Cloudflare “Under Attack Mode” and got stuck on the “Checking your browser” page."
+        },
+        {
+          "url": "https://github.com/diprajpatra/selenium-stealth/issues/9",
+          "text": "- **Supported fact:** `selenium-stealth` has a public issue from January 2021 saying the “new webdriver started failing.”"
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "claim_best_supported_conclusion",
+      "text": "The supplied public evidence supports a narrower conclusion better than the broad marketing claims: stealth patches may help against older or narrower fingerprint checks, but public evidence contradicts the claim that they broadly prevent modern bot detection.",
+      "required_concepts": [
+        "older or narrower fingerprint checks",
+        "contradicts broad prevention claim"
+      ],
+      "acceptable_patterns": [
+        "(?i)narrower claim much better than the broad one",
+        "(?i)older or narrower fingerprint checks",
+        "(?i)contradicts the claim that they broadly prevent bot detection"
+      ],
+      "sources": [
+        {
+          "url": "https://arh.antoinevastel.com/bot%20detection/2023/02/19/new-headless-chrome.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://deviceandbrowserinfo.com/are_you_a_bot",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://deviceandbrowserinfo.com/are_you_a_bot_interactions",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/867",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/ultrafunkamsterdam/undetected-chromedriver/issues/46",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://arh.antoinevastel.com/bot%20detection/2023/02/19/new-headless-chrome.html",
+          "text": "- **Supported fact:** Antoine Vastel’s 2023 article gives code and fingerprint dumps showing that new headless Chrome removed several older tells: the old fingerprint had empty `plugins`, `HeadlessChrome` in the UA, `hasChrome: false`, and `webDriver: true`, while the new-headless dump showed populated plugins and a much more normal-looking UA/fingerprint."
+        },
+        {
+          "url": "https://deviceandbrowserinfo.com/are_you_a_bot",
+          "text": "- **Inference:** because some public test pages are fingerprint-only by design, passing them can support the claim that a stealth patch hides **some static fingerprint signals**, but it does **not** by itself support the stronger claim that the patch prevents production bot detection generally."
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/867",
+          "text": "- **Supported fact:** a public `puppeteer-extra` issue from January 10, 2024 says the README example itself was detected on `bot.sannysoft.com`, and the reporter also says `Cloudflare detects puppeteer too`; the issue includes the reproduction script and package versions."
+        },
+        {
+          "url": "https://github.com/ultrafunkamsterdam/undetected-chromedriver/issues/46",
+          "text": "- **Supported fact:** a public `undetected-chromedriver` issue from November 4, 2020 says the driver was detected by Cloudflare “Under Attack Mode” and got stuck on the “Checking your browser” page."
+        }
+      ],
+      "weight": 1
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Stealth patches prevent bot detection generally on modern defended sites.",
+      "reason": "Contradicted by supplied public issue reports and the supplied narrower conclusion."
+    },
+    {
+      "text": "A neutral, controlled, versioned public benchmark proves one mainstream stealth patch consistently defeats Cloudflare, DataDome, and similar systems.",
+      "reason": "The supplied evidence explicitly says such a benchmark was not found; claiming one exists would be unsupported."
+    },
+    {
+      "text": "Passing `bot.sannysoft.com` alone shows a tool is safe from production bot detection.",
+      "reason": "The supplied evidence says some public test pages are fingerprint-only and do not by themselves support that stronger claim."
+    },
+    {
+      "text": "New headless Chrome made browser automation undetectable.",
+      "reason": "Overly broad and contradicted by the supplied evidence about later detections and only removing several older tells."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "accepted_claim_ids": ["claim_fts5_loadable_extension", "claim_external_content_definition"],
+  "rejected_claims": [
+    {
+      "id": "claim_runtime_builtin_detection",
+      "reason": "required concept is absent from teacher-run evidence: runtime-detection"
+    },
+    {
+      "id": "claim_compile_option_limit",
+      "reason": "required concept is absent from teacher-run evidence: builtin-vs-loaded"
+    },
+    {
+      "id": "claim_external_content_consistency",
+      "reason": "required concept is absent from teacher-run evidence: consistency"
+    },
+    {
+      "id": "claim_external_content_triggers",
+      "reason": "required concept is absent from teacher-run evidence: no-backfill"
+    },
+    {
+      "id": "claim_external_content_query_behavior",
+      "reason": "required concept is absent from teacher-run evidence: pass-through"
+    },
+    {
+      "id": "claim_external_content_replace_order",
+      "reason": "required concept is absent from teacher-run evidence: replace-limit"
+    }
+  ]
+}

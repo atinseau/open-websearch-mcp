@@ -1,0 +1,764 @@
+{
+  "schema_version": 1,
+  "case_id": "multilingual-es-climate",
+  "runs": [
+    {
+      "run_id": "2026-08-27_codex_multilingual-es-climate",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "site:aemet.es España evolución reciente temperatura precipitación incertidumbre informe clima AEMET",
+        "site:aemet.es \"Informe sobre el estado del clima de España 2024\"",
+        "https://www.aemet.es/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/detalles/informe_estado_clima",
+        "'temperatura media' in https://www.aemet.es/documentos/es/serviciosclimaticos/vigilancia_clima/resumenes_climat/anuales/res_anual_clim_2024.pdf",
+        "https://www.aemet.es/documentos/es/serviciosclimaticos/vigilancia_clima/resumenes_climat/anuales/res_anual_clim_2024.pdf",
+        "'El año 2024 ha sido en su conjunto' in https://www.aemet.es/documentos/es/serviciosclimaticos/vigilancia_clima/resumenes_climat/anuales/res_anual_clim_2024.pdf",
+        "https://www.aemet.es/documentos/es/serviciosclimaticos/vigilancia_clima/resumenes_climat/anuales/res_anual_clim_2023.pdf",
+        "'incertid' in https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf",
+        "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf",
+        "site:aemet.es AEMET incertidumbre temperatura precipitación España observada tendencia",
+        "site:miteco.gob.es indicador clima España temperatura observada precipitación 1961",
+        "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [],
+      "cited_urls": [
+        "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf",
+        "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf",
+        "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf",
+        "https://www.aemet.es/es/idi/clima/escenarios_CC",
+        "https://www.aemet.es/es/idi/clima/evaluacion_modelos_climaticos"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf",
+          "title": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf"
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf",
+          "title": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf"
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf",
+          "title": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf"
+        },
+        {
+          "url": "https://www.aemet.es/es/idi/clima/escenarios_CC",
+          "title": "https://www.aemet.es/es/idi/clima/escenarios_CC"
+        },
+        {
+          "url": "https://www.aemet.es/es/idi/clima/evaluacion_modelos_climaticos",
+          "title": "https://www.aemet.es/es/idi/clima/evaluacion_modelos_climaticos"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf",
+          "text": "**Hechos respaldados por fuentes oficiales**\n\nLa AEMET describe una señal de calentamiento muy sólida en España. En su resumen ejecutivo de 2023 indica que la temperatura media anual del conjunto de España fue de `15,2 °C`, `1,2 °C` por encima del promedio `1991-2020`, y que entre `1961` y `2023` la temperatura media anual aumentó `1,57 °C` con una tendencia “estadísticamente significativa”. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf\n\nLa AEMET actualizó esa misma tendencia en 2024: la temperatura media anual del conjunto de España fue de `15,1 °C`, `1,1 °C` por encima de `1991-2020`, y el ascenso acumulado desde `1961` pasó a `1,69 °C`, también “estadísticamente significativo”. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf\n\nEn 2025, la AEMET volvió a encontrar un año extremadamente cálido: `15,1 °C` de temperatura media en España, `1,1 °C` sobre lo normal, y un ascenso acumulado de `1,75 °C` entre `1961` y `2025`; además, señala que los `12` años más cálidos de la serie pertenecen al siglo XXI. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf\n\nSobre precipitación, la evolución reciente es mucho menos lineal. La AEMET calificó 2023 como un año “muy seco”, con `531 mm` de precipitación media en España, el `84 %` del valor normal `1991-2020`, y lo situó como el sexto año más seco de la serie desde `1961`. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf\n\nEn 2024, la AEMET pasó a clasificar el año como “húmedo”, con `660,1 mm`, equivalentes al `104 %` de lo normal; aun así, subrayó que el extremo sureste peninsular fue m"
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf",
+          "text": "**Hechos respaldados por fuentes oficiales**\n\nLa AEMET describe una señal de calentamiento muy sólida en España. En su resumen ejecutivo de 2023 indica que la temperatura media anual del conjunto de España fue de `15,2 °C`, `1,2 °C` por encima del promedio `1991-2020`, y que entre `1961` y `2023` la temperatura media anual aumentó `1,57 °C` con una tendencia “estadísticamente significativa”. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf\n\nLa AEMET actualizó esa misma tendencia en 2024: la temperatura media anual del conjunto de España fue de `15,1 °C`, `1,1 °C` por encima de `1991-2020`, y el ascenso acumulado desde `1961` pasó a `1,69 °C`, también “estadísticamente significativo”. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf\n\nEn 2025, la AEMET volvió a encontrar un año extremadamente cálido: `15,1 °C` de temperatura media en España, `1,1 °C` sobre lo normal, y un ascenso acumulado de `1,75 °C` entre `1961` y `2025`; además, señala que los `12` años más cálidos de la serie pertenecen al siglo XXI. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf\n\nSobre precipitación, la evolución reciente es mucho menos lineal. La AEMET calificó 2023 como un año “muy seco”, con `531 mm` de precipitación media en España, el `84 %` del valor normal `1991-2020`, y lo situó como el sexto año más seco de la serie desde `1961`. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf\n\nEn 2024, la AEMET pasó a clasificar el año como “húmedo”, con `660,1 mm`, equivalentes al `104 %` de lo normal; aun así, subrayó que el extremo sureste peninsular fue m"
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf",
+          "text": "**Hechos respaldados por fuentes oficiales**\n\nLa AEMET describe una señal de calentamiento muy sólida en España. En su resumen ejecutivo de 2023 indica que la temperatura media anual del conjunto de España fue de `15,2 °C`, `1,2 °C` por encima del promedio `1991-2020`, y que entre `1961` y `2023` la temperatura media anual aumentó `1,57 °C` con una tendencia “estadísticamente significativa”. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf\n\nLa AEMET actualizó esa misma tendencia en 2024: la temperatura media anual del conjunto de España fue de `15,1 °C`, `1,1 °C` por encima de `1991-2020`, y el ascenso acumulado desde `1961` pasó a `1,69 °C`, también “estadísticamente significativo”. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf\n\nEn 2025, la AEMET volvió a encontrar un año extremadamente cálido: `15,1 °C` de temperatura media en España, `1,1 °C` sobre lo normal, y un ascenso acumulado de `1,75 °C` entre `1961` y `2025`; además, señala que los `12` años más cálidos de la serie pertenecen al siglo XXI. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf\n\nSobre precipitación, la evolución reciente es mucho menos lineal. La AEMET calificó 2023 como un año “muy seco”, con `531 mm` de precipitación media en España, el `84 %` del valor normal `1991-2020`, y lo situó como el sexto año más seco de la serie desde `1961`. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf\n\nEn 2024, la AEMET pasó a clasificar el año como “húmedo”, con `660,1 mm`, equivalentes al `104 %` de lo normal; aun así, subrayó que el extremo sureste peninsular fue m"
+        },
+        {
+          "url": "https://www.aemet.es/es/idi/clima/escenarios_CC",
+          "text": "**Hechos respaldados por fuentes oficiales**\n\nLa AEMET describe una señal de calentamiento muy sólida en España. En su resumen ejecutivo de 2023 indica que la temperatura media anual del conjunto de España fue de `15,2 °C`, `1,2 °C` por encima del promedio `1991-2020`, y que entre `1961` y `2023` la temperatura media anual aumentó `1,57 °C` con una tendencia “estadísticamente significativa”. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf\n\nLa AEMET actualizó esa misma tendencia en 2024: la temperatura media anual del conjunto de España fue de `15,1 °C`, `1,1 °C` por encima de `1991-2020`, y el ascenso acumulado desde `1961` pasó a `1,69 °C`, también “estadísticamente significativo”. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf\n\nEn 2025, la AEMET volvió a encontrar un año extremadamente cálido: `15,1 °C` de temperatura media en España, `1,1 °C` sobre lo normal, y un ascenso acumulado de `1,75 °C` entre `1961` y `2025`; además, señala que los `12` años más cálidos de la serie pertenecen al siglo XXI. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf\n\nSobre precipitación, la evolución reciente es mucho menos lineal. La AEMET calificó 2023 como un año “muy seco”, con `531 mm` de precipitación media en España, el `84 %` del valor normal `1991-2020`, y lo situó como el sexto año más seco de la serie desde `1961`. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf\n\nEn 2024, la AEMET pasó a clasificar el año como “húmedo”, con `660,1 mm`, equivalentes al `104 %` de lo normal; aun así, subrayó que el extremo sureste peninsular fue m"
+        },
+        {
+          "url": "https://www.aemet.es/es/idi/clima/evaluacion_modelos_climaticos",
+          "text": "**Hechos respaldados por fuentes oficiales**\n\nLa AEMET describe una señal de calentamiento muy sólida en España. En su resumen ejecutivo de 2023 indica que la temperatura media anual del conjunto de España fue de `15,2 °C`, `1,2 °C` por encima del promedio `1991-2020`, y que entre `1961` y `2023` la temperatura media anual aumentó `1,57 °C` con una tendencia “estadísticamente significativa”. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf\n\nLa AEMET actualizó esa misma tendencia en 2024: la temperatura media anual del conjunto de España fue de `15,1 °C`, `1,1 °C` por encima de `1991-2020`, y el ascenso acumulado desde `1961` pasó a `1,69 °C`, también “estadísticamente significativo”. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf\n\nEn 2025, la AEMET volvió a encontrar un año extremadamente cálido: `15,1 °C` de temperatura media en España, `1,1 °C` sobre lo normal, y un ascenso acumulado de `1,75 °C` entre `1961` y `2025`; además, señala que los `12` años más cálidos de la serie pertenecen al siglo XXI. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf\n\nSobre precipitación, la evolución reciente es mucho menos lineal. La AEMET calificó 2023 como un año “muy seco”, con `531 mm` de precipitación media en España, el `84 %` del valor normal `1991-2020`, y lo situó como el sexto año más seco de la serie desde `1961`. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf\n\nEn 2024, la AEMET pasó a clasificar el año como “húmedo”, con `660,1 mm`, equivalentes al `104 %` de lo normal; aun así, subrayó que el extremo sureste peninsular fue m"
+        }
+      ],
+      "final_answer": "**Hechos respaldados por fuentes oficiales**\n\nLa AEMET describe una señal de calentamiento muy sólida en España. En su resumen ejecutivo de 2023 indica que la temperatura media anual del conjunto de España fue de `15,2 °C`, `1,2 °C` por encima del promedio `1991-2020`, y que entre `1961` y `2023` la temperatura media anual aumentó `1,57 °C` con una tendencia “estadísticamente significativa”. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf\n\nLa AEMET actualizó esa misma tendencia en 2024: la temperatura media anual del conjunto de España fue de `15,1 °C`, `1,1 °C` por encima de `1991-2020`, y el ascenso acumulado desde `1961` pasó a `1,69 °C`, también “estadísticamente significativo”. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf\n\nEn 2025, la AEMET volvió a encontrar un año extremadamente cálido: `15,1 °C` de temperatura media en España, `1,1 °C` sobre lo normal, y un ascenso acumulado de `1,75 °C` entre `1961` y `2025`; además, señala que los `12` años más cálidos de la serie pertenecen al siglo XXI. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf\n\nSobre precipitación, la evolución reciente es mucho menos lineal. La AEMET calificó 2023 como un año “muy seco”, con `531 mm` de precipitación media en España, el `84 %` del valor normal `1991-2020`, y lo situó como el sexto año más seco de la serie desde `1961`. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf\n\nEn 2024, la AEMET pasó a clasificar el año como “húmedo”, con `660,1 mm`, equivalentes al `104 %` de lo normal; aun así, subrayó que el extremo sureste peninsular fue muy seco y que Canarias tuvo el año más seco de toda su serie. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf\n\nEn 2025, la AEMET volvió a clasificar el año como “húmedo”, con `688,7 mm`, `109 %` del valor normal, y señaló que era la primera vez desde `2013-2014` que dos años consecutivos quedaban por encima del promedio normal. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf\n\nA escala de tendencia de largo plazo, la AEMET afirma repetidamente que **no** encuentra una tendencia estadísticamente significativa en la precipitación media anual para el conjunto de España desde `1961`. Lo dice para 2023, aunque añade descensos significativos en Andalucía salvo Almería y en varias provincias; lo repite para 2024, con descensos significativos en el nordeste de Cataluña, este y sur de Castilla-La Mancha, sur de Extremadura, gran parte de Andalucía e islas canarias orientales; y lo mantiene en 2025, con descensos significativos en zonas del sur de Extremadura y Castilla-La Mancha, Cádiz, Andalucía oriental y nordeste de Cataluña. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf\n\n**Incertidumbre y límites declarados por las fuentes oficiales**\n\nLa AEMET declara explícitamente que el régimen de precipitaciones en España presenta “grandes irregularidades tanto espacial como temporalmente”, y por eso analiza la sequía a distintas escalas temporales. Esa es una advertencia oficial de que la señal pluviométrica es más ruidosa y más difícil de resumir en una sola tendencia nacional. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf\n\nLa propia ausencia de tendencia estadísticamente significativa en la precipitación media anual nacional, repetida por AEMET en 2023, 2024 y 2025, es una declaración oficial de incertidumbre o, más precisamente, de **falta de evidencia robusta** para afirmar un cambio nacional monotónico en la lluvia anual total, aunque sí haya descensos regionales significativos. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf\n\nPara las estimaciones climáticas de AEMET sobre España, el organismo declara además tres fuentes principales de incertidumbre: los escenarios futuros de emisiones, los modelos globales de circulación y los métodos de regionalización. https://www.aemet.es/es/idi/clima/escenarios_CC\n\nAEMET añade que las parametrizaciones de los procesos físicos, en particular las interacciones atmósfera-superficie, constituyen “una parte importante de las incertidumbres asociadas a las proyecciones de los modelos climáticos”. https://www.aemet.es/es/idi/clima/evaluacion_modelos_climaticos\n\nEn 2023, AEMET cambió el período de referencia de `1981-2010` a `1991-2020`, siguiendo la recomendación de la OMM de actualizar los normales climáticos para representar mejor el clima reciente. Eso no invalida la señal, pero sí obliga a comparar anomalías con cuidado entre informes antiguos y nuevos. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf\n\n**Inferencia, desacuerdo y falta de buena evidencia**\n\n**Inferencia:** con las fuentes oficiales revisadas, la conclusión más firme es que España se ha calentado claramente en las últimas décadas y que 2023-2025 encajan en esa trayectoria; esa inferencia está respaldada por la repetición anual de una tendencia térmica ascendente y estadísticamente significativa en los informes de AEMET. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf\n\n**Inferencia:** la precipitación reciente parece más compatible con una mayor irregularidad que con una simple caída uniforme del total anual nacional, porque 2023 fue muy seco pero 2024 y 2025 fueron húmedos, mientras AEMET sigue sin detectar una tendencia nacional significativa en el acumulado anual. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf\n\n**Desacuerdo:** no he encontrado un desacuerdo sustantivo entre las fuentes oficiales revisadas sobre la temperatura; en precipitación tampoco hay contradicción fuerte, sino matices espaciales y actualización anual del diagnóstico regional. Esta es una inferencia a partir del conjunto de documentos revisados. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf\n\n**Falta de buena evidencia:** en los resúmenes oficiales revisados no he encontrado barras de error o intervalos cuantitativos de incertidumbre para las tendencias observadas nacionales de temperatura y precipitación; AEMET expresa la solidez sobre todo mediante significación estadística, irregularidad espacial-temporal y notas metodológicas sobre el período de referencia. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf\n\nEn una frase: las fuentes primarias oficiales muestran un **calentamiento reciente claro y estadísticamente significativo** en España, mientras que para la **precipitación** muestran una evolución **más irregular**, con años recientes muy secos y húmedos alternándose, **sin evidencia estadísticamente significativa de una tendencia nacional única** en el acumulado anual, aunque sí con **descensos regionales significativos** y con incertidumbres explícitas ligadas a la fuerte variabilidad de la lluvia y, para proyecciones, a emisiones, modelos y regionalización. https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf https://www.aemet.es/es/idi/clima/escenarios_CC https://www.aemet.es/es/idi/clima/evaluacion_modelos_climaticos"
+    },
+    {
+      "run_id": "2026-08-27_claude_multilingual-es-climate",
+      "provider": "claude",
+      "model": "claude-opus-5[1m]",
+      "queries": [
+        "AEMET informe estado del clima en España 2025 temperatura precipitación",
+        "AEMET \"Estado del Clima en España\" 2024 resumen anual climatológico",
+        "AEMET tendencia precipitación España \"no significativa\" serie 1961 informe estado del clima",
+        "MITECO indicadores cambio climático España temperatura precipitación observatorio serie oficial",
+        "AEMET proyecciones climáticas siglo XXI incertidumbre modelos precipitación España AdapteCCa",
+        "\"European State of the Climate 2025\" Iberian Peninsula precipitation temperature Copernicus"
+      ],
+      "tool_results": [
+        {
+          "tool": "WebSearch",
+          "summary": "Informe del estado del clima en España en 2024: https://repositorio.aemet.es/?locale=en"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Los tres años más calurosos en España han sido los últimos tres: 2022, 2023 y 2024 - Climática: https://climatica.coop/estado-del-clima-aemet-2024/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "zenodo.org: https://zenodo.org/records/12105061"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "aula-pirata.gumroad.com: https://aula-pirata.gumroad.com/l/TDIjG"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "AGRIS - International System for Agricultural Science and Technology: https://agris.fao.org/search/en/records/64735816e17b74d222507d0f"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "evolucion anual de la temperatura media en espana: https://es.statista.com/estadisticas/935474/evolucion-anual-de-la-temperatura-media-en-espana"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "ahrefs.com: https://ahrefs.com/websites/aemet.es"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "archive.lib.msu.edu: https://archive.lib.msu.edu/tic/cespe/article/2014jul62.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "polired.upm.es: https://polired.upm.es/index.php/boletincfs/article/download/2617/2683/9543"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Informe sobre el estado del clima en España 2025 | Plataforma sobre Adaptación al Cambio Climático en España: https://www.adaptecca.es/recursos/buscador/informe-sobre-el-estado-del-clima-en-espana-2025"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Informe sobre el estado del clima de España 2025 Resumen ejecutivo: https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "El año 2025 volvió a batir récords de temperatura en España - State Meteorological Agency - AEMET - Spanish Government: https://www.aemet.es/en/noticias/2026/06/IAC_2025"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Informes sobre el estado del clima de España - State Meteorological Agency - AEMET - Spanish Government: https://www.aemet.es/en/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/detalles/informe_estado_clima"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "2025 fue un año extremadamente cálido y con carácter húmedo en cuanto a lluvias - State Meteorological Agency - AEMET - Spanish Government: https://www.aemet.es/en/noticias/2026/01/resumen_anual_2025"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Informe sobre el estado del clima de España 2025: https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2025_completo_baja_res.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "España se encamina hacia un clima más árido a la vez que aumentan los episodios extremos de lluvias, según el informe CLIVAR-Spain - State Meteorological Agency - AEMET - Spanish Government: https://www.aemet.es/en/noticias/2025/03/informe_clivar_24"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Resumen anual climatológico 2025 Departamento de Producción: https://www.aemet.es/documentos/es/serviciosclimaticos/vigilancia_clima/resumenes_climat/anuales/res_anual_clim_2025.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "📑 Hemos presentado el Informe sobre el estado del clima ...: https://x.com/AEMET_Esp/status/2067195615117750545"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Climatological summaries - Page 1 - Spain - Monthly - State Meteorological Agency - AEMET - Spanish Government: https://www.aemet.es/en/serviciosclimaticos/vigilancia_clima/resumenes"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Información no disponible\n\nNo puedo extraer la información solicitada. El contenido proporcionado es un archivo PDF codificado (comprimido/encriptado), no texto legible. Contiene estructuras binarias de objeto PDF sin que el texto del documento sea accesible en formato plano.\n\nPara ayudarte a extraer:\n- **(1) Temperaturas medias 2025 y anomalías**\n- **(2) Tendencias a largo plazo por década**\n- **(3) Datos de precipitación y sequía**\n- **(4) Menciones de incertidumbre, significación estadístic"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# 2025 Climate Summary for Spain\n\n## Temperature Figures\n\n**Mean temperature (peninsular Spain):** 15.0°C, which represents \"+1.1 °C por encima del promedio del periodo de referencia 1991-2020\" (1.1°C above the 1991-2020 reference period average).\n\n**Ranking:** The third warmest year since records began in 1961, tied with 2024. Only 2022 and 2023 were warmer. The document notes that \"Los 11 años más cálidos de la serie son todos del siglo XXI\" (all 11 warmest years on record occurred in the 21st"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# AEMET Climate Reports: Analysis\n\n## Available Reports\n\nThe page lists annual climate state reports for Spain from 2019-2025, each offered in two formats:\n- Executive summaries (lower/higher resolution PDFs)\n- Complete reports (lower/higher resolution PDFs)\n\n## Web/HTML Versions\n\n**No web or HTML versions are mentioned.** Only PDF documents are provided for download.\n\n## Methodology & Uncertainty Discussion\n\nThe description indicates reports cover:\n> \"temperatures of air and seawater and their "
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Climate Data from Spain's 2025 Climate Report\n\n## Temperature Trends\n- **Annual mean temperature increase:** 1.75°C since 1961 (approximately 0.29°C per decade)\n- **2025 mean temperature:** 15.1°C, which was \"1.1 °C por encima del promedio anual normal\"\n- **Ranking:** Third warmest year on record, tied with 2024\n\n## Heat Records\n- **2025 heat records:** 25 days with temperature records; zero cold records\n- **Last decade:** 221 warm records vs. 7 cold records (warm records 32 times more frequen"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Conclusiones del Informe CLIVAR-Spain 2024\n\n## Aridez y Precipitación\n\nEl informe proyecta que \"a lo largo del siglo XXI está previsto que se reduzca la cantidad de precipitación que recibe España en promedio.\" Simultáneamente, se espera la \"extensión de los climas áridos en nuestro país,\" impulsada por temperaturas más elevadas.\n\n## Extremos de Lluvia\n\nA pesar de la tendencia hacia menor precipitación media, el documento indica que \"aumentan los episodios extremos de lluvias.\" Este patrón ref"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "El año 2025 volvió a batir récords de temperatura en España - State Meteorological Agency - AEMET - Spanish Government: https://www.aemet.es/en/noticias/2026/06/IAC_2025"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "España acumula tres años consecutivos de récord de altas temperaturas, según la Aemet • CONSTRUIBLE: https://www.construible.es/2025/05/26/espana-acumula-tres-anos-consecutivos-record-altas-temperaturas-segun-aemet"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "2024, un año marcado en España por las altas temperaturas y la riada de octubre en Valencia - State Meteorological Agency - AEMET - Spanish Government: https://www.aemet.es/en/noticias/2025/05/iac_2024"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Los tres años más calurosos en España han sido los últimos tres: 2022, 2023 y 2024 - Climática: https://climatica.coop/estado-del-clima-aemet-2024/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Comportamiento de las precipitaciones en España y periodos de sequía (periodo 1961-2018) - State Meteorological Agency - AEMET - Spanish Government: https://www.aemet.es/en/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/detalles/NT32_AEMET"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "No, cuando la AEMET dice \"desde que hay registros\" no se refiere a desde 2020: la serie histórica utilizada empieza en 1961·Maldita.es - Periodismo para que no te la cuelen: https://maldita.es/clima/20250721/aemet-desde-registros-1961-2020/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Análisis cambio climático de España (2005-2025) - Emirodgar: https://emirodgar.es/analisis-cambio-climatico"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "core.ac.uk: https://core.ac.uk/works/79380845"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# AEMET Technical Note 32: Precipitation and Drought in Spain (1961-2018)\n\n## Overview\nThis technical publication by Spain's State Meteorological Agency (AEMET) examines rainfall patterns and drought periods across Spain over a 57-year span.\n\n## Methodology\nThe study generates monthly precipitation grids using Geographic Information Systems tools, drawing data from the National Climatological Data Bank. It establishes precipitation averages for defined areas and employs the Standardized Precipit"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Cifras del Informe de Estado del Clima 2024\n\n## Temperatura\n- **Temperatura media anual 2024:** 15.1 °C, valor 1.1 °C superior al período de referencia 1991-2020\n- **Ranking:** Tercer año más cálido de la serie histórica, tras 2022 y 2023\n- **Tendencia desde 1961:** \"la temperatura media anual ha ascendido en nuestro país 1.69 ºC\"\n- **Contexto histórico:** Los 11 años más cálidos en España se han registrado en el siglo XXI\n\n## Precipitación\n- **Acumulado anual 2024:** 669.1 mm\n- **Comparativa:"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "IMPACTOS DEL CAMBIO CLIMATICO EN ESPAÑA 1. EL CLIMA DE ESPAÑA: PASADO,: https://www.miteco.gob.es/content/dam/miteco/es/cambio-climatico/temas/impactos-vulnerabilidad-y-adaptacion/01_el_clima_de_espana_2_tcm30-178492.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Efectos del Cambio Climático en España: https://www.miteco.gob.es/content/dam/miteco/es/prensa/190326documentotecnicoopendataclimatico_tcm30-489685.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "EL CAMBIO CLIMÁTICO EN ESPAÑA. ESTADO DE SITUACIÓN DOCUMENTO RESUMEN: https://www.miteco.gob.es/content/dam/miteco/es/cambio-climatico/publicaciones/documentos-de-interes/ad_hoc_resumen_tcm30-178349.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Variable climática Periodo observado Indicador utilizado Tendencia Atmósfera: https://www.miteco.gob.es/content/dam/miteco/es/cambio-climatico/temas/impactos-vulnerabilidad-y-adaptacion/ericc/IG2_ERICC-2025_Variables%20climaticas.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "El año 2025 volvió a batir récords de temperatura en España - State Meteorological Agency - AEMET - Spanish Government: https://www.aemet.es/en/noticias/2026/06/IAC_2025"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "España registra en 2025 su tercer año más cálido desde 1961, según la Aemet • CONSTRUIBLE: https://www.construible.es/2026/06/19/espana-registra-2025-tercer-ano-mas-calido-desde-1961-aemet"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "guía de escenarios - regionalizados de cambio climático ...: https://www.miteco.gob.es/content/dam/miteco/es/cambio-climatico/temas/impactos-vulnerabilidad-y-adaptacion/guia_escenarios_ar5_2017_tcm30-485945.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Generación de escenarios regionalizados de cambio climático - State Meteorological Agency - AEMET - Spanish Government: https://www.aemet.es/en/idi/clima/escenarios_CC"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Interpretación: Resultados gráficos de proyecciones regionalizadas de cambio climático - State Meteorological Agency - AEMET - Spanish Government: https://www.aemet.es/en/serviciosclimaticos/cambio_climat/result_graficos/ayuda"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Visor de Escenarios de Cambio Climático - AdapteCCa: https://escenarios.adaptecca.es/info"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Proyecciones climáticas para el siglo XXI: https://www.aemet.es/en/serviciosclimaticos/cambio_climat"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Aemet: https://www.aemet.es/documentos/es/elclima/cambio_climat/escenarios/Informe_Escenarios.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "pasado, presente y escenarios de clima para el siglo XXI: https://www.miteco.gob.es/content/dam/miteco/es/cambio-climatico/temas/impactos-vulnerabilidad-y-adaptacion/01_el_clima_de_espana_2_tcm30-178492.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Una guía de futuros climáticos en España | Predictia: https://predictia.es/projects/adaptecca-viewer.html"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Análisis del Documento PDF\n\nLamento informar que el contenido proporcionado es un archivo PDF codificado que no se puede leer de manera legible en formato de texto plano. El material muestra código binario y metadatos de PDF en lugar del contenido estructurado.\n\n## Lo que se observa:\n\nEl documento parece ser un informe técnico con características típicas de publicaciones climáticas (estructura de objeto PDF con múltiples streams comprimidos), pero **no puedo extraer la tabla de variables climá"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Key Declarations on Uncertainty, Limitations, and Methodology\n\n## Precipitation Uncertainty (Critical)\n\nThe viewer includes warnings on extreme precipitation projections. Models show \"contradictorios\" results in Mediterranean coastal zones due to simulation limitations for convective episodes. The statement notes: \"la información sobre precipitaciones extremas en la región mediterránea...está afectada por un alto grado de incertidumbre y debe ser interpretada con mucha precaución.\"\n\nPhysical u"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Información sobre la Península Ibérica en el ESOTC 2025\n\nBasándome en el contenido proporcionado, **no se encuentran detalles específicos sobre temperatura y precipitación en la Península Ibérica o suroeste de Europa para 2025**.\n\nEl sitio web del ESOTC 2025 presenta una estructura de navegación con múltiples secciones temáticas (temperatura, precipitación, etc.), pero el contenido mostrado corresponde principalmente a:\n\n- Página de inicio y navegación\n- Enlaces a animaciones e infografías\n- D"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "European State of the Climate 2025: https://climate.copernicus.eu/sites/default/files/custom-uploads/ESOTC-2025/Press%20Resources/European_State_of_the_Climate_2025-no_layout_version.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Precipitation, relative humidity, and soil moisture for March 2025 | Copernicus: https://climate.copernicus.eu/precipitation-relative-humidity-and-soil-moisture-march-2025"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Ten charts to discover the European State of the Climate 2025 report | Copernicus: https://climate.copernicus.eu/ten-charts-discover-european-state-climate-2025-report"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "European State of the Climate 2025 report published | ECMWF: https://www.ecmwf.int/en/about/media-centre/news/2026/european-state-climate-2025-report-published"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Copernicus Climate Change Service: https://climate.copernicus.eu/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "9. Precipitation | Copernicus: https://climate.copernicus.eu/esotc/2025/precipitation"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "European State of the Climate 2025 | Copernicus: https://climate.copernicus.eu/esotc/2025"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Climate Bulletins | Copernicus: https://climate.copernicus.eu/climate-bulletin"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Image of the day: https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-day/drought-iberian-peninsula"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Image of the day: https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-day/european-state-climate-2024-report"
+        }
+      ],
+      "opened_urls": [
+        "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf",
+        "https://www.aemet.es/es/noticias/2026/01/resumen_anual_2025",
+        "https://www.aemet.es/es/noticias/2026/06/IAC_2025",
+        "https://www.aemet.es/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/detalles/informe_estado_clima",
+        "https://www.aemet.es/es/noticias/2025/03/informe_clivar_24",
+        "https://www.aemet.es/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/detalles/NT32_AEMET",
+        "https://www.aemet.es/es/noticias/2025/05/iac_2024",
+        "https://www.miteco.gob.es/content/dam/miteco/es/cambio-climatico/temas/impactos-vulnerabilidad-y-adaptacion/ericc/IG2_ERICC-2025_Variables%20climaticas.pdf",
+        "https://escenarios.adaptecca.es/info",
+        "https://climate.copernicus.eu/esotc/2025"
+      ],
+      "cited_urls": [
+        "https://www.aemet.es/es/noticias/2026/01/resumen_anual_2025",
+        "https://www.aemet.es/es/noticias/2026/06/IAC_2025",
+        "https://www.aemet.es/es/noticias/2025/05/iac_2024",
+        "https://www.miteco.gob.es/content/dam/miteco/es/cambio-climatico/temas/impactos-vulnerabilidad-y-adaptacion/01_el_clima_de_espana_2_tcm30-178492.pdf",
+        "https://www.aemet.es/es/idi/clima/escenarios_CC",
+        "https://escenarios.adaptecca.es/info",
+        "https://www.aemet.es/es/noticias/2025/03/informe_clivar_24",
+        "https://climate.copernicus.eu/esotc/2025",
+        "https://www.aemet.es/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/detalles/informe_estado_clima",
+        "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/NT32_AEMET/NT_32_Comportamiento_precipitaciones.pdf"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://repositorio.aemet.es/?locale=en",
+          "title": "Informe del estado del clima en España en 2024"
+        },
+        {
+          "url": "https://climatica.coop/estado-del-clima-aemet-2024/",
+          "title": "Los tres años más calurosos en España han sido los últimos tres: 2022, 2023 y 2024 - Climática"
+        },
+        {
+          "url": "https://zenodo.org/records/12105061",
+          "title": "zenodo.org"
+        },
+        {
+          "url": "https://aula-pirata.gumroad.com/l/TDIjG",
+          "title": "aula-pirata.gumroad.com"
+        },
+        {
+          "url": "https://agris.fao.org/search/en/records/64735816e17b74d222507d0f",
+          "title": "AGRIS - International System for Agricultural Science and Technology"
+        },
+        {
+          "url": "https://es.statista.com/estadisticas/935474/evolucion-anual-de-la-temperatura-media-en-espana",
+          "title": "evolucion anual de la temperatura media en espana"
+        },
+        {
+          "url": "https://ahrefs.com/websites/aemet.es",
+          "title": "ahrefs.com"
+        },
+        {
+          "url": "https://archive.lib.msu.edu/tic/cespe/article/2014jul62.pdf",
+          "title": "archive.lib.msu.edu"
+        },
+        {
+          "url": "https://polired.upm.es/index.php/boletincfs/article/download/2617/2683/9543",
+          "title": "polired.upm.es"
+        },
+        {
+          "url": "https://www.adaptecca.es/recursos/buscador/informe-sobre-el-estado-del-clima-en-espana-2025",
+          "title": "Informe sobre el estado del clima en España 2025 | Plataforma sobre Adaptación al Cambio Climático en España"
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf",
+          "title": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf"
+        },
+        {
+          "url": "https://www.aemet.es/en/noticias/2026/06/IAC_2025",
+          "title": "El año 2025 volvió a batir récords de temperatura en España - State Meteorological Agency - AEMET - Spanish Government"
+        },
+        {
+          "url": "https://www.aemet.es/en/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/detalles/informe_estado_clima",
+          "title": "Informes sobre el estado del clima de España - State Meteorological Agency - AEMET - Spanish Government"
+        },
+        {
+          "url": "https://www.aemet.es/en/noticias/2026/01/resumen_anual_2025",
+          "title": "2025 fue un año extremadamente cálido y con carácter húmedo en cuanto a lluvias - State Meteorological Agency - AEMET - Spanish Government"
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2025_completo_baja_res.pdf",
+          "title": "Informe sobre el estado del clima de España 2025"
+        },
+        {
+          "url": "https://www.aemet.es/en/noticias/2025/03/informe_clivar_24",
+          "title": "España se encamina hacia un clima más árido a la vez que aumentan los episodios extremos de lluvias, según el informe CLIVAR-Spain - State Meteorological Agency - AEMET - Spanish Government"
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/serviciosclimaticos/vigilancia_clima/resumenes_climat/anuales/res_anual_clim_2025.pdf",
+          "title": "Resumen anual climatológico 2025 Departamento de Producción"
+        },
+        {
+          "url": "https://x.com/AEMET_Esp/status/2067195615117750545",
+          "title": "📑 Hemos presentado el Informe sobre el estado del clima ..."
+        },
+        {
+          "url": "https://www.aemet.es/en/serviciosclimaticos/vigilancia_clima/resumenes",
+          "title": "Climatological summaries - Page 1 - Spain - Monthly - State Meteorological Agency - AEMET - Spanish Government"
+        },
+        {
+          "url": "https://www.aemet.es/es/noticias/2026/01/resumen_anual_2025",
+          "title": "https://www.aemet.es/es/noticias/2026/01/resumen_anual_2025"
+        },
+        {
+          "url": "https://www.aemet.es/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/detalles/informe_estado_clima",
+          "title": "https://www.aemet.es/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/detalles/informe_estado_clima"
+        },
+        {
+          "url": "https://www.aemet.es/es/noticias/2026/06/IAC_2025",
+          "title": "https://www.aemet.es/es/noticias/2026/06/IAC_2025"
+        },
+        {
+          "url": "https://www.aemet.es/es/noticias/2025/03/informe_clivar_24",
+          "title": "https://www.aemet.es/es/noticias/2025/03/informe_clivar_24"
+        },
+        {
+          "url": "https://www.construible.es/2025/05/26/espana-acumula-tres-anos-consecutivos-record-altas-temperaturas-segun-aemet",
+          "title": "España acumula tres años consecutivos de récord de altas temperaturas, según la Aemet • CONSTRUIBLE"
+        },
+        {
+          "url": "https://www.aemet.es/en/noticias/2025/05/iac_2024",
+          "title": "2024, un año marcado en España por las altas temperaturas y la riada de octubre en Valencia - State Meteorological Agency - AEMET - Spanish Government"
+        },
+        {
+          "url": "https://www.aemet.es/en/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/detalles/NT32_AEMET",
+          "title": "Comportamiento de las precipitaciones en España y periodos de sequía (periodo 1961-2018) - State Meteorological Agency - AEMET - Spanish Government"
+        },
+        {
+          "url": "https://maldita.es/clima/20250721/aemet-desde-registros-1961-2020/",
+          "title": "No, cuando la AEMET dice \"desde que hay registros\" no se refiere a desde 2020: la serie histórica utilizada empieza en 1961·Maldita.es - Periodismo para que no te la cuelen"
+        },
+        {
+          "url": "https://emirodgar.es/analisis-cambio-climatico",
+          "title": "Análisis cambio climático de España (2005-2025) - Emirodgar"
+        },
+        {
+          "url": "https://core.ac.uk/works/79380845",
+          "title": "core.ac.uk"
+        },
+        {
+          "url": "https://www.aemet.es/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/detalles/NT32_AEMET",
+          "title": "https://www.aemet.es/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/detalles/NT32_AEMET"
+        },
+        {
+          "url": "https://www.aemet.es/es/noticias/2025/05/iac_2024",
+          "title": "https://www.aemet.es/es/noticias/2025/05/iac_2024"
+        },
+        {
+          "url": "https://www.miteco.gob.es/content/dam/miteco/es/cambio-climatico/temas/impactos-vulnerabilidad-y-adaptacion/01_el_clima_de_espana_2_tcm30-178492.pdf",
+          "title": "pasado, presente y escenarios de clima para el siglo XXI"
+        },
+        {
+          "url": "https://www.miteco.gob.es/content/dam/miteco/es/prensa/190326documentotecnicoopendataclimatico_tcm30-489685.pdf",
+          "title": "Efectos del Cambio Climático en España"
+        },
+        {
+          "url": "https://www.miteco.gob.es/content/dam/miteco/es/cambio-climatico/publicaciones/documentos-de-interes/ad_hoc_resumen_tcm30-178349.pdf",
+          "title": "EL CAMBIO CLIMÁTICO EN ESPAÑA. ESTADO DE SITUACIÓN DOCUMENTO RESUMEN"
+        },
+        {
+          "url": "https://www.miteco.gob.es/content/dam/miteco/es/cambio-climatico/temas/impactos-vulnerabilidad-y-adaptacion/ericc/IG2_ERICC-2025_Variables%20climaticas.pdf",
+          "title": "https://www.miteco.gob.es/content/dam/miteco/es/cambio-climatico/temas/impactos-vulnerabilidad-y-adaptacion/ericc/IG2_ERICC-2025_Variables%20climaticas.pdf"
+        },
+        {
+          "url": "https://www.construible.es/2026/06/19/espana-registra-2025-tercer-ano-mas-calido-desde-1961-aemet",
+          "title": "España registra en 2025 su tercer año más cálido desde 1961, según la Aemet • CONSTRUIBLE"
+        },
+        {
+          "url": "https://www.miteco.gob.es/content/dam/miteco/es/cambio-climatico/temas/impactos-vulnerabilidad-y-adaptacion/guia_escenarios_ar5_2017_tcm30-485945.pdf",
+          "title": "guía de escenarios - regionalizados de cambio climático ..."
+        },
+        {
+          "url": "https://www.aemet.es/en/idi/clima/escenarios_CC",
+          "title": "Generación de escenarios regionalizados de cambio climático - State Meteorological Agency - AEMET - Spanish Government"
+        },
+        {
+          "url": "https://www.aemet.es/en/serviciosclimaticos/cambio_climat/result_graficos/ayuda",
+          "title": "Interpretación: Resultados gráficos de proyecciones regionalizadas de cambio climático - State Meteorological Agency - AEMET - Spanish Government"
+        },
+        {
+          "url": "https://escenarios.adaptecca.es/info",
+          "title": "https://escenarios.adaptecca.es/info"
+        },
+        {
+          "url": "https://www.aemet.es/en/serviciosclimaticos/cambio_climat",
+          "title": "Proyecciones climáticas para el siglo XXI"
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/elclima/cambio_climat/escenarios/Informe_Escenarios.pdf",
+          "title": "Aemet"
+        },
+        {
+          "url": "https://predictia.es/projects/adaptecca-viewer.html",
+          "title": "Una guía de futuros climáticos en España | Predictia"
+        },
+        {
+          "url": "https://climate.copernicus.eu/esotc/2025",
+          "title": "European State of the Climate 2025 | Copernicus"
+        },
+        {
+          "url": "https://climate.copernicus.eu/sites/default/files/custom-uploads/ESOTC-2025/Press%20Resources/European_State_of_the_Climate_2025-no_layout_version.pdf",
+          "title": "European State of the Climate 2025"
+        },
+        {
+          "url": "https://climate.copernicus.eu/precipitation-relative-humidity-and-soil-moisture-march-2025",
+          "title": "Precipitation, relative humidity, and soil moisture for March 2025 | Copernicus"
+        },
+        {
+          "url": "https://climate.copernicus.eu/ten-charts-discover-european-state-climate-2025-report",
+          "title": "Ten charts to discover the European State of the Climate 2025 report | Copernicus"
+        },
+        {
+          "url": "https://www.ecmwf.int/en/about/media-centre/news/2026/european-state-climate-2025-report-published",
+          "title": "European State of the Climate 2025 report published | ECMWF"
+        },
+        {
+          "url": "https://climate.copernicus.eu/",
+          "title": "Copernicus Climate Change Service"
+        },
+        {
+          "url": "https://climate.copernicus.eu/esotc/2025/precipitation",
+          "title": "9. Precipitation | Copernicus"
+        },
+        {
+          "url": "https://climate.copernicus.eu/climate-bulletin",
+          "title": "Climate Bulletins | Copernicus"
+        },
+        {
+          "url": "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-day/drought-iberian-peninsula",
+          "title": "Image of the day"
+        },
+        {
+          "url": "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-day/european-state-climate-2024-report",
+          "title": "Image of the day"
+        },
+        {
+          "url": "https://www.aemet.es/es/idi/clima/escenarios_CC",
+          "title": "https://www.aemet.es/es/idi/clima/escenarios_CC"
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/NT32_AEMET/NT_32_Comportamiento_precipitaciones.pdf",
+          "title": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/NT32_AEMET/NT_32_Comportamiento_precipitaciones.pdf"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://repositorio.aemet.es/?locale=en",
+          "text": "Informe del estado del clima en España en 2024"
+        },
+        {
+          "url": "https://climatica.coop/estado-del-clima-aemet-2024/",
+          "text": "Los tres años más calurosos en España han sido los últimos tres: 2022, 2023 y 2024 - Climática"
+        },
+        {
+          "url": "https://zenodo.org/records/12105061",
+          "text": "zenodo.org"
+        },
+        {
+          "url": "https://aula-pirata.gumroad.com/l/TDIjG",
+          "text": "aula-pirata.gumroad.com"
+        },
+        {
+          "url": "https://agris.fao.org/search/en/records/64735816e17b74d222507d0f",
+          "text": "AGRIS - International System for Agricultural Science and Technology"
+        },
+        {
+          "url": "https://es.statista.com/estadisticas/935474/evolucion-anual-de-la-temperatura-media-en-espana",
+          "text": "evolucion anual de la temperatura media en espana"
+        },
+        {
+          "url": "https://ahrefs.com/websites/aemet.es",
+          "text": "ahrefs.com"
+        },
+        {
+          "url": "https://archive.lib.msu.edu/tic/cespe/article/2014jul62.pdf",
+          "text": "archive.lib.msu.edu"
+        },
+        {
+          "url": "https://polired.upm.es/index.php/boletincfs/article/download/2617/2683/9543",
+          "text": "polired.upm.es"
+        },
+        {
+          "url": "https://www.adaptecca.es/recursos/buscador/informe-sobre-el-estado-del-clima-en-espana-2025",
+          "text": "Informe sobre el estado del clima en España 2025 | Plataforma sobre Adaptación al Cambio Climático en España"
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf",
+          "text": "Informe sobre el estado del clima de España 2025 Resumen ejecutivo"
+        },
+        {
+          "url": "https://www.aemet.es/en/noticias/2026/06/IAC_2025",
+          "text": "El año 2025 volvió a batir récords de temperatura en España - State Meteorological Agency - AEMET - Spanish Government"
+        },
+        {
+          "url": "https://www.aemet.es/en/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/detalles/informe_estado_clima",
+          "text": "Informes sobre el estado del clima de España - State Meteorological Agency - AEMET - Spanish Government"
+        },
+        {
+          "url": "https://www.aemet.es/en/noticias/2026/01/resumen_anual_2025",
+          "text": "2025 fue un año extremadamente cálido y con carácter húmedo en cuanto a lluvias - State Meteorological Agency - AEMET - Spanish Government"
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2025_completo_baja_res.pdf",
+          "text": "Informe sobre el estado del clima de España 2025"
+        },
+        {
+          "url": "https://www.aemet.es/en/noticias/2025/03/informe_clivar_24",
+          "text": "España se encamina hacia un clima más árido a la vez que aumentan los episodios extremos de lluvias, según el informe CLIVAR-Spain - State Meteorological Agency - AEMET - Spanish Government"
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/serviciosclimaticos/vigilancia_clima/resumenes_climat/anuales/res_anual_clim_2025.pdf",
+          "text": "Resumen anual climatológico 2025 Departamento de Producción"
+        },
+        {
+          "url": "https://x.com/AEMET_Esp/status/2067195615117750545",
+          "text": "📑 Hemos presentado el Informe sobre el estado del clima ..."
+        },
+        {
+          "url": "https://www.aemet.es/en/serviciosclimaticos/vigilancia_clima/resumenes",
+          "text": "Climatological summaries - Page 1 - Spain - Monthly - State Meteorological Agency - AEMET - Spanish Government"
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf",
+          "text": "# Información no disponible\n\nNo puedo extraer la información solicitada. El contenido proporcionado es un archivo PDF codificado (comprimido/encriptado), no texto legible. Contiene estructuras binarias de objeto PDF sin que el texto del documento sea accesible en formato plano.\n\nPara ayudarte a extraer:\n- **(1) Temperaturas medias 2025 y anomalías**\n- **(2) Tendencias a largo plazo por década**\n- **(3) Datos de precipitación y sequía**\n- **(4) Menciones de incertidumbre, significación estadística e intervalos de confianza**\n\nNecesitaría:\n- El PDF convertido a texto plano, o\n- Una versión HTML/texto del documento original\n\n¿Puedes compartir el contenido en formato de texto sin procesar?\n\n[Binary content (application/pdf, 2.9MB) also saved to [REDACTED_PATH]"
+        },
+        {
+          "url": "https://www.aemet.es/es/noticias/2026/01/resumen_anual_2025",
+          "text": "# 2025 Climate Summary for Spain\n\n## Temperature Figures\n\n**Mean temperature (peninsular Spain):** 15.0°C, which represents \"+1.1 °C por encima del promedio del periodo de referencia 1991-2020\" (1.1°C above the 1991-2020 reference period average).\n\n**Ranking:** The third warmest year since records began in 1961, tied with 2024. Only 2022 and 2023 were warmer. The document notes that \"Los 11 años más cálidos de la serie son todos del siglo XXI\" (all 11 warmest years on record occurred in the 21st century).\n\n## Precipitation Figures\n\n**Annual accumulated precipitation (peninsular Spain):** 696.1 mm\n\n**Percentage relative to normal:** 109% of the 1991-2020 reference period normal value\n\n**Ranking:** The 25th wettest year since 1961 began, and the 8th wettest of the 21st century.\n\nThe precipitation distribution was notably irregular both geographically and temporally across Spain's regions during 2025."
+        },
+        {
+          "url": "https://www.aemet.es/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/detalles/informe_estado_clima",
+          "text": "# AEMET Climate Reports: Analysis\n\n## Available Reports\n\nThe page lists annual climate state reports for Spain from 2019-2025, each offered in two formats:\n- Executive summaries (lower/higher resolution PDFs)\n- Complete reports (lower/higher resolution PDFs)\n\n## Web/HTML Versions\n\n**No web or HTML versions are mentioned.** Only PDF documents are provided for download.\n\n## Methodology & Uncertainty Discussion\n\nThe description indicates reports cover:\n> \"temperatures of air and seawater and their trends, precipitation and drought periods, sunshine, phenology, storms and extreme weather phenomena\"\n\nHowever, **no methodological details or uncertainty quantifications are described** on this page. The materials appear to be downloadable documents rather than interactive web indicators. Readers would need to consult the actual PDF reports themselves to find any methodological information or uncertainty discussions.\n\n## Limitations\n\nThis appears to be a landing page for document access rather than a comprehensive information resource about the reports' technical foundations."
+        },
+        {
+          "url": "https://www.aemet.es/es/noticias/2026/06/IAC_2025",
+          "text": "# Climate Data from Spain's 2025 Climate Report\n\n## Temperature Trends\n- **Annual mean temperature increase:** 1.75°C since 1961 (approximately 0.29°C per decade)\n- **2025 mean temperature:** 15.1°C, which was \"1.1 °C por encima del promedio anual normal\"\n- **Ranking:** Third warmest year on record, tied with 2024\n\n## Heat Records\n- **2025 heat records:** 25 days with temperature records; zero cold records\n- **Last decade:** 221 warm records vs. 7 cold records (warm records 32 times more frequent)\n- **Summer heat waves:** Three occurred; approximately one in three summer days experienced heat wave conditions\n\n## Marine Temperatures\n- Mediterranean waters: \"las temperaturas medias anuales más altas de la serie\"\n- Surrounding Spanish waters: Second highest on record (0.8°C above 1991-2020 normal)\n- Milestone: Only three years have reached/exceeded 20°C average for surrounding waters since 1940\n\n## Precipitation\n- **2025 total:** 688.7 mm (109% of normal 1991-2020 baseline)\n- **Spring:** \"51 % al valor normal,\" fifth wettest on record\n- **Trend significance:** \"No se encuentra una tendencia estadísticamente significativa\" for overall Spain since 1961, though some regions show declines\n\n## Drought Status\nTransitioned from long-duration drought (March 2023 onset) to normalcy by March 2025."
+        },
+        {
+          "url": "https://www.aemet.es/es/noticias/2025/03/informe_clivar_24",
+          "text": "# Conclusiones del Informe CLIVAR-Spain 2024\n\n## Aridez y Precipitación\n\nEl informe proyecta que \"a lo largo del siglo XXI está previsto que se reduzca la cantidad de precipitación que recibe España en promedio.\" Simultáneamente, se espera la \"extensión de los climas áridos en nuestro país,\" impulsada por temperaturas más elevadas.\n\n## Extremos de Lluvia\n\nA pesar de la tendencia hacia menor precipitación media, el documento indica que \"aumentan los episodios extremos de lluvias.\" Este patrón refleja una intensificación de eventos climáticos extremos.\n\n## Riesgos Asociados\n\nLas conclusiones identifican consecuencias concretas: incremento del \"riesgo de incendios y la exposición al calor\" derivado de las transformaciones climáticas proyectadas.\n\n## Sobre Incertidumbre o Discrepancias\n\nEl texto no menciona explícitamente incertidumbre entre modelos, discrepancias científicas o falta de consenso. El informe se presenta como evaluación consolidada de \"modelos y proyecciones de cambio climático,\" complementando las conclusiones del IPCC a escala global con visión detallada para España."
+        },
+        {
+          "url": "https://www.construible.es/2025/05/26/espana-acumula-tres-anos-consecutivos-record-altas-temperaturas-segun-aemet",
+          "text": "España acumula tres años consecutivos de récord de altas temperaturas, según la Aemet • CONSTRUIBLE"
+        },
+        {
+          "url": "https://www.aemet.es/en/noticias/2025/05/iac_2024",
+          "text": "2024, un año marcado en España por las altas temperaturas y la riada de octubre en Valencia - State Meteorological Agency - AEMET - Spanish Government"
+        },
+        {
+          "url": "https://www.aemet.es/en/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/detalles/NT32_AEMET",
+          "text": "Comportamiento de las precipitaciones en España y periodos de sequía (periodo 1961-2018) - State Meteorological Agency - AEMET - Spanish Government"
+        },
+        {
+          "url": "https://maldita.es/clima/20250721/aemet-desde-registros-1961-2020/",
+          "text": "No, cuando la AEMET dice \"desde que hay registros\" no se refiere a desde 2020: la serie histórica utilizada empieza en 1961·Maldita.es - Periodismo para que no te la cuelen"
+        },
+        {
+          "url": "https://emirodgar.es/analisis-cambio-climatico",
+          "text": "Análisis cambio climático de España (2005-2025) - Emirodgar"
+        },
+        {
+          "url": "https://core.ac.uk/works/79380845",
+          "text": "core.ac.uk"
+        }
+      ],
+      "final_answer": "## Alcance y limitación de esta investigación\n\nConsulté páginas oficiales de AEMET, MITECO/AdapteCCa y Copernicus (C3S). **Aviso importante**: los PDF de los informes primarios (Informe sobre el Estado del Clima 2025 completo, la tabla ERICC-2025 del MITECO, la Nota Técnica 32) no pudieron ser leídos por mi herramienta de descarga (devuelven binario sin texto extraíble). Por tanto, las cifras que doy proceden de las **notas de prensa y páginas HTML oficiales de AEMET**, que son fuente oficial pero no el documento técnico íntegro. No he leído los apartados metodológicos originales.\n\n---\n\n## 1. Temperatura: lo que sí está documentado\n\n**Hechos con respaldo directo en fuente oficial:**\n\n- 2025 fue el **tercer año más cálido** de la serie española que comienza en **1961**, empatado con 2024; solo 2022 y 2023 fueron más cálidos ([AEMET, resumen anual 2025](https://www.aemet.es/es/noticias/2026/01/resumen_anual_2025)).\n- Temperatura media 2025: **15,0 °C en la España peninsular, +1,1 °C sobre el periodo de referencia 1991-2020** ([AEMET](https://www.aemet.es/es/noticias/2026/01/resumen_anual_2025)).\n- **Los 11 años más cálidos de la serie pertenecen todos al siglo XXI** ([AEMET](https://www.aemet.es/es/noticias/2026/01/resumen_anual_2025)).\n- Tendencia de fondo: la temperatura media anual ha subido **1,75 °C desde 1961** según el informe de 2025 ([AEMET, IECLI 2025](https://www.aemet.es/es/noticias/2026/06/IAC_2025)), frente a **1,69 °C desde 1961** que declaraba el informe del año anterior ([AEMET, IECLI 2024](https://www.aemet.es/es/noticias/2025/05/iac_2024)).\n- Asimetría de récords: en 2025 hubo **25 récords de días cálidos y ninguno de días fríos**; en la última década, **221 récords cálidos frente a 7 fríos** ([AEMET](https://www.aemet.es/es/noticias/2026/06/IAC_2025)).\n- Mar: las aguas mediterráneas registraron **las temperaturas medias anuales más altas de la serie**, y el conjunto de aguas que rodean España quedó **0,8 °C sobre la normal 1991-2020**, segundo valor más alto ([AEMET](https://www.aemet.es/es/noticias/2026/06/IAC_2025)).\n\n**Inferencia mía (no afirmada por la fuente):** la diferencia 1,69 → 1,75 °C entre informes consecutivos refleja sobre todo la incorporación de un año más muy cálido al ajuste de la recta, no un cambio metodológico. No he podido verificarlo; AEMET no explica el salto en las páginas que consulté.\n\n---\n\n## 2. Precipitación: mucho más ambiguo\n\n**Hechos con respaldo oficial:**\n\n- 2025: **696,1 mm en la España peninsular, 109 % del valor normal 1991-2020**; el **25.º año más lluvioso** desde 1961 ([AEMET](https://www.aemet.es/es/noticias/2026/01/resumen_anual_2025)).\n- 2024: **669,1 mm, 105 % de la normal 1991-2020** ([AEMET](https://www.aemet.es/es/noticias/2025/05/iac_2024)).\n- La **primavera de 2025 fue la quinta más lluviosa** de la serie ([AEMET](https://www.aemet.es/es/noticias/2026/06/IAC_2025)).\n- Sequía: la sequía de larga duración iniciada en **marzo de 2023** perdió intensidad a finales de 2024 ([AEMET](https://www.aemet.es/es/noticias/2025/05/iac_2024)) y se dio por superada hacia **marzo de 2025** ([AEMET](https://www.aemet.es/es/noticias/2026/06/IAC_2025)).\n- Extremos: en octubre de 2024, Turís (Valencia) registró **772 mm en 24 h**, con récords nacionales de **185 mm en una hora, 621 mm en seis y 720 mm en doce horas** ([AEMET](https://www.aemet.es/es/noticias/2025/05/iac_2024)).\n\n**La declaración de incertidumbre más importante, literal y repetida en dos informes consecutivos:**\n\n> *\"No se encuentra una tendencia estadísticamente significativa de la precipitación media anual desde 1961 para el conjunto de España\"*, aunque **sí hay descensos estadísticamente significativos en zonas del nordeste y del sur peninsular** ([AEMET IECLI 2024](https://www.aemet.es/es/noticias/2025/05/iac_2024); reiterado en [IECLI 2025](https://www.aemet.es/es/noticias/2026/06/IAC_2025)).\n\nEs decir: **la asimetría entre temperatura y precipitación es la conclusión central**. La señal térmica es robusta y monótona; la de precipitación no lo es a escala nacional.\n\nEl MITECO expresa lo mismo en otros términos: *\"el complejo reparto espacial de la precipitación y su alta variabilidad temporal no permiten vislumbrar una tendencia general definida\"*, aunque señala resultados que apuntan a descenso en el sur peninsular y Canarias en la segunda mitad del siglo XX ([MITECO, *El clima de España: pasado, presente y escenarios*](https://www.miteco.gob.es/content/dam/miteco/es/cambio-climatico/temas/impactos-vulnerabilidad-y-adaptacion/01_el_clima_de_espana_2_tcm30-178492.pdf)).\n\n---\n\n## 3. Incertidumbres declaradas explícitamente\n\n**Sobre observaciones:**\n- Serie de referencia que empieza en **1961**, no antes: cuando AEMET dice \"desde que hay registros\" se refiere a esa serie homogeneizada, no al inicio de las observaciones meteorológicas en España ([AEMET](https://www.aemet.es/es/noticias/2026/01/resumen_anual_2025)).\n- Periodo normal de referencia actual: **1991-2020**. Esto importa: una anomalía de \"+1,1 °C\" sobre 1991-2020 no es comparable con anomalías sobre 1961-1990.\n- Densidad de red desigual: **2.323 puntos de observación para precipitación frente a 374 para temperatura** en el periodo 1951-2005, con controles de calidad y homogeneidad previos ([MITECO](https://www.miteco.gob.es/content/dam/miteco/es/cambio-climatico/temas/impactos-vulnerabilidad-y-adaptacion/01_el_clima_de_espana_2_tcm30-178492.pdf); [AEMET, escenarios regionalizados](https://www.aemet.es/es/idi/clima/escenarios_CC)).\n\n**Sobre proyecciones — aquí la cautela es máxima y explícita:**\n- *\"La información sobre precipitaciones extremas en la región mediterránea… está afectada por un alto grado de incertidumbre y debe ser interpretada con mucha precaución\"*; los modelos dan resultados **contradictorios** en la franja mediterránea por su limitación para simular episodios convectivos ([AdapteCCa, Visor de Escenarios](https://escenarios.adaptecca.es/info)).\n- Las estimaciones de AEMET se publican acompañadas de su incertidumbre, cuantificada como **dos veces la desviación típica** del conjunto de modelos ([AEMET](https://www.aemet.es/es/idi/clima/escenarios_CC)).\n- Limitación reconocida: la corrección de sesgo no pudo aplicarse a algunas variables de Euro-CORDEX (humedad, radiación, viento) por **insuficiencia de datos observacionales** ([AdapteCCa](https://escenarios.adaptecca.es/info)).\n- El informe CLIVAR-España proyecta reducción de la precipitación media y expansión de climas áridos junto con **aumento de episodios extremos de lluvia** ([AEMET](https://www.aemet.es/es/noticias/2025/03/informe_clivar_24)). En la nota de prensa que leí **no se cuantifica la incertidumbre ni se discute el disenso entre modelos**; se presenta como evaluación consolidada.\n\n---\n\n## 4. Discrepancias que detecté entre fuentes oficiales\n\nEstas son reales y conviene no ocultarlas:\n\n| Dato | Resumen anual AEMET | Informe Estado del Clima 2025 |\n|---|---|---|\n| Temperatura media 2025 | 15,0 °C | 15,1 °C |\n| Precipitación 2025 | 696,1 mm | 688,7 mm |\n\nAmbas cifras proceden de AEMET ([resumen anual](https://www.aemet.es/es/noticias/2026/01/resumen_anual_2025) vs. [IECLI 2025](https://www.aemet.es/es/noticias/2026/06/IAC_2025)). **Inferencia mía, no confirmada**: la diferencia probablemente se debe a que una cifra corresponde a la *España peninsular* y la otra al *conjunto de España* (incluyendo Baleares y Canarias). No he podido verificarlo sin leer el PDF completo. Trate la discrepancia como no resuelta.\n\nTambién encontré una inconsistencia menor en el puesto de 2025 entre los años más lluviosos del siglo XXI (8.º u 9.º según la fuente que se lea). Baja confianza en ese dato concreto; el puesto 25.º del conjunto de la serie sí es consistente.\n\nFuente independiente que corrobora el patrón húmedo-luego-seco: Copernicus registra la Península Ibérica como **mucho más húmeda de lo normal** en 2025, con la quinta primavera más lluviosa en España desde 1961, seguida de **condiciones de sequía persistente en otoño** ([C3S, European State of the Climate 2025](https://climate.copernicus.eu/esotc/2025)).\n\n---\n\n## 5. Dónde falta buena evidencia\n\n- **No pude acceder al texto de los apartados metodológicos.** Las declaraciones de incertidumbre que cito son las que aparecen en notas de prensa y páginas web; los intervalos de confianza, el test estadístico usado (Mann-Kendall u otro) y el detalle de la homogeneización de series están en los PDF que no pude leer.\n- **AEMET no publica versión HTML** de estos informes, solo PDF ([página de informes](https://www.aemet.es/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/detalles/informe_estado_clima)), lo que dificulta la verificación automatizada.\n- No verifiqué la **tendencia de la precipitación estacional** (p. ej. si el descenso estival es significativo), ni las tendencias de días de lluvia o intensidad. La Nota Técnica 32 (1961-2018) es la fuente indicada para esto: [PDF](https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/NT32_AEMET/NT_32_Comportamiento_precipitaciones.pdf), pero tampoco pude leer su contenido.\n\n**Síntesis honesta**: las fuentes oficiales españolas afirman con firmeza el calentamiento (~1,7-1,75 °C desde 1961, récords concentrados en el siglo XXI, asimetría abrumadora de récords cálidos) y son deliberadamente cautas con la precipitación, declarando de forma explícita que **no hay tendencia nacional estadísticamente significativa**, con señales de descenso solo regionales, y advirtiendo de alta incertidumbre en las proyecciones de precipitación extrema mediterránea."
+    }
+  ]
+}

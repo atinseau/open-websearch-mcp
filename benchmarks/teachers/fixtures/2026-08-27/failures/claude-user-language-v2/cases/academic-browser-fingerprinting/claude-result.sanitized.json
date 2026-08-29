@@ -1,0 +1,114 @@
+{
+  "is_error": false,
+  "duration_api_ms": 58178,
+  "num_turns": 2,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.4636475,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 32960,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 4432,
+    "output_tokens_details": {
+      "thinking_tokens": 3184
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 32960,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 4432,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 32960,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 32960
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 22679,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.022779,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 4432,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 32960,
+      "webSearchRequests": 0,
+      "costUSD": 0.4408685,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"c1\",\"c2\",\"c3\",\"c4\",\"c5\"],\"rejected_claims\":[{\"id\":\"c6\",\"reason\":\"Motifs de grading invalides / trop étroits : les deux acceptable_patterns exigent des paraphrases inventées absentes de toute évidence fournie (« single-region », « homepage-only », « scope limits », « better spoofing »), alors que les passages disent « one European datacenter », « covered only Tranco Top 10K homepages » et « alter fingerprint attributes without introducing inconsistencies ». Une réponse correcte reprenant la formulation réelle des sources échouerait aux deux motifs. La claim agrège de plus les limitations de trois papiers distincts (Gundelach, Venugopalan, Wang) en imposant un ordre lexical unique, ce qui n'est pas déterministe pour un grading lexical.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": ["c1", "c2", "c3", "c4", "c5"],
+    "rejected_claims": [
+      {
+        "id": "c6",
+        "reason": "Motifs de grading invalides / trop étroits : les deux acceptable_patterns exigent des paraphrases inventées absentes de toute évidence fournie (« single-region », « homepage-only », « scope limits », « better spoofing »), alors que les passages disent « one European datacenter », « covered only Tranco Top 10K homepages » et « alter fingerprint attributes without introducing inconsistencies ». Une réponse correcte reprenant la formulation réelle des sources échouerait aux deux motifs. La claim agrège de plus les limitations de trois papiers distincts (Gundelach, Venugopalan, Wang) en imposant un ordre lexical unique, ce qui n'est pas déterministe pour un grading lexical."
+      }
+    ]
+  },
+  "ttft_ms": 42335,
+  "ttft_stream_ms": 1723,
+  "time_to_request_ms": 20,
+  "type": "result",
+  "duration_ms": 56300,
+  "uuid": "[REDACTED]",
+  "queued_turn_count": 0
+}

@@ -1,21 +1,42 @@
 {
   "name": "open-websearch-mcp",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.1",
+  "description": "Local-first MCP server for deterministic Web evidence retrieval.",
+  "license": "Apache-2.0",
+  "bin": {
+    "open-websearch-mcp": "./bin/open-websearch-mcp.ts"
+  },
+  "files": [
+    "bin",
+    "src",
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "tsconfig.json"
+  ],
   "type": "module",
   "scripts": {
-    "check": "bun run format:check && bun run lint && bun run lint:types && bun run typecheck && bun run test && bun run orchestration:validate -- --repo .",
-    "format": "oxfmt --disable-nested-config --no-error-on-unmatched-pattern src scripts tests/architecture package.json tsconfig.json .oxlintrc.jsonc .oxfmtrc.jsonc",
-    "format:check": "oxfmt --check --disable-nested-config --no-error-on-unmatched-pattern src scripts tests/architecture package.json tsconfig.json .oxlintrc.jsonc .oxfmtrc.jsonc",
-    "lint": "oxlint --disable-nested-config --deny-warnings --report-unused-disable-directives-severity off src scripts tests/architecture",
-    "lint:types": "oxlint --disable-nested-config --type-aware --type-check --deny-warnings --report-unused-disable-directives src scripts tests/architecture",
+    "check": "bun run format:check && bun run lint && bun run lint:limits && bun run lint:types && bun run typecheck && bun run test && bun run orchestration:validate -- --repo .",
+    "benchmark:grade": "bun benchmarks/grader/run.ts",
+    "benchmark:rank:scifact": "bun benchmarks/ranking/run-beir-scifact.ts",
+    "format": "oxfmt --disable-nested-config --no-error-on-unmatched-pattern src scripts tests benchmarks/teachers benchmarks/grader benchmarks/ranking package.json tsconfig.json .oxlintrc.jsonc .oxfmtrc.jsonc",
+    "format:check": "oxfmt --check --disable-nested-config --no-error-on-unmatched-pattern src scripts tests benchmarks/teachers benchmarks/grader benchmarks/ranking package.json tsconfig.json .oxlintrc.jsonc .oxfmtrc.jsonc",
+    "lint": "oxlint --disable-nested-config --deny-warnings --report-unused-disable-directives-severity off src scripts tests benchmarks/teachers benchmarks/grader benchmarks/ranking",
+    "lint:limits": "oxlint --disable-nested-config --deny-warnings --report-unused-disable-directives-severity off src scripts tests benchmarks",
+    "lint:types": "oxlint --disable-nested-config --type-aware --type-check --deny-warnings --report-unused-disable-directives src scripts tests benchmarks/teachers benchmarks/grader benchmarks/ranking",
     "orchestrate": "bun scripts/orchestration/main.ts",
     "orchestration:validate": "bun scripts/orchestration/validate.ts",
-    "test": "bun test --parallel --isolate",
+    "test": "bun test --parallel --isolate --timeout 30000",
+    "test:package": "bun test --parallel --isolate tests/package",
     "test:architecture": "bun test --parallel --isolate tests/architecture",
     "typecheck": "bun x tsc --noEmit"
   },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.0.0",
+    "zod": "4.5.1"
+  },
   "devDependencies": {
+    "@modelcontextprotocol/client": "2.0.0",
     "@types/bun": "1.4.0",
     "oxfmt": "0.65.0",
     "oxlint": "1.80.0",

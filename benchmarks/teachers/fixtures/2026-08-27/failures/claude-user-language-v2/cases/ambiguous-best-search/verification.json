@@ -1,0 +1,9 @@
+{
+  "accepted_claim_ids": ["claim_1", "claim_3", "claim_4", "claim_5", "claim_6", "claim_7"],
+  "rejected_claims": [
+    {
+      "id": "claim_2",
+      "reason": "Source jamais ouverte (opened_urls vide) et passage d'appui constitué uniquement du texte de la reponse finale du modele. Les formulations citees entre guillemets (\"researching a topic in depth\", \"diverse set\") sont attribuees a un PDF de guidelines mis a jour en continu, ce qui rend les patterns lexicaux instables dans le temps. De plus, la proposition \"search engines therefore need a diverse set of helpful results\" est une inference du modele (\"therefore\") plutot qu'un enonce de source verifiable : elle depend d'une interpretation non explicitee."
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "case_id": "community-robots-ethics",
+  "question": "How do Web publishers, crawler operators, and standards participants disagree about whether robots.txt grants permission, merely states preferences, or has legal significance?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim_rfc9309_advisory",
+      "text": "RFC 9309 presents robots.txt as an advisory crawler-behavior protocol, not as access authorization.",
+      "required_concepts": ["rfc9309", "requested_to_honor", "not_access_authorization"],
+      "acceptable_patterns": [
+        "RFC 9309.{0,120}requested to honor.{0,120}not a form of access authorization",
+        "not a form of access authorization"
+      ],
+      "sources": [
+        {
+          "url": "https://www.rfc-editor.org/info/rfc9309",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.rfc-editor.org/info/rfc9309",
+          "text": "RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization."
+        },
+        {
+          "url": "https://www.rfc-editor.org/info/rfc9309",
+          "text": "RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_community-robots-ethics",
+        "claude_run": "2026-08-27_claude_community-robots-ethics"
+      }
+    },
+    {
+      "id": "claim_google_limits",
+      "text": "Google documentation aligns with the preference view by describing robots.txt as crawler-traffic management that cannot enforce behavior or fully prevent appearance in search results.",
+      "required_concepts": ["google", "cannot_enforce", "traffic_management"],
+      "acceptable_patterns": [
+        "Google.{0,120}cannot enforce crawler behavior",
+        "robots\\.txt.{0,120}not a way to keep pages out of Google",
+        "disallowed URLs can still appear in search results"
+      ],
+      "sources": [
+        {
+          "url": "https://developers.google.com/search/docs/crawling-indexing/robots/intro",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://developers.google.com/search/docs/crawling-indexing/robots/intro",
+          "text": "Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results."
+        }
+      ],
+      "weight": 0.9,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_community-robots-ethics",
+        "claude_run": "2026-08-27_claude_community-robots-ethics"
+      }
+    },
+    {
+      "id": "claim_publishers_operators_mixed_language",
+      "text": "Publishers and crawler operators use mixed language: some describe robots.txt in permission terms, while others explicitly call it voluntary or non-binding.",
+      "required_concepts": ["mixed_language", "permission_terms", "non_binding"],
+      "acceptable_patterns": [
+        "permitted to access",
+        "allowed to crawl",
+        "isn’t a legally binding arrangement",
+        "voluntary technical standard"
+      ],
+      "sources": [
+        {
+          "url": "https://help.openai.com/en/articles/20001243-advertiser-guidance-for-allowing-openai-web-crawlers",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://medium.com/blog/how-and-when-does-your-writing-show-up-inside-ai-chatbots-1d2dec42f26d",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://help.openai.com/en/articles/20001243-advertiser-guidance-for-allowing-openai-web-crawlers",
+          "text": "OpenAI’s advertiser guidance is even stronger permission language: it says robots.txt tells crawlers whether they are “permitted” to access parts of a site and that crawling stops if access is disallowed."
+        },
+        {
+          "url": "https://medium.com/blog/how-and-when-does-your-writing-show-up-inside-ai-chatbots-1d2dec42f26d",
+          "text": "Medium’s official blog says bots crawl public-web content by default, describes robots.txt as the place where Medium tells bots what they are and are not allowed to crawl."
+        },
+        {
+          "url": "https://medium.com/blog/how-and-when-does-your-writing-show-up-inside-ai-chatbots-1d2dec42f26d",
+          "text": "But the same Medium post also says robots.txt “isn’t a legally binding arrangement,” is a “voluntary technical standard,” and depends on actors respecting it."
+        }
+      ],
+      "weight": 0.95,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_community-robots-ethics",
+        "claude_run": "2026-08-27_claude_community-robots-ethics"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "robots.txt universally grants or denies legal permission to crawl",
+      "reason": "Unsupported and contradicted by supplied evidence that RFC 9309 says the rules are “not a form of access authorization” and that W3C complementarity “remains subject to interpretation.”"
+    },
+    {
+      "text": "There is a single agreed standards position that robots.txt itself creates binding legal rights reservations",
+      "reason": "Contradicted by supplied evidence showing disagreement among RFC 9309, W3C community materials, and ongoing IETF draft work."
+    },
+    {
+      "text": "All crawler operators describe robots.txt only as preferences and never as permissions",
+      "reason": "Contradicted by supplied evidence from OpenAI advertiser guidance using “permitted” language."
+    },
+    {
+      "text": "Courts have definitively settled the legal significance of robots.txt",
+      "reason": "Unsupported by the supplied evidence passages used here; the provided standards and publisher/operator materials emphasize disagreement and ongoing interpretation instead."
+    },
+    {
+      "text": "W3C community materials distinguish robots.txt from a separate rights-reservation approach and say robots.txt complementarity remains interpretive rather than settled.",
+      "reason": "Rests entirely on Codex self-quotation with no attestation: the Codex run exposed no tool payloads and opened no URLs, and its evidence_passages are the final answer duplicated under each URL, so the quoted strings ('complementary solution', 'remains subject to interpretation') are unverifiable and are attributed to a W3C Community Group landing page (w3.org/community/tdmrep/) that is an implausible host for that prose; nothing in the Claude run corroborates them. The claim text also generalizes a narrow statement about using robots.txt as a search opt-in into a broad assertion that 'robots.txt complementarity remains interpretive', an interpretive leap requiring unstated context, and it conflates two distinct documents (the CG-FINAL report and the CG status page) into one position. The pattern 'not a W3C Standard' is near-boilerplate status text that could match answers not making this claim."
+    },
+    {
+      "text": "Some standards participants are pushing robots.txt toward carrying usage-preference or rights-reservation significance for AI-related uses.",
+      "reason": "The acceptable_patterns bind grading to an unverifiable, source-specific legal quotation ('AI-Pref signal in robots.txt ... logically sufficient to express a reservation of rights' under EU CDSM Article 4) attributed to an EDRLab blog post that no tool result, opened URL, or passage in either run attests to; the Codex evidence_passages are only the final answer restated. That attribution also overstates against the one directly fetched AIPREF text in the bundle, where draft-ietf-aipref-vocab says the spec does not 'address technical, legal, contractual, or other mechanisms that might create a stronger requirement' and that a recipient 'has a choice whether to follow those preferences'. Although the claim's summary text and the first pattern (robots.txt carrying 'usage preferences' via an update to RFC 9309) are supportable, the disjunctive pattern set would credit the unsupported rights-reservation assertion on its own."
+    }
+  ]
+}

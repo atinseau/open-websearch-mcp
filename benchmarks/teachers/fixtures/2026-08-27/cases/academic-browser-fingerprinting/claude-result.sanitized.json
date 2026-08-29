@@ -1,0 +1,129 @@
+{
+  "duration_api_ms": 85358,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.5155305,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 32546,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 6682,
+    "output_tokens_details": {
+      "thinking_tokens": 4720
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 32546,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 6682,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 32546,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 32546
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 22487,
+      "outputTokens": 13,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.022552,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 6682,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 32546,
+      "webSearchRequests": 0,
+      "costUSD": 0.4929785,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 2,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"claim_headless_chromium_soft_blocks\",\"claim_header_signals_explain_many_blocks\",\"claim_browser_fp_weaker_for_ai_agents\",\"claim_reported_limitations\"],\"rejected_claims\":[{\"id\":\"claim_js_probing_widespread\",\"reason\":\"Overly narrow / non-robust grading patterns. Pattern 1 requires the exact counts '2,730 of 7,944', which appear only in the Codex run's self-quoted final answer and are corroborated by no retrieved source text; the independently fetched summary of arXiv:2606.14525 gives only the percentages (34% probe navigator.webdriver, 46% probe at least one Tier 1 automation artifact). Pattern 2 demands the verbatim string 'Tier-1 automation honeypots were checked on 46% of sites', which even the corroborating evidence phrases differently ('probe at least one Tier 1 automation artifact'), so a correct answer would fail both alternatives. There is also concept drift between 'Tier-1 honeypots' as asserted and 'Tier 1 automation artifact' as evidenced.\"},{\"id\":\"claim_inconsistent_fingerprints_detectable\",\"reason\":\"Rests entirely on self-referential evidence. The Codex run opened no URLs and every tool result payload is absent, so the cited evidence_passage for https://arxiv.org/pdf/2406.07647 is simply a copy of the run's own final answer rather than any source content. Six precise statistics (507,080 requests, 20 bot services, 52.93%, 44.56%, 48.11%, 44.95%, 96.84%) and the attribution to 'Venugopalan et al. (2024)' are unverifiable from the supplied evidence, and the second teacher run never surfaced this arXiv ID or paper at all. Accepting would risk baking invented figures and a possibly-wrong arXiv identifier into the fixture.\"},{\"id\":\"claim_automated_crawls_miss_some_fp_sites\",\"reason\":\"Same self-referential defect: the evidence_passage for https://arxiv.org/html/2502.01608v1 is a verbatim copy of the Codex final answer, with no retrieved page content behind it, and the independent run never encountered this arXiv ID (it surfaced the unrelated 2502.14326). The paper identity ('Annamalai et al. 2025'), the figures '211 of 471 / 45%', and the causal attribution to authentication, bot detection and cookie-consent gating are all unverifiable here. The claim is also only tangential to the case question, which asks about detectability of automated sessions rather than crawler coverage of fingerprinting deployments.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": [
+      "claim_headless_chromium_soft_blocks",
+      "claim_header_signals_explain_many_blocks",
+      "claim_browser_fp_weaker_for_ai_agents",
+      "claim_reported_limitations"
+    ],
+    "rejected_claims": [
+      {
+        "id": "claim_js_probing_widespread",
+        "reason": "Overly narrow / non-robust grading patterns. Pattern 1 requires the exact counts '2,730 of 7,944', which appear only in the Codex run's self-quoted final answer and are corroborated by no retrieved source text; the independently fetched summary of arXiv:2606.14525 gives only the percentages (34% probe navigator.webdriver, 46% probe at least one Tier 1 automation artifact). Pattern 2 demands the verbatim string 'Tier-1 automation honeypots were checked on 46% of sites', which even the corroborating evidence phrases differently ('probe at least one Tier 1 automation artifact'), so a correct answer would fail both alternatives. There is also concept drift between 'Tier-1 honeypots' as asserted and 'Tier 1 automation artifact' as evidenced."
+      },
+      {
+        "id": "claim_inconsistent_fingerprints_detectable",
+        "reason": "Rests entirely on self-referential evidence. The Codex run opened no URLs and every tool result payload is absent, so the cited evidence_passage for https://arxiv.org/pdf/2406.07647 is simply a copy of the run's own final answer rather than any source content. Six precise statistics (507,080 requests, 20 bot services, 52.93%, 44.56%, 48.11%, 44.95%, 96.84%) and the attribution to 'Venugopalan et al. (2024)' are unverifiable from the supplied evidence, and the second teacher run never surfaced this arXiv ID or paper at all. Accepting would risk baking invented figures and a possibly-wrong arXiv identifier into the fixture."
+      },
+      {
+        "id": "claim_automated_crawls_miss_some_fp_sites",
+        "reason": "Same self-referential defect: the evidence_passage for https://arxiv.org/html/2502.01608v1 is a verbatim copy of the Codex final answer, with no retrieved page content behind it, and the independent run never encountered this arXiv ID (it surfaced the unrelated 2502.14326). The paper identity ('Annamalai et al. 2025'), the figures '211 of 471 / 45%', and the causal attribution to authentication, bot detection and cookie-consent gating are all unverifiable here. The claim is also only tangential to the case question, which asks about detectability of automated sessions rather than crawler coverage of fingerprinting deployments."
+      }
+    ]
+  },
+  "ttft_ms": 61572,
+  "type": "result",
+  "duration_ms": 83859,
+  "uuid": "[REDACTED]",
+  "ttft_stream_ms": 1593,
+  "time_to_request_ms": 10,
+  "queued_turn_count": 0
+}

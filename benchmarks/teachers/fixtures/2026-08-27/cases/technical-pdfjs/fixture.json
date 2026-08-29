@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "case_id": "technical-pdfjs",
+  "question": "What do current official PDF.js sources document about using the generic build outside a browser, extracting page text, and the runtime assumptions that affect Bun compatibility?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Current official PDF.js docs present the generic build as browser-oriented, while the examples page points to separate Node.js examples.",
+      "required_concepts": ["generic build", "browser", "examples/node"],
+      "acceptable_patterns": ["generic build.*browser", "examples/node"],
+      "sources": [
+        {
+          "url": "https://mozilla.github.io/pdf.js/getting_started/",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://mozilla.github.io/pdf.js/examples/",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://mozilla.github.io/pdf.js/getting_started/",
+          "text": "the getting-started page says the prebuilt package “includes the generic build of PDF.js and the viewer,” and its examples page says its main tutorial shows use “in a web browser.”"
+        },
+        {
+          "url": "https://mozilla.github.io/pdf.js/examples/",
+          "text": "The same official examples page says there are separate `examples/node/` examples for Node.js usage."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-pdfjs",
+        "claude_run": "2026-08-27_claude_technical-pdfjs"
+      }
+    },
+    {
+      "id": "c2",
+      "text": "The current official Node text-extraction example imports the legacy build, not the generic build.",
+      "required_concepts": ["Node example", "legacy build"],
+      "acceptable_patterns": [
+        "imports? `?pdfjs-dist/legacy/build/pdf\\.mjs`?",
+        "does not import the generic build"
+      ],
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs",
+          "text": "The current official Node text-extraction example does **not** import the generic build; it imports `pdfjs-dist/legacy/build/pdf.mjs`."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-pdfjs",
+        "claude_run": "2026-08-27_claude_technical-pdfjs"
+      }
+    },
+    {
+      "id": "c3",
+      "text": "The official Node example extracts text by loading a document, getting pages, calling `getTextContent()`, and joining `item.str` values.",
+      "required_concepts": ["getDocument", "getPage", "getTextContent", "item.str"],
+      "acceptable_patterns": [
+        "getDocument\\(\\{ url: pdfPath \\}\\)",
+        "getPage\\(i\\)",
+        "getTextContent\\(\\)",
+        "items\\.map\\(item => item\\.str\\)\\.join\\(\" \"\\)"
+      ],
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs",
+          "text": "That example loads a document with `getDocument({ url: pdfPath })`, gets each page with `getPage(i)`, calls `await pdfPage.getTextContent()`, and prints `items.map(item => item.str).join(\" \")`."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-pdfjs",
+        "claude_run": "2026-08-27_claude_technical-pdfjs"
+      }
+    },
+    {
+      "id": "c4",
+      "text": "`PDFPageProxy.getTextContent()` is documented to return a promise for `TextContent`, and whitespace is normalized to standard spaces by default.",
+      "required_concepts": ["getTextContent", "Promise", "TextContent", "whitespace normalization"],
+      "acceptable_patterns": [
+        "getTextContent.*Promise\\.?<TextContent>",
+        "whitespace.*standard spaces",
+        "0x20"
+      ],
+      "sources": [
+        {
+          "url": "https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html",
+          "text": "`(async) getTextContent(params) → {Promise.<TextContent>}`"
+        },
+        {
+          "url": "https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html",
+          "text": "The method extracts text content from a PDF page. Per documentation: \"All occurrences of whitespace will be replaced by standard spaces (0x20).\""
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-pdfjs",
+        "claude_run": "2026-08-27_claude_technical-pdfjs"
+      }
+    },
+    {
+      "id": "c5",
+      "text": "The `TextContent` docs describe an `items` array plus `styles`, and `TextItem` includes `str`, direction, transform, width, height, font name, and `hasEOL`.",
+      "required_concepts": ["TextContent", "items", "styles", "TextItem.str", "hasEOL"],
+      "acceptable_patterns": ["items.*styles", "TextItem\\.str", "hasEOL"],
+      "sources": [
+        {
+          "url": "https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html",
+          "text": "The `TextContent` docs say it contains an `items` array plus `styles`; `TextItem.str` is the text string, and `TextItem` also carries direction, transform, width, height, font name, and `hasEOL`."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-pdfjs",
+        "claude_run": "2026-08-27_claude_technical-pdfjs"
+      }
+    },
+    {
+      "id": "c7",
+      "text": "The FAQ says PDF.js has a default non-polyfilled build for the latest browsers and a separate `legacy` build for older environments; its support table lists `Node.js 22+` under the `legacy` build as mostly supported with limited automated testing, and Bun is not listed.",
+      "required_concepts": [
+        "FAQ",
+        "latest browsers",
+        "legacy build",
+        "Node.js 22+",
+        "Bun not listed"
+      ],
+      "acceptable_patterns": [
+        "default non-polyfilled build.*latest browsers",
+        "separate `legacy` build",
+        "Node\\.js 22\\+",
+        "Mostly",
+        "Limited automated testing",
+        "Bun is not listed"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/mozilla/pdf.js/wiki/frequently-asked-questions",
+          "equivalent_urls": ["https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions"]
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://github.com/mozilla/pdf.js/wiki/frequently-asked-questions",
+          "text": "The current FAQ says PDF.js ships a default non-polyfilled build for the latest browsers and a separate `legacy` build for older environments; in its support table, `Node.js 22+` appears under the `legacy` build as “Mostly” supported with “Limited” automated testing. Bun is not listed."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-pdfjs",
+        "claude_run": "2026-08-27_claude_technical-pdfjs"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "PDF.js officially supports Bun.",
+      "reason": "Unsupported by the supplied evidence; one supplied answer explicitly says no official PDF.js documentation in the cited sources says Bun is supported, unsupported, or tested."
+    },
+    {
+      "text": "The generic build is the documented path for Bun or for Node.js outside the browser.",
+      "reason": "Contradicted by supplied evidence showing browser-oriented generic-build docs, a Node example importing `legacy/build/pdf.mjs`, and a Node warning to use the legacy build."
+    },
+    {
+      "text": "Text extraction with PDF.js is guaranteed to work in Bun because it does not depend on canvas rendering.",
+      "reason": "The supplied evidence only presents this as inference, not an explicit documented guarantee."
+    },
+    {
+      "text": "Bun fails PDF.js because `process.getBuiltinModule` is undefined in Bun.",
+      "reason": "Unsupported in the official PDF.js evidence and based only on outside/runtime-specific discussion in one supplied answer; not a stable documented PDF.js fact."
+    },
+    {
+      "text": "PDF.js detects Bun explicitly.",
+      "reason": "Unsupported; supplied evidence only documents `isNodeJS` checks and says no official PDF.js source mentions Bun."
+    },
+    {
+      "text": "For Node.js environments, the current source explicitly warns to use the legacy build.",
+      "reason": "The underlying fact (node_utils.js warns to use the legacy build in Node.js) is well supported by both runs, but the single acceptable_pattern is an exact literal quote that hard-requires backticks around 'legacy' and a trailing period: \"Please use the `legacy` build in Node\\.js environments\\.\". The supplied evidence itself renders this string two different ways -- the Claude run shows warn(\"Please use the `legacy` build in Node.js environments.\") with backticks, while the Codex evidence passage renders it without backticks as 'Please use the legacy build in Node.js environments.' The pattern would therefore fail to match one of the supplied renderings and any correct paraphrase (e.g. 'warns to use the legacy build in Node.js environments'). Overly narrow grading pattern with no fallback alternative."
+    },
+    {
+      "text": "Current official sources document runtime assumptions relevant to non-browser compatibility: in Node.js, `api.js` changes several defaults and uses Node-specific factories, while `node_utils.js` uses `process.getBuiltinModule`, `@napi-rs/canvas`, a synthetic `navigator`, and `fs/promises.readFile`; worker setup also depends on `workerSrc` and module workers.",
+      "reason": "Over-bundled and partly unsupported/interpretive. (a) It requires eight concepts spanning three separate files as a single claim. (b) Its worker_options.js source is mis-attributed: the evidence passage filed under worker_options.js actually says 'the API source says...' and neither run opened or verified worker_options.js, so the 'workerSrc should always be set' quote is not independently grounded (Claude's fetch of the pdfjsLib module docs explicitly reports no GlobalWorkerOptions information). (c) Framing 'module worker' setup as a Node/non-browser runtime assumption is in tension with the Claude run's api.js evidence, which shows the opposite for that environment: 'if (isNodeJS) { this.#isWorkerDisabled = true; ... }' with the comment 'Workers aren't supported in Node.js, force-disabling them there.' The new Worker(workerSrc, { type: \"module\" }) path is the browser branch, so bundling it into the Node-assumptions claim overstates the evidence and depends on unstated interpretation. The api.js default and node_utils.js portions are supported and could be re-issued as separate, narrower claims."
+    }
+  ]
+}

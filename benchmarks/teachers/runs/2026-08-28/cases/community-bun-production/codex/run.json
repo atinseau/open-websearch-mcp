@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "run_id": "2026-08-28_codex_community-bun-production",
+  "case_id": "community-bun-production",
+  "provider": "codex",
+  "model": "gpt-5.4",
+  "queries": [
+    "site:github.com/oven-sh/bun production ready Bun issue production reliability",
+    "site:bun.sh/blog Bun production case study",
+    "site:bun.sh/docs node compatibility Bun docs APIs implemented",
+    "site:github.com/oven-sh/bun/discussions \"using bun in production\"",
+    "site:github.com/oven-sh/bun/discussions \"use it in production\" Bun",
+    "site:bun.sh/blog Vercel supports Bun runtime",
+    "site:github.com/oven-sh/bun/discussions \"I use it\" \"production\" \"Bun\"",
+    "site:bun.sh/blog \"install --production\" bun lockfile frozen"
+  ],
+  "tool_results": [
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    }
+  ],
+  "opened_urls": [
+    "https://bun.sh/blog/bun-v1.0",
+    "https://github.com/oven-sh/bun/issues/14664",
+    "https://github.com/oven-sh/bun/issues/158",
+    "https://bun.sh/docs/runtime/nodejs-compat",
+    "https://bun.sh/blog/bun-v1.4",
+    "https://github.com/oven-sh/bun/issues/17723?timeline_page=1",
+    "https://github.com/oven-sh/bun/issues/24324"
+  ],
+  "cited_urls": [
+    "https://bun.sh/blog/bun-v1.0",
+    "https://bun.sh/blog/bun-v1.0",
+    "https://bun.sh/docs/runtime/nodejs-compat",
+    "https://bun.sh/blog/bun-v1.4",
+    "https://bun.sh/blog/bun-v1.4",
+    "https://bun.sh/docs/runtime/nodejs-compat",
+    "https://bun.sh/docs/runtime/nodejs-compat",
+    "https://bun.sh/docs/runtime/nodejs-compat",
+    "https://bun.sh/docs/runtime/node-api",
+    "https://github.com/oven-sh/bun/issues/158",
+    "https://github.com/oven-sh/bun/issues/158",
+    "https://github.com/oven-sh/bun/discussions/559",
+    "https://vercel.com/blog/bun-runtime-on-vercel-functions",
+    "https://github.com/oven-sh/bun/issues/19930",
+    "https://github.com/oven-sh/bun/issues/10893",
+    "https://github.com/oven-sh/bun/issues/4945",
+    "https://github.com/oven-sh/bun/issues/8033",
+    "https://bun.sh/blog/bun-v1.1.14",
+    "https://github.com/oven-sh/bun/issues/11025",
+    "https://github.com/oven-sh/bun/issues/21020",
+    "https://github.com/oven-sh/bun/discussions/21897",
+    "https://bun.sh/blog/bun-v1.0",
+    "https://bun.sh/blog/bun-v1.4",
+    "https://bun.sh/docs/runtime/nodejs-compat",
+    "https://github.com/oven-sh/bun/issues/158",
+    "https://github.com/oven-sh/bun/issues/19930",
+    "https://github.com/oven-sh/bun/issues/10893",
+    "https://github.com/oven-sh/bun/issues/4945",
+    "https://github.com/oven-sh/bun/issues/8033",
+    "https://github.com/oven-sh/bun/issues/11025",
+    "https://github.com/oven-sh/bun/issues/21020",
+    "https://github.com/oven-sh/bun/discussions/559",
+    "https://vercel.com/blog/bun-runtime-on-vercel-functions",
+    "https://bun.sh/blog/bun-v1.4",
+    "https://bun.sh/docs/runtime/nodejs-compat",
+    "https://github.com/oven-sh/bun/issues/158",
+    "https://bun.sh/blog/bun-v1.0",
+    "https://bun.sh/blog/bun-v1.4",
+    "https://bun.sh/docs/runtime/nodejs-compat",
+    "https://github.com/oven-sh/bun/discussions/559",
+    "https://github.com/oven-sh/bun/issues/19930",
+    "https://github.com/oven-sh/bun/issues/10893",
+    "https://github.com/oven-sh/bun/issues/11025",
+    "https://bun.sh/docs/runtime/nodejs-compat",
+    "https://bun.sh/blog/bun-v1.0",
+    "https://github.com/oven-sh/bun/issues/24324"
+  ],
+  "selected_sources": [
+    {
+      "url": "https://bun.sh/blog/bun-v1.0",
+      "title": "https://bun.sh/blog/bun-v1.0"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/14664",
+      "title": "https://github.com/oven-sh/bun/issues/14664"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/158",
+      "title": "https://github.com/oven-sh/bun/issues/158"
+    },
+    {
+      "url": "https://bun.sh/docs/runtime/nodejs-compat",
+      "title": "https://bun.sh/docs/runtime/nodejs-compat"
+    },
+    {
+      "url": "https://bun.sh/blog/bun-v1.4",
+      "title": "https://bun.sh/blog/bun-v1.4"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/17723?timeline_page=1",
+      "title": "https://github.com/oven-sh/bun/issues/17723?timeline_page=1"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/24324",
+      "title": "https://github.com/oven-sh/bun/issues/24324"
+    },
+    {
+      "url": "https://bun.sh/docs/runtime/node-api",
+      "title": "https://bun.sh/docs/runtime/node-api"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/discussions/559",
+      "title": "https://github.com/oven-sh/bun/discussions/559"
+    },
+    {
+      "url": "https://vercel.com/blog/bun-runtime-on-vercel-functions",
+      "title": "https://vercel.com/blog/bun-runtime-on-vercel-functions"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/19930",
+      "title": "https://github.com/oven-sh/bun/issues/19930"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/10893",
+      "title": "https://github.com/oven-sh/bun/issues/10893"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/4945",
+      "title": "https://github.com/oven-sh/bun/issues/4945"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/8033",
+      "title": "https://github.com/oven-sh/bun/issues/8033"
+    },
+    {
+      "url": "https://bun.sh/blog/bun-v1.1.14",
+      "title": "https://bun.sh/blog/bun-v1.1.14"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/11025",
+      "title": "https://github.com/oven-sh/bun/issues/11025"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/21020",
+      "title": "https://github.com/oven-sh/bun/issues/21020"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/discussions/21897",
+      "title": "https://github.com/oven-sh/bun/discussions/21897"
+    }
+  ],
+  "evidence_passages": [],
+  "final_answer": "The conflict is real: Bun’s maintainers publicly say it has been “stable and production-ready” since **September 8, 2023**, but both Bun’s own docs and user reports show that production use is still uneven by workload and integration. The strongest evidence supports some specific compatibility gains; the weakest evidence is around blanket claims like “virtually any Node.js app” or “production-ready” without narrowing the use case. Source: https://bun.sh/blog/bun-v1.0\n\n**What maintainers say**\nBun’s maintainers state that Bun 1.0 was “stable and production-ready” on **September 8, 2023**. They also say Bun can run “virtually any Node.js application in the wild,” and that Express, Koa, and Hono “just work.” Those are maintainer claims, not independent proof. Source: https://bun.sh/blog/bun-v1.0\n\nBun’s current compatibility docs say Bun runs “thousands of tests from Node.js’ test suite before every release,” and the docs expose module-by-module caveats instead of claiming literal parity. Source: https://bun.sh/docs/runtime/nodejs-compat\n\nBy **August 20, 2026**, Bun 1.4’s release notes claimed:\n- `node:http`, `node:fs`, `node:cluster`, `node:timers`, `node:zlib`, `node:vm`, and `node:stream` each passed **97%** of Node’s own tests.\n- `node:quic` passed **99%**.\n- `node:events`, `node:trace_events`, and `node:sqlite` passed **100%**.\n- Bun had added **1,517** Node test cases and fixed “over **2,900** issues.”  \nSource: https://bun.sh/blog/bun-v1.4\n\nThat is concrete evidence for improved compatibility, because it is tied to named test suites and pass counts, not just opinion. Source: https://bun.sh/blog/bun-v1.4\n\nMaintainers also document concrete remaining gaps. Examples:\n- `node:async_hooks` is only partial; several APIs are stubs, async IDs are always `0`, and `AsyncLocalStorage` context does not propagate into `MessagePort`, `BroadcastChannel`, or `Worker` events. Source: https://bun.sh/docs/runtime/nodejs-compat\n- `node:child_process` is partial; some IPC and stdio behaviors differ from Node. Source: https://bun.sh/docs/runtime/nodejs-compat\n- `node:cluster` is described as “implemented but not battle-tested,” and HTTP load-balancing across processes is limited outside Linux. Source: https://bun.sh/docs/runtime/nodejs-compat\n\nFor native addons, Bun’s docs say “most existing Node-API extensions work,” but the more concrete evidence is in Bun’s own tracking issue:\n- all `napi_*` / `node_api_*` functions were implemented;\n- the engine-agnostic `js-native-api` suite passed **53/53**;\n- the Node-runtime-specific `node-api` suite passed **21/44** listed pass+todo cases, reported there as **47.7%**;\n- combined status was **74 pass / 23 todo / 76.3%** on Linux.  \nSource: https://bun.sh/docs/runtime/node-api  \nSource: https://github.com/oven-sh/bun/issues/158\n\nSo the evidence-backed version is: Bun has broad API surface coverage, but native-addon behavioral parity was still incomplete in the maintainers’ own tracker. Source: https://github.com/oven-sh/bun/issues/158\n\n**What users and operators report**\nPositive:\n- In a Bun deployment discussion, one user said on **July 17, 2024** that they used a Heroku buildpack for Bun and had used it “in production” since **April 2023**. That is a real user report, but it is anecdotal and only one datapoint. Source: https://github.com/oven-sh/bun/discussions/559\n- Vercel announced Bun support for Vercel Functions in **Public Beta** on **October 28, 2025**, said it supported Next.js, Express, Hono, and Nitro, and said its internal testing found **28%** lower average latency for CPU-bound Next.js rendering than Node.js. But Vercel also explicitly said: “Use Node.js for maximum compatibility or switch to Bun for compute-intensive applications.” That is concrete platform evidence of viable use in some production-like hosting scenarios, but also an explicit compatibility caveat. Source: https://vercel.com/blog/bun-runtime-on-vercel-functions\n\nNegative:\n- A user reported on **May 27, 2025** that, in their production environment, a Bun + Express server in Docker was “crashing pods with 4gb of ram,” with a repro focused on object growth after repeated health checks. Source: https://github.com/oven-sh/bun/issues/19930\n- Another user reported on **May 7, 2024** that testing Bun in production with PM2 and 10 instances caused memory to rise and “never came down,” while the same app under Node recovered memory within seconds. Source: https://github.com/oven-sh/bun/issues/10893\n- A user reported on **September 11, 2023** that `bun install --production` failed without a lockfile, returning `lockfile had changes, but lockfile is frozen`. Source: https://github.com/oven-sh/bun/issues/4945\n- Another user reported on **January 7, 2024** that `bun install --production` in a workspace still installed devDependencies and required extra recovery steps. Source: https://github.com/oven-sh/bun/issues/8033\n- Bun later shipped a fix on **June 19, 2024**: `bun install --production` in a workspace had included workspace-package devDependencies, and “this is no longer the case.” That is strong evidence that this production install problem was real and later fixed. Source: https://bun.sh/blog/bun-v1.1.14\n- A user reported on **May 12, 2024** that a React 19 SSR app worked in development mode but failed in production mode when `NODE_ENV=production`. Source: https://github.com/oven-sh/bun/issues/11025\n- A user reported on **July 14, 2025** that a Nuxt app using `firebase-admin` failed after a production build/run flow on Bun 1.2.18, and the issue was labeled both bug and Node.js compatibility. Source: https://github.com/oven-sh/bun/issues/21020\n- In a Prisma discussion on **November 20, 2025**, one user said a Bun Prisma adapter “does not seem to be production-ready according to tests I ran,” citing disabled foreign keys, unmapped Prisma error codes, and missing feature support. That is still a user claim, but it is at least tied to stated tests and named missing behaviors. Source: https://github.com/oven-sh/bun/discussions/21897\n\n**Which claims are actually supported by evidence**\nSupported fact:\n- Bun has officially claimed production readiness since **September 8, 2023**. Source: https://bun.sh/blog/bun-v1.0\n- Bun runs Node test suites continuously and publishes concrete pass rates for many modules. Source: https://bun.sh/blog/bun-v1.4\n- Bun’s own docs admit partial or untested areas such as `async_hooks`, `child_process`, and `cluster`. Source: https://bun.sh/docs/runtime/nodejs-compat\n- Bun’s own Node-API tracker shows full API-surface implementation but incomplete runtime-behavior parity. Source: https://github.com/oven-sh/bun/issues/158\n- There are multiple production-oriented bug reports for memory growth, production-mode-only failures, and `--production` install problems. Source: https://github.com/oven-sh/bun/issues/19930 ; https://github.com/oven-sh/bun/issues/10893 ; https://github.com/oven-sh/bun/issues/4945 ; https://github.com/oven-sh/bun/issues/8033 ; https://github.com/oven-sh/bun/issues/11025 ; https://github.com/oven-sh/bun/issues/21020\n- At least some production deployments exist in the wild, including one self-reported Heroku deployment and Vercel’s Bun runtime beta. Source: https://github.com/oven-sh/bun/discussions/559 ; https://vercel.com/blog/bun-runtime-on-vercel-functions\n\nInference:\n- Bun appears most credible today for production workloads that stay within well-tested compatibility zones, especially common HTTP/server use cases and compute-heavy hosted workloads, and less credible where you depend on Node edge semantics, some process-model features, or less-common adapter ecosystems. This is an inference from Bun’s published pass rates, caveats, and issue reports. Source set: https://bun.sh/blog/bun-v1.4 ; https://bun.sh/docs/runtime/nodejs-compat ; https://github.com/oven-sh/bun/issues/158\n\nDisagreement:\n- Maintainers market Bun broadly as production-ready and close to a drop-in Node replacement. Source: https://bun.sh/blog/bun-v1.0 ; https://bun.sh/blog/bun-v1.4 ; https://bun.sh/docs/runtime/nodejs-compat\n- Users report both successful long-running production use and serious failures under production conditions. Source: https://github.com/oven-sh/bun/discussions/559 ; https://github.com/oven-sh/bun/issues/19930 ; https://github.com/oven-sh/bun/issues/10893 ; https://github.com/oven-sh/bun/issues/11025\n\nUncertainty:\n- Broad claims like “millions of npm packages work with Bun” and “virtually any Node.js app” are not well proven by the sources I found. The strongest evidence I found is test-suite coverage and issue tracking, not a comprehensive independent compatibility census. Source: https://bun.sh/docs/runtime/nodejs-compat ; https://bun.sh/blog/bun-v1.0\n\nLack of good evidence:\n- I did not find strong independent evidence that Bun is uniformly reliable for all production Node workloads.\n- I also did not find strong independent evidence that Bun is broadly unreliable; many negative reports are issue reports, which prove specific failures existed, not prevalence across all users.\n\nOne especially useful cautionary example: a **November 3, 2025** issue claimed Bun’s `AsyncLocalStorage` performance blocked production OpenTelemetry, but the same issue was later updated to say the benchmark was accidentally run against debug builds and that the reported production problem “does not exist in release builds.” That is evidence that some alarming production claims are later overturned, and should not be treated as fact without reproduction. Source: https://github.com/oven-sh/bun/issues/24324\n\nBottom line: the evidence supports a narrower statement than Bun’s marketing. Bun has real, measured compatibility progress and some real production users, but also documented gaps and repeated production bug reports. The safest evidence-based conclusion is that Bun is production-viable for some workloads, not proven production-safe as a universal Node.js replacement.",
+  "cli_version": "codex-cli 0.149.1",
+  "locale": "en-US",
+  "started_at": "2026-08-28T14:51:44.515Z",
+  "duration_ms": 167670,
+  "prompt_sha256": "7f9615067a6fe5c5ecabbdef3dd4c00be29cc782343d82349696c8eb0d3c0b09",
+  "raw_trace": "events.sanitized.jsonl",
+  "policy_evidence": "policy.json",
+  "isolation": {
+    "temporary_cwd": true,
+    "cwd_unchanged": true,
+    "forbidden_tool_calls": []
+  }
+}

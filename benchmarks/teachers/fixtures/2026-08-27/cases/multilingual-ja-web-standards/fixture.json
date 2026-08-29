@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "case_id": "multilingual-ja-web-standards",
+  "question": "日本語の一次情報と公式仕様を使って、URL の国際化ドメイン名がブラウザーでどのように解析・表示されるか説明してください。",
+  "locale": "ja-JP",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim1",
+      "text": "JPRS explains that IDNs do not use raw Unicode directly in DNS; for compatibility they use Punycode, which represents Unicode strings with letters, digits, and hyphens.",
+      "required_concepts": ["JPRS", "IDN", "Punycode", "DNS互換"],
+      "acceptable_patterns": [
+        "JPRS.*Unicode.*DNS.*Punycode",
+        "Punycode.*アルファベット.?数字.?ハイフン",
+        "IDN.*既存 DNS.*互換性.*Punycode"
+      ],
+      "sources": [
+        {
+          "url": "https://jprs.jp/related-info/guide/topics-column/no7.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://jprs.jp/related-info/guide/topics-column/no7.html",
+          "text": "JPRS は、国際化ドメイン名では Unicode 文字列をそのまま DNS に入れるのではなく、既存 DNS との互換性のために `Punycode` を採用し、Punycode は Unicode 文字列を「アルファベット・数字・ハイフン」で表現する方式だと説明しています。"
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_multilingual-ja-web-standards",
+        "claude_run": "2026-08-27_claude_multilingual-ja-web-standards"
+      }
+    },
+    {
+      "id": "claim2",
+      "text": "The WHATWG URL Standard says that ordinary host parsing percent-decodes and UTF-8 decodes the host, then applies the domain parser to convert it to an ASCII domain.",
+      "required_concepts": ["WHATWG", "host parser", "domain parser", "ASCII"],
+      "acceptable_patterns": [
+        "WHATWG.*ホスト.*percent-decoding.*UTF-8.*domain parser.*ASCII",
+        "host parser.*domain parser.*ASCII ドメイン",
+        "URL Standard.*UTF-8 decode.*ASCII ドメイン"
+      ],
+      "sources": [
+        {
+          "url": "https://url.spec.whatwg.org/",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://url.spec.whatwg.org/",
+          "text": "WHATWG URL Standard では、通常のホスト解析で、入力ホストが IPv6 でも opaque host でもなければ、ホスト文字列を percent-decoding し、UTF-8 decode し、その結果に `domain parser` を適用して ASCII ドメインへ変換すると定めています。"
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_multilingual-ja-web-standards",
+        "claude_run": "2026-08-27_claude_multilingual-ja-web-standards"
+      }
+    },
+    {
+      "id": "claim3",
+      "text": "The WHATWG URL Standard says the domain parser runs Unicode ToASCII with UTS #46 settings for non-ASCII domains and returns an ASCII domain on success.",
+      "required_concepts": ["WHATWG", "ToASCII", "UTS46", "ASCII"],
+      "acceptable_patterns": [
+        "domain parser.*Unicode ToASCII.*UTS #46",
+        "WHATWG.*非 ASCII.*ASCII ドメイン",
+        "ToASCII.*成功.*ASCII ドメイン"
+      ],
+      "sources": [
+        {
+          "url": "https://url.spec.whatwg.org/",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://url.spec.whatwg.org/",
+          "text": "同じ仕様は、`domain parser` が非 ASCII ドメインに対して `Unicode ToASCII` を UTS #46 の設定付きで実行し、失敗したら失敗を返し、成功したら ASCII ドメインを返すと定めています。"
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_multilingual-ja-web-standards",
+        "claude_run": "2026-08-27_claude_multilingual-ja-web-standards"
+      }
+    },
+    {
+      "id": "claim6",
+      "text": "Chromium's IDN documentation says the user agent converts hostnames containing non-ASCII characters to ASCII-only hostnames for DNS, and Chrome decides label by label whether to display Unicode or Punycode, falling back to Punycode for cases such as ToUnicode errors, mixed scripts, mixed numbering systems, invisible characters, and confusable patterns.",
+      "required_concepts": ["Chromium", "ASCII-only hostname", "DNS", "label単位", "Punycode表示"],
+      "acceptable_patterns": [
+        "Chromium.*ASCII-only hostname.*DNS",
+        "ラベルごと.*Unicode.*Punycode",
+        "ToUnicode.*エラー.*Punycode",
+        "mixed-script confusable|whole-script confusable|digit spoof"
+      ],
+      "sources": [
+        {
+          "url": "https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md",
+          "text": "Chromium の公式文書は、非 ASCII を含むホスト名を user agent が ASCII-only hostname に変換し、それを DNS サーバーへ送ると説明し、各ラベルを Punycode に符号化すると書いています。"
+        },
+        {
+          "url": "https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md",
+          "text": "Chromium の同文書は、Chrome が表示時にはホスト名全体ではなくラベルごとに「Unicode で見せるか」「Punycode で見せるか」を判定すると説明しています。"
+        },
+        {
+          "url": "https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md",
+          "text": "Chrome の表示判定では、`ToUnicode` 変換エラー、識別子に許されない文字、禁止文字、危険なスクリプト混在、複数の数字体系の混在、不可視文字、危険パターン、mixed-script confusable、whole-script confusable、digit spoof などがあると Punycode 表示になります。"
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_multilingual-ja-web-standards",
+        "claude_run": "2026-08-27_claude_multilingual-ja-web-standards"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Firefox also uses a label-by-label Unicode/Punycode display algorithm with the specific conditions described in the final answer.",
+      "reason": "The supplied evidence only includes a truncated Mozilla sentence in one passage and a title-only Mozilla wiki passage elsewhere, so the detailed Firefox behavior is not adequately supported here."
+    },
+    {
+      "text": "Firefox changed policy in 2012 from a TLD whitelist-centered approach to a script-based approach.",
+      "reason": "This is time-unstable and not supported by a quoted evidence passage in the supplied evidence."
+    },
+    {
+      "text": "All browsers parse and display IDNs in the same way.",
+      "reason": "The supplied evidence supports common parsing points from WHATWG and Chrome-specific display behavior, but not uniform display behavior across all browsers."
+    },
+    {
+      "text": "Current browser behavior is still based on Nameprep and RFC 3490 IDNA as the direct web-platform standard.",
+      "reason": "The supplied evidence says WHATWG uses Unicode IDNA Compatibility Processing rather than IDNA2008 itself, and does not support treating older Nameprep/IDNA descriptions as the current direct browser URL standard."
+    },
+    {
+      "text": "Safari's current Unicode-versus-Punycode display policy follows the same rules as Chrome.",
+      "reason": "No Safari-specific source or passage is supplied."
+    },
+    {
+      "text": "The WHATWG URL Standard explicitly uses Unicode IDNA Compatibility Processing instead of IDNA2008 itself, and gives `☕.example` to `xn--53h.example` as an example.",
+      "reason": "The specific example `☕.example` → `xn--53h.example` is supported only by the Codex run's self-echoed evidence passages (Codex has opened_urls: [] and no captured search payloads, and each evidence_passage is a copy of its own final answer). No independently fetched source in the supplied evidence — including the Claude run's UTS #46 and URL-ja fetches — contains this example or the exact Punycode string. Two of the three acceptable_patterns and the required concept 'xn--' depend on that uncorroborated string, and the emoji-bearing pattern is also brittle for lexical grading. The still-supported part (the web platform uses UTS #46 / Unicode IDNA Compatibility Processing rather than IDNA2008 itself) is already covered by claim3, which is backed by the fetched URL-ja domain-parser ToASCII parameter list."
+    },
+    {
+      "text": "The WHATWG URL Standard says host serialization returns ASCII, while browser display should run domain-to-Unicode and consider protections against visually confusing domains.",
+      "reason": "Neither half is corroborated by any independently fetched passage: the Claude run's URL Standard fetch (triple-underscore URL-ja) covers the host parser, domain-to-ASCII, UTS #46 parameters and forbidden code points, but says nothing about the host serializer always returning ASCII or about a display-time `domain to Unicode` step with confusability countermeasures. The only support is the Codex self-echo, which carries no independent evidentiary weight. The claim also adds an interpretive step ('so the browser-internal URL serialization result is the ASCII host, not the Unicode display name') beyond the quoted text. Grading is additionally weak: the patterns mix bare English terms with narrow Japanese phrasings ('domain to Unicode.*描画', '見た目.*紛らわしさ.*対策') that a correct answer could easily express otherwise, making them insufficiently deterministic."
+    }
+  ]
+}

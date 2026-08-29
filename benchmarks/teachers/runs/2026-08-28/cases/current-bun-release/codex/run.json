@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "run_id": "2026-08-28_codex_current-bun-release",
+  "case_id": "current-bun-release",
+  "provider": "codex",
+  "model": "gpt-5.4",
+  "queries": [
+    "site:bun.sh releases Bun latest stable release bun August 2026 official",
+    "site:github.com/oven-sh/bun/releases/tag bun-v1.4 GitHub",
+    "site:github.com/oven-sh/bun/releases/tag bun-v1.4.0 GitHub"
+  ],
+  "tool_results": [
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    }
+  ],
+  "opened_urls": [
+    "https://bun.sh/blog/bun-v1.4",
+    "https://github.com/oven-sh/bun/releases",
+    "https://github.com/oven-sh/bun/releases/tag/bun-v1.4"
+  ],
+  "cited_urls": [
+    "https://github.com/oven-sh/bun/releases",
+    "https://bun.sh/blog/bun-v1.4",
+    "https://github.com/oven-sh/bun/releases",
+    "https://bun.sh/blog/bun-v1.4",
+    "https://bun.sh/blog/bun-v1.4",
+    "https://bun.sh/blog/bun-v1.4",
+    "https://bun.sh/blog/bun-v1.4",
+    "https://bun.sh/blog/bun-v1.4",
+    "https://bun.sh/blog/bun-v1.4",
+    "https://bun.sh/blog/bun-v1.4",
+    "https://bun.sh/blog/bun-v1.4",
+    "https://bun.sh/blog/bun-v1.0",
+    "https://github.com/oven-sh/bun/releases",
+    "https://bun.sh/blog/bun-v1.0",
+    "https://github.com/oven-sh/bun/releases",
+    "https://bun.sh/blog/bun-v1.4",
+    "https://bun.sh/blog/bun-v1.4",
+    "https://github.com/oven-sh/bun/releases",
+    "https://bun.sh/blog/bun-v1.0",
+    "https://github.com/oven-sh/bun/releases"
+  ],
+  "selected_sources": [
+    {
+      "url": "https://bun.sh/blog/bun-v1.4",
+      "title": "https://bun.sh/blog/bun-v1.4"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/releases",
+      "title": "https://github.com/oven-sh/bun/releases"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/releases/tag/bun-v1.4",
+      "title": "https://github.com/oven-sh/bun/releases/tag/bun-v1.4"
+    },
+    {
+      "url": "https://bun.sh/blog/bun-v1.0",
+      "title": "https://bun.sh/blog/bun-v1.0"
+    }
+  ],
+  "evidence_passages": [],
+  "final_answer": "**Supported facts**\n\nThe latest official Bun release I found is **`Bun v1.4`**, and the official GitHub releases page marks it as **`Latest`** with tag **`bun-v1.4.0`**. (https://github.com/oven-sh/bun/releases)\n\nIts official Bun blog release post is dated **August 20, 2026**. (https://bun.sh/blog/bun-v1.4) The official GitHub release entry also shows it was released on **August 20** at **14:07**. (https://github.com/oven-sh/bun/releases)\n\nAccording to Bun’s official release post, the headline changes in Bun 1.4 are:\n- **A major Node.js compatibility jump**: Bun 1.4 adds **1,517** Node.js test-suite passes, which Bun calls its **biggest jump in Node.js compatibility since Bun 1.0**. (https://bun.sh/blog/bun-v1.4)\n- **Large production/runtime improvements**: Bun says Bun 1.4 **fixes over 2,900 issues**, **reduces idle CPU usage by 5x**, **reduces memory usage by up to 35%**, and **starts 50% faster on Linux**. (https://bun.sh/blog/bun-v1.4)\n- **A rewrite from Zig to Rust**: the release post says Bun 1.4 **rewrites Bun from Zig to Rust**, and later states that Bun is now written in Rust and that this is the **first release** of that rewrite. (https://bun.sh/blog/bun-v1.4)\n- **A much larger built-in standard library / fewer external dependencies**: Bun says this release makes its built-in standard library bigger, lists **15 dependencies now built in**, and says these features ship in the Bun binary with **no install step, no native build, and no lockfile entry**. (https://bun.sh/blog/bun-v1.4)\n- **New built-in APIs and commands** highlighted at the top of the release include **`Bun.Image`**, **`Bun.WebView`**, **`Bun.markdown`**, **`Bun.cron()`**, **`Bun.Terminal`**, **`bun run --parallel`**, **`bun test --parallel`**, **`bun audit fix`**, **`bun dedupe`**, and **`bun prune`**. (https://bun.sh/blog/bun-v1.4)\n\nOfficial release-note details for some of those additions:\n- **`Bun.Image`** is a built-in image library for decode/resize/rotate/encode workflows, with no native addon required. (https://bun.sh/blog/bun-v1.4)\n- **`Bun.WebView`** is built-in headless browser automation, without Puppeteer or Playwright. (https://bun.sh/blog/bun-v1.4)\n- **`bun run --parallel`** runs multiple `package.json` scripts concurrently and Bun says it replaces tools like `npm-run-all` and `concurrently`. (https://bun.sh/blog/bun-v1.4)\n\n**Inference**\n\n“**Latest stable release**” is slightly interpretive here. I did **not** find an official Bun page, in the sources I checked, that explicitly says “Bun 1.4.0 is the latest stable release.” What I did find is:\n- Bun 1.0 was the release where Bun said it was **stable and production-ready**. (https://bun.sh/blog/bun-v1.0)\n- The official GitHub releases page marks **`bun-v1.4.0`** as **`Latest`**. (https://github.com/oven-sh/bun/releases)\n\nSo the best-supported conclusion is: **the latest stable Bun release is Bun 1.4.0**, inferred from Bun’s stable 1.x line and GitHub’s official `Latest` marker. (https://bun.sh/blog/bun-v1.0, https://github.com/oven-sh/bun/releases)\n\n“**Most consequential changes**” is also a judgment call. My ranking is an **inference** from what Bun emphasizes most prominently in its official Bun 1.4 release post: the Rust rewrite, the Node.js compatibility jump, the large CPU/memory/startup improvements, and the expansion of built-in APIs/tools. (https://bun.sh/blog/bun-v1.4)\n\n**Disagreement / uncertainty / lack of good evidence**\n\nI found **no disagreement** between Bun’s official blog and Bun’s official GitHub releases page about the current release: both point to **Bun 1.4 / bun-v1.4.0**. (https://bun.sh/blog/bun-v1.4, https://github.com/oven-sh/bun/releases)\n\nThe main **uncertainty** is terminological, not version-related: the official sources I checked clearly establish **latest official release**, but they do not, in the pages I used, separately define a distinct “stable” channel for Bun 1.4.0 beyond Bun’s already-stable 1.x release line. (https://bun.sh/blog/bun-v1.0, https://github.com/oven-sh/bun/releases)",
+  "cli_version": "codex-cli 0.149.1",
+  "locale": "en-US",
+  "started_at": "2026-08-28T14:40:28.383Z",
+  "duration_ms": 78042,
+  "prompt_sha256": "643453c26867f9da1e56f6a39f56b522476cd4b771935de663328051031e55ed",
+  "raw_trace": "events.sanitized.jsonl",
+  "policy_evidence": "policy.json",
+  "isolation": {
+    "temporary_cwd": true,
+    "cwd_unchanged": true,
+    "forbidden_tool_calls": []
+  }
+}

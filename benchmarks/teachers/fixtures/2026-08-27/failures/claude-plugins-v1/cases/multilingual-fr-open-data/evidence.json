@@ -1,0 +1,719 @@
+{
+  "schema_version": 1,
+  "case_id": "multilingual-fr-open-data",
+  "runs": [
+    {
+      "run_id": "2026-08-27_codex_multilingual-fr-open-data",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "site:etalab.gouv.fr \"Licence Ouverte 2.0\" obligations réutilisation données publiques",
+        "https://www.etalab.gouv.fr/licence-ouverte-open-licence/",
+        "site:guides.data.gouv.fr \"Respecter les conditions de réutilisation\" Licence Ouverte 2.0",
+        "https://guides.data.gouv.fr/guides/guide-juridique/reutilisateurs-de-donnees/respecter-les-conditions-de-reutilisation",
+        "\"Dans le cas d'une réutilisation de données publiées sous licence ouverte 2.0\"",
+        "site:legifrance.gouv.fr CRPA article L321-1 réutilisation informations publiques",
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033219044",
+        "site:legifrance.gouv.fr \"Article L322-1\" \"Sauf accord de l'administration\"",
+        "site:legifrance.gouv.fr \"Article L321-2\" réutilisation informations publiques droits de propriété intellectuelle tiers",
+        "site:cnil.fr \"Guide pratique de la publication en ligne et de la réutilisation des données publiques\" PDF",
+        "site:cnil.fr site:cada.fr réutilisation informations publiques données à caractère personnel respect RGPD",
+        "https://www.cnil.fr/fr/comment-reutiliser-les-donnees-diffusees",
+        "https://www.cada.fr/lacada/guide-pratique-de-la-publication-en-ligne-et-de-la-reutilisation-des-donnees-publiques",
+        "'mentionnées' in https://www.cada.fr/sites/default/files/guide_pratique.pdf",
+        "https://www.cada.fr/sites/default/files/guide_pratique.pdf"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [],
+      "cited_urls": [
+        "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+        "https://www.cnil.fr/fr/comment-reutiliser-les-donnees-diffusees",
+        "https://www.cada.fr/sites/default/files/guide_pratique.pdf",
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032255220",
+        "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000032255218",
+        "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000032255212/2022-06-10",
+        "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000031367685",
+        "https://www.cnil.fr/fr/quelles-sont-les-modalites-de-diffusion-en-ligne",
+        "https://www.data.gouv.fr/pages/legal/licences",
+        "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000032255228",
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037269056"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "title": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0"
+        },
+        {
+          "url": "https://www.cnil.fr/fr/comment-reutiliser-les-donnees-diffusees",
+          "title": "https://www.cnil.fr/fr/comment-reutiliser-les-donnees-diffusees"
+        },
+        {
+          "url": "https://www.cada.fr/sites/default/files/guide_pratique.pdf",
+          "title": "https://www.cada.fr/sites/default/files/guide_pratique.pdf"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032255220",
+          "title": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032255220"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000032255218",
+          "title": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000032255218"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000032255212/2022-06-10",
+          "title": "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000032255212/2022-06-10"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000031367685",
+          "title": "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000031367685"
+        },
+        {
+          "url": "https://www.cnil.fr/fr/quelles-sont-les-modalites-de-diffusion-en-ligne",
+          "title": "https://www.cnil.fr/fr/quelles-sont-les-modalites-de-diffusion-en-ligne"
+        },
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences",
+          "title": "https://www.data.gouv.fr/pages/legal/licences"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000032255228",
+          "title": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000032255228"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037269056",
+          "title": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037269056"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "text": "**Faits étayés**\n\nLa `Licence Ouverte 2.0` accorde au réutilisateur un droit de réutilisation `gratuit`, `non exclusif`, valable `dans le monde entier`, `pour une durée illimitée`, y compris à des `fins commerciales`. Elle autorise aussi la communication, la copie, l’adaptation, la modification, l’extraction, la transformation, la diffusion, la redistribution, la publication et l’inclusion dans un produit ou une application.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nL’obligation centrale prévue par la licence est de `mentionner la paternité` de l’information, c’est-à-dire au minimum `la source` (au moins le nom du concédant) et `la date de la dernière mise à jour` de l’information réutilisée. La licence précise qu’on peut notamment satisfaire cette obligation en donnant l’`URL` qui renvoie vers l’information si cette URL assure une mention effective de paternité.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa mention de paternité ne doit ni donner un `caractère officiel` à la réutilisation, ni laisser croire à une `reconnaissance` ou une `caution` du concédant ou d’une autre entité publique.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa licence prévoit aussi que la réutilisation ne doit pas `induire en erreur des tiers` sur le contenu de l’information, sa source ou sa date de mise à jour.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nS’agissant des `données à caractère personnel`, la licence indique que l’information peut en contenir, que le concédant doit en informer le réutilisateur, et que la réutilisation reste possible à condition de respecter le `cadre légal` applicable à la protection des données personnelles.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa CNIL résume ce point en indiquant que, si des données personnelles sont présentes, les réutilisateurs doivent respecter le `RGPD` et la loi `Informatique et Libertés`. Elle ajoute qu"
+        },
+        {
+          "url": "https://www.cnil.fr/fr/comment-reutiliser-les-donnees-diffusees",
+          "text": "**Faits étayés**\n\nLa `Licence Ouverte 2.0` accorde au réutilisateur un droit de réutilisation `gratuit`, `non exclusif`, valable `dans le monde entier`, `pour une durée illimitée`, y compris à des `fins commerciales`. Elle autorise aussi la communication, la copie, l’adaptation, la modification, l’extraction, la transformation, la diffusion, la redistribution, la publication et l’inclusion dans un produit ou une application.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nL’obligation centrale prévue par la licence est de `mentionner la paternité` de l’information, c’est-à-dire au minimum `la source` (au moins le nom du concédant) et `la date de la dernière mise à jour` de l’information réutilisée. La licence précise qu’on peut notamment satisfaire cette obligation en donnant l’`URL` qui renvoie vers l’information si cette URL assure une mention effective de paternité.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa mention de paternité ne doit ni donner un `caractère officiel` à la réutilisation, ni laisser croire à une `reconnaissance` ou une `caution` du concédant ou d’une autre entité publique.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa licence prévoit aussi que la réutilisation ne doit pas `induire en erreur des tiers` sur le contenu de l’information, sa source ou sa date de mise à jour.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nS’agissant des `données à caractère personnel`, la licence indique que l’information peut en contenir, que le concédant doit en informer le réutilisateur, et que la réutilisation reste possible à condition de respecter le `cadre légal` applicable à la protection des données personnelles.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa CNIL résume ce point en indiquant que, si des données personnelles sont présentes, les réutilisateurs doivent respecter le `RGPD` et la loi `Informatique et Libertés`. Elle ajoute qu"
+        },
+        {
+          "url": "https://www.cada.fr/sites/default/files/guide_pratique.pdf",
+          "text": "**Faits étayés**\n\nLa `Licence Ouverte 2.0` accorde au réutilisateur un droit de réutilisation `gratuit`, `non exclusif`, valable `dans le monde entier`, `pour une durée illimitée`, y compris à des `fins commerciales`. Elle autorise aussi la communication, la copie, l’adaptation, la modification, l’extraction, la transformation, la diffusion, la redistribution, la publication et l’inclusion dans un produit ou une application.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nL’obligation centrale prévue par la licence est de `mentionner la paternité` de l’information, c’est-à-dire au minimum `la source` (au moins le nom du concédant) et `la date de la dernière mise à jour` de l’information réutilisée. La licence précise qu’on peut notamment satisfaire cette obligation en donnant l’`URL` qui renvoie vers l’information si cette URL assure une mention effective de paternité.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa mention de paternité ne doit ni donner un `caractère officiel` à la réutilisation, ni laisser croire à une `reconnaissance` ou une `caution` du concédant ou d’une autre entité publique.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa licence prévoit aussi que la réutilisation ne doit pas `induire en erreur des tiers` sur le contenu de l’information, sa source ou sa date de mise à jour.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nS’agissant des `données à caractère personnel`, la licence indique que l’information peut en contenir, que le concédant doit en informer le réutilisateur, et que la réutilisation reste possible à condition de respecter le `cadre légal` applicable à la protection des données personnelles.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa CNIL résume ce point en indiquant que, si des données personnelles sont présentes, les réutilisateurs doivent respecter le `RGPD` et la loi `Informatique et Libertés`. Elle ajoute qu"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032255220",
+          "text": "**Faits étayés**\n\nLa `Licence Ouverte 2.0` accorde au réutilisateur un droit de réutilisation `gratuit`, `non exclusif`, valable `dans le monde entier`, `pour une durée illimitée`, y compris à des `fins commerciales`. Elle autorise aussi la communication, la copie, l’adaptation, la modification, l’extraction, la transformation, la diffusion, la redistribution, la publication et l’inclusion dans un produit ou une application.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nL’obligation centrale prévue par la licence est de `mentionner la paternité` de l’information, c’est-à-dire au minimum `la source` (au moins le nom du concédant) et `la date de la dernière mise à jour` de l’information réutilisée. La licence précise qu’on peut notamment satisfaire cette obligation en donnant l’`URL` qui renvoie vers l’information si cette URL assure une mention effective de paternité.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa mention de paternité ne doit ni donner un `caractère officiel` à la réutilisation, ni laisser croire à une `reconnaissance` ou une `caution` du concédant ou d’une autre entité publique.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa licence prévoit aussi que la réutilisation ne doit pas `induire en erreur des tiers` sur le contenu de l’information, sa source ou sa date de mise à jour.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nS’agissant des `données à caractère personnel`, la licence indique que l’information peut en contenir, que le concédant doit en informer le réutilisateur, et que la réutilisation reste possible à condition de respecter le `cadre légal` applicable à la protection des données personnelles.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa CNIL résume ce point en indiquant que, si des données personnelles sont présentes, les réutilisateurs doivent respecter le `RGPD` et la loi `Informatique et Libertés`. Elle ajoute qu"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000032255218",
+          "text": "**Faits étayés**\n\nLa `Licence Ouverte 2.0` accorde au réutilisateur un droit de réutilisation `gratuit`, `non exclusif`, valable `dans le monde entier`, `pour une durée illimitée`, y compris à des `fins commerciales`. Elle autorise aussi la communication, la copie, l’adaptation, la modification, l’extraction, la transformation, la diffusion, la redistribution, la publication et l’inclusion dans un produit ou une application.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nL’obligation centrale prévue par la licence est de `mentionner la paternité` de l’information, c’est-à-dire au minimum `la source` (au moins le nom du concédant) et `la date de la dernière mise à jour` de l’information réutilisée. La licence précise qu’on peut notamment satisfaire cette obligation en donnant l’`URL` qui renvoie vers l’information si cette URL assure une mention effective de paternité.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa mention de paternité ne doit ni donner un `caractère officiel` à la réutilisation, ni laisser croire à une `reconnaissance` ou une `caution` du concédant ou d’une autre entité publique.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa licence prévoit aussi que la réutilisation ne doit pas `induire en erreur des tiers` sur le contenu de l’information, sa source ou sa date de mise à jour.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nS’agissant des `données à caractère personnel`, la licence indique que l’information peut en contenir, que le concédant doit en informer le réutilisateur, et que la réutilisation reste possible à condition de respecter le `cadre légal` applicable à la protection des données personnelles.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa CNIL résume ce point en indiquant que, si des données personnelles sont présentes, les réutilisateurs doivent respecter le `RGPD` et la loi `Informatique et Libertés`. Elle ajoute qu"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000032255212/2022-06-10",
+          "text": "**Faits étayés**\n\nLa `Licence Ouverte 2.0` accorde au réutilisateur un droit de réutilisation `gratuit`, `non exclusif`, valable `dans le monde entier`, `pour une durée illimitée`, y compris à des `fins commerciales`. Elle autorise aussi la communication, la copie, l’adaptation, la modification, l’extraction, la transformation, la diffusion, la redistribution, la publication et l’inclusion dans un produit ou une application.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nL’obligation centrale prévue par la licence est de `mentionner la paternité` de l’information, c’est-à-dire au minimum `la source` (au moins le nom du concédant) et `la date de la dernière mise à jour` de l’information réutilisée. La licence précise qu’on peut notamment satisfaire cette obligation en donnant l’`URL` qui renvoie vers l’information si cette URL assure une mention effective de paternité.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa mention de paternité ne doit ni donner un `caractère officiel` à la réutilisation, ni laisser croire à une `reconnaissance` ou une `caution` du concédant ou d’une autre entité publique.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa licence prévoit aussi que la réutilisation ne doit pas `induire en erreur des tiers` sur le contenu de l’information, sa source ou sa date de mise à jour.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nS’agissant des `données à caractère personnel`, la licence indique que l’information peut en contenir, que le concédant doit en informer le réutilisateur, et que la réutilisation reste possible à condition de respecter le `cadre légal` applicable à la protection des données personnelles.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa CNIL résume ce point en indiquant que, si des données personnelles sont présentes, les réutilisateurs doivent respecter le `RGPD` et la loi `Informatique et Libertés`. Elle ajoute qu"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000031367685",
+          "text": "**Faits étayés**\n\nLa `Licence Ouverte 2.0` accorde au réutilisateur un droit de réutilisation `gratuit`, `non exclusif`, valable `dans le monde entier`, `pour une durée illimitée`, y compris à des `fins commerciales`. Elle autorise aussi la communication, la copie, l’adaptation, la modification, l’extraction, la transformation, la diffusion, la redistribution, la publication et l’inclusion dans un produit ou une application.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nL’obligation centrale prévue par la licence est de `mentionner la paternité` de l’information, c’est-à-dire au minimum `la source` (au moins le nom du concédant) et `la date de la dernière mise à jour` de l’information réutilisée. La licence précise qu’on peut notamment satisfaire cette obligation en donnant l’`URL` qui renvoie vers l’information si cette URL assure une mention effective de paternité.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa mention de paternité ne doit ni donner un `caractère officiel` à la réutilisation, ni laisser croire à une `reconnaissance` ou une `caution` du concédant ou d’une autre entité publique.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa licence prévoit aussi que la réutilisation ne doit pas `induire en erreur des tiers` sur le contenu de l’information, sa source ou sa date de mise à jour.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nS’agissant des `données à caractère personnel`, la licence indique que l’information peut en contenir, que le concédant doit en informer le réutilisateur, et que la réutilisation reste possible à condition de respecter le `cadre légal` applicable à la protection des données personnelles.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa CNIL résume ce point en indiquant que, si des données personnelles sont présentes, les réutilisateurs doivent respecter le `RGPD` et la loi `Informatique et Libertés`. Elle ajoute qu"
+        },
+        {
+          "url": "https://www.cnil.fr/fr/quelles-sont-les-modalites-de-diffusion-en-ligne",
+          "text": "**Faits étayés**\n\nLa `Licence Ouverte 2.0` accorde au réutilisateur un droit de réutilisation `gratuit`, `non exclusif`, valable `dans le monde entier`, `pour une durée illimitée`, y compris à des `fins commerciales`. Elle autorise aussi la communication, la copie, l’adaptation, la modification, l’extraction, la transformation, la diffusion, la redistribution, la publication et l’inclusion dans un produit ou une application.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nL’obligation centrale prévue par la licence est de `mentionner la paternité` de l’information, c’est-à-dire au minimum `la source` (au moins le nom du concédant) et `la date de la dernière mise à jour` de l’information réutilisée. La licence précise qu’on peut notamment satisfaire cette obligation en donnant l’`URL` qui renvoie vers l’information si cette URL assure une mention effective de paternité.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa mention de paternité ne doit ni donner un `caractère officiel` à la réutilisation, ni laisser croire à une `reconnaissance` ou une `caution` du concédant ou d’une autre entité publique.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa licence prévoit aussi que la réutilisation ne doit pas `induire en erreur des tiers` sur le contenu de l’information, sa source ou sa date de mise à jour.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nS’agissant des `données à caractère personnel`, la licence indique que l’information peut en contenir, que le concédant doit en informer le réutilisateur, et que la réutilisation reste possible à condition de respecter le `cadre légal` applicable à la protection des données personnelles.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa CNIL résume ce point en indiquant que, si des données personnelles sont présentes, les réutilisateurs doivent respecter le `RGPD` et la loi `Informatique et Libertés`. Elle ajoute qu"
+        },
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences",
+          "text": "**Faits étayés**\n\nLa `Licence Ouverte 2.0` accorde au réutilisateur un droit de réutilisation `gratuit`, `non exclusif`, valable `dans le monde entier`, `pour une durée illimitée`, y compris à des `fins commerciales`. Elle autorise aussi la communication, la copie, l’adaptation, la modification, l’extraction, la transformation, la diffusion, la redistribution, la publication et l’inclusion dans un produit ou une application.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nL’obligation centrale prévue par la licence est de `mentionner la paternité` de l’information, c’est-à-dire au minimum `la source` (au moins le nom du concédant) et `la date de la dernière mise à jour` de l’information réutilisée. La licence précise qu’on peut notamment satisfaire cette obligation en donnant l’`URL` qui renvoie vers l’information si cette URL assure une mention effective de paternité.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa mention de paternité ne doit ni donner un `caractère officiel` à la réutilisation, ni laisser croire à une `reconnaissance` ou une `caution` du concédant ou d’une autre entité publique.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa licence prévoit aussi que la réutilisation ne doit pas `induire en erreur des tiers` sur le contenu de l’information, sa source ou sa date de mise à jour.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nS’agissant des `données à caractère personnel`, la licence indique que l’information peut en contenir, que le concédant doit en informer le réutilisateur, et que la réutilisation reste possible à condition de respecter le `cadre légal` applicable à la protection des données personnelles.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa CNIL résume ce point en indiquant que, si des données personnelles sont présentes, les réutilisateurs doivent respecter le `RGPD` et la loi `Informatique et Libertés`. Elle ajoute qu"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000032255228",
+          "text": "**Faits étayés**\n\nLa `Licence Ouverte 2.0` accorde au réutilisateur un droit de réutilisation `gratuit`, `non exclusif`, valable `dans le monde entier`, `pour une durée illimitée`, y compris à des `fins commerciales`. Elle autorise aussi la communication, la copie, l’adaptation, la modification, l’extraction, la transformation, la diffusion, la redistribution, la publication et l’inclusion dans un produit ou une application.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nL’obligation centrale prévue par la licence est de `mentionner la paternité` de l’information, c’est-à-dire au minimum `la source` (au moins le nom du concédant) et `la date de la dernière mise à jour` de l’information réutilisée. La licence précise qu’on peut notamment satisfaire cette obligation en donnant l’`URL` qui renvoie vers l’information si cette URL assure une mention effective de paternité.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa mention de paternité ne doit ni donner un `caractère officiel` à la réutilisation, ni laisser croire à une `reconnaissance` ou une `caution` du concédant ou d’une autre entité publique.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa licence prévoit aussi que la réutilisation ne doit pas `induire en erreur des tiers` sur le contenu de l’information, sa source ou sa date de mise à jour.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nS’agissant des `données à caractère personnel`, la licence indique que l’information peut en contenir, que le concédant doit en informer le réutilisateur, et que la réutilisation reste possible à condition de respecter le `cadre légal` applicable à la protection des données personnelles.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa CNIL résume ce point en indiquant que, si des données personnelles sont présentes, les réutilisateurs doivent respecter le `RGPD` et la loi `Informatique et Libertés`. Elle ajoute qu"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037269056",
+          "text": "**Faits étayés**\n\nLa `Licence Ouverte 2.0` accorde au réutilisateur un droit de réutilisation `gratuit`, `non exclusif`, valable `dans le monde entier`, `pour une durée illimitée`, y compris à des `fins commerciales`. Elle autorise aussi la communication, la copie, l’adaptation, la modification, l’extraction, la transformation, la diffusion, la redistribution, la publication et l’inclusion dans un produit ou une application.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nL’obligation centrale prévue par la licence est de `mentionner la paternité` de l’information, c’est-à-dire au minimum `la source` (au moins le nom du concédant) et `la date de la dernière mise à jour` de l’information réutilisée. La licence précise qu’on peut notamment satisfaire cette obligation en donnant l’`URL` qui renvoie vers l’information si cette URL assure une mention effective de paternité.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa mention de paternité ne doit ni donner un `caractère officiel` à la réutilisation, ni laisser croire à une `reconnaissance` ou une `caution` du concédant ou d’une autre entité publique.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa licence prévoit aussi que la réutilisation ne doit pas `induire en erreur des tiers` sur le contenu de l’information, sa source ou sa date de mise à jour.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nS’agissant des `données à caractère personnel`, la licence indique que l’information peut en contenir, que le concédant doit en informer le réutilisateur, et que la réutilisation reste possible à condition de respecter le `cadre légal` applicable à la protection des données personnelles.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa CNIL résume ce point en indiquant que, si des données personnelles sont présentes, les réutilisateurs doivent respecter le `RGPD` et la loi `Informatique et Libertés`. Elle ajoute qu"
+        }
+      ],
+      "final_answer": "**Faits étayés**\n\nLa `Licence Ouverte 2.0` accorde au réutilisateur un droit de réutilisation `gratuit`, `non exclusif`, valable `dans le monde entier`, `pour une durée illimitée`, y compris à des `fins commerciales`. Elle autorise aussi la communication, la copie, l’adaptation, la modification, l’extraction, la transformation, la diffusion, la redistribution, la publication et l’inclusion dans un produit ou une application.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nL’obligation centrale prévue par la licence est de `mentionner la paternité` de l’information, c’est-à-dire au minimum `la source` (au moins le nom du concédant) et `la date de la dernière mise à jour` de l’information réutilisée. La licence précise qu’on peut notamment satisfaire cette obligation en donnant l’`URL` qui renvoie vers l’information si cette URL assure une mention effective de paternité.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa mention de paternité ne doit ni donner un `caractère officiel` à la réutilisation, ni laisser croire à une `reconnaissance` ou une `caution` du concédant ou d’une autre entité publique.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa licence prévoit aussi que la réutilisation ne doit pas `induire en erreur des tiers` sur le contenu de l’information, sa source ou sa date de mise à jour.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nS’agissant des `données à caractère personnel`, la licence indique que l’information peut en contenir, que le concédant doit en informer le réutilisateur, et que la réutilisation reste possible à condition de respecter le `cadre légal` applicable à la protection des données personnelles.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nLa CNIL résume ce point en indiquant que, si des données personnelles sont présentes, les réutilisateurs doivent respecter le `RGPD` et la loi `Informatique et Libertés`. Elle ajoute que, dans ce cas, le réutilisateur devient à son tour `responsable de traitement` et doit notamment disposer d’une `base légale`, poursuivre une `finalité déterminée, explicite et légitime`, et assurer la `sécurité` des données.  \nSources : https://www.cnil.fr/fr/comment-reutiliser-les-donnees-diffusees ; https://www.cada.fr/sites/default/files/guide_pratique.pdf\n\nLa licence indique que l’information est fournie `telle quelle`, sans garantie expresse ou tacite supplémentaire, que l’absence d’erreurs et la fourniture continue ne sont pas garanties, et que le réutilisateur est `seul responsable` de sa réutilisation.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nSur la propriété intellectuelle, la licence affirme qu’il est garanti au réutilisateur que l’information ne contient pas de droits de propriété intellectuelle de `tiers` faisant obstacle aux libertés accordées par la licence. Elle précise aussi que les éventuels droits détenus par le concédant ne font pas obstacle à ces libertés et, si le concédant détient de tels droits, il les concède de façon `non exclusive` et `gratuite` pour le monde entier et pour leur durée.  \nSource : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nAu niveau du droit commun de la réutilisation, l’article `L322-1` du CRPA pose, `sauf accord de l’administration`, trois limites générales : les informations ne doivent pas être `altérées`, leur `sens` ne doit pas être `dénaturé`, et la `source` ainsi que la `date de dernière mise à jour` doivent être mentionnées.  \nSources : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032255220 ; https://www.legifrance.gouv.fr/codes/id/LEGISCTA000032255218 ; https://www.cnil.fr/fr/comment-reutiliser-les-donnees-diffusees\n\nLe CRPA prévoit aussi que certaines informations ne sont pas librement réutilisables comme “informations publiques” au sens du titre sur la réutilisation : en particulier celles figurant dans des documents dont la communication n’est pas un droit pour toute personne, et celles sur lesquelles des `tiers` détiennent des `droits de propriété intellectuelle`.  \nSource : https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000032255212/2022-06-10\n\nQuand l’administration n’est pas titulaire des droits de propriété intellectuelle, elle doit indiquer au demandeur l’identité du titulaire de ces droits ou, si elle ne la connaît pas, l’identité de la personne auprès de laquelle l’information a été obtenue.  \nSource : https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000031367685\n\nLa CNIL et la CADA rappellent que, par principe, la réutilisation des informations publiées en `open data` est `gratuite`, et que les administrations qui veulent encadrer une réutilisation gratuite n’ont qu’un `choix limité` de licences, fixé par décret. La `Licence Ouverte 2.0` figure sur cette liste officielle.  \nSources : https://www.cnil.fr/fr/quelles-sont-les-modalites-de-diffusion-en-ligne ; https://www.data.gouv.fr/pages/legal/licences ; https://www.legifrance.gouv.fr/codes/id/LEGISCTA000032255228\n\nLes sources officielles ajoutent qu’une licence de réutilisation ne peut ajouter des restrictions que pour des `motifs d’intérêt général`, de façon `proportionnée`, et sans avoir pour objet ou pour effet de `restreindre la concurrence`.  \nSource : https://www.cada.fr/sites/default/files/guide_pratique.pdf\n\n**Inférences raisonnables**\n\nLa `Licence Ouverte 2.0` n’efface donc pas les autres contraintes juridiques applicables : elle ouvre largement les usages, mais `n’autorise pas` à ignorer le `RGPD`, les secrets protégés par la loi, ni d’éventuels droits de propriété intellectuelle de tiers. Cette conclusion est une inférence tirée du croisement entre le texte de la licence, le CRPA et les pages CNIL/CADA.  \nSources d’appui : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0 ; https://www.cnil.fr/fr/comment-reutiliser-les-donnees-diffusees ; https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000032255212/2022-06-10\n\nEn pratique, la licence impose surtout une `attribution correcte`, tandis que les principales `limites substantielles` viennent du droit externe à la licence : protection des données, secrets légaux, propriété intellectuelle de tiers, et interdiction d’induire les tiers en erreur.  \nSources d’appui : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0 ; https://www.cnil.fr/fr/comment-reutiliser-les-donnees-diffusees ; https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037269056\n\n**Tension / possible désaccord d’interprétation**\n\nIl existe une `tension apparente` entre, d’une part, l’article `L322-1` du CRPA, qui interdit par défaut l’altération et la dénaturation `sauf accord de l’administration`, et, d’autre part, la `Licence Ouverte 2.0`, qui autorise explicitement l’`adaptation`, la `modification` et la `transformation`.  \nSources : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032255220 ; https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\nL’inférence la plus plausible est que l’octroi de la `Licence Ouverte 2.0` constitue précisément l’`accord de l’administration` visé par l’article `L322-1`. Je n’ai toutefois pas trouvé, dans les pages officielles consultées ici, une phrase qui formule explicitement cette conciliation.  \nSources d’appui : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032255220 ; https://www.data.gouv.fr/pages/legal/licences/etalab-2.0\n\n**Incertitudes et manque de bonne preuve**\n\nJe n’ai pas trouvé, parmi les sources officielles consultées, de doctrine française explicitant de façon univoque la portée exacte du mot `altérées` de l’article `L322-1` lorsqu’une administration choisit la `Licence Ouverte 2.0`. Il y a donc une `zone d’incertitude interprétative`, même si l’inférence ci-dessus paraît forte.  \nSources consultées : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032255220 ; https://www.data.gouv.fr/pages/legal/licences/etalab-2.0 ; https://www.cnil.fr/fr/comment-reutiliser-les-donnees-diffusees ; https://www.cada.fr/sites/default/files/guide_pratique.pdf\n\nJe n’ai pas non plus trouvé, dans ces sources officielles, de `désaccord explicite` entre autorités françaises sur les obligations minimales de la licence elle-même : les textes consultés convergent sur l’attribution, la date de mise à jour, l’absence d’endossement officiel, et le respect du RGPD lorsqu’il y a des données personnelles.  \nSources : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0 ; https://www.cnil.fr/fr/comment-reutiliser-les-donnees-diffusees ; https://www.cada.fr/sites/default/files/guide_pratique.pdf\n\n**Réponse courte**\n\nSous `Licence Ouverte 2.0`, la réutilisation des données publiques est très large, y compris commerciale, mais elle reste encadrée par quatre blocs d’obligations et de limites : `attribuer correctement la source et la date de mise à jour`, `ne pas faire croire à une validation officielle`, `ne pas induire en erreur`, et `respecter les autres règles applicables`, surtout le `RGPD`, les `secrets protégés` et les `droits de tiers`.  \nSources : https://www.data.gouv.fr/pages/legal/licences/etalab-2.0 ; https://www.cnil.fr/fr/comment-reutiliser-les-donnees-diffusees ; https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037269056 ; https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000032255212/2022-06-10"
+    },
+    {
+      "run_id": "2026-08-27_claude_multilingual-fr-open-data",
+      "provider": "claude",
+      "model": "claude-opus-5[1m]",
+      "queries": [
+        "Licence Ouverte 2.0 Etalab obligations paternité réutilisation",
+        "\"Licence Ouverte\" 2.0 data.gouv.fr texte licence",
+        "CRPA article L322-1 réutilisation informations publiques altérer dénaturer sens mention source date légifrance",
+        "décret n° 2017-638 licences réutilisation informations publiques Licence Ouverte ODbL homologuées",
+        "CRPA L326-1 sanction amende CADA réutilisation informations publiques méconnaissance conditions"
+      ],
+      "tool_results": [
+        {
+          "tool": "WebSearch",
+          "summary": "Licence Ouverte 2.0: https://www.data.gouv.fr/pages/legal/licences/etalab-2.0"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Etalab Open License 2.0 | Software Package Data Exchange (SPDX): https://spdx.org/licenses/etalab-2.0.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "papillon/LICENSE.Etalab-2.0.md at master · etalab/papillon: https://github.com/etalab/papillon/blob/master/LICENSE.Etalab-2.0.md"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "toolbox/LICENSES/LICENSE.Etalab-2.0.md at main · etalab-ia/toolbox: https://github.com/etalab-ia/toolbox/blob/main/LICENSES/LICENSE.Etalab-2.0.md"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "guides.etalab.gouv.fr/LICENSE.md at master · etalab/guides.etalab.gouv.fr: https://github.com/etalab/guides.etalab.gouv.fr/blob/master/LICENSE.md"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "LICENCE OUVERTE 2.0/OPEN LICENCE 2.0 • propre.datareg: https://dreal-pdl.gitlab-pages.din.developpement-durable.gouv.fr/csd/propre.datareg/LICENSE.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "licence-ouverte/LO.md at master · etalab/licence-ouverte: https://github.com/etalab/licence-ouverte/blob/master/LO.md"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Jeu de données - Licence Ouverte 2.0 | data.gouv.fr: https://www.data.gouv.fr/datasets/licence-ouverte-2-0"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "OPEN LICENCE 2.0 LICENCE OUVERTE 2.0 @etalab • etalab.gouv.fr: https://www.etalab.gouv.fr/wp-content/uploads/2018/11/open-licence.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "da-reutilisateur - documentation-administrative.gouv.fr: https://www.documentation-administrative.gouv.fr/page/da-reutilisateur"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Etalab Open License 2.0 | Software Package Data Exchange (SPDX): https://spdx.org/licenses/etalab-2.0.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Licence Ouverte 2.0: https://www.data.gouv.fr/pages/legal/licences/etalab-2.0"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Licence Ouverte Version 2.0: https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Licence Ouverte / Open Licence (Etalab) — ALLiaNCE: https://alliance.numerique.gouv.fr/licence-ouverte-open-licence/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Licence Ouverte / Open Licence (Etalab) — IA dans l'État: https://ia.numerique.gouv.fr/licence-ouverte-open-licence/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Licence Ouverte: https://en.wikipedia.org/wiki/Licence_Ouverte"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Choix des licences open data | Ressources OpenDataFrance: https://opendatafrance.gitbook.io/kit-de-ressources-odf/fiches-pratiques/produire/choix-des-licences-open-data"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Summary of Licence Ouverte 2.0\n\nThe Licence Ouverte 2.0 is a French open license designed to facilitate free reuse of public information. Here are its key provisions:\n\n## Core Rights\nUsers may \"communicate, reproduce, copy\" information and \"adapt, modify, extract and transform\" it for commercial or non-commercial purposes worldwide without time limits.\n\n## Main Obligation\nThe only substantive requirement is attribution: reusers must acknowledge the source (minimally the grantor's name) and the"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Licence Ouverte 2.0 - Vue d'ensemble\n\n## Droits accordés\nLa licence accorde au réutilisateur un \"droit non exclusif et gratuit de libre Réutilisation de l'Information objet de la présente licence, à des fins commerciales ou non, dans le monde entier et pour une durée illimitée.\"\n\nLes utilisateurs peuvent communiquer, reproduire, adapter, modifier, diffuser et exploiter commercialement l'information.\n\n## Obligation de paternité\nL'unique condition requise est de \"mentionner la paternité de l'«In"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Article L322-1 - Code des relations entre le public et l'administration - Légifrance: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032255220"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Article L322-2 du Code des relations entre le public et l'administration | Doctrine: https://www.doctrine.fr/l/texts/codes/LEGITEXT000031366350/articles/LEGIARTI000032255222"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Titre II : LA RÉUTILISATION DES INFORMATIONS PUBLIQUES (Articles L321-1 à L327-1) - Légifrance: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000031367750/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Chapitre II : Règles générales (Articles L322-1 à R322-7) - Légifrance: https://legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000031366350&idSectionTA=LEGISCTA000032255218"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "L’open data public - Ouest Valorisation: https://www.ouest-valorisation.fr/dossiers-d-experts/lopen-data-public/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "202301374 | La CADA: https://www.cada.fr/202301374"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Chapitre Ier : Etendue du droit de réutilisation (Articles L321-1 à R321-8) - Légifrance: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000032255212/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Respecter les conditions de réutilisation | Guides sur les données | Guides de data.gouv.fr: https://guides.data.gouv.fr/guides/guide-juridique/reutilisateurs-de-donnees/respecter-les-conditions-de-reutilisation"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Obligations and Limits for Reusing Public Data\n\n## Required Attribution\nWhen reusing documents from documentation-administrative.gouv.fr, you must provide three mandatory references: \"the title of the document, the author, the ad hoc download link associated with its publication date.\"\n\n## What You Can Do\nUnder the Open License v2.0, reusers enjoy considerable freedom. The platform permits you to \"reproduce, copy; adapt, modify, extract and transform, for creating derivative documents, product"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Respecter les conditions de réutilisation\n\n## Obligations principales du réutilisateur\n\nLorsque vous réutilisez des données publiques, vous devez respecter la licence applicable. Les deux licences principales sont :\n\n**Licence Ouverte 2.0 :**\n- \"Mentionner la source des données\"\n- \"Mentionner la date de dernière mise à jour\"\n- \"Ne pas altérer le sens des données\"\n\n**Licence ODbL :**\nVous devez respecter toutes les conditions de la Licence Ouverte 2.0, plus partager votre travail sous la même l"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Article 3 - Décret n° 2017-638 du 27 avril 2017 relatif aux licences de réutilisation à titre gratuit des informations publiques et aux modalités de leur homologation - Légifrance: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000034504739"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Décret n° 2017-638 du 27 avril 2017 relatif aux licences de réutilisation à titre gratuit des informations publiques et aux modalités de leur homologation - Légifrance: https://www.legifrance.gouv.fr/eli/decret/2017/4/27/2017-638/jo/texte"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Décret n° 2017-638 du 27 avril 2017 relatif aux licences de réutilisation à titre gratuit des informations publiques et aux modalités de leur homologation - APHP DAJDP: https://affairesjuridiques.aphp.fr/textes/decret-n-2017-638-du-27-avril-2017-relatif-aux-licences-de-reutilisation-a-titre-gratuit-des-informations-publiques-et-aux-modalites-de-leur-homologation/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Article 2 - Décret n° 2017-638 du 27 avril 2017 relatif aux licences de réutilisation à titre gratuit des informations publiques et aux modalités de leur homologation - Légifrance: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000034502564"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Licences de réutilisation des données publiques : le décret - Lexing Avocats: https://www.alain-bensoussan.com/avocats/licence-reutilisation-des-donnees-publiques/2017/08/01/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Décret n° 2017-638 du 27 avril 2017 relatif aux licences de ...: https://affairesjuridiques.aphp.fr/textes/decret-n-2017-638-du-27-avril-2017-relatif-aux-licences-de-reutilisation-a-titre-gratuit-des-informations-publiques-et-aux-modalites-de-leur-homologation/?pdf=621488"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Décret n° 2017-638 du 27 avril 2017 relatif aux licences de réutilisation à titre gratuit des informations publiques et aux modalités de leur homologation - Communications électroniques: https://www.legipresse.com/011-49173-Decret-n-2017-638-du27-avril-2017relatif-aux-licences-de-reutilisation-a-titre-gratuit-des-informati.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Open data : les licences types de réutilisation sont arrivées - DS-Avocats-global: https://www.dsavocats.com/open-data-licences-types-de-reutilisation-arrivees/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Dcret n 2017-638 du 27 avril 2017 relatif aux licences de rutilisation titre gratuit des informations publiques et aux modalits de leur homologation: http://www.affaires-publiques.org/textof/TO/17/13264-0417.htm"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Titre II : LA RÉUTILISATION DES INFORMATIONS PUBLIQUES (Articles L321-1 à L327-1) - Légifrance: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000031367750/"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "REDIRECT DETECTED: The URL redirects to a location that was not fetched automatically.\n\nOriginal URL: https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf\nRedirect URL (from the server's Location header — server-supplied, not verified): https://www.data.gouv.fr/\nStatus: 301 Moved Permanently\n\nTo complete your request, I need to fetch content from the redirected URL. Please use WebFetch again with these parameters:\n- url: \"https://www.data.gouv.fr/\"\n- prompt: \"Rep"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Chapitre VI : Sanctions (Article L326-1) - Légifrance: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000032255260/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Titre II : LA RÉUTILISATION DES INFORMATIONS PUBLIQUES (Articles L321-1 à L327-1) - Légifrance: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000031367750/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Article L326-1 - Code des relations entre le public et l'administration - Légifrance: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033219110"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Code des relations entre le public et l'administration - Article L326-1 | Legifrance: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000031366350&idArticle=LEGIARTI000033219110"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Article L326-1 du Code des relations entre le public et l'administration | Doctrine: https://www.doctrine.fr/l/texts/codes/LEGITEXT000031366350/articles/LEGIARTI000032255262"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Régime de réutilisation des informations publiques | economie.gouv.fr: https://www.economie.gouv.fr/saef/regime-de-reutilisation-des-informations-publiques"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Réutilisation des informations publiques: https://archives.paris.fr/a/318/reutilisation-des-informations-publiques-/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Le fonctionnement de la CADA | La CADA: https://www.cada.fr/lacada/le-fonctionnement-de-la-cada"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Summary of Chapter I: Scope of Reuse Rights\n\nThis section of the French Code on Relations Between the Public and Administration establishes the framework for reusing public information.\n\n## Key Principles\n\n**Article L321-1** permits reuse of public information by anyone for purposes beyond the original government mission that generated it.\n\n**Article L321-2** excludes certain documents from reuse rights, specifically those where:\n- Communication isn't a legal right under Title I or other laws "
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# LICENCE OUVERTE 2.0 - RÉSUMÉ PAR CLAUSE\n\n## Libertés du Réutilisateur\nLe titulaire peut \"communiquer, reproduire, copier\" l'information et \"l'adapter, la modifier, l'extraire et la transformer\". Il est aussi autorisé à \"diffuser, redistribuer, publier\" et l'exploiter commercialement.\n\n## Condition de Paternité\nL'obligation principale consiste à mentionner la source (nom du concédant minimum) et la date de mise à jour. Un lien URL pointant vers l'information remplit cette exigence. Cette attrib"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Article L322-1 du Code des relations entre le public et l'administration\n\n**Article L322-1** (in effect since March 19, 2016):\n\n\"Sauf accord de l'administration, la réutilisation des informations publiques est soumise à la condition que ces dernières ne soient pas altérées, que leur sens ne soit pas dénaturé et que leurs sources et la date de leur dernière mise à jour soient mentionnées.\"\n\nThis article establishes that reusing public information requires maintaining its integrity, preserving i"
+        }
+      ],
+      "opened_urls": [
+        "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+        "https://github.com/etalab/licence-ouverte/blob/master/LO.md",
+        "https://www.documentation-administrative.gouv.fr/page/da-reutilisateur",
+        "https://guides.data.gouv.fr/guides/guide-juridique/reutilisateurs-de-donnees/respecter-les-conditions-de-reutilisation",
+        "https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf",
+        "https://raw.githubusercontent.com/etalab/licence-ouverte/master/LO.md",
+        "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000032255212/",
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032255220"
+      ],
+      "cited_urls": [
+        "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+        "https://github.com/etalab/licence-ouverte/blob/master/LO.md",
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032255220",
+        "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000032255212/",
+        "https://www.legifrance.gouv.fr/eli/decret/2017/4/27/2017-638/jo/texte",
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033219110",
+        "https://guides.data.gouv.fr/guides/guide-juridique/reutilisateurs-de-donnees/respecter-les-conditions-de-reutilisation"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "title": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0"
+        },
+        {
+          "url": "https://spdx.org/licenses/etalab-2.0.html",
+          "title": "Etalab Open License 2.0 | Software Package Data Exchange (SPDX)"
+        },
+        {
+          "url": "https://github.com/etalab/papillon/blob/master/LICENSE.Etalab-2.0.md",
+          "title": "papillon/LICENSE.Etalab-2.0.md at master · etalab/papillon"
+        },
+        {
+          "url": "https://github.com/etalab-ia/toolbox/blob/main/LICENSES/LICENSE.Etalab-2.0.md",
+          "title": "toolbox/LICENSES/LICENSE.Etalab-2.0.md at main · etalab-ia/toolbox"
+        },
+        {
+          "url": "https://github.com/etalab/guides.etalab.gouv.fr/blob/master/LICENSE.md",
+          "title": "guides.etalab.gouv.fr/LICENSE.md at master · etalab/guides.etalab.gouv.fr"
+        },
+        {
+          "url": "https://dreal-pdl.gitlab-pages.din.developpement-durable.gouv.fr/csd/propre.datareg/LICENSE.html",
+          "title": "LICENCE OUVERTE 2.0/OPEN LICENCE 2.0 • propre.datareg"
+        },
+        {
+          "url": "https://github.com/etalab/licence-ouverte/blob/master/LO.md",
+          "title": "https://github.com/etalab/licence-ouverte/blob/master/LO.md"
+        },
+        {
+          "url": "https://www.data.gouv.fr/datasets/licence-ouverte-2-0",
+          "title": "Jeu de données - Licence Ouverte 2.0 | data.gouv.fr"
+        },
+        {
+          "url": "https://www.etalab.gouv.fr/wp-content/uploads/2018/11/open-licence.pdf",
+          "title": "OPEN LICENCE 2.0 LICENCE OUVERTE 2.0 @etalab • etalab.gouv.fr"
+        },
+        {
+          "url": "https://www.documentation-administrative.gouv.fr/page/da-reutilisateur",
+          "title": "https://www.documentation-administrative.gouv.fr/page/da-reutilisateur"
+        },
+        {
+          "url": "https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf",
+          "title": "https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"
+        },
+        {
+          "url": "https://alliance.numerique.gouv.fr/licence-ouverte-open-licence/",
+          "title": "Licence Ouverte / Open Licence (Etalab) — ALLiaNCE"
+        },
+        {
+          "url": "https://ia.numerique.gouv.fr/licence-ouverte-open-licence/",
+          "title": "Licence Ouverte / Open Licence (Etalab) — IA dans l'État"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Licence_Ouverte",
+          "title": "Licence Ouverte"
+        },
+        {
+          "url": "https://opendatafrance.gitbook.io/kit-de-ressources-odf/fiches-pratiques/produire/choix-des-licences-open-data",
+          "title": "Choix des licences open data | Ressources OpenDataFrance"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032255220",
+          "title": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032255220"
+        },
+        {
+          "url": "https://www.doctrine.fr/l/texts/codes/LEGITEXT000031366350/articles/LEGIARTI000032255222",
+          "title": "Article L322-2 du Code des relations entre le public et l'administration | Doctrine"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000031367750/",
+          "title": "Titre II : LA RÉUTILISATION DES INFORMATIONS PUBLIQUES (Articles L321-1 à L327-1) - Légifrance"
+        },
+        {
+          "url": "https://legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000031366350&idSectionTA=LEGISCTA000032255218",
+          "title": "Chapitre II : Règles générales (Articles L322-1 à R322-7) - Légifrance"
+        },
+        {
+          "url": "https://www.ouest-valorisation.fr/dossiers-d-experts/lopen-data-public/",
+          "title": "L’open data public - Ouest Valorisation"
+        },
+        {
+          "url": "https://www.cada.fr/202301374",
+          "title": "202301374 | La CADA"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000032255212/",
+          "title": "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000032255212/"
+        },
+        {
+          "url": "https://guides.data.gouv.fr/guides/guide-juridique/reutilisateurs-de-donnees/respecter-les-conditions-de-reutilisation",
+          "title": "https://guides.data.gouv.fr/guides/guide-juridique/reutilisateurs-de-donnees/respecter-les-conditions-de-reutilisation"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000034504739",
+          "title": "Article 3 - Décret n° 2017-638 du 27 avril 2017 relatif aux licences de réutilisation à titre gratuit des informations publiques et aux modalités de leur homologation - Légifrance"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/eli/decret/2017/4/27/2017-638/jo/texte",
+          "title": "Décret n° 2017-638 du 27 avril 2017 relatif aux licences de réutilisation à titre gratuit des informations publiques et aux modalités de leur homologation - Légifrance"
+        },
+        {
+          "url": "https://affairesjuridiques.aphp.fr/textes/decret-n-2017-638-du-27-avril-2017-relatif-aux-licences-de-reutilisation-a-titre-gratuit-des-informations-publiques-et-aux-modalites-de-leur-homologation/",
+          "title": "Décret n° 2017-638 du 27 avril 2017 relatif aux licences de réutilisation à titre gratuit des informations publiques et aux modalités de leur homologation - APHP DAJDP"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000034502564",
+          "title": "Article 2 - Décret n° 2017-638 du 27 avril 2017 relatif aux licences de réutilisation à titre gratuit des informations publiques et aux modalités de leur homologation - Légifrance"
+        },
+        {
+          "url": "https://www.alain-bensoussan.com/avocats/licence-reutilisation-des-donnees-publiques/2017/08/01/",
+          "title": "Licences de réutilisation des données publiques : le décret - Lexing Avocats"
+        },
+        {
+          "url": "https://affairesjuridiques.aphp.fr/textes/decret-n-2017-638-du-27-avril-2017-relatif-aux-licences-de-reutilisation-a-titre-gratuit-des-informations-publiques-et-aux-modalites-de-leur-homologation/?pdf=621488",
+          "title": "Décret n° 2017-638 du 27 avril 2017 relatif aux licences de ..."
+        },
+        {
+          "url": "https://www.legipresse.com/011-49173-Decret-n-2017-638-du27-avril-2017relatif-aux-licences-de-reutilisation-a-titre-gratuit-des-informati.html",
+          "title": "Décret n° 2017-638 du 27 avril 2017 relatif aux licences de réutilisation à titre gratuit des informations publiques et aux modalités de leur homologation - Communications électroniques"
+        },
+        {
+          "url": "https://www.dsavocats.com/open-data-licences-types-de-reutilisation-arrivees/",
+          "title": "Open data : les licences types de réutilisation sont arrivées - DS-Avocats-global"
+        },
+        {
+          "url": "http://www.affaires-publiques.org/textof/TO/17/13264-0417.htm",
+          "title": "Dcret n 2017-638 du 27 avril 2017 relatif aux licences de rutilisation titre gratuit des informations publiques et aux modalits de leur homologation"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000032255260/",
+          "title": "Chapitre VI : Sanctions (Article L326-1) - Légifrance"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033219110",
+          "title": "Article L326-1 - Code des relations entre le public et l'administration - Légifrance"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000031366350&idArticle=LEGIARTI000033219110",
+          "title": "Code des relations entre le public et l'administration - Article L326-1 | Legifrance"
+        },
+        {
+          "url": "https://www.doctrine.fr/l/texts/codes/LEGITEXT000031366350/articles/LEGIARTI000032255262",
+          "title": "Article L326-1 du Code des relations entre le public et l'administration | Doctrine"
+        },
+        {
+          "url": "https://www.economie.gouv.fr/saef/regime-de-reutilisation-des-informations-publiques",
+          "title": "Régime de réutilisation des informations publiques | economie.gouv.fr"
+        },
+        {
+          "url": "https://archives.paris.fr/a/318/reutilisation-des-informations-publiques-/",
+          "title": "Réutilisation des informations publiques"
+        },
+        {
+          "url": "https://www.cada.fr/lacada/le-fonctionnement-de-la-cada",
+          "title": "Le fonctionnement de la CADA | La CADA"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/etalab/licence-ouverte/master/LO.md",
+          "title": "https://raw.githubusercontent.com/etalab/licence-ouverte/master/LO.md"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "text": "Licence Ouverte 2.0"
+        },
+        {
+          "url": "https://spdx.org/licenses/etalab-2.0.html",
+          "text": "Etalab Open License 2.0 | Software Package Data Exchange (SPDX)"
+        },
+        {
+          "url": "https://github.com/etalab/papillon/blob/master/LICENSE.Etalab-2.0.md",
+          "text": "papillon/LICENSE.Etalab-2.0.md at master · etalab/papillon"
+        },
+        {
+          "url": "https://github.com/etalab-ia/toolbox/blob/main/LICENSES/LICENSE.Etalab-2.0.md",
+          "text": "toolbox/LICENSES/LICENSE.Etalab-2.0.md at main · etalab-ia/toolbox"
+        },
+        {
+          "url": "https://github.com/etalab/guides.etalab.gouv.fr/blob/master/LICENSE.md",
+          "text": "guides.etalab.gouv.fr/LICENSE.md at master · etalab/guides.etalab.gouv.fr"
+        },
+        {
+          "url": "https://dreal-pdl.gitlab-pages.din.developpement-durable.gouv.fr/csd/propre.datareg/LICENSE.html",
+          "text": "LICENCE OUVERTE 2.0/OPEN LICENCE 2.0 • propre.datareg"
+        },
+        {
+          "url": "https://github.com/etalab/licence-ouverte/blob/master/LO.md",
+          "text": "licence-ouverte/LO.md at master · etalab/licence-ouverte"
+        },
+        {
+          "url": "https://www.data.gouv.fr/datasets/licence-ouverte-2-0",
+          "text": "Jeu de données - Licence Ouverte 2.0 | data.gouv.fr"
+        },
+        {
+          "url": "https://www.etalab.gouv.fr/wp-content/uploads/2018/11/open-licence.pdf",
+          "text": "OPEN LICENCE 2.0 LICENCE OUVERTE 2.0 @etalab • etalab.gouv.fr"
+        },
+        {
+          "url": "https://www.documentation-administrative.gouv.fr/page/da-reutilisateur",
+          "text": "da-reutilisateur - documentation-administrative.gouv.fr"
+        },
+        {
+          "url": "https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf",
+          "text": "Licence Ouverte Version 2.0"
+        },
+        {
+          "url": "https://alliance.numerique.gouv.fr/licence-ouverte-open-licence/",
+          "text": "Licence Ouverte / Open Licence (Etalab) — ALLiaNCE"
+        },
+        {
+          "url": "https://ia.numerique.gouv.fr/licence-ouverte-open-licence/",
+          "text": "Licence Ouverte / Open Licence (Etalab) — IA dans l'État"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Licence_Ouverte",
+          "text": "Licence Ouverte"
+        },
+        {
+          "url": "https://opendatafrance.gitbook.io/kit-de-ressources-odf/fiches-pratiques/produire/choix-des-licences-open-data",
+          "text": "Choix des licences open data | Ressources OpenDataFrance"
+        },
+        {
+          "url": "https://github.com/etalab/licence-ouverte/blob/master/LO.md",
+          "text": "# Summary of Licence Ouverte 2.0\n\nThe Licence Ouverte 2.0 is a French open license designed to facilitate free reuse of public information. Here are its key provisions:\n\n## Core Rights\nUsers may \"communicate, reproduce, copy\" information and \"adapt, modify, extract and transform\" it for commercial or non-commercial purposes worldwide without time limits.\n\n## Main Obligation\nThe only substantive requirement is attribution: reusers must acknowledge the source (minimally the grantor's name) and the last update date, potentially via URL.\n\n## Key Protections\n- The licensor grants non-exclusive rights to any intellectual property it holds\n- Information is provided \"as is\" without guarantees\n- The licensor bears no liability for reuse consequences\n- Reusers are solely responsible for their use\n\n## Special Considerations\nPersonal data within the information remains subject to applicable data protection laws. Derived works created by combining licensed information with other data are not restricted by this license.\n\n## Compatibility\nThe license was designed to work alongside attribution-based open licenses, including Creative Commons Attribution (CC-BY) and the UK's Open Government Licence.\n\nEtalab, France's public data agency, created this license to enable broad reuse of government information under French administrative law."
+        },
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "text": "# Licence Ouverte 2.0 - Vue d'ensemble\n\n## Droits accordés\nLa licence accorde au réutilisateur un \"droit non exclusif et gratuit de libre Réutilisation de l'Information objet de la présente licence, à des fins commerciales ou non, dans le monde entier et pour une durée illimitée.\"\n\nLes utilisateurs peuvent communiquer, reproduire, adapter, modifier, diffuser et exploiter commercialement l'information.\n\n## Obligation de paternité\nL'unique condition requise est de \"mentionner la paternité de l'«Information» : sa source (a minima le nom du « Concédant ») et la date de la dernière mise à jour.\"\n\nCette attribution ne doit pas conférer un caractère officiel à la réutilisation ni suggérer une approbation du concédant.\n\n## Droits de propriété intellectuelle\nLe concédant cède les droits de propriété intellectuelle qu'il détient \"de façon non exclusive, à titre gracieux, pour le monde entier, pour toute la durée\" de ces droits, permettant tout usage conforme à la licence.\n\n## Responsabilité et garanties\nL'information est fournie \"telle que produite ou reçue, sans autre garantie expresse ou tacite.\" Le concédant ne garantit ni l'absence de défauts ni la continuité de l'information. Le réutilisateur assume seul la responsabilité de sa réutilisation.\n\n## Droit applicable\n\"La présente licence est régie par le droit français.\"\n\n## Compatibilité\nElle est conçue pour être compatible avec licences libres exigeant la mention de paternité (CC-BY, OGL, ODC-BY).\n\n## Données personnelles\nLes données à caractère personnel peuvent être réutilisées librement, \"à condition de respecter le cadre légal relatif à la protection des données à caractère personnel.\""
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032255220",
+          "text": "Article L322-1 - Code des relations entre le public et l'administration - Légifrance"
+        },
+        {
+          "url": "https://www.doctrine.fr/l/texts/codes/LEGITEXT000031366350/articles/LEGIARTI000032255222",
+          "text": "Article L322-2 du Code des relations entre le public et l'administration | Doctrine"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000031367750/",
+          "text": "Titre II : LA RÉUTILISATION DES INFORMATIONS PUBLIQUES (Articles L321-1 à L327-1) - Légifrance"
+        },
+        {
+          "url": "https://legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000031366350&idSectionTA=LEGISCTA000032255218",
+          "text": "Chapitre II : Règles générales (Articles L322-1 à R322-7) - Légifrance"
+        },
+        {
+          "url": "https://www.ouest-valorisation.fr/dossiers-d-experts/lopen-data-public/",
+          "text": "L’open data public - Ouest Valorisation"
+        },
+        {
+          "url": "https://www.cada.fr/202301374",
+          "text": "202301374 | La CADA"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000032255212/",
+          "text": "Chapitre Ier : Etendue du droit de réutilisation (Articles L321-1 à R321-8) - Légifrance"
+        },
+        {
+          "url": "https://guides.data.gouv.fr/guides/guide-juridique/reutilisateurs-de-donnees/respecter-les-conditions-de-reutilisation",
+          "text": "Respecter les conditions de réutilisation | Guides sur les données | Guides de data.gouv.fr"
+        },
+        {
+          "url": "https://www.documentation-administrative.gouv.fr/page/da-reutilisateur",
+          "text": "# Obligations and Limits for Reusing Public Data\n\n## Required Attribution\nWhen reusing documents from documentation-administrative.gouv.fr, you must provide three mandatory references: \"the title of the document, the author, the ad hoc download link associated with its publication date.\"\n\n## What You Can Do\nUnder the Open License v2.0, reusers enjoy considerable freedom. The platform permits you to \"reproduce, copy; adapt, modify, extract and transform, for creating derivative documents, products or services; communicate, disseminate, redistribute, publish and transmit; exploit commercially.\"\n\n## Key Limitations\n- **Attribution requirement**: Paternity, update date, and source link must always be mentioned\n- **No commercial restrictions**: Commercial use is allowed under the same attribution conditions\n- **Scope limitation**: Documents are \"proposed under licence etalab-2.0,\" meaning the license governs all content\n\n## Important Consideration\nPersonal data handling and cookie management are governed separately, as indicated by the site's privacy policy link, suggesting additional compliance obligations beyond the open license itself."
+        },
+        {
+          "url": "https://guides.data.gouv.fr/guides/guide-juridique/reutilisateurs-de-donnees/respecter-les-conditions-de-reutilisation",
+          "text": "# Respecter les conditions de réutilisation\n\n## Obligations principales du réutilisateur\n\nLorsque vous réutilisez des données publiques, vous devez respecter la licence applicable. Les deux licences principales sont :\n\n**Licence Ouverte 2.0 :**\n- \"Mentionner la source des données\"\n- \"Mentionner la date de dernière mise à jour\"\n- \"Ne pas altérer le sens des données\"\n\n**Licence ODbL :**\nVous devez respecter toutes les conditions de la Licence Ouverte 2.0, plus partager votre travail sous la même licence (clause de partage à l'identique).\n\n## Absence de licence\n\nEn l'absence de licence explicite, l'article L322-1 du CRPA s'applique, imposant : non-altération des données, mention des sources, et date de dernière mise à jour.\n\n## Restrictions possibles\n\nLes administrations ne peuvent généralement pas invoquer la propriété intellectuelle pour bloquer la réutilisation. Cependant, un droit *sui generis* peut s'appliquer si l'administration est en situation de concurrence ET a investi substantiellement dans la création de la base de données.\n\nCertaines administrations peuvent pratiquer des redevances et interdire la rediffusion des données achetées, bien que cette tendance soit à la réduction."
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000034504739",
+          "text": "Article 3 - Décret n° 2017-638 du 27 avril 2017 relatif aux licences de réutilisation à titre gratuit des informations publiques et aux modalités de leur homologation - Légifrance"
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/eli/decret/2017/4/27/2017-638/jo/texte",
+          "text": "Décret n° 2017-638 du 27 avril 2017 relatif aux licences de réutilisation à titre gratuit des informations publiques et aux modalités de leur homologation - Légifrance"
+        },
+        {
+          "url": "https://affairesjuridiques.aphp.fr/textes/decret-n-2017-638-du-27-avril-2017-relatif-aux-licences-de-reutilisation-a-titre-gratuit-des-informations-publiques-et-aux-modalites-de-leur-homologation/",
+          "text": "Décret n° 2017-638 du 27 avril 2017 relatif aux licences de réutilisation à titre gratuit des informations publiques et aux modalités de leur homologation - APHP DAJDP"
+        }
+      ],
+      "final_answer": "## Réponse\n\n### 1. Ce que la Licence Ouverte 2.0 autorise (fait établi)\n\nLe Concédant accorde au Réutilisateur « un droit non exclusif et gratuit de libre Réutilisation de l'Information […] à des fins commerciales ou non, dans le monde entier et pour une durée illimitée ». Le Réutilisateur est libre de :\n\n- communiquer, reproduire, copier l'Information ;\n- l'adapter, la modifier, l'extraire et la transformer, notamment pour créer des informations dérivées ;\n- diffuser, redistribuer, publier et transmettre ;\n- l'exploiter commercialement, par exemple en la combinant avec d'autres informations ou en l'incluant dans son propre produit ou application.\n\nSources : [data.gouv.fr — Licence Ouverte 2.0](https://www.data.gouv.fr/pages/legal/licences/etalab-2.0), [etalab/licence-ouverte (LO.md)](https://github.com/etalab/licence-ouverte/blob/master/LO.md)\n\n### 2. L'obligation unique : la paternité (fait établi)\n\nLa seule condition posée par la licence est de **mentionner la paternité de l'Information : sa source (a minima le nom du Concédant) et la date de la dernière mise à jour**. Le Réutilisateur peut satisfaire à cette obligation en indiquant l'URL pointant vers l'Information et assurant une mention effective de sa paternité.\n\nLimite explicite attachée à cette mention : elle **ne doit ni conférer un caractère officiel à la réutilisation, ni suggérer une quelconque reconnaissance ou approbation** du Concédant, ou de toute autre entité publique, à l'égard du Réutilisateur ou de sa réutilisation.\n\nSources : [data.gouv.fr](https://www.data.gouv.fr/pages/legal/licences/etalab-2.0), [etalab/licence-ouverte](https://github.com/etalab/licence-ouverte/blob/master/LO.md)\n\n### 3. Les autres limites internes à la licence (fait établi)\n\n| Clause | Contenu |\n|---|---|\n| Propriété intellectuelle | Le Concédant garantit que l'Information ne contient pas de droits de propriété intellectuelle appartenant à des tiers qui feraient obstacle aux libertés accordées ; ses propres droits éventuels sont cédés de façon non exclusive, à titre gracieux, pour le monde entier et pour toute leur durée. |\n| Données à caractère personnel | Si l'Information en contient, le Concédant doit en informer le Réutilisateur ; la réutilisation reste libre **à condition de respecter le cadre légal relatif à la protection des données à caractère personnel**. |\n| Responsabilité / garanties | L'Information est mise à disposition « telle que produite ou reçue », sans autre garantie expresse ou tacite ; absence de garantie d'exemption de défauts ou d'erreurs, ni de continuité de la fourniture ; le Réutilisateur est **seul responsable** de sa réutilisation. |\n| Droit applicable | La licence est régie par le **droit français**. |\n| Compatibilité | Conçue pour être compatible avec les licences libres exigeant a minima la mention de paternité : CC-BY, Open Government Licence britannique, ODC-BY. |\n\nSources : [data.gouv.fr](https://www.data.gouv.fr/pages/legal/licences/etalab-2.0), [etalab/licence-ouverte](https://github.com/etalab/licence-ouverte/blob/master/LO.md)\n\n### 4. Le cadre légal environnant (fait établi)\n\n- **Article L322-1 du CRPA** : « Sauf accord de l'administration, la réutilisation des informations publiques est soumise à la condition que ces dernières ne soient pas altérées, que leur sens ne soit pas dénaturé et que leurs sources et la date de leur dernière mise à jour soient mentionnées. » — [Légifrance](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032255220)\n- **Article L321-2 du CRPA** : sont exclus du droit de réutilisation les documents dont la communication ne constitue pas un droit, et **ceux sur lesquels des tiers détiennent des droits de propriété intellectuelle** — [Légifrance](https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000032255212/)\n- **Décret n° 2017-638 du 27 avril 2017** : insère l'article D. 323-2-1 du CRPA et fixe la liste des licences de réutilisation à titre gratuit ; la Licence Ouverte et l'ODbL y figurent pour les données, avec des listes distinctes pour les logiciels (BSD, Apache, CeCILL-B, MIT / MPL, GPL, CeCILL) — [Légifrance](https://www.legifrance.gouv.fr/eli/decret/2017/4/27/2017-638/jo/texte)\n- **Article L326-1 du CRPA (sanctions)** : la réutilisation en méconnaissance de L322-1 ou des conditions d'une licence expose à une amende prononcée par la CADA — plafond de l'amende des contraventions de 5ᵉ classe pour une réutilisation non commerciale ; pour une réutilisation commerciale, amende proportionnée à la gravité et aux avantages retirés, plafonnée à 1 M€ (2 M€ ou 5 % du chiffre d'affaires HT en cas de récidive dans les 5 ans). Une interdiction de réutiliser (2 ans, 5 ans en récidive) peut s'y ajouter ou s'y substituer — [Légifrance](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033219110)\n\n### 5. Un point de divergence entre sources officielles (à signaler)\n\nLe guide juridique de data.gouv.fr résume les obligations de la LO 2.0 comme : mentionner la source, mentionner la date de dernière mise à jour et **« ne pas altérer le sens des données »** ([guides.data.gouv.fr](https://guides.data.gouv.fr/guides/guide-juridique/reutilisateurs-de-donnees/respecter-les-conditions-de-reutilisation)). Or le texte même de la licence n'énonce **aucune** interdiction d'altération ou de dénaturation : il autorise au contraire expressément d'« adapter, modifier, extraire et transformer », et ne pose que la condition de paternité ([data.gouv.fr](https://www.data.gouv.fr/pages/legal/licences/etalab-2.0)).\n\n**Inférence (non affirmée par les sources consultées)** : la lecture qui réconcilie les deux est que la LO 2.0 constitue précisément l'« accord de l'administration » réservé par L322-1, levant l'interdiction d'altération. Le guide semble alors soit simplifier, soit renvoyer à la clause interdisant de conférer un caractère officiel à la réutilisation. Je n'ai trouvé aucune source officielle tranchant explicitement ce point ; c'est une zone d'incertitude réelle.\n\n### 6. Ce que je n'ai pas pu vérifier\n\n- Le texte exact de l'**article L322-2 du CRPA** (données à caractère personnel) : Légifrance en signale l'existence mais la page consultée n'en affichait pas le contenu.\n- Le PDF historique d'etalab.gouv.fr redirige désormais vers data.gouv.fr ; je me suis appuyé sur la version data.gouv.fr et le dépôt GitHub officiel d'Etalab, qui concordent.\n- Je n'ai pas recherché de jurisprudence ni d'avis CADA appliquant spécifiquement la LO 2.0 — sur ce point, absence d'éléments probants dans cette recherche."
+    }
+  ]
+}

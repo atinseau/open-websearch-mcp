@@ -1,0 +1,9 @@
+{
+  "accepted_claim_ids": ["claim_1", "claim_2", "claim_3"],
+  "rejected_claims": [
+    {
+      "id": "claim_4",
+      "reason": "Motifs de notation trop étroits : les deux acceptable_patterns sont des phrases quasi complètes exigeant une reprise verbatim (« no solid evidence of any public event to explain », « looks largely historical rather than actively updated with current news »), qu'aucune reformulation correcte ne satisferait lors d'une évaluation lexicale. Le fond (absence de « pourquoi » documenté) est par ailleurs déjà couvert de manière bornée et proprement attribuée par claim_1, donc le rejet n'entraîne aucune perte de couverture."
+    }
+  ]
+}

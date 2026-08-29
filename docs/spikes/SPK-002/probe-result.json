@@ -1,0 +1,74 @@
+{
+  "startedAt": "2026-08-28T21:11:28.489Z",
+  "finishedAt": "2026-08-28T21:11:30.122Z",
+  "bunVersion": "1.4.0",
+  "obscuraVersion": "obscura 0.2.1",
+  "cdpUrl": "ws://127.0.0.1:46751/devtools/browser",
+  "criteria": [
+    {
+      "id": "1",
+      "passed": true,
+      "detail": "CDP endpoint: ws://127.0.0.1:46751/devtools/browser"
+    },
+    {
+      "id": "2",
+      "passed": true,
+      "detail": "Bun.WebView constructed with explicit Obscura WebSocket URL"
+    },
+    {
+      "id": "3-local",
+      "passed": true,
+      "detail": "rendered=\"true|\\n    \\n        Rendered fixture heading\\n        The fixture was rendered by JavaScript.\\n        \\n          Fixture relative link\\n          Example external link\\n          Bun external link\\n        \\n    \\n      document.querySelector(\\\"#fixture-root\\\").innerHTML = `\\n        <h1>Rendered fixture heading</h1>\\n        <p id=\\\"rendered-text\\\">The fixture was rendered by JavaScript.</p>\\n        <nav>\\n          <a href=\\\"/fixture-link\\\">Fixture relative link</a>\\n          <a href=\\\"https://example.com/\\\">Example external link</a>\\n          <a href=\\\"https://bun.sh/\\\">Bun external link</a>\\n        </nav>`;\\n      document.body.dataset.rendered = \\\"true\\\";\\n    \\n  \\n\\n\", links=3, DOM root=#document"
+    },
+    {
+      "id": "3-public",
+      "passed": true,
+      "detail": "public rendered text length=20955"
+    },
+    {
+      "id": "5-view-close",
+      "passed": true,
+      "detail": "closed a view while the owned Obscura endpoint remained reachable"
+    },
+    {
+      "id": "4-concurrent",
+      "passed": true,
+      "detail": "six concurrent views rendered=6"
+    },
+    {
+      "id": "4-sequential",
+      "passed": true,
+      "detail": "sequential navigations=100"
+    },
+    {
+      "id": "6-packed-artifact",
+      "passed": true,
+      "detail": "not applicable: no package artifact currently contains this spike; rerun only if packaging changes this runtime path"
+    },
+    {
+      "id": "RENDER-006",
+      "passed": true,
+      "detail": "zero user Chrome discovery/attachment/closure calls; explicit Obscura URL only"
+    }
+  ],
+  "failures": [],
+  "sequentialNavigationCount": 100,
+  "concurrentViewCount": 6,
+  "userChromeDiscoveryCalls": 0,
+  "ownedObscuraPid": 15159,
+  "ownedObscuraExited": true,
+  "ownedCdpEndpointClosed": true,
+  "fixture": {
+    "text": "true|\n    \n        Rendered fixture heading\n        The fixture was rendered by JavaScript.\n        \n          Fixture relative link\n          Example external link\n          Bun external link\n        \n    \n      document.querySelector(\"#fixture-root\").innerHTML = `\n        <h1>Rendered fixture heading</h1>\n        <p id=\"rendered-text\">The fixture was rendered by JavaScript.</p>\n        <nav>\n          <a href=\"/fixture-link\">Fixture relative link</a>\n          <a href=\"https://example.com/\">Example external link</a>\n          <a href=\"https://bun.sh/\">Bun external link</a>\n        </nav>`;\n      document.body.dataset.rendered = \"true\";\n    \n  \n\n",
+    "links": [
+      "http://127.0.0.1:64492/fixture-link",
+      "https://example.com/",
+      "https://bun.sh/"
+    ],
+    "domRootNodeName": "#document"
+  },
+  "publicPage": {
+    "url": "https://bun.sh/",
+    "textLength": 20955
+  }
+}

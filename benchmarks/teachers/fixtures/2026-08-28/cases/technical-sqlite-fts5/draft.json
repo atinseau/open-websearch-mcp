@@ -1,0 +1,207 @@
+{
+  "claims": [
+    {
+      "id": "claim_runtime_builtin_detection",
+      "text": "SQLite documents runtime checks for compile-time FTS5 support via `sqlite3_compileoption_used(...)`, the SQL function `sqlite_compileoption_used(...)`, and `PRAGMA compile_options`, looking for `ENABLE_FTS5`/`SQLITE_ENABLE_FTS5`.",
+      "required_concepts": ["runtime-detection", "compile-options", "enable-fts5"],
+      "acceptable_patterns": [
+        "sqlite3_compileoption_used\\(\"(?:SQLITE_)?ENABLE_FTS5\"\\)",
+        "sqlite_compileoption_used\\('ENABLE_FTS5'\\)",
+        "PRAGMA\\s+compile_options",
+        "ENABLE_FTS5"
+      ],
+      "sources": [
+        {
+          "url": "https://sqlite.org/c3ref/compileoption_get.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://sqlite.org/lang_corefunc.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://sqlite.org/pragma.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://sqlite.org/compile.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "claim_fts5_loadable_extension",
+      "text": "SQLite also documents that FTS5 can be built as a loadable extension, with entry points `sqlite3_fts_init` and `sqlite3_fts5_init`.",
+      "required_concepts": ["fts5-extension", "entry-points"],
+      "acceptable_patterns": ["loadable extension", "sqlite3_fts_init", "sqlite3_fts5_init"],
+      "sources": [
+        {
+          "url": "https://sqlite.org/fts5.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.88
+    },
+    {
+      "id": "claim_compile_option_limit",
+      "text": "A positive compile-option check indicates built-in FTS5 support, but a negative compile-option result does not by itself prove FTS5 is unavailable, because FTS5 may be supplied by a loaded extension.",
+      "required_concepts": ["builtin-vs-loaded", "negative-check-limit"],
+      "acceptable_patterns": [
+        "does not prove FTS5 is unavailable",
+        "built-in FTS5 support",
+        "loaded extension"
+      ],
+      "sources": [
+        {
+          "url": "https://sqlite.org/c3ref/compileoption_get.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://sqlite.org/compile.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://sqlite.org/fts5.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://sqlite.org/lang_corefunc.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.95
+    },
+    {
+      "id": "claim_external_content_definition",
+      "text": "An external-content FTS5 table is created by setting `content=` to the name of a table, virtual table, or view in the same database, and when FTS5 needs column values it queries that content object by rowid.",
+      "required_concepts": ["external-content", "content-option", "rowid-lookup"],
+      "acceptable_patterns": [
+        "content=",
+        "table, virtual table, or view",
+        "WHERE\\s+<content_rowid>\\s*=\\s*\\?"
+      ],
+      "sources": [
+        {
+          "url": "https://sqlite.org/fts5.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.92
+    },
+    {
+      "id": "claim_external_content_consistency",
+      "text": "For external-content tables, SQLite says all FTS5 functionality may be used, but the user must keep the full-text index consistent with the content table or query results may be unpredictable.",
+      "required_concepts": ["consistency", "user-responsibility", "unpredictable-results"],
+      "acceptable_patterns": [
+        "all FTS5 functionality may be used",
+        "keep the full-text index consistent",
+        "may be unpredictable"
+      ],
+      "sources": [
+        {
+          "url": "https://sqlite.org/fts5.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "claim_external_content_triggers",
+      "text": "Triggers are a documented way to keep an external-content FTS5 index in sync, but they only affect later `INSERT`, `UPDATE`, and `DELETE` operations and do not backfill existing rows; SQLite documents the `'rebuild'` command to recreate the index from the content table.",
+      "required_concepts": ["triggers", "no-backfill", "rebuild"],
+      "acceptable_patterns": [
+        "INSERT",
+        "UPDATE",
+        "DELETE",
+        "do not backfill existing rows",
+        "'rebuild'",
+        "rebuilds it from the table or content table"
+      ],
+      "sources": [
+        {
+          "url": "https://sqlite.org/fts5.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.97
+    },
+    {
+      "id": "claim_external_content_query_behavior",
+      "text": "For external-content FTS5 tables, queries without full-text index usage are effectively passed through to the content table, while queries that use the full-text index fetch matching rowids from the index and then read columns from the content table; if the content row is missing, returned text columns may be `NULL`.",
+      "required_concepts": ["pass-through", "match-query", "null-columns"],
+      "acceptable_patterns": [
+        "passed through to the external content table",
+        "matching rowid values from the index",
+        "may be NULL"
+      ],
+      "sources": [
+        {
+          "url": "https://sqlite.org/fts5.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.96
+    },
+    {
+      "id": "claim_external_content_replace_order",
+      "text": "External-content FTS5 tables do not support `REPLACE` conflict handling and treat such operations using `ABORT`; for deletes and updates affecting both tables, SQLite says the FTS5 table must be updated first so old tokens can be removed correctly.",
+      "required_concepts": ["replace-limit", "update-order", "old-tokens"],
+      "acceptable_patterns": [
+        "do not support REPLACE",
+        "using ABORT",
+        "must be updated first",
+        "remove old tokens correctly"
+      ],
+      "sources": [
+        {
+          "url": "https://sqlite.org/fts5.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.93
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "SQLite documents one canonical API that determines whether FTS5 is currently usable on a specific connection regardless of whether it is built-in or loaded later.",
+      "reason": "The supplied evidence explicitly says no official SQLite page was found that states such a single canonical API."
+    },
+    {
+      "text": "If `sqlite3_compileoption_used(\"ENABLE_FTS5\")` or `sqlite_compileoption_used('ENABLE_FTS5')` returns `0`, FTS5 is definitely unavailable.",
+      "reason": "The supplied evidence says a `0` result does not prove unavailability because FTS5 may be provided by a loaded extension."
+    },
+    {
+      "text": "Creating sync triggers for an external-content FTS5 table automatically indexes pre-existing rows in the content table.",
+      "reason": "The supplied evidence says the triggers only fire for later `INSERT`, `UPDATE`, and `DELETE` operations and do not backfill existing rows."
+    }
+  ]
+}

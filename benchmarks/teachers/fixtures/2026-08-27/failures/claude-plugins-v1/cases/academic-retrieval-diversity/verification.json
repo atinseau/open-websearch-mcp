@@ -1,0 +1,9 @@
+{
+  "accepted_claim_ids": ["claim_1", "claim_2", "claim_3", "claim_4"],
+  "rejected_claims": [
+    {
+      "id": "claim_5",
+      "reason": "Attribution non vérifiée et probablement erronée : « Zhu et al. (SIGIR 2014) » ne repose que sur le nom de fichier zhu_2014.pdf d'une page de cours, alors que les preuves disponibles rattachent le modèle MMR appris (MMRlist) à un autre article/auteurs/année. Aucune URL n'a été ouverte dans le run Codex, donc les chiffres ERR-IA cités ne sont pas vérifiables. De plus, le pattern « MMRlist.*improved over `ListMLE` » exige des backticks littéraux et est donc invalide pour un grading lexical. Enfin la claim est composite (résultat Zhu + résultat Santos/xQuAD) et durcit la preuve contradictoire en affirmant que xQuAD est « the only approach » à améliorer les trois baselines, ce qui dépasse le périmètre de l'étude citée."
+    }
+  ]
+}

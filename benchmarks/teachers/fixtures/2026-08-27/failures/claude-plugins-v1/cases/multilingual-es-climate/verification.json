@@ -1,0 +1,9 @@
+{
+  "accepted_claim_ids": ["c1", "c2", "c3", "c4", "c5"],
+  "rejected_claims": [
+    {
+      "id": "c6",
+      "reason": "Les éléments centraux (trois sources principales d'incertitude sur escenarios_CC ; citation « interacciones atmósfera-superficie » sur evaluacion_modelos_climaticos) ne sont étayés par aucune preuve indépendante : le run Codex a opened_urls vide et les passages attribués à ces URL ne sont que des copies de sa propre réponse finale, sans corroboration par le run Claude. La revendication conflate en outre incertitude des séries observées et incertitude des projections climatiques, et agrège six concepts hétérogènes, ce qui la rend dépendante d'une interprétation non explicitée et peu déterministe pour une notation lexicale."
+    }
+  ]
+}

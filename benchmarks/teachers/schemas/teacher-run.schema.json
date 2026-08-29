@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://open-websearch-mcp.local/schemas/teacher-run.schema.json",
+  "title": "Teacher run",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "case_id",
+    "provider",
+    "model",
+    "cli_version",
+    "locale",
+    "started_at",
+    "duration_ms",
+    "prompt_sha256",
+    "queries",
+    "tool_results",
+    "opened_urls",
+    "cited_urls",
+    "selected_sources",
+    "evidence_passages",
+    "final_answer",
+    "raw_trace",
+    "policy_evidence",
+    "isolation"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "run_id": { "type": "string", "minLength": 1 },
+    "case_id": { "type": "string", "minLength": 1 },
+    "provider": { "enum": ["codex", "claude"] },
+    "model": { "type": "string", "minLength": 1 },
+    "cli_version": { "type": "string", "minLength": 1 },
+    "locale": { "type": "string", "minLength": 2 },
+    "started_at": { "type": "string", "format": "date-time" },
+    "duration_ms": { "type": "integer", "minimum": 0 },
+    "prompt_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "queries": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "tool_results": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["tool", "summary"],
+        "properties": {
+          "tool": { "type": "string", "minLength": 1 },
+          "summary": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "opened_urls": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" }
+    },
+    "cited_urls": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "format": "uri" }
+    },
+    "selected_sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/source" }
+    },
+    "evidence_passages": {
+      "type": "array",
+      "minItems": 0,
+      "items": { "$ref": "#/$defs/passage" }
+    },
+    "final_answer": { "type": "string", "minLength": 1 },
+    "raw_trace": { "const": "events.sanitized.jsonl" },
+    "policy_evidence": { "const": "policy.json" },
+    "isolation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["temporary_cwd", "cwd_unchanged", "forbidden_tool_calls"],
+      "properties": {
+        "temporary_cwd": { "const": true },
+        "cwd_unchanged": { "const": true },
+        "forbidden_tool_calls": { "type": "array", "maxItems": 0 }
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "title"],
+      "properties": {
+        "url": { "type": "string", "format": "uri" },
+        "title": { "type": "string", "minLength": 1 }
+      }
+    },
+    "passage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "text"],
+      "properties": {
+        "url": { "type": "string", "format": "uri" },
+        "text": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "case_id": "technical-robots-rfc",
+  "runs": [
+    {
+      "run_id": "2026-08-27_codex_technical-robots-rfc",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "RFC 9309 robots.txt user-agent groups allow disallow percent encoding unavailable robots.txt",
+        "https://datatracker.ietf.org/doc/rfc9309/"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [],
+      "cited_urls": ["https://datatracker.ietf.org/doc/rfc9309/"],
+      "selected_sources": [
+        {
+          "url": "https://datatracker.ietf.org/doc/rfc9309/",
+          "title": "https://datatracker.ietf.org/doc/rfc9309/"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://datatracker.ietf.org/doc/rfc9309/",
+          "text": "Below I separate `supported fact` from `inference`, `uncertainty`, `disagreement`, and `lack of good evidence`.\n\n**Supported Fact**\n\nUser-agent groups:\nA robots.txt `group` is one or more `user-agent` lines followed by one or more rules; the group ends at the next `user-agent` line or end of file, and the last group may have no rules, which implicitly allows everything. <https://datatracker.ietf.org/doc/rfc9309/>\n\nA crawler uses its product token to find relevant groups. The product token must contain only letters, underscores, and hyphens, and crawlers must use case-insensitive matching to find the group that matches the product token. <https://datatracker.ietf.org/doc/rfc9309/>\n\nIf more than one group matches the user-agent, the crawler must combine those groups’ rules into one group and then parse that combined group under the rule-processing rules in Section 2.2.2. <https://datatracker.ietf.org/doc/rfc9309/>\n\nIf no matching group exists, crawlers must obey the group whose `user-agent` value is `*`, if such a group is present. If no group matches and there is no `*` group, or if no groups are present at all, then no rules apply. <https://datatracker.ietf.org/doc/rfc9309/>\n\nAllow/disallow precedence:\nTo decide whether a URI is allowed, a crawler must match the URI against the paths in `allow` and `disallow` rules. Matching should be case-sensitive, must start with the first octet of the path, and the most specific match must be used. RFC 9309 defines the “most specific” match as the one with the most octets. <https://datatracker.ietf.org/doc/rfc9309/>\n\nIf an `allow` rule and a `disallow` rule are equivalent, the `allow` rule should be used. If no rule in the applicable group matches, or if the group has no rules, the URI is allowed. The `/robots.txt` URI is implicitly allowed. <https://datatracker.ietf.org/doc/rfc9309/>\n\nPercent encoding:\nBefore comparison, octets in the URI and in robots.txt paths that are outside ASCII, and octets in the reserved range defined b"
+        }
+      ],
+      "final_answer": "Below I separate `supported fact` from `inference`, `uncertainty`, `disagreement`, and `lack of good evidence`.\n\n**Supported Fact**\n\nUser-agent groups:\nA robots.txt `group` is one or more `user-agent` lines followed by one or more rules; the group ends at the next `user-agent` line or end of file, and the last group may have no rules, which implicitly allows everything. <https://datatracker.ietf.org/doc/rfc9309/>\n\nA crawler uses its product token to find relevant groups. The product token must contain only letters, underscores, and hyphens, and crawlers must use case-insensitive matching to find the group that matches the product token. <https://datatracker.ietf.org/doc/rfc9309/>\n\nIf more than one group matches the user-agent, the crawler must combine those groups’ rules into one group and then parse that combined group under the rule-processing rules in Section 2.2.2. <https://datatracker.ietf.org/doc/rfc9309/>\n\nIf no matching group exists, crawlers must obey the group whose `user-agent` value is `*`, if such a group is present. If no group matches and there is no `*` group, or if no groups are present at all, then no rules apply. <https://datatracker.ietf.org/doc/rfc9309/>\n\nAllow/disallow precedence:\nTo decide whether a URI is allowed, a crawler must match the URI against the paths in `allow` and `disallow` rules. Matching should be case-sensitive, must start with the first octet of the path, and the most specific match must be used. RFC 9309 defines the “most specific” match as the one with the most octets. <https://datatracker.ietf.org/doc/rfc9309/>\n\nIf an `allow` rule and a `disallow` rule are equivalent, the `allow` rule should be used. If no rule in the applicable group matches, or if the group has no rules, the URI is allowed. The `/robots.txt` URI is implicitly allowed. <https://datatracker.ietf.org/doc/rfc9309/>\n\nPercent encoding:\nBefore comparison, octets in the URI and in robots.txt paths that are outside ASCII, and octets in the reserved range defined by RFC 3986, must be percent-encoded. <https://datatracker.ietf.org/doc/rfc9309/>\n\nIf the URI contains a percent-encoded ASCII octet, it must be decoded before comparison, unless the octet is a reserved URI character under RFC 3986 or is outside the unreserved range. The match is positive only if the rule path ends before any octet difference is encountered. <https://datatracker.ietf.org/doc/rfc9309/>\n\nRFC 9309 also says crawlers must support special characters such as `*` and `$`, and if crawlers need to match those characters literally in the URI, they should use percent encoding. <https://datatracker.ietf.org/doc/rfc9309/>\n\nUnavailable robots.txt responses:\nRFC 9309 defines `Unavailable` as the case where the crawler tries to fetch `/robots.txt` and the server responds with a status indicating the resource is unavailable; in HTTP, 4xx status codes are given as the example. If the status indicates the robots.txt file is unavailable to the crawler, the crawler may access any resources on the server. <https://datatracker.ietf.org/doc/rfc9309/>\n\nBy contrast, if robots.txt is `Unreachable` because of server or network errors, the file is considered undefined and the crawler must assume complete disallow; in HTTP, 5xx status codes are given as the example. <https://datatracker.ietf.org/doc/rfc9309/>\n\n**Inference**\n\nA practical summary of RFC 9309 is: first determine the applicable user-agent group(s), merge them if multiple groups match, then resolve `allow` versus `disallow` by longest-path match, with `allow` winning ties, after doing the RFC’s required percent-encoding normalization. This is a synthesis of multiple normative statements in the RFC, not a single sentence stated verbatim there. <https://datatracker.ietf.org/doc/rfc9309/>\n\n**Uncertainty**\n\nRFC 9309 says 4xx codes are an example of `Unavailable`, not an exhaustive enumeration in the text I reviewed, so I can support “4xx are included as an example,” but I would not overclaim a complete per-status-code matrix from this source alone. <https://datatracker.ietf.org/doc/rfc9309/>\n\n**Disagreement**\n\nI found no disagreement in the primary source itself about these four points. <https://datatracker.ietf.org/doc/rfc9309/>\n\n**Lack of Good Evidence**\n\nI do not have good evidence from RFC 9309 alone for crawler-specific behavior beyond the RFC’s requirements and examples, such as how every real crawler handles borderline user-agent matching cases or every unusual HTTP status. <https://datatracker.ietf.org/doc/rfc9309/>"
+    },
+    {
+      "run_id": "2026-08-27_claude_technical-robots-rfc",
+      "provider": "claude",
+      "model": "claude-opus-5[1m]",
+      "queries": ["RFC 9309 Robots Exclusion Protocol"],
+      "tool_results": [
+        {
+          "tool": "WebSearch",
+          "summary": "RFC 9309 - Robots Exclusion Protocol: https://datatracker.ietf.org/doc/html/rfc9309"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "RFC 9309: Robots Exclusion Protocol | Guide books: https://dl.acm.org/doi/10.17487/RFC9309"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "RFC 9309: Robots Exclusion Protocol | RFC Editor: https://www.rfc-editor.org/info/rfc9309/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "RFC 9309: Robots.txt Is Now an Official IETF Internet Standard (Robots Exclusion Protocol): https://www.searchengineworld.com/rfc9309-robots-txt-quietly-became-an-official-internet-standard"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Robots.txt: https://en.wikipedia.org/wiki/Robots.txt"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Gary Illyes on LinkedIn: RFC 9309: Robots Exclusion Protocol: https://www.linkedin.com/posts/garyillyes_rfc-9309-robots-exclusion-protocol-activity-7016410605892820992-MP2T"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# RFC 9309: Key Specifications for Robots Exclusion Protocol\n\n## User-Agent Product Token Matching (Section 2.2.1)\n\nThe specification requires that crawlers employ \"case-insensitive matching to find the group that matches the product token\" and then \"obey the rules of the group.\" When multiple groups match the same token, the rules must be \"combined into one group and parsed according to Section 2.2.2.\"\n\nIf no explicit match exists, crawlers must \"obey the group with a user-agent line with the '"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# RFC 9309: Robots Exclusion Protocol - Key Specifications\n\n## User-Agent Line Requirements\n\nThe product token \"MUST contain only uppercase and lowercase letters ('a-z' and 'A-Z'), underscores ('_'), and hyphens ('-').\" Crawlers must use case-insensitive matching to locate applicable groups, and when multiple groups match the same token, their rules must be combined.\n\n## Allow/Disallow Path Matching\n\nPath matching must be case-sensitive and start from the first character. The system implements a"
+        }
+      ],
+      "opened_urls": [
+        "https://www.rfc-editor.org/rfc/rfc9309.html",
+        "https://datatracker.ietf.org/doc/html/rfc9309"
+      ],
+      "cited_urls": [
+        "https://www.rfc-editor.org/rfc/rfc9309.html",
+        "https://datatracker.ietf.org/doc/html/rfc9309",
+        "https://www.rfc-editor.org/info/rfc9309/"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+          "title": "https://datatracker.ietf.org/doc/html/rfc9309"
+        },
+        {
+          "url": "https://dl.acm.org/doi/10.17487/RFC9309",
+          "title": "RFC 9309: Robots Exclusion Protocol | Guide books"
+        },
+        {
+          "url": "https://www.rfc-editor.org/info/rfc9309/",
+          "title": "RFC 9309: Robots Exclusion Protocol | RFC Editor"
+        },
+        {
+          "url": "https://www.searchengineworld.com/rfc9309-robots-txt-quietly-became-an-official-internet-standard",
+          "title": "RFC 9309: Robots.txt Is Now an Official IETF Internet Standard (Robots Exclusion Protocol)"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Robots.txt",
+          "title": "Robots.txt"
+        },
+        {
+          "url": "https://www.linkedin.com/posts/garyillyes_rfc-9309-robots-exclusion-protocol-activity-7016410605892820992-MP2T",
+          "title": "Gary Illyes on LinkedIn: RFC 9309: Robots Exclusion Protocol"
+        },
+        {
+          "url": "https://www.rfc-editor.org/rfc/rfc9309.html",
+          "title": "https://www.rfc-editor.org/rfc/rfc9309.html"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+          "text": "RFC 9309 - Robots Exclusion Protocol"
+        },
+        {
+          "url": "https://dl.acm.org/doi/10.17487/RFC9309",
+          "text": "RFC 9309: Robots Exclusion Protocol | Guide books"
+        },
+        {
+          "url": "https://www.rfc-editor.org/info/rfc9309/",
+          "text": "RFC 9309: Robots Exclusion Protocol | RFC Editor"
+        },
+        {
+          "url": "https://www.searchengineworld.com/rfc9309-robots-txt-quietly-became-an-official-internet-standard",
+          "text": "RFC 9309: Robots.txt Is Now an Official IETF Internet Standard (Robots Exclusion Protocol)"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Robots.txt",
+          "text": "Robots.txt"
+        },
+        {
+          "url": "https://www.linkedin.com/posts/garyillyes_rfc-9309-robots-exclusion-protocol-activity-7016410605892820992-MP2T",
+          "text": "Gary Illyes on LinkedIn: RFC 9309: Robots Exclusion Protocol"
+        },
+        {
+          "url": "https://www.rfc-editor.org/rfc/rfc9309.html",
+          "text": "# RFC 9309: Key Specifications for Robots Exclusion Protocol\n\n## User-Agent Product Token Matching (Section 2.2.1)\n\nThe specification requires that crawlers employ \"case-insensitive matching to find the group that matches the product token\" and then \"obey the rules of the group.\" When multiple groups match the same token, the rules must be \"combined into one group and parsed according to Section 2.2.2.\"\n\nIf no explicit match exists, crawlers must \"obey the group with a user-agent line with the '*' value, if present.\" Should neither a matching group nor a wildcard group exist, \"no rules apply.\"\n\n## Allow/Disallow Rule Precedence (Section 2.2.2)\n\nThe matching process requires that \"the most specific match found MUST be used. The most specific match is the match that has the most octets.\" Regarding ties between rule types: \"If an 'allow' rule and a 'disallow' rule are equivalent, then the 'allow' rule SHOULD be used.\"\n\nWhen no matching rules exist for a URI, \"the URI is allowed. The /robots.txt URI is implicitly allowed.\"\n\n## Special Characters and Percent-Encoding (Sections 2.2.2–2.2.3)\n\nBefore comparison, \"Octets in the URI and robots.txt paths outside the range of the ASCII coded character set\" and reserved characters \"MUST be percent-encoded as defined by RFC 3986.\"\n\nCrawlers must support three special characters: `#` for comments, `$` to designate pattern end, and `*` for zero or more character instances.\n\n## Handling Unavailable/Unreachable Robots.txt (Section 2.3.1)\n\n**Redirects:** Crawlers \"SHOULD follow at least five consecutive redirects, even across authorities.\" Beyond five redirects, \"crawlers MAY assume that the robots.txt file is unavailable.\"\n\n**Unavailable (4xx codes):** When the server responds with status codes \"in the 400-499 range,\" crawlers \"MAY access any resources on the server.\"\n\n**Unreachable (5xx codes):** Server errors indicate the file is \"undefined and the crawler MUST assume complete disallow.\" After an extended period (example given: \"30"
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+          "text": "# RFC 9309: Robots Exclusion Protocol - Key Specifications\n\n## User-Agent Line Requirements\n\nThe product token \"MUST contain only uppercase and lowercase letters ('a-z' and 'A-Z'), underscores ('_'), and hyphens ('-').\" Crawlers must use case-insensitive matching to locate applicable groups, and when multiple groups match the same token, their rules must be combined.\n\n## Allow/Disallow Path Matching\n\nPath matching must be case-sensitive and start from the first character. The system implements a longest-match principle: \"The most specific match found MUST be used. The most specific match is the match that has the most octets.\"\n\nFor characters outside ASCII or in reserved ranges, percent-encoding per RFC 3986 applies before comparison. Notably, \"If a percent-encoded ASCII octet is encountered in the URI, it MUST be unencoded prior to comparison, unless it is a reserved character.\"\n\n## Special Characters\n\nThree special characters are supported:\n- **#**: Designates line comments\n- **$**: Marks pattern's end point\n- *****: Represents zero or more instances of any character\n\n## Access Protocol Details\n\n**Successful Access**: Crawlers must follow parseable rules from successfully downloaded robots.txt files.\n\n**Redirects**: \"The crawlers SHOULD follow at least five consecutive redirects, even across authorities.\"\n\n**Unavailable Status** (400-499 HTTP codes): \"the crawler MAY access any resources on the server.\"\n\n**Unreachable Status** (500-599 errors): \"the crawler MUST assume complete disallow.\"\n\n## Caching & Limits\n\nCaching may occur using standard HTTP cache control, though \"Crawlers SHOULD NOT use the cached version for more than 24 hours.\" The parsing limit must be at least \"500 kibibytes.\""
+        }
+      ],
+      "final_answer": "## RFC 9309 — Protocole d'exclusion des robots (Standards Track, sept. 2022)\n\nSources principales : [rfc-editor.org/rfc/rfc9309.html](https://www.rfc-editor.org/rfc/rfc9309.html) et [datatracker.ietf.org/doc/html/rfc9309](https://datatracker.ietf.org/doc/html/rfc9309) (même texte normatif).\n\n### 1. Groupes `user-agent` (§ 2.2.1)\n\n**Faits soutenus par le texte :**\n- Le *product token* ne doit contenir que des lettres `a-z`/`A-Z`, des tirets bas (`_`) et des traits d'union (`-`) — [source](https://datatracker.ietf.org/doc/html/rfc9309).\n- Le crawler **DOIT** utiliser une comparaison **insensible à la casse** pour trouver le groupe correspondant à son token, puis obéir aux règles de ce groupe — [source](https://www.rfc-editor.org/rfc/rfc9309.html).\n- Si **plusieurs groupes** correspondent au même token, leurs règles **DOIVENT être fusionnées en un seul groupe** et analysées selon la § 2.2.2 — [source](https://www.rfc-editor.org/rfc/rfc9309.html).\n- À défaut de correspondance explicite, le crawler **DOIT** obéir au groupe dont la ligne `user-agent` vaut `*`, s'il existe. Si ni groupe correspondant ni groupe `*` n'existe, **aucune règle ne s'applique** — [source](https://www.rfc-editor.org/rfc/rfc9309.html).\n\n**Inférence (non citée telle quelle) :** la conséquence pratique est qu'un groupe `*` est ignoré dès qu'un groupe nominatif correspond ; le RFC ne prévoit pas d'héritage entre le groupe spécifique et le groupe joker.\n\n### 2. Précédence `allow` / `disallow` (§ 2.2.2)\n\n**Faits soutenus :**\n- La correspondance de chemin est **sensible à la casse** et part du premier caractère — [source](https://datatracker.ietf.org/doc/html/rfc9309).\n- « The most specific match found **MUST** be used. The most specific match is the match that has the most octets. » → c'est la règle du **plus grand nombre d'octets**, pas du plus grand nombre de segments — [source](https://www.rfc-editor.org/rfc/rfc9309.html).\n- En cas d'**égalité** entre une règle `allow` et une règle `disallow` équivalentes, la règle **`allow` DEVRAIT (SHOULD) être utilisée** — noter le `SHOULD`, non le `MUST` — [source](https://www.rfc-editor.org/rfc/rfc9309.html).\n- Si **aucune** règle ne correspond à l'URI, **l'URI est autorisé**. `/robots.txt` est **implicitement autorisé** — [source](https://www.rfc-editor.org/rfc/rfc9309.html).\n\n### 3. Caractères spéciaux et percent-encoding (§ 2.2.2 et 2.2.3)\n\n**Faits soutenus :**\n- Les octets hors du jeu ASCII, ainsi que les caractères réservés, **DOIVENT être percent-encodés** conformément au RFC 3986 avant comparaison — [source](https://www.rfc-editor.org/rfc/rfc9309.html).\n- « If a percent-encoded ASCII octet is encountered in the URI, it **MUST be unencoded** prior to comparison, unless it is a reserved character » — autrement dit, normalisation dans les deux sens : encodage du non-ASCII, décodage du percent-encoding ASCII non réservé — [source](https://datatracker.ietf.org/doc/html/rfc9309).\n- Trois caractères spéciaux **DOIVENT** être pris en charge (§ 2.2.3) : `#` (commentaire de ligne), `$` (fin de motif), `*` (zéro ou plusieurs occurrences de n'importe quel caractère) — [sources](https://www.rfc-editor.org/rfc/rfc9309.html) / [datatracker](https://datatracker.ietf.org/doc/html/rfc9309).\n\n**Incertitude à signaler :** l'objectif est que URI et chemins du robots.txt soient ramenés à une **forme canonique commune** avant comparaison ; le RFC fournit un tableau d'exemples en § 2.2.2 que je n'ai pas pu restituer ligne à ligne via mes outils. Pour un cas limite précis (ex. `%2F` vs `/`, UTF-8 multi-octets), il faut lire le tableau original.\n\n### 4. robots.txt indisponible ou injoignable (§ 2.3.1)\n\n**Faits soutenus :**\n\n| Situation | Comportement normatif | Source |\n|---|---|---|\n| Redirections | Le crawler **DEVRAIT** suivre **au moins cinq** redirections consécutives, **même entre autorités** ; au-delà, il **PEUT (MAY)** considérer le fichier comme indisponible | [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309.html) |\n| **Unavailable** — statut **4xx** (400–499) | Le crawler **PEUT accéder à toutes les ressources** du serveur (absence de robots.txt = tout autorisé) | [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309.html) |\n| **Unreachable** — statut **5xx** (500–599) | Les règles sont **indéfinies** et le crawler **DOIT présumer une interdiction complète** (*complete disallow*) | [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309.html) |\n| 5xx prolongé | Après une période étendue (exemple donné : **30 jours**), le crawler peut traiter le fichier comme *unavailable* ou utiliser une copie en cache | [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309.html) |\n| Cache (§ 2.4) | Le crawler **NE DEVRAIT PAS** utiliser la version en cache **plus de 24 heures**, sauf si le robots.txt est injoignable | [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309.html) |\n| Limite de taille (§ 2.5) | Au moins **500 kibioctets** doivent être analysés | [datatracker](https://datatracker.ietf.org/doc/html/rfc9309) |\n\n**Point notable :** l'asymétrie 4xx / 5xx est le cœur du modèle d'erreur — un 404 ouvre le site, un 503 le ferme entièrement. La clause « 30 jours » est un **exemple** dans le texte, pas une valeur imposée.\n\n### Divergences et absence de preuve\n\n- **Divergence spec / pratique :** le RFC ne définit **pas** `Crawl-delay`, `Sitemap` ni `Host`, bien que ces directives soient largement utilisées ; il ne définit que `user-agent`, `allow`, `disallow` (les lignes non reconnues sont ignorées). Je n'ai pas vérifié la formulation exacte de cette clause dans le texte — à confirmer en § 2.2.4.\n- **Le tie-break `allow` est un `SHOULD`**, donc un crawler conforme peut légitimement en dévier ; ne pas s'appuyer dessus pour une protection réelle (voir aussi les considérations de sécurité, qui rappellent que robots.txt n'est **pas** un mécanisme d'autorisation).\n- **Non vérifié faute de lecture intégrale :** le traitement des réponses non-HTTP (FTP, etc.), le comportement en cas de contenu partiellement analysable, et le tableau d'exemples de § 2.2.2.\n\n**Sources :**\n- [RFC 9309 — RFC Editor](https://www.rfc-editor.org/rfc/rfc9309.html)\n- [RFC 9309 — IETF Datatracker](https://datatracker.ietf.org/doc/html/rfc9309)\n- [RFC 9309 — page d'information RFC Editor](https://www.rfc-editor.org/info/rfc9309/)"
+    }
+  ]
+}

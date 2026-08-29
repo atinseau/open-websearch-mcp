@@ -1,0 +1,16 @@
+{
+  "accepted_claim_ids": [
+    "claim_scheme_lowercase",
+    "claim_default_https_port",
+    "claim_unicode_host_idna",
+    "claim_ascii_host_lowercase",
+    "claim_dot_segments",
+    "claim_fragment_percent_encoding"
+  ],
+  "rejected_claims": [
+    {
+      "id": "claim_path_percent_encoded_space",
+      "reason": "S'appuie uniquement sur une auto-citation du run Codex (qui n'a ouvert aucune URL) evoquant une « parsed-components table » avec `file:///ada/Analytical%20Engine/README.md` ; aucun extrait recupere dans le run Claude ne corrobore cet exemple, qui risque donc d'etre une invention. De plus le pattern de notation `Analytical%20Engine` est excessivement etroit et l'exemple porte sur un schema `file:` alors que la question vise une URL HTTPS."
+    }
+  ]
+}

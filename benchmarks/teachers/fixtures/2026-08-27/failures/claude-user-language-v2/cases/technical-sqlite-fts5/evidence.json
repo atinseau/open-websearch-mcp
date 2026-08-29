@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "case_id": "technical-sqlite-fts5",
+  "runs": [
+    {
+      "run_id": "2026-08-27_codex_technical-sqlite-fts5",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "site:sqlite.org FTS5 compile_options sqlite_compileoption_used runtime detect support external content documentation",
+        "https://www.sqlite.org/fts5.html",
+        "https://sqlite.org/c3ref/compileoption_get.html",
+        "'FTS5' in https://sqlite.org/compile.html",
+        "site:sqlite.org \"no such module: fts5\" sqlite documentation",
+        "site:sqlite.org sqlite_compileoption_used SQL function documentation",
+        "https://sqlite.org/lang_corefunc.html",
+        "site:sqlite.org \"OMIT_COMPILEOPTION_DIAGS\" pragma compile_options",
+        "site:sqlite.org PRAGMA module_list sqlite documentation",
+        "'module_list' in https://sqlite.org/pragma.html",
+        "site:sqlite.org SQLITE_OMIT_INTROSPECTION_PRAGMAS compile.html",
+        "'virtual table module' in https://www.sqlite.org/fts5.html"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [],
+      "cited_urls": [
+        "https://sqlite.org/pragma.html",
+        "https://www.sqlite.org/fts5.html",
+        "https://sqlite.org/compile.html",
+        "https://sqlite.org/c3ref/compileoption_get.html",
+        "https://sqlite.org/lang_corefunc.html"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://sqlite.org/pragma.html",
+          "title": "https://sqlite.org/pragma.html"
+        },
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "title": "https://www.sqlite.org/fts5.html"
+        },
+        {
+          "url": "https://sqlite.org/compile.html",
+          "title": "https://sqlite.org/compile.html"
+        },
+        {
+          "url": "https://sqlite.org/c3ref/compileoption_get.html",
+          "title": "https://sqlite.org/c3ref/compileoption_get.html"
+        },
+        {
+          "url": "https://sqlite.org/lang_corefunc.html",
+          "title": "https://sqlite.org/lang_corefunc.html"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://sqlite.org/pragma.html",
+          "text": "**Runtime Detection**\n\n`[Supported fact]` `PRAGMA module_list;` returns the list of virtual-table modules registered with the current database connection. FTS5 is an SQLite virtual-table module. (https://sqlite.org/pragma.html , https://www.sqlite.org/fts5.html)\n\n`[Inference]` If `fts5` appears in `PRAGMA module_list`, FTS5 is available on that connection at that moment; this follows from “module_list returns registered virtual-table modules” plus “FTS5 is a virtual-table module.” (https://sqlite.org/pragma.html , https://www.sqlite.org/fts5.html)\n\n`[Supported fact]` `PRAGMA compile_options;` returns the compile-time options used to build SQLite, one per row, and omits the `SQLITE_` prefix. (https://sqlite.org/pragma.html)\n\n`[Supported fact]` `SQLITE_ENABLE_FTS5` adds FTS5 to the build automatically when that option is defined for the amalgamation build. (https://sqlite.org/compile.html)\n\n`[Inference]` So, in `PRAGMA compile_options`, the relevant marker for a built-in FTS5 build is `ENABLE_FTS5`. (https://sqlite.org/pragma.html , https://sqlite.org/compile.html)\n\n`[Supported fact]` In C, `sqlite3_compileoption_used()` returns `0` or `1` depending on whether a named compile-time option was defined, and the `SQLITE_` prefix may be omitted when calling that C API. (https://sqlite.org/c3ref/compileoption_get.html)\n\n`[Supported fact]` In SQL, `sqlite_compileoption_used()` is a wrapper around `sqlite3_compileoption_used()`. (https://sqlite.org/lang_corefunc.html)\n\n`[Supported fact]` FTS5 may also be built as a loadable extension, not only as part of the main SQLite build. (https://www.sqlite.org/fts5.html)\n\n`[Supported fact]` The SQL function `load_extension()` loads an SQLite extension, but extension loading is disabled by default and must first be enabled with `sqlite3_enable_load_extension()`. (https://sqlite.org/lang_corefunc.html)\n\n`[Inference]` Because FTS5 can be either compiled in or provided as a loadable extension, compile-option checks tell you whether the cur"
+        },
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "text": "**Runtime Detection**\n\n`[Supported fact]` `PRAGMA module_list;` returns the list of virtual-table modules registered with the current database connection. FTS5 is an SQLite virtual-table module. (https://sqlite.org/pragma.html , https://www.sqlite.org/fts5.html)\n\n`[Inference]` If `fts5` appears in `PRAGMA module_list`, FTS5 is available on that connection at that moment; this follows from “module_list returns registered virtual-table modules” plus “FTS5 is a virtual-table module.” (https://sqlite.org/pragma.html , https://www.sqlite.org/fts5.html)\n\n`[Supported fact]` `PRAGMA compile_options;` returns the compile-time options used to build SQLite, one per row, and omits the `SQLITE_` prefix. (https://sqlite.org/pragma.html)\n\n`[Supported fact]` `SQLITE_ENABLE_FTS5` adds FTS5 to the build automatically when that option is defined for the amalgamation build. (https://sqlite.org/compile.html)\n\n`[Inference]` So, in `PRAGMA compile_options`, the relevant marker for a built-in FTS5 build is `ENABLE_FTS5`. (https://sqlite.org/pragma.html , https://sqlite.org/compile.html)\n\n`[Supported fact]` In C, `sqlite3_compileoption_used()` returns `0` or `1` depending on whether a named compile-time option was defined, and the `SQLITE_` prefix may be omitted when calling that C API. (https://sqlite.org/c3ref/compileoption_get.html)\n\n`[Supported fact]` In SQL, `sqlite_compileoption_used()` is a wrapper around `sqlite3_compileoption_used()`. (https://sqlite.org/lang_corefunc.html)\n\n`[Supported fact]` FTS5 may also be built as a loadable extension, not only as part of the main SQLite build. (https://www.sqlite.org/fts5.html)\n\n`[Supported fact]` The SQL function `load_extension()` loads an SQLite extension, but extension loading is disabled by default and must first be enabled with `sqlite3_enable_load_extension()`. (https://sqlite.org/lang_corefunc.html)\n\n`[Inference]` Because FTS5 can be either compiled in or provided as a loadable extension, compile-option checks tell you whether the cur"
+        },
+        {
+          "url": "https://sqlite.org/compile.html",
+          "text": "**Runtime Detection**\n\n`[Supported fact]` `PRAGMA module_list;` returns the list of virtual-table modules registered with the current database connection. FTS5 is an SQLite virtual-table module. (https://sqlite.org/pragma.html , https://www.sqlite.org/fts5.html)\n\n`[Inference]` If `fts5` appears in `PRAGMA module_list`, FTS5 is available on that connection at that moment; this follows from “module_list returns registered virtual-table modules” plus “FTS5 is a virtual-table module.” (https://sqlite.org/pragma.html , https://www.sqlite.org/fts5.html)\n\n`[Supported fact]` `PRAGMA compile_options;` returns the compile-time options used to build SQLite, one per row, and omits the `SQLITE_` prefix. (https://sqlite.org/pragma.html)\n\n`[Supported fact]` `SQLITE_ENABLE_FTS5` adds FTS5 to the build automatically when that option is defined for the amalgamation build. (https://sqlite.org/compile.html)\n\n`[Inference]` So, in `PRAGMA compile_options`, the relevant marker for a built-in FTS5 build is `ENABLE_FTS5`. (https://sqlite.org/pragma.html , https://sqlite.org/compile.html)\n\n`[Supported fact]` In C, `sqlite3_compileoption_used()` returns `0` or `1` depending on whether a named compile-time option was defined, and the `SQLITE_` prefix may be omitted when calling that C API. (https://sqlite.org/c3ref/compileoption_get.html)\n\n`[Supported fact]` In SQL, `sqlite_compileoption_used()` is a wrapper around `sqlite3_compileoption_used()`. (https://sqlite.org/lang_corefunc.html)\n\n`[Supported fact]` FTS5 may also be built as a loadable extension, not only as part of the main SQLite build. (https://www.sqlite.org/fts5.html)\n\n`[Supported fact]` The SQL function `load_extension()` loads an SQLite extension, but extension loading is disabled by default and must first be enabled with `sqlite3_enable_load_extension()`. (https://sqlite.org/lang_corefunc.html)\n\n`[Inference]` Because FTS5 can be either compiled in or provided as a loadable extension, compile-option checks tell you whether the cur"
+        },
+        {
+          "url": "https://sqlite.org/c3ref/compileoption_get.html",
+          "text": "**Runtime Detection**\n\n`[Supported fact]` `PRAGMA module_list;` returns the list of virtual-table modules registered with the current database connection. FTS5 is an SQLite virtual-table module. (https://sqlite.org/pragma.html , https://www.sqlite.org/fts5.html)\n\n`[Inference]` If `fts5` appears in `PRAGMA module_list`, FTS5 is available on that connection at that moment; this follows from “module_list returns registered virtual-table modules” plus “FTS5 is a virtual-table module.” (https://sqlite.org/pragma.html , https://www.sqlite.org/fts5.html)\n\n`[Supported fact]` `PRAGMA compile_options;` returns the compile-time options used to build SQLite, one per row, and omits the `SQLITE_` prefix. (https://sqlite.org/pragma.html)\n\n`[Supported fact]` `SQLITE_ENABLE_FTS5` adds FTS5 to the build automatically when that option is defined for the amalgamation build. (https://sqlite.org/compile.html)\n\n`[Inference]` So, in `PRAGMA compile_options`, the relevant marker for a built-in FTS5 build is `ENABLE_FTS5`. (https://sqlite.org/pragma.html , https://sqlite.org/compile.html)\n\n`[Supported fact]` In C, `sqlite3_compileoption_used()` returns `0` or `1` depending on whether a named compile-time option was defined, and the `SQLITE_` prefix may be omitted when calling that C API. (https://sqlite.org/c3ref/compileoption_get.html)\n\n`[Supported fact]` In SQL, `sqlite_compileoption_used()` is a wrapper around `sqlite3_compileoption_used()`. (https://sqlite.org/lang_corefunc.html)\n\n`[Supported fact]` FTS5 may also be built as a loadable extension, not only as part of the main SQLite build. (https://www.sqlite.org/fts5.html)\n\n`[Supported fact]` The SQL function `load_extension()` loads an SQLite extension, but extension loading is disabled by default and must first be enabled with `sqlite3_enable_load_extension()`. (https://sqlite.org/lang_corefunc.html)\n\n`[Inference]` Because FTS5 can be either compiled in or provided as a loadable extension, compile-option checks tell you whether the cur"
+        },
+        {
+          "url": "https://sqlite.org/lang_corefunc.html",
+          "text": "**Runtime Detection**\n\n`[Supported fact]` `PRAGMA module_list;` returns the list of virtual-table modules registered with the current database connection. FTS5 is an SQLite virtual-table module. (https://sqlite.org/pragma.html , https://www.sqlite.org/fts5.html)\n\n`[Inference]` If `fts5` appears in `PRAGMA module_list`, FTS5 is available on that connection at that moment; this follows from “module_list returns registered virtual-table modules” plus “FTS5 is a virtual-table module.” (https://sqlite.org/pragma.html , https://www.sqlite.org/fts5.html)\n\n`[Supported fact]` `PRAGMA compile_options;` returns the compile-time options used to build SQLite, one per row, and omits the `SQLITE_` prefix. (https://sqlite.org/pragma.html)\n\n`[Supported fact]` `SQLITE_ENABLE_FTS5` adds FTS5 to the build automatically when that option is defined for the amalgamation build. (https://sqlite.org/compile.html)\n\n`[Inference]` So, in `PRAGMA compile_options`, the relevant marker for a built-in FTS5 build is `ENABLE_FTS5`. (https://sqlite.org/pragma.html , https://sqlite.org/compile.html)\n\n`[Supported fact]` In C, `sqlite3_compileoption_used()` returns `0` or `1` depending on whether a named compile-time option was defined, and the `SQLITE_` prefix may be omitted when calling that C API. (https://sqlite.org/c3ref/compileoption_get.html)\n\n`[Supported fact]` In SQL, `sqlite_compileoption_used()` is a wrapper around `sqlite3_compileoption_used()`. (https://sqlite.org/lang_corefunc.html)\n\n`[Supported fact]` FTS5 may also be built as a loadable extension, not only as part of the main SQLite build. (https://www.sqlite.org/fts5.html)\n\n`[Supported fact]` The SQL function `load_extension()` loads an SQLite extension, but extension loading is disabled by default and must first be enabled with `sqlite3_enable_load_extension()`. (https://sqlite.org/lang_corefunc.html)\n\n`[Inference]` Because FTS5 can be either compiled in or provided as a loadable extension, compile-option checks tell you whether the cur"
+        }
+      ],
+      "final_answer": "**Runtime Detection**\n\n`[Supported fact]` `PRAGMA module_list;` returns the list of virtual-table modules registered with the current database connection. FTS5 is an SQLite virtual-table module. (https://sqlite.org/pragma.html , https://www.sqlite.org/fts5.html)\n\n`[Inference]` If `fts5` appears in `PRAGMA module_list`, FTS5 is available on that connection at that moment; this follows from “module_list returns registered virtual-table modules” plus “FTS5 is a virtual-table module.” (https://sqlite.org/pragma.html , https://www.sqlite.org/fts5.html)\n\n`[Supported fact]` `PRAGMA compile_options;` returns the compile-time options used to build SQLite, one per row, and omits the `SQLITE_` prefix. (https://sqlite.org/pragma.html)\n\n`[Supported fact]` `SQLITE_ENABLE_FTS5` adds FTS5 to the build automatically when that option is defined for the amalgamation build. (https://sqlite.org/compile.html)\n\n`[Inference]` So, in `PRAGMA compile_options`, the relevant marker for a built-in FTS5 build is `ENABLE_FTS5`. (https://sqlite.org/pragma.html , https://sqlite.org/compile.html)\n\n`[Supported fact]` In C, `sqlite3_compileoption_used()` returns `0` or `1` depending on whether a named compile-time option was defined, and the `SQLITE_` prefix may be omitted when calling that C API. (https://sqlite.org/c3ref/compileoption_get.html)\n\n`[Supported fact]` In SQL, `sqlite_compileoption_used()` is a wrapper around `sqlite3_compileoption_used()`. (https://sqlite.org/lang_corefunc.html)\n\n`[Supported fact]` FTS5 may also be built as a loadable extension, not only as part of the main SQLite build. (https://www.sqlite.org/fts5.html)\n\n`[Supported fact]` The SQL function `load_extension()` loads an SQLite extension, but extension loading is disabled by default and must first be enabled with `sqlite3_enable_load_extension()`. (https://sqlite.org/lang_corefunc.html)\n\n`[Inference]` Because FTS5 can be either compiled in or provided as a loadable extension, compile-option checks tell you whether the current SQLite library was built with `SQLITE_ENABLE_FTS5`, but they do not by themselves prove that FTS5 is currently registered on a specific connection. `PRAGMA module_list` is the stronger documented connection-level check. (https://sqlite.org/compile.html , https://www.sqlite.org/fts5.html , https://sqlite.org/lang_corefunc.html , https://sqlite.org/pragma.html)\n\n**External-Content FTS5 Tables**\n\n`[Supported fact]` An external-content FTS5 table is created by setting `content=` to the name of a table, virtual table, or view in the same database; `content_rowid=` can override the default rowid column name used by FTS5. (https://www.sqlite.org/fts5.html)\n\n`[Supported fact]` When FTS5 needs column values from an external-content table, it queries the content object by rowid, and it may also query it ordered ascending or descending by the content rowid. (https://www.sqlite.org/fts5.html)\n\n`[Supported fact]` With external content, “all FTS5 functionality may be used,” but the user is responsible for keeping the full-text index consistent with the content object; if not, query results may be unpredictable. (https://www.sqlite.org/fts5.html)\n\n`[Supported fact]` If a query against the external-content FTS5 table does not use the full-text index, such as one without `MATCH` or equivalent table-valued-function syntax, SQLite effectively passes that query through to the content table, so the FTS index does not affect the result. (https://www.sqlite.org/fts5.html)\n\n`[Supported fact]` If a query does use the full-text index, FTS5 first gets matching rowids from the index and then looks up the corresponding column values in the content table. (https://www.sqlite.org/fts5.html)\n\n`[Supported fact]` Triggers are one documented way to keep an external-content FTS5 table synchronized with its content table. (https://www.sqlite.org/fts5.html)\n\n`[Supported fact]` Creating those triggers after the content table already contains rows does not backfill the FTS index; the triggers only keep later inserts, updates, and deletes synchronized. (https://www.sqlite.org/fts5.html)\n\n`[Supported fact]` If the FTS index and content table become inconsistent, the documented `rebuild` command can discard the existing FTS index and rebuild it from the current content table. (https://www.sqlite.org/fts5.html)\n\n`[Supported fact]` External-content FTS5 tables do not support `REPLACE` conflict handling; operations that specify `REPLACE` are handled using `ABORT`. (https://www.sqlite.org/fts5.html)\n\n**Uncertainty / Lack Of Good Evidence**\n\n`[Lack of good evidence]` In the primary SQLite pages I reviewed, I did not find a dedicated single-purpose API documented as “detect whether FTS5 is available now on this connection” beyond the general mechanisms above: registered-module introspection (`PRAGMA module_list`), compile-option introspection, and extension loading."
+    },
+    {
+      "run_id": "2026-08-27_claude_technical-sqlite-fts5",
+      "provider": "claude",
+      "model": "claude-opus-5[1m]",
+      "queries": [],
+      "tool_results": [
+        {
+          "tool": "WebFetch",
+          "summary": "# PRAGMA compile_options\n\n## What It Returns\n\n`PRAGMA compile_options` returns the names of compile-time options used when building SQLite, **one option per row**. The \"SQLITE_\" prefix is omitted from the returned option names.\n\n### Example Output\nIf SQLite was compiled with certain options, the pragma might return results like:\n```\nTHREADSAFE\nENABLE_FTS3\nENABLE_RTREE\n```\n\n## How It's Used to Detect Features\n\nDevelopers use this pragma to programmatically detect which SQLite features are availab"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# FTS5 Support Detection and External Content Tables\n\n## 1. Detecting FTS5 Support\n\n### Compile-Time Detection\n\nFTS5 is included in SQLite as of version 3.9.0 (2015-10-14). To enable it during compilation:\n\n**With configure script:**\n```bash\n./configure --enable-fts5\n```\n\n**With other build systems:**\nDefine the preprocessor symbol:\n```c\n-DSQLITE_ENABLE_FTS5\n```\n\n### Runtime Detection\n\n**Using `sqlite3_compileoption_used()`:**\n```c\nif (sqlite3_compileoption_used(\"SQLITE_ENABLE_FTS5\")) {\n    // F"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# SQLite Compile Option Functions\n\nBased on the documentation provided, here are the descriptions:\n\n## sqlite_compileoption_get(_N_)\n\n> The sqlite_compileoption_get() SQL function is a wrapper around the [sqlite3_compileoption_get()](c3ref/compileoption_get.html) C/C++ function. This routine returns the N-th compile-time option used to build SQLite or NULL if N is out of range. See also the [compile_options pragma](pragma.html#pragma_compile_options).\n\n## sqlite_compileoption_used(_X_)\n\n> The sq"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# FTS5 External Content, Contentless Tables, and Related Commands\n\n## Compiling and Enabling FTS5\n\n### Building FTS5 as part of SQLite\n\nAs of version 3.9.0 (2015-10-14), FTS5 is included as part of the SQLite amalgamation. If using the canonical source tree, FTS5 is enabled by specifying the \"--enable-fts5\" option when running the configure script. (FTS5 is currently disabled by default for the source-tree configure script and enabled by default for the amalgamation configure script, but these d"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# sqlite3_compileoption_used() and sqlite3_compileoption_get() Description\n\n## sqlite3_compileoption_used()\n\n\"The sqlite3_compileoption_used() function returns 0 or 1 indicating whether the specified option was defined at compile time. The SQLITE_ prefix may be omitted from the option name passed to sqlite3_compileoption_used().\"\n\n## sqlite3_compileoption_get()\n\n\"The sqlite3_compileoption_get() function allows iterating over the list of options that were defined at compile time by returning the "
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# PRAGMA module_list\n\n## Description\n\n**PRAGMA module_list;**\n\nThis pragma returns a list of [virtual table](vtab.html) modules registered with the database connection.\n\n## Compile-time Requirements\n\nThe web page content provided does not specify any compile-time requirements or conditional compilation flags (such as `SQLITE_INTROSPECTION_PRAGMAS`) for `PRAGMA module_list`.\n\n## Version Availability\n\nThe version availability information is not included in the provided documentation excerpt for `P"
+        }
+      ],
+      "opened_urls": [
+        "https://www.sqlite.org/fts5.html",
+        "https://www.sqlite.org/pragma.html#pragma_compile_options",
+        "https://www.sqlite.org/fts5.html#external_content_tables",
+        "https://www.sqlite.org/lang_corefunc.html#sqlite_compileoption_used",
+        "https://www.sqlite.org/c3ref/compileoption_get.html",
+        "https://www.sqlite.org/pragma.html#pragma_module_list"
+      ],
+      "cited_urls": [
+        "https://www.sqlite.org/fts5.html",
+        "https://www.sqlite.org/pragma.html#pragma_compile_options",
+        "https://www.sqlite.org/lang_corefunc.html#sqlite_compileoption_used",
+        "https://www.sqlite.org/c3ref/compileoption_get.html",
+        "https://www.sqlite.org/pragma.html#pragma_module_list",
+        "https://www.sqlite.org/fts5.html#external_content_tables"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://www.sqlite.org/pragma.html#pragma_compile_options",
+          "title": "https://www.sqlite.org/pragma.html#pragma_compile_options"
+        },
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "title": "https://www.sqlite.org/fts5.html"
+        },
+        {
+          "url": "https://www.sqlite.org/lang_corefunc.html#sqlite_compileoption_used",
+          "title": "https://www.sqlite.org/lang_corefunc.html#sqlite_compileoption_used"
+        },
+        {
+          "url": "https://www.sqlite.org/fts5.html#external_content_tables",
+          "title": "https://www.sqlite.org/fts5.html#external_content_tables"
+        },
+        {
+          "url": "https://www.sqlite.org/c3ref/compileoption_get.html",
+          "title": "https://www.sqlite.org/c3ref/compileoption_get.html"
+        },
+        {
+          "url": "https://www.sqlite.org/pragma.html#pragma_module_list",
+          "title": "https://www.sqlite.org/pragma.html#pragma_module_list"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.sqlite.org/pragma.html#pragma_compile_options",
+          "text": "# PRAGMA compile_options\n\n## What It Returns\n\n`PRAGMA compile_options` returns the names of compile-time options used when building SQLite, **one option per row**. The \"SQLITE_\" prefix is omitted from the returned option names.\n\n### Example Output\nIf SQLite was compiled with certain options, the pragma might return results like:\n```\nTHREADSAFE\nENABLE_FTS3\nENABLE_RTREE\n```\n\n## How It's Used to Detect Features\n\nDevelopers use this pragma to programmatically detect which SQLite features are available in the current build. This is useful because:\n\n1. **Feature Detection**: Determine if optional modules (FTS3, RTREE, etc.) are compiled in\n2. **Conditional Logic**: Adapt application behavior based on available features\n3. **Compatibility Checks**: Verify the build meets application requirements\n\n### Basic Usage Example\n```sql\nPRAGMA compile_options;\n```\n\nThis returns a result set showing all compile-time options that were enabled when SQLite was built.\n\n## Related Interfaces\n\nAccording to the documentation, there are equivalent C/C++ interfaces:\n\n- **[sqlite3_compileoption_get()](c3ref/compileoption_get.html)** - C/C++ function\n- **[sqlite_compileoption_get()](lang_corefunc.html#sqlite_compileoption_get)** - SQL function\n\nThese allow you to check for specific compile options programmatically in code rather than just viewing them as a list."
+        },
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "text": "# FTS5 Support Detection and External Content Tables\n\n## 1. Detecting FTS5 Support\n\n### Compile-Time Detection\n\nFTS5 is included in SQLite as of version 3.9.0 (2015-10-14). To enable it during compilation:\n\n**With configure script:**\n```bash\n./configure --enable-fts5\n```\n\n**With other build systems:**\nDefine the preprocessor symbol:\n```c\n-DSQLITE_ENABLE_FTS5\n```\n\n### Runtime Detection\n\n**Using `sqlite3_compileoption_used()`:**\n```c\nif (sqlite3_compileoption_used(\"SQLITE_ENABLE_FTS5\")) {\n    // FTS5 is available\n}\n```\n\n**Using `PRAGMA compile_options`:**\n```sql\nPRAGMA compile_options;\n-- Returns list including \"ENABLE_FTS5\" if compiled in\n```\n\n**Practical approach - attempt to create an FTS5 table:**\n```c\nsqlite3_exec(db, \"CREATE VIRTUAL TABLE test USING fts5(x);\", 0, 0, &err);\nif (err) {\n    // FTS5 not available\n}\n```\n\n---\n\n## 2. External Content Tables\n\nExternal content tables allow FTS5 to index data stored in a separate table, reducing database size by storing only the full-text index without duplicating column content.\n\n### Creation and Configuration\n\n**Basic syntax:**\n```sql\nCREATE VIRTUAL TABLE ft USING fts5(\n    col1, \n    col2, \n    content='content_table',\n    content_rowid='rowid_column'\n);\n```\n\n**Parameters:**\n- `content=''` - Empty string creates a contentless table (no content stored)\n- `content='table_name'` - Specifies external content table\n- `content_rowid='column'` - Specifies which column in content table holds the rowid (default: \"rowid\")\n\n### Example Setup\n\n```sql\n-- Content table\nCREATE TABLE t1(a INTEGER PRIMARY KEY, b, c);\n\n-- FTS5 index pointing to t1\nCREATE VIRTUAL TABLE fts_idx USING fts5(\n    b, c, \n    content='t1', \n    content_rowid='a'\n);\n\n-- FTS5 will query content as:\n-- SELECT a, b, c FROM t1 WHERE a = ?;\n```\n\n### Requirements and Guarantees\n\n**User Responsibility:**\n- **Critical:** You must keep the FTS index synchronized with the content table\n- If they become inconsistent, query results will be unpredictable and appear inconsis"
+        },
+        {
+          "url": "https://www.sqlite.org/lang_corefunc.html#sqlite_compileoption_used",
+          "text": "# SQLite Compile Option Functions\n\nBased on the documentation provided, here are the descriptions:\n\n## sqlite_compileoption_get(_N_)\n\n> The sqlite_compileoption_get() SQL function is a wrapper around the [sqlite3_compileoption_get()](c3ref/compileoption_get.html) C/C++ function. This routine returns the N-th compile-time option used to build SQLite or NULL if N is out of range. See also the [compile_options pragma](pragma.html#pragma_compile_options).\n\n## sqlite_compileoption_used(_X_)\n\n> The sqlite_compileoption_used() SQL function is a wrapper around the [sqlite3_compileoption_used()](c3ref/compileoption_get.html) C/C++ function. When the argument X to sqlite_compileoption_used(X) is a string which is the name of a compile-time option, this routine returns true (1) or false (0) depending on whether or not that option was used during the build.\n\n**Note:** The provided documentation does not contain any information about `SQLITE_OMIT_COMPILEOPTION_DIAGS`. This note is not mentioned in the excerpt above."
+        },
+        {
+          "url": "https://www.sqlite.org/fts5.html#external_content_tables",
+          "text": "# FTS5 External Content, Contentless Tables, and Related Commands\n\n## Compiling and Enabling FTS5\n\n### Building FTS5 as part of SQLite\n\nAs of version 3.9.0 (2015-10-14), FTS5 is included as part of the SQLite amalgamation. If using the canonical source tree, FTS5 is enabled by specifying the \"--enable-fts5\" option when running the configure script. (FTS5 is currently disabled by default for the source-tree configure script and enabled by default for the amalgamation configure script, but these defaults might change in the future.)\n\nOr, if sqlite3.c is compiled using some other build system, by arranging for the SQLITE_ENABLE_FTS5 pre-processor symbol to be defined.\n\n### Building a Loadable Extension\n\nAlternatively, FTS5 may be built as a loadable extension.\n\nThe canonical FTS5 source code consists of a series of *.c and other files in the \"ext/fts5\" directory of the SQLite source tree. A build process reduces this to just two files - \"fts5.c\" and \"fts5.h\" - which may be used to build an SQLite loadable extension.\n\n1.  Obtain the latest SQLite code from fossil.\n2.  Create a Makefile as described in How To Compile SQLite.\n3.  Build the \"fts5.c\" target, which also creates fts5.h.\n\n```\n$ wget -c https://sqlite.org/src/tarball/SQLite-trunk.tgz?uuid=trunk -O SQLite-trunk.tgz\n.... output ...\n$ tar -xzf SQLite-trunk.tgz\n$ cd SQLite-trunk\n$ ./configure && make fts5.c\n... lots of output ...\n$ ls fts5.[ch]\nfts5.c        fts5.h\n```\n\nThe code in \"fts5.c\" may then be compiled into a loadable extension or statically linked into an application as described in Compiling Loadable Extensions. There are two entry points defined, both of which do the same thing:\n\n*   sqlite3_fts_init\n*   sqlite3_fts5_init\n\nThe other file, \"fts5.h\", is not required to compile the FTS5 extension. It is used by applications that implement custom FTS5 tokenizers or auxiliary functions.\n\n---\n\n## 4.4. External Content and Contentless Tables\n\nNormally, when a row is inserted into an FTS5 table, in addition to "
+        },
+        {
+          "url": "https://www.sqlite.org/c3ref/compileoption_get.html",
+          "text": "# sqlite3_compileoption_used() and sqlite3_compileoption_get() Description\n\n## sqlite3_compileoption_used()\n\n\"The sqlite3_compileoption_used() function returns 0 or 1 indicating whether the specified option was defined at compile time. The SQLITE_ prefix may be omitted from the option name passed to sqlite3_compileoption_used().\"\n\n## sqlite3_compileoption_get()\n\n\"The sqlite3_compileoption_get() function allows iterating over the list of options that were defined at compile time by returning the N-th compile time option string. If N is out of range, sqlite3_compileoption_get() returns a NULL pointer. The SQLITE_ prefix is omitted from any strings returned by sqlite3_compileoption_get().\"\n\n## SQLITE_OMIT_COMPILEOPTION_DIAGS\n\n\"Support for the diagnostic functions sqlite3_compileoption_used() and sqlite3_compileoption_get() may be omitted by specifying the SQLITE_OMIT_COMPILEOPTION_DIAGS option at compile time.\"\n\nWhen this option is specified at compile time, both functions are replaced with stub macros: `sqlite3_compileoption_used()` returns 0 and `sqlite3_compileoption_get()` returns a NULL pointer."
+        },
+        {
+          "url": "https://www.sqlite.org/pragma.html#pragma_module_list",
+          "text": "# PRAGMA module_list\n\n## Description\n\n**PRAGMA module_list;**\n\nThis pragma returns a list of [virtual table](vtab.html) modules registered with the database connection.\n\n## Compile-time Requirements\n\nThe web page content provided does not specify any compile-time requirements or conditional compilation flags (such as `SQLITE_INTROSPECTION_PRAGMAS`) for `PRAGMA module_list`.\n\n## Version Availability\n\nThe version availability information is not included in the provided documentation excerpt for `PRAGMA module_list`.\n\n---\n\n**Note:** The documentation is relatively brief for this pragma. For complete details about version availability and any compile-time requirements, you may need to consult the full SQLite documentation or source code."
+        }
+      ],
+      "final_answer": "# Détection de FTS5 et tables « external content » — d'après la documentation SQLite officielle\n\n## 1. Détecter la disponibilité de FTS5\n\n### Faits documentés\n\n**FTS5 est une option de compilation, pas une fonctionnalité toujours présente.** Depuis la version 3.9.0 (2015-10-14), FTS5 fait partie de l'amalgamation SQLite ; il s'active via `--enable-fts5` (configure) ou en définissant le symbole de préprocesseur `SQLITE_ENABLE_FTS5`. La doc précise explicitement que « FTS5 est actuellement désactivé par défaut pour le configure de l'arbre source et activé par défaut pour le configure de l'amalgamation, mais ces valeurs par défaut pourraient changer » ([fts5.html](https://www.sqlite.org/fts5.html)).\n\n**Trois mécanismes d'introspection existent :**\n\n| Mécanisme | Description (source) |\n|---|---|\n| `PRAGMA compile_options;` | Retourne les options de compilation, **une par ligne**, avec le préfixe `SQLITE_` omis — donc on cherche la ligne `ENABLE_FTS5` ([pragma.html](https://www.sqlite.org/pragma.html#pragma_compile_options)) |\n| `SELECT sqlite_compileoption_used('SQLITE_ENABLE_FTS5');` | Fonction SQL, wrapper de `sqlite3_compileoption_used()`, retourne 1 ou 0 ([lang_corefunc.html](https://www.sqlite.org/lang_corefunc.html#sqlite_compileoption_used)) |\n| `sqlite3_compileoption_used(\"SQLITE_ENABLE_FTS5\")` (C) | « retourne 0 ou 1 indiquant si l'option spécifiée était définie à la compilation. Le préfixe `SQLITE_` peut être omis » ([c3ref/compileoption_get.html](https://www.sqlite.org/c3ref/compileoption_get.html)) |\n\n**Limite documentée majeure de ces trois mécanismes :** « Le support des fonctions de diagnostic `sqlite3_compileoption_used()` et `sqlite3_compileoption_get()` peut être omis en spécifiant l'option `SQLITE_OMIT_COMPILEOPTION_DIAGS` à la compilation » — auquel cas `sqlite3_compileoption_used()` devient une macro retournant toujours 0 ([c3ref/compileoption_get.html](https://www.sqlite.org/c3ref/compileoption_get.html)).\n\n**Deuxième limite documentée :** FTS5 peut être construit comme **extension chargeable** (`fts5.c`/`fts5.h`, points d'entrée `sqlite3_fts_init` et `sqlite3_fts5_init`) ([fts5.html](https://www.sqlite.org/fts5.html)).\n\n### Inférences (à distinguer des faits ci-dessus)\n\n- **Inférence :** dans le cas de l'extension chargeable, `SQLITE_ENABLE_FTS5` n'a par construction pas été défini lors de la compilation du cœur ; le test par options de compilation renverrait donc un faux négatif alors que FTS5 est bel et bien disponible. La documentation ne l'énonce pas en ces termes, mais cela découle directement de la sémantique de `sqlite3_compileoption_used()` (« défini au moment de la compilation ») et de l'existence du mode extension.\n- **Inférence, et c'est ma recommandation pratique :** le seul test véritablement *runtime* et fiable est fonctionnel — tenter `CREATE VIRTUAL TABLE temp.fts5_probe USING fts5(x);` et regarder si l'erreur `no such module: fts5` survient, puis `DROP`. Ce test couvre à la fois le cas compilé et le cas extension chargée. **Ce n'est pas une recommandation figurant dans la doc SQLite** ; je l'infère du fait que la doc ne fournit aucun autre test couvrant le cas extension.\n\n### Point d'incertitude\n\n`PRAGMA module_list;` « retourne la liste des modules de tables virtuelles enregistrés auprès de la connexion » ([pragma.html](https://www.sqlite.org/pragma.html#pragma_module_list)) — ce serait conceptuellement le test runtime idéal (il refléterait aussi une extension chargée). **Mais je n'ai pas pu confirmer** dans la page récupérée s'il est conditionné à `SQLITE_INTROSPECTION_PRAGMAS` ni depuis quelle version il existe. Traitez-le donc comme non garanti tant que ce n'est pas vérifié sur votre build.\n\n---\n\n## 2. Tables FTS5 « external content » : garanties et limitations\n\nUne table à contenu externe se crée avec `content='<table>'` et, optionnellement, `content_rowid='<colonne>'` ; l'objet nommé peut être une table, une table virtuelle ou une vue **de la même base** ([fts5.html §4.4](https://www.sqlite.org/fts5.html#external_content_tables)).\n\n### Ce qui est garanti\n\n- **Économie d'espace** : seul l'index full-text est stocké, pas la copie privée des valeurs de colonnes ; « comme les valeurs de colonnes sont généralement bien plus grosses que les entrées d'index associées, cela peut économiser un espace significatif ».\n- **Fonctionnalité complète** : « toutes les fonctionnalités FTS5 peuvent être utilisées » — contrairement aux tables *contentless* où seul le rowid est lisible.\n- **Contrat de requêtage explicite et stable** : FTS5 interroge la table de contenu via `SELECT <content_rowid>, <cols> FROM <content> WHERE <content_rowid> = ?` et, pour les parcours complets, `... ORDER BY <content_rowid> ASC|DESC`. Par défaut `<content_rowid>` vaut littéralement `rowid`.\n- **`'rebuild'` est disponible** (contrairement aux tables contentless) : il « supprime la totalité de l'index full-text, puis le reconstruit à partir du contenu de la table ou de la table de contenu » ([§6.12](https://www.sqlite.org/fts5.html)).\n- **`'integrity-check'` avec `rank=1`** compare l'index au contenu de la table externe — « pour une table à contenu externe, le contenu de l'index n'est comparé au contenu de la table externe que si la valeur spécifiée pour la colonne rank est 1 ». Toute divergence provoque `SQLITE_CORRUPT_VTAB` ([§6.7](https://www.sqlite.org/fts5.html)).\n\n### Ce qui n'est PAS garanti (limitations)\n\n1. **Aucune synchronisation automatique.** « Il est de la responsabilité de l'utilisateur de garantir que le contenu de l'index full-text est cohérent avec l'objet de base nommé. S'ils ne le sont pas, les résultats de requêtes peuvent être imprévisibles. »\n\n2. **Incohérence silencieuse et asymétrique.** La doc (§4.4.4) modélise précisément le comportement :\n   - requête **sans** MATCH → « effectivement transmise à la table de contenu » ; l'index n'a aucun effet ;\n   - requête **avec** MATCH → rowids issus de l'index, puis valeurs relues dans la table de contenu.\n   \n   D'où les exemples officiels : index vide + contenu peuplé → `SELECT * FROM ft` retourne 2 lignes mais `ft('gold')` en retourne 0 ; contenu vide + index peuplé → `SELECT * FROM ft` retourne 0 ligne mais `ft('gold')` retourne 1 ligne avec `t` valant **NULL**.\n\n3. **Les triggers ne rattrapent pas l'existant.** « Créer les triggers ne copie pas les lignes existantes de la table de contenu vers l'index FTS. » Il faut un `INSERT INTO ft(ft) VALUES('rebuild');` après coup.\n\n4. **Ordre d'écriture imposé.** Pour un DELETE ou un UPDATE, FTS5 doit relire les valeurs *courantes* dans la table de contenu pour retokeniser et savoir quoi retirer. « Si les valeurs récupérées ne correspondent pas à l'ensemble des entrées de l'index FTS pour la ligne, certains tokens peuvent rester dans l'index. » Conséquence documentée : **la table FTS5 doit être mise à jour en premier**, la table de contenu ensuite. C'est exactement pourquoi les triggers officiels sont `AFTER DELETE` / `AFTER UPDATE` avec la commande `'delete'` utilisant `old.*`.\n\n5. **Commande `'delete'` : exactitude obligatoire.** « Si les valeurs \"insérées\" dans les colonnes texte dans le cadre d'une commande 'delete' ne sont pas les mêmes que celles actuellement stockées dans la table, les résultats peuvent être imprévisibles » — l'index peut se retrouver dans un état incohérent rendant les requêtes futures non fiables ([§6.3](https://www.sqlite.org/fts5.html)).\n\n6. **Pas de gestion de conflit REPLACE.** « Comme les tables contentless, les tables à contenu externe ne supportent pas la gestion de conflit REPLACE. Toute opération spécifiant REPLACE est traitée avec ABORT. » ⚠️ Notez la différence avec les tables *contentless* simples, où REPLACE est au contraire « traité comme un INSERT ordinaire ».\n\n7. **Fuite d'information sur les suppressions.** Par défaut, les entrées supprimées restent dans le fichier : « quiconque a accès à la base peut utiliser ces entrées pour reconstruire trivialement le contenu des lignes FTS5 supprimées ». L'option `INSERT INTO ft(ft, rank) VALUES('secure-delete', 1);` corrige cela (défaut = 0), mais **rend la table illisible par toute version de FTS5 antérieure à 3.42.0** — réversible via `'rebuild'` en 3.42.0+. Pour se protéger d'un accès au fichier lui-même, il faut aussi `PRAGMA secure_delete = 1` ([§6.13](https://www.sqlite.org/fts5.html)).\n\n### Note d'exactitude sur une confusion fréquente\n\nLe titre de la section §4.4.4.1 de la doc est « Updates and Deletes on Contentless Tables », mais son corps décrit sans ambiguïté le comportement des tables **à contenu externe** (il parle de la requête sur `<content>` et conclut « la table FTS5 doit être mise à jour en premier »). Je le signale car c'est une source de malentendu ; je le lis comme un titre imprécis dans la doc amont, pas comme une garantie sur les tables contentless.\n\n### Hors périmètre mais utile pour arbitrer\n\n`content=''` (contentless) et `content='', contentless_delete=1` sont des modes **distincts** des tables à contenu externe. Fait notable pour un choix d'architecture : la doc recommande « à moins qu'une compatibilité ascendante ne soit requise, le nouveau code devrait préférer les tables contentless-delete aux tables contentless ». Aucune recommandation équivalente n'existe en faveur ou défaveur des tables à contenu externe.\n\n---\n\n**Sources :**\n- [SQLite FTS5 (fts5.html)](https://www.sqlite.org/fts5.html) — compilation/extension chargeable, §4.4 à §4.4.4.1, §4.9, §6.3, §6.4, §6.7, §6.12, §6.13\n- [PRAGMA compile_options / module_list](https://www.sqlite.org/pragma.html#pragma_compile_options)\n- [sqlite_compileoption_used() / sqlite_compileoption_get() (SQL)](https://www.sqlite.org/lang_corefunc.html#sqlite_compileoption_used)\n- [sqlite3_compileoption_used() / sqlite3_compileoption_get() (C)](https://www.sqlite.org/c3ref/compileoption_get.html)"
+    }
+  ]
+}

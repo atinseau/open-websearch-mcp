@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "run_id": "2026-08-27_codex_academic-retrieval-diversity",
+  "case_id": "academic-retrieval-diversity",
+  "provider": "codex",
+  "model": "gpt-5.4",
+  "queries": [
+    "Carbonell Goldstein maximal marginal relevance pdf 1998 diversification search results primary paper",
+    "https://dl.acm.org/doi/pdf/10.1145/290941.291025",
+    "'MMR ≡ argmax' in https://aclanthology.org/X98-1025.pdf",
+    "https://aclanthology.org/X98-1025.pdf",
+    "'user study' in https://aclanthology.org/X98-1025.pdf",
+    "SIGIR 2010 search result diversification MMR xQuAD pdf",
+    "https://terrierteam.dcs.gla.ac.uk/publications/ecir2010_rodrygo_div.pdf",
+    "'MMRlist' in https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf",
+    "https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf",
+    "Carbonell Goldstein 1998 maximal marginal relevance user study pdf",
+    "https://dl.acm.org/doi/abs/10.1145/290941.291025",
+    "https://jiafengguo.github.io/2015/2015-Learning%20Maximal%20Marginal%20Relevance%20Model%20via%20Directy%20Optimizing%20Diversity%20Evaluation%20Measures.pdf",
+    "'[5]' in https://jiafengguo.github.io/2015/2015-Learning%20Maximal%20Marginal%20Relevance%20Model%20via%20Directy%20Optimizing%20Diversity%20Evaluation%20Measures.pdf",
+    "Clarke Kolla Cormack novelty and diversity in information retrieval evaluation pdf",
+    "Redundancy diversity and interdependent document relevance pdf Radlinski Bennett Carterette Joachims",
+    "'MMR' in https://terrierteam.dcs.gla.ac.uk/publications/ecir2010_rodrygo_div.pdf",
+    "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf"
+  ],
+  "tool_results": [
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    }
+  ],
+  "opened_urls": [],
+  "cited_urls": [
+    "https://aclanthology.org/X98-1025.pdf",
+    "https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf",
+    "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf"
+  ],
+  "selected_sources": [
+    {
+      "url": "https://aclanthology.org/X98-1025.pdf",
+      "title": "https://aclanthology.org/X98-1025.pdf"
+    },
+    {
+      "url": "https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf",
+      "title": "https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf"
+    },
+    {
+      "url": "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf",
+      "title": "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf"
+    }
+  ],
+  "evidence_passages": [
+    {
+      "url": "https://aclanthology.org/X98-1025.pdf",
+      "text": "**Supported fact**\n\nMMR trades relevance against novelty with a user-tunable linear score: at each step, it picks the remaining document with high query similarity and low similarity to already selected documents, i.e. relevance is rewarded and redundancy is penalized. This is the core definition in Carbonell and Goldstein’s original paper: https://aclanthology.org/X98-1025.pdf\n\nIn that formulation, `λ = 1` reduces to the standard relevance-ranked list, `λ = 0` reduces to maximal diversity among the retrieved set, and intermediate `λ` values optimize a linear combination of the two criteria. The same paper says smaller `λ` is for “sampling” the information space and larger `λ` is for focusing on overlapping/reinforcing relevant documents; for document retrieval, the authors report a strategy of starting around `λ = 0.3` and then moving to around `λ = 0.7` after query reformulation or relevance feedback: https://aclanthology.org/X98-1025.pdf\n\nThe original paper provides two kinds of direct evidence for diversification. First, in a Reuters reranking example, the authors report that a duplicate article is pushed down, a “novel but still relevant” document moves up, and similar documents are demoted as `λ` decreases, which is exactly the intended relevance/novelty tradeoff: https://aclanthology.org/X98-1025.pdf\n\nSecond, the same paper reports a pilot user study with 5 undergraduate users over 9 search tasks; users compared standard SMART ranking with MMR reranking at `λ = 0.5`, and 4 of 5 chose the MMR method for a final search task. However, the authors also state that the study was too small to yield statistically significant trends for speed or recall: https://aclanthology.org/X98-1025.pdf\n\nLater primary IR work gives stronger benchmark-style evidence that MMR-style diversification can beat non-diversified ranking in some search settings. Zhu et al. (SIGIR 2014) used MMR with a learned relevance function (`MMRlist`) and tuned `λ` by cross-validation on TREC Web Track data; on WT2009, WT2010, and WT2011, `MMRlist` improved over `ListMLE` on ERR-IA, α-NDCG, and NRBP. For example, ERR-IA improved from `0.1913` to `0.2022` on WT2009, from `0.2436` to `0.2735` on WT2010, and from `0.4172` to `0.4284` on WT2011: https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf\n\n**Disagreement / mixed evidence**\n\nPrimary research does not show that MMR is uniformly beneficial. Santos, Macdonald, and Ounis (WWW 2010) evaluated MMR as an implicit diversification baseline on the TREC 2009 Web Track and found cases where MMR hurt the original ranking. For the BM25 baseline, α-NDCG@10 dropped from `0.186` to `0.150` and IA-P@10 dropped from `0.071` to `0.058` after MMR reranking; for DPH, MMR was nearly neutral; for LM, it was only slightly positive on some metrics. In the same study, xQuAD was reported as the only approach that consistently improved all three baseline rankers: https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf\n\nThat same paper also describes MMR as the “canonical” implicit diversification approach and says it selects documents by combining query similarity with dissimilarity to earlier-ranked documents, which confirms that later diversification work treats MMR as a standard baseline even when it is not the best performer: https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf\n\n**Inference**\n\nBased on those primary studies, the safest conclusion is that MMR is a plausible and historically important diversification heuristic, but the empirical support is mixed: the original direct evidence is small and partly qualitative, while larger TREC-style evidence suggests MMR can help relative to pure relevance ranking in some setups but is often outperformed by later explicit diversification methods such as xQuAD or learning-based approaches. This is an inference from https://aclanthology.org/X98-1025.pdf, https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf, and https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf\n\n**Uncertainty / lack of good evidence**\n\nI did not find a strong, primary, large-sample user study showing that plain MMR itself consistently improves real user satisfaction in web search. The original Carbonell-Goldstein study explicitly says its 5-user pilot was too small for statistically significant speed/recall conclusions: https://aclanthology.org/X98-1025.pdf\n\nI also did not find primary evidence that there is one universally best `λ`; the papers treat `λ` as something to tune by task or cross-validation, and the observed gains vary by baseline ranker and dataset: https://aclanthology.org/X98-1025.pdf, https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf, https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf"
+    },
+    {
+      "url": "https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf",
+      "text": "**Supported fact**\n\nMMR trades relevance against novelty with a user-tunable linear score: at each step, it picks the remaining document with high query similarity and low similarity to already selected documents, i.e. relevance is rewarded and redundancy is penalized. This is the core definition in Carbonell and Goldstein’s original paper: https://aclanthology.org/X98-1025.pdf\n\nIn that formulation, `λ = 1` reduces to the standard relevance-ranked list, `λ = 0` reduces to maximal diversity among the retrieved set, and intermediate `λ` values optimize a linear combination of the two criteria. The same paper says smaller `λ` is for “sampling” the information space and larger `λ` is for focusing on overlapping/reinforcing relevant documents; for document retrieval, the authors report a strategy of starting around `λ = 0.3` and then moving to around `λ = 0.7` after query reformulation or relevance feedback: https://aclanthology.org/X98-1025.pdf\n\nThe original paper provides two kinds of direct evidence for diversification. First, in a Reuters reranking example, the authors report that a duplicate article is pushed down, a “novel but still relevant” document moves up, and similar documents are demoted as `λ` decreases, which is exactly the intended relevance/novelty tradeoff: https://aclanthology.org/X98-1025.pdf\n\nSecond, the same paper reports a pilot user study with 5 undergraduate users over 9 search tasks; users compared standard SMART ranking with MMR reranking at `λ = 0.5`, and 4 of 5 chose the MMR method for a final search task. However, the authors also state that the study was too small to yield statistically significant trends for speed or recall: https://aclanthology.org/X98-1025.pdf\n\nLater primary IR work gives stronger benchmark-style evidence that MMR-style diversification can beat non-diversified ranking in some search settings. Zhu et al. (SIGIR 2014) used MMR with a learned relevance function (`MMRlist`) and tuned `λ` by cross-validation on TREC Web Track data; on WT2009, WT2010, and WT2011, `MMRlist` improved over `ListMLE` on ERR-IA, α-NDCG, and NRBP. For example, ERR-IA improved from `0.1913` to `0.2022` on WT2009, from `0.2436` to `0.2735` on WT2010, and from `0.4172` to `0.4284` on WT2011: https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf\n\n**Disagreement / mixed evidence**\n\nPrimary research does not show that MMR is uniformly beneficial. Santos, Macdonald, and Ounis (WWW 2010) evaluated MMR as an implicit diversification baseline on the TREC 2009 Web Track and found cases where MMR hurt the original ranking. For the BM25 baseline, α-NDCG@10 dropped from `0.186` to `0.150` and IA-P@10 dropped from `0.071` to `0.058` after MMR reranking; for DPH, MMR was nearly neutral; for LM, it was only slightly positive on some metrics. In the same study, xQuAD was reported as the only approach that consistently improved all three baseline rankers: https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf\n\nThat same paper also describes MMR as the “canonical” implicit diversification approach and says it selects documents by combining query similarity with dissimilarity to earlier-ranked documents, which confirms that later diversification work treats MMR as a standard baseline even when it is not the best performer: https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf\n\n**Inference**\n\nBased on those primary studies, the safest conclusion is that MMR is a plausible and historically important diversification heuristic, but the empirical support is mixed: the original direct evidence is small and partly qualitative, while larger TREC-style evidence suggests MMR can help relative to pure relevance ranking in some setups but is often outperformed by later explicit diversification methods such as xQuAD or learning-based approaches. This is an inference from https://aclanthology.org/X98-1025.pdf, https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf, and https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf\n\n**Uncertainty / lack of good evidence**\n\nI did not find a strong, primary, large-sample user study showing that plain MMR itself consistently improves real user satisfaction in web search. The original Carbonell-Goldstein study explicitly says its 5-user pilot was too small for statistically significant speed/recall conclusions: https://aclanthology.org/X98-1025.pdf\n\nI also did not find primary evidence that there is one universally best `λ`; the papers treat `λ` as something to tune by task or cross-validation, and the observed gains vary by baseline ranker and dataset: https://aclanthology.org/X98-1025.pdf, https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf, https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf"
+    },
+    {
+      "url": "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf",
+      "text": "**Supported fact**\n\nMMR trades relevance against novelty with a user-tunable linear score: at each step, it picks the remaining document with high query similarity and low similarity to already selected documents, i.e. relevance is rewarded and redundancy is penalized. This is the core definition in Carbonell and Goldstein’s original paper: https://aclanthology.org/X98-1025.pdf\n\nIn that formulation, `λ = 1` reduces to the standard relevance-ranked list, `λ = 0` reduces to maximal diversity among the retrieved set, and intermediate `λ` values optimize a linear combination of the two criteria. The same paper says smaller `λ` is for “sampling” the information space and larger `λ` is for focusing on overlapping/reinforcing relevant documents; for document retrieval, the authors report a strategy of starting around `λ = 0.3` and then moving to around `λ = 0.7` after query reformulation or relevance feedback: https://aclanthology.org/X98-1025.pdf\n\nThe original paper provides two kinds of direct evidence for diversification. First, in a Reuters reranking example, the authors report that a duplicate article is pushed down, a “novel but still relevant” document moves up, and similar documents are demoted as `λ` decreases, which is exactly the intended relevance/novelty tradeoff: https://aclanthology.org/X98-1025.pdf\n\nSecond, the same paper reports a pilot user study with 5 undergraduate users over 9 search tasks; users compared standard SMART ranking with MMR reranking at `λ = 0.5`, and 4 of 5 chose the MMR method for a final search task. However, the authors also state that the study was too small to yield statistically significant trends for speed or recall: https://aclanthology.org/X98-1025.pdf\n\nLater primary IR work gives stronger benchmark-style evidence that MMR-style diversification can beat non-diversified ranking in some search settings. Zhu et al. (SIGIR 2014) used MMR with a learned relevance function (`MMRlist`) and tuned `λ` by cross-validation on TREC Web Track data; on WT2009, WT2010, and WT2011, `MMRlist` improved over `ListMLE` on ERR-IA, α-NDCG, and NRBP. For example, ERR-IA improved from `0.1913` to `0.2022` on WT2009, from `0.2436` to `0.2735` on WT2010, and from `0.4172` to `0.4284` on WT2011: https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf\n\n**Disagreement / mixed evidence**\n\nPrimary research does not show that MMR is uniformly beneficial. Santos, Macdonald, and Ounis (WWW 2010) evaluated MMR as an implicit diversification baseline on the TREC 2009 Web Track and found cases where MMR hurt the original ranking. For the BM25 baseline, α-NDCG@10 dropped from `0.186` to `0.150` and IA-P@10 dropped from `0.071` to `0.058` after MMR reranking; for DPH, MMR was nearly neutral; for LM, it was only slightly positive on some metrics. In the same study, xQuAD was reported as the only approach that consistently improved all three baseline rankers: https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf\n\nThat same paper also describes MMR as the “canonical” implicit diversification approach and says it selects documents by combining query similarity with dissimilarity to earlier-ranked documents, which confirms that later diversification work treats MMR as a standard baseline even when it is not the best performer: https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf\n\n**Inference**\n\nBased on those primary studies, the safest conclusion is that MMR is a plausible and historically important diversification heuristic, but the empirical support is mixed: the original direct evidence is small and partly qualitative, while larger TREC-style evidence suggests MMR can help relative to pure relevance ranking in some setups but is often outperformed by later explicit diversification methods such as xQuAD or learning-based approaches. This is an inference from https://aclanthology.org/X98-1025.pdf, https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf, and https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf\n\n**Uncertainty / lack of good evidence**\n\nI did not find a strong, primary, large-sample user study showing that plain MMR itself consistently improves real user satisfaction in web search. The original Carbonell-Goldstein study explicitly says its 5-user pilot was too small for statistically significant speed/recall conclusions: https://aclanthology.org/X98-1025.pdf\n\nI also did not find primary evidence that there is one universally best `λ`; the papers treat `λ` as something to tune by task or cross-validation, and the observed gains vary by baseline ranker and dataset: https://aclanthology.org/X98-1025.pdf, https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf, https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf"
+    }
+  ],
+  "final_answer": "**Supported fact**\n\nMMR trades relevance against novelty with a user-tunable linear score: at each step, it picks the remaining document with high query similarity and low similarity to already selected documents, i.e. relevance is rewarded and redundancy is penalized. This is the core definition in Carbonell and Goldstein’s original paper: https://aclanthology.org/X98-1025.pdf\n\nIn that formulation, `λ = 1` reduces to the standard relevance-ranked list, `λ = 0` reduces to maximal diversity among the retrieved set, and intermediate `λ` values optimize a linear combination of the two criteria. The same paper says smaller `λ` is for “sampling” the information space and larger `λ` is for focusing on overlapping/reinforcing relevant documents; for document retrieval, the authors report a strategy of starting around `λ = 0.3` and then moving to around `λ = 0.7` after query reformulation or relevance feedback: https://aclanthology.org/X98-1025.pdf\n\nThe original paper provides two kinds of direct evidence for diversification. First, in a Reuters reranking example, the authors report that a duplicate article is pushed down, a “novel but still relevant” document moves up, and similar documents are demoted as `λ` decreases, which is exactly the intended relevance/novelty tradeoff: https://aclanthology.org/X98-1025.pdf\n\nSecond, the same paper reports a pilot user study with 5 undergraduate users over 9 search tasks; users compared standard SMART ranking with MMR reranking at `λ = 0.5`, and 4 of 5 chose the MMR method for a final search task. However, the authors also state that the study was too small to yield statistically significant trends for speed or recall: https://aclanthology.org/X98-1025.pdf\n\nLater primary IR work gives stronger benchmark-style evidence that MMR-style diversification can beat non-diversified ranking in some search settings. Zhu et al. (SIGIR 2014) used MMR with a learned relevance function (`MMRlist`) and tuned `λ` by cross-validation on TREC Web Track data; on WT2009, WT2010, and WT2011, `MMRlist` improved over `ListMLE` on ERR-IA, α-NDCG, and NRBP. For example, ERR-IA improved from `0.1913` to `0.2022` on WT2009, from `0.2436` to `0.2735` on WT2010, and from `0.4172` to `0.4284` on WT2011: https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf\n\n**Disagreement / mixed evidence**\n\nPrimary research does not show that MMR is uniformly beneficial. Santos, Macdonald, and Ounis (WWW 2010) evaluated MMR as an implicit diversification baseline on the TREC 2009 Web Track and found cases where MMR hurt the original ranking. For the BM25 baseline, α-NDCG@10 dropped from `0.186` to `0.150` and IA-P@10 dropped from `0.071` to `0.058` after MMR reranking; for DPH, MMR was nearly neutral; for LM, it was only slightly positive on some metrics. In the same study, xQuAD was reported as the only approach that consistently improved all three baseline rankers: https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf\n\nThat same paper also describes MMR as the “canonical” implicit diversification approach and says it selects documents by combining query similarity with dissimilarity to earlier-ranked documents, which confirms that later diversification work treats MMR as a standard baseline even when it is not the best performer: https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf\n\n**Inference**\n\nBased on those primary studies, the safest conclusion is that MMR is a plausible and historically important diversification heuristic, but the empirical support is mixed: the original direct evidence is small and partly qualitative, while larger TREC-style evidence suggests MMR can help relative to pure relevance ranking in some setups but is often outperformed by later explicit diversification methods such as xQuAD or learning-based approaches. This is an inference from https://aclanthology.org/X98-1025.pdf, https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf, and https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf\n\n**Uncertainty / lack of good evidence**\n\nI did not find a strong, primary, large-sample user study showing that plain MMR itself consistently improves real user satisfaction in web search. The original Carbonell-Goldstein study explicitly says its 5-user pilot was too small for statistically significant speed/recall conclusions: https://aclanthology.org/X98-1025.pdf\n\nI also did not find primary evidence that there is one universally best `λ`; the papers treat `λ` as something to tune by task or cross-validation, and the observed gains vary by baseline ranker and dataset: https://aclanthology.org/X98-1025.pdf, https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf, https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf",
+  "cli_version": "codex-cli 0.149.1",
+  "locale": "en-US",
+  "started_at": "2026-08-27T13:37:05.116Z",
+  "duration_ms": 119876,
+  "prompt_sha256": "5890e9cacbc9bf8ca9889022037851cb6ada33d070552f7262aea6470ce71cfa",
+  "raw_trace": "events.sanitized.jsonl",
+  "policy_evidence": "policy.json",
+  "isolation": {
+    "temporary_cwd": true,
+    "cwd_unchanged": true,
+    "forbidden_tool_calls": []
+  }
+}

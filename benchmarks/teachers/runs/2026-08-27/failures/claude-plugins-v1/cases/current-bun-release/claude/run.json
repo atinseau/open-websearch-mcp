@@ -1,0 +1,443 @@
+{
+  "schema_version": 1,
+  "run_id": "2026-08-27_claude_current-bun-release",
+  "case_id": "current-bun-release",
+  "provider": "claude",
+  "model": "claude-opus-5[1m]",
+  "queries": [
+    "Bun latest stable release version",
+    "Bun 1.4 release \"rewrote Bun\" Rust Zig August 2026",
+    "\"bun-v1.4.1\" OR \"Bun v1.4.1\" release"
+  ],
+  "tool_results": [
+    {
+      "tool": "WebSearch",
+      "summary": "Upgrade Bun to the latest version - Bun: https://bun.com/docs/guides/util/upgrade"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Upgrade Bun to the latest version | Bun Guides: https://bun.com/guides/util/upgrade"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun (software): https://en.wikipedia.org/wiki/Bun_(software)"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Blog | Bun: https://bun.com/blog"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun 1.3.14: Latest Bun Version - What Version: https://www.what-version.com/latest-version/bun/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Android 17: https://en.wikipedia.org/wiki/Android_17"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "GitHub - oven-sh/bun: Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one: https://github.com/oven-sh/bun"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "bun - npm: https://www.npmjs.com/package/bun"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun | endoflife.date: https://endoflife.date/bun"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Debian release version history: https://en.wikipedia.org/wiki/Debian_release_version_history"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Bun Release Information\n\n**Latest Release:**\n- **Version:** Bun v1.4\n- **Tag:** bun-v1.4.0\n- **Publication Date:** August 20, 2026 at 14:07\n\n**Recent Releases with Dates:**\n\n1. **Bun v1.4.0** – August 20, 2026\n2. **Bun v1.3.14** – May 13, 2026\n3. **Bun v1.3.13** – April 20, 2026\n4. **Bun v1.3.12** – April 10, 2026\n5. **Bun v1.3.11** – March 18, 2026\n\nThe most current stable build can be installed via the command: `curl -fsSL https://bun.com/install | bash`"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "The server returned HTTP 403 Forbidden.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Recent Bun Release Blog Posts\n\nHere are the most recent Bun release announcements:\n\n1. **Bun 1.4** (August 20, 2026) - \"Bun 1.4 rewrites Bun in Rust, ships built-in headless browser automation (Bun.WebView), Bun.Image, Bun.markdown, JSON5, JSONL, Terminal and cron APIs\"\n\n2. **Rewriting Bun in Rust** (July 8, 2026) - Explores the rationale and methodology behind converting Bun from Zig to Rust\n\n3. **Bun v1.3.14** (May 13, 2026) - Addresses 380 issues with features including an image processing "
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Bun v1.4 Release Information\n\n**Tag Name:** `bun-v1.4.0`\n\n**Title:** Bun v1.4\n\n**Publication Date:** August 20, 2024 (14:07 UTC)\n\n**First Section of Release Notes:**\n\nThe page indicates installation and upgrade instructions are the primary content presented. Users can install via `curl -fsSL https://bun.com/install | bash` or npm, with Windows users accessing `bun.com/install.ps1`. The release directs readers to \"Read the blog post\" for detailed notes, suggesting the full changelog exists else"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Bun 1.4 Release Summary\n\n**Headline:** \"Bun 1.4\"\n\n**Publication Date:** August 20, 2026\n\n## Main Changes Announced\n\nBun 1.4 introduces substantial improvements across multiple areas:\n\n**Node.js Compatibility**\nThe release adds \"+1,517 tests from the Node.js test suite,\" marking the largest compatibility jump since version 1.0. Several packages like Playwright, Next.js 16, and vitest now run on Bun.\n\n**Performance Enhancements**\n- Idle CPU usage drops by 5x\n- Memory usage decreases by up to 35%"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Release Bun v1.4 · oven-sh/bun: https://github.com/oven-sh/bun/releases/tag/bun-v1.4.0"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "What’s New in Bun v1.4. The release of Bun v1.4 brings a major… | by Onix React | Aug, 2026 | Medium: https://medium.com/@onix_react/whats-new-in-bun-v1-4-c9f2d85923db"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun 1.4 is now available in Vercel Functions - Vercel: https://vercel.com/changelog/bun-1-4-is-now-available-in-vercel-functions"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun — A fast all-in-one JavaScript runtime: https://bun.com/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Releases · oven-sh/bun: https://github.com/oven-sh/bun/releases"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "List of breaking changes for 1.4 · Issue #28792 · oven-sh/bun: https://github.com/oven-sh/bun/issues/28792"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun 1.4 | Bun Blog: https://bun.com/blog/bun-v1.4"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun v1.4 - YouTube: https://www.youtube.com/watch?v=i38DgEuaJwM"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun 1.4 at Scrydon: A Quiet Upgrade With Loud Early Numbers - Scrydon: https://scrydon.com/insights/2026/08/21/bun-1-4-at-scrydon/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun 1.4 lands: Rust rewrite and zero external dependencies mark major milestone for devs | AlternativeTo: https://alternativeto.net/news/2026/8/bun-1-4-lands-rust-rewrite-and-zero-external-dependencies-mark-major-milestone-for-devs/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun 1.4 | Bun Blog: https://bun.com/blog/bun-v1.4"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "--- title: Rewriting Bun in Rust: https://bun.com/blog/bun-in-rust.md"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun (software): https://en.wikipedia.org/wiki/Bun_(software)"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun 1.4 Ships the Rust Rewrite: What's Actually New and What's Still Shaky — CODERCOPS: https://blog.codercops.com/blog/bun-1-4-rust-rewrite-browser-automation-2026"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun 1.4: The controversial AI-Driven Rewrite from Zig to Rust: https://grigio.org/bun-1-4-the-controversial-ai-driven-rewrite-from-zig-to-rust/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun Rust Rewrite: 64 Claude Agents, 535k Lines of Zig | Dennis Morello: https://morello.dev/blog/bun-14-rust-rewrite"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun 1.4 finally ships. The Rust rewrite drama isn't over. | daily.dev: https://daily.dev/posts/bun-1-4-finally-ships-the-rust-rewrite-drama-isn-t-over--fdy7op2yl"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun 1.4 at Scrydon: A Quiet Upgrade With Loud Early Numbers - Scrydon: https://scrydon.com/insights/2026/08/21/bun-1-4-at-scrydon/"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Version Number\n\nThe version number listed in this JSON is **1.4.0**. This appears multiple times throughout the document, including in the `\"version\"` field and in the optional dependencies specifications."
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Bun 1.4 Breaking Changes Summary\n\nThis GitHub issue tracks significant breaking changes in Bun 1.4.0 (released August 19, 2026). Here are the key changes:\n\n## Core Runtime\n- Node.js compatibility bumped from 24.3.0 to 26.3.0; native addons require rebuilding\n- x64 builds are now baseline-only; the separate `-march=haswell` build is dropped\n- Temporal is enabled by default; disable with `BUN_JSC_useTemporal=0`\n- ICU upgraded to version 78, affecting `Intl` formatting and IDNA mapping\n\n## Packag"
+    }
+  ],
+  "opened_urls": [
+    "https://github.com/oven-sh/bun/releases",
+    "https://www.npmjs.com/package/bun?activeTab=versions",
+    "https://bun.com/blog",
+    "https://bun.com/blog/bun-v1.4",
+    "https://github.com/oven-sh/bun/releases/latest",
+    "https://registry.npmjs.org/bun/latest",
+    "https://github.com/oven-sh/bun/issues/28792"
+  ],
+  "cited_urls": [
+    "https://github.com/oven-sh/bun/releases",
+    "https://registry.npmjs.org/bun/latest",
+    "https://bun.com/blog/bun-v1.4",
+    "https://bun.com/blog/bun-in-rust.md",
+    "https://github.com/oven-sh/bun/issues/28792",
+    "https://grigio.org/bun-1-4-the-controversial-ai-driven-rewrite-from-zig-to-rust/",
+    "https://morello.dev/blog/bun-14-rust-rewrite",
+    "https://alternativeto.net/news/2026/8/bun-1-4-lands-rust-rewrite-and-zero-external-dependencies-mark-major-milestone-for-devs/",
+    "https://github.com/oven-sh/bun/releases/tag/bun-v1.4.0"
+  ],
+  "selected_sources": [
+    {
+      "url": "https://bun.com/docs/guides/util/upgrade",
+      "title": "Upgrade Bun to the latest version - Bun"
+    },
+    {
+      "url": "https://bun.com/guides/util/upgrade",
+      "title": "Upgrade Bun to the latest version | Bun Guides"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Bun_(software)",
+      "title": "Bun (software)"
+    },
+    {
+      "url": "https://bun.com/blog",
+      "title": "https://bun.com/blog"
+    },
+    {
+      "url": "https://www.what-version.com/latest-version/bun/",
+      "title": "Bun 1.3.14: Latest Bun Version - What Version"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Android_17",
+      "title": "Android 17"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun",
+      "title": "GitHub - oven-sh/bun: Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one"
+    },
+    {
+      "url": "https://www.npmjs.com/package/bun",
+      "title": "bun - npm"
+    },
+    {
+      "url": "https://endoflife.date/bun",
+      "title": "Bun | endoflife.date"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Debian_release_version_history",
+      "title": "Debian release version history"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/releases",
+      "title": "Releases · oven-sh/bun"
+    },
+    {
+      "url": "https://www.npmjs.com/package/bun?activeTab=versions",
+      "title": "https://www.npmjs.com/package/bun?activeTab=versions"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/releases/latest",
+      "title": "https://github.com/oven-sh/bun/releases/latest"
+    },
+    {
+      "url": "https://bun.com/blog/bun-v1.4",
+      "title": "Bun 1.4 | Bun Blog"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/releases/tag/bun-v1.4.0",
+      "title": "Release Bun v1.4 · oven-sh/bun"
+    },
+    {
+      "url": "https://medium.com/@onix_react/whats-new-in-bun-v1-4-c9f2d85923db",
+      "title": "What’s New in Bun v1.4. The release of Bun v1.4 brings a major… | by Onix React | Aug, 2026 | Medium"
+    },
+    {
+      "url": "https://vercel.com/changelog/bun-1-4-is-now-available-in-vercel-functions",
+      "title": "Bun 1.4 is now available in Vercel Functions - Vercel"
+    },
+    {
+      "url": "https://bun.com/",
+      "title": "Bun — A fast all-in-one JavaScript runtime"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/28792",
+      "title": "https://github.com/oven-sh/bun/issues/28792"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=i38DgEuaJwM",
+      "title": "Bun v1.4 - YouTube"
+    },
+    {
+      "url": "https://scrydon.com/insights/2026/08/21/bun-1-4-at-scrydon/",
+      "title": "Bun 1.4 at Scrydon: A Quiet Upgrade With Loud Early Numbers - Scrydon"
+    },
+    {
+      "url": "https://alternativeto.net/news/2026/8/bun-1-4-lands-rust-rewrite-and-zero-external-dependencies-mark-major-milestone-for-devs/",
+      "title": "Bun 1.4 lands: Rust rewrite and zero external dependencies mark major milestone for devs | AlternativeTo"
+    },
+    {
+      "url": "https://bun.com/blog/bun-in-rust.md",
+      "title": "--- title: Rewriting Bun in Rust"
+    },
+    {
+      "url": "https://blog.codercops.com/blog/bun-1-4-rust-rewrite-browser-automation-2026",
+      "title": "Bun 1.4 Ships the Rust Rewrite: What's Actually New and What's Still Shaky — CODERCOPS"
+    },
+    {
+      "url": "https://grigio.org/bun-1-4-the-controversial-ai-driven-rewrite-from-zig-to-rust/",
+      "title": "Bun 1.4: The controversial AI-Driven Rewrite from Zig to Rust"
+    },
+    {
+      "url": "https://morello.dev/blog/bun-14-rust-rewrite",
+      "title": "Bun Rust Rewrite: 64 Claude Agents, 535k Lines of Zig | Dennis Morello"
+    },
+    {
+      "url": "https://daily.dev/posts/bun-1-4-finally-ships-the-rust-rewrite-drama-isn-t-over--fdy7op2yl",
+      "title": "Bun 1.4 finally ships. The Rust rewrite drama isn't over. | daily.dev"
+    },
+    {
+      "url": "https://registry.npmjs.org/bun/latest",
+      "title": "https://registry.npmjs.org/bun/latest"
+    }
+  ],
+  "evidence_passages": [
+    {
+      "url": "https://bun.com/docs/guides/util/upgrade",
+      "text": "Upgrade Bun to the latest version - Bun"
+    },
+    {
+      "url": "https://bun.com/guides/util/upgrade",
+      "text": "Upgrade Bun to the latest version | Bun Guides"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Bun_(software)",
+      "text": "Bun (software)"
+    },
+    {
+      "url": "https://bun.com/blog",
+      "text": "Blog | Bun"
+    },
+    {
+      "url": "https://www.what-version.com/latest-version/bun/",
+      "text": "Bun 1.3.14: Latest Bun Version - What Version"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Android_17",
+      "text": "Android 17"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun",
+      "text": "GitHub - oven-sh/bun: Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one"
+    },
+    {
+      "url": "https://www.npmjs.com/package/bun",
+      "text": "bun - npm"
+    },
+    {
+      "url": "https://endoflife.date/bun",
+      "text": "Bun | endoflife.date"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Debian_release_version_history",
+      "text": "Debian release version history"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/releases",
+      "text": "# Bun Release Information\n\n**Latest Release:**\n- **Version:** Bun v1.4\n- **Tag:** bun-v1.4.0\n- **Publication Date:** August 20, 2026 at 14:07\n\n**Recent Releases with Dates:**\n\n1. **Bun v1.4.0** – August 20, 2026\n2. **Bun v1.3.14** – May 13, 2026\n3. **Bun v1.3.13** – April 20, 2026\n4. **Bun v1.3.12** – April 10, 2026\n5. **Bun v1.3.11** – March 18, 2026\n\nThe most current stable build can be installed via the command: `curl -fsSL https://bun.com/install | bash`"
+    },
+    {
+      "url": "https://www.npmjs.com/package/bun?activeTab=versions",
+      "text": "The server returned HTTP 403 Forbidden.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+    },
+    {
+      "url": "https://bun.com/blog",
+      "text": "# Recent Bun Release Blog Posts\n\nHere are the most recent Bun release announcements:\n\n1. **Bun 1.4** (August 20, 2026) - \"Bun 1.4 rewrites Bun in Rust, ships built-in headless browser automation (Bun.WebView), Bun.Image, Bun.markdown, JSON5, JSONL, Terminal and cron APIs\"\n\n2. **Rewriting Bun in Rust** (July 8, 2026) - Explores the rationale and methodology behind converting Bun from Zig to Rust\n\n3. **Bun v1.3.14** (May 13, 2026) - Addresses 380 issues with features including an image processing API, faster warm installs, and experimental HTTP/2 and HTTP/3 clients\n\n4. **Bun v1.3.13** (April 20, 2026) - Introduces parallel test execution, improved memory efficiency for tarball streaming during installation, and faster compression\n\n5. **Bun v1.3.12** (April 9, 2026) - Adds markdown rendering capabilities and headless browser automation features\n\n6. **Bun v1.3.11** (March 18, 2026) - Delivers binary size reductions and enhanced cron job scheduling capabilities"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/releases/latest",
+      "text": "# Bun v1.4 Release Information\n\n**Tag Name:** `bun-v1.4.0`\n\n**Title:** Bun v1.4\n\n**Publication Date:** August 20, 2024 (14:07 UTC)\n\n**First Section of Release Notes:**\n\nThe page indicates installation and upgrade instructions are the primary content presented. Users can install via `curl -fsSL https://bun.com/install | bash` or npm, with Windows users accessing `bun.com/install.ps1`. The release directs readers to \"Read the blog post\" for detailed notes, suggesting the full changelog exists elsewhere.\n\n**Note:** The actual release notes content appears to have failed to load properly on this page, as indicated by the error messages displayed."
+    },
+    {
+      "url": "https://bun.com/blog/bun-v1.4",
+      "text": "# Bun 1.4 Release Summary\n\n**Headline:** \"Bun 1.4\"\n\n**Publication Date:** August 20, 2026\n\n## Main Changes Announced\n\nBun 1.4 introduces substantial improvements across multiple areas:\n\n**Node.js Compatibility**\nThe release adds \"+1,517 tests from the Node.js test suite,\" marking the largest compatibility jump since version 1.0. Several packages like Playwright, Next.js 16, and vitest now run on Bun.\n\n**Performance Enhancements**\n- Idle CPU usage drops by 5x\n- Memory usage decreases by up to 35% for HTTP servers\n- Startup speed improves 50% on Linux, 2.5x on Windows\n- Binary size reduces up to 17%\n\n**New Built-in Features**\nThe release incorporates 15 previously external dependencies, including:\n- \"Bun.Image\" for image processing\n- \"Bun.WebView\" for headless browser automation\n- \"Bun.markdown\" for markdown parsing\n- \"Bun.cron()\" for scheduled jobs\n- \"Bun.Terminal\" for pseudo-terminal support\n\n**Developer Tools**\nNew capabilities include parallel test execution, enhanced profiling options (CPU and heap profiling as markdown), and improved package management commands like \"bun audit fix,\" \"bun dedupe,\" and \"bun prune.\"\n\n**Major Technical Change**\n\"We rewrote Bun from Zig to Rust,\" representing a fundamental architectural shift."
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/releases/tag/bun-v1.4.0",
+      "text": "Release Bun v1.4 · oven-sh/bun"
+    },
+    {
+      "url": "https://medium.com/@onix_react/whats-new-in-bun-v1-4-c9f2d85923db",
+      "text": "What’s New in Bun v1.4. The release of Bun v1.4 brings a major… | by Onix React | Aug, 2026 | Medium"
+    },
+    {
+      "url": "https://vercel.com/changelog/bun-1-4-is-now-available-in-vercel-functions",
+      "text": "Bun 1.4 is now available in Vercel Functions - Vercel"
+    },
+    {
+      "url": "https://bun.com/",
+      "text": "Bun — A fast all-in-one JavaScript runtime"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/releases",
+      "text": "Releases · oven-sh/bun"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/28792",
+      "text": "List of breaking changes for 1.4 · Issue #28792 · oven-sh/bun"
+    },
+    {
+      "url": "https://bun.com/blog/bun-v1.4",
+      "text": "Bun 1.4 | Bun Blog"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=i38DgEuaJwM",
+      "text": "Bun v1.4 - YouTube"
+    },
+    {
+      "url": "https://scrydon.com/insights/2026/08/21/bun-1-4-at-scrydon/",
+      "text": "Bun 1.4 at Scrydon: A Quiet Upgrade With Loud Early Numbers - Scrydon"
+    },
+    {
+      "url": "https://alternativeto.net/news/2026/8/bun-1-4-lands-rust-rewrite-and-zero-external-dependencies-mark-major-milestone-for-devs/",
+      "text": "Bun 1.4 lands: Rust rewrite and zero external dependencies mark major milestone for devs | AlternativeTo"
+    },
+    {
+      "url": "https://bun.com/blog/bun-v1.4",
+      "text": "Bun 1.4 | Bun Blog"
+    },
+    {
+      "url": "https://bun.com/blog/bun-in-rust.md",
+      "text": "--- title: Rewriting Bun in Rust"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Bun_(software)",
+      "text": "Bun (software)"
+    },
+    {
+      "url": "https://blog.codercops.com/blog/bun-1-4-rust-rewrite-browser-automation-2026",
+      "text": "Bun 1.4 Ships the Rust Rewrite: What's Actually New and What's Still Shaky — CODERCOPS"
+    },
+    {
+      "url": "https://grigio.org/bun-1-4-the-controversial-ai-driven-rewrite-from-zig-to-rust/",
+      "text": "Bun 1.4: The controversial AI-Driven Rewrite from Zig to Rust"
+    },
+    {
+      "url": "https://morello.dev/blog/bun-14-rust-rewrite",
+      "text": "Bun Rust Rewrite: 64 Claude Agents, 535k Lines of Zig | Dennis Morello"
+    },
+    {
+      "url": "https://daily.dev/posts/bun-1-4-finally-ships-the-rust-rewrite-drama-isn-t-over--fdy7op2yl",
+      "text": "Bun 1.4 finally ships. The Rust rewrite drama isn't over. | daily.dev"
+    },
+    {
+      "url": "https://scrydon.com/insights/2026/08/21/bun-1-4-at-scrydon/",
+      "text": "Bun 1.4 at Scrydon: A Quiet Upgrade With Loud Early Numbers - Scrydon"
+    },
+    {
+      "url": "https://registry.npmjs.org/bun/latest",
+      "text": "# Version Number\n\nThe version number listed in this JSON is **1.4.0**. This appears multiple times throughout the document, including in the `\"version\"` field and in the optional dependencies specifications."
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/28792",
+      "text": "# Bun 1.4 Breaking Changes Summary\n\nThis GitHub issue tracks significant breaking changes in Bun 1.4.0 (released August 19, 2026). Here are the key changes:\n\n## Core Runtime\n- Node.js compatibility bumped from 24.3.0 to 26.3.0; native addons require rebuilding\n- x64 builds are now baseline-only; the separate `-march=haswell` build is dropped\n- Temporal is enabled by default; disable with `BUN_JSC_useTemporal=0`\n- ICU upgraded to version 78, affecting `Intl` formatting and IDNA mapping\n\n## Package Management\n- Default `bun.lock` version changed to 2, requiring integrity hashes\n- `TypeScript ^7` pinned in init templates\n- `trustedDependencies` matching stricter; must match canonical package names\n- When run as `node`, Bun no longer auto-loads `.env*` files\n- `bun update` re-resolves transitive packages and rewrites catalog definitions\n\n## Module Loading & Bundling\n- JSX runtime selection aligns with Node behavior\n- CSS file imports return `{}` instead of file path\n- `useDefineForClassFields: false` now honored\n- ESM imports of built-in modules no longer eagerly evaluate lazy exports\n- Metafile paths are now deterministic\n\n## Node.js Compatibility\n- HTTP response `writeHeader()` removed (deprecated)\n- Stream `read()` in paused mode returns one chunk instead of concatenating\n- TLS servers enforce client certificate verification when configured\n- Enhanced process warnings, error handling, and signal behaviors\n- DNS lookup uses system resolver on Linux instead of c-ares\n\n## HTTP & Networking\n- Duplicate headers combined with `\", \"` per Fetch spec\n- Request/Response `clone()` throws on disturbed/locked bodies\n- Network errors reject as `TypeError` instead of `Error`\n- Redirect handling refined; only specific statuses trigger `redirect: \"error\"`\n- Response body errors when aborted, even if fully buffered\n\n## Server & WebSocket\n- Invalid port numbers throw `RangeError`\n- Out-of-range HTTP status codes routed through error handler as 500\n- Graceful `server.stop()` waits for in-flight requests\n- Unmasked client WebSocket frames fail per RFC 6455\n- WebSocket handshake validation enforced\n\n## Other Major Changes\n- `bun:ffi` uses engine-native FFI; `CString` is now a string type\n- TOML parser rewritten for v1.1.0 conformance; dates become `Temporal` objects\n- JSONC and YAML parsing improved with stricter error handling\n- SQLite and database connection handling refined\n- Extensive input validation hardening across APIs"
+    }
+  ],
+  "final_answer": "## Réponse courte\n\nLa dernière version stable de Bun est **Bun 1.4.0**, publiée le **20 août 2026** (tag `bun-v1.4.0` sur GitHub). C'est une version majeure dont le changement structurant est la réécriture du runtime de Zig vers Rust.\n\n## Faits établis (sources officielles)\n\n**Version et date**\n- Le tag `bun-v1.4.0` est la dernière release publiée sur le dépôt officiel, datée du 20 août 2026 ([github.com/oven-sh/bun/releases](https://github.com/oven-sh/bun/releases)).\n- Le registre npm confirme que la version marquée `latest` du paquet `bun` est **1.4.0** ([registry.npmjs.org/bun/latest](https://registry.npmjs.org/bun/latest)). **Aucune version correctrice 1.4.x postérieure n'existe** à ce jour : c'est un fait vérifié via le dist-tag npm, pas une inférence.\n- Le billet d'annonce officiel est daté du 20 août 2026 ([bun.com/blog/bun-v1.4](https://bun.com/blog/bun-v1.4)).\n\n**Changements les plus conséquents, selon le blog officiel** ([bun.com/blog/bun-v1.4](https://bun.com/blog/bun-v1.4)) :\n\n1. **Réécriture de Zig vers Rust.** Le billet l'énonce explicitement : « We rewrote Bun from Zig to Rust ». Un billet préparatoire, *Rewriting Bun in Rust*, avait été publié en amont ([bun.com/blog/bun-in-rust.md](https://bun.com/blog/bun-in-rust.md)).\n2. **Compatibilité Node.js** : +1 517 tests de la suite Node.js désormais passants — présenté comme le plus grand bond depuis Bun 1.0. La cible de compatibilité passe de Node 24.3.0 à **26.3.0** ([issue #28792](https://github.com/oven-sh/bun/issues/28792)).\n3. **Performances annoncées** : usage CPU au repos divisé par 5, mémoire réduite jusqu'à 35 % pour les serveurs HTTP, démarrage 50 % plus rapide sur Linux (2,5× sur Windows), binaire jusqu'à 17 % plus petit.\n4. **Nouvelles API intégrées**, remplaçant une quinzaine de dépendances externes : `Bun.Image`, `Bun.WebView` (automatisation de navigateur headless), `Bun.markdown`, `Bun.cron()`, `Bun.Terminal` (PTY), plus JSON5 et JSONL.\n5. **Outillage** : exécution parallèle des tests, profilage CPU/heap, et commandes `bun audit fix`, `bun dedupe`, `bun prune`.\n\n**Ruptures de compatibilité notables** ([issue #28792](https://github.com/oven-sh/bun/issues/28792)) : `bun.lock` passe en version 2 avec hachages d'intégrité obligatoires ; les addons natifs doivent être recompilés ; `Temporal` est activé par défaut ; les builds x64 sont désormais baseline uniquement ; `bun:ffi` bascule sur le FFI natif du moteur ; l'import de fichiers CSS retourne `{}` au lieu d'un chemin ; sur Linux, la résolution DNS utilise le resolver système au lieu de c-ares.\n\n## Incertitudes et nuances\n\n- **Divergence de date mineure** : l'issue de suivi des breaking changes mentionne le 19 août 2026, alors que la release GitHub et le blog indiquent le 20 août. Je retiens le 20 août, qui est la date de publication effective du tag ; l'écart s'explique probablement par le gel du code la veille — ceci est une **inférence**, non un fait sourcé.\n- **Les chiffres de performance sont des mesures de l'éditeur**, publiées sans que j'aie trouvé de benchmark indépendant reproduisant les mêmes conditions. À traiter comme des revendications, pas comme des résultats vérifiés.\n- **Controverse sur la réécriture** : plusieurs sources tierces rapportent que la migration a été menée largement par agents IA et que le code Rust résultant contiendrait un nombre très élevé de blocs `unsafe`, ce qui relativiserait le gain de sûreté mémoire ([grigio.org](https://grigio.org/bun-1-4-the-controversial-ai-driven-rewrite-from-zig-to-rust/), [morello.dev](https://morello.dev/blog/bun-14-rust-rewrite), [alternativeto.net](https://alternativeto.net/news/2026/8/bun-1-4-lands-rust-rewrite-and-zero-external-dependencies-mark-major-milestone-for-devs/)). **Ce sont des sources non officielles** et je n'ai pas vérifié les chiffres avancés (535 496 lignes de Zig, 13 044 blocs `unsafe`) contre le dépôt lui-même. Je les signale comme point de débat, pas comme fait établi.\n- **Maturité** : une release majeure vieille d'une semaine, sans patch correctif encore publié, avec une réécriture complète du runtime — la prudence en production me paraît justifiée, mais c'est un jugement de ma part, pas une recommandation officielle du projet.\n\n**Sources :**\n- [Releases · oven-sh/bun](https://github.com/oven-sh/bun/releases)\n- [Release Bun v1.4 · oven-sh/bun](https://github.com/oven-sh/bun/releases/tag/bun-v1.4.0)\n- [Bun 1.4 | Bun Blog](https://bun.com/blog/bun-v1.4)\n- [Rewriting Bun in Rust | Bun Blog](https://bun.com/blog/bun-in-rust.md)\n- [registry.npmjs.org/bun/latest](https://registry.npmjs.org/bun/latest)\n- [List of breaking changes for 1.4 · Issue #28792](https://github.com/oven-sh/bun/issues/28792)\n- [Bun 1.4 lands: Rust rewrite... | AlternativeTo](https://alternativeto.net/news/2026/8/bun-1-4-lands-rust-rewrite-and-zero-external-dependencies-mark-major-milestone-for-devs/)\n- [Bun 1.4: The controversial AI-Driven Rewrite | grigio.org](https://grigio.org/bun-1-4-the-controversial-ai-driven-rewrite-from-zig-to-rust/)\n- [Bun Rust Rewrite | Dennis Morello](https://morello.dev/blog/bun-14-rust-rewrite)",
+  "cli_version": "2.1.243 (Claude Code)",
+  "locale": "en-US",
+  "started_at": "2026-08-27T13:08:41.610Z",
+  "duration_ms": 93420,
+  "prompt_sha256": "643453c26867f9da1e56f6a39f56b522476cd4b771935de663328051031e55ed",
+  "raw_trace": "events.sanitized.jsonl",
+  "policy_evidence": "policy.json",
+  "isolation": {
+    "temporary_cwd": true,
+    "cwd_unchanged": true,
+    "forbidden_tool_calls": []
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 81797,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.5961245000000001,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 40710,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 6227,
+    "output_tokens_details": {
+      "thinking_tokens": 4645
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 40710,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 6227,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 40710,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 40710
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 32796,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.032881,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 6227,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 40710,
+      "webSearchRequests": 0,
+      "costUSD": 0.5632435,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 2,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"claim1\",\"claim2\",\"claim3\",\"claim6\"],\"rejected_claims\":[{\"id\":\"claim4\",\"reason\":\"The specific example `☕.example` → `xn--53h.example` is supported only by the Codex run's self-echoed evidence passages (Codex has opened_urls: [] and no captured search payloads, and each evidence_passage is a copy of its own final answer). No independently fetched source in the supplied evidence — including the Claude run's UTS #46 and URL-ja fetches — contains this example or the exact Punycode string. Two of the three acceptable_patterns and the required concept 'xn--' depend on that uncorroborated string, and the emoji-bearing pattern is also brittle for lexical grading. The still-supported part (the web platform uses UTS #46 / Unicode IDNA Compatibility Processing rather than IDNA2008 itself) is already covered by claim3, which is backed by the fetched URL-ja domain-parser ToASCII parameter list.\"},{\"id\":\"claim5\",\"reason\":\"Neither half is corroborated by any independently fetched passage: the Claude run's URL Standard fetch (triple-underscore URL-ja) covers the host parser, domain-to-ASCII, UTS #46 parameters and forbidden code points, but says nothing about the host serializer always returning ASCII or about a display-time `domain to Unicode` step with confusability countermeasures. The only support is the Codex self-echo, which carries no independent evidentiary weight. The claim also adds an interpretive step ('so the browser-internal URL serialization result is the ASCII host, not the Unicode display name') beyond the quoted text. Grading is additionally weak: the patterns mix bare English terms with narrow Japanese phrasings ('domain to Unicode.*描画', '見た目.*紛らわしさ.*対策') that a correct answer could easily express otherwise, making them insufficiently deterministic.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": ["claim1", "claim2", "claim3", "claim6"],
+    "rejected_claims": [
+      {
+        "id": "claim4",
+        "reason": "The specific example `☕.example` → `xn--53h.example` is supported only by the Codex run's self-echoed evidence passages (Codex has opened_urls: [] and no captured search payloads, and each evidence_passage is a copy of its own final answer). No independently fetched source in the supplied evidence — including the Claude run's UTS #46 and URL-ja fetches — contains this example or the exact Punycode string. Two of the three acceptable_patterns and the required concept 'xn--' depend on that uncorroborated string, and the emoji-bearing pattern is also brittle for lexical grading. The still-supported part (the web platform uses UTS #46 / Unicode IDNA Compatibility Processing rather than IDNA2008 itself) is already covered by claim3, which is backed by the fetched URL-ja domain-parser ToASCII parameter list."
+      },
+      {
+        "id": "claim5",
+        "reason": "Neither half is corroborated by any independently fetched passage: the Claude run's URL Standard fetch (triple-underscore URL-ja) covers the host parser, domain-to-ASCII, UTS #46 parameters and forbidden code points, but says nothing about the host serializer always returning ASCII or about a display-time `domain to Unicode` step with confusability countermeasures. The only support is the Codex self-echo, which carries no independent evidentiary weight. The claim also adds an interpretive step ('so the browser-internal URL serialization result is the ASCII host, not the Unicode display name') beyond the quoted text. Grading is additionally weak: the patterns mix bare English terms with narrow Japanese phrasings ('domain to Unicode.*描画', '見た目.*紛らわしさ.*対策') that a correct answer could easily express otherwise, making them insufficiently deterministic."
+      }
+    ]
+  },
+  "ttft_ms": 62974,
+  "type": "result",
+  "duration_ms": 80459,
+  "uuid": "[REDACTED]",
+  "ttft_stream_ms": 1456,
+  "time_to_request_ms": 21,
+  "queued_turn_count": 0
+}

@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "case_id": "academic-browser-fingerprinting",
+  "runs": [
+    {
+      "run_id": "2026-08-28_codex_academic-browser-fingerprinting",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "recent primary research paper browser fingerprint automated Chromium detectability webdriver playwright puppeteer pdf",
+        "arXiv Playwright detectable paper Chromium browser fingerprint automation",
+        "2025 2026 paper fingerprint automated browser sessions Chromium detectability arxiv",
+        "\"FP-Rainbow\" pdf browser configuration fingerprint chromium"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [
+        "https://dl.acm.org/doi/pdf/10.1145/3696410.3714699",
+        "https://theses.hal.science/tel-05546069v1/file/Manuscrit_de_These_Huyghe_Maxime.pdf",
+        "https://dl.acm.org/doi/abs/10.1145/3696410.3714871",
+        "https://openreview.net/forum?id=GLjvvBom8S",
+        "https://arxiv.org/html/2606.14525v1",
+        "https://arxiv.org/html/2502.01608v1",
+        "https://arxiv.org/html/2605.01247v1"
+      ],
+      "cited_urls": [
+        "https://arxiv.org/html/2502.01608v1",
+        "https://arxiv.org/html/2606.14525v1",
+        "https://arxiv.org/html/2605.01247v1",
+        "https://arxiv.org/html/2502.01608v1",
+        "https://arxiv.org/html/2606.14525v1",
+        "https://arxiv.org/html/2606.14525v1",
+        "https://arxiv.org/html/2606.14525v1",
+        "https://arxiv.org/html/2605.01247v1",
+        "https://arxiv.org/html/2605.01247v1",
+        "https://arxiv.org/html/2605.01247v1",
+        "https://arxiv.org/html/2606.14525v1",
+        "https://arxiv.org/html/2605.01247v1",
+        "https://arxiv.org/html/2606.14525v1",
+        "https://arxiv.org/html/2605.01247v1",
+        "https://arxiv.org/html/2502.01608v1",
+        "https://arxiv.org/html/2606.14525v1",
+        "https://arxiv.org/html/2605.01247v1",
+        "https://arxiv.org/html/2502.01608v1",
+        "https://arxiv.org/html/2606.14525v1",
+        "https://arxiv.org/html/2605.01247v1",
+        "https://arxiv.org/html/2606.14525v1",
+        "https://arxiv.org/html/2605.01247v1",
+        "https://arxiv.org/html/2605.01247v1",
+        "https://arxiv.org/html/2606.14525v1",
+        "https://arxiv.org/html/2605.01247v1",
+        "https://arxiv.org/html/2502.01608v1"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://dl.acm.org/doi/pdf/10.1145/3696410.3714699",
+          "title": "https://dl.acm.org/doi/pdf/10.1145/3696410.3714699"
+        },
+        {
+          "url": "https://theses.hal.science/tel-05546069v1/file/Manuscrit_de_These_Huyghe_Maxime.pdf",
+          "title": "https://theses.hal.science/tel-05546069v1/file/Manuscrit_de_These_Huyghe_Maxime.pdf"
+        },
+        {
+          "url": "https://dl.acm.org/doi/abs/10.1145/3696410.3714871",
+          "title": "https://dl.acm.org/doi/abs/10.1145/3696410.3714871"
+        },
+        {
+          "url": "https://openreview.net/forum?id=GLjvvBom8S",
+          "title": "https://openreview.net/forum?id=GLjvvBom8S"
+        },
+        {
+          "url": "https://arxiv.org/html/2606.14525v1",
+          "title": "https://arxiv.org/html/2606.14525v1"
+        },
+        {
+          "url": "https://arxiv.org/html/2502.01608v1",
+          "title": "https://arxiv.org/html/2502.01608v1"
+        },
+        {
+          "url": "https://arxiv.org/html/2605.01247v1",
+          "title": "https://arxiv.org/html/2605.01247v1"
+        }
+      ],
+      "evidence_passages": [],
+      "final_answer": "Recent primary papers support a narrow but fairly consistent conclusion: **automated Chromium sessions are often detectable by browser-facing signals, but browser fingerprint alone is not always enough to distinguish automation reliably**. The strongest recent evidence comes from three 2025-2026 studies: *Beyond the Crawl* (real users vs automated crawls), *Detecting Bot Detection* (10,000-site measurement across Chromium/Firefox, headless/headed), and *FP-Agent* (controlled study of seven Chromium-based AI browsing agents and humans). Sources: https://arxiv.org/html/2502.01608v1, https://arxiv.org/html/2606.14525v1, https://arxiv.org/html/2605.01247v1\n\n**Supported fact**\n\nAutomated web measurements miss some fingerprint-triggering pages because automation itself gets in the way. In a 10-week study of 30 participants across 3,000 top sites, *Beyond the Crawl* found that automated crawls missed almost half of the fingerprinting websites seen in real browsing, and the authors attribute that gap in part to crawlers failing to circumvent bot detection and failing to trigger interaction-gated fingerprinting scripts. Source: https://arxiv.org/html/2502.01608v1\n\nFor automated Chromium specifically, headless mode is much easier to detect than the other tested configurations in the 2026 measurement study. *Detecting Bot Detection* scanned 10,000 sites with Playwright across four conditions and reports a **15% soft-block rate for Chromium headless**, versus about **7% for the other three tested conditions**. Source: https://arxiv.org/html/2606.14525v1\n\nThat same paper reports evidence that much of Chromium-headless detectability is visible at the HTTP/header layer. When the authors re-crawled sites that had blocked only Chromium headless and spoofed away `HeadlessChrome` in the `User-Agent` and `sec-ch-ua` headers, **75%** of responding sites stopped blocking, which the authors interpret as evidence that header-level signals caused most of those blocks. Source: https://arxiv.org/html/2606.14525v1\n\nThe paper also reports that JavaScript-visible automation artifacts are common even when they do not always translate into blocking. The authors found that **46% of sites checked JavaScript properties only present in automated browsers**, and they note that JavaScript-based environment probing is more extensive than observed blocking rates. Source: https://arxiv.org/html/2606.14525v1\n\nA separate 2026 primary study, *FP-Agent*, shows that **browser fingerprints alone had only limited discriminative power** for Chromium-based AI browsing agents. Its browser-only classifier achieved `F1 = 0.7969` across browsing-agent classes and `F1 = 0.8223` when humans were included, while behavioral and combined features performed far better. Source: https://arxiv.org/html/2605.01247v1\n\nThat paper also shows why browser-only detection is limited: some agents shared the same browser fingerprint, and many fingerprints primarily reflected the underlying execution environment rather than unique automation behavior. The authors explicitly say local agents produced stable fingerprints within a test environment and that the number of unique fingerprints closely tracked the number of systems tested. Source: https://arxiv.org/html/2605.01247v1\n\nAt the same time, *FP-Agent* found that some automated Chromium sessions exposed stable, unusual attributes that could aid fingerprint-based detection, including recurring combinations of screen resolution, fonts, plugin lists, timezone, RAM, or CPU-core values for specific agents such as ChatGPT Agent, Manus, Comet, and Skyvern. Source: https://arxiv.org/html/2605.01247v1\n\n**Inference from those papers**\n\nTaken together, these papers support the inference that **recent automated Chromium sessions are detectably “non-standard” in two different ways**: first, many are detectable by explicit automation artifacts such as headless Chromium headers or JS-exposed automation properties; second, even when browser fingerprint alone is not uniquely identifying, it still contributes useful signal, especially when combined with behavior. This is an inference from the combined results, not a direct single-paper claim. Sources: https://arxiv.org/html/2606.14525v1, https://arxiv.org/html/2605.01247v1\n\nA second inference is that **“browser-fingerprint detectability” and “reliable bot classification” are not the same thing**. *Detecting Bot Detection* shows detectable Chromium-headless artifacts that trigger blocking, while *FP-Agent* shows that browser fingerprint alone is only moderately effective for classifying multiple Chromium-based agents. That is consistent, not contradictory. Sources: https://arxiv.org/html/2606.14525v1, https://arxiv.org/html/2605.01247v1\n\n**Author-reported limitations**\n\n*Beyond the Crawl* reports that its evaluation had large standard deviations because the collected dataset was heavily imbalanced: about **80.9K scripts** but only **695 fingerprinting scripts**. It also notes privacy and ethics constraints around collecting real browsing telemetry. Source: https://arxiv.org/html/2502.01608v1\n\n*Detecting Bot Detection* reports several important limits: the scans used a **single datacenter vantage point** rather than residential traffic; the study captures only **explicit HTTP error responses** (`403/429/503`) rather than softer content degradation inside HTTP `200` pages; it observes only **client-side JavaScript detection**, so server-side mechanisms such as IP reputation, TLS fingerprinting, and behavioral analysis are outside scope; and it lacks a true **human-browsing baseline**. The authors also say the downstream effect on specific measurement outcomes remains future work. Source: https://arxiv.org/html/2606.14525v1\n\n*FP-Agent* reports that its findings are limited by **coverage of browsing agents, tasks, and system configurations**. The authors also caution that their human/agent overlap may be understated because humans used their own systems, reducing shared fingerprints in the dataset; that proprietary agents could change during measurement; and that future agents may adopt more human-like browser and behavioral fingerprints, weakening current detection features. Source: https://arxiv.org/html/2605.01247v1\n\n**Disagreement, uncertainty, and lack of good evidence**\n\nI did **not** find a direct recent primary-paper disagreement on the basic point that automated Chromium can expose detectable artifacts; the recent papers I found are broadly aligned on that. This is an inference from the reviewed papers, not a claim made by any one paper. Sources reviewed: https://arxiv.org/html/2502.01608v1, https://arxiv.org/html/2606.14525v1, https://arxiv.org/html/2605.01247v1\n\nThere is real uncertainty about **how well these results generalize to stealth-tuned, residential, or rapidly updated automation stacks**. The 2026 bot-detection paper explicitly used Playwright from a datacenter and says server-side mechanisms are outside its observational scope, while *FP-Agent* says future agents may become more human-like and that proprietary agents can drift over time. Sources: https://arxiv.org/html/2606.14525v1, https://arxiv.org/html/2605.01247v1\n\nThere is also **not good recent primary evidence, from the papers I found, that browser fingerprint alone robustly detects all automated Chromium sessions in the wild**. The strongest directly relevant paper I found says the opposite for multi-agent classification: browser fingerprints alone provided limited discriminative power. Source: https://arxiv.org/html/2605.01247v1\n\nBottom line: recent primary research shows that **automated Chromium is often detectable**, especially in **headless** form and via **header- and JS-visible artifacts**, but it also shows that **browser fingerprint alone is an incomplete detector** and that published results are bounded by dataset scope, vantage point, and likely future adaptation by bot authors. Sources: https://arxiv.org/html/2606.14525v1, https://arxiv.org/html/2605.01247v1, https://arxiv.org/html/2502.01608v1"
+    }
+  ]
+}

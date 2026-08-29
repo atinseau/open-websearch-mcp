@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "corpus_id": "teacher-20-v1",
+  "created_at": "2026-08-27",
+  "cases": [
+    {
+      "id": "technical-bun-webview",
+      "category": "technical_docs",
+      "locale": "en-US",
+      "question": "According to current official Bun documentation, how can Bun.WebView connect to an already-running browser over a browser-level CDP WebSocket URL, and which lifecycle operations are documented?"
+    },
+    {
+      "id": "technical-mcp-stdio",
+      "category": "technical_docs",
+      "locale": "en-US",
+      "question": "What does the current official Model Context Protocol specification require from a stdio server during initialize and tools/list, including version negotiation and message framing?"
+    },
+    {
+      "id": "technical-sqlite-fts5",
+      "category": "technical_docs",
+      "locale": "en-US",
+      "question": "Using primary SQLite documentation, explain how to detect FTS5 support at runtime and what guarantees or limitations apply to external-content FTS5 tables."
+    },
+    {
+      "id": "technical-robots-rfc",
+      "category": "technical_docs",
+      "locale": "en-US",
+      "question": "Under RFC 9309, how are robots.txt user-agent groups, allow/disallow precedence, percent encoding, and unavailable robots.txt responses handled?"
+    },
+    {
+      "id": "technical-pdfjs",
+      "category": "technical_docs",
+      "locale": "en-US",
+      "question": "What do current official PDF.js sources document about using the generic build outside a browser, extracting page text, and the runtime assumptions that affect Bun compatibility?"
+    },
+    {
+      "id": "technical-url-canonicalization",
+      "category": "technical_docs",
+      "locale": "en-US",
+      "question": "Using the current WHATWG URL Standard, which normalization steps are performed when parsing an HTTPS URL containing Unicode hostnames, default ports, dot segments, fragments, and percent-encoded path bytes?"
+    },
+    {
+      "id": "current-bun-release",
+      "category": "current_news",
+      "locale": "en-US",
+      "question": "What is the latest stable Bun release as of today, when was it published, and what are its most consequential changes according to official release sources?"
+    },
+    {
+      "id": "current-apple-security",
+      "category": "current_news",
+      "locale": "en-US",
+      "question": "What is Apple's most recent macOS security update as of today, which systems does it affect, and which actively exploited issues does Apple identify?"
+    },
+    {
+      "id": "current-mcp-release",
+      "category": "current_news",
+      "locale": "en-US",
+      "question": "What is the newest published Model Context Protocol specification revision as of today, and which changes from the preceding revision matter most to local tool servers?"
+    },
+    {
+      "id": "academic-bm25",
+      "category": "academic_primary",
+      "locale": "en-US",
+      "question": "From the original or primary BM25 literature, what problem does BM25 solve, what are its core scoring factors, and which parameter interpretations are supported by the authors?"
+    },
+    {
+      "id": "academic-browser-fingerprinting",
+      "category": "academic_primary",
+      "locale": "en-US",
+      "question": "What do recent primary research papers demonstrate about browser-fingerprint detectability of automated Chromium sessions, and what limitations do the authors report?"
+    },
+    {
+      "id": "academic-retrieval-diversity",
+      "category": "academic_primary",
+      "locale": "en-US",
+      "question": "According to primary information-retrieval research, how does maximal marginal relevance trade relevance against novelty, and what evidence supports its use for diversifying search results?"
+    },
+    {
+      "id": "community-bun-production",
+      "category": "community_contradictory",
+      "locale": "en-US",
+      "question": "What conflicting experiences do maintainers and users report about running Bun in production, and which concrete compatibility or reliability claims can be traced to evidence rather than opinion?"
+    },
+    {
+      "id": "community-robots-ethics",
+      "category": "community_contradictory",
+      "locale": "en-US",
+      "question": "How do Web publishers, crawler operators, and standards participants disagree about whether robots.txt grants permission, merely states preferences, or has legal significance?"
+    },
+    {
+      "id": "community-headless-stealth",
+      "category": "community_contradictory",
+      "locale": "en-US",
+      "question": "What conflicting claims do browser-automation communities make about stealth patches preventing bot detection, and which publicly reproducible observations support or contradict those claims?"
+    },
+    {
+      "id": "multilingual-fr-open-data",
+      "category": "multilingual",
+      "locale": "fr-FR",
+      "question": "Quelles obligations et limites les sources officielles françaises décrivent-elles pour la réutilisation des données publiques sous Licence Ouverte 2.0 ?"
+    },
+    {
+      "id": "multilingual-es-climate",
+      "category": "multilingual",
+      "locale": "es-ES",
+      "question": "¿Qué muestran las fuentes primarias oficiales sobre la evolución reciente de la temperatura y la precipitación en España, y qué incertidumbres declaran?"
+    },
+    {
+      "id": "multilingual-ja-web-standards",
+      "category": "multilingual",
+      "locale": "ja-JP",
+      "question": "日本語の一次情報と公式仕様を使って、URL の国際化ドメイン名がブラウザーでどのように解析・表示されるか説明してください。"
+    },
+    {
+      "id": "ambiguous-best-search",
+      "category": "ambiguous_difficult",
+      "locale": "en-US",
+      "question": "Which Web search engine is objectively best for every kind of research question today?"
+    },
+    {
+      "id": "ambiguous-xanadu-tuesday",
+      "category": "ambiguous_difficult",
+      "locale": "en-US",
+      "question": "What happened to Project Xanadu last Tuesday, and why did it happen?"
+    }
+  ]
+}

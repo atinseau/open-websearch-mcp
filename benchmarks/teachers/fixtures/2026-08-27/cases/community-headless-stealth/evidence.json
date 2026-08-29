@@ -1,0 +1,1193 @@
+{
+  "schema_version": 1,
+  "case_id": "community-headless-stealth",
+  "runs": [
+    {
+      "run_id": "2026-08-27_codex_community-headless-stealth",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "puppeteer-extra-plugin-stealth README passes all public bot tests GitHub",
+        "site:github.com/berstend/puppeteer-extra stealth issue detected bot sannysoft",
+        "bot.sannysoft.com webdriver public test",
+        "https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md",
+        "https://github.com/rebrowser/rebrowser-patches",
+        "site:arh.antoinevastel.com/bots/areyouheadless areyouheadless",
+        "https://arh.antoinevastel.com/bots/areyouheadless",
+        "'bot.sannysoft.com' in https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md",
+        "https://github.com/ultrafunkamsterdam/undetected-chromedriver/issues/46?timeline_page=1",
+        "mattwmaster58 playwright_stealth README starting point bypassing simple bot detection methods GitHub",
+        "site:github.com/berstend/puppeteer-extra bot.sannysoft detected stealth issue 2024",
+        "https://github.com/berstend/puppeteer-extra/issues/898",
+        "https://github.com/diprajpatra/selenium-stealth/issues/9",
+        "site:github.com/diprajpatra/selenium-stealth issue bot.sannysoft webdriver failed",
+        "ultrafunkamsterdam undetected-chromedriver issue 46 Cloudflare DDOS protection",
+        "https://github.com/ultrafunkamsterdam/undetected-chromedriver/issues/46",
+        "site:github.com/diprajpatra/selenium-stealth issue pixelscan",
+        "https://github.com/mattwmaster58/playwright_stealth/blob/main/README.md",
+        "https://arh.antoinevastel.com/",
+        "https://deviceandbrowserinfo.com/are_you_a_bot_interactions",
+        "https://github.com/berstend/puppeteer-extra/issues/867",
+        "https://github.com/berstend/puppeteer-extra/issues/119"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [],
+      "cited_urls": [
+        "https://bot.sannysoft.com",
+        "https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md",
+        "https://bot.sannysoft.com/",
+        "https://github.com/diprajpatra/selenium-stealth",
+        "https://github.com/ultrafunkamsterdam/undetected-chromedriver",
+        "https://github.com/mattwmaster58/playwright_stealth/blob/main/README.md",
+        "https://github.com/railtools/playwright-stealth-basic-ts",
+        "https://github.com/rebrowser/rebrowser-bot-detector",
+        "https://deviceandbrowserinfo.com/are_you_a_bot",
+        "https://deviceandbrowserinfo.com/are_you_a_bot_interactions",
+        "https://arh.antoinevastel.com/bot%20detection/2023/02/19/new-headless-chrome.html",
+        "https://github.com/berstend/puppeteer-extra/issues/867",
+        "https://github.com/berstend/puppeteer-extra/issues/764",
+        "https://github.com/berstend/puppeteer-extra/issues/898",
+        "https://github.com/berstend/puppeteer-extra/issues/788",
+        "https://github.com/berstend/puppeteer-extra/issues/119",
+        "https://github.com/ultrafunkamsterdam/undetected-chromedriver/issues/46",
+        "https://github.com/ultrafunkamsterdam/undetected-chromedriver/discussions/1420",
+        "https://github.com/diprajpatra/selenium-stealth/issues/9",
+        "https://github.com/diprajpatra/selenium-stealth/issues"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://bot.sannysoft.com",
+          "title": "https://bot.sannysoft.com"
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md",
+          "title": "https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md"
+        },
+        {
+          "url": "https://bot.sannysoft.com/",
+          "title": "https://bot.sannysoft.com/"
+        },
+        {
+          "url": "https://github.com/diprajpatra/selenium-stealth",
+          "title": "https://github.com/diprajpatra/selenium-stealth"
+        },
+        {
+          "url": "https://github.com/ultrafunkamsterdam/undetected-chromedriver",
+          "title": "https://github.com/ultrafunkamsterdam/undetected-chromedriver"
+        },
+        {
+          "url": "https://github.com/mattwmaster58/playwright_stealth/blob/main/README.md",
+          "title": "https://github.com/mattwmaster58/playwright_stealth/blob/main/README.md"
+        },
+        {
+          "url": "https://github.com/railtools/playwright-stealth-basic-ts",
+          "title": "https://github.com/railtools/playwright-stealth-basic-ts"
+        },
+        {
+          "url": "https://github.com/rebrowser/rebrowser-bot-detector",
+          "title": "https://github.com/rebrowser/rebrowser-bot-detector"
+        },
+        {
+          "url": "https://deviceandbrowserinfo.com/are_you_a_bot",
+          "title": "https://deviceandbrowserinfo.com/are_you_a_bot"
+        },
+        {
+          "url": "https://deviceandbrowserinfo.com/are_you_a_bot_interactions",
+          "title": "https://deviceandbrowserinfo.com/are_you_a_bot_interactions"
+        },
+        {
+          "url": "https://arh.antoinevastel.com/bot%20detection/2023/02/19/new-headless-chrome.html",
+          "title": "https://arh.antoinevastel.com/bot%20detection/2023/02/19/new-headless-chrome.html"
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/867",
+          "title": "https://github.com/berstend/puppeteer-extra/issues/867"
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/764",
+          "title": "https://github.com/berstend/puppeteer-extra/issues/764"
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/898",
+          "title": "https://github.com/berstend/puppeteer-extra/issues/898"
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/788",
+          "title": "https://github.com/berstend/puppeteer-extra/issues/788"
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/119",
+          "title": "https://github.com/berstend/puppeteer-extra/issues/119"
+        },
+        {
+          "url": "https://github.com/ultrafunkamsterdam/undetected-chromedriver/issues/46",
+          "title": "https://github.com/ultrafunkamsterdam/undetected-chromedriver/issues/46"
+        },
+        {
+          "url": "https://github.com/ultrafunkamsterdam/undetected-chromedriver/discussions/1420",
+          "title": "https://github.com/ultrafunkamsterdam/undetected-chromedriver/discussions/1420"
+        },
+        {
+          "url": "https://github.com/diprajpatra/selenium-stealth/issues/9",
+          "title": "https://github.com/diprajpatra/selenium-stealth/issues/9"
+        },
+        {
+          "url": "https://github.com/diprajpatra/selenium-stealth/issues",
+          "title": "https://github.com/diprajpatra/selenium-stealth/issues"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://bot.sannysoft.com",
+          "text": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expec"
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md",
+          "text": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expec"
+        },
+        {
+          "url": "https://bot.sannysoft.com/",
+          "text": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expec"
+        },
+        {
+          "url": "https://github.com/diprajpatra/selenium-stealth",
+          "text": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expec"
+        },
+        {
+          "url": "https://github.com/ultrafunkamsterdam/undetected-chromedriver",
+          "text": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expec"
+        },
+        {
+          "url": "https://github.com/mattwmaster58/playwright_stealth/blob/main/README.md",
+          "text": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expec"
+        },
+        {
+          "url": "https://github.com/railtools/playwright-stealth-basic-ts",
+          "text": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expec"
+        },
+        {
+          "url": "https://github.com/rebrowser/rebrowser-bot-detector",
+          "text": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expec"
+        },
+        {
+          "url": "https://deviceandbrowserinfo.com/are_you_a_bot",
+          "text": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expec"
+        },
+        {
+          "url": "https://deviceandbrowserinfo.com/are_you_a_bot_interactions",
+          "text": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expec"
+        },
+        {
+          "url": "https://arh.antoinevastel.com/bot%20detection/2023/02/19/new-headless-chrome.html",
+          "text": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expec"
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/867",
+          "text": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expec"
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/764",
+          "text": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expec"
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/898",
+          "text": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expec"
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/788",
+          "text": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expec"
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/119",
+          "text": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expec"
+        },
+        {
+          "url": "https://github.com/ultrafunkamsterdam/undetected-chromedriver/issues/46",
+          "text": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expec"
+        },
+        {
+          "url": "https://github.com/ultrafunkamsterdam/undetected-chromedriver/discussions/1420",
+          "text": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expec"
+        },
+        {
+          "url": "https://github.com/diprajpatra/selenium-stealth/issues/9",
+          "text": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expec"
+        },
+        {
+          "url": "https://github.com/diprajpatra/selenium-stealth/issues",
+          "text": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expec"
+        }
+      ],
+      "final_answer": "**Short answer**\n\nBrowser-automation communities make directly conflicting claims. Some project READMEs say stealth patches *pass all public bot tests* or even *all bot mitigation systems*; other maintainers and adjacent projects say the same class of patches only helps against *simple* or *older* checks, and that modern detection still catches them. The publicly reproducible evidence I found supports the narrower claim much better than the broad one.\n\n**What the communities claim**\n\n- **Strong claim:** `puppeteer-extra-plugin-stealth` says `puppeteer-extra with stealth passes all public bot tests`, and the same README says all `fpscanner`, `bot.sannysoft.com`, and `areyouheadless` tests were green in `v2.1.2`. It also provides a code sample that visits `https://bot.sannysoft.com`. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Strong claim:** `selenium-stealth` says it can `prevent almost all selenium detections` and that `selenium-stealth with stealth passes all public bot tests`; its example script opens `https://bot.sannysoft.com/`. Source: https://github.com/diprajpatra/selenium-stealth\n\n- **Very strong claim:** `undetected-chromedriver` describes itself as an optimized Selenium Chromedriver patch that does not trigger anti-bot services like Distill, Imperva, DataDome, and Botprotect.io, and its repository “About” text says `Passes ALL bot mitigation systems (like Distil / Imperva / Datadadome / CloudFlare IUAM)`. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver\n\n- **Qualified counter-claim from the same stealth lineage:** the `puppeteer-extra-plugin-stealth` README also says there are still ways to detect headless Chromium and that it is “probably impossible to prevent all ways” to detect it. Source: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md\n\n- **Much weaker claim:** `playwright_stealth` says: “Don’t expect this to bypass anything but the simplest of bot detection methods” and calls itself a “proof-of-concept starting point.” Source: https://github.com/mattwmaster58/playwright_stealth/blob/main/README.md\n\n- **Another weak claim from a community template:** `playwright-stealth-basic-ts` says its Playwright-plus-stealth setup `CAN be fingerprinted`, and `Will be detected by: Advanced fingerprinting sites, Cloudflare, modern anti-bot systems`. Source: https://github.com/railtools/playwright-stealth-basic-ts\n\n- **Modern-patches counter-claim:** `rebrowser-bot-detector` says many public bot-test pages are 5+ years old, that some people wrongly think `puppeteer-extra-plugin-stealth` alone is enough, and that modern detections include leaks such as `Runtime.enable`, source-URL leaks, main-world execution, Playwright init-script globals, and `navigator.webdriver`. Source: https://github.com/rebrowser/rebrowser-bot-detector\n\n**Publicly reproducible observations that support those claims**\n\n- **Supported fact:** old/public fingerprint-test pages do exist and are easy to reproduce. `bot.sannysoft.com` publicly reports checks such as `WebDriver (New)`, `WebDriver Advanced`, and `Chrome (New)`. Source: https://bot.sannysoft.com/\n\n- **Supported fact:** `deviceandbrowserinfo` explicitly says its `Are you a bot?` page uses only fingerprinting signals and HTTP headers, and does **not** use IP reputation or user behavior. Source: https://deviceandbrowserinfo.com/are_you_a_bot\n\n- **Supported fact:** `deviceandbrowserinfo` also has a separate interaction page that adds mouse movements, typing speed, form submission, `CDP mouse leak`, automation-framework stack traces, worker checks, and Playwright/CDP indicators. Source: https://deviceandbrowserinfo.com/are_you_a_bot_interactions\n\n- **Inference:** because some public test pages are fingerprint-only by design, passing them can support the claim that a stealth patch hides **some static fingerprint signals**, but it does **not** by itself support the stronger claim that the patch prevents production bot detection generally. This inference is based on the test-scope statements at `deviceandbrowserinfo`. Sources: https://deviceandbrowserinfo.com/are_you_a_bot and https://deviceandbrowserinfo.com/are_you_a_bot_interactions\n\n- **Supported fact:** Antoine Vastel’s 2023 article gives code and fingerprint dumps showing that new headless Chrome removed several older tells: the old fingerprint had empty `plugins`, `HeadlessChrome` in the UA, `hasChrome: false`, and `webDriver: true`, while the new-headless dump showed populated plugins and a much more normal-looking UA/fingerprint. Source: https://arh.antoinevastel.com/bot%20detection/2023/02/19/new-headless-chrome.html\n\n- **Inference:** that article supports the narrower community claim that older public fingerprint tests became less discriminating once Chrome’s newer headless mode looked more like normal Chrome. Source: https://arh.antoinevastel.com/bot%20detection/2023/02/19/new-headless-chrome.html\n\n**Publicly reproducible observations that contradict the broad claims**\n\n- **Supported fact:** a public `puppeteer-extra` issue from January 10, 2024 says the README example itself was detected on `bot.sannysoft.com`, and the reporter also says `Cloudflare detects puppeteer too`; the issue includes the reproduction script and package versions. Source: https://github.com/berstend/puppeteer-extra/issues/867\n\n- **Supported fact:** another public `puppeteer-extra` issue says Playwright plus the stealth plugin still allowed `bot.sannysoft.com` to detect the changed `webdriver`, and the issue includes reproduction code. Source: https://github.com/berstend/puppeteer-extra/issues/764\n\n- **Supported fact:** a June 20, 2024 `puppeteer-extra` issue says `puppeteer-extra-plugin-stealth` worked for `meet.google.com` with Puppeteer `22.1.0` / Chrome-for-Testing `121.0.6167.85`, but with Puppeteer `22.2.0` / Chrome-for-Testing `122.0.6261.57` Google Meet detected automation and blocked access; the issue includes steps to reproduce. Source: https://github.com/berstend/puppeteer-extra/issues/898\n\n- **Supported fact:** another public `puppeteer-extra` issue says DataDome flags the CDP command `Runtime.enable`, and the issue includes a concrete code path and a proposed tweak. Source: https://github.com/berstend/puppeteer-extra/issues/788\n\n- **Supported fact:** a 2019 `puppeteer-extra` issue reports that `bot.sannysoft.com` detected `Raspbian Chromium` through the user agent even with stealth mode. Source: https://github.com/berstend/puppeteer-extra/issues/119\n\n- **Supported fact:** a public `undetected-chromedriver` issue from November 4, 2020 says the driver was detected by Cloudflare “Under Attack Mode” and got stuck on the “Checking your browser” page. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver/issues/46\n\n- **Disagreement:** a public `undetected-chromedriver` discussion from August 2023 contains conflicting user reports: one user says the current version works on Cloudflare but not DataDome, another says Cloudflare still does not complete, and another says an infinite redirect means Cloudflare detected emulation. Source: https://github.com/ultrafunkamsterdam/undetected-chromedriver/discussions/1420\n\n- **Supported fact:** `selenium-stealth` has a public issue from January 2021 saying the “new webdriver started failing.” Source: https://github.com/diprajpatra/selenium-stealth/issues/9\n\n- **Supported fact:** the public `selenium-stealth` issues list currently includes reports titled `Browsers created with selenium-stealth do not pass pixelscan` and `godaddy login page detects selenium even with stealth`. Source: https://github.com/diprajpatra/selenium-stealth/issues\n\n**What is actually supported**\n\n- **Supported fact:** stealth patches clearly target well-known browser-side signals such as `navigator.webdriver`, `window.chrome` consistency, plugins, languages, WebGL values, and some automation globals. Sources: https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md and https://github.com/mattwmaster58/playwright_stealth/blob/main/README.md\n\n- **Supported fact:** modern public test suites now check more than those classic signals, including CDP artifacts, worker-context inconsistencies, Playwright globals, and behavioral signals. Sources: https://deviceandbrowserinfo.com/are_you_a_bot_interactions and https://github.com/rebrowser/rebrowser-bot-detector\n\n- **Inference:** the best-supported conclusion is that stealth patches can still help against **older or narrower fingerprint checks**, but public evidence contradicts the claim that they broadly “prevent bot detection” on modern defended sites. That inference is supported by the mismatch between README marketing claims and the reproducible issue reports above.\n\n**Uncertainty and lack of good evidence**\n\n- **Uncertainty:** many contradiction sources are GitHub issues and discussions, which are real public reports with repro steps, but they are not controlled benchmarks; IP reputation, hosting environment, browser version, headless/headful mode, and target-site changes can all matter. Sources showing those concrete version/environment dependencies: https://github.com/berstend/puppeteer-extra/issues/898 and https://github.com/ultrafunkamsterdam/undetected-chromedriver/discussions/1420\n\n- **Lack of good evidence:** I did not find a neutral, controlled, versioned public benchmark showing one mainstream stealth patch consistently defeating current commercial bot detection across Cloudflare, DataDome, and similar systems under matched conditions. What I found publicly is mostly README self-claims, fingerprint-test pages, and user bug reports.\n\n**Bottom line**\n\nThe conflict is real: some communities market stealth patches as if they broadly solve detection, while other maintainers and testers say they only patch a shrinking subset of detectable signals. Publicly reproducible evidence supports the narrower view far better: stealth patches can improve results on public fingerprint tests, especially older ones, but publicly documented failures on `bot.sannysoft.com`, Google Meet, DataDome-related checks, Cloudflare, Pixelscan, and site logins contradict the stronger “prevents bot detection” claim."
+    },
+    {
+      "run_id": "2026-08-27_claude_community-headless-stealth",
+      "provider": "claude",
+      "model": "claude-opus-5[1m]",
+      "queries": [
+        "puppeteer-extra-plugin-stealth detected Cloudflare no longer works",
+        "CDP detection Runtime.enable leak headless Chrome bot detection",
+        "rebrowser bot-detector github runtime.enable test results puppeteer patched",
+        "Castle blog detecting puppeteer-extra-stealth plugin inconsistencies fingerprint",
+        "brotector detect undetected-chromedriver kaliiiiiiiiii CDP leaks test",
+        "reddit webscraping \"stealth plugin\" makes you more detectable than vanilla playwright",
+        "DataDome \"detecting headless chrome\" puppeteer extra stealth plugin fingerprinting inconsistencies iframe contentWindow",
+        "r/webscraping Cloudflare detection \"IP reputation\" vs browser fingerprint residential proxy matters more",
+        "\"Runtime.enable\" detection Chrome 137 V8 error stack getter no longer works 2026 still detectable execution context"
+      ],
+      "tool_results": [
+        {
+          "tool": "WebSearch",
+          "summary": "[Bug] puppeteer-extra-stealth plugin fails to bypass Cloudflare bot detection on accounts.x.ai · Issue #920 · berstend/puppeteer-extra: https://github.com/berstend/puppeteer-extra/issues/920"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "[Bug] cloudflare not working anymore? · Issue #811 · berstend/puppeteer-extra: https://github.com/berstend/puppeteer-extra/issues/811"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How to Bypass Cloudflare With Puppeteer: 2 Working Methods · Zenrows: https://www.zenrows.com/blog/puppeteer-cloudflare-bypass"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "[Bug] stealth plugin malfunctioning with playwright · Issue #793 · berstend/puppeteer-extra: https://github.com/berstend/puppeteer-extra/issues/793"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bypass Cloudflare with Puppeteer (2026 Guide) – Scrape Protected Sites: https://www.browserless.io/blog/bypass-cloudflare-with-puppeteer"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bypass Cloudflare with Puppeteer (2026): Stealth + TLS Fix | AlterLab: https://alterlab.io/blog/how-to-bypass-cloudflare-bot-protection-with-puppeteer-in-2026"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Puppeteer-Extra-Stealth Is Obsolete: What to Use Instead (2026) — Clawbrowser: https://clawbrowser.ai/blog/puppeteer-extra-stealth-is-dead/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Why Puppeteer Stealth Still Fails on Cloudflare (2026) | webclaw: https://webclaw.io/blog/puppeteer-stealth-cloudflare-2026"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "pypi.org: https://pypi.org/project/stealthenium"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Add CDP Signal Detection to Anti Debug · Issue #138 · MichaelXF/js-confuser: https://github.com/MichaelXF/js-confuser/issues/138"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How New Headless Chrome & the CDP Signal Are Impacting Bot Detection: https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Why a classic CDP bot detection signal suddenly stopped working (and nobody noticed): https://blog.castle.io/why-a-classic-cdp-bot-detection-signal-suddenly-stopped-working-and-nobody-noticed/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "CDP Detection: How Anti-Bots Catch Runtime.enable | Scrappey: https://scrappey.com/qa/anti-bot/what-is-cdp-detection"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How V8 Leaks Your Headless Browser's Identity: https://svebaa.github.io/personal/blog/cdp-fingerprinting/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Headless Browser Detection Bypass 2026 - Sendwin: https://blog.send.win/headless-browser-detection-bypass-2026/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How to fix Runtime.Enable CDP detection of Puppeteer, Playwright and other automation libraries? / Rebrowser: https://rebrowser.net/blog/how-to-fix-runtime-enable-cdp-detection-of-puppeteer-playwright-and-other-automation-libraries"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Why Headless Chrome Gets Detected by Every Anti-Bot System in 2026 | UltraWebScrapingAPI: https://ultrawebscrapingapi.com/blog/why-headless-chrome-detected/"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "The server returned HTTP 403 Forbidden.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Summary of CDP Detection Signal Failure\n\n**The Signal That Stopped Working:**\nA bot detection technique leveraging Chrome DevTools Protocol (CDP) that used error object getters to detect automated browsers. The code created a custom getter on an error's `.stack` property that would flip a flag when accessed during `console.debug()` logging.\n\n**Why It Worked:**\n\"CDP gives automation frameworks full control over Chrome, but it also introduces artifacts.\" When the Runtime domain was active, Chrom"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Runtime.Enable Detection Summary\n\n## Detection Mechanism\nAutomation libraries like Puppeteer and Playwright use the Chrome DevTools Protocol (CDP) command `Runtime.Enable` to discover execution contexts needed for running JavaScript. This command triggers a `Runtime.consoleAPICalled` event that anti-bot systems can detect with minimal code, revealing browser automation activity.\n\n## Test Platform\nRebrowser published \"rebrowser-bot-detector\" alongside existing third-party detection pages. This "
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "GitHub - rebrowser/rebrowser-bot-detector: Modern tests to detect automated browser behavior. Cover most important leaks from Puppeteer and Playwright. · GitHub: https://github.com/rebrowser/rebrowser-bot-detector"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "GitHub - rebrowser/rebrowser-puppeteer: A drop-in replacement for puppeteer patched with rebrowser-patches. It allows to pass modern automation detection tests. · GitHub: https://github.com/rebrowser/rebrowser-puppeteer"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "GitHub - rebrowser/rebrowser-patches: Collection of patches for puppeteer and playwright to avoid automation detection and leaks. Helps to avoid Cloudflare and DataDome CAPTCHA pages. Easy to patch/unpatch, can be enabled/disabled on demand. · GitHub: https://github.com/rebrowser/rebrowser-patches"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "GitHub - rebrowser/rebrowser-puppeteer-core: A drop-in replacement for puppeteer-core patched with rebrowser-patches. It allows to pass modern automation detection tests. · GitHub: https://github.com/rebrowser/rebrowser-puppeteer-core"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "puppeteer-real-browser - npm: https://www.npmjs.com/package/puppeteer-real-browser"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "GitHub - ZFC-Digital/puppeteer-real-browser: This package is designed to bypass puppeteer's bot-detecting captchas such as Cloudflare. It acts like a real browser and can be managed with puppeteer. · GitHub: https://github.com/ZFC-Digital/puppeteer-real-browser"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "rebrowser-patches/README.md at main · rebrowser/rebrowser-patches: https://github.com/rebrowser/rebrowser-patches/blob/main/README.md"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Patches for Puppeteer and Playwright / Documentation / Rebrowser: https://rebrowser.net/docs/patches-for-puppeteer-and-playwright"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Rebrowser Bot Detector / Documentation / Rebrowser: https://rebrowser.net/docs/rebrowser-bot-detector"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "kaliiiiiiiiii (kaliiiiiiiiiii) · GitHub: https://github.com/kaliiiiiiiiii"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "GitHub - Kaliiiiiiiiii-Vinyzu/patchright: Undetected version of the Playwright testing and automation library. · GitHub: https://github.com/Kaliiiiiiiiii-Vinyzu/patchright"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "https://github.com/kaliiiiiiiiii/brotector | Ecosyste.ms: Awesome: https://awesome.ecosyste.ms/projects/github.com/kaliiiiiiiiii/brotector"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "GitHub - Kaliiiiiiiiii-Vinyzu/CDP-Patches: Patching CDP (Chrome DevTools Protocol) leaks on OS level. Easy to use with Playwright, Selenium, and other web automation tools. · GitHub: https://github.com/Kaliiiiiiiiii-Vinyzu/CDP-Patches"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Issues · kaliiiiiiiiii/brotector: https://github.com/kaliiiiiiiiii/brotector/issues"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How to fix Runtime.Enable CDP detection of Puppeteer, Playwright and other automation libraries? / Rebrowser: https://rebrowser.net/blog/how-to-fix-runtime-enable-cdp-detection-of-puppeteer-playwright-and-other-automation-libraries"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bypass Runtime.enable with Kameleo's Undetectable Browser: https://kameleo.io/blog/bypass-runtime-enable-with-kameleos-undetectable-browser"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Anti-Detect Browser Benchmark 2026: 7 Tools, 651 Verdicts: https://ianlpaterson.com/blog/anti-detect-browser-benchmark-patchright-nodriver-curl-cffi/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Detecting Headless Chrome's Puppeteer Extra Stealth Plugin with JavaScript Browser Fingerprinting: https://datadome.co/bot-management-protection/detecting-headless-chrome-puppeteer-extra-plugin-stealth/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "9 device fingerprinting solutions for developers in 2025: https://blog.castle.io/9-device-fingerprinting-solutions-for-developers/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Puppeteer Stealth Tutorial; How to Set Up & Use (+ Working Alternatives) | ScrapingBee: https://www.scrapingbee.com/blog/puppeteer-stealth-tutorial-with-examples/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "From Puppeteer stealth to Nodriver: How anti-detect frameworks evolved to evade bot detection: https://blog.castle.io/from-puppeteer-stealth-to-nodriver-how-anti-detect-frameworks-evolved-to-evade-bot-detection/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How to detect Open Bullet 2 bots running in Puppeteer mode: https://blog.castle.io/how-to-detect-open-bullet-2-bots-running-in-puppeteer-mode/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Puppeteer Stealth: Complete Guide to Avoiding Detection: https://scrapfly.io/blog/posts/puppeteer-stealth-complete-guide"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Puppeteer Extra Plugin Stealth: Bypass Bot Detection 2026 - ScreenshotEngine Blog: https://www.screenshotengine.com/blog/puppeteer-extra-plugin-stealth"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Puppeteer-Extra-Stealth Is Obsolete: What to Use Instead (2026) — Clawbrowser: https://clawbrowser.ai/blog/puppeteer-extra-stealth-is-dead/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "[GUIDE] Unleash the Power of Stealth Fingerprinting Automation with Puppeteer/Playwright (Node.js) | BlackHatWorld: https://www.blackhatworld.com/seo/guide-unleash-the-power-of-stealth-fingerprinting-automation-with-puppeteer-playwright-node-js.1486520/"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Anti-Detect Framework Detection: Key Claims and Evidence\n\n## Puppeteer-Extra-Stealth Leaks\n\nThe article identifies three specific patching vulnerabilities:\n\n1. **ToString() Patching**: The framework attempts to mask proxies by patching `toString()` to return the original function's signature, but this approach has limitations.\n\n2. **Proxy Detection**: The author notes that \"proxies can still be detected indirectly. For example, subtle differences in error stack traces or exception types can le"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Brotector: Detection Claims and Capabilities\n\n## What Brotector Claims to Detect\n\nBrotector is designed to identify automated browser activity and can \"crash webdrivers\" in some cases. It detects automation frameworks including Selenium, Puppeteer, Playwright, and others.\n\n## Tools Detected vs. Not Detected\n\n**Detected/Crashed:**\n- Selenium (including undetected-chromedriver, seleniumbase)\n- Puppeteer (including puppeteer-extra-stealth, pyppeteer)\n- Playwright (including undetected-playwright,"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Patchright's Claims and Limitations\n\n## Patches Claimed\n\nPatchright addresses several detection vectors:\n\n1. **Runtime.enable Leak** - \"avoids using Runtime.enable by executing Javascript in (isolated) ExecutionContexts\"\n\n2. **Console.enable Leak** - Patches by disabling the Console API entirely, meaning console functionality won't work\n\n3. **Command Flags Leaks** - Modifies Playwright default arguments, including adding `--disable-blink-features=AutomationControlled` and removing flags like `"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Anti-Detect Browser Benchmark Summary\n\n**Date:** Published May 13, 2026; updated August 15, 2026\n\n## Methodology\n\nThe author tested seven stealth browsers across 31 Cloudflare-protected and fingerprinting targets through three independent sweeps from a single residential British Columbia IP address. Testing included \"headed mode\" browsers running sequentially in randomized order to prevent reputation accumulation. The benchmark employed \"a four-way verdict classifier (ok/gated/blocked/error) c"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Summary of Stealth Plugin Cloudflare Issue\n\n**User Report (June 2, 2023):**\nA developer reported that `puppeteer-extra-plugin-stealth` stopped bypassing Cloudflare protection on dodi-repacks.site. The user noted: \"I used puppeteer-extra-plugin-stealth in a few scripts before to get past cloudflare (e.g. patreon), with success, so i know it and have experience with it working in the past.\"\n\n**Key Details:**\n- The same script that previously worked now returns Cloudflare HTML instead of the expe"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Playwright Stealth: Does It Still Work for Scraping? · Zenrows: https://www.zenrows.com/blog/playwright-stealth"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "github.com: https://github.com/arjun-sha/xdriver"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "DEV Community: https://dev.to/claudeprime/patchright-vs-playwright-when-to-use-the-stealth-browser-fork-382a"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "DEV Community: https://dev.to/claudeprime/how-to-bypass-bot-detection-with-patchright-playwright-fork-2men"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "pypi.org: https://pypi.org/project/pystealth"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "playwright go stealth: https://github.com/jonfriesen/playwright-go-stealth"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "DEV Community: https://dev.to/agentql/stealth-mode-enhanced-bot-detection-evasion-launch-week-day-3-1ipf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "playwright extra: https://github.com/berstend/puppeteer-extra/blob/master/./packages/playwright-extra"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "DEV Community: https://dev.to/hasdata_com/nodejs-playwright-stealth-bypass-cloudflare-1020-in-5-minutes-3e03"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "pypi.org: https://pypi.org/project/stealthenium"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Detecting Headless Chrome's Puppeteer Extra Stealth Plugin with JavaScript Browser Fingerprinting: https://datadome.co/bot-management-protection/detecting-headless-chrome-puppeteer-extra-plugin-stealth/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Puppeteer Stealth Tutorial; How to Set Up & Use (+ Working Alternatives) | ScrapingBee: https://www.scrapingbee.com/blog/puppeteer-stealth-tutorial-with-examples/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How DataDome Detects Puppeteer Extra Stealth's iframe Evasion: https://datadome.co/threat-research/how-datadome-detects-puppeteer-extra-stealth/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Why server-side bot detection is not enough. | DataDome: https://datadome.co/bot-management-protection/client-side-detection-is-essential-for-bot-protection/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "GitHub - iqzhrq731/puppeteer-datadome-bypass: Puppeteer DataDome Bypass: How ScraperAPI Handles What Stealth Plugins Can't — Anti-Bot Evasion Without the Fingerprint Arms Race: https://github.com/iqzhrq731/puppeteer-datadome-bypass"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Puppeteer Guide - How to Bypass DataDome with Puppeteer | ScrapeOps: https://scrapeops.io/puppeteer-web-scraping-playbook/nodejs-puppeteer-bypass-datadome/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How To Bypass DataDome in 2026 | ScrapeOps: https://scrapeops.io/web-scraping-playbook/how-to-bypass-datadome/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How to Bypass DataDome: Complete Guide 2026 · Zenrows: https://www.zenrows.com/blog/datadome-bypass"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How to Bypass Cloudflare when Scraping: The 8 Best Methods · Zenrows: https://www.zenrows.com/blog/bypass-cloudflare"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How to Bypass Cloudflare When Web Scraping in 2026: https://scrapfly.io/blog/posts/how-to-bypass-cloudflare-anti-scraping"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How To Bypass Cloudflare When Web Scraping (2026) | ScrapeOps: https://scrapeops.io/web-scraping-playbook/how-to-bypass-cloudflare/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Web Scraping Part5: How to Bypass Cloudflare. | by AI & Data Science 604 | Medium: https://medium.com/@Mustafa77/how-to-bypass-cloudflare-for-web-scarping-6e04839114d6"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Why Cloudflare Breaks Proxy-Only Scrapers - DEV Community: https://dev.to/anakin_writers/why-cloudflare-breaks-proxy-only-scrapers-fhk"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Scraping Cloudflare Protected Website: 5 Effective Tactics: https://data-ox.com/resources/blog/how-to-scrap-websites-under-cloudflare-protection-a-comprehensive-guide/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Web Scraping Anti-Detection Techniques: The Definitive 2026 Reference | Use Apify: https://use-apify.com/blog/web-scraping-anti-detection-2026"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How to Bypass Cloudflare When Web Scraping (2026): Every Method Ranked | Use Apify: https://use-apify.com/blog/how-to-bypass-cloudflare-web-scraping"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How to bypass Cloudflare in 2026: 7 methods that work: https://roundproxies.com/blog/bypass-cloudflare/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "DEV Community: https://dev.to/crawlbase/how-to-bypass-cloudflare-and-avoid-bot-detection-24oo"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "The server returned HTTP 403 Forbidden.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Rebrowser-Patches Claims and Limitations\n\n## Exact Claims About What Is Patched\n\nThe README states these specific patches are implemented:\n\n1. **Runtime.Enable leak fix** - \"disables the automatic `Runtime.Enable` command on every frame\"\n2. **sourceURL modification** - changes `//# sourceURL=pptr:...` to generic names like `//# sourceURL=app.js`\n3. **Browser CDP connection method** - adds `_connection()` method to Browser class\n4. **Utility world name** - allows customization via environment v"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Migrate scripts to the V8 runtime | Apps Script | Google for Developers: https://developers.google.com/apps-script/guides/v8-runtime/migration"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Issue 5962 in v8: Error.captureStackTrace performances: https://groups.google.com/g/v8-reviews/c/_yDsOzhgzAk"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Runtime error detection: https://en.wikipedia.org/wiki/Runtime_error_detection"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "ChromeDevTools connected to Inspector, but error responses... missing native JS functions?: https://groups.google.com/g/v8-users/c/L8rq6zbviHg"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Chrome DevTools Protocol - version v8 - Runtime domain: https://chromedevtools.github.io/devtools-protocol/v8/Runtime/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Chrome DevTools Protocol - Runtime domain: https://chromedevtools.github.io/devtools-protocol/tot/Runtime/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How to fix Error 137 (Chrome Error 137) - Error 137: Google Chrome has encountered a problem and needs to close. We are sorry for the inconvenience.: https://www.errorvault.com/en/troubleshooting/runtime-errors/google-inc/google-chrome/error-137_chrome-error-137"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Chrome 137 | Release notes | Chrome for Developers: https://developer.chrome.com/release-notes/137"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "GHSL-2023-137: Type confusion in Chrome - CVE-2023-3420 | GitHub Security Lab: https://securitylab.github.com/advisories/GHSL-2023-137_Chrome/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "What's new in DevTools, Chrome 137 | Blog | Chrome for Developers: https://developer.chrome.com/blog/new-in-devtools-137"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How to fix Error 137 (Chrome Error 137) - Error 137: Google Chrome has encountered a problem and needs to close. We are sorry for the inconvenience.: https://www.errorvault.com/en/troubleshooting/runtime-errors/google-inc/google-chrome/error-137_chrome-error-137"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How To Fix Google Chrome Error 137 - Solvusoft: https://www.solvusoft.com/en/errors/runtime-errors/google-inc/google-chrome/137-chrome-error-137/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "public static interface Execution.ErrorOrBuilder extends MessageOrBuilderImplements: https://docs.cloud.google.com/java/docs/reference/google-cloud-workflow-executions/latest/com.google.cloud.workflows.executions.v1.Execution.ErrorOrBuilder?authuser=4"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "FV8: A Forced Execution JavaScript Engine for Detecting Evasive Techniques: https://arxiv.org/html/2405.13175v1"
+        }
+      ],
+      "opened_urls": [
+        "https://blog.castle.io/why-a-classic-cdp-bot-detection-signal-suddenly-stopped-working-and-nobody-noticed/",
+        "https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/",
+        "https://rebrowser.net/blog/how-to-fix-runtime-enable-cdp-detection-of-puppeteer-playwright-and-other-automation-libraries",
+        "https://blog.castle.io/from-puppeteer-stealth-to-nodriver-how-anti-detect-frameworks-evolved-to-evade-bot-detection/",
+        "https://github.com/kaliiiiiiiiii/brotector",
+        "https://github.com/Kaliiiiiiiiii-Vinyzu/patchright",
+        "https://ianlpaterson.com/blog/anti-detect-browser-benchmark-patchright-nodriver-curl-cffi/",
+        "https://github.com/berstend/puppeteer-extra/issues/811",
+        "https://datadome.co/threat-research/how-datadome-detects-puppeteer-extra-stealth/",
+        "https://github.com/rebrowser/rebrowser-patches"
+      ],
+      "cited_urls": [
+        "https://www.scrapingbee.com/blog/puppeteer-stealth-tutorial-with-examples/",
+        "https://scrapfly.io/blog/posts/puppeteer-stealth-complete-guide",
+        "https://datadome.co/threat-research/how-datadome-detects-puppeteer-extra-stealth/",
+        "https://datadome.co/bot-management-protection/detecting-headless-chrome-puppeteer-extra-plugin-stealth/",
+        "https://github.com/kaliiiiiiiiii/brotector",
+        "https://blog.castle.io/from-puppeteer-stealth-to-nodriver-how-anti-detect-frameworks-evolved-to-evade-bot-detection/",
+        "https://github.com/berstend/puppeteer-extra/issues/811",
+        "https://github.com/berstend/puppeteer-extra/issues/920",
+        "https://github.com/berstend/puppeteer-extra/issues/793",
+        "https://github.com/rebrowser/rebrowser-patches",
+        "https://rebrowser.net/blog/how-to-fix-runtime-enable-cdp-detection-of-puppeteer-playwright-and-other-automation-libraries",
+        "https://github.com/Kaliiiiiiiiii-Vinyzu/patchright",
+        "https://blog.castle.io/why-a-classic-cdp-bot-detection-signal-suddenly-stopped-working-and-nobody-noticed/",
+        "https://github.com/rebrowser/rebrowser-bot-detector",
+        "https://github.com/rebrowser/rebrowser-puppeteer",
+        "https://ianlpaterson.com/blog/anti-detect-browser-benchmark-patchright-nodriver-curl-cffi/",
+        "https://scrapfly.io/blog/posts/how-to-bypass-cloudflare-anti-scraping",
+        "https://scrapeops.io/web-scraping-playbook/how-to-bypass-cloudflare/",
+        "https://use-apify.com/blog/web-scraping-anti-detection-2026",
+        "https://webclaw.io/blog/puppeteer-stealth-cloudflare-2026",
+        "https://clawbrowser.ai/blog/puppeteer-extra-stealth-is-dead/",
+        "https://github.com/Kaliiiiiiiiii-Vinyzu/CDP-Patches",
+        "https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/920",
+          "title": "[Bug] puppeteer-extra-stealth plugin fails to bypass Cloudflare bot detection on accounts.x.ai · Issue #920 · berstend/puppeteer-extra"
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/811",
+          "title": "https://github.com/berstend/puppeteer-extra/issues/811"
+        },
+        {
+          "url": "https://www.zenrows.com/blog/puppeteer-cloudflare-bypass",
+          "title": "How to Bypass Cloudflare With Puppeteer: 2 Working Methods · Zenrows"
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/793",
+          "title": "[Bug] stealth plugin malfunctioning with playwright · Issue #793 · berstend/puppeteer-extra"
+        },
+        {
+          "url": "https://www.browserless.io/blog/bypass-cloudflare-with-puppeteer",
+          "title": "Bypass Cloudflare with Puppeteer (2026 Guide) – Scrape Protected Sites"
+        },
+        {
+          "url": "https://alterlab.io/blog/how-to-bypass-cloudflare-bot-protection-with-puppeteer-in-2026",
+          "title": "Bypass Cloudflare with Puppeteer (2026): Stealth + TLS Fix | AlterLab"
+        },
+        {
+          "url": "https://clawbrowser.ai/blog/puppeteer-extra-stealth-is-dead/",
+          "title": "Puppeteer-Extra-Stealth Is Obsolete: What to Use Instead (2026) — Clawbrowser"
+        },
+        {
+          "url": "https://webclaw.io/blog/puppeteer-stealth-cloudflare-2026",
+          "title": "Why Puppeteer Stealth Still Fails on Cloudflare (2026) | webclaw"
+        },
+        {
+          "url": "https://pypi.org/project/stealthenium",
+          "title": "pypi.org"
+        },
+        {
+          "url": "https://github.com/MichaelXF/js-confuser/issues/138",
+          "title": "Add CDP Signal Detection to Anti Debug · Issue #138 · MichaelXF/js-confuser"
+        },
+        {
+          "url": "https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/",
+          "title": "https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/"
+        },
+        {
+          "url": "https://blog.castle.io/why-a-classic-cdp-bot-detection-signal-suddenly-stopped-working-and-nobody-noticed/",
+          "title": "https://blog.castle.io/why-a-classic-cdp-bot-detection-signal-suddenly-stopped-working-and-nobody-noticed/"
+        },
+        {
+          "url": "https://scrappey.com/qa/anti-bot/what-is-cdp-detection",
+          "title": "CDP Detection: How Anti-Bots Catch Runtime.enable | Scrappey"
+        },
+        {
+          "url": "https://svebaa.github.io/personal/blog/cdp-fingerprinting/",
+          "title": "How V8 Leaks Your Headless Browser's Identity"
+        },
+        {
+          "url": "https://blog.send.win/headless-browser-detection-bypass-2026/",
+          "title": "Headless Browser Detection Bypass 2026 - Sendwin"
+        },
+        {
+          "url": "https://rebrowser.net/blog/how-to-fix-runtime-enable-cdp-detection-of-puppeteer-playwright-and-other-automation-libraries",
+          "title": "How to fix Runtime.Enable CDP detection of Puppeteer, Playwright and other automation libraries? / Rebrowser"
+        },
+        {
+          "url": "https://ultrawebscrapingapi.com/blog/why-headless-chrome-detected/",
+          "title": "Why Headless Chrome Gets Detected by Every Anti-Bot System in 2026 | UltraWebScrapingAPI"
+        },
+        {
+          "url": "https://github.com/rebrowser/rebrowser-bot-detector",
+          "title": "GitHub - rebrowser/rebrowser-bot-detector: Modern tests to detect automated browser behavior. Cover most important leaks from Puppeteer and Playwright. · GitHub"
+        },
+        {
+          "url": "https://github.com/rebrowser/rebrowser-puppeteer",
+          "title": "GitHub - rebrowser/rebrowser-puppeteer: A drop-in replacement for puppeteer patched with rebrowser-patches. It allows to pass modern automation detection tests. · GitHub"
+        },
+        {
+          "url": "https://github.com/rebrowser/rebrowser-patches",
+          "title": "https://github.com/rebrowser/rebrowser-patches"
+        },
+        {
+          "url": "https://github.com/rebrowser/rebrowser-puppeteer-core",
+          "title": "GitHub - rebrowser/rebrowser-puppeteer-core: A drop-in replacement for puppeteer-core patched with rebrowser-patches. It allows to pass modern automation detection tests. · GitHub"
+        },
+        {
+          "url": "https://www.npmjs.com/package/puppeteer-real-browser",
+          "title": "puppeteer-real-browser - npm"
+        },
+        {
+          "url": "https://github.com/ZFC-Digital/puppeteer-real-browser",
+          "title": "GitHub - ZFC-Digital/puppeteer-real-browser: This package is designed to bypass puppeteer's bot-detecting captchas such as Cloudflare. It acts like a real browser and can be managed with puppeteer. · GitHub"
+        },
+        {
+          "url": "https://github.com/rebrowser/rebrowser-patches/blob/main/README.md",
+          "title": "rebrowser-patches/README.md at main · rebrowser/rebrowser-patches"
+        },
+        {
+          "url": "https://rebrowser.net/docs/patches-for-puppeteer-and-playwright",
+          "title": "Patches for Puppeteer and Playwright / Documentation / Rebrowser"
+        },
+        {
+          "url": "https://rebrowser.net/docs/rebrowser-bot-detector",
+          "title": "Rebrowser Bot Detector / Documentation / Rebrowser"
+        },
+        {
+          "url": "https://github.com/kaliiiiiiiiii",
+          "title": "kaliiiiiiiiii (kaliiiiiiiiiii) · GitHub"
+        },
+        {
+          "url": "https://github.com/Kaliiiiiiiiii-Vinyzu/patchright",
+          "title": "https://github.com/Kaliiiiiiiiii-Vinyzu/patchright"
+        },
+        {
+          "url": "https://awesome.ecosyste.ms/projects/github.com/kaliiiiiiiiii/brotector",
+          "title": "https://github.com/kaliiiiiiiiii/brotector | Ecosyste.ms: Awesome"
+        },
+        {
+          "url": "https://github.com/Kaliiiiiiiiii-Vinyzu/CDP-Patches",
+          "title": "GitHub - Kaliiiiiiiiii-Vinyzu/CDP-Patches: Patching CDP (Chrome DevTools Protocol) leaks on OS level. Easy to use with Playwright, Selenium, and other web automation tools. · GitHub"
+        },
+        {
+          "url": "https://github.com/kaliiiiiiiiii/brotector/issues",
+          "title": "Issues · kaliiiiiiiiii/brotector"
+        },
+        {
+          "url": "https://kameleo.io/blog/bypass-runtime-enable-with-kameleos-undetectable-browser",
+          "title": "Bypass Runtime.enable with Kameleo's Undetectable Browser"
+        },
+        {
+          "url": "https://ianlpaterson.com/blog/anti-detect-browser-benchmark-patchright-nodriver-curl-cffi/",
+          "title": "https://ianlpaterson.com/blog/anti-detect-browser-benchmark-patchright-nodriver-curl-cffi/"
+        },
+        {
+          "url": "https://datadome.co/bot-management-protection/detecting-headless-chrome-puppeteer-extra-plugin-stealth/",
+          "title": "Detecting Headless Chrome's Puppeteer Extra Stealth Plugin with JavaScript Browser Fingerprinting"
+        },
+        {
+          "url": "https://blog.castle.io/9-device-fingerprinting-solutions-for-developers/",
+          "title": "9 device fingerprinting solutions for developers in 2025"
+        },
+        {
+          "url": "https://www.scrapingbee.com/blog/puppeteer-stealth-tutorial-with-examples/",
+          "title": "Puppeteer Stealth Tutorial; How to Set Up & Use (+ Working Alternatives) | ScrapingBee"
+        },
+        {
+          "url": "https://blog.castle.io/from-puppeteer-stealth-to-nodriver-how-anti-detect-frameworks-evolved-to-evade-bot-detection/",
+          "title": "https://blog.castle.io/from-puppeteer-stealth-to-nodriver-how-anti-detect-frameworks-evolved-to-evade-bot-detection/"
+        },
+        {
+          "url": "https://blog.castle.io/how-to-detect-open-bullet-2-bots-running-in-puppeteer-mode/",
+          "title": "How to detect Open Bullet 2 bots running in Puppeteer mode"
+        },
+        {
+          "url": "https://scrapfly.io/blog/posts/puppeteer-stealth-complete-guide",
+          "title": "Puppeteer Stealth: Complete Guide to Avoiding Detection"
+        },
+        {
+          "url": "https://www.screenshotengine.com/blog/puppeteer-extra-plugin-stealth",
+          "title": "Puppeteer Extra Plugin Stealth: Bypass Bot Detection 2026 - ScreenshotEngine Blog"
+        },
+        {
+          "url": "https://www.blackhatworld.com/seo/guide-unleash-the-power-of-stealth-fingerprinting-automation-with-puppeteer-playwright-node-js.1486520/",
+          "title": "[GUIDE] Unleash the Power of Stealth Fingerprinting Automation with Puppeteer/Playwright (Node.js) | BlackHatWorld"
+        },
+        {
+          "url": "https://github.com/kaliiiiiiiiii/brotector",
+          "title": "https://github.com/kaliiiiiiiiii/brotector"
+        },
+        {
+          "url": "https://www.zenrows.com/blog/playwright-stealth",
+          "title": "Playwright Stealth: Does It Still Work for Scraping? · Zenrows"
+        },
+        {
+          "url": "https://github.com/arjun-sha/xdriver",
+          "title": "github.com"
+        },
+        {
+          "url": "https://dev.to/claudeprime/patchright-vs-playwright-when-to-use-the-stealth-browser-fork-382a",
+          "title": "DEV Community"
+        },
+        {
+          "url": "https://dev.to/claudeprime/how-to-bypass-bot-detection-with-patchright-playwright-fork-2men",
+          "title": "DEV Community"
+        },
+        {
+          "url": "https://pypi.org/project/pystealth",
+          "title": "pypi.org"
+        },
+        {
+          "url": "https://github.com/jonfriesen/playwright-go-stealth",
+          "title": "playwright go stealth"
+        },
+        {
+          "url": "https://dev.to/agentql/stealth-mode-enhanced-bot-detection-evasion-launch-week-day-3-1ipf",
+          "title": "DEV Community"
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/blob/master/./packages/playwright-extra",
+          "title": "playwright extra"
+        },
+        {
+          "url": "https://dev.to/hasdata_com/nodejs-playwright-stealth-bypass-cloudflare-1020-in-5-minutes-3e03",
+          "title": "DEV Community"
+        },
+        {
+          "url": "https://datadome.co/threat-research/how-datadome-detects-puppeteer-extra-stealth/",
+          "title": "https://datadome.co/threat-research/how-datadome-detects-puppeteer-extra-stealth/"
+        },
+        {
+          "url": "https://datadome.co/bot-management-protection/client-side-detection-is-essential-for-bot-protection/",
+          "title": "Why server-side bot detection is not enough. | DataDome"
+        },
+        {
+          "url": "https://github.com/iqzhrq731/puppeteer-datadome-bypass",
+          "title": "GitHub - iqzhrq731/puppeteer-datadome-bypass: Puppeteer DataDome Bypass: How ScraperAPI Handles What Stealth Plugins Can't — Anti-Bot Evasion Without the Fingerprint Arms Race"
+        },
+        {
+          "url": "https://scrapeops.io/puppeteer-web-scraping-playbook/nodejs-puppeteer-bypass-datadome/",
+          "title": "Puppeteer Guide - How to Bypass DataDome with Puppeteer | ScrapeOps"
+        },
+        {
+          "url": "https://scrapeops.io/web-scraping-playbook/how-to-bypass-datadome/",
+          "title": "How To Bypass DataDome in 2026 | ScrapeOps"
+        },
+        {
+          "url": "https://www.zenrows.com/blog/datadome-bypass",
+          "title": "How to Bypass DataDome: Complete Guide 2026 · Zenrows"
+        },
+        {
+          "url": "https://www.zenrows.com/blog/bypass-cloudflare",
+          "title": "How to Bypass Cloudflare when Scraping: The 8 Best Methods · Zenrows"
+        },
+        {
+          "url": "https://scrapfly.io/blog/posts/how-to-bypass-cloudflare-anti-scraping",
+          "title": "How to Bypass Cloudflare When Web Scraping in 2026"
+        },
+        {
+          "url": "https://scrapeops.io/web-scraping-playbook/how-to-bypass-cloudflare/",
+          "title": "How To Bypass Cloudflare When Web Scraping (2026) | ScrapeOps"
+        },
+        {
+          "url": "https://medium.com/@Mustafa77/how-to-bypass-cloudflare-for-web-scarping-6e04839114d6",
+          "title": "Web Scraping Part5: How to Bypass Cloudflare. | by AI & Data Science 604 | Medium"
+        },
+        {
+          "url": "https://dev.to/anakin_writers/why-cloudflare-breaks-proxy-only-scrapers-fhk",
+          "title": "Why Cloudflare Breaks Proxy-Only Scrapers - DEV Community"
+        },
+        {
+          "url": "https://data-ox.com/resources/blog/how-to-scrap-websites-under-cloudflare-protection-a-comprehensive-guide/",
+          "title": "Scraping Cloudflare Protected Website: 5 Effective Tactics"
+        },
+        {
+          "url": "https://use-apify.com/blog/web-scraping-anti-detection-2026",
+          "title": "Web Scraping Anti-Detection Techniques: The Definitive 2026 Reference | Use Apify"
+        },
+        {
+          "url": "https://use-apify.com/blog/how-to-bypass-cloudflare-web-scraping",
+          "title": "How to Bypass Cloudflare When Web Scraping (2026): Every Method Ranked | Use Apify"
+        },
+        {
+          "url": "https://roundproxies.com/blog/bypass-cloudflare/",
+          "title": "How to bypass Cloudflare in 2026: 7 methods that work"
+        },
+        {
+          "url": "https://dev.to/crawlbase/how-to-bypass-cloudflare-and-avoid-bot-detection-24oo",
+          "title": "DEV Community"
+        },
+        {
+          "url": "https://developers.google.com/apps-script/guides/v8-runtime/migration",
+          "title": "Migrate scripts to the V8 runtime | Apps Script | Google for Developers"
+        },
+        {
+          "url": "https://groups.google.com/g/v8-reviews/c/_yDsOzhgzAk",
+          "title": "Issue 5962 in v8: Error.captureStackTrace performances"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Runtime_error_detection",
+          "title": "Runtime error detection"
+        },
+        {
+          "url": "https://groups.google.com/g/v8-users/c/L8rq6zbviHg",
+          "title": "ChromeDevTools connected to Inspector, but error responses... missing native JS functions?"
+        },
+        {
+          "url": "https://chromedevtools.github.io/devtools-protocol/v8/Runtime/",
+          "title": "Chrome DevTools Protocol - version v8 - Runtime domain"
+        },
+        {
+          "url": "https://chromedevtools.github.io/devtools-protocol/tot/Runtime/",
+          "title": "Chrome DevTools Protocol - Runtime domain"
+        },
+        {
+          "url": "https://www.errorvault.com/en/troubleshooting/runtime-errors/google-inc/google-chrome/error-137_chrome-error-137",
+          "title": "How to fix Error 137 (Chrome Error 137) - Error 137: Google Chrome has encountered a problem and needs to close. We are sorry for the inconvenience."
+        },
+        {
+          "url": "https://developer.chrome.com/release-notes/137",
+          "title": "Chrome 137 | Release notes | Chrome for Developers"
+        },
+        {
+          "url": "https://securitylab.github.com/advisories/GHSL-2023-137_Chrome/",
+          "title": "GHSL-2023-137: Type confusion in Chrome - CVE-2023-3420 | GitHub Security Lab"
+        },
+        {
+          "url": "https://developer.chrome.com/blog/new-in-devtools-137",
+          "title": "What's new in DevTools, Chrome 137 | Blog | Chrome for Developers"
+        },
+        {
+          "url": "https://www.solvusoft.com/en/errors/runtime-errors/google-inc/google-chrome/137-chrome-error-137/",
+          "title": "How To Fix Google Chrome Error 137 - Solvusoft"
+        },
+        {
+          "url": "https://docs.cloud.google.com/java/docs/reference/google-cloud-workflow-executions/latest/com.google.cloud.workflows.executions.v1.Execution.ErrorOrBuilder?authuser=4",
+          "title": "public static interface Execution.ErrorOrBuilder extends MessageOrBuilderImplements"
+        },
+        {
+          "url": "https://arxiv.org/html/2405.13175v1",
+          "title": "FV8: A Forced Execution JavaScript Engine for Detecting Evasive Techniques"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/920",
+          "text": "[Bug] puppeteer-extra-stealth plugin fails to bypass Cloudflare bot detection on accounts.x.ai · Issue #920 · berstend/puppeteer-extra"
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/811",
+          "text": "[Bug] cloudflare not working anymore? · Issue #811 · berstend/puppeteer-extra"
+        },
+        {
+          "url": "https://www.zenrows.com/blog/puppeteer-cloudflare-bypass",
+          "text": "How to Bypass Cloudflare With Puppeteer: 2 Working Methods · Zenrows"
+        },
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/issues/793",
+          "text": "[Bug] stealth plugin malfunctioning with playwright · Issue #793 · berstend/puppeteer-extra"
+        },
+        {
+          "url": "https://www.browserless.io/blog/bypass-cloudflare-with-puppeteer",
+          "text": "Bypass Cloudflare with Puppeteer (2026 Guide) – Scrape Protected Sites"
+        },
+        {
+          "url": "https://alterlab.io/blog/how-to-bypass-cloudflare-bot-protection-with-puppeteer-in-2026",
+          "text": "Bypass Cloudflare with Puppeteer (2026): Stealth + TLS Fix | AlterLab"
+        },
+        {
+          "url": "https://clawbrowser.ai/blog/puppeteer-extra-stealth-is-dead/",
+          "text": "Puppeteer-Extra-Stealth Is Obsolete: What to Use Instead (2026) — Clawbrowser"
+        },
+        {
+          "url": "https://webclaw.io/blog/puppeteer-stealth-cloudflare-2026",
+          "text": "Why Puppeteer Stealth Still Fails on Cloudflare (2026) | webclaw"
+        },
+        {
+          "url": "https://pypi.org/project/stealthenium",
+          "text": "pypi.org"
+        },
+        {
+          "url": "https://github.com/MichaelXF/js-confuser/issues/138",
+          "text": "Add CDP Signal Detection to Anti Debug · Issue #138 · MichaelXF/js-confuser"
+        },
+        {
+          "url": "https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/",
+          "text": "How New Headless Chrome & the CDP Signal Are Impacting Bot Detection"
+        },
+        {
+          "url": "https://blog.castle.io/why-a-classic-cdp-bot-detection-signal-suddenly-stopped-working-and-nobody-noticed/",
+          "text": "Why a classic CDP bot detection signal suddenly stopped working (and nobody noticed)"
+        },
+        {
+          "url": "https://scrappey.com/qa/anti-bot/what-is-cdp-detection",
+          "text": "CDP Detection: How Anti-Bots Catch Runtime.enable | Scrappey"
+        },
+        {
+          "url": "https://svebaa.github.io/personal/blog/cdp-fingerprinting/",
+          "text": "How V8 Leaks Your Headless Browser's Identity"
+        },
+        {
+          "url": "https://blog.send.win/headless-browser-detection-bypass-2026/",
+          "text": "Headless Browser Detection Bypass 2026 - Sendwin"
+        },
+        {
+          "url": "https://rebrowser.net/blog/how-to-fix-runtime-enable-cdp-detection-of-puppeteer-playwright-and-other-automation-libraries",
+          "text": "How to fix Runtime.Enable CDP detection of Puppeteer, Playwright and other automation libraries? / Rebrowser"
+        },
+        {
+          "url": "https://ultrawebscrapingapi.com/blog/why-headless-chrome-detected/",
+          "text": "Why Headless Chrome Gets Detected by Every Anti-Bot System in 2026 | UltraWebScrapingAPI"
+        },
+        {
+          "url": "https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/",
+          "text": "The server returned HTTP 403 Forbidden.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+        },
+        {
+          "url": "https://blog.castle.io/why-a-classic-cdp-bot-detection-signal-suddenly-stopped-working-and-nobody-noticed/",
+          "text": "# Summary of CDP Detection Signal Failure\n\n**The Signal That Stopped Working:**\nA bot detection technique leveraging Chrome DevTools Protocol (CDP) that used error object getters to detect automated browsers. The code created a custom getter on an error's `.stack` property that would flip a flag when accessed during `console.debug()` logging.\n\n**Why It Worked:**\n\"CDP gives automation frameworks full control over Chrome, but it also introduces artifacts.\" When the Runtime domain was active, Chrome serialized objects across the WebSocket connection, triggering the getter and revealing automation.\n\n**Chrome Change Causing the Break:**\nTwo V8 commits in May 2025 modified error object preview handling:\n- May 7, 2025: \"Avoid error side effects in DevTools\"\n- May 9, 2025: \"Apply getter guard throughout error preview\"\n\nThese changes introduced a `getErrorProperty()` guard that skips user-defined getters when previewing errors, preventing side effects during object inspection.\n\n**Reproducible Test Code Provided:**\nYes—the article includes the detection code and explains how V8's new guard function prevents user-defined getters from executing during DevTools preview.\n\n**On Stealth Patches:**\nThe author notes that \"most serious frameworks had already adapted\" to avoid this signal through tools like Nodriver and Rebrowser patches before this V8 change occurred."
+        },
+        {
+          "url": "https://rebrowser.net/blog/how-to-fix-runtime-enable-cdp-detection-of-puppeteer-playwright-and-other-automation-libraries",
+          "text": "# Runtime.Enable Detection Summary\n\n## Detection Mechanism\nAutomation libraries like Puppeteer and Playwright use the Chrome DevTools Protocol (CDP) command `Runtime.Enable` to discover execution contexts needed for running JavaScript. This command triggers a `Runtime.consoleAPICalled` event that anti-bot systems can detect with minimal code, revealing browser automation activity.\n\n## Test Platform\nRebrowser published \"rebrowser-bot-detector\" alongside existing third-party detection pages. This tool enables developers to verify whether their automation setup leaks CDP signals to detection systems.\n\n## Proposed Fixes\nRebrowser offers source code patches addressing this vulnerability through two approaches:\n\n1. **Isolated World Creation**: Uses `Page.createIsolatedWorld` to execute code in separate contexts, preventing page scripts from detecting modifications via MutationObserver.\n\n2. **Enable/Disable Cycling**: Calls `Runtime.Enable` then immediately `Runtime.Disable` to trigger context creation events without sustained exposure.\n\n## Acknowledged Limitations\n- **Isolated worlds**: Cannot access main context variables; incompatible with web workers\n- **Enable/Disable approach**: Brief vulnerability window exists where detection code could theoretically execute\n- **Fragility**: Patches require maintenance as library source code evolves\n- **Console override ineffectiveness**: Attempts to modify the console object fail against sophisticated anti-bot systems that detect Proxy objects or `Object.defineProperty()` manipulation"
+        },
+        {
+          "url": "https://github.com/rebrowser/rebrowser-bot-detector",
+          "text": "GitHub - rebrowser/rebrowser-bot-detector: Modern tests to detect automated browser behavior. Cover most important leaks from Puppeteer and Playwright. · GitHub"
+        },
+        {
+          "url": "https://github.com/rebrowser/rebrowser-puppeteer",
+          "text": "GitHub - rebrowser/rebrowser-puppeteer: A drop-in replacement for puppeteer patched with rebrowser-patches. It allows to pass modern automation detection tests. · GitHub"
+        },
+        {
+          "url": "https://github.com/rebrowser/rebrowser-patches",
+          "text": "GitHub - rebrowser/rebrowser-patches: Collection of patches for puppeteer and playwright to avoid automation detection and leaks. Helps to avoid Cloudflare and DataDome CAPTCHA pages. Easy to patch/unpatch, can be enabled/disabled on demand. · GitHub"
+        },
+        {
+          "url": "https://github.com/rebrowser/rebrowser-puppeteer-core",
+          "text": "GitHub - rebrowser/rebrowser-puppeteer-core: A drop-in replacement for puppeteer-core patched with rebrowser-patches. It allows to pass modern automation detection tests. · GitHub"
+        },
+        {
+          "url": "https://www.npmjs.com/package/puppeteer-real-browser",
+          "text": "puppeteer-real-browser - npm"
+        },
+        {
+          "url": "https://github.com/ZFC-Digital/puppeteer-real-browser",
+          "text": "GitHub - ZFC-Digital/puppeteer-real-browser: This package is designed to bypass puppeteer's bot-detecting captchas such as Cloudflare. It acts like a real browser and can be managed with puppeteer. · GitHub"
+        },
+        {
+          "url": "https://github.com/rebrowser/rebrowser-patches/blob/main/README.md",
+          "text": "rebrowser-patches/README.md at main · rebrowser/rebrowser-patches"
+        },
+        {
+          "url": "https://rebrowser.net/docs/patches-for-puppeteer-and-playwright",
+          "text": "Patches for Puppeteer and Playwright / Documentation / Rebrowser"
+        },
+        {
+          "url": "https://rebrowser.net/docs/rebrowser-bot-detector",
+          "text": "Rebrowser Bot Detector / Documentation / Rebrowser"
+        },
+        {
+          "url": "https://github.com/kaliiiiiiiiii",
+          "text": "kaliiiiiiiiii (kaliiiiiiiiiii) · GitHub"
+        }
+      ],
+      "final_answer": "# Stealth patches vs. bot detection: conflicting claims and what's actually reproducible\n\n## 0. A note on the evidence base first\n\nMost of what surfaces when you search this topic is vendor SEO content (scraping-API companies whose product is the alternative to stealth patches, and anti-bot companies whose product is detecting them). Both sides have a commercial interest in the claim they make. I've weighted primary artifacts — source repos, published test harnesses, V8 commits, issue trackers — over blog assertions, and flagged where I could only see a claim second-hand.\n\nOne disclosure: DataDome's threat-research pages returned HTTP 403 to my fetcher, so my characterization of their two stealth-detection articles comes from search-result excerpts, not from reading the pages directly. Treat those specific points as second-hand.\n\n---\n\n## 1. Claim cluster A: \"puppeteer-extra-plugin-stealth defeats modern anti-bot\" vs. \"it is obsolete and is itself a signature\"\n\n**The optimistic claim** persists in tutorials and forum answers: add the stealth plugin and you get past Cloudflare/DataDome. It is still the top-recommended fix in a large amount of guide content ([ScrapingBee](https://www.scrapingbee.com/blog/puppeteer-stealth-tutorial-with-examples/), [Scrapfly](https://scrapfly.io/blog/posts/puppeteer-stealth-complete-guide)) — though note that both of those, and most similar pages, hedge and then upsell their own API.\n\n**The contradicting claim** is that the plugin's evasions are themselves the most reliable detection signal. DataDome states it detects \"signatures or 'side effects' caused by how puppeteer-extra-plugin-stealth overrides some built-in properties,\" and specifically describes an `iframe.contentWindow` evasion flaw where the injected code becomes readable from the page, yielding \"a very distinctive value\" that also fingerprints *which version* of the plugin is running ([DataDome](https://datadome.co/threat-research/how-datadome-detects-puppeteer-extra-stealth/), [DataDome](https://datadome.co/bot-management-protection/detecting-headless-chrome-puppeteer-extra-plugin-stealth/) — both second-hand, see §0).\n\n**Supporting observations (reproducible):**\n- `brotector`, an open detection harness, lists `puppeteer-extra-stealth` among the setups it detects and in some cases crashes ([github.com/kaliiiiiiiiii/brotector](https://github.com/kaliiiiiiiiii/brotector)). You can run it yourself against your own stack; that is the strongest form of evidence available here.\n- Castle's teardown of a real stealth patch identifies concrete leak classes: `toString()` masking is incomplete, and proxies remain \"detected indirectly… subtle differences in error stack traces or exception types can leak the presence of a proxy, even when there is no official API to inspect one\" ([blog.castle.io, 2025-06-11](https://blog.castle.io/from-puppeteer-stealth-to-nodriver-how-anti-detect-frameworks-evolved-to-evade-bot-detection/)).\n- The maintenance claim: issue reports show users on stealth `2.11.2` failing against Cloudflare as far back as June 2023, with no maintainer response on the thread ([berstend/puppeteer-extra#811](https://github.com/berstend/puppeteer-extra/issues/811)), and similar failures reported since ([#920](https://github.com/berstend/puppeteer-extra/issues/920), [#793](https://github.com/berstend/puppeteer-extra/issues/793)).\n\n**Verdict:** The \"obsolete\" side is better evidenced. The specific sub-claim that *using stealth is worse than not using it* is plausible inference from the version-fingerprinting claim, but I found no public head-to-head experiment isolating it — see §5.\n\n---\n\n## 2. Claim cluster B: \"the fix is patching `Runtime.enable`\" vs. \"that signal already stopped working\"\n\nThis is the sharpest live disagreement, and both parties are technically credible.\n\n**Position 1 (Rebrowser, Patchright, Kameleo, CDP-Patches):** CDP automation calls `Runtime.enable`, which is observable from page JavaScript; patch it out and you pass. Rebrowser ships source patches offering isolated-world execution via `Page.createIsolatedWorld` or enable/disable cycling, and asserts \"all these approaches are currently undetectable by Cloudflare or DataDome\" ([rebrowser-patches README](https://github.com/rebrowser/rebrowser-patches), [rebrowser.net blog](https://rebrowser.net/blog/how-to-fix-runtime-enable-cdp-detection-of-puppeteer-playwright-and-other-automation-libraries)). Patchright makes the same architectural move plus flag scrubbing ([Patchright](https://github.com/Kaliiiiiiiiii-Vinyzu/patchright)).\n\n**Position 2 (Castle):** the best-known concrete implementation of that detection — a getter on an `Error.stack` property that fires when CDP serializes the object during `console.debug()` — **stopped working** after two V8 commits in May 2025 (\"Avoid error side effects in DevTools\", 2025-05-07; \"Apply getter guard throughout error preview\", 2025-05-09), which added a `getErrorProperty()` guard that skips user-defined getters during error preview. The article's framing is that the signal broke \"and nobody noticed\" ([blog.castle.io](https://blog.castle.io/why-a-classic-cdp-bot-detection-signal-suddenly-stopped-working-and-nobody-noticed/)).\n\n**How to reconcile these — this part is my inference, not a sourced claim:** they are not strictly contradictory. Castle describes *one* implementation of CDP detection breaking upstream; `Runtime.enable` can still be observed by other means (e.g. execution-context bookkeeping), which is what rebrowser's own test page checks. The practical conflict is about *marketing implication*: patches sold as necessary may in some deployments be fixing a signal the browser vendor already neutralized. Castle notes serious frameworks had already adapted before the V8 change landed.\n\n**Both sides publish limitations, which is a good sign:**\n- Rebrowser: isolated worlds can't reach main-context variables or web workers; enable/disable leaves a brief exposure window; patches \"may break as the libraries' source code changes\"; and explicitly, \"this fix alone won't make your browser bulletproof\" ([README](https://github.com/rebrowser/rebrowser-patches)).\n- Patchright: Chromium only; disables the Console API entirely; init scripts remain detectable via timing attacks, with the caveat that \"no antibot currently checks for this kind of Timing Attack\" ([Patchright](https://github.com/Kaliiiiiiiiii-Vinyzu/patchright)) — an admission that the claim is \"currently unexploited,\" not \"unexploitable.\"\n\n**Reproducible harnesses for this cluster:** [rebrowser-bot-detector](https://github.com/rebrowser/rebrowser-bot-detector) (hosted at bot-detector.rebrowser.net) and [brotector](https://github.com/kaliiiiiiiiii/brotector), which tests `navigator.webdriver`, `Runtime.enable`, `Input.coordinatesLeak` (crbug#1477537), `window.cdc`, untrusted input events, and stack-trace analysis. Caveat: a detector maintained by a company selling the patched browser is not a neutral referee — rebrowser-puppeteer's stated goal is literally \"passing all automation detection tests presented in rebrowser-bot-detector\" ([rebrowser-puppeteer](https://github.com/rebrowser/rebrowser-puppeteer)). Passing that suite is weak evidence about real-world anti-bot outcomes.\n\n---\n\n## 3. Claim cluster C: \"you need a stealth fork\" vs. a benchmark where vanilla nearly ties\n\nThe single most useful publicly reproducible observation I found is an independent benchmark: 7 tools × 31 targets (Cloudflare-protected sites, JS detection panels, TLS endpoints), 3 sweeps, 651 records, code and raw data published at github.com/ianlpaterson/anti-detect-browser-bench ([ianlpaterson.com, published 2026-05-13, updated 2026-08-15](https://ianlpaterson.com/blog/anti-detect-browser-benchmark-patchright-nodriver-curl-cffi/)).\n\nResults (OK / gated / blocked): nodriver 28/3/0 · CloakBrowser 26/3/2 · curl_cffi 26/3/2 · Patchright 25/3/3 · Camoufox 25/3/3 · **vanilla Playwright 24/2/5** · rebrowser-playwright 24/2/5.\n\nTwo things this supports:\n- nodriver's architectural approach (avoiding CDP-style control in favor of OS-level input) outperformed JS/CDP-patch approaches, consistent with Castle's thesis ([Castle](https://blog.castle.io/from-puppeteer-stealth-to-nodriver-how-anti-detect-frameworks-evolved-to-evade-bot-detection/)).\n- **Vanilla Playwright in headed mode scored within one target of Patchright and Camoufox, and identically to rebrowser-playwright.** That materially undercuts the community's strongest form of \"you cannot touch Cloudflare without a stealth fork.\"\n\n**Limitations I'd stress before anyone over-reads this:** one residential IP, one geography (British Columbia), 31 targets, headed mode only, a single author. IP reputation is uncontrolled and could compress differences between tools. It is reproducible, which is rare here, but it is not decisive.\n\n---\n\n## 4. Claim cluster D: \"it's the fingerprint\" vs. \"it's the IP, TLS and pacing\"\n\nCommunity advice splits on where the blocking actually comes from. Vendor guides converge on \"layered — IP reputation, TLS/HTTP2 fingerprint, JS fingerprint, behavior, all simultaneously\" ([Scrapfly](https://scrapfly.io/blog/posts/how-to-bypass-cloudflare-anti-scraping), [ScrapeOps](https://scrapeops.io/web-scraping-playbook/how-to-bypass-cloudflare/)). A stronger quantified claim appears in Apify-affiliated content — that ~80% of blocks come from pacing and IP reputation rather than fingerprinting ([use-apify.com](https://use-apify.com/blog/web-scraping-anti-detection-2026)).\n\n**Treat that 80% as unsupported.** No methodology, sample, or dataset is given; it is a marketing figure. The *directional* claim it encodes — that a JS-level stealth patch cannot help you if the transport layer and request pattern give you away — is separately well-supported: stealth plugins operate in page JavaScript and by construction cannot alter the TLS stack or HTTP/2 behavior, a point made consistently across otherwise-adversarial sources.\n\n---\n\n## 5. What is genuinely uncertain or badly evidenced\n\n- **\"Stealth makes you more detectable than plain automation.\"** Widely repeated; logically supported by the version-fingerprinting claim; but I found **no published controlled experiment** comparing identical stacks with and without the plugin against the same targets from the same IP. The benchmark in §3 didn't include puppeteer-extra-stealth.\n- **\"New stealth techniques last ~48 hours before Cloudflare signatures update.\"** This appeared in vendor blog content ([webclaw](https://webclaw.io/blog/puppeteer-stealth-cloudflare-2026), [clawbrowser](https://clawbrowser.ai/blog/puppeteer-extra-stealth-is-dead/)) with no measurement behind it. I would not repeat it as fact.\n- **\"Undetectable\" claims generally.** Every such claim I checked is (a) scoped to specific named vendors, (b) time-stamped implicitly to a browser version, and (c) made by the party shipping the patch. Rebrowser's README validates against Puppeteer 24.8.1 / Playwright 1.52.0, both from spring 2025 — an \"undetectable today\" claim ages with every Chrome release, as §2's V8 example shows in the opposite direction.\n- **False positives cut both ways.** CDP-based detection also fires on ordinary users with DevTools open, and brotector's README flags PDF-rendering detection as false-positive-prone ([brotector](https://github.com/kaliiiiiiiiii/brotector)). Detection-side claims of accuracy are as under-audited publicly as evasion-side claims of stealth.\n- **Non-public ground truth.** Cloudflare and DataDome do not publish their scoring, so nearly every claim on both sides is inferred from black-box outcomes on a handful of targets from a handful of IPs. That is the core epistemic problem in this domain, and it is why the disagreements persist rather than resolving.\n\n---\n\n## 6. If you want to check any of this yourself\n\nThe four artifacts that let you replace argument with observation: [brotector](https://github.com/kaliiiiiiiiii/brotector), [rebrowser-bot-detector](https://github.com/rebrowser/rebrowser-bot-detector), CreepJS (open-source fingerprint auditor, referenced across sources as surfacing stealth-induced inconsistencies), and the [benchmark repo](https://ianlpaterson.com/blog/anti-detect-browser-benchmark-patchright-nodriver-curl-cffi/). Run them from *your* IP against *your* targets — §3 and §4 together imply your result may be dominated by network reputation rather than by which stealth fork you chose, so someone else's pass/fail table transfers poorly.\n\n**Sources:**\n- [blog.castle.io — Why a classic CDP bot detection signal suddenly stopped working](https://blog.castle.io/why-a-classic-cdp-bot-detection-signal-suddenly-stopped-working-and-nobody-noticed/)\n- [blog.castle.io — From Puppeteer stealth to Nodriver](https://blog.castle.io/from-puppeteer-stealth-to-nodriver-how-anti-detect-frameworks-evolved-to-evade-bot-detection/)\n- [rebrowser-patches](https://github.com/rebrowser/rebrowser-patches) · [rebrowser-bot-detector](https://github.com/rebrowser/rebrowser-bot-detector) · [rebrowser-puppeteer](https://github.com/rebrowser/rebrowser-puppeteer) · [rebrowser blog](https://rebrowser.net/blog/how-to-fix-runtime-enable-cdp-detection-of-puppeteer-playwright-and-other-automation-libraries)\n- [Patchright](https://github.com/Kaliiiiiiiiii-Vinyzu/patchright) · [CDP-Patches](https://github.com/Kaliiiiiiiiii-Vinyzu/CDP-Patches) · [brotector](https://github.com/kaliiiiiiiiii/brotector)\n- [puppeteer-extra issue #811](https://github.com/berstend/puppeteer-extra/issues/811) · [#920](https://github.com/berstend/puppeteer-extra/issues/920) · [#793](https://github.com/berstend/puppeteer-extra/issues/793)\n- [DataDome — detecting puppeteer-extra-stealth](https://datadome.co/bot-management-protection/detecting-headless-chrome-puppeteer-extra-plugin-stealth/) · [DataDome — iframe evasion](https://datadome.co/threat-research/how-datadome-detects-puppeteer-extra-stealth/) · [DataDome — new headless Chrome & the CDP signal](https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/) *(all 403 to direct fetch; second-hand)*\n- [Anti-detect browser benchmark](https://ianlpaterson.com/blog/anti-detect-browser-benchmark-patchright-nodriver-curl-cffi/)\n- [Scrapfly](https://scrapfly.io/blog/posts/how-to-bypass-cloudflare-anti-scraping) · [ScrapeOps](https://scrapeops.io/web-scraping-playbook/how-to-bypass-cloudflare/) · [use-apify](https://use-apify.com/blog/web-scraping-anti-detection-2026) · [ScrapingBee](https://www.scrapingbee.com/blog/puppeteer-stealth-tutorial-with-examples/) *(vendor content — low evidential weight)*"
+    }
+  ]
+}

@@ -1,0 +1,2602 @@
+{
+  "schema_version": 1,
+  "refresh": {
+    "date": "2026-08-27",
+    "trigger": "initial",
+    "immutable": true,
+    "teachers": [
+      {
+        "provider": "codex",
+        "model": "gpt-5.4",
+        "cli_version": "codex-cli 0.149.1"
+      },
+      {
+        "provider": "claude",
+        "model": "claude-opus-5[1m]",
+        "cli_version": "2.1.243 (Claude Code)"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "path": "fixtures/2026-08-27/cases/academic-bm25/claude-result.sanitized.json",
+      "sha256": "3e657fe9ddf9dcacdd24e1144e077d7f4e4d7955b6b8ca08db81cb841a7e6f5c",
+      "bytes": 4102
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-bm25/codex-events.sanitized.jsonl",
+      "sha256": "8a674c48e04ea536f9fa61c9ba26f65cea06f433d4d9b3859f97abee88de002d",
+      "bytes": 8165
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-bm25/derivation-policy.json",
+      "sha256": "d420c87784edf8c67d0c53ee3832ca15939f7c03bcd811c126c01bd84b4cdb08",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-bm25/draft.json",
+      "sha256": "4c71d519514bd9500412e95515dda6ce71a76e61c23afa2fabcd5fd84649279d",
+      "bytes": 8972
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-bm25/evidence.json",
+      "sha256": "7cca2c6c5de37fc9560c859d229ca7f3418546494bbe20f4070ef0debd61425a",
+      "bytes": 68871
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-bm25/fixture.json",
+      "sha256": "7ec4c6c5e99b8cd4506f0569f14f4004105f608976eacb155cbcfa3d774a7e56",
+      "bytes": 8900
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-bm25/verification-policy.json",
+      "sha256": "e384587536eb819c96551ca895911a782dbc84a1e95e6746a298f39b88edeae7",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-bm25/verification.json",
+      "sha256": "7da86be3c220e21aaf1d973602d613d1a2504d9fce9c34af76946bb9ae6deece",
+      "bytes": 754
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-browser-fingerprinting/claude-result.sanitized.json",
+      "sha256": "f65fad3c3c6b78bcc77804d6e98957518ae958709405a972e4ad4f5eea541a64",
+      "bytes": 4266
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-browser-fingerprinting/codex-events.sanitized.jsonl",
+      "sha256": "eb9b52e8957a3502233f9cefc622aee10a4a89eb6b4dddec3404b7565009d7ac",
+      "bytes": 8410
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-browser-fingerprinting/derivation-policy.json",
+      "sha256": "7197a8870e59b5aec252cd2550fff59befb3125069f280ed0a4c886f702b8dfd",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-browser-fingerprinting/draft.json",
+      "sha256": "e19c39947453eefdad4705bc63734e107c537377d8ca226d423f68d00807faca",
+      "bytes": 9325
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-browser-fingerprinting/evidence.json",
+      "sha256": "91013418a964210f10abdfd5312207e55308abba7fc0579e45f83b7c9f5d98c0",
+      "bytes": 70355
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-browser-fingerprinting/fixture.json",
+      "sha256": "a96ac0a8de1f02dc3c4349ca470a8d7bacaf3a219b6d5e12498bad89178461e6",
+      "bytes": 9834
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-browser-fingerprinting/verification-policy.json",
+      "sha256": "db608476e38e5d2bf0a5d6f1d9269e9b15b09d14e91e38d9371a8012344e45df",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-browser-fingerprinting/verification.json",
+      "sha256": "27825bfe3bd66f6d85363a0a38ad51b1e7cc35033cfe332edde4e94231816db4",
+      "bytes": 836
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-retrieval-diversity/claude-result.sanitized.json",
+      "sha256": "28a1cebe955e5bdf842739269e7217e5cd8ce4b8178f9d56be8171d87cd21076",
+      "bytes": 6199
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-retrieval-diversity/codex-events.sanitized.jsonl",
+      "sha256": "7ec5b923779268c051ab83758bea40bee039739f58798383506a0956377398d8",
+      "bytes": 6660
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-retrieval-diversity/derivation-policy.json",
+      "sha256": "7d4cc620c3c6cbead54dae7e321bbf01c4c37d650a27b534ee3611e361883fc6",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-retrieval-diversity/draft.json",
+      "sha256": "dfa6611eb9b90e11adae74d20517b44ff1469f05b889163306b153ebef249a3c",
+      "bytes": 7261
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-retrieval-diversity/evidence.json",
+      "sha256": "5db7d553773e6a2b05a562e5a4e376fb81ee1fbd91f6a131583c0dbcff209608",
+      "bytes": 67698
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-retrieval-diversity/fixture.json",
+      "sha256": "e977f5db6b828228313ae8c0461b2114b9da29db68edbb77161b9b1d5f448c10",
+      "bytes": 7161
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-retrieval-diversity/verification-policy.json",
+      "sha256": "868802f6ec382a9015960aecf2a8f6e7cdfee3b6daaa0341c32582adb1f6679d",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/academic-retrieval-diversity/verification.json",
+      "sha256": "c5d683348c350bab0e585574dd693e2d3a70fc7cef951df8de187e198547ce2c",
+      "bytes": 1807
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/ambiguous-best-search/claude-result.sanitized.json",
+      "sha256": "c0dfcd12d9a4b1f8c363dede74fbc90f938b26b9f0bd600c1c5a58c27412c010",
+      "bytes": 4123
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/ambiguous-best-search/codex-events.sanitized.jsonl",
+      "sha256": "9983560cbda5327bbd1442c12c1dd9ea6c4d6838a00a3c7010e6d4c003921c45",
+      "bytes": 10467
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/ambiguous-best-search/derivation-policy.json",
+      "sha256": "59e012307da4edae6de8fa0863053b1cb033c035c53f58d06d5cdfc664fca209",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/ambiguous-best-search/draft.json",
+      "sha256": "aee0b5f17a13a3309dc9e7a5561c57dafbcf152a5382aa6772298444d4f68eae",
+      "bytes": 11429
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/ambiguous-best-search/evidence.json",
+      "sha256": "ee339a6bcccfc791280c0b8a03a21e204a5847c136af081ad240c49763ee711f",
+      "bytes": 70329
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/ambiguous-best-search/fixture.json",
+      "sha256": "dc4ba35a9f2dc411da30b066e847db15af605f055662a4d910c27acc384213b1",
+      "bytes": 12433
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/ambiguous-best-search/verification-policy.json",
+      "sha256": "f76aea52686acd93ac4420f8339837f46a7b16151c0e4b8de207f39ae425f49a",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/ambiguous-best-search/verification.json",
+      "sha256": "e02b0e7ff0640939e692642be99e55e4d2cf97e13fd983a49122300f41c52b87",
+      "bytes": 740
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/ambiguous-xanadu-tuesday/claude-result.sanitized.json",
+      "sha256": "dd398a3893b33f2443044a67b3f971dac05de8a7a86017761737d1d90b3cd6eb",
+      "bytes": 3952
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/ambiguous-xanadu-tuesday/codex-events.sanitized.jsonl",
+      "sha256": "af6e5063faebf974807b53ce1fa30c4130fb65ebc9efc7765e86504bfee90a53",
+      "bytes": 5548
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/ambiguous-xanadu-tuesday/derivation-policy.json",
+      "sha256": "01ee8c48911b413df0bd4ad45b9468b5350207432073feead341a0b681566102",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/ambiguous-xanadu-tuesday/draft.json",
+      "sha256": "888fe84bfd3400613f0278f04d8f1ecabefe14d29408917928231b6ad9857291",
+      "bytes": 6257
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/ambiguous-xanadu-tuesday/evidence.json",
+      "sha256": "df3039f13d6779f72f2e1ae399d690306666a62b1a4c283829b936e4fa756732",
+      "bytes": 48020
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/ambiguous-xanadu-tuesday/fixture.json",
+      "sha256": "051bbed5230629c404d51bc4cb4c031a8ad50764cea52b57d7fe28afced76a22",
+      "bytes": 6590
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/ambiguous-xanadu-tuesday/verification-policy.json",
+      "sha256": "6faaa8046834720f4873c3f091db9d3b0f674f77d94a66351865231a26f9249f",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/ambiguous-xanadu-tuesday/verification.json",
+      "sha256": "64b2e63b19f737e7b6812719f8bc90a02667ccedfb275061d971d37fe42caada",
+      "bytes": 680
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-bun-production/claude-result.sanitized.json",
+      "sha256": "0cbf086179bf3b669c922e36682c1fd03f9475f61a044c6d0dea02e7d553e66a",
+      "bytes": 4674
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-bun-production/codex-events.sanitized.jsonl",
+      "sha256": "07c21954cec30d9a20cba59837ae56f7a9818c64574fc0bbbe20e6b8a95c573f",
+      "bytes": 8671
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-bun-production/derivation-policy.json",
+      "sha256": "fa7668517d16119f2de0592ac5ef1f867f9953c9b86a312117f0027b2ef565dd",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-bun-production/draft.json",
+      "sha256": "a23a0595a3f47bc7dbbba57b8f8fa5620581f9a53b0eeb0c372dcc3b83bcef02",
+      "bytes": 9737
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-bun-production/evidence.json",
+      "sha256": "3f243fb110d8b829454c557b7655edbee1472c245c6062aa5652266e1df41d53",
+      "bytes": 107517
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-bun-production/fixture.json",
+      "sha256": "b6117acc202da0487bc6a75e20be3ec1036d99117c426fd5ab5794c5f2e44af9",
+      "bytes": 10567
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-bun-production/verification-policy.json",
+      "sha256": "ffe26c95efca70deea1075c34093b1de6b9f745f4c079c8d8557dc259fffab22",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-bun-production/verification.json",
+      "sha256": "df646a082bacc1793383246c71e6b284bfb3ad8e3337f5ca3252e74b34880e4d",
+      "bytes": 1038
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-headless-stealth/claude-result.sanitized.json",
+      "sha256": "b2140d101e503d290ee926915a09e22d40430eb336653c4d4f679309f403e96c",
+      "bytes": 4532
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-headless-stealth/codex-events.sanitized.jsonl",
+      "sha256": "77e3343504a07395ba2f0159749880b44293b2fea15d2ff0dc300f04cfb6ae78",
+      "bytes": 11847
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-headless-stealth/derivation-policy.json",
+      "sha256": "a499ae63b3ab9adaeec8782ca427f24dfdd5e974d6470d391d102d9e06304ebd",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-headless-stealth/draft.json",
+      "sha256": "065c66aa8034a36a177fca73821a64210a6bf46ee04a7810eaef616b051f8779",
+      "bytes": 13448
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-headless-stealth/evidence.json",
+      "sha256": "0e1d899916970cbf04437ec6b37483e0be6778a062244f65c93a2efb5c08dec5",
+      "bytes": 127353
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-headless-stealth/fixture.json",
+      "sha256": "94b5c7f73260295844bbd6dea82cfa7a3979f8d6b8d4a1446c215203e00b0d53",
+      "bytes": 12509
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-headless-stealth/verification-policy.json",
+      "sha256": "509e3428f41a75cbf8733b404086bb0aaa1b17444d23e8325bd7753f4d719184",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-headless-stealth/verification.json",
+      "sha256": "d059dff14b4098b4ee020d2d55865475e91a81d20ccd18eb9d76d88b5e523a1f",
+      "bytes": 970
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-robots-ethics/claude-result.sanitized.json",
+      "sha256": "396abfd30c4ab812401943f8b7f84cdfdf334030eff576fb8ecb834971425689",
+      "bytes": 8425
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-robots-ethics/codex-events.sanitized.jsonl",
+      "sha256": "9e5f6369165987849d10eacff50695be4ea22c887bef46dcf3fd144f62947177",
+      "bytes": 9401
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-robots-ethics/derivation-policy.json",
+      "sha256": "9e378ff1596454bd9867ae5a2a19bc32ca058ef8e07d1700c4b48730bf9d6d45",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-robots-ethics/draft.json",
+      "sha256": "7b5154dff9190bd9c95b9039cf0b8113b7dc59dd84b9184ba3b6af692b68fba7",
+      "bytes": 10496
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-robots-ethics/evidence.json",
+      "sha256": "b87fe237357bf6df73e571439a6fe263c9288c63fccc0057cb5ad5d26ecc3038",
+      "bytes": 129743
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-robots-ethics/fixture.json",
+      "sha256": "34c9c411a953332b19f4f7b43700c671dbca0cd26d0003786bf9a0c3e1f829ba",
+      "bytes": 7283
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-robots-ethics/verification-policy.json",
+      "sha256": "62e162a3d08877940e1dfef3cc8f56edaefd8169049df3aa7d29a929ec8bfb73",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/community-robots-ethics/verification.json",
+      "sha256": "17a012524bec73534f5251bb893ed88ac9e25ed6841a7e1f42f848e57327876c",
+      "bytes": 2934
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-apple-security/claude-result.sanitized.json",
+      "sha256": "41e5a8a8c0dc6a63637b11d115d6f34c47f3a91a8bed094ff9ef4ebd86e2e726",
+      "bytes": 4645
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-apple-security/codex-events.sanitized.jsonl",
+      "sha256": "dc4e3868f4e51e5296d27dd1b719e0b15bce3c44a9df8341e76da66b7c0da2ae",
+      "bytes": 5004
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-apple-security/derivation-policy.json",
+      "sha256": "480f951e555aaf77f1b3d3a2b6a2a9b800b460f86de5f2428a68410adc322723",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-apple-security/draft.json",
+      "sha256": "898c230613b6e8caec3fdec99a7da9c3d66a1b8bb8fef3fb59791883196ff11a",
+      "bytes": 5623
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-apple-security/evidence.json",
+      "sha256": "f5084bf9dc64fb4f384c060c2dad84e99d02f4682f1475f8fb0990b3ac8f7962",
+      "bytes": 45466
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-apple-security/fixture.json",
+      "sha256": "6f59a77d105d0a709a774c4a4adc60adf1fe44d4ddf281668e7acb8f01fd3c84",
+      "bytes": 6473
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-apple-security/verification-policy.json",
+      "sha256": "a866a02fd013ba24a6d5e0f518167b356fd3f2cd7703575946e5e0f543a61757",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-apple-security/verification.json",
+      "sha256": "3f25a3c7d795fa7fcc8071ceef4bf89c3d8e2ffd5b141a88d3ca1559e0042033",
+      "bytes": 1026
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-bun-release/claude-result.sanitized.json",
+      "sha256": "817df100582a5c27d0442fe2063dee43e93880cf0e5242c86413655c58b0f7e6",
+      "bytes": 4378
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-bun-release/codex-events.sanitized.jsonl",
+      "sha256": "fbd08c66ea340fe4e734ff0a7ea336351b07800a7b4d325f7260a00d7493f24a",
+      "bytes": 8048
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-bun-release/derivation-policy.json",
+      "sha256": "ce6919d5373900c124543cce0fa33c7cb70c6a2586363da15c6c0bfde89d4548",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-bun-release/draft.json",
+      "sha256": "d0935d010464ee435415df74a9c8c5930517002cf70f7857c1dc8e3cf3eb37c8",
+      "bytes": 9109
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-bun-release/evidence.json",
+      "sha256": "5b3e61601b5bdb15b28d13b9397e0eeeba6836a280b5f0424b5ca78fccf61e4a",
+      "bytes": 38597
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-bun-release/fixture.json",
+      "sha256": "831adfb243be15bda3726b9a84e445c3b23365673282c107bd407180ea4f8136",
+      "bytes": 10213
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-bun-release/verification-policy.json",
+      "sha256": "81f45d57ae823d9ac44b3236b37f1de925f7ccc885c74bff1b38658ff78bc9b3",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-bun-release/verification.json",
+      "sha256": "80a9545d61b15114e1b8b6026c87f3e8c50e28646d16d2605aeeb7c0193a864d",
+      "bytes": 885
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-mcp-release/claude-result.sanitized.json",
+      "sha256": "a45c4ce83c56bed4bc276684c9ce20838418825cdc6ce0658d3e76030cb4644d",
+      "bytes": 3069
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-mcp-release/codex-events.sanitized.jsonl",
+      "sha256": "0fc8d47036d7836006380b30e4aeb28a5ac727e7951d018871d76c7ac9a45df0",
+      "bytes": 7686
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-mcp-release/derivation-policy.json",
+      "sha256": "93747ac5d237af013c03a24ba8d47c45dace96e10a3b3ab650a9210c715e46a0",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-mcp-release/draft.json",
+      "sha256": "b4917f1e396e960de9ce355232fdbbc6d434a0ff279c1e81e11f3e7d4eef8722",
+      "bytes": 8603
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-mcp-release/evidence.json",
+      "sha256": "75f6c23e1b609603510372913c0a180f24272d49cf97d277d4f373eb0713eff3",
+      "bytes": 67705
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-mcp-release/fixture.json",
+      "sha256": "607789c964e3f74197ff07b109f62c613d2c82fc1b6baa82db47832aad0f81cd",
+      "bytes": 10110
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-mcp-release/verification-policy.json",
+      "sha256": "52aa9847352c405ac9c63b99702eaa9dd58ecc55e1975214363022b1df177568",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/current-mcp-release/verification.json",
+      "sha256": "d49994e2bb55d49cba5bf9ebdf61d12109c0b19354daefeb5d659b83af2e7a48",
+      "bytes": 240
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-es-climate/claude-result.sanitized.json",
+      "sha256": "a44f4ace468828b915ab53bd995dc6271c5e74c81fb3bceb75000f167595eba2",
+      "bytes": 7276
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-es-climate/codex-events.sanitized.jsonl",
+      "sha256": "1e9f34aa4988c587bc5d1a262b53be88e21a950b144e6629efb12aa864d5813c",
+      "bytes": 14513
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-es-climate/derivation-policy.json",
+      "sha256": "539207ba2f7d60960f5fdf1e6a86812068ff17a46e82e4dca01aa226385e5dd3",
+      "bytes": 1327
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-es-climate/draft.json",
+      "sha256": "1405bb7b4c0ec751b509dc6d4fd6cfdfedb7ac09c404817b7b5cbb87ea7a3e29",
+      "bytes": 16132
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-es-climate/evidence.json",
+      "sha256": "5ae5224e2cc0d787575a5d5a85788a6bc37a4ccb6122fdfb58d530cdf3fe63e6",
+      "bytes": 76177
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-es-climate/fixture.json",
+      "sha256": "9e46b309de860caecd5bb96dc879c926d3d3cfe0a0ea1ff36653ed78fdbaeafc",
+      "bytes": 14414
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-es-climate/verification-policy.json",
+      "sha256": "3c691f62339b278086c5cdc584fc523b19cdcae84d73ae7d83a979cf51b284e1",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-es-climate/verification.json",
+      "sha256": "8ab80d79bf7c141b67940335c59a9a5d584f2ff6d45c281b4712239d39de6494",
+      "bytes": 2339
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-fr-open-data/claude-result.sanitized.json",
+      "sha256": "59b6deedd0c66d40b99b2e9b8ab934e45ff0e195e58bd6c4ef111c7bf4653ca0",
+      "bytes": 3885
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-fr-open-data/codex-events.sanitized.jsonl",
+      "sha256": "d6e39f144241e5595b818f8282e393a428aee1d058c0c1ad9c69177d2f04f3ae",
+      "bytes": 6783
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-fr-open-data/derivation-policy.json",
+      "sha256": "b575a3ae7d360e02160024ca43b4b2e5e7a2aad57181bfc48fede37a0e1e010f",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-fr-open-data/draft.json",
+      "sha256": "7a2f05ed5faa72c029ce7f52aa765da3204d47c120228a6f04f953d3ade71741",
+      "bytes": 7499
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-fr-open-data/evidence.json",
+      "sha256": "61fd37ae3f2c878413e0d4096dd5046f9f88a92370abef30e3bef90f67e499e4",
+      "bytes": 90255
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-fr-open-data/fixture.json",
+      "sha256": "19032ffe4874e8bfc0293cdbeb9daeebab7fc573c667f644497943fb85d4c5dd",
+      "bytes": 8586
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-fr-open-data/verification-policy.json",
+      "sha256": "32706fc8c3494b5d034d12823a5c2eccc9a71a225cf4543a91adcd000eaaeba5",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-fr-open-data/verification.json",
+      "sha256": "92cc7ab726a870b5bad6e587b48561c873a8d41c82ec5788d78e60db45029bd2",
+      "bytes": 645
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-ja-web-standards/claude-result.sanitized.json",
+      "sha256": "871579105fc878736bf7b04dbfdd32502fe13321aaacfbc5497159ebdc260b41",
+      "bytes": 2809
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-ja-web-standards/codex-events.sanitized.jsonl",
+      "sha256": "0777e3abac61552aa847230f7fd03969651fdd1bdace4a5d4747704b90592105",
+      "bytes": 9022
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-ja-web-standards/derivation-policy.json",
+      "sha256": "4206ba0514e28175b07f617e6f1b6cc8f54d12ae93af644ffb09a7f73f264a03",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-ja-web-standards/draft.json",
+      "sha256": "ce2a12d7e8cf9005e8bab50390b7a5d9e7fd7bdbbd17a193b40eece752d2edbc",
+      "bytes": 10033
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-ja-web-standards/evidence.json",
+      "sha256": "0bf2902bca512607d86c1a758d0d860bc9ef6c8b0eaef08b77b9bdac632738be",
+      "bytes": 79057
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-ja-web-standards/fixture.json",
+      "sha256": "7343ce0b14fc3a1a41f5a52ddad9fe554185dae3f14f4a15ed9351d74774f2aa",
+      "bytes": 11889
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-ja-web-standards/verification-policy.json",
+      "sha256": "2571fb767e3dd15ad1c6c96b0702ea0ad218873c9e80e84c43c401508d22bac0",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/multilingual-ja-web-standards/verification.json",
+      "sha256": "bbaa7bf193e051abfaf2ca3e55310bb36b9a3d918104b83b906a565b8813a49a",
+      "bytes": 96
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-bun-webview/claude-result.sanitized.json",
+      "sha256": "8a7df5f087243f7042e7b5c4bf7427009787212f2e464de986e3fadccdac104e",
+      "bytes": 6109
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-bun-webview/codex-events.sanitized.jsonl",
+      "sha256": "3c7ca77c23313a8e8070dbe0470b48341eae99715f39f66eb08550dd4e75c487",
+      "bytes": 8818
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-bun-webview/derivation-policy.json",
+      "sha256": "6a9f4debbe75dbd60473ab28d36cfd22e10ced55aeb21ec2afda907417561f99",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-bun-webview/draft.json",
+      "sha256": "8e639a2b9325c34ce5ac254a170c46b8e1dbc0708174951a240bdf29201bd2b9",
+      "bytes": 9725
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-bun-webview/evidence.json",
+      "sha256": "9992938d504c2e6f4ae8845717ef3fedd3a1279ef29e178f4c2cb0c06574e6aa",
+      "bytes": 26787
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-bun-webview/fixture.json",
+      "sha256": "93edc1367e2369fb0360b050f8dafe7f7af72c9b6d5f99b6c92896fa0ed48452",
+      "bytes": 10288
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-bun-webview/verification-policy.json",
+      "sha256": "d40d95cdaff6825686006ded81019e2b1460829afceb29e8889a3d8a747816f9",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-bun-webview/verification.json",
+      "sha256": "33ca479d338790bd848680b05eba642084ef9048d173f1226a37810916647a8e",
+      "bytes": 1776
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-mcp-stdio/claude-result.sanitized.json",
+      "sha256": "cbdc7c33bcda01b72f6c533091aa1ec19401e8970b02fede9fb0a9f7a3297521",
+      "bytes": 3172
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-mcp-stdio/codex-events.sanitized.jsonl",
+      "sha256": "fd91f1b12d5d030a4f78bbbb128eab8d1f8f0cddc710e86d26e3e3d3947d7892",
+      "bytes": 10346
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-mcp-stdio/derivation-policy.json",
+      "sha256": "ebad453ac0e177b515e7f459aabcad58aea824687e3bda2211f7f79b45658b27",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-mcp-stdio/draft.json",
+      "sha256": "31598dece39a3904217835b29983d2a7cdf183da3d5620dae34f81f56d3d528b",
+      "bytes": 11596
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-mcp-stdio/evidence.json",
+      "sha256": "fb8173bc123458eaff3a1b45bda589970556567e936217eed332b3ac70af4bfe",
+      "bytes": 71351
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-mcp-stdio/fixture.json",
+      "sha256": "bcd980077f5a866957b053840fe3438343f5b5a92298e23a3d13420b9922af0b",
+      "bytes": 13115
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-mcp-stdio/verification-policy.json",
+      "sha256": "ee3af098cac4d0e753823eec898be65d460bf0a271293cd69bd65aa9c61b5f8d",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-mcp-stdio/verification.json",
+      "sha256": "95b998071e1dcba541b949bd87197b86e4282fd523161983f6a59282e8de215b",
+      "bytes": 280
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-pdfjs/claude-result.sanitized.json",
+      "sha256": "b272a3fd9ee5e773ccea1880aa5371757c80296f082a1aee07126a7f97122b69",
+      "bytes": 2798
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-pdfjs/codex-events.sanitized.jsonl",
+      "sha256": "bc1a510669e227a8b34c6f2b0e7940f42891a47cc61226380acd4afc4287afdd",
+      "bytes": 8282
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-pdfjs/derivation-policy.json",
+      "sha256": "d7d0805db13da9d127949bfd45d85ced595ce4360375dc4ffaaeee2e557d3e51",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-pdfjs/draft.json",
+      "sha256": "1f1ff42c5afc1e74b223e7b71812a97828831abc476c2057c410e91acf9e27b3",
+      "bytes": 9242
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-pdfjs/evidence.json",
+      "sha256": "11730c6845d7c19d44f2074f7ff9c25436cf449cea5d69cc9b045915772f41f9",
+      "bytes": 92459
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-pdfjs/fixture.json",
+      "sha256": "a8c2caefdce0b8546e97b836f8fce36c646f62be1e7369bf760d365b79d96058",
+      "bytes": 10707
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-pdfjs/verification-policy.json",
+      "sha256": "0c9927b24fcf517d2f4b6696017af7427863b231d7abaa6978eacb9762b365eb",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-pdfjs/verification.json",
+      "sha256": "a5b027a15a3b1ab768e797fbdb2ca4001fd461a9200fbbbbbd43d9ccf939c0d4",
+      "bytes": 90
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-robots-rfc/claude-result.sanitized.json",
+      "sha256": "c4fcf2b97aa7fb0555d70b59b0c54f92b534f281280167d8ba9cdee2b51bb622",
+      "bytes": 3056
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-robots-rfc/codex-events.sanitized.jsonl",
+      "sha256": "fb04095e281e961eeac50a69e4e674551fb15a337bcabb1157c6c90206076a6c",
+      "bytes": 8213
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-robots-rfc/derivation-policy.json",
+      "sha256": "93b897ad0dcbccdc3707cc1ee0ce8b4b526e80c616efeb3d4ce06a52cc7cf2b8",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-robots-rfc/draft.json",
+      "sha256": "5b6a8820747ad11199f59ff9d6a59892f2cdd6cc32c6864ba308850be743c752",
+      "bytes": 9197
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-robots-rfc/evidence.json",
+      "sha256": "6efffec0b88bd15a0b025417d59c0c2d2a382e2c6289841c4ab34fa7d2a494b5",
+      "bytes": 23644
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-robots-rfc/fixture.json",
+      "sha256": "54ab8cd611e481aff91d30e9f81ded0535cb266cebad6ed15b0dc3c7ed5b50e1",
+      "bytes": 10499
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-robots-rfc/verification-policy.json",
+      "sha256": "c6c8c986457ada9313d17dfd1de938b408d0b4a450e0b3d7994e2a0df0b11f72",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-robots-rfc/verification.json",
+      "sha256": "84179736ed7958378ff64e5afa5e4b5e33384c842858c576a50b59056052baeb",
+      "bytes": 233
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-sqlite-fts5/claude-result.sanitized.json",
+      "sha256": "cd7e4e0cdeedac8022d7fcf1db71fda8b0810eb63b63e958b569f66c0a97ea44",
+      "bytes": 4114
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-sqlite-fts5/codex-events.sanitized.jsonl",
+      "sha256": "726ea14a2aa4cc1d521e1ecadcb0a5acb8a5b6f954dd0e54541e5f7c007cc624",
+      "bytes": 11723
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-sqlite-fts5/derivation-policy.json",
+      "sha256": "3579251dd3ef296629eddf5bcfc9114edfef33d4a878523596deb1194f96c60e",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-sqlite-fts5/draft.json",
+      "sha256": "ec6f901862bae44fc324e1de9677de07b06ce592afa94f7efe39577a8bfde373",
+      "bytes": 13353
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-sqlite-fts5/evidence.json",
+      "sha256": "df0a37b8e9e23f338fae5b8816e5eb96550a7fc0444c723440977842830452eb",
+      "bytes": 44660
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-sqlite-fts5/fixture.json",
+      "sha256": "6258f8fed2086ac877f43d4ee8f01e3fdea2a54b59a2859c16b79e099e72c38a",
+      "bytes": 13874
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-sqlite-fts5/verification-policy.json",
+      "sha256": "34787eabb64d74b93d2ba59d9c3034f4117a30217b57abf0d433dfbb5e163d81",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-sqlite-fts5/verification.json",
+      "sha256": "de9daab2d15df676b76545d9cdc899ef9ea8fc95c5cbd4cb050cef16e0247374",
+      "bytes": 759
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-url-canonicalization/claude-result.sanitized.json",
+      "sha256": "ef712e4d9690ac3e7d5d2c1ac43e34a172bde37e2d3b591f220905377a327781",
+      "bytes": 6075
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-url-canonicalization/codex-events.sanitized.jsonl",
+      "sha256": "701071ab7746951f085c6258138e1e2c37606f1bba5a58f4d72a8a3953c8daf7",
+      "bytes": 8240
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-url-canonicalization/derivation-policy.json",
+      "sha256": "fe4181823fb51bd19e209094b6e84909e5e3d30bac615ba43e64466cf72c8818",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-url-canonicalization/draft.json",
+      "sha256": "21fb971afb64323801f1b21b1c98a703bcec8c56d11541d1d5df6f3892c73a24",
+      "bytes": 9017
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-url-canonicalization/evidence.json",
+      "sha256": "0aba74fecb8ba0e452a2297a78c2337033159169b728e05f057226fbf0c5eadf",
+      "bytes": 49685
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-url-canonicalization/fixture.json",
+      "sha256": "eb510a173a19687ad5dca564b4b178cda5fe7b8f26cb9e59c105776859ef99f4",
+      "bytes": 9323
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-url-canonicalization/verification-policy.json",
+      "sha256": "934ff88c451cad822b983743ed3cb8c4b94f443b93920574785359c55d94a9b4",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/cases/technical-url-canonicalization/verification.json",
+      "sha256": "08eea94286169515ea1ebe4070a06d2b6a377278cfdee9339712c1be75d7def2",
+      "bytes": 1746
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-bm25/claude-result.sanitized.json",
+      "sha256": "18234b5396a0264cdda4b3428c85e59c54aa39c8f6ad8d8cbc30850eec2b8d5c",
+      "bytes": 5328
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-bm25/codex-events.sanitized.jsonl",
+      "sha256": "41eb8cb8a16a040e97b2147d92a47bb229f60be2110cc5f22d56cd4591fa9d7a",
+      "bytes": 8319
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-bm25/derivation-policy.json",
+      "sha256": "73541398b60a53a6c0d75af093cc1606f956dcd312e4d8cc4e24ff68b2759e5b",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-bm25/draft.json",
+      "sha256": "8afc8a4058af9f393896767a9488edfaed5cc4ca879827768eebb113fe78c26f",
+      "bytes": 9141
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-bm25/evidence.json",
+      "sha256": "1b45e435ea3ed589a7940aaf7238fb77a6f7664e943a9538660be937d322cd44",
+      "bytes": 66533
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-bm25/fixture.json",
+      "sha256": "39b834715e043f644a299db6618c8c01f6742ccf3e15a8edcb045a0769b3a7cb",
+      "bytes": 7770
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-bm25/verification-policy.json",
+      "sha256": "b98773c9376f1b5fba7bd9953740bf6f18f701b6ea67c132c919f9c564dc6981",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-bm25/verification.json",
+      "sha256": "0f14cb20a945c097a7f01379884992e49c299e171da3914af2e5b78f32d648d6",
+      "bytes": 1367
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-browser-fingerprinting/claude-result.sanitized.json",
+      "sha256": "f3174783194fd070c9066d3bd87b97f1ce421c6435a887e82dd7b334ea1c67e8",
+      "bytes": 5453
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-browser-fingerprinting/codex-events.sanitized.jsonl",
+      "sha256": "ab9350ea5279c9cdec590784e1d141fc038065d73010d11a80cbe54d09654e5e",
+      "bytes": 8476
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-browser-fingerprinting/derivation-policy.json",
+      "sha256": "227fe0913725819e31c1c28da4518f1b341025510cb9205ba3ec368711d007d5",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-browser-fingerprinting/draft.json",
+      "sha256": "b41800ca24c717ea50f00bedfebd420455f68b4157ab43c8b9474d88d67be430",
+      "bytes": 9590
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-browser-fingerprinting/evidence.json",
+      "sha256": "8af056b8d08af90e6a86d9dc60c057dbe854320549551fa75ce1178b714d6566",
+      "bytes": 68280
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-browser-fingerprinting/fixture.json",
+      "sha256": "a07618b621973a72796982fe6d7fd8dab2796bdb9802145ee012302670438864",
+      "bytes": 9346
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-browser-fingerprinting/verification-policy.json",
+      "sha256": "0a9163aa4b3332c398cb05cc7a5f74bedcac61b8b40813aff957ae70d61063e4",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-browser-fingerprinting/verification.json",
+      "sha256": "a07953885a4151326f0028fef96c4dc9002b102b85e5bc0e460fa647969e6537",
+      "bytes": 1430
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-retrieval-diversity/claude-result.sanitized.json",
+      "sha256": "7c6f5ccda86ccfbe563cdddb68ba55b5f99908679eab5a2e25b6d053635f2a63",
+      "bytes": 4424
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-retrieval-diversity/codex-events.sanitized.jsonl",
+      "sha256": "bded6289babd8c7748ddb59d9dfe76789b6e728d06b3c83b80d41b748f444f3c",
+      "bytes": 7769
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-retrieval-diversity/derivation-policy.json",
+      "sha256": "6b9c09ed46aef0e4b685d255f122da32e049e54160fa2de224c8c2ce4e427869",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-retrieval-diversity/draft.json",
+      "sha256": "9aab6b4109912fe5c6bc7bd30d5f7b026ba81c22b53cc4209fc83c89119bbd2d",
+      "bytes": 8475
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-retrieval-diversity/evidence.json",
+      "sha256": "3c326595a793b817f3789128f5e333482db72f090e0e3fb55c48413c26933599",
+      "bytes": 71327
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-retrieval-diversity/fixture.json",
+      "sha256": "0288d3148ea1eee9f878ecbf7c05ff8651c00b3ca9810ed28c032c3c4ffce897",
+      "bytes": 8541
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-retrieval-diversity/verification-policy.json",
+      "sha256": "a310b42c72d2d88b7a4a1340c8bc17b7e1aaf2f977cb9e6aa33e6be5eaf4d95c",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/academic-retrieval-diversity/verification.json",
+      "sha256": "c4d6da18d08f3f8cccc164654d83b06ed888a258f44c758edfffc5e1e5bb282b",
+      "bytes": 905
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-best-search/claude-result.sanitized.json",
+      "sha256": "10b0aac89b771ceac2982da5c3a79092d670e55a26d6501200b4f8f6c354d23b",
+      "bytes": 5052
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-best-search/codex-events.sanitized.jsonl",
+      "sha256": "d811428729a690415fbba344a57e96f67e651055f73e807c2f41df13b5082d17",
+      "bytes": 9583
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-best-search/derivation-policy.json",
+      "sha256": "b214898e5684c272f4e12adbbdb4e1a75ebf56b149c3634843210ea5b1b573cc",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-best-search/draft.json",
+      "sha256": "1c124960cb76da76a4094397c68d89a20d05d5042fa693ce5251f0b7b748e759",
+      "bytes": 10441
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-best-search/evidence.json",
+      "sha256": "1c8de8577f1037725e12fad409382301664af7e11b72a1ef93c4d3c0ab4e8dcc",
+      "bytes": 71940
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-best-search/fixture.json",
+      "sha256": "8d5e9d1e52efc6065ca7040cb3cf145205ab550e6e986669ff2a153f74eec260",
+      "bytes": 10546
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-best-search/verification-policy.json",
+      "sha256": "3cccac11ba995d7186d144cfbe9f450cc0612f810ed83f150545b32d30f5f536",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-best-search/verification.json",
+      "sha256": "72aeba370bd77c95338e0d874ed5396f6270718c9e2f7b4322efd32b98d253c3",
+      "bytes": 1229
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-xanadu-tuesday/claude-result.sanitized.json",
+      "sha256": "2591e423db1e9bdc8b756cfcd595d41e22c203ba97b99721b796141c00e39049",
+      "bytes": 6674
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-xanadu-tuesday/codex-events.sanitized.jsonl",
+      "sha256": "cb06cffc41f7548b9ee77c2b466ae151d290b036e05889f6af0fe8375b75743b",
+      "bytes": 7752
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-xanadu-tuesday/derivation-policy.json",
+      "sha256": "c02d4566c401c734f80227596143658bc968cb2b283fc8c95cc253bc8ec22608",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-xanadu-tuesday/draft.json",
+      "sha256": "0205265af113b40808ae20c3aa00ed36e7b7a2cc37f99f48be3a03978d667788",
+      "bytes": 8832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-xanadu-tuesday/evidence.json",
+      "sha256": "f8cc1230795189539212feccdf84155bd3cd57c930abc174a0029d711d2210ae",
+      "bytes": 49776
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-xanadu-tuesday/fixture.json",
+      "sha256": "dc811525383e8d9a6c56bce73a7edf4f4f0b904a53e348dba0c2d25520360fee",
+      "bytes": 8241
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-xanadu-tuesday/verification-policy.json",
+      "sha256": "d36680f8e12e281e4d9608c0530c8ae09d6d86ffd24fe63c4f7a5c6ece426ba7",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-xanadu-tuesday/verification.json",
+      "sha256": "e713d2055620808a1007bec2f98bb93ad1c5e1fd9fbd8fa2ff79cbdd8326f76f",
+      "bytes": 2056
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-bun-production/claude-result.sanitized.json",
+      "sha256": "da9779262a10ae55ff375145e9879375c943ffbc0b5a841d071e52390adbde10",
+      "bytes": 4148
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-bun-production/codex-events.sanitized.jsonl",
+      "sha256": "abdb2a1cb63c7b880f5fa5ce195dd430ca395c94d845f65c21c75ec0a203b827",
+      "bytes": 7478
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-bun-production/derivation-policy.json",
+      "sha256": "1644cd1ef22f6b96668bfea770feada4f2e7238953c4dc8ff1fcbab960189bf3",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-bun-production/draft.json",
+      "sha256": "a2dd578952f1ba1dd0eeea17ead893e5ddb18c26300ce4cf2a00955a41892e4f",
+      "bytes": 8416
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-bun-production/evidence.json",
+      "sha256": "8b758578a012f8b3ec43a25138876e0d47d9a10e9784beaae916ced047a18bb6",
+      "bytes": 108962
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-bun-production/fixture.json",
+      "sha256": "89445e8352f43ac3e25e9f539086ae7c751f2ac99ed2c61a3053a4178ef38748",
+      "bytes": 9630
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-bun-production/verification-policy.json",
+      "sha256": "9355d650b7da33dc9710e8ae9d55e7af3b80cd2b8225a06595836ee41e2f917f",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-bun-production/verification.json",
+      "sha256": "cc1f9944e5db741a0cbfdc66b964f473d8cdf0dc6e66a454b36fac3fff473af7",
+      "bytes": 777
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-headless-stealth/claude-result.sanitized.json",
+      "sha256": "6ba7c06c84ac065bac885f610b0736734e6b205b46b233314e1a2cccdc4b7140",
+      "bytes": 4423
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-headless-stealth/codex-events.sanitized.jsonl",
+      "sha256": "354d277daa7b96b8cd670dd86db392c44896c22cee18a2b79d9cd7a0e7edb4a2",
+      "bytes": 13948
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-headless-stealth/derivation-policy.json",
+      "sha256": "07b43e2cc2355d2c5a756eb7de062babac67ae21b5b69e0db715c8d52a26f8ab",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-headless-stealth/draft.json",
+      "sha256": "355381f57d4f8f7218c84b6e3cbffffa85c4636ad909eb6b9fa5b3709ee46697",
+      "bytes": 15973
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-headless-stealth/evidence.json",
+      "sha256": "2b159f76c61dbdc61596210a64e688bc6610a9e566e4c7db236f2716421c306a",
+      "bytes": 124635
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-headless-stealth/fixture.json",
+      "sha256": "b72a66d525f30b4339a250af1e4c5c2e0ae4594beff88bc04a01e70d76a5011c",
+      "bytes": 17280
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-headless-stealth/verification-policy.json",
+      "sha256": "5bd31174fa2c5feb5ca83dfb8ca2bdce7b157eea0ed56a76ea9b5fbcde4ca650",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-headless-stealth/verification.json",
+      "sha256": "e8bc45be0a297fd06502c3311b8b24d871b3cfb81bfad6d2ae156741605f0a71",
+      "bytes": 905
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-robots-ethics/claude-result.sanitized.json",
+      "sha256": "2fd08bde12265e42bfb252e3820ef7dcc3901abcc6ffc44f38bc08a2bfd179f1",
+      "bytes": 7163
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-robots-ethics/codex-events.sanitized.jsonl",
+      "sha256": "6396b7c28f165c22cecbc754f5912f536037d3be736ef414574b20634999703f",
+      "bytes": 10166
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-robots-ethics/derivation-policy.json",
+      "sha256": "02cfefe442214aa9aaf7331d833fc30a19e5cd240ed2a20116112ffc8154948a",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-robots-ethics/draft.json",
+      "sha256": "3537ee71d330e624947ba6c27d6917d544829ea7a2d7bc9c06f38a2d8b2ebb04",
+      "bytes": 11203
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-robots-ethics/evidence.json",
+      "sha256": "ef22d31ba44b2709884a57a88f01529f1a5d1ef3cdb7c1759cb9261679844bf2",
+      "bytes": 141052
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-robots-ethics/fixture.json",
+      "sha256": "141cd4c2ed1bc8135c42cf65ae4447333a50c268fd64a604fe9d41310919269b",
+      "bytes": 8606
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-robots-ethics/verification-policy.json",
+      "sha256": "432c99a59af1dbb98b052ee062ca0a700c4a19f312cb2214dc0748dabf0895dc",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/community-robots-ethics/verification.json",
+      "sha256": "a823f5bbcd7db367db358ecb44ad68086f99c1a1c45c48aa1b12dbfffe0d82cf",
+      "bytes": 2300
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-apple-security/claude-result.sanitized.json",
+      "sha256": "27fcfc6fb30ebc60f18369be897f664fb5c51a8ea5e096baec07e47b1bb4e161",
+      "bytes": 2916
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-apple-security/codex-events.sanitized.jsonl",
+      "sha256": "1421838cb6bb305c1b6423cf94f226d453ae44ecbc610102f2fe3bebb62da555",
+      "bytes": 3562
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-apple-security/derivation-policy.json",
+      "sha256": "280106f38408dbec8f955cbcb25dc11ef04724edef27fc3d73f06db4acd53f13",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-apple-security/draft.json",
+      "sha256": "85c1e8848259b657be824653c26d64f7d50ce0c387bb19eb745b767cdeba73ba",
+      "bytes": 3822
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-apple-security/evidence.json",
+      "sha256": "e424cc1af4ef0c26c57887976ac1118e5198d9ec74f4f78d1216b1975aa93f25",
+      "bytes": 43351
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-apple-security/fixture.json",
+      "sha256": "19288cfcb6e795e7967c1c5869e78cf67359add70d69a01066062196693a7cde",
+      "bytes": 4755
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-apple-security/verification-policy.json",
+      "sha256": "0160a43d30265734bbf220234f5d04a75fb2e1aef6fa59b95ef6362b291cec8b",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-apple-security/verification.json",
+      "sha256": "c3afe868401b8b01759a2de1b5c71e9785583716bebc2c3a3f750065b42074c6",
+      "bytes": 161
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-bun-release/claude-result.sanitized.json",
+      "sha256": "bb18d2dff0263d6b361d2a5f162dab338174fda302053cca52adb7adb8c44ee0",
+      "bytes": 3034
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-bun-release/codex-events.sanitized.jsonl",
+      "sha256": "59e5c26f6e41069eec6c2c74b9519e2f95afd4c227483969fd984e955dcf1d03",
+      "bytes": 7471
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-bun-release/derivation-policy.json",
+      "sha256": "ae0ae9e8f67997a4752ba87879973a31abaaec05b9f995157987f670e2dbc735",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-bun-release/draft.json",
+      "sha256": "6dc6a5793a82741755de10d032f537a950a079de587ce998d7dd71750bf60a55",
+      "bytes": 8484
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-bun-release/evidence.json",
+      "sha256": "533506160af34f287722845ea20a3988e051350c7c14efe293a96c53bafdfe0b",
+      "bytes": 40536
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-bun-release/fixture.json",
+      "sha256": "eef7fc78ff6a733773a30e81e721ef58a59f3a5f83a09942f4b9ab832f93a154",
+      "bytes": 10171
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-bun-release/verification-policy.json",
+      "sha256": "323a91c21dc2a2e5ed97ec26c10004d334078453f6b229b1ca2b7032f599440a",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-bun-release/verification.json",
+      "sha256": "cea6a4dbfa6091971f2a862233e400e108648ec9c5cf2be5ca361fe2468a8542",
+      "bytes": 222
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-mcp-release/claude-result.sanitized.json",
+      "sha256": "23779db6df1b3833caf0cc425dfefa33cadea1fe7cae82b77c031cf731b4d2bf",
+      "bytes": 3110
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-mcp-release/codex-events.sanitized.jsonl",
+      "sha256": "7954d4bd5acc92a56ec5c52b85068c622cbd6a9b438bdbf49d7ebeacd92a5cc7",
+      "bytes": 7800
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-mcp-release/derivation-policy.json",
+      "sha256": "03790ccf6287f7999ac4b1720ee132eec18d7f68620335dc29f471f3f2ccc14e",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-mcp-release/draft.json",
+      "sha256": "85de7808c664e57e3e8e658015da8a4e957b1928439b0f9e92080c95d4130e93",
+      "bytes": 8797
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-mcp-release/evidence.json",
+      "sha256": "0c53df1491c654e1a2a2f62b74a7f40452769b600aa79943d2745c8fac63ade0",
+      "bytes": 66105
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-mcp-release/fixture.json",
+      "sha256": "816cf273d93dddd32c001feec59e579150391e1e0ba42dc5cb1f13e56a55ec77",
+      "bytes": 10496
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-mcp-release/verification-policy.json",
+      "sha256": "457f775ccfa0df4ac3f0cc438b097659edda40ffd6827150817321f297d09ea3",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/current-mcp-release/verification.json",
+      "sha256": "189fbf4835ebeb9b192792d42d2bb6f9ca403aa29de6c788bda6b6b39d2e1909",
+      "bytes": 255
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-es-climate/claude-result.sanitized.json",
+      "sha256": "98f57c6d0754dad48fc8b382bec472da263363dafcda11a12f13f3aec6b77b70",
+      "bytes": 4166
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-es-climate/codex-events.sanitized.jsonl",
+      "sha256": "ad8ced6a1d625708d4f777db8bef8fc2bb9fd9f73082a7955ae28e0d235e6ed2",
+      "bytes": 12300
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-es-climate/derivation-policy.json",
+      "sha256": "441d975e2f1a01a0a3f8a97e4410dc870b18a346795308c282b5b576b36b38f8",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-es-climate/draft.json",
+      "sha256": "ff6d50123463705a9dd51266c4aaec3e63f9bfd2c63cc1cd8720431ee475ce34",
+      "bytes": 13490
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-es-climate/evidence.json",
+      "sha256": "1fabfa4c7700bed20831f1ab190ca15bb5959b8cd0e6f162ce5973ad6f4ea6b1",
+      "bytes": 82374
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-es-climate/fixture.json",
+      "sha256": "9403833a3b96222abab1cffaf4336b64b2ea1b273a7ae8a3990fabae2aeb6eb1",
+      "bytes": 13080
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-es-climate/verification-policy.json",
+      "sha256": "432facfce0a9c16bf0b7c94662b600a37795abb3f2180f52ea5e511897970f68",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-es-climate/verification.json",
+      "sha256": "35c3c1c93dd0cc5f3598bc8f5423008b8fd8526983a1cc39ebe067d5a47380ed",
+      "bytes": 786
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-fr-open-data/claude-result.sanitized.json",
+      "sha256": "48f3a097c5019b1b8cfbd284e8fc634d998af70926b22ea2dab69a893fde69c2",
+      "bytes": 4455
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-fr-open-data/codex-events.sanitized.jsonl",
+      "sha256": "39dbae0fd0b8991c1475e041d5a8eed1f4c4fb121889fe1106e26dd4e5dc6861",
+      "bytes": 9039
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-fr-open-data/derivation-policy.json",
+      "sha256": "420dbd42b5ef2441b7c8c540a193c48dad144d2fa6dcbb15b67372d18bd81a2b",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-fr-open-data/draft.json",
+      "sha256": "4f9593f2b956f15278f9abbf1b562e99a6ff33595a0a3429086cea89841311db",
+      "bytes": 10254
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-fr-open-data/evidence.json",
+      "sha256": "a8a8fbdb82174f64d9959b02c59f338946c4bc8adac4c1ccfbcf5873536fa216",
+      "bytes": 86063
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-fr-open-data/fixture.json",
+      "sha256": "73479eeecbeb36daab8d8d7ac65d8c427bb9e7d84ccca4b0a2f76d84a8846cde",
+      "bytes": 11048
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-fr-open-data/verification-policy.json",
+      "sha256": "ceef47316001539ca472a16578b287288020dd838d07ad934f7983ded82faff2",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-fr-open-data/verification.json",
+      "sha256": "d5b95e9b203d5104b2cf2f7bd91cb4c96ba141347fe5a5f1d91947e04105ac41",
+      "bytes": 924
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-ja-web-standards/claude-result.sanitized.json",
+      "sha256": "9d235a37193ac0d77a15736feb92d7df30ece9f1dbd14ac758d67e56845c7f24",
+      "bytes": 4596
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-ja-web-standards/codex-events.sanitized.jsonl",
+      "sha256": "130d479f80dba2bd3e6440821b8cc52b078d983c41f4b7a9f62970d0edbd8e29",
+      "bytes": 8231
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-ja-web-standards/derivation-policy.json",
+      "sha256": "b7f66261dd00e768b381126a9336f23806f670f3612b465f4b48005eec741134",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-ja-web-standards/draft.json",
+      "sha256": "29a0c3e277d83fc65799e69875a6604ada75841475e11b4c9fd4d36827ce2dfe",
+      "bytes": 9146
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-ja-web-standards/evidence.json",
+      "sha256": "059f42d28ad6da0e492fa762b36e507b40b9822a509c16fb9172246fe684365a",
+      "bytes": 78005
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-ja-web-standards/fixture.json",
+      "sha256": "3814f2fea762a4f161bab2483c1782229046c1c361048ad525a62bb6e5e96bd8",
+      "bytes": 9804
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-ja-web-standards/verification-policy.json",
+      "sha256": "45df303b3ee4e64f4c167945f19ee5e62bd86924c3fda7ee867e193be426242e",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/multilingual-ja-web-standards/verification.json",
+      "sha256": "192e1927c16f45c7cb8295aa6d7088d577b656b93790f699d421929676f3ae04",
+      "bytes": 998
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-bun-webview/claude-result.sanitized.json",
+      "sha256": "d1f3b98c664c8ae4f2476825460afb7e73b91615d29b2d7645878fc5a25c008d",
+      "bytes": 4330
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-bun-webview/codex-events.sanitized.jsonl",
+      "sha256": "65d5af3ec5982a80dfbb40994222422a91c49f15ef56da384ed9dc22e0a06614",
+      "bytes": 8068
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-bun-webview/derivation-policy.json",
+      "sha256": "bcfa234e14694e0d99efa8c39fe2371893321c796303fc9be2784823711b9604",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-bun-webview/draft.json",
+      "sha256": "16d365031215866f1fd6259ecd4054b0870375768784623bb6adb2a4ee997a4d",
+      "bytes": 8772
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-bun-webview/evidence.json",
+      "sha256": "451873fb0a659e3490795d47ee0bbef18d41955ceb26c653e6fa3a1fbda8d53d",
+      "bytes": 32704
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-bun-webview/fixture.json",
+      "sha256": "dc334f08ecb91d173819df5807e71d6b55f0662e80b421eb6da7440521289483",
+      "bytes": 9577
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-bun-webview/verification-policy.json",
+      "sha256": "664d35714db19a297a4e3adfb1c56bc1ffc51882f407dfb4d5a0ba5b15171974",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-bun-webview/verification.json",
+      "sha256": "040e3aad16ba7ba49edfa02ca6aeea745189e6f9d23d7cbe7ccb0861499eb86e",
+      "bytes": 863
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-mcp-stdio/claude-result.sanitized.json",
+      "sha256": "6a989e685fee9a25554ea97dc109c96cb9c68b278a60f995b5ad65063431cbcd",
+      "bytes": 5415
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-mcp-stdio/codex-events.sanitized.jsonl",
+      "sha256": "776b9a812af89eb099237ade10f7d002211e40f82f59ad59798e43ff4d57b108",
+      "bytes": 10655
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-mcp-stdio/derivation-policy.json",
+      "sha256": "f8ddea4bcee9f8a3256acc105d6734f9a4ac29ec272ea69798673da0b3e3e938",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-mcp-stdio/draft.json",
+      "sha256": "418bf27228faf19c03508701ec45cbba899d080cf15187f07d2101215c01b4dd",
+      "bytes": 11848
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-mcp-stdio/evidence.json",
+      "sha256": "37867408500dfb8a1fc844f3d3f52647931f44baa503acfde8efcbf98e4298b7",
+      "bytes": 83515
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-mcp-stdio/fixture.json",
+      "sha256": "bd7202c39d1fb16a0fa56361786d4707d21486a15a1ef96921f93c62705a3368",
+      "bytes": 12747
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-mcp-stdio/verification-policy.json",
+      "sha256": "228db5ebcfce4e7cb9ec63aa9c0617e64fc6b76904783bdb281912b230c97968",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-mcp-stdio/verification.json",
+      "sha256": "350fecaaad7c4962fe968213376dbb6bc6deb9d0993683d526fe99b781dc695d",
+      "bytes": 1412
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-pdfjs/claude-result.sanitized.json",
+      "sha256": "2ed6a6556f4ebab8e90d55d1f754bff3a76e893ce5dc9cbd102f0539b1e92669",
+      "bytes": 5251
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-pdfjs/codex-events.sanitized.jsonl",
+      "sha256": "8ee34d0c83d4a3ad3b5d6b9163f6d93af91745cfabc5f02da531e1d350bef442",
+      "bytes": 9174
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-pdfjs/derivation-policy.json",
+      "sha256": "e4667697a1fb13ea8551b9dab4c41d09bf979f17a6b2dc5f0f7076be76bd2a4f",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-pdfjs/draft.json",
+      "sha256": "9ae5657b9c2001b3f0a6d0a628d6d35a416d617b2dda82e560e4c7b47ea9343e",
+      "bytes": 10256
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-pdfjs/evidence.json",
+      "sha256": "3c6503fe9e889007f451a500f12342200a57a8f4ff328b4a8f477498239699db",
+      "bytes": 99617
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-pdfjs/fixture.json",
+      "sha256": "8d4267f3fbf79e02e99401c82ec66ef822da5dc26aeb2a01253eb95e9af41854",
+      "bytes": 11203
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-pdfjs/verification-policy.json",
+      "sha256": "8f2ded04022471bbf845f81debc17e5dbeea89e218c7a9a2a2e440bc6be533b2",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-pdfjs/verification.json",
+      "sha256": "62573e020fe81c671a5fe99284dfe5de36ac025fdaff8ab655165cceeb9c194d",
+      "bytes": 1327
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-robots-rfc/claude-result.sanitized.json",
+      "sha256": "18c00a5271c8caa9ea71792daa1941fde4eee910b4768caf7eca7d3cd91dec56",
+      "bytes": 3050
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-robots-rfc/codex-events.sanitized.jsonl",
+      "sha256": "3519bdde7c6c2e6b7bc068bd781a1fbf71b65625e9f7438c4d408fe0668d0aaf",
+      "bytes": 8653
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-robots-rfc/derivation-policy.json",
+      "sha256": "8685ee2988cfd8453365f5cecc30f178a0e7ea270489d75e0dc788771fa7abf1",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-robots-rfc/draft.json",
+      "sha256": "88b9bac1a71f545e4efd908bfefbb7f77186b3a260300bdcd13306074d8367d1",
+      "bytes": 9610
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-robots-rfc/evidence.json",
+      "sha256": "deae0e2c6a4e31f6177e5daf7c16461345a3d3fe2bbd29b01a13ed44eb1e84ef",
+      "bytes": 24400
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-robots-rfc/fixture.json",
+      "sha256": "c04cf4cc35558bef1e6f13a4469b10c43516a2f4058e4b4a380601645ae86551",
+      "bytes": 10912
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-robots-rfc/verification-policy.json",
+      "sha256": "fd82ff50dd21147538936c53035c1b2b52f77f65f8d30d1f802e518d95395dfe",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-robots-rfc/verification.json",
+      "sha256": "ff7fd84e083bf887d3c2d83dc6331b4b6c35c7b09ed6b4133de1789ae4c41b81",
+      "bytes": 224
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-sqlite-fts5/claude-result.sanitized.json",
+      "sha256": "1fac1110a0a3a5664b830073e3dbf10ce26115e6f8ccac4e933f000d7309146a",
+      "bytes": 5508
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-sqlite-fts5/codex-events.sanitized.jsonl",
+      "sha256": "980b34b60f095987c653b5bad38f2d6419375b53cfa3a52c73d3ace9a310f64a",
+      "bytes": 11037
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-sqlite-fts5/derivation-policy.json",
+      "sha256": "7139f3800452b92feb8f0174587670df06f42fce51d0cb941033f76079f1ae77",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-sqlite-fts5/draft.json",
+      "sha256": "d894f7cca176fd6ef71c0d4c8cc2f6d50454ede75ff05e3211a2871a554b80a5",
+      "bytes": 12543
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-sqlite-fts5/evidence.json",
+      "sha256": "af9a09dc61dffa851a0a8269e6a6a807fed7249a17a3860abcd61beeb5fc129c",
+      "bytes": 48248
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-sqlite-fts5/fixture.json",
+      "sha256": "62cba13bb88d586baddc5fec6edfd2fb7f63b76ef1bed4503fd2af746e7bf952",
+      "bytes": 14016
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-sqlite-fts5/verification-policy.json",
+      "sha256": "65717b0d484e6c1485ded0e411f6c4cc947fddf5c48683f100078ed85489ee08",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-sqlite-fts5/verification.json",
+      "sha256": "ea32892825edb83d67bd5a3d896567284208a48b9c911f6a780dd598a6c2197d",
+      "bytes": 1456
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-url-canonicalization/claude-result.sanitized.json",
+      "sha256": "533bcc905c2b279ca3f429e3a7e8a6a244e6f9f3feacc31ec7e520c3c69e387f",
+      "bytes": 4131
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-url-canonicalization/codex-events.sanitized.jsonl",
+      "sha256": "cbb6d0ce7b801675f28c2798f4f277ce55e9c23033bdb7eda92e7a514b6b532c",
+      "bytes": 10233
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-url-canonicalization/derivation-policy.json",
+      "sha256": "756fe1eddf75c876a22636e96ecadba901ebc526a5d397ec7d73817e33030c7a",
+      "bytes": 1326
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-url-canonicalization/draft.json",
+      "sha256": "2417e5f22bf728f5c803a01b98e59e0900d87c67304e5b98fd6e1f9509c4447e",
+      "bytes": 11389
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-url-canonicalization/evidence.json",
+      "sha256": "78d7433487bf23ed570bc164355f90b47e0ff51a903e67b7875ed9a9ba7f633a",
+      "bytes": 58977
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-url-canonicalization/fixture.json",
+      "sha256": "a5b7753f534c273524c5508c6c8884ee802bf19e531dd30de68ce4af426c20a7",
+      "bytes": 12625
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-url-canonicalization/verification-policy.json",
+      "sha256": "707a7eaff261035bcea5f5f94ea283ab7d2422b8c343279a9062005eed005e17",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/claude-plugins-v1/cases/technical-url-canonicalization/verification.json",
+      "sha256": "6458b912a3bed301eb60d4d84f44b19342a4e8c939413375dd61666f7a3e9d55",
+      "bytes": 775
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/technical-pdfjs/claude-1787840763953/result.sanitized.json",
+      "sha256": "fa8fa46ed32726606ed88fb936414becd2a82fd376e8059dfdd0607a80ed5df3",
+      "bytes": 1909
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/technical-robots-rfc/claude-1787840058346/result.sanitized.json",
+      "sha256": "874153466c38c8b6c40f0770ae790b1d961bf8a62614c01cc390493000fba3c2",
+      "bytes": 200
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/technical-url-canonicalization/verification-unknown-ids/claude-result.sanitized.json",
+      "sha256": "b46f8c303b82d96d5f16ec267017242dc91f630dc716885dc4aabea3713eb6bb",
+      "bytes": 6107
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/technical-url-canonicalization/verification-unknown-ids/verification-policy.json",
+      "sha256": "7326bd1668c66b63414c54f18805f1de59d4937386bd7b562eaa6ba1fcf96494",
+      "bytes": 832
+    },
+    {
+      "path": "fixtures/2026-08-27/failures/technical-url-canonicalization/verification-unknown-ids/verification.json",
+      "sha256": "93680ffa498c7a8a6efd964d47fd7ce7a23bc64aba5bfe6ca79fa13e34e34654",
+      "bytes": 1767
+    },
+    {
+      "path": "runs/2026-08-27/cases/academic-bm25/claude/events.sanitized.jsonl",
+      "sha256": "d829ed0ed906aa16bc6772f32a4def6b5e7f97e69ac7987c0b731c7a4563cbea",
+      "bytes": 217605
+    },
+    {
+      "path": "runs/2026-08-27/cases/academic-bm25/claude/policy.json",
+      "sha256": "4b0a1638f06765c20529ffacd2b470b659e86062a58c20aa7327d719bc95c95a",
+      "bytes": 2281
+    },
+    {
+      "path": "runs/2026-08-27/cases/academic-bm25/claude/run.json",
+      "sha256": "c0626379246c6dd51afaa5567f8fdc9d401761b0bdd1580a087b17b6c86861cf",
+      "bytes": 62339
+    },
+    {
+      "path": "runs/2026-08-27/cases/academic-bm25/codex/events.sanitized.jsonl",
+      "sha256": "8e5c13b2f83b219cd444eb96ab63535fbefeeca52feee03436f94ad68f8b8a24",
+      "bytes": 13729
+    },
+    {
+      "path": "runs/2026-08-27/cases/academic-bm25/codex/policy.json",
+      "sha256": "719962006012cb8315419ba5c46d0e8fd1a8e0b566266c9744cb41bbb026c9c9",
+      "bytes": 2505
+    },
+    {
+      "path": "runs/2026-08-27/cases/academic-bm25/codex/run.json",
+      "sha256": "b676e190c4968f060102b02f847a88c1cf9f5b8ffa544860b27578a204a732b6",
+      "bytes": 38775
+    },
+    {
+      "path": "runs/2026-08-27/cases/academic-browser-fingerprinting/claude/events.sanitized.jsonl",
+      "sha256": "c788e5ae22275ed09159aab629c32575b238fed4986b8bf6d4a98bd42cc265aa",
+      "bytes": 212688
+    },
+    {
+      "path": "runs/2026-08-27/cases/academic-browser-fingerprinting/claude/policy.json",
+      "sha256": "0f5ce21e937d90565497fadfc38ac687d4fd9a1ef3e6035f77b498c0d3d64e12",
+      "bytes": 2165
+    },
+    {
+      "path": "runs/2026-08-27/cases/academic-browser-fingerprinting/claude/run.json",
+      "sha256": "374a89d4f37ba466660540d14045f2664f0e4ec77f1babd1c121be413c9bafba",
+      "bytes": 64243
+    },
+    {
+      "path": "runs/2026-08-27/cases/academic-browser-fingerprinting/codex/events.sanitized.jsonl",
+      "sha256": "dc91f40bca4a2f5514cc25a786276398ced07e701138c76835f039672dd8be7a",
+      "bytes": 17464
+    },
+    {
+      "path": "runs/2026-08-27/cases/academic-browser-fingerprinting/codex/policy.json",
+      "sha256": "8a0fb9b271e3f200ae76bba06da2c3d16a70e75e4ce69843a710e88bf5a85b62",
+      "bytes": 2344
+    },
+    {
+      "path": "runs/2026-08-27/cases/academic-browser-fingerprinting/codex/run.json",
+      "sha256": "7c3452aa35d0589323e1707789bbb9928103789447877738f88f1064019de39c",
+      "bytes": 47922
+    },
+    {
+      "path": "runs/2026-08-27/cases/academic-retrieval-diversity/claude/events.sanitized.jsonl",
+      "sha256": "416d9c6284528a81dc724626b50683718bb9b9e9eb7192ee2951b65290b95078",
+      "bytes": 194047
+    },
+    {
+      "path": "runs/2026-08-27/cases/academic-retrieval-diversity/claude/policy.json",
+      "sha256": "224b12774e62f1c9cc379fc98e2b3b76a950054d8c7173c0d6c24b440e8ab357",
+      "bytes": 2224
+    },
+    {
+      "path": "runs/2026-08-27/cases/academic-retrieval-diversity/claude/run.json",
+      "sha256": "bfa98178d3f4d3f31e0ada0237a51d8d1de8f9972437b1824edbfa7fa57f99ab",
+      "bytes": 63581
+    },
+    {
+      "path": "runs/2026-08-27/cases/academic-retrieval-diversity/codex/events.sanitized.jsonl",
+      "sha256": "417b08331d0f763aaba7f5e64bede265d9316faaac874ed6ddeba408f2148b6e",
+      "bytes": 14053
+    },
+    {
+      "path": "runs/2026-08-27/cases/academic-retrieval-diversity/codex/policy.json",
+      "sha256": "f14c1561c1b4c89f28a68f68262b8583f614dd0a6c9c364090cdc5920f674bfc",
+      "bytes": 2383
+    },
+    {
+      "path": "runs/2026-08-27/cases/academic-retrieval-diversity/codex/run.json",
+      "sha256": "cd0479761535b0b86847d1075801d88d92b56bd907464d5abd45e2ab1b2d530f",
+      "bytes": 24806
+    },
+    {
+      "path": "runs/2026-08-27/cases/ambiguous-best-search/claude/events.sanitized.jsonl",
+      "sha256": "b0c84304deee6dc64cc7c5e3a31b6de2e27e45bcb778552b3a81e75513c6782e",
+      "bytes": 136679
+    },
+    {
+      "path": "runs/2026-08-27/cases/ambiguous-best-search/claude/policy.json",
+      "sha256": "70114f6ac7df5321dc19e934a3de046041293bc93f7595ed58c979f687f5028e",
+      "bytes": 1994
+    },
+    {
+      "path": "runs/2026-08-27/cases/ambiguous-best-search/claude/run.json",
+      "sha256": "187d4f09276ca162a25fbe0af27703cd4bfa080d322ad301a7a548a3b777eb7b",
+      "bytes": 46670
+    },
+    {
+      "path": "runs/2026-08-27/cases/ambiguous-best-search/codex/events.sanitized.jsonl",
+      "sha256": "db2641148614ecc737147826c213e395993ef9ea1bad377ebab0434fe103b3b6",
+      "bytes": 11585
+    },
+    {
+      "path": "runs/2026-08-27/cases/ambiguous-best-search/codex/policy.json",
+      "sha256": "2b760071080df0f21d59ff04ebc7959fc64262c2b66919f5347915883b585b4b",
+      "bytes": 2808
+    },
+    {
+      "path": "runs/2026-08-27/cases/ambiguous-best-search/codex/run.json",
+      "sha256": "f175ed6436ee857889840303ce05301790b3040932885686e9e1375759f81955",
+      "bytes": 49893
+    },
+    {
+      "path": "runs/2026-08-27/cases/ambiguous-xanadu-tuesday/claude/events.sanitized.jsonl",
+      "sha256": "e6d74dd4bf4c437981fc76a1c76c9b5457e5c88df38875101d7647c5d8b35c92",
+      "bytes": 94845
+    },
+    {
+      "path": "runs/2026-08-27/cases/ambiguous-xanadu-tuesday/claude/policy.json",
+      "sha256": "7772c3f340341f4757218ed2991aa45d46b2c98aaca675e8c4fa912ecd0da8e3",
+      "bytes": 1957
+    },
+    {
+      "path": "runs/2026-08-27/cases/ambiguous-xanadu-tuesday/claude/run.json",
+      "sha256": "c899cd7267e5d9997941940d1345eb6296317844a03d053e26edce8d421c88db",
+      "bytes": 30657
+    },
+    {
+      "path": "runs/2026-08-27/cases/ambiguous-xanadu-tuesday/codex/events.sanitized.jsonl",
+      "sha256": "a6675b6a287835f3ab3723d9afb04f3622a2464c04a279d43698a89b2e8bf174",
+      "bytes": 9362
+    },
+    {
+      "path": "runs/2026-08-27/cases/ambiguous-xanadu-tuesday/codex/policy.json",
+      "sha256": "553e96819d56a7c55341d8d1dbe0a56e287b938ba9ebcf9845078c5a7ffc6f01",
+      "bytes": 2444
+    },
+    {
+      "path": "runs/2026-08-27/cases/ambiguous-xanadu-tuesday/codex/run.json",
+      "sha256": "0d97246bd772b9870a49dc0a3b20fbbb23729b51a5ed019c286d5037fe29f38e",
+      "bytes": 22119
+    },
+    {
+      "path": "runs/2026-08-27/cases/community-bun-production/claude/events.sanitized.jsonl",
+      "sha256": "2f90682adbe32f9762b03edca608fbd7530b3888db5903e671a85b84d12eba7b",
+      "bytes": 239276
+    },
+    {
+      "path": "runs/2026-08-27/cases/community-bun-production/claude/policy.json",
+      "sha256": "f683588e3359a9fe8351a8001e31bd483aea398c888b54e1d4fa0cc244a8b969",
+      "bytes": 2336
+    },
+    {
+      "path": "runs/2026-08-27/cases/community-bun-production/claude/run.json",
+      "sha256": "0a296fb93e6b4ef7b7425f3913cf1773acf2cd580a421472e7914d23cdaa83c6",
+      "bytes": 68299
+    },
+    {
+      "path": "runs/2026-08-27/cases/community-bun-production/codex/events.sanitized.jsonl",
+      "sha256": "272ed0894b7a02d4aa8b2a3340afa0a12ba8b150d1f219df54d58917b68f76b6",
+      "bytes": 17831
+    },
+    {
+      "path": "runs/2026-08-27/cases/community-bun-production/codex/policy.json",
+      "sha256": "746ee8d2ae415925db82843823aa447a52022419a76282aa1c42cdf974d508a8",
+      "bytes": 3119
+    },
+    {
+      "path": "runs/2026-08-27/cases/community-bun-production/codex/run.json",
+      "sha256": "1fe7e6e1549857c1d9e005c86742d401dc034ceee5289cbd79fdbcc60eeee423",
+      "bytes": 181300
+    },
+    {
+      "path": "runs/2026-08-27/cases/community-headless-stealth/claude/events.sanitized.jsonl",
+      "sha256": "fb9399145ebe7e6475d07089ee4d78f96eaf7338593e60fae18c8c8f7d1b8a65",
+      "bytes": 269007
+    },
+    {
+      "path": "runs/2026-08-27/cases/community-headless-stealth/claude/policy.json",
+      "sha256": "55a512ea5e1cb9dcf9356e24950478d1c6c2f66b4ac53e1dc2fe055f1dd877b3",
+      "bytes": 2352
+    },
+    {
+      "path": "runs/2026-08-27/cases/community-headless-stealth/claude/run.json",
+      "sha256": "d4dd2f1756ea0d82207ba75a098ff1946d153630fef4af2bc36b94c2a4609599",
+      "bytes": 76817
+    },
+    {
+      "path": "runs/2026-08-27/cases/community-headless-stealth/codex/events.sanitized.jsonl",
+      "sha256": "b9621d5323de2cd36f46eab004f69f8917bfe20f6e98bcf0fb628795f7620afc",
+      "bytes": 21815
+    },
+    {
+      "path": "runs/2026-08-27/cases/community-headless-stealth/codex/policy.json",
+      "sha256": "bc9e471a8dc52d98291dccc40b139abfc1379480c2b7437eb5f03ab89a30f56a",
+      "bytes": 3585
+    },
+    {
+      "path": "runs/2026-08-27/cases/community-headless-stealth/codex/run.json",
+      "sha256": "5c6991faf68ccf04075cebdb8def247569e82ed47182893051d7f39e797a85a1",
+      "bytes": 231027
+    },
+    {
+      "path": "runs/2026-08-27/cases/community-robots-ethics/claude/events.sanitized.jsonl",
+      "sha256": "06c8aef6a21752780f55b212aef3dd7319c70e2674f0a69f10cc8566178fba6d",
+      "bytes": 276750
+    },
+    {
+      "path": "runs/2026-08-27/cases/community-robots-ethics/claude/policy.json",
+      "sha256": "0d6dbf593bc2bdf6af8a59c3c7417b710497fa39f4072a074585a21cf6a3fdd0",
+      "bytes": 2319
+    },
+    {
+      "path": "runs/2026-08-27/cases/community-robots-ethics/claude/run.json",
+      "sha256": "6256637c59a3c2b558e187a319dcfcef4d9b0e8753c0677a5b1c5db02d4aa327",
+      "bytes": 86654
+    },
+    {
+      "path": "runs/2026-08-27/cases/community-robots-ethics/codex/events.sanitized.jsonl",
+      "sha256": "55f9d5ed35fe168325c4f8f8bce11084f64d46642319b67da0abe42e2d11a0f3",
+      "bytes": 19813
+    },
+    {
+      "path": "runs/2026-08-27/cases/community-robots-ethics/codex/policy.json",
+      "sha256": "9a84c18e50f9cca711f32209ab407f0f7bb1bbe0ee893cdc4f4c177915e24b33",
+      "bytes": 3755
+    },
+    {
+      "path": "runs/2026-08-27/cases/community-robots-ethics/codex/run.json",
+      "sha256": "eae39bc39406d46f41265789e22a2633241154c8b93f88dfb3e5e6ef0dd496e4",
+      "bytes": 194538
+    },
+    {
+      "path": "runs/2026-08-27/cases/current-apple-security/claude/events.sanitized.jsonl",
+      "sha256": "fc072d15952d2c95031c5384f2e7c81cafd11980374d1ceae1ac56c2fe3693f2",
+      "bytes": 115258
+    },
+    {
+      "path": "runs/2026-08-27/cases/current-apple-security/claude/policy.json",
+      "sha256": "eb7cd706f15f3bca53393e8786bae107408f4e6a583b5ba9ee8d4ef2f7119ded",
+      "bytes": 2089
+    },
+    {
+      "path": "runs/2026-08-27/cases/current-apple-security/claude/run.json",
+      "sha256": "4f991bba1162d0a8da2019901089accffdacfd4088cf16cda9b71733cbc0af0e",
+      "bytes": 33188
+    },
+    {
+      "path": "runs/2026-08-27/cases/current-apple-security/codex/events.sanitized.jsonl",
+      "sha256": "a4aa76d9b9914f8ecb4287fea8295678ef6a64221970017ab91a7c7222c8b4af",
+      "bytes": 5770
+    },
+    {
+      "path": "runs/2026-08-27/cases/current-apple-security/codex/policy.json",
+      "sha256": "418daa5e709991cb3d2d92175c482a5848aee14dcbfc7ec5f11dd1c34e6fb7e3",
+      "bytes": 2293
+    },
+    {
+      "path": "runs/2026-08-27/cases/current-apple-security/codex/run.json",
+      "sha256": "70e1f4c06f4344cff868c2e954c380a98b2e2c50d487ff03c066ed31e84fb880",
+      "bytes": 15336
+    },
+    {
+      "path": "runs/2026-08-27/cases/current-bun-release/claude/events.sanitized.jsonl",
+      "sha256": "fcd7636369f193a11f10ec6dc3d25df80016f56d72bb6b8cc2506febb77fa7ca",
+      "bytes": 98671
+    },
+    {
+      "path": "runs/2026-08-27/cases/current-bun-release/claude/policy.json",
+      "sha256": "1c7182298163918155e305d16b52296abeb2f4cbcfddb964b9465ea77ead2576",
+      "bytes": 2077
+    },
+    {
+      "path": "runs/2026-08-27/cases/current-bun-release/claude/run.json",
+      "sha256": "00fc6ced8f8b23fc26c3b38f1bca7e6f179ba48921765de1f9192f9c95f2b658",
+      "bytes": 25235
+    },
+    {
+      "path": "runs/2026-08-27/cases/current-bun-release/codex/events.sanitized.jsonl",
+      "sha256": "43da5c741cc43b9fdd2d307215e183fac87b92391e5ffc7fb2a88e05df58a14b",
+      "bytes": 7468
+    },
+    {
+      "path": "runs/2026-08-27/cases/current-bun-release/codex/policy.json",
+      "sha256": "dc1e5ec58668e44908d1aa3776707536153ed341976c9685960f504f8f33e47a",
+      "bytes": 2289
+    },
+    {
+      "path": "runs/2026-08-27/cases/current-bun-release/codex/run.json",
+      "sha256": "e095b602384efbf4820d0a8a7538b9559c6464c098c475b780bf1779fd69ab4c",
+      "bytes": 18254
+    },
+    {
+      "path": "runs/2026-08-27/cases/current-mcp-release/claude/events.sanitized.jsonl",
+      "sha256": "e16378f91373126c3c0a339d0119b8cda0948b7f47d09dd5862d239a4aae75f7",
+      "bytes": 132003
+    },
+    {
+      "path": "runs/2026-08-27/cases/current-mcp-release/claude/policy.json",
+      "sha256": "1a74e46a055545382520f3a0471eb82454e8ec5764dfccbcff714357cda6040a",
+      "bytes": 1992
+    },
+    {
+      "path": "runs/2026-08-27/cases/current-mcp-release/claude/run.json",
+      "sha256": "5ff34987c139cd503a9302ec72d9ed2a6f85b4570d8756bf2e704785a9cad1b1",
+      "bytes": 45601
+    },
+    {
+      "path": "runs/2026-08-27/cases/current-mcp-release/codex/events.sanitized.jsonl",
+      "sha256": "5d3b3e7861c6a0d01ed7f0b3cd6d3ddc1ac304958345184d8e3ff6edfcdd31bd",
+      "bytes": 11647
+    },
+    {
+      "path": "runs/2026-08-27/cases/current-mcp-release/codex/policy.json",
+      "sha256": "55714e7280f188535bd2c0e76582a8cebb365a0898851e0a2cf4ad687f726e0d",
+      "bytes": 3117
+    },
+    {
+      "path": "runs/2026-08-27/cases/current-mcp-release/codex/run.json",
+      "sha256": "0d5b6d2a24b325a4e733d011f304b6a0a06457a16039935fb7544632ed4bbd23",
+      "bytes": 93270
+    },
+    {
+      "path": "runs/2026-08-27/cases/multilingual-es-climate/claude/events.sanitized.jsonl",
+      "sha256": "030d4d05376f046d587bc63cb15583f479d4f84ab5a17b3bf6f2370b72aa7bf4",
+      "bytes": 181208
+    },
+    {
+      "path": "runs/2026-08-27/cases/multilingual-es-climate/claude/policy.json",
+      "sha256": "dee36cb2acefdb1bb1b1f936e02c1006fbc50336180c3ba0cfc8f56624763b93",
+      "bytes": 2156
+    },
+    {
+      "path": "runs/2026-08-27/cases/multilingual-es-climate/claude/run.json",
+      "sha256": "2f4f724f47ece50b17000c3f6a4aed9be9e8676195d2f7c04e2d223d80bc0934",
+      "bytes": 56740
+    },
+    {
+      "path": "runs/2026-08-27/cases/multilingual-es-climate/codex/events.sanitized.jsonl",
+      "sha256": "5344a2d776f1565e0ad04048faf98b40e47e16c659ef66bcfd289fc24c20bc62",
+      "bytes": 19308
+    },
+    {
+      "path": "runs/2026-08-27/cases/multilingual-es-climate/codex/policy.json",
+      "sha256": "2d116854d9b94c637259ae7e21bb7107a89b01a2b251013c4c3141a11bb2a7a3",
+      "bytes": 2794
+    },
+    {
+      "path": "runs/2026-08-27/cases/multilingual-es-climate/codex/run.json",
+      "sha256": "636df1e9c349e2ac3b5015a6f891ef3c167855a44935934979c42d1da32f156d",
+      "bytes": 72945
+    },
+    {
+      "path": "runs/2026-08-27/cases/multilingual-fr-open-data/claude/events.sanitized.jsonl",
+      "sha256": "5be850ad87fa14ef772300be442e50e5c957f38b3ac0d5506f7559bf5102b48a",
+      "bytes": 197548
+    },
+    {
+      "path": "runs/2026-08-27/cases/multilingual-fr-open-data/claude/policy.json",
+      "sha256": "4875a35d713dcda51d7407a4d2ea54c600d5b322933f0d335b7ab4ff1d3df24a",
+      "bytes": 2206
+    },
+    {
+      "path": "runs/2026-08-27/cases/multilingual-fr-open-data/claude/run.json",
+      "sha256": "525cfff950802227f668da1ca1f76ddff5e115e39f657e2e7c3bae7d75b56745",
+      "bytes": 57195
+    },
+    {
+      "path": "runs/2026-08-27/cases/multilingual-fr-open-data/codex/events.sanitized.jsonl",
+      "sha256": "21769691aad2647c3e34569f5c1ba63304b9748c6e33e402226bf57610e7cac1",
+      "bytes": 18852
+    },
+    {
+      "path": "runs/2026-08-27/cases/multilingual-fr-open-data/codex/policy.json",
+      "sha256": "4c354420eae6955c5232ad3a4e78942004640a98173edccad1f2e7cfcb7e6bb3",
+      "bytes": 3005
+    },
+    {
+      "path": "runs/2026-08-27/cases/multilingual-fr-open-data/codex/run.json",
+      "sha256": "006d679f78554a181fa95f30abcfee01297bd7ff17fd520b1261f03be17182d9",
+      "bytes": 125784
+    },
+    {
+      "path": "runs/2026-08-27/cases/multilingual-ja-web-standards/claude/events.sanitized.jsonl",
+      "sha256": "4249baa06f3c8bcd164069bfb4e0d682ed499ab0959c87d75036c5148a7fbf85",
+      "bytes": 186390
+    },
+    {
+      "path": "runs/2026-08-27/cases/multilingual-ja-web-standards/claude/policy.json",
+      "sha256": "0471e977b607feeba4dd09b1103883a7c28d5fa98e646f8abe797f6350da4e9b",
+      "bytes": 2173
+    },
+    {
+      "path": "runs/2026-08-27/cases/multilingual-ja-web-standards/claude/run.json",
+      "sha256": "87c38503faeaa3ff940beca1368b7f0bf2a04280145919354c999846251e9994",
+      "bytes": 52317
+    },
+    {
+      "path": "runs/2026-08-27/cases/multilingual-ja-web-standards/codex/events.sanitized.jsonl",
+      "sha256": "21aeaeb1411a12c85b5c9036b3030cb96446634cb4a74518c393887ac38f15b6",
+      "bytes": 13288
+    },
+    {
+      "path": "runs/2026-08-27/cases/multilingual-ja-web-standards/codex/policy.json",
+      "sha256": "852b9b9ed6d2a603e2c8a83ac809671b167b5943056b5cbc69c8ac5f943c54a6",
+      "bytes": 2552
+    },
+    {
+      "path": "runs/2026-08-27/cases/multilingual-ja-web-standards/codex/run.json",
+      "sha256": "cedec65aa2cc8b5bfb96e5f5b1a57f77db371aad0edcd927986278d7636af5ac",
+      "bytes": 57173
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-bun-webview/claude/events.sanitized.jsonl",
+      "sha256": "cafcce27788efc2647cc7acb04c92504ed42d92ca162814bff02d5a43a18c9fa",
+      "bytes": 83763
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-bun-webview/claude/policy.json",
+      "sha256": "727c765595443189e03ed1aa1c2e913d11aabaec10ab944d3985d8752eacd4ea",
+      "bytes": 2018
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-bun-webview/claude/run.json",
+      "sha256": "fa4f39deafad5142eb52a4308c6e2cc49cc5bd44ada92db1890e168e4bc6df59",
+      "bytes": 19420
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-bun-webview/codex/events.sanitized.jsonl",
+      "sha256": "7488ea316c96f5cc7f328faf81e8ff463249bcc271942471bcccaa3c741d6895",
+      "bytes": 5909
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-bun-webview/codex/policy.json",
+      "sha256": "e7412c0f423f0333ccbcd59ff081d39eb73d13e1117f0b1c995edd623cedf1ce",
+      "bytes": 2227
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-bun-webview/codex/run.json",
+      "sha256": "4d41ee0fbfd9bc9a2741402bda171c4cf5fe209b551667e363a0faa04e9a33dc",
+      "bytes": 9406
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-mcp-stdio/claude/events.sanitized.jsonl",
+      "sha256": "3e55bf4e53a1b7ecce343b256e38d9682a8e9d419b26ba6d52bf522927663272",
+      "bytes": 289670
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-mcp-stdio/claude/policy.json",
+      "sha256": "f01b62b00d7858b453e4be1e14e4ee371bbb22189588cf21b4c002da4fac6a13",
+      "bytes": 2081
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-mcp-stdio/claude/run.json",
+      "sha256": "25f4450d08c2252f9371aecc3e4c9ad5b2b3f174114ddd05aed944ae8b3939b2",
+      "bytes": 113112
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-mcp-stdio/codex/events.sanitized.jsonl",
+      "sha256": "f2c98eb3e647d14a4750d4af998d7d79dc6ed431cdd913ce846cdea32f84659f",
+      "bytes": 17015
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-mcp-stdio/codex/policy.json",
+      "sha256": "afe4b471b1d1c406c2f437ee84210254f628631da3e0ed924cf56e95f8a66323",
+      "bytes": 2900
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-mcp-stdio/codex/run.json",
+      "sha256": "9ad18ec25cbc62628eb47e0c593650070bbb284e6a30733cd024024372ddac89",
+      "bytes": 90565
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-pdfjs/claude/events.sanitized.jsonl",
+      "sha256": "9bd486891bec390a1fe2e65daa84c2a7291638a58027552e3e06ff6be36963a8",
+      "bytes": 251146
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-pdfjs/claude/policy.json",
+      "sha256": "7d08e0f7853f765aa9b9ccb0909818b2b16d0784fbdd2f3a9acb0f769700273b",
+      "bytes": 2356
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-pdfjs/claude/run.json",
+      "sha256": "867a7f06999ceb68b9f9dbbd71fa6d239a23f34c31e82cb294049b85b271feb7",
+      "bytes": 69400
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-pdfjs/codex/events.sanitized.jsonl",
+      "sha256": "d651ae4c863c4a462fc62927426057d45548418017e6b774feef9653eb5173fd",
+      "bytes": 16791
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-pdfjs/codex/policy.json",
+      "sha256": "0822c2970d4665eb104cb8af17702505d72346631a8f0374a8722044ed85d4e5",
+      "bytes": 2969
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-pdfjs/codex/run.json",
+      "sha256": "29e87ca254b18e2d4df5be1ed8b93064e356ad9e932f629c5b241e691fecafae",
+      "bytes": 86468
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-robots-rfc/claude/events.sanitized.jsonl",
+      "sha256": "c5466d22b0c9779195225b0193622afd431187ae1567e993c4cc8017cb36595e",
+      "bytes": 70854
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-robots-rfc/claude/policy.json",
+      "sha256": "5abbac84b030025d9314976ba5912e8ec107c47259adf84ac7ed10919c2beefa",
+      "bytes": 1932
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-robots-rfc/claude/run.json",
+      "sha256": "59f422c1b7a37bd9ac3e606a5ea81a81696b5b9ecbda58a42247753e033cfd9a",
+      "bytes": 15967
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-robots-rfc/codex/events.sanitized.jsonl",
+      "sha256": "afc46d39264771fab312ed1967c0b4beb8a8142d583394f15096aae820867158",
+      "bytes": 6434
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-robots-rfc/codex/policy.json",
+      "sha256": "40788e76c31593e06b54043ec075e9d04a824baf18207a26d36a120a607c30e9",
+      "bytes": 2183
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-robots-rfc/codex/run.json",
+      "sha256": "dca88b38493d5f612866f7dad9fe0cde8832c2f6a9caf0ca6afd70b90741d9d5",
+      "bytes": 10665
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-sqlite-fts5/claude/events.sanitized.jsonl",
+      "sha256": "fc3655f381dae9c51195dc1ad11bd92048e97aa8c8646c47a1f6d1699f5e2313",
+      "bytes": 157603
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-sqlite-fts5/claude/policy.json",
+      "sha256": "095dfc7448e74a75b5974300383d25475139839042168255da579a61598f651f",
+      "bytes": 1979
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-sqlite-fts5/claude/run.json",
+      "sha256": "af05de28a3c43435e09cf789668427c52e7022bec125aef42082851f414d0257",
+      "bytes": 48793
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-sqlite-fts5/codex/events.sanitized.jsonl",
+      "sha256": "1c1e6a17c073a2799e65427ad9ca6d1c92b8efc0b6a5ab23e19c21fd1b3d56d8",
+      "bytes": 11587
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-sqlite-fts5/codex/policy.json",
+      "sha256": "c6ac53119dd4e6bfc624b1c85bacbe496930b2cf35735ffd4097706dc5818780",
+      "bytes": 2383
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-sqlite-fts5/codex/run.json",
+      "sha256": "9024494efef26d1843e9f74a06b2b1f44d3d04ed1a8acfcbbcea7deb737b15ad",
+      "bytes": 34044
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-url-canonicalization/claude/events.sanitized.jsonl",
+      "sha256": "fe471296c55e2c7262606ad6e88dde911b01d904b2ea2c7662dfdd8f74ad0901",
+      "bytes": 151761
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-url-canonicalization/claude/policy.json",
+      "sha256": "d8afab2d4653619d54bb5855c33c0db027ea5f9b20d3b94e9439bce3437a4d01",
+      "bytes": 2031
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-url-canonicalization/claude/run.json",
+      "sha256": "d5291f1e0724d1d99be30d5506525501adeeff2079cce9d9a6f5956557f3e7ae",
+      "bytes": 34023
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-url-canonicalization/codex/events.sanitized.jsonl",
+      "sha256": "8113aa7d824fb9faefdb1e5791a41e00b72bad4d2109f62f4c6991347599b60a",
+      "bytes": 10933
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-url-canonicalization/codex/policy.json",
+      "sha256": "bf44199dee178ca08d7779446137ef34cdc3517eef45832bb5a4a84f149865e9",
+      "bytes": 2354
+    },
+    {
+      "path": "runs/2026-08-27/cases/technical-url-canonicalization/codex/run.json",
+      "sha256": "37315adc5770358a6858e1cda26d431e317187945aff0451daded5465141be1b",
+      "bytes": 25896
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/academic-bm25/claude/events.sanitized.jsonl",
+      "sha256": "36cf7f5c8a979d8fab6dd5d856b57711fbc0cc3cd06ae0c38529833f885ee447",
+      "bytes": 193096
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/academic-bm25/claude/policy.json",
+      "sha256": "aa91c859b956f6b888347a087fd47adeab37cdfd036efd0b52b6b7ef6cd94302",
+      "bytes": 1777
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/academic-bm25/claude/run.json",
+      "sha256": "00dcfde24b2998ba487ff2b2f46cf7ac76e69d2d622bcbae647888deebb655b3",
+      "bytes": 50679
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/academic-browser-fingerprinting/claude/events.sanitized.jsonl",
+      "sha256": "50722dec4a162fa6a46b2932c0d245d3c687c31a6f5a96a618ff2f654e876688",
+      "bytes": 201999
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/academic-browser-fingerprinting/claude/policy.json",
+      "sha256": "2732a61f2cf65ef788af3e38d6bbf6a8c0efacecdc3c82b48cb30de997ffff87",
+      "bytes": 1805
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/academic-browser-fingerprinting/claude/run.json",
+      "sha256": "c77765370d789065595bc2dbfd5849fe5464811eca3ea74419e02c922f20ec00",
+      "bytes": 59104
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/academic-retrieval-diversity/claude/events.sanitized.jsonl",
+      "sha256": "b9a8a2210eb6d457865ff68f580446e35615a5a2b6126387fdd8b3cde5717a42",
+      "bytes": 204612
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/academic-retrieval-diversity/claude/policy.json",
+      "sha256": "905e840d1127a8596bd15e04b3550972a9d6ae1cc32c74d9fc8f7c5bcd9d4831",
+      "bytes": 1849
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/academic-retrieval-diversity/claude/run.json",
+      "sha256": "d51b8b6d626541db6cb8ee0aa77c457c90cbfa2f4f03ae2cb340363e70ca4403",
+      "bytes": 66536
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-best-search/claude/events.sanitized.jsonl",
+      "sha256": "25a30a6e54dbcb8d454a1c54a772b44840c887316743c07fb10f362b8e4aadd5",
+      "bytes": 137987
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-best-search/claude/policy.json",
+      "sha256": "c13a2522182bb06ce893765df08f31a1aaf70d00cee90d7f56cd3eac8f1580cb",
+      "bytes": 1618
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-best-search/claude/run.json",
+      "sha256": "80a0b200a37c936d2f9968f9cd52cc467c70c84268906962ef3757ab6330eec2",
+      "bytes": 50242
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-xanadu-tuesday/claude/events.sanitized.jsonl",
+      "sha256": "8c4a24f1205d45046ae26a5579303888678476ae2d43ccf33756fe5e56834457",
+      "bytes": 108222
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-xanadu-tuesday/claude/policy.json",
+      "sha256": "58c256ce04a05a39ef97047f3c5fd27e134624ebf3a8f91456269f9260367f34",
+      "bytes": 1599
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/ambiguous-xanadu-tuesday/claude/run.json",
+      "sha256": "f8cbb2421d322f982c26f04cf4ee0200257cea766f5ae8c95a2a00bf9409f08a",
+      "bytes": 32487
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/community-bun-production/claude/events.sanitized.jsonl",
+      "sha256": "57388d0755700b0e8a4dda28cdff7c579b2a20388fbb9ca920e7ff039b0b1e99",
+      "bytes": 223328
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/community-bun-production/claude/policy.json",
+      "sha256": "abf4503272aedde1c0980e403d4caac4df2446ce3a775ed6c141d4b005ff7a75",
+      "bytes": 1925
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/community-bun-production/claude/run.json",
+      "sha256": "a34c7e3d2d3332b6b3cae66a932bc3dc92af6b45962f39d7ccbae90cb04d6f82",
+      "bytes": 63536
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/community-headless-stealth/claude/events.sanitized.jsonl",
+      "sha256": "05b12eda1be0820a33a7d97627f06043f68c401063df6d660e13df452074f72a",
+      "bytes": 237483
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/community-headless-stealth/claude/policy.json",
+      "sha256": "e2745eb4d217ae8e2f4f2d1486e6f096d3ab796cbc0eb9b271041f5bfd870e64",
+      "bytes": 1904
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/community-headless-stealth/claude/run.json",
+      "sha256": "7513be299c0d0ebf2f04a86b18ffa24e183cf4b3dbfe7f7634161b122c989c9c",
+      "bytes": 76447
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/community-robots-ethics/claude/events.sanitized.jsonl",
+      "sha256": "6620b9d29d79d8732310d22a864f10d5274882ecbacf2815674ebcbc395f7996",
+      "bytes": 278073
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/community-robots-ethics/claude/policy.json",
+      "sha256": "42276139b67975f6fe2371f76586d9db5847a070a731ed272b3e0af6e03667a8",
+      "bytes": 1946
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/community-robots-ethics/claude/run.json",
+      "sha256": "51289f1f2682e6ec9e6e490d023c50a599653885ff5b02fe4467ab4cabfb1f31",
+      "bytes": 98250
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/current-apple-security/claude/events.sanitized.jsonl",
+      "sha256": "f9d6ff23a09533c9f7bb5c1606db16baac7e481f7701a8d29d9628e59403d141",
+      "bytes": 113427
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/current-apple-security/claude/policy.json",
+      "sha256": "54b31ab1c21dbf69cb36c34a29c9daff63743a460e12aea802c5940c7a7d976b",
+      "bytes": 1713
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/current-apple-security/claude/run.json",
+      "sha256": "6826b9e3f6b3e42b3574d1937c2eb0803fdebc89385cf3cc7eed7c87e5d0acc1",
+      "bytes": 30879
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/current-bun-release/claude/events.sanitized.jsonl",
+      "sha256": "ec3c000459e80ccb7943b574fc831ebdf0c3e131a45548f4fdc98d97ef595d9f",
+      "bytes": 114923
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/current-bun-release/claude/policy.json",
+      "sha256": "e638240a833a2eacdf7e82cd53da3510b9f00cefffa7d209a7a5b00d8843ba33",
+      "bytes": 1720
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/current-bun-release/claude/run.json",
+      "sha256": "b89449b90526fec1eeb9c47c6cc6355f09731f9ff641c70c1db4578f8fd326a2",
+      "bytes": 29766
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/current-mcp-release/claude/events.sanitized.jsonl",
+      "sha256": "b7beee3f48331f7b2cf5f2c6330d8c956aec92c3f3d8c53eec441120abf9843b",
+      "bytes": 142823
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/current-mcp-release/claude/policy.json",
+      "sha256": "8ea4bda7ab364a819ec2692e67403c93c6b8a5b9e8fc06d99c98d022929dd6de",
+      "bytes": 1676
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/current-mcp-release/claude/run.json",
+      "sha256": "ee3d361562a1b0ad65f525204628b5000b2635ca22ca861600e478064d722a32",
+      "bytes": 48121
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/multilingual-es-climate/claude/events.sanitized.jsonl",
+      "sha256": "bdde6c0aebeb792c8bbb976c4e8d7521256cec9d7fc05cadb3d7ff6b030b0b88",
+      "bytes": 199868
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/multilingual-es-climate/claude/policy.json",
+      "sha256": "05583969754b6acb79f6ef1570a6e491e002375920b4c16b61dc1d8ffabc067b",
+      "bytes": 1817
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/multilingual-es-climate/claude/run.json",
+      "sha256": "faec488abe3566a0c830cf615adb18c350f724d8ba222fbcb2dbea8d2d613dc9",
+      "bytes": 63812
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/multilingual-fr-open-data/claude/events.sanitized.jsonl",
+      "sha256": "341a6081ac26db7d6635a3652837c730c9e8170391c222885b3af115c83fe760",
+      "bytes": 163823
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/multilingual-fr-open-data/claude/policy.json",
+      "sha256": "aa6d98c068ffcef412e3bb3405c1cc2c013d20611c9f97e85aa25f5116b36a98",
+      "bytes": 1777
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/multilingual-fr-open-data/claude/run.json",
+      "sha256": "13a2068e64de046c3b3551ab105fe42c00f26341db3e05358b801efb29824b43",
+      "bytes": 51861
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/multilingual-ja-web-standards/claude/events.sanitized.jsonl",
+      "sha256": "9617386cf95c00860f4187b6e3772f70aa88c68eedee54aa9978ebdea1c77cfa",
+      "bytes": 202254
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/multilingual-ja-web-standards/claude/policy.json",
+      "sha256": "8990a3596b8b3e30900caf2cbff79e52bb82b5c3650f3a18c40f400cf50c0cbd",
+      "bytes": 1814
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/multilingual-ja-web-standards/claude/run.json",
+      "sha256": "7b533a02f7c1ed6cc0f91c249b5ee6f27c77f1d21bf66c5e1d572410e0570ddb",
+      "bytes": 53977
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/technical-bun-webview/claude/events.sanitized.jsonl",
+      "sha256": "9e1504b9fe6123861487b12abab54312b2df8d2ab41dac1670b958beeaf38f65",
+      "bytes": 107092
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/technical-bun-webview/claude/policy.json",
+      "sha256": "2e1674398369f11cb92fa89e46df8c5b75cb2e2c98c47c4b7de4de7003316638",
+      "bytes": 1703
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/technical-bun-webview/claude/run.json",
+      "sha256": "464ec37e14bfca32309ac3237f5c08ea37bf6f71c784cb2867627a599fa7cdc6",
+      "bytes": 25834
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/technical-mcp-stdio/claude/events.sanitized.jsonl",
+      "sha256": "4c0a61b9d3992171c1fa33aa5805186c2f2a508eb79e9d1e26329f25539e0245",
+      "bytes": 357786
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/technical-mcp-stdio/claude/policy.json",
+      "sha256": "f7f4025e2b09e65ac6b77da27ae0ce68cff3a40dcb16eca04f7dfec5309e5448",
+      "bytes": 1761
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/technical-mcp-stdio/claude/run.json",
+      "sha256": "324fc3c16a150ebb11164487fc232920ef3a99f050345f96c7017d57df12761a",
+      "bytes": 138771
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/technical-pdfjs/claude/events.sanitized.jsonl",
+      "sha256": "6d95361e537bc192c2c6a15f23eac7ba80259cd02e4b64a92d4610d486439f26",
+      "bytes": 281825
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/technical-pdfjs/claude/policy.json",
+      "sha256": "22cff765859acc66bfb60f9c325e7b264e86cdd65cb11fcd4fb3d1d95d86a0c9",
+      "bytes": 2050
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/technical-pdfjs/claude/run.json",
+      "sha256": "e7b0e764797cd0fefe402f32cbae22e6b1ff177a7683105e898db05b789c132b",
+      "bytes": 68887
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/technical-robots-rfc/claude/events.sanitized.jsonl",
+      "sha256": "afa3060076b4cfaca0a91666205554a166f9ee5a73d2ae6948f37a8d8c76ddbd",
+      "bytes": 77694
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/technical-robots-rfc/claude/policy.json",
+      "sha256": "df5533f10d6e829ae24c8c775e27199dda6d6041d350e5b2d4a6450fa89553fc",
+      "bytes": 1556
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/technical-robots-rfc/claude/run.json",
+      "sha256": "703f7014c65a59c70e927bb42de1bff6449a6b09027ab2d3e792ec5513c9431c",
+      "bytes": 17518
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/technical-sqlite-fts5/claude/events.sanitized.jsonl",
+      "sha256": "e05c37a391987cc69e2665c234a3e74328f153d0210e04751e141c2973d0a72c",
+      "bytes": 170785
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/technical-sqlite-fts5/claude/policy.json",
+      "sha256": "58d1b36840a2622578511c2750c4d6c553cdf5f461c142c19c1986e13348c3b6",
+      "bytes": 1603
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/technical-sqlite-fts5/claude/run.json",
+      "sha256": "81cc5d7654d6192dfbf5fb21b4e367ce3718d21e3c66b60eac916d3977e3d29b",
+      "bytes": 53012
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/technical-url-canonicalization/claude/events.sanitized.jsonl",
+      "sha256": "0a444089e89dd7b21ee2a52494fff33f304c5dc9798e03312041920f30b303d8",
+      "bytes": 172831
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/technical-url-canonicalization/claude/policy.json",
+      "sha256": "b0aba62b4246351135a916a55360802f5a859822e1e096899c1371fdd69faa72",
+      "bytes": 1790
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/cases/technical-url-canonicalization/claude/run.json",
+      "sha256": "f99fabad3c11fc399d6b64bc84e84867dc897cc26cb8b0eb5ac4835a3db3c21c",
+      "bytes": 44186
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/manifest.json",
+      "sha256": "2601468ad33dded109c37258e4e2cf6816f20eb6c437840cf05fc18a69c9322b",
+      "bytes": 59008
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/probe-claude/events.sanitized.jsonl",
+      "sha256": "bf75116b02770c055cbc47731d4dde5d1421d87375da9345cb5e8f19d5867bd9",
+      "bytes": 41000
+    },
+    {
+      "path": "runs/2026-08-27/failures/claude-plugins-v1/probe-claude/policy.json",
+      "sha256": "490ad968fff4184f61617b01560822713d8ea9637a3f700016bb432b4b737ae8",
+      "bytes": 1302
+    },
+    {
+      "path": "runs/2026-08-27/failures/current-bun-release/claude-normalizer-v1/events.sanitized.jsonl",
+      "sha256": "7185ccec5dbcd3a9322afd38a02737d6ec1fe8a3a010862c574c2aab57421e64",
+      "bytes": 134039
+    },
+    {
+      "path": "runs/2026-08-27/failures/current-bun-release/claude-normalizer-v1/policy.json",
+      "sha256": "eda0194396e287b242cc20bb9f43e6adf665c82c0ae756dce6dc89fcc0360e53",
+      "bytes": 1739
+    },
+    {
+      "path": "runs/2026-08-27/failures/current-bun-release/codex-gpt-5.6/events.sanitized.jsonl",
+      "sha256": "7615aad12aa2c0067da0e19898c3c0aca3c417460677953b3977723c9f9e8eee",
+      "bytes": 699
+    },
+    {
+      "path": "runs/2026-08-27/failures/current-bun-release/codex-gpt-5.6/policy.json",
+      "sha256": "2bcfaaaa662a930ed64a84f8ab6b547c425bc82206bca4597073453f60877335",
+      "bytes": 2152
+    },
+    {
+      "path": "runs/2026-08-27/probes/claude/events.sanitized.jsonl",
+      "sha256": "627580ebf7f081ed6ba0413185c39690228be9f2f16ea9f2cd353aad0265f251",
+      "bytes": 38163
+    },
+    {
+      "path": "runs/2026-08-27/probes/claude/policy.json",
+      "sha256": "96c03aca49f2b6ec088526b2e9fd0d003e0cb642b8723758a5db9ed032b6c666",
+      "bytes": 1678
+    },
+    {
+      "path": "runs/2026-08-27/probes/codex/events.sanitized.jsonl",
+      "sha256": "f4b32be4cc9a4e1c4b5a988169ddd8f79c88d122981502cfd0e81ca7daf46c97",
+      "bytes": 1754
+    },
+    {
+      "path": "runs/2026-08-27/probes/codex/policy.json",
+      "sha256": "2cabdf920dc2087655dfc9283ab5beef61994cb7d498b10ecaaaef933455b28f",
+      "bytes": 1953
+    }
+  ]
+}

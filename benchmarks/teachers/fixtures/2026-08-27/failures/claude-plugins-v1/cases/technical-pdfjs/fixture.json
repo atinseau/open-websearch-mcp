@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "case_id": "technical-pdfjs",
+  "question": "What do current official PDF.js sources document about using the generic build outside a browser, extracting page text, and the runtime assumptions that affect Bun compatibility?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "c2",
+      "text": "The current official Node text-extraction example imports `pdfjs-dist/legacy/build/pdf.mjs`, not the generic build.",
+      "required_concepts": ["node_example", "legacy_build", "not_generic"],
+      "acceptable_patterns": [
+        "pdfjs-dist/legacy/build/pdf\\.mjs",
+        "does not import the generic build",
+        "not the generic build"
+      ],
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs",
+          "text": "The current official Node text-extraction example does **not** import the generic build; it imports `pdfjs-dist/legacy/build/pdf.mjs`."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-pdfjs",
+        "claude_run": "2026-08-27_claude_technical-pdfjs"
+      }
+    },
+    {
+      "id": "c3",
+      "text": "That Node example extracts page text by calling `getTextContent()` and joining `item.str` values.",
+      "required_concepts": ["getTextContent", "item_str", "join"],
+      "acceptable_patterns": ["getTextContent\\(\\)", "item\\.str", "join\\(\" \"\\)"],
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs",
+          "text": "That example loads a document with `getDocument({ url: pdfPath })`, gets each page with `getPage(i)`, calls `await pdfPage.getTextContent()`, and prints `items.map(item => item.str).join(\" \")`."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-pdfjs",
+        "claude_run": "2026-08-27_claude_technical-pdfjs"
+      }
+    },
+    {
+      "id": "c4",
+      "text": "The API docs say `PDFPageProxy.getTextContent()` returns a promise for `TextContent`, and whitespace is normalized to standard spaces (`0x20`).",
+      "required_concepts": ["PDFPageProxy", "TextContent", "whitespace"],
+      "acceptable_patterns": ["returns a promise", "TextContent", "standard spaces", "0x20"],
+      "sources": [
+        {
+          "url": "https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html",
+          "text": "The public API docs say `PDFPageProxy.getTextContent()` returns a promise for a `TextContent` object, and that all whitespace is normalized to standard spaces (`0x20`)."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-pdfjs",
+        "claude_run": "2026-08-27_claude_technical-pdfjs"
+      }
+    },
+    {
+      "id": "c5",
+      "text": "The `TextContent` docs describe an `items` array plus `styles`, and document `TextItem.str` along with fields such as direction, transform, width, height, font name, and `hasEOL`.",
+      "required_concepts": ["TextContent", "items", "styles", "TextItem"],
+      "acceptable_patterns": ["items array", "styles", "TextItem\\.str", "hasEOL"],
+      "sources": [
+        {
+          "url": "https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html",
+          "text": "The `TextContent` docs say it contains an `items` array plus `styles`; `TextItem.str` is the text string, and `TextItem` also carries direction, transform, width, height, font name, and `hasEOL`."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-pdfjs",
+        "claude_run": "2026-08-27_claude_technical-pdfjs"
+      }
+    },
+    {
+      "id": "c7",
+      "text": "Current API source changes several runtime defaults in Node.js and switches generic-build Node usage to Node-specific factories; it also disables workers in Node.js.",
+      "required_concepts": ["isNodeJS", "defaults", "NodeCanvasFactory", "workers_disabled"],
+      "acceptable_patterns": [
+        "useWorkerFetch",
+        "disableFontFace",
+        "NodeCanvasFactory",
+        "Workers aren't supported in Node\\.js"
+      ],
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js",
+          "text": "The runtime defaults in `src/display/api.js` are environment-sensitive. In Node.js, `useWorkerFetch` defaults to `false`, `isOffscreenCanvasSupported` defaults to `false`, `isImageDecoderSupported` defaults to `false`, `disableFontFace` defaults to `true`, and `useSystemFonts` defaults to `false` unless overridden."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js",
+          "text": "In a generic build detected as Node.js, PDF.js switches its default factories to `NodeCanvasFactory`, `NodeFilterFactory`, and `NodeBinaryDataFactory`."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js",
+          "text": "`if (isNodeJS) { // Workers aren't supported in Node.js, force-disabling them there.`"
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-pdfjs",
+        "claude_run": "2026-08-27_claude_technical-pdfjs"
+      }
+    },
+    {
+      "id": "c8",
+      "text": "Current Node-specific PDF.js source assumes Node-style runtime features including `process.getBuiltinModule`, `createRequire`, optional `@napi-rs/canvas`, and local file reads via `fs/promises.readFile`.",
+      "required_concepts": [
+        "process_getBuiltinModule",
+        "createRequire",
+        "napi_canvas",
+        "fs_promises"
+      ],
+      "acceptable_patterns": [
+        "process\\.getBuiltinModule",
+        "createRequire",
+        "@napi-rs/canvas",
+        "fs/promises\\.readFile"
+      ],
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/shared/util.js",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js",
+          "text": "`node_utils.js` shows what those Node defaults assume at runtime: it uses `process.getBuiltinModule(\"module\").createRequire(...)`, tries to load `@napi-rs/canvas`, polyfills `DOMMatrix` and `Path2D` from that package when possible, synthesizes a minimal `navigator` if `navigator.language` is missing, and reads local files through `fs/promises.readFile`."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/shared/util.js",
+          "text": "The `isNodeJS` constant is defined through a multi-condition check: `typeof process === \"object\" && process + \"\" === \"[object process]\"` ... The code notes that \"NW.js / Electron is a browser context, but copies some Node.js objects,\" requiring these specific checks."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-pdfjs",
+        "claude_run": "2026-08-27_claude_technical-pdfjs"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "PDF.js officially supports Bun.",
+      "reason": "Unsupported by the supplied official-source evidence; no official PDF.js source here explicitly says Bun is supported."
+    },
+    {
+      "text": "The generic build is the documented path for using PDF.js outside a browser.",
+      "reason": "Contradicted by the supplied evidence: official Node examples use `pdfjs-dist/legacy/build/pdf.mjs`, and `node_utils.js` says to use the legacy build in Node.js environments."
+    },
+    {
+      "text": "PDF.js official sources guarantee that text extraction works in Bun.",
+      "reason": "Unsupported and time-unstable; the supplied evidence only documents PDF.js runtime assumptions and Node-oriented examples, not a Bun guarantee."
+    },
+    {
+      "text": "Text extraction in PDF.js requires canvas rendering.",
+      "reason": "Unsupported by the supplied evidence; the text-extraction example uses `getTextContent()` and joined `item.str` values, while canvas usage appears in the separate `pdf2png` rendering example."
+    },
+    {
+      "text": "Current official PDF.js docs present the generic build as browser-oriented, while separately pointing to `examples/node/` for Node.js usage.",
+      "reason": "La citation attribuée à https://mozilla.github.io/pdf.js/getting_started/ (« includes the generic build of PDF.js and the viewer ») ne repose que sur la réponse finale de Codex recopiée comme evidence_passage ; cette URL n'a été ouverte par aucune run (opened_urls vide côté Codex). De plus, la seule lecture réelle de https://mozilla.github.io/pdf.js/examples/ indique explicitement « Generic/Legacy Build: No information is provided about this topic », ce qui contredit l'attribution du cadrage « in a web browser » à cette page. Le motif obligatoire « web browser » n'est donc pas vérifiable ; seule la partie examples/node est étayée."
+    },
+    {
+      "text": "For Node-like environments, current PDF.js source explicitly says to use the legacy build in Node.js environments.",
+      "reason": "Le motif de notation exige la chaîne verbatim « Please use the legacy build in Node.js environments. », qui n'apparaît dans aucune preuve indépendante : elle provient uniquement de l'écho auto-référentiel de Codex (aucune URL ouverte). La lecture effective de src/display/node_utils.js par l'autre run décrit les classes Node, process.getBuiltinModule et @napi-rs/canvas sans rapporter cet avertissement. Citation verbatim non corroborée, donc risque de fabrication."
+    }
+  ]
+}

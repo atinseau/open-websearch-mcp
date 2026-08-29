@@ -1,0 +1,114 @@
+{
+  "is_error": false,
+  "duration_api_ms": 52558,
+  "num_turns": 2,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.6148995,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 47940,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 3994,
+    "output_tokens_details": {
+      "thinking_tokens": 2353
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 47940,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 3994,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 47940,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 47940
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 35066,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.035181,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 3994,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 47940,
+      "webSearchRequests": 0,
+      "costUSD": 0.5797185,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"c1\",\"c2\",\"c3\",\"c4\",\"c5\",\"c7\"],\"rejected_claims\":[{\"id\":\"c6\",\"reason\":\"L'affirmation regroupe trois faits d'inégale solidité. Les crashs de pods 4 Go (issue #19930) et la croissance mémoire Mongoose 50 Mo → 170 Mo (issue #25948) sont corroborés par le contenu réellement récupéré dans le run Claude, mais le détail « RSS à 2,46 Go suivi d'une segmentation fault » sur l'issue #20912 (ainsi que « 300 Mo → 1,5 Go en un jour » et « container death ») ne repose que sur la prose auto-rapportée du run Codex : les tool_results Codex ne contiennent aucun payload et le run Claude n'a jamais ouvert #20912. De plus, les acceptable_patterns sont des décalques verbatim du phrasé de Codex (« crashing 4 GB pods from memory growth », « RSS at 2\\\\.46 GB followed by a segmentation fault ») plutôt que des citations de source, donc trop étroits pour une notation lexicale déterministe : une réponse exacte mais formulée différemment échouerait.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": ["c1", "c2", "c3", "c4", "c5", "c7"],
+    "rejected_claims": [
+      {
+        "id": "c6",
+        "reason": "L'affirmation regroupe trois faits d'inégale solidité. Les crashs de pods 4 Go (issue #19930) et la croissance mémoire Mongoose 50 Mo → 170 Mo (issue #25948) sont corroborés par le contenu réellement récupéré dans le run Claude, mais le détail « RSS à 2,46 Go suivi d'une segmentation fault » sur l'issue #20912 (ainsi que « 300 Mo → 1,5 Go en un jour » et « container death ») ne repose que sur la prose auto-rapportée du run Codex : les tool_results Codex ne contiennent aucun payload et le run Claude n'a jamais ouvert #20912. De plus, les acceptable_patterns sont des décalques verbatim du phrasé de Codex (« crashing 4 GB pods from memory growth », « RSS at 2\\.46 GB followed by a segmentation fault ») plutôt que des citations de source, donc trop étroits pour une notation lexicale déterministe : une réponse exacte mais formulée différemment échouerait."
+      }
+    ]
+  },
+  "ttft_ms": 31492,
+  "ttft_stream_ms": 1456,
+  "time_to_request_ms": 344,
+  "type": "result",
+  "duration_ms": 51036,
+  "uuid": "[REDACTED]",
+  "queued_turn_count": 0
+}

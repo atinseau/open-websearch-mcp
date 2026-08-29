@@ -1,0 +1,9 @@
+{
+  "text": "Results",
+  "links": [
+    { "url": "https://example.com/result", "text": "An organic result" },
+    { "url": "https://www.google.com/search?q=one", "text": "Related searches: One question" },
+    { "url": "https://www.google.com/search?q=two", "text": "People also ask: Two question" },
+    { "url": "https://www.google.com/search?q=one-again", "text": "Related searches: One question" }
+  ]
+}

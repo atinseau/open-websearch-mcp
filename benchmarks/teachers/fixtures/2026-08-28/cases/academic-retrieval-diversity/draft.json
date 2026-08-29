@@ -1,0 +1,169 @@
+{
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Maximal marginal relevance reranks documents greedily by maximizing a relevance term to the query and subtracting a novelty penalty based on similarity to already selected documents.",
+      "required_concepts": ["mmr", "greedy", "relevance", "novelty"],
+      "acceptable_patterns": [
+        "maximal marginal relevance",
+        "rerank(?:s|ing)? greedily",
+        "relevance term",
+        "novelty penalt(?:y|ies)|penaliz(?:e|es|ing) similarity to already selected",
+        "similarity to already selected documents"
+      ],
+      "sources": [
+        {
+          "url": "https://storage.ghost.io/c/97/88/97889716-a759-46f4-b63f-4f5c46a13333/content/files/~jgc/publication/the_use_mmr_diversity_based_ltmir_1998.pdf",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "c2",
+      "text": "In the original formulation, lambda controls a linear tradeoff: lambda = 1 gives ordinary relevance ranking, lambda = 0 gives maximal diversity ordering, and intermediate values trade relevance against novelty.",
+      "required_concepts": ["lambda", "tradeoff", "relevance", "diversity"],
+      "acceptable_patterns": [
+        "lambda\\s*=\\s*1",
+        "ordinary relevance ranking",
+        "lambda\\s*=\\s*0",
+        "maximal diversity ordering",
+        "intermediate values",
+        "tradeoff between relevance and novelty|trade relevance against novelty"
+      ],
+      "sources": [
+        {
+          "url": "https://storage.ghost.io/c/97/88/97889716-a759-46f4-b63f-4f5c46a13333/content/files/~jgc/publication/the_use_mmr_diversity_based_ltmir_1998.pdf",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "c3",
+      "text": "Carbonell and Goldstein recommend smaller lambda values for exploring the information space and larger values for focusing on closely related relevant documents; they report a practical strategy of starting near 0.3 and later moving toward 0.7.",
+      "required_concepts": ["lambda", "exploration", "focus", "0.3", "0.7"],
+      "acceptable_patterns": [
+        "smaller lambda values",
+        "explor(?:e|ing) the information space|sampling the information space",
+        "larger values",
+        "closely related relevant documents",
+        "0\\.3",
+        "0\\.7"
+      ],
+      "sources": [
+        {
+          "url": "https://storage.ghost.io/c/97/88/97889716-a759-46f4-b63f-4f5c46a13333/content/files/~jgc/publication/the_use_mmr_diversity_based_ltmir_1998.pdf",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.85
+    },
+    {
+      "id": "c4",
+      "text": "The original evidence for MMR itself was limited but positive: a Reuters example showed a duplicate article moving down and a novel but still relevant document moving up as lambda decreased.",
+      "required_concepts": ["reuters", "duplicate", "novel", "lambda"],
+      "acceptable_patterns": [
+        "Reuters example",
+        "duplicate article",
+        "moving down|pushed downward",
+        "novel but still relevant",
+        "moving up|moved upward",
+        "lambda decreased|as lambda decreases"
+      ],
+      "sources": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.75
+    },
+    {
+      "id": "c5",
+      "text": "The same 1998 work reports a five-user pilot study in which 4 of 5 users chose the MMR method for a final search task, while also noting that the pilot was too small for statistically significant trends in retrieval speed or recall.",
+      "required_concepts": ["pilot", "five-user", "4/5", "not statistically significant"],
+      "acceptable_patterns": [
+        "five-user pilot study|pilot study of five users",
+        "4/5|80%",
+        "chose the MMR method",
+        "too small",
+        "statistically significant trends|not statistically significant",
+        "retrieval speed|recall"
+      ],
+      "sources": [
+        {
+          "url": "https://storage.ghost.io/c/97/88/97889716-a759-46f4-b63f-4f5c46a13333/content/files/~jgc/publication/the_use_mmr_diversity_based_ltmir_1998.pdf",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.9
+    },
+    {
+      "id": "c6",
+      "text": "Later primary retrieval research supports diversification as a search objective more strongly than it supports MMR as the best algorithm: TREC 2009 introduced a diversity task with novelty-aware metrics, and a later study treated MMR as a canonical baseline while xQuAD outperformed it in the reported table.",
+      "required_concepts": [
+        "trec 2009",
+        "diversity task",
+        "novelty-aware metrics",
+        "mmr baseline",
+        "xquad"
+      ],
+      "acceptable_patterns": [
+        "TREC 2009",
+        "diversity task",
+        "novelty-aware metrics|alpha-nDCG|intent-aware precision",
+        "MMR as a canonical baseline|canonical example",
+        "xQuAD",
+        "outperformed|improved all three baselines"
+      ],
+      "sources": [
+        {
+          "url": "https://trec.nist.gov/pubs/trec18/papers/WEB09.OVERVIEW.pdf",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.95
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "MMR consistently beats well-tuned relevance baselines on large shared-task benchmarks.",
+      "reason": "Unsupported and partly contradicted by the supplied evidence, which says strong benchmark evidence was not found and reports a later study where MMR served mainly as a weaker baseline."
+    },
+    {
+      "text": "The TREC 2009-based comparison showed MMR was the strongest diversification method.",
+      "reason": "Contradicted by the supplied evidence, which states the later paper's explicit diversification method xQuAD improved all three baselines while MMR did not."
+    },
+    {
+      "text": "The five-user pilot study established statistically significant improvements in retrieval speed or recall for MMR.",
+      "reason": "Contradicted by the supplied evidence, which says the pilot was too small to yield statistically significant trends for retrieval speed or recall."
+    }
+  ]
+}

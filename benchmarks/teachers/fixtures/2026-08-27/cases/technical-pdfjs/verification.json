@@ -1,0 +1,13 @@
+{
+  "accepted_claim_ids": ["c1", "c2", "c3", "c4", "c5", "c7"],
+  "rejected_claims": [
+    {
+      "id": "c6",
+      "reason": "The underlying fact (node_utils.js warns to use the legacy build in Node.js) is well supported by both runs, but the single acceptable_pattern is an exact literal quote that hard-requires backticks around 'legacy' and a trailing period: \"Please use the `legacy` build in Node\\.js environments\\.\". The supplied evidence itself renders this string two different ways -- the Claude run shows warn(\"Please use the `legacy` build in Node.js environments.\") with backticks, while the Codex evidence passage renders it without backticks as 'Please use the legacy build in Node.js environments.' The pattern would therefore fail to match one of the supplied renderings and any correct paraphrase (e.g. 'warns to use the legacy build in Node.js environments'). Overly narrow grading pattern with no fallback alternative."
+    },
+    {
+      "id": "c8",
+      "reason": "Over-bundled and partly unsupported/interpretive. (a) It requires eight concepts spanning three separate files as a single claim. (b) Its worker_options.js source is mis-attributed: the evidence passage filed under worker_options.js actually says 'the API source says...' and neither run opened or verified worker_options.js, so the 'workerSrc should always be set' quote is not independently grounded (Claude's fetch of the pdfjsLib module docs explicitly reports no GlobalWorkerOptions information). (c) Framing 'module worker' setup as a Node/non-browser runtime assumption is in tension with the Claude run's api.js evidence, which shows the opposite for that environment: 'if (isNodeJS) { this.#isWorkerDisabled = true; ... }' with the comment 'Workers aren't supported in Node.js, force-disabling them there.' The new Worker(workerSrc, { type: \"module\" }) path is the browser branch, so bundling it into the Node-assumptions claim overstates the evidence and depends on unstated interpretation. The api.js default and node_utils.js portions are supported and could be re-issued as separate, narrower claims."
+    }
+  ]
+}

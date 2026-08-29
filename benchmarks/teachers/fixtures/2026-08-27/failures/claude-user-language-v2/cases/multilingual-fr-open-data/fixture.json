@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "case_id": "multilingual-fr-open-data",
+  "question": "Quelles obligations et limites les sources officielles françaises décrivent-elles pour la réutilisation des données publiques sous Licence Ouverte 2.0 ?",
+  "locale": "fr-FR",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim_1",
+      "text": "La Licence Ouverte 2.0 accorde une réutilisation gratuite, non exclusive, mondiale, illimitée dans le temps, y compris à des fins commerciales.",
+      "required_concepts": ["gratuite", "non_exclusive", "mondiale", "illimitee", "commerciale"],
+      "acceptable_patterns": [
+        "gratuit",
+        "non exclusif",
+        "monde entier",
+        "dur[eé]e illimit[ée]e",
+        "fins commerciales"
+      ],
+      "sources": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "text": "La `Licence Ouverte 2.0` accorde au réutilisateur un droit de réutilisation `gratuit`, `non exclusif`, valable `dans le monde entier`, `pour une durée illimitée`, y compris à des `fins commerciales`."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_multilingual-fr-open-data",
+        "claude_run": "2026-08-27_claude_multilingual-fr-open-data"
+      }
+    },
+    {
+      "id": "claim_2",
+      "text": "La condition centrale de la licence est de mentionner la paternité de l'information, au minimum la source et la date de dernière mise à jour; une URL peut suffire si elle assure cette mention effective.",
+      "required_concepts": ["paternite", "source", "date_maj", "url"],
+      "acceptable_patterns": [
+        "mentionner la paternit[eé]",
+        "source",
+        "date de la derni[eè]re mise [àa] jour",
+        "URL"
+      ],
+      "sources": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "text": "L’obligation centrale prévue par la licence est de `mentionner la paternité` de l’information, c’est-à-dire au minimum `la source` (au moins le nom du concédant) et `la date de la dernière mise à jour` de l’information réutilisée. La licence précise qu’on peut notamment satisfaire cette obligation en donnant l’`URL` qui renvoie vers l’information si cette URL assure une mention effective de paternité."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_multilingual-fr-open-data",
+        "claude_run": "2026-08-27_claude_multilingual-fr-open-data"
+      }
+    },
+    {
+      "id": "claim_3",
+      "text": "La mention de paternité ne doit pas donner un caractère officiel à la réutilisation ni laisser croire à une reconnaissance ou une caution du concédant ou d'une autre entité publique.",
+      "required_concepts": ["pas_officiel", "pas_reconnaissance", "pas_caution"],
+      "acceptable_patterns": ["caract[eè]re officiel", "reconnaissance", "caution"],
+      "sources": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "text": "La mention de paternité ne doit ni donner un `caractère officiel` à la réutilisation, ni laisser croire à une `reconnaissance` ou une `caution` du concédant ou d’une autre entité publique."
+        }
+      ],
+      "weight": 0.9,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_multilingual-fr-open-data",
+        "claude_run": "2026-08-27_claude_multilingual-fr-open-data"
+      }
+    },
+    {
+      "id": "claim_4",
+      "text": "La réutilisation ne doit pas induire en erreur des tiers sur le contenu de l'information, sa source ou sa date de mise à jour.",
+      "required_concepts": ["pas_erreur_tiers", "contenu", "source", "date_maj"],
+      "acceptable_patterns": [
+        "induire en erreur des tiers",
+        "contenu",
+        "source",
+        "date de mise [àa] jour"
+      ],
+      "sources": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "text": "La licence prévoit aussi que la réutilisation ne doit pas `induire en erreur des tiers` sur le contenu de l’information, sa source ou sa date de mise à jour."
+        }
+      ],
+      "weight": 0.9,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_multilingual-fr-open-data",
+        "claude_run": "2026-08-27_claude_multilingual-fr-open-data"
+      }
+    },
+    {
+      "id": "claim_5",
+      "text": "Si les informations contiennent des données à caractère personnel, leur réutilisation reste possible seulement dans le respect du cadre légal applicable à la protection des données, notamment du RGPD et de la loi Informatique et Libertés.",
+      "required_concepts": ["donnees_personnelles", "cadre_legal", "RGPD", "informatique_libertes"],
+      "acceptable_patterns": [
+        "donn[eé]es [àa] caract[eè]re personnel",
+        "cadre l[eé]gal",
+        "RGPD",
+        "Informatique et Libert[eé]s"
+      ],
+      "sources": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.cnil.fr/fr/comment-reutiliser-les-donnees-diffusees",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "text": "S’agissant des `données à caractère personnel`, la licence indique que l’information peut en contenir, que le concédant doit en informer le réutilisateur, et que la réutilisation reste possible à condition de respecter le `cadre légal` applicable à la protection des données personnelles."
+        },
+        {
+          "url": "https://www.cnil.fr/fr/comment-reutiliser-les-donnees-diffusees",
+          "text": "La CNIL résume ce point en indiquant que, si des données personnelles sont présentes, les réutilisateurs doivent respecter le `RGPD` et la loi `Informatique et Libertés`."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_multilingual-fr-open-data",
+        "claude_run": "2026-08-27_claude_multilingual-fr-open-data"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "La Licence Ouverte 2.0 impose un partage à l'identique des réutilisations.",
+      "reason": "Unsupported by the supplied evidence."
+    },
+    {
+      "text": "L'article L322-1 interdit toujours toute adaptation ou modification malgré la Licence Ouverte 2.0.",
+      "reason": "Contradicted by the supplied evidence, which says the licence autorise l’adaptation, la modification et la transformation."
+    },
+    {
+      "text": "La Licence Ouverte 2.0 autorise la réutilisation de données personnelles sans autre obligation juridique.",
+      "reason": "Contradicted by the supplied evidence about respecting the RGPD, the loi Informatique et Libertés, and the applicable legal framework."
+    },
+    {
+      "text": "La licence indique que l'information est fournie telle quelle, sans garantie supplémentaire, et que le réutilisateur est seul responsable de sa réutilisation.",
+      "reason": "Grading pattern trop étroit et citation inexacte : le pattern obligatoire « telle quelle » ne correspond pas au libellé attesté de la licence dans les preuves fournies (« telle que produite ou reçue » / « as produced or received »). Une réponse correcte reprenant le libellé réel échouerait au grading lexical, ce qui rend la claim non déterministe pour la notation, même si le fond (absence de garantie, réutilisateur seul responsable) est par ailleurs étayé."
+    }
+  ]
+}

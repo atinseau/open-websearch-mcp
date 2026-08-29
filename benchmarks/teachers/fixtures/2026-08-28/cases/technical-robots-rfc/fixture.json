@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "case_id": "technical-robots-rfc",
+  "question": "Under RFC 9309, how are robots.txt user-agent groups, allow/disallow precedence, percent encoding, and unavailable robots.txt responses handled?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "grounding",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "c7",
+      "text": "If redirects exceed five consecutive hops, the crawler may treat robots.txt as unavailable.",
+      "required_concepts": ["redirects", "five-hops", "treat-unavailable"],
+      "acceptable_patterns": ["redirects exceed five consecutive hops", "may treat.*unavailable"],
+      "sources": [
+        {
+          "url": "https://datatracker.ietf.org/doc/rfc9309/",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.8,
+      "provenance": {
+        "mode": "trace_grounded",
+        "codex_run": "2026-08-28_codex_technical-robots-rfc"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Allow always overrides disallow in RFC 9309.",
+      "reason": "Contradicted by the supplied answer, which says longest-path specificity decides first and allow only breaks ties between equivalent rules."
+    },
+    {
+      "text": "RFC 9309 requires path matching to be case-sensitive.",
+      "reason": "Contradicted by the supplied answer, which says path matching SHOULD be case sensitive, not MUST."
+    },
+    {
+      "text": "The supplied evidence includes verbatim RFC excerpts proving these claims.",
+      "reason": "Unsupported because the run evidence_passages array is empty, so no verbatim excerpt is available in the supplied evidence."
+    },
+    {
+      "text": "RFC 9309 describes a robots.txt file as groups that start with one or more user-agent lines followed by zero or more allow or disallow rules; if the last group has no rules, it implicitly allows everything.",
+      "reason": "required concept is absent from teacher-run evidence: group-structure"
+    },
+    {
+      "text": "For user-agent selection, matching is case-insensitive against the crawler product token; if multiple groups match, their rules are combined, and if no specific group matches, the user-agent: * group is used if present, otherwise no rules apply.",
+      "reason": "required concept is absent from teacher-run evidence: ua-match"
+    },
+    {
+      "text": "Allow and disallow rules are matched against the URI path from the first octet, the most specific match is the one with the greatest number of matching octets, and if equivalent allow and disallow rules conflict, allow should be used.",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "text": "If no rule matches, or the applicable group has no rules, the URI is allowed, and /robots.txt is implicitly allowed.",
+      "reason": "required concept is absent from teacher-run evidence: no-match-allowed"
+    },
+    {
+      "text": "For percent encoding, octets outside ASCII and octets in the reserved range are percent-encoded before comparison; percent-encoded ASCII octets in the URI are decoded before comparison except when the octet is a reserved URI character or outside the unreserved range.",
+      "reason": "required concept is absent from teacher-run evidence: reserved-exception"
+    },
+    {
+      "text": "RFC 9309 treats an unavailable robots.txt as a fetch where the server indicates the resource is unavailable; in HTTP the answer cites 4xx as the example range, and in that case the crawler may access any resource on the server.",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "text": "The cited answer separately says unreachable robots.txt, such as server or network failure with HTTP 5xx as the example range, requires the crawler to assume complete disallow, though after a reasonably long time it may instead treat the file as unavailable or use a cached copy.",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    }
+  ]
+}

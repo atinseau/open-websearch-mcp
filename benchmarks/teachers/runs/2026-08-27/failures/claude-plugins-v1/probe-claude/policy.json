@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "provider": "claude",
+  "cli_version": "2.1.243 (Claude Code)",
+  "started_at": "2026-08-27T12:58:56.149Z",
+  "duration_ms": 33060,
+  "command": [
+    "claude",
+    "-p",
+    "--safe-mode",
+    "--tools",
+    "WebSearch,WebFetch",
+    "--allowedTools",
+    "WebSearch,WebFetch",
+    "--disallowedTools",
+    "mcp__*",
+    "--permission-mode",
+    "dontAsk",
+    "--disable-slash-commands",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "{\"mcpServers\":{}}",
+    "--no-chrome",
+    "--no-session-persistence",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-partial-messages",
+    "--include-hook-events",
+    "--max-budget-usd",
+    "0.25",
+    "Use native WebSearch to find the official Claude Code CLI reference, use native WebFetch to inspect that official page, then answer with one verified CLI fact and cite its URL. Do not use any other tool."
+  ],
+  "controls": {
+    "isolated_temporary_cwd": true,
+    "cwd_unchanged": true,
+    "wrapper_shim_bypassed": true,
+    "session_persistence_disabled": true
+  },
+  "process": {
+    "exit_code": 0,
+    "stderr": ""
+  },
+  "inspection": {
+    "accepted": true,
+    "tool_calls": ["WebSearch", "WebFetch", "WebFetch"],
+    "forbidden_tool_calls": [],
+    "authentication_failed": false
+  }
+}

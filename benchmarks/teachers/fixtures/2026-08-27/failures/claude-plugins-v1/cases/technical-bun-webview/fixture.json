@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "case_id": "technical-bun-webview",
+  "question": "According to current official Bun documentation, how can Bun.WebView connect to an already-running browser over a browser-level CDP WebSocket URL, and which lifecycle operations are documented?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Bun documents connecting `Bun.WebView` to an already-running browser by passing the `backend` object form with `type: \"chrome\"` and a `url` set to a DevTools WebSocket endpoint such as `ws://127.0.0.1:9222/devtools/browser/abc123...`.",
+      "required_concepts": ["backend", "type chrome", "url ws", "devtools browser"],
+      "acceptable_patterns": [
+        "backend[\\s\\S]*type\\s*:\\s*[\"']chrome[\"'][\\s\\S]*url\\s*:\\s*[\"']ws://127\\.0\\.0\\.1:9222/devtools/browser/abc123\\.\\.\\.[\"']",
+        "Connect to a specific DevTools WebSocket URL"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.com/docs/runtime/webview",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://bun.com/docs/runtime/webview",
+          "text": "To make `Bun.WebView` connect to an already-running browser over a CDP WebSocket, Bun documents the `backend` object form with `type: \"chrome\"` and a `url` field set to a `ws://...` DevTools endpoint; the example shown is `ws://127.0.0.1:9222/devtools/browser/abc123...`. The docs say this is how to “Connect to a specific DevTools WebSocket URL.”"
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-bun-webview",
+        "claude_run": "2026-08-27_claude_technical-bun-webview"
+      }
+    },
+    {
+      "id": "c3",
+      "text": "The docs say `url: false` disables auto-detect and forces Bun to spawn a fresh headless Chrome, while an explicit `url: \"ws://...\"` does not fall back to spawning if the connection fails and instead throws.",
+      "required_concepts": [
+        "url false",
+        "disable auto-detect",
+        "spawn fresh",
+        "explicit ws throws"
+      ],
+      "acceptable_patterns": [
+        "url\\s*:\\s*false[\\s\\S]*disables auto-detect[\\s\\S]*spawn a fresh headless Chrome",
+        "explicit\\s+`?url\\s*:\\s*[\"']ws://",
+        "does\\s*not fall back[\\s\\S]*throws"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.com/docs/runtime/webview",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://bun.com/docs/runtime/webview",
+          "text": "The docs state that `url: false` disables auto-detect and forces Bun to spawn a fresh headless Chrome instead. They also state that an explicit `url: \"ws://...\"` does **not** fall back to spawning if the connection fails; instead, it throws."
+        }
+      ],
+      "weight": 0.8,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-bun-webview",
+        "claude_run": "2026-08-27_claude_technical-bun-webview"
+      }
+    },
+    {
+      "id": "c4",
+      "text": "The explicitly documented lifecycle operations are `view.close()` and `Bun.WebView.closeAll()`.",
+      "required_concepts": ["view.close", "Bun.WebView.closeAll"],
+      "acceptable_patterns": [
+        "explicitly documented lifecycle operations[\\s\\S]*view\\.close\\(\\)[\\s\\S]*Bun\\.WebView\\.closeAll\\(\\)",
+        "view\\.close\\(\\).*Bun\\.WebView\\.closeAll\\(\\)"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.com/docs/runtime/webview",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://bun.com/docs/runtime/webview",
+          "text": "The explicitly documented lifecycle operations are `view.close()` and `Bun.WebView.closeAll()`."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-bun-webview",
+        "claude_run": "2026-08-27_claude_technical-bun-webview"
+      }
+    },
+    {
+      "id": "c5",
+      "text": "For `view.close()`, the docs describe it as synchronous and idempotent; it destroys the page’s renderer process, rejects pending promises on that view with `Error(\"WebView closed\")`, and later method calls throw `ERR_INVALID_STATE`. `Symbol.dispose` and `Symbol.asyncDispose` both point to `close()`.",
+      "required_concepts": [
+        "synchronous",
+        "idempotent",
+        "Error(\"WebView closed\")",
+        "ERR_INVALID_STATE",
+        "Symbol.dispose"
+      ],
+      "acceptable_patterns": [
+        "view\\.close\\(\\)[\\s\\S]*synchronous and idempotent",
+        "Error\\([\"']WebView closed[\"']\\)",
+        "ERR_INVALID_STATE",
+        "Symbol\\.(dispose|asyncDispose)"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.com/docs/runtime/webview",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://bun.com/docs/runtime/webview",
+          "text": "For `view.close()`, the docs say closing is synchronous and idempotent, destroys the page’s renderer process, rejects pending promises on that view with `Error(\"WebView closed\")`, and makes later method calls throw `ERR_INVALID_STATE`. They also say `Symbol.dispose` and `Symbol.asyncDispose` both point to `close()`, so `using` and `await using` perform automatic cleanup."
+        }
+      ],
+      "weight": 0.9,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-bun-webview",
+        "claude_run": "2026-08-27_claude_technical-bun-webview"
+      }
+    },
+    {
+      "id": "c6",
+      "text": "For `Bun.WebView.closeAll()`, the docs say it force-kills the Chrome and WebKit host subprocesses with `SIGKILL`, causes pending promises on every view to reject on the next event-loop tick, and allows later `new Bun.WebView()` calls to respawn browsers as needed; Bun also calls `closeAll()` automatically at process exit.",
+      "required_concepts": [
+        "SIGKILL",
+        "reject pending promises",
+        "respawn browsers",
+        "automatic at process exit"
+      ],
+      "acceptable_patterns": [
+        "Bun\\.WebView\\.closeAll\\(\\)[\\s\\S]*SIGKILL",
+        "pending promises[\\s\\S]*next event-loop tick",
+        "new Bun\\.WebView\\(\\)[\\s\\S]*respawn",
+        "automatically at process exit"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.com/docs/runtime/webview",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://bun.com/docs/runtime/webview",
+          "text": "For `Bun.WebView.closeAll()`, the docs say it force-kills the Chrome subprocess and the WebKit host subprocess with `SIGKILL`, causes pending promises on every view to reject on the next event-loop tick, and allows later `new Bun.WebView()` calls to respawn browsers as needed. The docs also say Bun calls `closeAll()` automatically at process exit."
+        }
+      ],
+      "weight": 0.9,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-bun-webview",
+        "claude_run": "2026-08-27_claude_technical-bun-webview"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Bun.WebView connects via a separate `connect()` API or `Bun.WebView.connect()` method.",
+      "reason": "Unsupported by the supplied evidence; the evidence describes constructor `backend` configuration instead."
+    },
+    {
+      "text": "The docs document lifecycle operations beyond `view.close()` and `Bun.WebView.closeAll()`, such as `disconnect()`, `terminate()`, or `kill()`.",
+      "reason": "Contradicted by the supplied evidence, which says the explicitly documented lifecycle operations are `view.close()` and `Bun.WebView.closeAll()`."
+    },
+    {
+      "text": "The docs guarantee support for non-`ws://` schemes, page-level DevTools URLs, or authenticated WebSocket URLs.",
+      "reason": "Unsupported by the supplied evidence."
+    },
+    {
+      "text": "The Bun API reference page independently documents the same CDP URL connection and lifecycle details.",
+      "reason": "Unsupported by the supplied evidence; the supplied evidence says the reference page excerpt does not contain those details."
+    },
+    {
+      "text": "Bun also documents automatic connection to an already-running Chrome-family browser: before spawning Chrome, it reads `DevToolsActivePort` in standard profile directories and, if remote debugging is enabled, connects over WebSocket instead of spawning a new browser.",
+      "reason": "Le fond de la revendication (auto-détection via DevToolsActivePort, connexion WebSocket au lieu du spawn) est bien étayé par les deux exécutions, mais les motifs de notation sont invalides/trop étroits : le premier exige la séquence littérale « already running », absente à la fois du texte de la revendication et du passage source (qui dit « if it finds a running browser »), et le second impose de mentionner « chrome://inspect/#remote-debugging » ou « --remote-debugging-port=9222 », éléments que la revendication n'affirme pas. Aucun des deux motifs ne s'apparie au texte de la revendication elle-même, ce qui rend la notation lexicale non déterministe et susceptible de rejeter des réponses correctes."
+    }
+  ]
+}

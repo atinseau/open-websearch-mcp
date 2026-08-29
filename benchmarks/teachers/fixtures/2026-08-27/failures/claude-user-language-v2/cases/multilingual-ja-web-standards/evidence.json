@@ -1,0 +1,662 @@
+{
+  "schema_version": 1,
+  "case_id": "multilingual-ja-web-standards",
+  "runs": [
+    {
+      "run_id": "2026-08-27_codex_multilingual-ja-web-standards",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "JPRS 国際化ドメイン名 日本語 一次情報",
+        "site:support.mozilla.org/ja IDN Firefox 日本語 punycode",
+        "https://jprs.jp/related-info/guide/topics-column/no7.html",
+        "https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md",
+        "https://url.spec.whatwg.org/",
+        "site:wiki.mozilla.org IDN display algorithm official",
+        "site:unicode.org UTS 46 ToASCII ToUnicode official",
+        "'host serializer' in https://url.spec.whatwg.org/",
+        "'new algorithm' in https://wiki.mozilla.org/IDN_Display_Algorithm",
+        "https://searchfox.org/firefox-main/source/__GENERATED__/__ios__/modules/libpref/init/StaticPrefList_network.h"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [],
+      "cited_urls": [
+        "https://jprs.jp/related-info/guide/topics-column/no7.html",
+        "https://url.spec.whatwg.org/",
+        "https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md",
+        "https://wiki.mozilla.org/IDN_Display_Algorithm",
+        "https://日本語.jp/",
+        "https://learn.microsoft.com/ja-jp/windows/win32/intl/handling-internationalized-domain-names--idns"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://jprs.jp/related-info/guide/topics-column/no7.html",
+          "title": "https://jprs.jp/related-info/guide/topics-column/no7.html"
+        },
+        {
+          "url": "https://url.spec.whatwg.org/",
+          "title": "https://url.spec.whatwg.org/"
+        },
+        {
+          "url": "https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md",
+          "title": "https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md"
+        },
+        {
+          "url": "https://wiki.mozilla.org/IDN_Display_Algorithm",
+          "title": "https://wiki.mozilla.org/IDN_Display_Algorithm"
+        },
+        {
+          "url": "https://日本語.jp/",
+          "title": "https://日本語.jp/"
+        },
+        {
+          "url": "https://learn.microsoft.com/ja-jp/windows/win32/intl/handling-internationalized-domain-names--idns",
+          "title": "https://learn.microsoft.com/ja-jp/windows/win32/intl/handling-internationalized-domain-names--idns"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://jprs.jp/related-info/guide/topics-column/no7.html",
+          "text": "**結論**\n\n国際化ドメイン名（IDN）は、ブラウザー内部ではそのまま DNS に渡されるのではなく、まず URL のホスト名として解析され、最終的には ASCII 文字列のドメイン、典型的には `xn--...` 形式の Punycode に正規化されて扱われます。JPRS は国際化ドメイン名が `Punycode`・`Nameprep`・`IDNA` の組み合わせで実現されると説明しており、WHATWG URL Standard は現在の Web プラットフォームがホスト解析に `Unicode IDNA Compatibility Processing (UTS #46)` を使うと定めています。https://jprs.jp/related-info/guide/topics-column/no7.html https://url.spec.whatwg.org/\n\n**仕様で裏づけられる事実**\n\nJPRS は、国際化ドメイン名では Unicode 文字列をそのまま DNS に入れるのではなく、既存 DNS との互換性のために `Punycode` を採用し、Punycode は Unicode 文字列を「アルファベット・数字・ハイフン」で表現する方式だと説明しています。https://jprs.jp/related-info/guide/topics-column/no7.html\n\nWHATWG URL Standard では、通常のホスト解析で、入力ホストが IPv6 でも opaque host でもなければ、ホスト文字列を percent-decoding し、UTF-8 decode し、その結果に `domain parser` を適用して ASCII ドメインへ変換すると定めています。https://url.spec.whatwg.org/\n\n同じ仕様は、`domain parser` が非 ASCII ドメインに対して `Unicode ToASCII` を UTS #46 の設定付きで実行し、失敗したら失敗を返し、成功したら ASCII ドメインを返すと定めています。https://url.spec.whatwg.org/\n\n同じ仕様は、Web プラットフォームが `IDNA2008` そのものではなく `Unicode IDNA Compatibility Processing` を使うと明記し、例として `☕.example` が失敗ではなく `xn--53h.example` になると示しています。https://url.spec.whatwg.org/\n\n同じ仕様は、ホスト serializer が常に ASCII 文字列を返すと定めているので、ブラウザー内部の URL 直列化結果は Unicode 表示名ではなく ASCII ホストになります。https://url.spec.whatwg.org/\n\nWHATWG URL Standard は一方で、ブラウザーがドメインを表示するときは `domain to Unicode` を走らせて描画すべきだとし、さらに見た目の紛らわしさへの対策を考慮すべきだと述べています。https://url.spec.whatwg.org/\n\nChromium の公式文書は、非 ASCII を含むホスト名を user agent が ASCII-only hostname に変換し、それを DNS サーバーへ送ると説明し、各ラベルを Punycode に符号化すると書いています。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nChromium の同文書は、Chrome が表示時にはホスト名全体ではなくラベルごとに「Unicode で見せるか」「Punycode で見せるか」を判定すると説明しています。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nChrome の表示判定では、`ToUnicode` 変換エラー、識別子に許されない文字、禁止文字、危険なスクリプト混在、複数の数字体系の混在、不可視文字、危険パターン、mixed-script confusable、whole-script confusable、digit spoof などがあると Punycode 表示になります。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nMozilla Wiki の公式説明ページは、Firefox も"
+        },
+        {
+          "url": "https://url.spec.whatwg.org/",
+          "text": "**結論**\n\n国際化ドメイン名（IDN）は、ブラウザー内部ではそのまま DNS に渡されるのではなく、まず URL のホスト名として解析され、最終的には ASCII 文字列のドメイン、典型的には `xn--...` 形式の Punycode に正規化されて扱われます。JPRS は国際化ドメイン名が `Punycode`・`Nameprep`・`IDNA` の組み合わせで実現されると説明しており、WHATWG URL Standard は現在の Web プラットフォームがホスト解析に `Unicode IDNA Compatibility Processing (UTS #46)` を使うと定めています。https://jprs.jp/related-info/guide/topics-column/no7.html https://url.spec.whatwg.org/\n\n**仕様で裏づけられる事実**\n\nJPRS は、国際化ドメイン名では Unicode 文字列をそのまま DNS に入れるのではなく、既存 DNS との互換性のために `Punycode` を採用し、Punycode は Unicode 文字列を「アルファベット・数字・ハイフン」で表現する方式だと説明しています。https://jprs.jp/related-info/guide/topics-column/no7.html\n\nWHATWG URL Standard では、通常のホスト解析で、入力ホストが IPv6 でも opaque host でもなければ、ホスト文字列を percent-decoding し、UTF-8 decode し、その結果に `domain parser` を適用して ASCII ドメインへ変換すると定めています。https://url.spec.whatwg.org/\n\n同じ仕様は、`domain parser` が非 ASCII ドメインに対して `Unicode ToASCII` を UTS #46 の設定付きで実行し、失敗したら失敗を返し、成功したら ASCII ドメインを返すと定めています。https://url.spec.whatwg.org/\n\n同じ仕様は、Web プラットフォームが `IDNA2008` そのものではなく `Unicode IDNA Compatibility Processing` を使うと明記し、例として `☕.example` が失敗ではなく `xn--53h.example` になると示しています。https://url.spec.whatwg.org/\n\n同じ仕様は、ホスト serializer が常に ASCII 文字列を返すと定めているので、ブラウザー内部の URL 直列化結果は Unicode 表示名ではなく ASCII ホストになります。https://url.spec.whatwg.org/\n\nWHATWG URL Standard は一方で、ブラウザーがドメインを表示するときは `domain to Unicode` を走らせて描画すべきだとし、さらに見た目の紛らわしさへの対策を考慮すべきだと述べています。https://url.spec.whatwg.org/\n\nChromium の公式文書は、非 ASCII を含むホスト名を user agent が ASCII-only hostname に変換し、それを DNS サーバーへ送ると説明し、各ラベルを Punycode に符号化すると書いています。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nChromium の同文書は、Chrome が表示時にはホスト名全体ではなくラベルごとに「Unicode で見せるか」「Punycode で見せるか」を判定すると説明しています。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nChrome の表示判定では、`ToUnicode` 変換エラー、識別子に許されない文字、禁止文字、危険なスクリプト混在、複数の数字体系の混在、不可視文字、危険パターン、mixed-script confusable、whole-script confusable、digit spoof などがあると Punycode 表示になります。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nMozilla Wiki の公式説明ページは、Firefox も"
+        },
+        {
+          "url": "https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md",
+          "text": "**結論**\n\n国際化ドメイン名（IDN）は、ブラウザー内部ではそのまま DNS に渡されるのではなく、まず URL のホスト名として解析され、最終的には ASCII 文字列のドメイン、典型的には `xn--...` 形式の Punycode に正規化されて扱われます。JPRS は国際化ドメイン名が `Punycode`・`Nameprep`・`IDNA` の組み合わせで実現されると説明しており、WHATWG URL Standard は現在の Web プラットフォームがホスト解析に `Unicode IDNA Compatibility Processing (UTS #46)` を使うと定めています。https://jprs.jp/related-info/guide/topics-column/no7.html https://url.spec.whatwg.org/\n\n**仕様で裏づけられる事実**\n\nJPRS は、国際化ドメイン名では Unicode 文字列をそのまま DNS に入れるのではなく、既存 DNS との互換性のために `Punycode` を採用し、Punycode は Unicode 文字列を「アルファベット・数字・ハイフン」で表現する方式だと説明しています。https://jprs.jp/related-info/guide/topics-column/no7.html\n\nWHATWG URL Standard では、通常のホスト解析で、入力ホストが IPv6 でも opaque host でもなければ、ホスト文字列を percent-decoding し、UTF-8 decode し、その結果に `domain parser` を適用して ASCII ドメインへ変換すると定めています。https://url.spec.whatwg.org/\n\n同じ仕様は、`domain parser` が非 ASCII ドメインに対して `Unicode ToASCII` を UTS #46 の設定付きで実行し、失敗したら失敗を返し、成功したら ASCII ドメインを返すと定めています。https://url.spec.whatwg.org/\n\n同じ仕様は、Web プラットフォームが `IDNA2008` そのものではなく `Unicode IDNA Compatibility Processing` を使うと明記し、例として `☕.example` が失敗ではなく `xn--53h.example` になると示しています。https://url.spec.whatwg.org/\n\n同じ仕様は、ホスト serializer が常に ASCII 文字列を返すと定めているので、ブラウザー内部の URL 直列化結果は Unicode 表示名ではなく ASCII ホストになります。https://url.spec.whatwg.org/\n\nWHATWG URL Standard は一方で、ブラウザーがドメインを表示するときは `domain to Unicode` を走らせて描画すべきだとし、さらに見た目の紛らわしさへの対策を考慮すべきだと述べています。https://url.spec.whatwg.org/\n\nChromium の公式文書は、非 ASCII を含むホスト名を user agent が ASCII-only hostname に変換し、それを DNS サーバーへ送ると説明し、各ラベルを Punycode に符号化すると書いています。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nChromium の同文書は、Chrome が表示時にはホスト名全体ではなくラベルごとに「Unicode で見せるか」「Punycode で見せるか」を判定すると説明しています。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nChrome の表示判定では、`ToUnicode` 変換エラー、識別子に許されない文字、禁止文字、危険なスクリプト混在、複数の数字体系の混在、不可視文字、危険パターン、mixed-script confusable、whole-script confusable、digit spoof などがあると Punycode 表示になります。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nMozilla Wiki の公式説明ページは、Firefox も"
+        },
+        {
+          "url": "https://wiki.mozilla.org/IDN_Display_Algorithm",
+          "text": "**結論**\n\n国際化ドメイン名（IDN）は、ブラウザー内部ではそのまま DNS に渡されるのではなく、まず URL のホスト名として解析され、最終的には ASCII 文字列のドメイン、典型的には `xn--...` 形式の Punycode に正規化されて扱われます。JPRS は国際化ドメイン名が `Punycode`・`Nameprep`・`IDNA` の組み合わせで実現されると説明しており、WHATWG URL Standard は現在の Web プラットフォームがホスト解析に `Unicode IDNA Compatibility Processing (UTS #46)` を使うと定めています。https://jprs.jp/related-info/guide/topics-column/no7.html https://url.spec.whatwg.org/\n\n**仕様で裏づけられる事実**\n\nJPRS は、国際化ドメイン名では Unicode 文字列をそのまま DNS に入れるのではなく、既存 DNS との互換性のために `Punycode` を採用し、Punycode は Unicode 文字列を「アルファベット・数字・ハイフン」で表現する方式だと説明しています。https://jprs.jp/related-info/guide/topics-column/no7.html\n\nWHATWG URL Standard では、通常のホスト解析で、入力ホストが IPv6 でも opaque host でもなければ、ホスト文字列を percent-decoding し、UTF-8 decode し、その結果に `domain parser` を適用して ASCII ドメインへ変換すると定めています。https://url.spec.whatwg.org/\n\n同じ仕様は、`domain parser` が非 ASCII ドメインに対して `Unicode ToASCII` を UTS #46 の設定付きで実行し、失敗したら失敗を返し、成功したら ASCII ドメインを返すと定めています。https://url.spec.whatwg.org/\n\n同じ仕様は、Web プラットフォームが `IDNA2008` そのものではなく `Unicode IDNA Compatibility Processing` を使うと明記し、例として `☕.example` が失敗ではなく `xn--53h.example` になると示しています。https://url.spec.whatwg.org/\n\n同じ仕様は、ホスト serializer が常に ASCII 文字列を返すと定めているので、ブラウザー内部の URL 直列化結果は Unicode 表示名ではなく ASCII ホストになります。https://url.spec.whatwg.org/\n\nWHATWG URL Standard は一方で、ブラウザーがドメインを表示するときは `domain to Unicode` を走らせて描画すべきだとし、さらに見た目の紛らわしさへの対策を考慮すべきだと述べています。https://url.spec.whatwg.org/\n\nChromium の公式文書は、非 ASCII を含むホスト名を user agent が ASCII-only hostname に変換し、それを DNS サーバーへ送ると説明し、各ラベルを Punycode に符号化すると書いています。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nChromium の同文書は、Chrome が表示時にはホスト名全体ではなくラベルごとに「Unicode で見せるか」「Punycode で見せるか」を判定すると説明しています。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nChrome の表示判定では、`ToUnicode` 変換エラー、識別子に許されない文字、禁止文字、危険なスクリプト混在、複数の数字体系の混在、不可視文字、危険パターン、mixed-script confusable、whole-script confusable、digit spoof などがあると Punycode 表示になります。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nMozilla Wiki の公式説明ページは、Firefox も"
+        },
+        {
+          "url": "https://日本語.jp/",
+          "text": "**結論**\n\n国際化ドメイン名（IDN）は、ブラウザー内部ではそのまま DNS に渡されるのではなく、まず URL のホスト名として解析され、最終的には ASCII 文字列のドメイン、典型的には `xn--...` 形式の Punycode に正規化されて扱われます。JPRS は国際化ドメイン名が `Punycode`・`Nameprep`・`IDNA` の組み合わせで実現されると説明しており、WHATWG URL Standard は現在の Web プラットフォームがホスト解析に `Unicode IDNA Compatibility Processing (UTS #46)` を使うと定めています。https://jprs.jp/related-info/guide/topics-column/no7.html https://url.spec.whatwg.org/\n\n**仕様で裏づけられる事実**\n\nJPRS は、国際化ドメイン名では Unicode 文字列をそのまま DNS に入れるのではなく、既存 DNS との互換性のために `Punycode` を採用し、Punycode は Unicode 文字列を「アルファベット・数字・ハイフン」で表現する方式だと説明しています。https://jprs.jp/related-info/guide/topics-column/no7.html\n\nWHATWG URL Standard では、通常のホスト解析で、入力ホストが IPv6 でも opaque host でもなければ、ホスト文字列を percent-decoding し、UTF-8 decode し、その結果に `domain parser` を適用して ASCII ドメインへ変換すると定めています。https://url.spec.whatwg.org/\n\n同じ仕様は、`domain parser` が非 ASCII ドメインに対して `Unicode ToASCII` を UTS #46 の設定付きで実行し、失敗したら失敗を返し、成功したら ASCII ドメインを返すと定めています。https://url.spec.whatwg.org/\n\n同じ仕様は、Web プラットフォームが `IDNA2008` そのものではなく `Unicode IDNA Compatibility Processing` を使うと明記し、例として `☕.example` が失敗ではなく `xn--53h.example` になると示しています。https://url.spec.whatwg.org/\n\n同じ仕様は、ホスト serializer が常に ASCII 文字列を返すと定めているので、ブラウザー内部の URL 直列化結果は Unicode 表示名ではなく ASCII ホストになります。https://url.spec.whatwg.org/\n\nWHATWG URL Standard は一方で、ブラウザーがドメインを表示するときは `domain to Unicode` を走らせて描画すべきだとし、さらに見た目の紛らわしさへの対策を考慮すべきだと述べています。https://url.spec.whatwg.org/\n\nChromium の公式文書は、非 ASCII を含むホスト名を user agent が ASCII-only hostname に変換し、それを DNS サーバーへ送ると説明し、各ラベルを Punycode に符号化すると書いています。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nChromium の同文書は、Chrome が表示時にはホスト名全体ではなくラベルごとに「Unicode で見せるか」「Punycode で見せるか」を判定すると説明しています。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nChrome の表示判定では、`ToUnicode` 変換エラー、識別子に許されない文字、禁止文字、危険なスクリプト混在、複数の数字体系の混在、不可視文字、危険パターン、mixed-script confusable、whole-script confusable、digit spoof などがあると Punycode 表示になります。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nMozilla Wiki の公式説明ページは、Firefox も"
+        },
+        {
+          "url": "https://learn.microsoft.com/ja-jp/windows/win32/intl/handling-internationalized-domain-names--idns",
+          "text": "**結論**\n\n国際化ドメイン名（IDN）は、ブラウザー内部ではそのまま DNS に渡されるのではなく、まず URL のホスト名として解析され、最終的には ASCII 文字列のドメイン、典型的には `xn--...` 形式の Punycode に正規化されて扱われます。JPRS は国際化ドメイン名が `Punycode`・`Nameprep`・`IDNA` の組み合わせで実現されると説明しており、WHATWG URL Standard は現在の Web プラットフォームがホスト解析に `Unicode IDNA Compatibility Processing (UTS #46)` を使うと定めています。https://jprs.jp/related-info/guide/topics-column/no7.html https://url.spec.whatwg.org/\n\n**仕様で裏づけられる事実**\n\nJPRS は、国際化ドメイン名では Unicode 文字列をそのまま DNS に入れるのではなく、既存 DNS との互換性のために `Punycode` を採用し、Punycode は Unicode 文字列を「アルファベット・数字・ハイフン」で表現する方式だと説明しています。https://jprs.jp/related-info/guide/topics-column/no7.html\n\nWHATWG URL Standard では、通常のホスト解析で、入力ホストが IPv6 でも opaque host でもなければ、ホスト文字列を percent-decoding し、UTF-8 decode し、その結果に `domain parser` を適用して ASCII ドメインへ変換すると定めています。https://url.spec.whatwg.org/\n\n同じ仕様は、`domain parser` が非 ASCII ドメインに対して `Unicode ToASCII` を UTS #46 の設定付きで実行し、失敗したら失敗を返し、成功したら ASCII ドメインを返すと定めています。https://url.spec.whatwg.org/\n\n同じ仕様は、Web プラットフォームが `IDNA2008` そのものではなく `Unicode IDNA Compatibility Processing` を使うと明記し、例として `☕.example` が失敗ではなく `xn--53h.example` になると示しています。https://url.spec.whatwg.org/\n\n同じ仕様は、ホスト serializer が常に ASCII 文字列を返すと定めているので、ブラウザー内部の URL 直列化結果は Unicode 表示名ではなく ASCII ホストになります。https://url.spec.whatwg.org/\n\nWHATWG URL Standard は一方で、ブラウザーがドメインを表示するときは `domain to Unicode` を走らせて描画すべきだとし、さらに見た目の紛らわしさへの対策を考慮すべきだと述べています。https://url.spec.whatwg.org/\n\nChromium の公式文書は、非 ASCII を含むホスト名を user agent が ASCII-only hostname に変換し、それを DNS サーバーへ送ると説明し、各ラベルを Punycode に符号化すると書いています。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nChromium の同文書は、Chrome が表示時にはホスト名全体ではなくラベルごとに「Unicode で見せるか」「Punycode で見せるか」を判定すると説明しています。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nChrome の表示判定では、`ToUnicode` 変換エラー、識別子に許されない文字、禁止文字、危険なスクリプト混在、複数の数字体系の混在、不可視文字、危険パターン、mixed-script confusable、whole-script confusable、digit spoof などがあると Punycode 表示になります。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nMozilla Wiki の公式説明ページは、Firefox も"
+        }
+      ],
+      "final_answer": "**結論**\n\n国際化ドメイン名（IDN）は、ブラウザー内部ではそのまま DNS に渡されるのではなく、まず URL のホスト名として解析され、最終的には ASCII 文字列のドメイン、典型的には `xn--...` 形式の Punycode に正規化されて扱われます。JPRS は国際化ドメイン名が `Punycode`・`Nameprep`・`IDNA` の組み合わせで実現されると説明しており、WHATWG URL Standard は現在の Web プラットフォームがホスト解析に `Unicode IDNA Compatibility Processing (UTS #46)` を使うと定めています。https://jprs.jp/related-info/guide/topics-column/no7.html https://url.spec.whatwg.org/\n\n**仕様で裏づけられる事実**\n\nJPRS は、国際化ドメイン名では Unicode 文字列をそのまま DNS に入れるのではなく、既存 DNS との互換性のために `Punycode` を採用し、Punycode は Unicode 文字列を「アルファベット・数字・ハイフン」で表現する方式だと説明しています。https://jprs.jp/related-info/guide/topics-column/no7.html\n\nWHATWG URL Standard では、通常のホスト解析で、入力ホストが IPv6 でも opaque host でもなければ、ホスト文字列を percent-decoding し、UTF-8 decode し、その結果に `domain parser` を適用して ASCII ドメインへ変換すると定めています。https://url.spec.whatwg.org/\n\n同じ仕様は、`domain parser` が非 ASCII ドメインに対して `Unicode ToASCII` を UTS #46 の設定付きで実行し、失敗したら失敗を返し、成功したら ASCII ドメインを返すと定めています。https://url.spec.whatwg.org/\n\n同じ仕様は、Web プラットフォームが `IDNA2008` そのものではなく `Unicode IDNA Compatibility Processing` を使うと明記し、例として `☕.example` が失敗ではなく `xn--53h.example` になると示しています。https://url.spec.whatwg.org/\n\n同じ仕様は、ホスト serializer が常に ASCII 文字列を返すと定めているので、ブラウザー内部の URL 直列化結果は Unicode 表示名ではなく ASCII ホストになります。https://url.spec.whatwg.org/\n\nWHATWG URL Standard は一方で、ブラウザーがドメインを表示するときは `domain to Unicode` を走らせて描画すべきだとし、さらに見た目の紛らわしさへの対策を考慮すべきだと述べています。https://url.spec.whatwg.org/\n\nChromium の公式文書は、非 ASCII を含むホスト名を user agent が ASCII-only hostname に変換し、それを DNS サーバーへ送ると説明し、各ラベルを Punycode に符号化すると書いています。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nChromium の同文書は、Chrome が表示時にはホスト名全体ではなくラベルごとに「Unicode で見せるか」「Punycode で見せるか」を判定すると説明しています。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nChrome の表示判定では、`ToUnicode` 変換エラー、識別子に許されない文字、禁止文字、危険なスクリプト混在、複数の数字体系の混在、不可視文字、危険パターン、mixed-script confusable、whole-script confusable、digit spoof などがあると Punycode 表示になります。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\nMozilla Wiki の公式説明ページは、Firefox も IDN ラベルごとに Unicode と Punycode のどちらを表示するかを決める仕組みを持つと説明しています。https://wiki.mozilla.org/IDN_Display_Algorithm\n\n同ページによれば、Firefox は 2012 年に方針を更新し、旧来の「TLD ホワイトリスト中心」から、ホワイトリストを残しつつ、同一スクリプトまたは限定された許容組み合わせかどうかを見る方向へ移りました。https://wiki.mozilla.org/IDN_Display_Algorithm\n\n同ページは、Firefox が追加チェックとして「複数の数字体系の混在」や「同じ非間隔結合記号の連続」などを Punycode 表示対象にすると説明しています。https://wiki.mozilla.org/IDN_Display_Algorithm\n\n**実務的な説明**\n\nしたがって、`https://日本語.jp/` のような URL をブラウザーが受け取ると、解析段階ではホスト名が UTS #46 ベースの ToASCII 処理を通って ASCII ドメインに変換され、ネットワーク側ではその ASCII 形が使われ、表示段階では `domain to Unicode` とブラウザー独自の安全判定を通ったときだけ Unicode の見た目で出ます。https://url.spec.whatwg.org/ https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md https://wiki.mozilla.org/IDN_Display_Algorithm\n\n言い換えると、「解析・通信の正準形」は基本的に ASCII 側で、「アドレスバーに日本語や各国文字を見せるか」はブラウザーの表示ポリシー次第です。https://url.spec.whatwg.org/ https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\n**食い違いがある点**\n\nJPRS の説明と Microsoft Learn 日本語記事は `Nameprep` と `RFC 3490` 系の IDNA を前提に説明しています。https://jprs.jp/related-info/guide/topics-column/no7.html https://learn.microsoft.com/ja-jp/windows/win32/intl/handling-internationalized-domain-names--idns\n\n一方で WHATWG URL Standard は、現行 Web プラットフォームでは `IDNA2008` そのものではなく `UTS #46` ベースの互換処理を使うと明記しています。https://url.spec.whatwg.org/\n\nこのため、日本語の基礎解説や OS API 解説だけを読むと「Nameprep/IDNA2003 がそのまま今のブラウザー仕様」と見えますが、Web ブラウザーの URL 解析仕様としては WHATWG URL Standard の記述の方が直接的です。https://jprs.jp/related-info/guide/topics-column/no7.html https://learn.microsoft.com/ja-jp/windows/win32/intl/handling-internationalized-domain-names--idns https://url.spec.whatwg.org/\n\n**推論**\n\nChromium ベースの他ブラウザーも、少なくとも URL 解析と多くの IDN 表示挙動は Chrome に近い可能性が高いです。これは Chromium の公式 IDN 文書が実装方針を示しているための推論ですが、この回答では Chrome 以外の個別製品について同等性を直接裏づける公式文書までは確認していません。https://chromium.googlesource.com/chromium/src/%2B/main/docs/idn.md\n\n**不確実性**\n\nFirefox について見つかった一次資料は Mozilla Wiki の設計説明で、現在のすべての細部が 2026 年時点の実装と完全一致するかは、この検索範囲だけでは断定できません。少なくとも「Unicode/Punycode を安全性判定で切り替える」という大枠はその文書で裏づけられます。https://wiki.mozilla.org/IDN_Display_Algorithm\n\n**良い証拠が見つからなかった点**\n\nSafari の現行版が IDN をどの条件で Unicode 表示と Punycode 表示に切り替えるかについて、今回の Web 検索範囲では Apple の十分に直接的な公式仕様・一次説明を確認できませんでした。URL 標準に従う部分と製品固有の表示ポリシーは分けて扱うのが安全です。https://url.spec.whatwg.org/"
+    },
+    {
+      "run_id": "2026-08-27_claude_multilingual-ja-web-standards",
+      "provider": "claude",
+      "model": "claude-opus-5[1m]",
+      "queries": [
+        "国際化ドメイン名 IDNA2008 Punycode ブラウザ 表示 JPRS 仕様",
+        "MDN 国際化ドメイン名 Punycode URL 解析 日本語",
+        "URL Standard 日本語訳 ホストパーサ IDNA ToASCII UTS46",
+        "Chrome IDN 表示 ポリシー ホモグラフ Punycode 表示される 条件 言語スクリプト",
+        "JPRS IDNA2008 IDNA2003 違い 移行 遷移的処理 UTS46 解説 日本語",
+        "Firefox IDN 表示 ホワイトリスト network.IDN_show_punycode 日本語 サポート"
+      ],
+      "tool_results": [
+        {
+          "tool": "WebSearch",
+          "summary": "JPRS用語辞典｜Punycode（ピュニコード）: https://jprs.jp/glossary/index.php?ID=0051"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "国際化ドメイン名(IDN)技術の一構成要素であるPunycodeのprefixがxn--に決定 | TOPICS | ドメイン名・DNS関連トピックス | 新着情報一覧 | JPRS: https://jprs.jp/whatsnew/topics/topics_old/030217.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "JPRS トピックス＆コラム No.7 | ドメイン名やDNSの解説 | JPRS: https://jprs.jp/related-info/guide/topics-column/no7.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "国際化ドメイン名 - JPNIC: https://www.nic.ad.jp/ja/dom/idn.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "いまさら聞けない日本語ドメイン名 民田雅人 日本レジストリサービス株式会社 2008年1月24日JANOG 21@熊本: https://www.janog.gr.jp/meeting/janog21/agenda/detail/presentation/jpndom-minmin-07.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Jprs: https://jprs.co.jp/idn/rfc5890j.txt"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "[news] 国際化ドメイン名 (IDN) 関連: http://mcn.oops.jp/glossary/internet/idn.htm"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "日本語ドメイン変換【punycode変換】: https://www.cman.jp/network/support/punycode.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Punycode 変換・逆変換ツール（日本語ドメイン名・URL対応）: https://rakkokeyword.com/techo/tool-punycode-converter/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "日本語ドメイン名のURLでもPunycodeのURLでもGoogleは同じものとして処理する: https://www.suzukikenichi.com/blog/google-treats-idn-and-punycode-equivalently/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "「Punycode」とは？（国際化ドメイン）: https://chiilabo.com/2023-05/punycode-algorythm-international-domain-url-encode/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Punycode変換 | 日本語ドメイン（ピュニコード）を変換: https://develop.tools/punycode/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Punycode IDN 日本語ドメイン 国際化ドメイン名 変換 Online: https://dencode.com/en/string/punycode"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "一括Punycode変換ツール / 中古ドメイン販売屋さん（ラッコドメイン）: https://www.topshelfequestrian.com/tools/bulk-punycode-converter/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "日本語ドメイン＆日本語URL変換ツール｜Punycode・URLエンコード変換 - お役立ちツール集: https://tools.medaka.shop/punycode/"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Punycode Definition and Components\n\n**Core Definition:**\n\"Punycode\" is \"a Bootstring encoding of Unicode for Internationalized Domain Names in Applications (IDNA)\" that converts Unicode characters to ASCII-compatible format.\n\n**Key Technical Features:**\n\nThe system works by representing \"Unicode のコードポイント（文字ごとに割り当てられる固有の番号）\" using only ASCII characters. ASCII characters remain unchanged, while non-ASCII characters become \"英数字とハイフンで構成されるASCII文字\" (alphanumeric and hyphenated strings).\n\n**The xn--"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# 国際化ドメイン名の仕組みと技術\n\n## 概要\n国際化ドメイン名(IDN)は、従来のASCII文字に加えて漢字やアラビア文字などの非ASCII文字をドメイン名で使用できる技術です。既存のDNS構造に影響を与えないよう、ユーザ側のアプリケーション層で変換処理が行われます。\n\n## 変換プロセス\n\nドメイン名は以下の3段階を経て処理されます：\n\n**第1段階：正規化（NAMEPREP）**\n入力文字列を標準形に整形します。例えば、全角の「。」は半角の「.」に、大文字は小文字に統一されます。\n\n**第2段階：Punycode変換**\n正規化された文字列を7bit ASCII文字列に変換します。「日本語ドメイン名EXAMPLE.jp」は「xn--example-6q4fyliikhk162btq3b2zd4y2o.jp」となります。プレフィックス「xn--」は国際化ドメイン名の標識です。\n\n**第3段階：DNS問い合わせ**\n変換されたASCII文字列で通常通りDNS照会を実行します。\n\n## 支援技術\n\n**IDNA(Internationalizing Domain Names in A"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "uts46 · PyPI: https://pypi.org/project/uts46/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "URL Standard （日本語訳）: https://triple-underscore.github.io/URL-ja.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "GitHub - medmunds/uts46: Python implementation of UTS46, Unicode IDNA Compatibility Processing. Converts internationalized domain names to and from ASCII representations. · GitHub: https://github.com/medmunds/uts46"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "GitHub - skryukov/uri-idna: A IDNA2008, UTS46 and Punycode implementation in pure Ruby: https://github.com/skryukov/uri-idna"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "idna-uts46 - npm: https://www.npmjs.com/package/idna-uts46"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "UTS#46 Unicode IDNA Compatibility Processing (IDNA46): https://www.unicode.org/L2/L2010/10024-tr46-2-draft6.html"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# IDNA2008の主要用語の日本語説明\n\n## A-labelとU-label\n\n本文書では「A-ラベル」を「ACE (ASCII-Compatible Encoding) 形式で表現されたIDNA適合文字列」と定義し、「U-ラベル」を「NFC形式のユニコード文字で構成されており、最低1文字の非ASCII文字を含むIDNA適合文字列」と説明しています。\n\n## IDNA2003との違い\n\n「2008年に大規模な改訂が完了したIDNA」として、「この新しい改訂版のIDNAは『IDNA2008』として知られるもの」と述べ、古いバージョンは「IDNA2003」と表記することが示されています。セキュリティに関して「現在のバージョンで解釈を実際に変更した文字だけである」と指摘されています。\n\n## Nameprepの扱い\n\n「IDNA2008は Stringprep を何も変更しない」と明記され、むしろ「IDNA2008に関する一連の文書群は Stringprepに依存しない」と説明されています。\n\n## ドメイン名スロット\n\n「ドメイン名を渡すことが明示的に指定されたプロトコル要素や関数の"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "肉眼では偽物と見抜けない国際化ドメイン悪用のURL偽装、Google Chromeなどで対策進む ～ホモグラフ攻撃の保護メカニズムに欠陥: https://forest.watch.impress.co.jp/docs/news/1056177.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "【2017年4月21日更新】正規のドメインに見える偽サイトにご注意ください。 | パソコン修理はPCデポ: https://www.pcdepot.co.jp/cm_g/idn_homograph_caution.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "国際化ドメイン名 - Wikipedia: https://ja.wikipedia.org/wiki/%E5%9B%BD%E9%9A%9B%E5%8C%96%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E5%90%8D"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "ChromeとFirefoxのホモグラフ攻撃対策を迂回する方法 | 財経新聞: https://www.zaikei.co.jp/article/20170421/366002.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Punycodeとは - ぶうううん's Cafe: https://buuuuuuun3939.hatenablog.com/entry/2021/02/15/131144"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Punycode によるホモグラフ攻撃例とその回避 [text.Baldanders.info]: https://text.baldanders.info/remark/2017/04/homograph-attack/"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# URL Standard 日本語訳の主要アルゴリズム\n\n## ホスト構文解析器\n\n「ホスト構文解析器」は、任意の文字列に対して失敗またはホストを返します。入力が「[」で始まる場合はIPv6解析、不透明フラグがtrueの場合は不透明ホスト解析、その他はドメイン解析を実行します。\n\n## ドメイン構文解析器（日本語訳より）\n\n「ドメイン構文解析器は、所与の文字列と厳密性フラグに対し、失敗またはドメインを返します。まず厳密性フラグをtrueでUnicode ToASCIIを実行し、エラー時は検証エラーを報告。厳密フラグがtrueの場合は失敗を返し、falseの場合はASCII文字列ならば小文字化、非ASCII文字列ならばfalseでUnicode ToASCIIを実行します。結果が空文字列または禁止ドメイン文字を含む場合は失敗を返します。」\n\n## ドメイン構文解析器ToASCIIパラメータ\n\nDomain ToASCIIアルゴリズムは以下パラメータで「Unicode ToASCII」を実行：CheckHyphens・UseSTD3ASCIIRules・VerifyDnsLengthを厳"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Chrome's IDN Display Policy\n\n## When Unicode vs. Punycode is Shown\n\nChrome determines whether to display internationalized domain names in Unicode or punycode by evaluating each domain component separately. The browser prioritizes security against homograph attacks while maintaining usability for global users.\n\n## Key Security Rules\n\n**Script Mixing Restrictions:**\nLatin, Cyrillic, and Greek characters cannot be mixed with each other. However, \"Latin characters in the ASCII range can be mixed "
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# 日本語ドメイン名の技術に関する記述\n\n## ドメイン名の仕組み\n\n本文では、国際化ドメイン名が「Punycode、Nameprep、IDNAという3つの技術の組み合わせにより実現されている」と説明されています。\n\n## ブラウザでの処理\n\n「国際化（日本語）ドメイン名を利用する場合、Webブラウザやメールソフト等のアプリケーションにおいて国際化ドメイン名に対応する作業を**それぞれ個別に行う必要があります**」と記載されています。\n\n## xn--変換（Punycode）\n\nPunycodeについては、「Unicode文字列をドメイン名として従来から使用可能であったアルファベット・数字・ハイフンで表現するもの」と説明されています。サーバ側では「設定ファイルにおける国際化ドメイン名の記述としてPunycodeを使用することにより、従来のサーバプログラムを改変することなく対応できます」と述べられています。"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Firefox、バージョン1.0.1でIDNの表示詐称に対応 - ITmedia エンタープライズ: https://www.itmedia.co.jp/enterprise/articles/0502/26/news001.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "国際化ドメイン名処理に起因する表示偽装の問題、OperaやFirefoxなどに影響 - ITmedia エンタープライズ: https://www.itmedia.co.jp/enterprise/articles/0502/08/news028.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "国際化ドメイン名 - Wikipedia: https://ja.wikipedia.org/wiki/%E5%9B%BD%E9%9A%9B%E5%8C%96%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E5%90%8D"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Firefox で日本語ドメインの .com / .net が punycode で表示される理由: https://futuremix.org/2010/03/firefox-displays-idn-com-net-domain-with-punycode"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Firefox で国際化ドメイン名を punycode で表示する ―― IDN 悪用フィッシングにとりあえず対策 – Astronavis: https://astronavis.net/2018/02/21/firefox-%E3%81%A7%E5%9B%BD%E9%9A%9B%E5%8C%96%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E5%90%8D%E3%82%92-punycode-%E3%81%A7%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B%E3%80%80%E2%80%95%E2%80%95-idn-%E6%82%AA/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "MozillaZine.jp » Blog Archive » 国際化ドメインのための新しい TLD ホワイトリストがチェックイン: https://mozillazine.jp/?p=56"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Firefoxで日本語ドメインをPunycode(ピュニコード)で表示する方法 | WebMETAL: http://web.haioku.net/firefox-punycode/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Internet Engineering Task Force (IETF) J. Klensin: https://jprs.co.jp/idn/rfc5894j.txt"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "GitHub - jcranmer/idna-uts46: A UTS #46 processing algorithm for IDNA2008 strings: https://github.com/jcranmer/idna-uts46"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Technical Reports Proposed Update Unicode Technical Standard #46 Version: https://www.unicode.org/L2/L2013/13220-uts46-10-draft.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "idna-uts46 - npm: https://www.npmjs.com/package/idna-uts46"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Explain that we are using UTS #46 for IDNA support rather than IDNA2008 directly · Issue #498 · whatwg/url: https://github.com/whatwg/url/issues/498"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "UTS #46: Unicode IDNA Compatibility Processing: https://unicode.org/reports/tr46/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "09390 tr46 4: https://www.unicode.org/L2/L2009/09390-tr46-4.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "[Unicode]  Technical Reports: https://www.unicode.org/L2/L2009/09390-tr46-3.html"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Firefox's IDN Display Algorithm\n\nFirefox uses a two-tier approach to decide when domain names display in Unicode versus Punycode format:\n\n## Whitelist Priority\nIf a TLD is on Mozilla's whitelist, it unconditionally displays in Unicode. This recognizes registries with \"sufficiently strong protections in place\" against homograph attacks.\n\n## Script-Mixing Rules\nFor non-whitelisted TLDs, Firefox applies Unicode Technical Report 39's \"Moderately Restrictive\" profile. Characters must come from:\n- A"
+        }
+      ],
+      "opened_urls": [
+        "https://jprs.jp/glossary/index.php?ID=0051",
+        "https://www.nic.ad.jp/ja/dom/idn.html",
+        "https://jprs.co.jp/idn/rfc5890j.txt",
+        "https://triple-underscore.github.io/URL-ja.html",
+        "https://chromium.googlesource.com/chromium/src/+/main/docs/idn.md",
+        "https://jprs.jp/related-info/guide/topics-column/no7.html",
+        "https://wiki.mozilla.org/IDN_Display_Algorithm"
+      ],
+      "cited_urls": [
+        "https://www.nic.ad.jp/ja/dom/idn.html",
+        "https://jprs.jp/glossary/index.php?ID=0051",
+        "https://jprs.jp/whatsnew/topics/topics_old/030217.html",
+        "https://jprs.jp/related-info/guide/topics-column/no7.html",
+        "https://jprs.co.jp/idn/rfc5890j.txt",
+        "https://triple-underscore.github.io/URL-ja.html",
+        "https://github.com/whatwg/url/issues/498",
+        "https://unicode.org/reports/tr46/",
+        "https://chiilabo.com/2023-05/punycode-algorythm-international-domain-url-encode/",
+        "https://chromium.googlesource.com/chromium/src/+/main/docs/idn.md",
+        "https://wiki.mozilla.org/IDN_Display_Algorithm",
+        "https://www.itmedia.co.jp/enterprise/articles/0502/26/news001.html",
+        "https://mozillazine.jp/?p=56",
+        "https://futuremix.org/2010/03/firefox-displays-idn-com-net-domain-with-punycode",
+        "https://forest.watch.impress.co.jp/docs/news/1056177.html",
+        "https://www.zaikei.co.jp/article/20170421/366002.html"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://jprs.jp/glossary/index.php?ID=0051",
+          "title": "https://jprs.jp/glossary/index.php?ID=0051"
+        },
+        {
+          "url": "https://jprs.jp/whatsnew/topics/topics_old/030217.html",
+          "title": "国際化ドメイン名(IDN)技術の一構成要素であるPunycodeのprefixがxn--に決定 | TOPICS | ドメイン名・DNS関連トピックス | 新着情報一覧 | JPRS"
+        },
+        {
+          "url": "https://jprs.jp/related-info/guide/topics-column/no7.html",
+          "title": "https://jprs.jp/related-info/guide/topics-column/no7.html"
+        },
+        {
+          "url": "https://www.nic.ad.jp/ja/dom/idn.html",
+          "title": "https://www.nic.ad.jp/ja/dom/idn.html"
+        },
+        {
+          "url": "https://www.janog.gr.jp/meeting/janog21/agenda/detail/presentation/jpndom-minmin-07.pdf",
+          "title": "いまさら聞けない日本語ドメイン名 民田雅人 日本レジストリサービス株式会社 2008年1月24日JANOG 21@熊本"
+        },
+        {
+          "url": "https://jprs.co.jp/idn/rfc5890j.txt",
+          "title": "https://jprs.co.jp/idn/rfc5890j.txt"
+        },
+        {
+          "url": "http://mcn.oops.jp/glossary/internet/idn.htm",
+          "title": "[news] 国際化ドメイン名 (IDN) 関連"
+        },
+        {
+          "url": "https://www.cman.jp/network/support/punycode.html",
+          "title": "日本語ドメイン変換【punycode変換】"
+        },
+        {
+          "url": "https://rakkokeyword.com/techo/tool-punycode-converter/",
+          "title": "Punycode 変換・逆変換ツール（日本語ドメイン名・URL対応）"
+        },
+        {
+          "url": "https://www.suzukikenichi.com/blog/google-treats-idn-and-punycode-equivalently/",
+          "title": "日本語ドメイン名のURLでもPunycodeのURLでもGoogleは同じものとして処理する"
+        },
+        {
+          "url": "https://chiilabo.com/2023-05/punycode-algorythm-international-domain-url-encode/",
+          "title": "「Punycode」とは？（国際化ドメイン）"
+        },
+        {
+          "url": "https://develop.tools/punycode/",
+          "title": "Punycode変換 | 日本語ドメイン（ピュニコード）を変換"
+        },
+        {
+          "url": "https://dencode.com/en/string/punycode",
+          "title": "Punycode IDN 日本語ドメイン 国際化ドメイン名 変換 Online"
+        },
+        {
+          "url": "https://www.topshelfequestrian.com/tools/bulk-punycode-converter/",
+          "title": "一括Punycode変換ツール / 中古ドメイン販売屋さん（ラッコドメイン）"
+        },
+        {
+          "url": "https://tools.medaka.shop/punycode/",
+          "title": "日本語ドメイン＆日本語URL変換ツール｜Punycode・URLエンコード変換 - お役立ちツール集"
+        },
+        {
+          "url": "https://pypi.org/project/uts46/",
+          "title": "uts46 · PyPI"
+        },
+        {
+          "url": "https://triple-underscore.github.io/URL-ja.html",
+          "title": "https://triple-underscore.github.io/URL-ja.html"
+        },
+        {
+          "url": "https://github.com/medmunds/uts46",
+          "title": "GitHub - medmunds/uts46: Python implementation of UTS46, Unicode IDNA Compatibility Processing. Converts internationalized domain names to and from ASCII representations. · GitHub"
+        },
+        {
+          "url": "https://github.com/skryukov/uri-idna",
+          "title": "GitHub - skryukov/uri-idna: A IDNA2008, UTS46 and Punycode implementation in pure Ruby"
+        },
+        {
+          "url": "https://www.npmjs.com/package/idna-uts46",
+          "title": "idna-uts46 - npm"
+        },
+        {
+          "url": "https://www.unicode.org/L2/L2010/10024-tr46-2-draft6.html",
+          "title": "UTS#46 Unicode IDNA Compatibility Processing (IDNA46)"
+        },
+        {
+          "url": "https://forest.watch.impress.co.jp/docs/news/1056177.html",
+          "title": "肉眼では偽物と見抜けない国際化ドメイン悪用のURL偽装、Google Chromeなどで対策進む ～ホモグラフ攻撃の保護メカニズムに欠陥"
+        },
+        {
+          "url": "https://www.pcdepot.co.jp/cm_g/idn_homograph_caution.html",
+          "title": "【2017年4月21日更新】正規のドメインに見える偽サイトにご注意ください。 | パソコン修理はPCデポ"
+        },
+        {
+          "url": "https://ja.wikipedia.org/wiki/%E5%9B%BD%E9%9A%9B%E5%8C%96%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E5%90%8D",
+          "title": "国際化ドメイン名 - Wikipedia"
+        },
+        {
+          "url": "https://www.zaikei.co.jp/article/20170421/366002.html",
+          "title": "ChromeとFirefoxのホモグラフ攻撃対策を迂回する方法 | 財経新聞"
+        },
+        {
+          "url": "https://buuuuuuun3939.hatenablog.com/entry/2021/02/15/131144",
+          "title": "Punycodeとは - ぶうううん's Cafe"
+        },
+        {
+          "url": "https://text.baldanders.info/remark/2017/04/homograph-attack/",
+          "title": "Punycode によるホモグラフ攻撃例とその回避 [text.Baldanders.info]"
+        },
+        {
+          "url": "https://chromium.googlesource.com/chromium/src/+/main/docs/idn.md",
+          "title": "https://chromium.googlesource.com/chromium/src/+/main/docs/idn.md"
+        },
+        {
+          "url": "https://www.itmedia.co.jp/enterprise/articles/0502/26/news001.html",
+          "title": "Firefox、バージョン1.0.1でIDNの表示詐称に対応 - ITmedia エンタープライズ"
+        },
+        {
+          "url": "https://www.itmedia.co.jp/enterprise/articles/0502/08/news028.html",
+          "title": "国際化ドメイン名処理に起因する表示偽装の問題、OperaやFirefoxなどに影響 - ITmedia エンタープライズ"
+        },
+        {
+          "url": "https://futuremix.org/2010/03/firefox-displays-idn-com-net-domain-with-punycode",
+          "title": "Firefox で日本語ドメインの .com / .net が punycode で表示される理由"
+        },
+        {
+          "url": "https://astronavis.net/2018/02/21/firefox-%E3%81%A7%E5%9B%BD%E9%9A%9B%E5%8C%96%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E5%90%8D%E3%82%92-punycode-%E3%81%A7%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B%E3%80%80%E2%80%95%E2%80%95-idn-%E6%82%AA/",
+          "title": "Firefox で国際化ドメイン名を punycode で表示する ―― IDN 悪用フィッシングにとりあえず対策 – Astronavis"
+        },
+        {
+          "url": "https://mozillazine.jp/?p=56",
+          "title": "MozillaZine.jp » Blog Archive » 国際化ドメインのための新しい TLD ホワイトリストがチェックイン"
+        },
+        {
+          "url": "http://web.haioku.net/firefox-punycode/",
+          "title": "Firefoxで日本語ドメインをPunycode(ピュニコード)で表示する方法 | WebMETAL"
+        },
+        {
+          "url": "https://jprs.co.jp/idn/rfc5894j.txt",
+          "title": "Internet Engineering Task Force (IETF) J. Klensin"
+        },
+        {
+          "url": "https://github.com/jcranmer/idna-uts46",
+          "title": "GitHub - jcranmer/idna-uts46: A UTS #46 processing algorithm for IDNA2008 strings"
+        },
+        {
+          "url": "https://www.unicode.org/L2/L2013/13220-uts46-10-draft.pdf",
+          "title": "Technical Reports Proposed Update Unicode Technical Standard #46 Version"
+        },
+        {
+          "url": "https://github.com/whatwg/url/issues/498",
+          "title": "Explain that we are using UTS #46 for IDNA support rather than IDNA2008 directly · Issue #498 · whatwg/url"
+        },
+        {
+          "url": "https://unicode.org/reports/tr46/",
+          "title": "UTS #46: Unicode IDNA Compatibility Processing"
+        },
+        {
+          "url": "https://www.unicode.org/L2/L2009/09390-tr46-4.pdf",
+          "title": "09390 tr46 4"
+        },
+        {
+          "url": "https://www.unicode.org/L2/L2009/09390-tr46-3.html",
+          "title": "[Unicode]  Technical Reports"
+        },
+        {
+          "url": "https://wiki.mozilla.org/IDN_Display_Algorithm",
+          "title": "https://wiki.mozilla.org/IDN_Display_Algorithm"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://jprs.jp/glossary/index.php?ID=0051",
+          "text": "JPRS用語辞典｜Punycode（ピュニコード）"
+        },
+        {
+          "url": "https://jprs.jp/whatsnew/topics/topics_old/030217.html",
+          "text": "国際化ドメイン名(IDN)技術の一構成要素であるPunycodeのprefixがxn--に決定 | TOPICS | ドメイン名・DNS関連トピックス | 新着情報一覧 | JPRS"
+        },
+        {
+          "url": "https://jprs.jp/related-info/guide/topics-column/no7.html",
+          "text": "JPRS トピックス＆コラム No.7 | ドメイン名やDNSの解説 | JPRS"
+        },
+        {
+          "url": "https://www.nic.ad.jp/ja/dom/idn.html",
+          "text": "国際化ドメイン名 - JPNIC"
+        },
+        {
+          "url": "https://www.janog.gr.jp/meeting/janog21/agenda/detail/presentation/jpndom-minmin-07.pdf",
+          "text": "いまさら聞けない日本語ドメイン名 民田雅人 日本レジストリサービス株式会社 2008年1月24日JANOG 21@熊本"
+        },
+        {
+          "url": "https://jprs.co.jp/idn/rfc5890j.txt",
+          "text": "Jprs"
+        },
+        {
+          "url": "http://mcn.oops.jp/glossary/internet/idn.htm",
+          "text": "[news] 国際化ドメイン名 (IDN) 関連"
+        },
+        {
+          "url": "https://www.cman.jp/network/support/punycode.html",
+          "text": "日本語ドメイン変換【punycode変換】"
+        },
+        {
+          "url": "https://rakkokeyword.com/techo/tool-punycode-converter/",
+          "text": "Punycode 変換・逆変換ツール（日本語ドメイン名・URL対応）"
+        },
+        {
+          "url": "https://www.suzukikenichi.com/blog/google-treats-idn-and-punycode-equivalently/",
+          "text": "日本語ドメイン名のURLでもPunycodeのURLでもGoogleは同じものとして処理する"
+        },
+        {
+          "url": "https://chiilabo.com/2023-05/punycode-algorythm-international-domain-url-encode/",
+          "text": "「Punycode」とは？（国際化ドメイン）"
+        },
+        {
+          "url": "https://develop.tools/punycode/",
+          "text": "Punycode変換 | 日本語ドメイン（ピュニコード）を変換"
+        },
+        {
+          "url": "https://dencode.com/en/string/punycode",
+          "text": "Punycode IDN 日本語ドメイン 国際化ドメイン名 変換 Online"
+        },
+        {
+          "url": "https://www.topshelfequestrian.com/tools/bulk-punycode-converter/",
+          "text": "一括Punycode変換ツール / 中古ドメイン販売屋さん（ラッコドメイン）"
+        },
+        {
+          "url": "https://tools.medaka.shop/punycode/",
+          "text": "日本語ドメイン＆日本語URL変換ツール｜Punycode・URLエンコード変換 - お役立ちツール集"
+        },
+        {
+          "url": "https://jprs.jp/glossary/index.php?ID=0051",
+          "text": "# Punycode Definition and Components\n\n**Core Definition:**\n\"Punycode\" is \"a Bootstring encoding of Unicode for Internationalized Domain Names in Applications (IDNA)\" that converts Unicode characters to ASCII-compatible format.\n\n**Key Technical Features:**\n\nThe system works by representing \"Unicode のコードポイント（文字ごとに割り当てられる固有の番号）\" using only ASCII characters. ASCII characters remain unchanged, while non-ASCII characters become \"英数字とハイフンで構成されるASCII文字\" (alphanumeric and hyphenated strings).\n\n**The xn-- Prefix:**\n\nAfter encoding Unicode to ASCII following Punycode rules, an \"ACEプレフィックス（接頭辞）「xn--」\" is appended. This resulting label is called an \"A-ラベル（A-label）.\"\n\n**IDNA Relationship:**\n\nPunycode operates in conjunction with IDNA standards, specifically designed \"IDNA（Internationalized Domain Names in Applications）と共に使用されるよう設計された\" to enable internationalized domain names in applications."
+        },
+        {
+          "url": "https://www.nic.ad.jp/ja/dom/idn.html",
+          "text": "# 国際化ドメイン名の仕組みと技術\n\n## 概要\n国際化ドメイン名(IDN)は、従来のASCII文字に加えて漢字やアラビア文字などの非ASCII文字をドメイン名で使用できる技術です。既存のDNS構造に影響を与えないよう、ユーザ側のアプリケーション層で変換処理が行われます。\n\n## 変換プロセス\n\nドメイン名は以下の3段階を経て処理されます：\n\n**第1段階：正規化（NAMEPREP）**\n入力文字列を標準形に整形します。例えば、全角の「。」は半角の「.」に、大文字は小文字に統一されます。\n\n**第2段階：Punycode変換**\n正規化された文字列を7bit ASCII文字列に変換します。「日本語ドメイン名EXAMPLE.jp」は「xn--example-6q4fyliikhk162btq3b2zd4y2o.jp」となります。プレフィックス「xn--」は国際化ドメイン名の標識です。\n\n**第3段階：DNS問い合わせ**\n変換されたASCII文字列で通常通りDNS照会を実行します。\n\n## 支援技術\n\n**IDNA(Internationalizing Domain Names in Application)**\n「アプリケーション層での国際化ドメイン名の解釈と処理方法を規定」する技術仕様です。\n\n**STRINGPREP**\n\"異なる文字コードであるが同一と扱うべき文字\"を標準形に正規化するフレームワークです。\n\n**NAMEPREP**\nSTRINGPREPの国際化ドメイン名版実装で、具体的な正規化手順を定義しています。\n\n**Punycode**\nAdam M Costello氏が開発した「ACE変換アルゴリズム」であり、Unicode文字列をASCII互換エンコーディング方式で変換します。\n\n## ブラウザ対応\n\n2012年3月時点で、Internet Explorer 7以降、Mozilla Firefox、Opera、Google Chrome、Safariなど主要ブラウザはほぼすべて国際化ドメイン名に対応していました。"
+        },
+        {
+          "url": "https://pypi.org/project/uts46/",
+          "text": "uts46 · PyPI"
+        },
+        {
+          "url": "https://triple-underscore.github.io/URL-ja.html",
+          "text": "URL Standard （日本語訳）"
+        },
+        {
+          "url": "https://github.com/medmunds/uts46",
+          "text": "GitHub - medmunds/uts46: Python implementation of UTS46, Unicode IDNA Compatibility Processing. Converts internationalized domain names to and from ASCII representations. · GitHub"
+        },
+        {
+          "url": "https://github.com/skryukov/uri-idna",
+          "text": "GitHub - skryukov/uri-idna: A IDNA2008, UTS46 and Punycode implementation in pure Ruby"
+        },
+        {
+          "url": "https://www.npmjs.com/package/idna-uts46",
+          "text": "idna-uts46 - npm"
+        },
+        {
+          "url": "https://www.unicode.org/L2/L2010/10024-tr46-2-draft6.html",
+          "text": "UTS#46 Unicode IDNA Compatibility Processing (IDNA46)"
+        },
+        {
+          "url": "https://jprs.co.jp/idn/rfc5890j.txt",
+          "text": "# IDNA2008の主要用語の日本語説明\n\n## A-labelとU-label\n\n本文書では「A-ラベル」を「ACE (ASCII-Compatible Encoding) 形式で表現されたIDNA適合文字列」と定義し、「U-ラベル」を「NFC形式のユニコード文字で構成されており、最低1文字の非ASCII文字を含むIDNA適合文字列」と説明しています。\n\n## IDNA2003との違い\n\n「2008年に大規模な改訂が完了したIDNA」として、「この新しい改訂版のIDNAは『IDNA2008』として知られるもの」と述べ、古いバージョンは「IDNA2003」と表記することが示されています。セキュリティに関して「現在のバージョンで解釈を実際に変更した文字だけである」と指摘されています。\n\n## Nameprepの扱い\n\n「IDNA2008は Stringprep を何も変更しない」と明記され、むしろ「IDNA2008に関する一連の文書群は Stringprepに依存しない」と説明されています。\n\n## ドメイン名スロット\n\n「ドメイン名を渡すことが明示的に指定されたプロトコル要素や関数の引数、戻り値」と定義され、DNSクエリやメールアドレスなど具体例が列挙されています。\n\n## lookup と registration\n\n「検索」は「IDNA2008プロトコルが実行する処理とDNSリゾルバが実際に実行する処理の組み合わせ」、「登録」は「エントリをDNSに追加する処理」と定義されています。"
+        },
+        {
+          "url": "https://forest.watch.impress.co.jp/docs/news/1056177.html",
+          "text": "肉眼では偽物と見抜けない国際化ドメイン悪用のURL偽装、Google Chromeなどで対策進む ～ホモグラフ攻撃の保護メカニズムに欠陥"
+        },
+        {
+          "url": "https://www.pcdepot.co.jp/cm_g/idn_homograph_caution.html",
+          "text": "【2017年4月21日更新】正規のドメインに見える偽サイトにご注意ください。 | パソコン修理はPCデポ"
+        },
+        {
+          "url": "https://ja.wikipedia.org/wiki/%E5%9B%BD%E9%9A%9B%E5%8C%96%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E5%90%8D",
+          "text": "国際化ドメイン名 - Wikipedia"
+        },
+        {
+          "url": "https://www.zaikei.co.jp/article/20170421/366002.html",
+          "text": "ChromeとFirefoxのホモグラフ攻撃対策を迂回する方法 | 財経新聞"
+        },
+        {
+          "url": "https://buuuuuuun3939.hatenablog.com/entry/2021/02/15/131144",
+          "text": "Punycodeとは - ぶうううん's Cafe"
+        },
+        {
+          "url": "https://text.baldanders.info/remark/2017/04/homograph-attack/",
+          "text": "Punycode によるホモグラフ攻撃例とその回避 [text.Baldanders.info]"
+        }
+      ],
+      "final_answer": "**Note de langue** : ma configuration m'impose de répondre en français ; les sources citées sont, elles, en japonais (sauf mentions explicitement signalées). Dites-le-moi si vous préférez une version en japonais malgré cela.\n\n---\n\n# Comment un navigateur analyse et affiche un IDN dans une URL\n\n## 1. Le principe : la conversion se fait chez le client, pas dans le DNS\n\nFait établi. Le JPNIC explique que l'IDN a été conçu pour ne pas toucher à la structure existante du DNS : la conversion est effectuée **dans la couche applicative, côté utilisateur**, en trois étapes — normalisation (NAMEPREP), conversion Punycode, puis requête DNS avec la chaîne ASCII obtenue. Exemple donné : `日本語ドメイン名EXAMPLE.jp` → `xn--example-6q4fyliikhk162btq3b2zd4y2o.jp`, le préfixe `xn--` servant de marqueur d'IDN ([JPNIC](https://www.nic.ad.jp/ja/dom/idn.html)).\n\nJPRS formule la même chose côté vocabulaire : Punycode encode les *code points* Unicode en caractères ASCII (alphanumériques et trait d'union) ; le préfixe ACE `xn--` est ajouté, et l'étiquette résultante s'appelle une **A-label** ([JPRS 用語辞典](https://jprs.jp/glossary/index.php?ID=0051)). Le préfixe `xn--` a été fixé par l'IANA le 14 février 2003 ([JPRS TOPICS](https://jprs.jp/whatsnew/topics/topics_old/030217.html)). JPRS résume l'ensemble comme la combinaison de trois technologies — Punycode, Nameprep, IDNA — et souligne que chaque application (navigateur, client mail) doit implémenter le support **individuellement** ([JPRS トピックス&コラム No.7](https://jprs.jp/related-info/guide/topics-column/no7.html)).\n\nTerminologie IDNA2008, dans la traduction japonaise officielle de JPRS du RFC 5890 : **A-ラベル** = chaîne conforme IDNA en forme ACE ; **U-ラベル** = chaîne conforme IDNA en NFC contenant au moins un caractère non-ASCII ; « IDNA2008 ne modifie en rien Stringprep », la famille de documents IDNA2008 **ne dépend pas de Stringprep** (donc plus de Nameprep) ([JPRS, RFC 5890 訳](https://jprs.co.jp/idn/rfc5890j.txt)).\n\n> ⚠️ **Divergence entre sources.** La page du JPNIC décrit le pipeline **IDNA2003** (NAMEPREP/STRINGPREP) et son état des navigateurs date de mars 2012 ([JPNIC](https://www.nic.ad.jp/ja/dom/idn.html)). Ce n'est plus ce que fait le web moderne (§2). Traitez-la comme exacte pour les concepts de base, périmée pour l'algorithme exact.\n\n## 2. Ce que fait réellement un navigateur aujourd'hui : URL Standard + UTS #46\n\nFait établi (avec une réserve sur le statut de la source). Le web ne suit pas IDNA2008 directement mais **UTS #46 (Unicode IDNA Compatibility Processing)**. Dans la traduction japonaise de l'URL Standard :\n\n- L'**analyseur d'hôte** (ホスト構文解析器) branche selon l'entrée : `[` → analyse IPv6 ; drapeau « opaque » vrai → hôte opaque ; sinon → **analyseur de domaine**.\n- L'**analyseur de domaine** exécute `Unicode ToASCII` avec un drapeau de rigueur ; en cas d'erreur il signale une *erreur de validation*, puis échoue si le drapeau est vrai. Le résultat est rejeté s'il est vide ou s'il contient des **points de code de domaine interdits**.\n- `ドメインからASCIIへ` appelle `Unicode ToASCII` avec `CheckHyphens`, `UseSTD3ASCIIRules`, `VerifyDnsLength` liés au drapeau de rigueur, les autres paramètres (`CheckBidi`, `CheckJoiners`, `Transitional_Processing`, `IgnoreInvalidPunycode`) restant aux valeurs par défaut.\n- `ドメインからUnicodeへ` appelle `Unicode ToUnicode` et **rend le domaine d'origine si une erreur est enregistrée**, ce qui garantit la propriété d'aller-retour.\n\n([URL Standard 日本語訳](https://triple-underscore.github.io/URL-ja.html) ; le texte normatif reste la version anglaise du WHATWG — cette traduction est non officielle, c'est une limite à garder en tête.)\n\nLe passage à UTS #46 est confirmé par la discussion de spécification correspondante : le web utilise UTS #46 plutôt qu'IDNA2008 directement ([whatwg/url issue #498](https://github.com/whatwg/url/issues/498), en anglais). Raison documentée : IDNA2008 est incompatible avec IDNA2003 sur des caractères très courants — **toutes les majuscules, tous les caractères demi-chasse/pleine chasse** (usage courant au Japon, en Chine, en Corée), plus `ß` (U+00DF) et le sigma final `ς` (U+03C2) ; UTS #46 définit un mode **transitional** (mappage compatible IDNA2003) et **nontransitional** (conforme IDNA2008) ([UTS #46](https://unicode.org/reports/tr46/), en anglais).\n\n**Inférence** (non citée telle quelle dans les sources ci-dessus) : puisque l'URL Standard laisse `Transitional_Processing` à sa valeur par défaut (false), les navigateurs modernes se comportent en mode **nontransitional**, donc plus proche d'IDNA2008 que du pipeline Nameprep décrit par le JPNIC.\n\nConséquence pratique fréquente au Japon, également une inférence directe du mappage UTS #46 : `。`, `．`, `｡` sont ramenés au `.` ASCII et les majuscules sont mises en bas de casse avant l'encodage — c'est ce que décrit le JPNIC comme étape de normalisation ([JPNIC](https://www.nic.ad.jp/ja/dom/idn.html)).\n\nÀ noter aussi : Punycode ne concerne **que la partie nom d'hôte** ; le chemin et la *query string* utilisent le pourcent-encodage (percent-encoding) — point rappelé par plusieurs guides japonais, mais ce sont des sources secondaires ([chiilabo](https://chiilabo.com/2023-05/punycode-algorythm-international-domain-url-encode/)).\n\n## 3. L'affichage : la barre d'adresse applique une politique anti-homographe\n\nC'est ici que « analyser » et « afficher » divergent : la résolution utilise toujours la A-label, mais l'affichage est soumis à une politique de sécurité propre à chaque navigateur.\n\n**Chrome** (source primaire, en anglais — je n'ai pas trouvé de document primaire japonais équivalent) : la décision Unicode vs Punycode est prise **étiquette par étiquette**. Règles clés : latin, cyrillique et grec ne peuvent pas être mélangés entre eux ; les caractères latins de la plage ASCII ne peuvent être mélangés **qu'avec** le chinois, le japonais ou le coréen ; si une étiquette est entièrement composée de lettres ressemblant à du latin mais appartenant à un autre script (*whole-script confusables*), Punycode est affiché sauf pour des TLD connus pour héberger ce script (`.ru`, `.ua`) ; enfin des « squelettes » de domaines sont comparés aux domaines populaires pour attraper `www.googlé.com` ([Chromium docs/idn.md](https://chromium.googlesource.com/chromium/src/+/main/docs/idn.md)).\n\n**Firefox** (wiki Mozilla, en anglais) : approche à deux niveaux — liste blanche de TLD affichés inconditionnellement en Unicode, sinon application du profil **« Moderately Restrictive » de l'UTR #39** (script unique + Common/Inherited, ou combinaisons approuvées comme « Latin + Han + Hiragana + Katakana »). Punycode est forcé si l'étiquette mélange plusieurs systèmes de numération, mêle sinogrammes simplifiés et traditionnels, répète une même marque non-espaçante, ou sort du profil d'identifiant IDNA2008 ([Mozilla wiki](https://wiki.mozilla.org/IDN_Display_Algorithm)).\n\n**Incertitude explicite** : les sources japonaises que j'ai trouvées sur Firefox (`network.IDN_show_punycode`, `network.IDN.whitelist.com`) sont anciennes (2005–2018) et de nature secondaire ([ITmedia 2005](https://www.itmedia.co.jp/enterprise/articles/0502/26/news001.html), [MozillaZine.jp](https://mozillazine.jp/?p=56), [futuremix](https://futuremix.org/2010/03/firefox-displays-idn-com-net-domain-with-punycode)). La préférence `network.IDN_show_punycode` (forcer l'affichage en Punycode) est encore largement documentée, mais **je n'ai pas vérifié dans une source primaire à jour si le mécanisme de liste blanche par TLD est toujours actif** ; la page wiki de Mozilla elle-même n'est pas horodatée dans ce que j'ai récupéré. Ne considérez pas ce point comme établi.\n\nContexte historique côté japonais : la vague d'attaques homographiques de 2017 et la réaction de Chrome 58 sont couvertes par la presse japonaise — sources secondaires, mais cohérentes avec la doc Chromium ([窓の杜](https://forest.watch.impress.co.jp/docs/news/1056177.html), [財経新聞](https://www.zaikei.co.jp/article/20170421/366002.html)).\n\n## 4. Résumé du flux\n\n1. Saisie/lien → analyseur d'URL → **analyseur d'hôte** de l'URL Standard.\n2. Non-IPv6, non-opaque → **UTS #46 ToASCII** : mappage/normalisation NFC, validation, encodage Punycode par étiquette avec préfixe `xn--` → **A-label**.\n3. Requête DNS sur la forme ASCII — le DNS ne voit jamais l'Unicode.\n4. Pour l'affichage : **ToUnicode** (retour à la U-label, avec repli sur la forme d'origine en cas d'erreur), **puis** filtre anti-*spoofing* propre au navigateur, qui peut re-basculer l'affichage en `xn--`.\n\n## 5. Où les preuves manquent\n\n- **Aucune source primaire japonaise à jour** sur les politiques d'affichage de Chrome/Firefox : les documents normatifs sont en anglais, et les documents japonais primaires (JPRS/JPNIC) s'arrêtent au modèle IDNA2003/Punycode sans couvrir UTS #46 ni les règles de *confusables*.\n- Je n'ai pas trouvé de traduction japonaise faisant autorité d'UTS #46 ni de l'UTR #39.\n- Le comportement exact de Safari/Edge n'a pas été vérifié ici — aucune affirmation à ce sujet."
+    }
+  ]
+}

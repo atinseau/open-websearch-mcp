@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "case_id": "technical-mcp-stdio",
+  "question": "What does the current official Model Context Protocol specification require from a stdio server during initialize and tools/list, including version negotiation and message framing?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "grounding",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "c4",
+      "text": "A server that supports tools must declare the `tools` capability and answer `tools/list` with the tools currently available to the requesting client.",
+      "required_concepts": ["tools-capability", "tools/list", "available-tools"],
+      "acceptable_patterns": [
+        "declare\\s+the\\s+`?tools`?\\s+capability",
+        "answer\\s+`?tools/list`?",
+        "currently\\s+available\\s+to\\s+the\\s+requesting\\s+client"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1,
+      "provenance": {
+        "mode": "trace_grounded",
+        "codex_run": "2026-08-28_codex_technical-mcp-stdio"
+      }
+    },
+    {
+      "id": "c6",
+      "text": "`tools/list` is a client-to-server JSON-RPC request using method `tools/list`; it supports an optional cursor in `params`, and a successful result includes a `tools` array.",
+      "required_concepts": ["tools-list-method", "cursor", "tools-array"],
+      "acceptable_patterns": [
+        "method\\s+is\\s+`?tools/list`?",
+        "optional\\s+cursor\\s+in\\s+`?params`?",
+        "result\\s+includes\\s+a\\s+`?tools`?\\s+array"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/schema",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1,
+      "provenance": {
+        "mode": "trace_grounded",
+        "codex_run": "2026-08-28_codex_technical-mcp-stdio"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "A current stdio server is required to implement the legacy `initialize` request and `notifications/initialized` sequence.",
+      "reason": "Contradicted by the supplied evidence, which says current modern MCP removed the initialize handshake and treats it as legacy behavior."
+    },
+    {
+      "text": "`tools/list` results are required to be identical for every client and may not vary based on authorization.",
+      "reason": "Contradicted by the supplied evidence, which says the set may vary by authorization presented on the request."
+    },
+    {
+      "text": "The current specification requires `tools/list` over stdio to use HTTP-style headers for version negotiation.",
+      "reason": "Unsupported and contradicted by the supplied evidence, which says stdio has no header layer and carries metadata inside the JSON-RPC body."
+    },
+    {
+      "text": "A current stdio server must always support both modern MCP and legacy `initialize` behavior.",
+      "reason": "Unsupported by the supplied evidence; it says a server may implement both, not that it must."
+    },
+    {
+      "text": "In the current MCP specification, modern servers do not use an `initialize` negotiation handshake; `initialize` is described as legacy behavior rather than part of normal modern operation.",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "text": "For current-version requests, protocol version negotiation is carried per request in `params._meta[\"io.modelcontextprotocol/protocolVersion\"]`; if the server does not support the requested version, it returns `UnsupportedProtocolVersionError` with supported versions.",
+      "reason": "required concept is absent from teacher-run evidence: unsupported-error"
+    },
+    {
+      "text": "On stdio, the server speaks JSON-RPC 2.0 using newline-delimited framing: it reads from `stdin`, writes to `stdout`, sends one JSON-RPC message per line, must not include embedded newlines in a message, must not write non-MCP data to `stdout`, and may write UTF-8 logs to `stderr`.",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "text": "For `tools/list`, the tool set may be empty and may vary by authorization, but it should be returned in a deterministic order and must not vary per connection or as a side effect of other requests on that connection.",
+      "reason": "required concept is absent from teacher-run evidence: connection-stability"
+    },
+    {
+      "text": "In the current schema, a successful `tools/list` result requires `resultType`, `ttlMs`, `cacheScope`, and `tools`; `nextCursor` is optional.",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    }
+  ]
+}

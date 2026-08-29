@@ -1,0 +1,692 @@
+{
+  "schema_version": 1,
+  "run_id": "2026-08-27_claude_community-bun-production",
+  "case_id": "community-bun-production",
+  "provider": "claude",
+  "model": "claude-opus-5[1m]",
+  "queries": [
+    "Bun in production experience issues memory leak",
+    "Bun production Node.js compatibility problems report 2025",
+    "\"Bun\" production success story migrated from Node performance results company",
+    "OpenCode moving away from Bun to Node Electron memory Windows",
+    "Trigger.dev Bun migration memory leak throughput blog"
+  ],
+  "tool_results": [
+    {
+      "tool": "WebSearch",
+      "summary": "Bun vs Node.js in Production: What Three Months of Real Traffic Taught Me - DEV Community: https://dev.to/synsun/bun-vs-nodejs-in-production-what-three-months-of-real-traffic-taught-me-3d96"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun's Roadmap · Issue #159 · oven-sh/bun: https://github.com/oven-sh/bun/issues/159"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun vs Node.js in 2026: Benchmarks & Migration Guide: https://strapi.io/blog/bun-vs-nodejs-performance-comparison-guide"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun vs Node.js: 3x Faster, But Is It Ready? [2026] - Tech Insider: https://tech-insider.org/bun-vs-nodejs-2026/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Node.js Compatibility | Bun Docs: https://bun.com/docs/runtime/nodejs-compat"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun — A fast all-in-one JavaScript runtime: https://bun.com/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun vs Node.js: The JavaScript Runtime Battle of 2025 - Suman Dey | Full Stack Developer Blog: https://www.sumandey.com/blogs/bun-vs-nodejs-2025-time-to-switch/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Roadmap: non-Deno compatibility #24: https://github.com/dahlia/fedify/discussions/24"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "InfoQ Homepage Web Development Content on InfoQ: https://www.infoq.com/Web-Development/news/88"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun 1.1.13 out with memory fixes as dev complain of leaks: https://www.theregister.com/software/2026/04/21/bun-1113-out-with-memory-fixes-as-dev-complain-of-leaks/5221154"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Memory leak in bun + express + docker · Issue #19930 · oven-sh/bun: https://github.com/oven-sh/bun/issues/19930"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Memory leak with Mongoose and Bun (Production build / No Hot Reload) · Issue #25948 · oven-sh/bun: https://github.com/oven-sh/bun/issues/25948"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun 1.1.13 addresses memory leaks as developers report production crashes | LavX News: https://news.lavx.hu/article/bun-1-1-13-addresses-memory-leaks-as-developers-report-production-crashes"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Memory leak since miggration from node 20 to bun 1.1.43 of a nextjs website · Issue #16339 · oven-sh/bun: https://github.com/oven-sh/bun/issues/16339"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "par.nsf.gov: https://par.nsf.gov//servlets/purl/10343367"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "skip to main content: https://par.nsf.gov/biblio/10343367"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Summary of GitHub Issue #19930\n\n**Issue Title:** Memory leak in bun + express + docker\n\n**Reporter:** MagsMagnoli (opened May 27, 2025)\n\n**Status:** Closed\n\n**Bun Version:** 1.2.14\n\n**Platform:** Darwin 24.5.0 arm64\n\n## Core Problem\n\nThe reporter identified a significant memory retention discrepancy when running a Bun application with Express inside Docker containers versus locally. According to the submission, \"Significantly more retained objects in docker vs local\" were observed.\n\n## Reprodu"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Bun 1.1.13 Release Summary\n\n**Version & Date:** Bun 1.1.13, released April 21, 2026\n\n**Key Improvements:**\n- Enhanced test runner with isolate, parallel, and shard flags for Jest compatibility\n- Compression now uses zlib-ng for up to 5x faster performance\n- 5% reduction in baseline memory usage\n- Upgraded memory allocator with Libpas scavenger to return unused memory faster\n\n**What Maintainers Said:**\nBun inventor Jared Sumner claimed the memory improvements \"reduce baseline memory usage and f"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Bun's Node.js Compatibility Gaps\n\n## Not Implemented\n- **`node:sea`** – Single Executable Applications; use `bun build --compile` instead\n\n## Partially Implemented Modules\n\n**`node:cluster`** – \"load-balancing HTTP requests across processes is only supported on Linux\" via `SO_REUSEPORT`; otherwise implemented but untested\n\n**`node:vm`** – Core features work, but `timeout`, `breakOnSigint`, `cachedData`, `microtaskMode` and `codeGeneration` options are supported; missing `vm.measureMemory()` co"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Article Summary\n\n**Headline:** \"Anthropic bakes memory fixes into Bun 1.1.13 as developers complain of leaks\"\n\n**Date:** Published Tuesday, 21 April 2026 at 16:27 UTC\n\n**Bun Version:** 1.1.13\n\n## Key Quotes from Developers\n\n**Bun Inventor Jared Sumner:**\n\"reduce baseline memory usage and fix a class of hangs and crashes in long-running processes\"\n\n**Reddit User:**\n\"Bun is not stable enough for production nor faster than Node in production\"\n\n**Jay V, OpenCode Founder:**\n\"we are moving to Node a"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun vs Node.js in 2026: Benchmarks & Migration Guide: https://strapi.io/blog/bun-vs-nodejs-performance-comparison-guide"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "From Node.js to Bun: How We Got 5x More Throughput (and Lived to Tell the Tale) - DEV Community: https://dev.to/benriemer/from-nodejs-to-bun-how-we-got-5x-more-throughput-and-lived-to-tell-the-tale-4397"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun 1.2 in Production: What Actually Broke When We Migrated from Node - DEV Community: https://dev.to/whoffagents/bun-12-in-production-what-actually-broke-when-we-migrated-from-node-6nh"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun vs Node.js in Production: What Three Months of Real Traffic Taught Me - DEV Community: https://dev.to/synsun/bun-vs-nodejs-in-production-what-three-months-of-real-traffic-taught-me-3d96"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "We Moved Our API from Node to Bun. Here's What Broke (and What Got 3x Faster). - DEV Community: https://dev.to/alanwest/we-moved-our-api-from-node-to-bun-heres-what-broke-and-what-got-3x-faster-3hg6"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun vs Deno vs Node: I Migrated Our API Three Times. Here’s the Real Performance Data. | by Sohail x Codes | Medium: https://medium.com/@sohail_saifii/bun-vs-deno-vs-node-i-migrated-our-api-three-times-heres-the-real-performance-data-a4499bb07b8d"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Switching from Node to Bun - A Migration Success Story | KahWee - Web Development, AI Tools & Tech Trends: https://kahwee.com/2025/switching-from-node-to-bun/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Experimenting with Bun: From Idea to Production in a Week: https://www.tbeeren.com/journal/experimenting-with-bun-from-idea-to-production-in-a-week"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Recent Bun Release Posts\n\nHere are the most recent Bun releases listed on their blog:\n\n1. **Bun 1.4** (August 20, 2026)\n   - \"Rewrites Bun in Rust, ships built-in headless browser automation (Bun.WebView), Bun.Image, Bun.markdown, JSON5, JSONL, Terminal and cron APIs\"\n\n2. **Bun v1.3.14** (May 13, 2026)\n   - Addresses 380 reactions with improvements including built-in image processing, faster installs, experimental HTTP/2 and HTTP/3 support\n\n3. **Bun v1.3.13** (April 20, 2026)\n   - Fixes 82 iss"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun 1.1.13 out with memory fixes as dev complain of leaks: https://www.theregister.com/2026/04/21/anthropics_bun_1113_released_with_memory_fixes/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "David Flanagan on X: \"OpenCode moving away from Bun looks to be a seriously daft decision, from my perspective. I understand the Anthropic thing sucks, but Bun is now literally being improved daily for their exact use-case and they’re moving to node? Wild\" / X: https://x.com/rawkode/status/2042574454811693341"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Moving OpenCode Desktop to Electron - DEV Community: https://dev.to/brendonovich/moving-opencode-desktop-to-electron-4hip"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "OpenCode 2.0 Major Rewrite: API Overhaul, Node Migration, and Electron Desktop Transition | KuCoin: https://www.kucoin.com/news/flash/opencode-2-0-major-rewrite-api-overhaul-node-migration-and-electron-desktop-shift"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "dax on X: \"@UpToNathan we decided to make opencode work in nodejs because this gives us a few options - node is way more stable on windows and we have a lot of pain there currently - electron desktop app can easily embed it without spawning another process - we're not certain about the future of bun\" / X: https://x.com/thdxr/status/2024149757032100016"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "brendan (@brendonovich) on X: https://x.com/brendonovich/status/2045725889422610602"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "refactor: migrate CLI from Node.js to Bun: https://gitlab.com/postgres-ai/postgresai/-/merge_requests/118/commits"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "github.com: https://github.com/anomalyco/opencode/pull/6366"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Bun 1.1.13 Release: Memory Fixes Address Production Concerns\n\n**Version:** 1.1.13\n\n**Key Improvements:**\n- 5% reduction in memory usage through upgraded memory allocator\n- Libpas scavenger implementation returns unused memory to OS faster\n- Enhanced test runner with isolate, parallel, and shard flags for Jest compatibility\n- zlib-ng compression for up to 5x faster compression\n\n**Developer Concerns:**\nThe release directly addresses ongoing complaints about memory leaks in production environment"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Technical Reasons for Moving Off Bun/Tauri\n\nThe article provides limited concrete technical details. Here's what's explicitly stated:\n\n## Tauri Issues\n\n**WebKit Performance & Consistency:** The author notes that \"Tauri uses WebKit on macOS and Linux, which not only has worse performance than Chromium when rendering our app, but also has minor inconsistencies with it, especially around styles.\"\n\n**CLI Startup Problems:** Running the bundled CLI to start the server \"impacted startup time, and oc"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# GitHub Issue Summary\n\n**Issue Title:** \"Bun.S3File.arrayBuffer() retains RSS and reaches OOM in a 1 GiB Linux container despite forced GC #29083\"\n\n**Status:** Closed\n\n**Version:** Bun 1.3.11\n\n**Platform:** macOS host running Linux container (aarch64)\n\n## Reproduction\n\nThe reporter provided a minimal test case (`repro.ts` and `run.sh`) demonstrating that repeated calls to `Bun.S3File.arrayBuffer()` cause sustained RSS growth. Key findings:\n\n- RSS climbs toward OOM despite forced `Bun.gc(true)` "
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Bun Memory Leak Issue Summary\n\n**Issue #25948: Memory leak with Mongoose and Bun (Production build / No Hot Reload)**\n\n**Status:** Closed as duplicate of #12117\n\n**Bun Version:** 1.3.5\n\n## Key Details\n\n**Reporter's Environment:**\n- Docker container (Debian-based, oven/bun:latest)\n- Using Hono framework with Mongoose database driver\n- Production execution without hot reload enabled\n\n**Reported Behavior:**\nThe application exhibits continuous memory growth that is never reclaimed. One instance sh"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Memory-Related Fixes and Improvements in Bun v1.3.13\n\n## Allocator Upgrades\n\nBun upgraded its memory allocators to reduce baseline memory usage:\n\n- **mimalloc**: Moved from version 2 to version 3, including \"several bugfixes in our internal fork\"\n- **libpas scavenger**: Implemented scavenger support for both Windows and Linux to reclaim memory faster\n\nThese changes address \"a class of hangs and crashes in long-running processes\" across macOS, Linux, and Windows.\n\n## Runtime Memory Reduction\n\nT"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "The server returned HTTP 402 Payment Required.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# GitHub Issue Summary\n\n**Title:** Possible memory leak when used with MongoDB #12117\n\n**Status:** Closed (with associated PR #26766)\n\n**Opened:** June 24, 2024\n\n**Key Details:**\n- Reporter noted that \"repeated calls to MongoDB through both mongoose and the driver skyrockets memory and CPU usage\"\n- Memory consumption failed to decrease over time, even with manual garbage collection\n- The issue appeared specific to MongoDB operations; hardcoding responses instead showed no memory growth\n- Testing"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Blog | Trigger.dev: https://trigger.dev/blog"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Why we replaced Node.js with Bun for 5x throughput | Trigger.dev: https://trigger.dev/blog/firebun"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "From Node.js to Bun: How We Got 5x More Throughput (and Lived to Tell the Tale) - DEV Community: https://dev.to/benriemer/from-nodejs-to-bun-how-we-got-5x-more-throughput-and-lived-to-tell-the-tale-4397"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun Completes 11-Day AI-Driven Code Migration from Zig to Rust | KuCoin: https://www.kucoin.com/news/flash/bun-completes-11-day-ai-driven-code-migration-from-zig-to-rust"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Debugging JavaScript Memory Leaks | Bun Blog: https://bun.com/blog/debugging-memory-leaks"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Memory leak since miggration from node 20 to bun 1.1.43 of a nextjs website · Issue #16339 · oven-sh/bun: https://github.com/oven-sh/bun/issues/16339"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun v1.2.2 | Bun Blog: https://bun.sh/blog/bun-v1.2.2"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Blog | Bun: https://bun.com/blog"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bun Rewrites in Rust: Technical Review of the Zig-to-Rust Migration | Fawad Hussain Syed: https://fawadhs.dev/blog/bun-rust-rewrite-technical-review"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Bun's Stance on Memory Leaks\n\nBased on the blog post by Jarred Sumner (published April 2, 2025), the Bun maintainers attribute memory leaks to **user code practices**, not to Bun itself.\n\nThe article focuses on educating developers about problematic patterns they create, such as:\n\n- Storing request/response objects in global arrays without cleanup\n- Closure-related retentions of large data structures\n- Improper AbortSignal/AbortController usage\n- EventEmitter listeners that aren't removed\n\nRat"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Trigger.dev's Node.js to Bun Migration: Key Findings\n\n## What Broke\n\nTrigger.dev discovered a critical memory leak unique to Bun's HTTP model. The issue stemmed from unresolved promises in their `fetch` handler: \"Every `Promise<Response>` must settle\" in Bun, unlike Node.js where socket cleanup handles response state automatically. When clients disconnected without resolving pending promises, request contexts remained in memory indefinitely.\n\n## The Memory Leak Details\n\nEach leaked connection "
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Bun's Claims About the Rust Rewrite\n\n**Date:** August 20, 2024\n\n**Key Claims:**\n\nBun states that version 1.4 represents \"the first release\" of its Rust rewrite, though it notes that \"Claude Code has been using Bun's Rust port for months now, and Prisma launched Prisma Compute on it.\" This indicates the rewrite underwent real-world testing before the public release.\n\n**Stability and Production Use:**\n\nRather than making explicit claims about crash elimination or memory safety improvements, Bun "
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Critical and Skeptical Claims in the Bun Rust Rewrite Review\n\n## Reliability Concerns\n\nThe review presents surprisingly few critical claims. The most substantive skepticism appears in the **community reaction section**, which notes:\n\n> \"A near-even split with 1,384+ comments — an unusually divisive PR.\"\n\nThis 50.6% approval ratio suggests significant community doubt, though the article doesn't elaborate on specific objections.\n\n## Evidence Limitations\n\nSeveral claims lack supporting data:\n\n1. "
+    }
+  ],
+  "opened_urls": [
+    "https://github.com/oven-sh/bun/issues/19930",
+    "https://www.theregister.com/software/2026/04/21/bun-1113-out-with-memory-fixes-as-dev-complain_of_leaks/5221154",
+    "https://bun.com/docs/runtime/nodejs-compat",
+    "https://www.theregister.com/software/2026/04/21/bun-1113-out-with-memory-fixes-as-dev-complain-of-leaks/5221154",
+    "https://bun.com/blog",
+    "https://www.theregister.com/2026/04/21/anthropics_bun_1113_released_with_memory_fixes/",
+    "https://dev.to/brendonovich/moving-opencode-desktop-to-electron-4hip",
+    "https://github.com/oven-sh/bun/issues/29083",
+    "https://github.com/oven-sh/bun/issues/25948",
+    "https://bun.com/blog/bun-v1.3.13",
+    "https://github.com/oven-sh/bun/issues/12117",
+    "https://x.com/thdxr/status/2024149757032100016",
+    "https://trigger.dev/blog/firebun",
+    "https://bun.com/blog/debugging-memory-leaks",
+    "https://bun.com/blog/bun-v1.4",
+    "https://fawadhs.dev/blog/bun-rust-rewrite-technical-review"
+  ],
+  "cited_urls": [
+    "https://www.theregister.com/2026/04/21/anthropics_bun_1113_released_with_memory_fixes/",
+    "https://trigger.dev/blog/firebun",
+    "https://bun.com/blog/debugging-memory-leaks",
+    "https://bun.com/blog/bun-v1.3.13",
+    "https://github.com/oven-sh/bun/issues/12117",
+    "https://github.com/oven-sh/bun/issues/25948",
+    "https://github.com/oven-sh/bun/issues/29083",
+    "https://github.com/oven-sh/bun/issues/19930",
+    "https://bun.com/docs/runtime/nodejs-compat",
+    "https://dev.to/brendonovich/moving-opencode-desktop-to-electron-4hip",
+    "https://x.com/thdxr/status/2024149757032100016",
+    "https://strapi.io/blog/bun-vs-nodejs-performance-comparison-guide",
+    "https://bun.com/blog",
+    "https://bun.com/blog/bun-v1.4",
+    "https://fawadhs.dev/blog/bun-rust-rewrite-technical-review"
+  ],
+  "selected_sources": [
+    {
+      "url": "https://dev.to/synsun/bun-vs-nodejs-in-production-what-three-months-of-real-traffic-taught-me-3d96",
+      "title": "Bun vs Node.js in Production: What Three Months of Real Traffic Taught Me - DEV Community"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/159",
+      "title": "Bun's Roadmap · Issue #159 · oven-sh/bun"
+    },
+    {
+      "url": "https://strapi.io/blog/bun-vs-nodejs-performance-comparison-guide",
+      "title": "Bun vs Node.js in 2026: Benchmarks & Migration Guide"
+    },
+    {
+      "url": "https://tech-insider.org/bun-vs-nodejs-2026/",
+      "title": "Bun vs Node.js: 3x Faster, But Is It Ready? [2026] - Tech Insider"
+    },
+    {
+      "url": "https://bun.com/docs/runtime/nodejs-compat",
+      "title": "https://bun.com/docs/runtime/nodejs-compat"
+    },
+    {
+      "url": "https://bun.com/",
+      "title": "Bun — A fast all-in-one JavaScript runtime"
+    },
+    {
+      "url": "https://www.sumandey.com/blogs/bun-vs-nodejs-2025-time-to-switch/",
+      "title": "Bun vs Node.js: The JavaScript Runtime Battle of 2025 - Suman Dey | Full Stack Developer Blog"
+    },
+    {
+      "url": "https://github.com/dahlia/fedify/discussions/24",
+      "title": "Roadmap: non-Deno compatibility #24"
+    },
+    {
+      "url": "https://www.infoq.com/Web-Development/news/88",
+      "title": "InfoQ Homepage Web Development Content on InfoQ"
+    },
+    {
+      "url": "https://www.theregister.com/software/2026/04/21/bun-1113-out-with-memory-fixes-as-dev-complain-of-leaks/5221154",
+      "title": "https://www.theregister.com/software/2026/04/21/bun-1113-out-with-memory-fixes-as-dev-complain-of-leaks/5221154"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/19930",
+      "title": "https://github.com/oven-sh/bun/issues/19930"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/25948",
+      "title": "https://github.com/oven-sh/bun/issues/25948"
+    },
+    {
+      "url": "https://news.lavx.hu/article/bun-1-1-13-addresses-memory-leaks-as-developers-report-production-crashes",
+      "title": "Bun 1.1.13 addresses memory leaks as developers report production crashes | LavX News"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/16339",
+      "title": "Memory leak since miggration from node 20 to bun 1.1.43 of a nextjs website · Issue #16339 · oven-sh/bun"
+    },
+    {
+      "url": "https://par.nsf.gov//servlets/purl/10343367",
+      "title": "par.nsf.gov"
+    },
+    {
+      "url": "https://par.nsf.gov/biblio/10343367",
+      "title": "skip to main content"
+    },
+    {
+      "url": "https://www.theregister.com/software/2026/04/21/bun-1113-out-with-memory-fixes-as-dev-complain_of_leaks/5221154",
+      "title": "https://www.theregister.com/software/2026/04/21/bun-1113-out-with-memory-fixes-as-dev-complain_of_leaks/5221154"
+    },
+    {
+      "url": "https://dev.to/benriemer/from-nodejs-to-bun-how-we-got-5x-more-throughput-and-lived-to-tell-the-tale-4397",
+      "title": "From Node.js to Bun: How We Got 5x More Throughput (and Lived to Tell the Tale) - DEV Community"
+    },
+    {
+      "url": "https://dev.to/whoffagents/bun-12-in-production-what-actually-broke-when-we-migrated-from-node-6nh",
+      "title": "Bun 1.2 in Production: What Actually Broke When We Migrated from Node - DEV Community"
+    },
+    {
+      "url": "https://dev.to/alanwest/we-moved-our-api-from-node-to-bun-heres-what-broke-and-what-got-3x-faster-3hg6",
+      "title": "We Moved Our API from Node to Bun. Here's What Broke (and What Got 3x Faster). - DEV Community"
+    },
+    {
+      "url": "https://medium.com/@sohail_saifii/bun-vs-deno-vs-node-i-migrated-our-api-three-times-heres-the-real-performance-data-a4499bb07b8d",
+      "title": "Bun vs Deno vs Node: I Migrated Our API Three Times. Here’s the Real Performance Data. | by Sohail x Codes | Medium"
+    },
+    {
+      "url": "https://kahwee.com/2025/switching-from-node-to-bun/",
+      "title": "Switching from Node to Bun - A Migration Success Story | KahWee - Web Development, AI Tools & Tech Trends"
+    },
+    {
+      "url": "https://www.tbeeren.com/journal/experimenting-with-bun-from-idea-to-production-in-a-week",
+      "title": "Experimenting with Bun: From Idea to Production in a Week"
+    },
+    {
+      "url": "https://bun.com/blog",
+      "title": "Blog | Bun"
+    },
+    {
+      "url": "https://www.theregister.com/2026/04/21/anthropics_bun_1113_released_with_memory_fixes/",
+      "title": "https://www.theregister.com/2026/04/21/anthropics_bun_1113_released_with_memory_fixes/"
+    },
+    {
+      "url": "https://x.com/rawkode/status/2042574454811693341",
+      "title": "David Flanagan on X: \"OpenCode moving away from Bun looks to be a seriously daft decision, from my perspective. I understand the Anthropic thing sucks, but Bun is now literally being improved daily for their exact use-case and they’re moving to node? Wild\" / X"
+    },
+    {
+      "url": "https://dev.to/brendonovich/moving-opencode-desktop-to-electron-4hip",
+      "title": "https://dev.to/brendonovich/moving-opencode-desktop-to-electron-4hip"
+    },
+    {
+      "url": "https://www.kucoin.com/news/flash/opencode-2-0-major-rewrite-api-overhaul-node-migration-and-electron-desktop-shift",
+      "title": "OpenCode 2.0 Major Rewrite: API Overhaul, Node Migration, and Electron Desktop Transition | KuCoin"
+    },
+    {
+      "url": "https://x.com/thdxr/status/2024149757032100016",
+      "title": "https://x.com/thdxr/status/2024149757032100016"
+    },
+    {
+      "url": "https://x.com/brendonovich/status/2045725889422610602",
+      "title": "brendan (@brendonovich) on X"
+    },
+    {
+      "url": "https://gitlab.com/postgres-ai/postgresai/-/merge_requests/118/commits",
+      "title": "refactor: migrate CLI from Node.js to Bun"
+    },
+    {
+      "url": "https://github.com/anomalyco/opencode/pull/6366",
+      "title": "github.com"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/29083",
+      "title": "https://github.com/oven-sh/bun/issues/29083"
+    },
+    {
+      "url": "https://bun.com/blog/bun-v1.3.13",
+      "title": "https://bun.com/blog/bun-v1.3.13"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/12117",
+      "title": "https://github.com/oven-sh/bun/issues/12117"
+    },
+    {
+      "url": "https://trigger.dev/blog",
+      "title": "Blog | Trigger.dev"
+    },
+    {
+      "url": "https://trigger.dev/blog/firebun",
+      "title": "https://trigger.dev/blog/firebun"
+    },
+    {
+      "url": "https://www.kucoin.com/news/flash/bun-completes-11-day-ai-driven-code-migration-from-zig-to-rust",
+      "title": "Bun Completes 11-Day AI-Driven Code Migration from Zig to Rust | KuCoin"
+    },
+    {
+      "url": "https://bun.com/blog/debugging-memory-leaks",
+      "title": "https://bun.com/blog/debugging-memory-leaks"
+    },
+    {
+      "url": "https://bun.sh/blog/bun-v1.2.2",
+      "title": "Bun v1.2.2 | Bun Blog"
+    },
+    {
+      "url": "https://fawadhs.dev/blog/bun-rust-rewrite-technical-review",
+      "title": "https://fawadhs.dev/blog/bun-rust-rewrite-technical-review"
+    },
+    {
+      "url": "https://bun.com/blog/bun-v1.4",
+      "title": "https://bun.com/blog/bun-v1.4"
+    }
+  ],
+  "evidence_passages": [
+    {
+      "url": "https://dev.to/synsun/bun-vs-nodejs-in-production-what-three-months-of-real-traffic-taught-me-3d96",
+      "text": "Bun vs Node.js in Production: What Three Months of Real Traffic Taught Me - DEV Community"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/159",
+      "text": "Bun's Roadmap · Issue #159 · oven-sh/bun"
+    },
+    {
+      "url": "https://strapi.io/blog/bun-vs-nodejs-performance-comparison-guide",
+      "text": "Bun vs Node.js in 2026: Benchmarks & Migration Guide"
+    },
+    {
+      "url": "https://tech-insider.org/bun-vs-nodejs-2026/",
+      "text": "Bun vs Node.js: 3x Faster, But Is It Ready? [2026] - Tech Insider"
+    },
+    {
+      "url": "https://bun.com/docs/runtime/nodejs-compat",
+      "text": "Node.js Compatibility | Bun Docs"
+    },
+    {
+      "url": "https://bun.com/",
+      "text": "Bun — A fast all-in-one JavaScript runtime"
+    },
+    {
+      "url": "https://www.sumandey.com/blogs/bun-vs-nodejs-2025-time-to-switch/",
+      "text": "Bun vs Node.js: The JavaScript Runtime Battle of 2025 - Suman Dey | Full Stack Developer Blog"
+    },
+    {
+      "url": "https://github.com/dahlia/fedify/discussions/24",
+      "text": "Roadmap: non-Deno compatibility #24"
+    },
+    {
+      "url": "https://www.infoq.com/Web-Development/news/88",
+      "text": "InfoQ Homepage Web Development Content on InfoQ"
+    },
+    {
+      "url": "https://www.theregister.com/software/2026/04/21/bun-1113-out-with-memory-fixes-as-dev-complain-of-leaks/5221154",
+      "text": "Bun 1.1.13 out with memory fixes as dev complain of leaks"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/19930",
+      "text": "Memory leak in bun + express + docker · Issue #19930 · oven-sh/bun"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/25948",
+      "text": "Memory leak with Mongoose and Bun (Production build / No Hot Reload) · Issue #25948 · oven-sh/bun"
+    },
+    {
+      "url": "https://news.lavx.hu/article/bun-1-1-13-addresses-memory-leaks-as-developers-report-production-crashes",
+      "text": "Bun 1.1.13 addresses memory leaks as developers report production crashes | LavX News"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/16339",
+      "text": "Memory leak since miggration from node 20 to bun 1.1.43 of a nextjs website · Issue #16339 · oven-sh/bun"
+    },
+    {
+      "url": "https://par.nsf.gov//servlets/purl/10343367",
+      "text": "par.nsf.gov"
+    },
+    {
+      "url": "https://par.nsf.gov/biblio/10343367",
+      "text": "skip to main content"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/19930",
+      "text": "# Summary of GitHub Issue #19930\n\n**Issue Title:** Memory leak in bun + express + docker\n\n**Reporter:** MagsMagnoli (opened May 27, 2025)\n\n**Status:** Closed\n\n**Bun Version:** 1.2.14\n\n**Platform:** Darwin 24.5.0 arm64\n\n## Core Problem\n\nThe reporter identified a significant memory retention discrepancy when running a Bun application with Express inside Docker containers versus locally. According to the submission, \"Significantly more retained objects in docker vs local\" were observed.\n\n## Reproduction Method\n\nThe issue includes a demo repository demonstrating the problem through test scripts that repeatedly hit a healthcheck endpoint 1,000 times while tracking object growth patterns.\n\n## Evidence\n\nThe report includes comparative charts showing substantially higher memory retention rates in the Docker environment compared to local execution, with visual graphs documenting the differential object accumulation.\n\n## Impact\n\nThe issue manifests severely in production, causing pod crashes on systems with 4GB RAM limits. Attempts to resolve the problem through incremental middleware removal showed only partial improvements.\n\n## Labels Applied\n\n- bug\n- docker\n- memory usage\n\nThe issue appears unresolved, with no assignees or associated pull requests documented."
+    },
+    {
+      "url": "https://www.theregister.com/software/2026/04/21/bun-1113-out-with-memory-fixes-as-dev-complain_of_leaks/5221154",
+      "text": "# Bun 1.1.13 Release Summary\n\n**Version & Date:** Bun 1.1.13, released April 21, 2026\n\n**Key Improvements:**\n- Enhanced test runner with isolate, parallel, and shard flags for Jest compatibility\n- Compression now uses zlib-ng for up to 5x faster performance\n- 5% reduction in baseline memory usage\n- Upgraded memory allocator with Libpas scavenger to return unused memory faster\n\n**What Maintainers Said:**\nBun inventor Jared Sumner claimed the memory improvements \"reduce baseline memory usage and fix a class of hangs and crashes in long-running processes.\"\n\n**Developer Complaints:**\n- Memory leaks causing production instability and crashes\n- One Reddit user stated: \"Bun is not stable enough for production nor faster than Node in production\"\n- Jay V of OpenCode reported: \"we are moving to Node and Electron, away from Bun and Tauri\" citing memory issues and Windows support problems\n- Reports of garbage collection failures leading to out-of-memory errors\n\n**Context:**\nBun, acquired by Anthropic in December 2025, competes with Node.js 25.9 and Deno. While praised for speed and features, long-running workloads have amplified stability concerns that short benchmarks don't reveal."
+    },
+    {
+      "url": "https://bun.com/docs/runtime/nodejs-compat",
+      "text": "# Bun's Node.js Compatibility Gaps\n\n## Not Implemented\n- **`node:sea`** – Single Executable Applications; use `bun build --compile` instead\n\n## Partially Implemented Modules\n\n**`node:cluster`** – \"load-balancing HTTP requests across processes is only supported on Linux\" via `SO_REUSEPORT`; otherwise implemented but untested\n\n**`node:vm`** – Core features work, but `timeout`, `breakOnSigint`, `cachedData`, `microtaskMode` and `codeGeneration` options are supported; missing `vm.measureMemory()` context-specific reporting\n\n**`node:http2`** – Client and server functional; 94% test pass rate; some options ignored\n\n**`node:worker_threads`** – Missing `resourceLimits`, `trackUnmanagedFds` support; `execArgv` only sets process variable; no `moveMessagePortToContext` or `locks`\n\n**`node:inspector`** – Session supports `Profiler` domain and `Runtime.enable`; missing `HeapProfiler` and other domains; no `Network` support\n\n**`node:test`** – In-process API works under `bun test`; `run()` mode incomplete; no snapshot testing or `mock.module()`\n\n## Native Addons\nThe page lacks explicit native addon status but references **Node-API** as \"🟡 Partially implemented\" under interop, suggesting limited support for N-API modules."
+    },
+    {
+      "url": "https://www.theregister.com/software/2026/04/21/bun-1113-out-with-memory-fixes-as-dev-complain-of-leaks/5221154",
+      "text": "# Article Summary\n\n**Headline:** \"Anthropic bakes memory fixes into Bun 1.1.13 as developers complain of leaks\"\n\n**Date:** Published Tuesday, 21 April 2026 at 16:27 UTC\n\n**Bun Version:** 1.1.13\n\n## Key Quotes from Developers\n\n**Bun Inventor Jared Sumner:**\n\"reduce baseline memory usage and fix a class of hangs and crashes in long-running processes\"\n\n**Reddit User:**\n\"Bun is not stable enough for production nor faster than Node in production\"\n\n**Jay V, OpenCode Founder:**\n\"we are moving to Node and Electron, away from Bun and Tauri\" and \"Bun is not a good fit for apps with a large user base\"\n\n**Positive User (Hacker News):**\n\"I've been very satisfied since I switched to Bun. It's fast and has a great standard library\"\n\n## Main Issues Addressed\n\nThe release targets memory leaks causing production slowdowns and crashes. Sumner claims 5% reduced memory usage and faster return of unused memory to the OS through an upgraded allocator and Libpas scavenger implementation."
+    },
+    {
+      "url": "https://strapi.io/blog/bun-vs-nodejs-performance-comparison-guide",
+      "text": "Bun vs Node.js in 2026: Benchmarks & Migration Guide"
+    },
+    {
+      "url": "https://dev.to/benriemer/from-nodejs-to-bun-how-we-got-5x-more-throughput-and-lived-to-tell-the-tale-4397",
+      "text": "From Node.js to Bun: How We Got 5x More Throughput (and Lived to Tell the Tale) - DEV Community"
+    },
+    {
+      "url": "https://dev.to/whoffagents/bun-12-in-production-what-actually-broke-when-we-migrated-from-node-6nh",
+      "text": "Bun 1.2 in Production: What Actually Broke When We Migrated from Node - DEV Community"
+    },
+    {
+      "url": "https://dev.to/synsun/bun-vs-nodejs-in-production-what-three-months-of-real-traffic-taught-me-3d96",
+      "text": "Bun vs Node.js in Production: What Three Months of Real Traffic Taught Me - DEV Community"
+    },
+    {
+      "url": "https://dev.to/alanwest/we-moved-our-api-from-node-to-bun-heres-what-broke-and-what-got-3x-faster-3hg6",
+      "text": "We Moved Our API from Node to Bun. Here's What Broke (and What Got 3x Faster). - DEV Community"
+    },
+    {
+      "url": "https://medium.com/@sohail_saifii/bun-vs-deno-vs-node-i-migrated-our-api-three-times-heres-the-real-performance-data-a4499bb07b8d",
+      "text": "Bun vs Deno vs Node: I Migrated Our API Three Times. Here’s the Real Performance Data. | by Sohail x Codes | Medium"
+    },
+    {
+      "url": "https://kahwee.com/2025/switching-from-node-to-bun/",
+      "text": "Switching from Node to Bun - A Migration Success Story | KahWee - Web Development, AI Tools & Tech Trends"
+    },
+    {
+      "url": "https://www.tbeeren.com/journal/experimenting-with-bun-from-idea-to-production-in-a-week",
+      "text": "Experimenting with Bun: From Idea to Production in a Week"
+    },
+    {
+      "url": "https://bun.com/blog",
+      "text": "# Recent Bun Release Posts\n\nHere are the most recent Bun releases listed on their blog:\n\n1. **Bun 1.4** (August 20, 2026)\n   - \"Rewrites Bun in Rust, ships built-in headless browser automation (Bun.WebView), Bun.Image, Bun.markdown, JSON5, JSONL, Terminal and cron APIs\"\n\n2. **Bun v1.3.14** (May 13, 2026)\n   - Addresses 380 reactions with improvements including built-in image processing, faster installs, experimental HTTP/2 and HTTP/3 support\n\n3. **Bun v1.3.13** (April 20, 2026)\n   - Fixes 82 issues with parallel testing capabilities, improved memory efficiency for installs and source maps, faster compression\n\n4. **Bun v1.3.12** (April 9, 2026)\n   - Fixes 120 issues featuring \"headless browser automation, in-process Bun.cron() scheduler, async stack traces for native errors\"\n\n5. **Bun v1.3.11** (March 18, 2026)\n   - Addresses 307 reactions with OS-level cron job support and various performance enhancements"
+    },
+    {
+      "url": "https://www.theregister.com/2026/04/21/anthropics_bun_1113_released_with_memory_fixes/",
+      "text": "Bun 1.1.13 out with memory fixes as dev complain of leaks"
+    },
+    {
+      "url": "https://x.com/rawkode/status/2042574454811693341",
+      "text": "David Flanagan on X: \"OpenCode moving away from Bun looks to be a seriously daft decision, from my perspective. I understand the Anthropic thing sucks, but Bun is now literally being improved daily for their exact use-case and they’re moving to node? Wild\" / X"
+    },
+    {
+      "url": "https://dev.to/brendonovich/moving-opencode-desktop-to-electron-4hip",
+      "text": "Moving OpenCode Desktop to Electron - DEV Community"
+    },
+    {
+      "url": "https://www.kucoin.com/news/flash/opencode-2-0-major-rewrite-api-overhaul-node-migration-and-electron-desktop-shift",
+      "text": "OpenCode 2.0 Major Rewrite: API Overhaul, Node Migration, and Electron Desktop Transition | KuCoin"
+    },
+    {
+      "url": "https://x.com/thdxr/status/2024149757032100016",
+      "text": "dax on X: \"@UpToNathan we decided to make opencode work in nodejs because this gives us a few options - node is way more stable on windows and we have a lot of pain there currently - electron desktop app can easily embed it without spawning another process - we're not certain about the future of bun\" / X"
+    },
+    {
+      "url": "https://x.com/brendonovich/status/2045725889422610602",
+      "text": "brendan (@brendonovich) on X"
+    },
+    {
+      "url": "https://gitlab.com/postgres-ai/postgresai/-/merge_requests/118/commits",
+      "text": "refactor: migrate CLI from Node.js to Bun"
+    },
+    {
+      "url": "https://github.com/anomalyco/opencode/pull/6366",
+      "text": "github.com"
+    },
+    {
+      "url": "https://www.theregister.com/2026/04/21/anthropics_bun_1113_released_with_memory_fixes/",
+      "text": "# Bun 1.1.13 Release: Memory Fixes Address Production Concerns\n\n**Version:** 1.1.13\n\n**Key Improvements:**\n- 5% reduction in memory usage through upgraded memory allocator\n- Libpas scavenger implementation returns unused memory to OS faster\n- Enhanced test runner with isolate, parallel, and shard flags for Jest compatibility\n- zlib-ng compression for up to 5x faster compression\n\n**Developer Concerns:**\nThe release directly addresses ongoing complaints about memory leaks in production environments. One Reddit user stated: \"Bun is not stable enough for production nor faster than Node in production,\" citing memory issues in long-running workloads.\n\nJay V, founder of OpenCode, tweeted about abandoning Bun for Node and Electron, citing \"memory issues, crashes, and terrible Windows support.\"\n\n**Positive Reception:**\nDespite stability concerns, some developers report satisfaction. One Hacker News user noted: \"I've been very satisfied since I switched to Bun. It's fast and has a great standard library.\"\n\n**Context:**\nAnthropic acquired Bun in December 2025. The runtime competes with Node.js (v25.9) and Deno. GitHub issue #29083 documents garbage collection failures causing out-of-memory errors in certain functions."
+    },
+    {
+      "url": "https://dev.to/brendonovich/moving-opencode-desktop-to-electron-4hip",
+      "text": "# Technical Reasons for Moving Off Bun/Tauri\n\nThe article provides limited concrete technical details. Here's what's explicitly stated:\n\n## Tauri Issues\n\n**WebKit Performance & Consistency:** The author notes that \"Tauri uses WebKit on macOS and Linux, which not only has worse performance than Chromium when rendering our app, but also has minor inconsistencies with it, especially around styles.\"\n\n**CLI Startup Problems:** Running the bundled CLI to start the server \"impacted startup time, and occasionally just failed\" on Windows, though the author notes this was secondary to other concerns.\n\n## Bun to Node Migration\n\nThe article mentions they wanted to move from Bun to Node, which motivated running server code within Electron's built-in Node process. However, **no specific technical reasons for abandoning Bun are provided**—the author simply states they're moving \"for other reasons\" without elaboration.\n\nThe article emphasizes this was a **pragmatic decision based on their specific use case** (a TypeScript-based client-server app) rather than definitive performance comparisons or detailed benchmarks."
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/29083",
+      "text": "# GitHub Issue Summary\n\n**Issue Title:** \"Bun.S3File.arrayBuffer() retains RSS and reaches OOM in a 1 GiB Linux container despite forced GC #29083\"\n\n**Status:** Closed\n\n**Version:** Bun 1.3.11\n\n**Platform:** macOS host running Linux container (aarch64)\n\n## Reproduction\n\nThe reporter provided a minimal test case (`repro.ts` and `run.sh`) demonstrating that repeated calls to `Bun.S3File.arrayBuffer()` cause sustained RSS growth. Key findings:\n\n- RSS climbs toward OOM despite forced `Bun.gc(true)` after each iteration\n- In a 1 GiB container, RSS crossed a 900 MiB threshold reliably\n- Continuing iterations resulted in actual OOM kill (exit code 137)\n- JavaScript heap remained substantially smaller than RSS growth\n\n## Expected vs. Observed Behavior\n\n**Expected:** \"Repeated `Bun.S3File.arrayBuffer()` calls on the same object should not cause sustained RSS growth toward OOM after forced GC.\"\n\n**Observed:** RSS climbed past 1 GiB despite garbage collection, triggering kernel OOM termination.\n\n## Key Context\n\nThe reporter noted this pattern reflects real application code performing `new Uint8Array(await body.arrayBuffer())` in long-lived servers. They also noted Bun's `S3File` and `S3Client` APIs lack explicit cleanup methods like `close()` or `dispose()`.\n\n**Maintainer Response:** None visible in the provided content."
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/25948",
+      "text": "# Bun Memory Leak Issue Summary\n\n**Issue #25948: Memory leak with Mongoose and Bun (Production build / No Hot Reload)**\n\n**Status:** Closed as duplicate of #12117\n\n**Bun Version:** 1.3.5\n\n## Key Details\n\n**Reporter's Environment:**\n- Docker container (Debian-based, oven/bun:latest)\n- Using Hono framework with Mongoose database driver\n- Production execution without hot reload enabled\n\n**Reported Behavior:**\nThe application exhibits continuous memory growth that is never reclaimed. One instance showed escalation from 50MB to 170MB over 12 hours while idle. The reporter noted: \"Memory usage increases linearly or in steps and is never reclaimed, leading to container death.\"\n\n**Configuration Tested:**\n- Mongoose connection with `minPoolSize: 0` and `maxIdleTimeMS: 10000`\n- Even with these aggressive idle timeouts, the leak persisted\n- The server received no requests during observation\n\n**Technical Indicators:**\nDocker stats revealed RSS memory rising consistently despite no active traffic, distinguishing this from typical request-handling memory patterns.\n\n**Resolution:**\nThis issue was marked as a duplicate, linking to the existing tracking issue #12117, suggesting the core problem has broader recognition within the Bun project's issue management system."
+    },
+    {
+      "url": "https://bun.com/blog/bun-v1.3.13",
+      "text": "# Memory-Related Fixes and Improvements in Bun v1.3.13\n\n## Allocator Upgrades\n\nBun upgraded its memory allocators to reduce baseline memory usage:\n\n- **mimalloc**: Moved from version 2 to version 3, including \"several bugfixes in our internal fork\"\n- **libpas scavenger**: Implemented scavenger support for both Windows and Linux to reclaim memory faster\n\nThese changes address \"a class of hangs and crashes in long-running processes\" across macOS, Linux, and Windows.\n\n## Runtime Memory Reduction\n\nThe release claims that \"Bun's JavaScript runtime uses 5% less memory\" overall.\n\n## Source Map Optimization\n\nSource maps received significant optimization, using \"up to 8x less memory.\" The new bit-packed binary format reduces storage from approximately 20 bytes per mapping down to 2.4 bytes per mapping. For example, with TypeScript's compiler (`_tsc.js`), memory dropped from \"~11.3 MB\" to \"1.29 MB.\"\n\n## Fixed Memory Leaks\n\nSeveral memory leaks were patched, including:\n\n- \"~1 KB memory leak per `--hot` reload cycle\"\n- Leaks in \"Glob.scan() and Glob.scanSync()\"\n- Issues in \"AbortSignal.timeout()\" and WebSocket client operations\n- A \"tiny memory leak affecting WebSocket client send buffers\"\n- Eight memory-accounting bugs in libpas"
+    },
+    {
+      "url": "https://x.com/thdxr/status/2024149757032100016",
+      "text": "The server returned HTTP 402 Payment Required.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/12117",
+      "text": "# GitHub Issue Summary\n\n**Title:** Possible memory leak when used with MongoDB #12117\n\n**Status:** Closed (with associated PR #26766)\n\n**Opened:** June 24, 2024\n\n**Key Details:**\n- Reporter noted that \"repeated calls to MongoDB through both mongoose and the driver skyrockets memory and CPU usage\"\n- Memory consumption failed to decrease over time, even with manual garbage collection\n- The issue appeared specific to MongoDB operations; hardcoding responses instead showed no memory growth\n- Testing with JMeter revealed the problem persisted at both high load and normal production rates\n- Assignee: cirospaciari\n\n**Labels:** bug, memory usage, node:net\n\n**Diagnosis:** The core issue involved improper memory management when Bun's net module handled MongoDB connections, causing memory accumulation that garbage collection couldn't fully resolve."
+    },
+    {
+      "url": "https://trigger.dev/blog",
+      "text": "Blog | Trigger.dev"
+    },
+    {
+      "url": "https://trigger.dev/blog/firebun",
+      "text": "Why we replaced Node.js with Bun for 5x throughput | Trigger.dev"
+    },
+    {
+      "url": "https://dev.to/benriemer/from-nodejs-to-bun-how-we-got-5x-more-throughput-and-lived-to-tell-the-tale-4397",
+      "text": "From Node.js to Bun: How We Got 5x More Throughput (and Lived to Tell the Tale) - DEV Community"
+    },
+    {
+      "url": "https://www.kucoin.com/news/flash/bun-completes-11-day-ai-driven-code-migration-from-zig-to-rust",
+      "text": "Bun Completes 11-Day AI-Driven Code Migration from Zig to Rust | KuCoin"
+    },
+    {
+      "url": "https://bun.com/blog/debugging-memory-leaks",
+      "text": "Debugging JavaScript Memory Leaks | Bun Blog"
+    },
+    {
+      "url": "https://github.com/oven-sh/bun/issues/16339",
+      "text": "Memory leak since miggration from node 20 to bun 1.1.43 of a nextjs website · Issue #16339 · oven-sh/bun"
+    },
+    {
+      "url": "https://bun.sh/blog/bun-v1.2.2",
+      "text": "Bun v1.2.2 | Bun Blog"
+    },
+    {
+      "url": "https://bun.com/blog",
+      "text": "Blog | Bun"
+    },
+    {
+      "url": "https://fawadhs.dev/blog/bun-rust-rewrite-technical-review",
+      "text": "Bun Rewrites in Rust: Technical Review of the Zig-to-Rust Migration | Fawad Hussain Syed"
+    },
+    {
+      "url": "https://bun.com/blog/debugging-memory-leaks",
+      "text": "# Bun's Stance on Memory Leaks\n\nBased on the blog post by Jarred Sumner (published April 2, 2025), the Bun maintainers attribute memory leaks to **user code practices**, not to Bun itself.\n\nThe article focuses on educating developers about problematic patterns they create, such as:\n\n- Storing request/response objects in global arrays without cleanup\n- Closure-related retentions of large data structures\n- Improper AbortSignal/AbortController usage\n- EventEmitter listeners that aren't removed\n\nRather than claiming Bun has memory leak issues, the maintainers provide **debugging tooling** (V8 heap snapshots via `writeHeapSnapshot()` and JavaScriptCore heap statistics via `heapStats()`) to help developers identify leaks in their own applications.\n\nThe article also offers practical optimization guidance, such as preferring Blob over streams for immutable data and nullifying references when done.\n\n**In summary:** The framing suggests memory management issues stem from developer mistakes, not platform deficiencies. Bun's role is providing diagnostics and best-practice guidance."
+    },
+    {
+      "url": "https://trigger.dev/blog/firebun",
+      "text": "# Trigger.dev's Node.js to Bun Migration: Key Findings\n\n## What Broke\n\nTrigger.dev discovered a critical memory leak unique to Bun's HTTP model. The issue stemmed from unresolved promises in their `fetch` handler: \"Every `Promise<Response>` must settle\" in Bun, unlike Node.js where socket cleanup handles response state automatically. When clients disconnected without resolving pending promises, request contexts remained in memory indefinitely.\n\n## The Memory Leak Details\n\nEach leaked connection consumed 500-2000 bytes. With hundreds of disconnects per hour from pod rollouts and network issues, memory climbed from a stable 192 MB (Node.js) to 250 MB. The fix required resolving promises with a 499 status code on client disconnect, flattening memory usage to approximately 85 MB post-deployment.\n\n## Benchmark Results\n\n| Metric | Node.js + SQLite | Bun (compiled) |\n|--------|------------------|----------------|\n| Throughput | 2,099 req/s | ~10,700 req/s |\n| P95 Latency | 29.1ms | ~5.6ms |\n| Max Latency | 619ms | ~17ms |\n| Container Image | ~180MB | ~68MB |\n\nThe team achieved a 5x throughput increase with 28x better maximum latency.\n\n## Compatibility Issues Encountered\n\n- **prom-client metrics**: Several default collectors returned inaccurate data; `nodejs_heap_size_*` proved unreliable under Bun's v8 compatibility layer\n- **AbortSignal firing twice**: Bun fires abort events both on client disconnect and response transmission, requiring guards against spurious cleanup calls\n- **Kubernetes CA certificate**: Required explicit `NODE_EXTRA_CA_CERTS` environment variable configuration\n- **Compiled binary CPU overhead**: Proper connection cleanup after the leak fix increased CPU usage by approximately 5%\n\n## Production Verdict\n\nThe migration succeeded. CPU usage became predictable and stable rather than volatile, event loop lag dropped from 40-80ms spikes to nearly imperceptible levels, and overall resource consumption decreased significantly. Trigger.dev recommended profiling before optimizing and emphasized understanding Bun's promise-based response lifecycle differs fundamentally from Node's socket-tied model."
+    },
+    {
+      "url": "https://bun.com/blog/bun-v1.4",
+      "text": "# Bun's Claims About the Rust Rewrite\n\n**Date:** August 20, 2024\n\n**Key Claims:**\n\nBun states that version 1.4 represents \"the first release\" of its Rust rewrite, though it notes that \"Claude Code has been using Bun's Rust port for months now, and Prisma launched Prisma Compute on it.\" This indicates the rewrite underwent real-world testing before the public release.\n\n**Stability and Production Use:**\n\nRather than making explicit claims about crash elimination or memory safety improvements, Bun emphasizes practical validation: the Rust version powered Claude Code (described as \"a large long-running application\") in production, where it demonstrated measurable improvements including \"production CPU usage dropped by 2×\" with specific metrics (p99 from 24% to 10%).\n\n**No Specific Stability Claims:**\n\nThe blog post contains no explicit statements about eliminating segfaults, crashes, or memory safety issues. Instead, Bun focuses on performance gains and feature completeness achieved through the rewrite, implying stability through successful production deployment rather than directly asserting it.\n\n**Production Readiness:**\n\nThe framing suggests production readiness through existing deployment rather than promises, stating the Rust version already runs \"Claude Code\" and Prisma Compute, which establishes real-world validation over theoretical claims."
+    },
+    {
+      "url": "https://fawadhs.dev/blog/bun-rust-rewrite-technical-review",
+      "text": "# Critical and Skeptical Claims in the Bun Rust Rewrite Review\n\n## Reliability Concerns\n\nThe review presents surprisingly few critical claims. The most substantive skepticism appears in the **community reaction section**, which notes:\n\n> \"A near-even split with 1,384+ comments — an unusually divisive PR.\"\n\nThis 50.6% approval ratio suggests significant community doubt, though the article doesn't elaborate on specific objections.\n\n## Evidence Limitations\n\nSeveral claims lack supporting data:\n\n1. **Performance claims**: The bundler benchmark shows only one real-world suite (rolldown-benchmark on 10k modules). No data on other workloads.\n\n2. **Memory leak severity**: The article cites \"effectively every native-code memory leak\" but provides only categorical fixes, not before/after metrics proving the scope of the problem.\n\n3. **AI involvement**: While all branches use `claude/` prefixes, the article doesn't independently verify that Claude actually wrote the code versus just being cited in workflows.\n\n4. **Production readiness**: The article states the rewrite is \"canary only\" and notes a lingering \"~250ms main-thread gap\" but doesn't explain whether this affects real user applications.\n\n## Unverified Claims\n\n- That Zig's lack of memory safety caused \"an enormous amount of development & debugging time\" (attributed to Jarred Sumner, but no data)\n- That total CPU is \"41% lower than Zig\" — the numbers shown don't directly support this comparison\n\nThe review reads as largely promotional rather than critically investigative."
+    }
+  ],
+  "final_answer": "# Bun en production : ce que rapportent mainteneurs et utilisateurs\n\n## 1. Le désaccord central\n\nIl n'y a pas un débat « Bun marche / Bun ne marche pas », mais **deux profils d'usage** qui produisent des verdicts opposés :\n\n| Camp | Position | Source |\n|---|---|---|\n| Détracteurs | Fuites mémoire en charge longue, crashs, mauvais support Windows | [The Register, 21 avril 2026](https://www.theregister.com/2026/04/21/anthropics_bun_1113_released_with_memory_fixes/) |\n| Adoptants | Gains massifs de débit et de latence, coûts d'infra réduits | [Trigger.dev, 30 mars 2026](https://trigger.dev/blog/firebun) |\n| Mainteneurs | Les fuites viennent surtout du code utilisateur ; Bun fournit l'outillage de diagnostic | [Bun Blog, 2 avril 2025](https://bun.com/blog/debugging-memory-leaks) |\n\nLe cas le plus instructif est que **Trigger.dev appartient aux deux camps à la fois** : ils ont réussi leur migration *et* rencontré une fuite mémoire propre à Bun.\n\n---\n\n## 2. Faits établis par des preuves\n\n### 2.1 Une fuite mémoire réelle, spécifique au modèle HTTP de Bun (preuve forte)\n\nTrigger.dev documente une fuite dont ils donnent le mécanisme, les chiffres et le correctif ([trigger.dev/blog/firebun](https://trigger.dev/blog/firebun)) :\n\n- Dans Bun, **chaque `Promise<Response>` doit se résoudre** ; contrairement à Node, le cycle de vie de la réponse est lié à la promesse, pas au socket. Un client qui se déconnecte sans résolution laisse le contexte de requête en mémoire.\n- Coût mesuré : **500 à 2000 octets par connexion fuitée**.\n- RSS : **192 MB stable sous Node → 250 MB sous Bun** ; après correction (résolution en 499 sur déconnexion), **~85 MB à plat**.\n\nC'est le fait le mieux étayé du dossier : mécanisme causal + mesure avant/après + correctif reproductible. **Ce n'est pas un bug de Bun au sens strict**, c'est une divergence sémantique par rapport à Node qui transforme du code Node correct en fuite. Cette nuance est importante : elle explique en partie pourquoi mainteneurs et utilisateurs ne s'entendent pas sur l'attribution.\n\n### 2.2 Des fuites côté runtime, elles, confirmées par les mainteneurs (preuve forte)\n\nContrairement à la position générale du blog de Bun, les notes de version reconnaissent des fuites internes. Bun v1.3.13 ([bun.com/blog/bun-v1.3.13](https://bun.com/blog/bun-v1.3.13)) corrige notamment :\n\n- une fuite de **~1 Ko par cycle de rechargement `--hot`** ;\n- des fuites dans `Glob.scan()` / `Glob.scanSync()`, `AbortSignal.timeout()` et les tampons d'envoi WebSocket ;\n- **huit bugs de comptabilité mémoire dans libpas** ;\n- passage de mimalloc v2 → v3 et implémentation du *scavenger* libpas sur Windows et Linux, censés corriger « une classe de blocages et de crashs dans les processus longue durée » ;\n- **5 % de mémoire en moins** pour le runtime JS ; source maps jusqu'à **8× moins de mémoire** (~20 octets → 2,4 octets par mapping ; `_tsc.js` : ~11,3 MB → 1,29 MB).\n\n**Inférence (bien soutenue)** : le fait même de publier ces correctifs contredit partiellement le cadrage « c'est votre code » du billet de 2025.\n\n### 2.3 Des tickets GitHub avec reproductions (preuve moyenne à forte)\n\n- [#12117 — fuite avec MongoDB](https://github.com/oven-sh/bun/issues/12117), ouvert le 24 juin 2024, labellisé `bug` / `memory usage` / `node:net`, assigné à un mainteneur, **fermé** via PR #26766. Diagnostic : mauvaise gestion mémoire du module `net` de Bun sur les connexions MongoDB. Durée : ~2 ans entre signalement et correction.\n- [#25948 — Mongoose + Hono en Docker](https://github.com/oven-sh/bun/issues/25948), Bun 1.3.5 : **50 MB → 170 MB en 12 h sur un serveur au repos**, sans aucune requête. Fermé comme doublon de #12117.\n- [#29083 — `Bun.S3File.arrayBuffer()`](https://github.com/oven-sh/bun/issues/29083), Bun 1.3.11 : RSS franchit 900 MiB dans un conteneur de 1 GiB **malgré `Bun.gc(true)` forcé**, jusqu'à l'OOM kill (code 137), alors que le tas JS reste bien plus petit. Fermé.\n- [#19930 — Express + Docker](https://github.com/oven-sh/bun/issues/19930), Bun 1.2.14 : rétention d'objets nettement supérieure en Docker qu'en local, crash de pods à 4 GB de RAM.\n\n**Motif récurrent, et c'est le point le plus solide de la critique** : la divergence RSS ↔ tas JS. Plusieurs rapports indépendants montrent une croissance de la mémoire résidente que le GC JavaScript ne récupère pas — signature d'allocations natives, pas d'un problème de code applicatif. Cela renforce la thèse « bug runtime » plus que la thèse « erreur utilisateur ».\n\n### 2.4 Les gains de performance sont réels et chiffrés (preuve forte)\n\nToujours chez Trigger.dev, service *warm start*, binaire compilé :\n\n| Métrique | Node.js + SQLite | Bun |\n|---|---|---|\n| Débit | 2 099 req/s | ~10 700 req/s |\n| Latence P95 | 29,1 ms | ~5,6 ms |\n| Latence max | 619 ms | ~17 ms |\n| Image conteneur | ~180 MB | ~68 MB |\n\nIls rapportent aussi un lag de boucle d'événements passant de pics de 40–80 ms à quasi imperceptible, et un CPU devenu prévisible. **Réserve** : il s'agit d'un service spécifique et d'un binaire compilé — non généralisable à toute charge de travail.\n\n### 2.5 Les lacunes de compatibilité sont documentées par Bun même (preuve forte)\n\nLa [page officielle de compatibilité Node.js](https://bun.com/docs/runtime/nodejs-compat) reconnaît :\n\n- `node:sea` : **non implémenté** ;\n- `node:cluster` : l'équilibrage de charge HTTP entre processus **n'est supporté que sur Linux** (via `SO_REUSEPORT`) ;\n- `node:worker_threads` : `resourceLimits`, `trackUnmanagedFds`, `moveMessagePortToContext`, `locks` manquants ;\n- `node:http2` : **94 %** de tests passés, certaines options ignorées ;\n- `node:inspector` : **pas de domaine `HeapProfiler`** — ce qui, ironiquement, complique le diagnostic des fuites mémoire ;\n- **Node-API : partiellement implémenté** ;\n- `node:vm` : `vm.measureMemory()` incomplet.\n\nIncompatibilités concrètes rencontrées en production par Trigger.dev : collecteurs `prom-client` renvoyant des données inexactes (`nodejs_heap_size_*` non fiable sous la couche de compatibilité V8), `AbortSignal` déclenché **deux fois** (déconnexion client *et* envoi de la réponse), et nécessité de configurer explicitement `NODE_EXTRA_CA_CERTS` sur Kubernetes.\n\n---\n\n## 3. Ce qui relève de l'opinion ou d'une preuve faible\n\n- **« Bun n'est pas assez stable pour la production ni plus rapide que Node en production »** — citation d'un utilisateur Reddit reprise par [The Register](https://www.theregister.com/2026/04/21/anthropics_bun_1113_released_with_memory_fixes/). Aucune donnée jointe. La seconde moitié de l'affirmation est **contredite** par les mesures de Trigger.dev.\n- **« Je suis très satisfait depuis que je suis passé à Bun »** — commentaire Hacker News cité par la même source. Opinion, non vérifiable.\n- **Le cas OpenCode est plus faible qu'il n'y paraît.** The Register attribue à Jay V (fondateur d'OpenCode) le motif « problèmes de mémoire, crashs et support Windows déplorable ». Mais le billet technique de l'équipe elle-même ([dev.to/brendonovich](https://dev.to/brendonovich/moving-opencode-desktop-to-electron-4hip)) **ne donne aucune raison technique précise d'abandonner Bun** — il évoque un passage à Node « pour d'autres raisons », les griefs détaillés portant sur Tauri/WebKit. Un [tweet de dax](https://x.com/thdxr/status/2024149757032100016) (que je n'ai pas pu ouvrir directement — X renvoie une erreur 402) mentionnerait la stabilité Windows, l'intégration Electron et une incertitude « sur l'avenir de Bun ». **Il faut donc traiter le motif « mémoire » d'OpenCode comme rapporté de seconde main, non documenté.** La décision semble au moins autant stratégique (incertitude post-acquisition) que technique — mais ceci est une inférence de ma part.\n- **Les billets DEV.to** (« 43 % de débit en plus », « 2 800 $ → 1 100 $/mois », « 38 s → 4 s d'installation ») remontent en nombre dans les recherches mais sont anonymes, non reproductibles et stylistiquement suspects. **Je ne les retiens pas comme preuve.**\n- **Les chiffres « 92 % de compatibilité npm » / « >90 % de la suite de tests Node »** circulent dans des articles de synthèse ([strapi.io](https://strapi.io/blog/bun-vs-nodejs-performance-comparison-guide)) sans méthodologie publiée. À traiter comme ordre de grandeur.\n\n---\n\n## 4. Incertitudes et réserves méthodologiques\n\n1. **Erreur de numérotation dans The Register.** L'article parle de « Bun 1.1.13 » sorti le 21 avril 2026, mais l'[index du blog Bun](https://bun.com/blog) situe **v1.3.13 au 20 avril 2026** avec exactement le contenu décrit (scavenger libpas, zlib-ng, flags de test parallèles). Il s'agit donc très probablement de **1.3.13**. Les faits rapportés tiennent, la version citée est fausse.\n2. **La réécriture en Rust (Bun 1.4, ~20 août 2026) est trop récente pour être jugée.** Bun revendique un CPU de production divisé par 2 (p99 de 24 % à 10 %) sur Claude Code, et cite Prisma Compute ([bun.com/blog/bun-v1.4](https://bun.com/blog/bun-v1.4)). Une [revue technique](https://fawadhs.dev/blog/bun-rust-rewrite-technical-review) note toutefois une PR **exceptionnellement clivante (1 384+ commentaires, ~50/50)**, un statut « canary only », et l'absence de métriques avant/après étayant l'affirmation que « pratiquement toutes les fuites mémoire natives » sont corrigées. **Aucune donnée d'exploitation longue durée n'existe encore** — c'est le principal angle mort de cette réponse.\n3. **Biais de publication asymétrique.** Les tickets GitHub concentrent les échecs ; les déploiements Bun qui fonctionnent silencieusement ne génèrent aucune trace. On ne peut donc **pas** déduire du volume de tickets un taux de défaillance.\n4. **Absence de données longitudinales indépendantes** : je n'ai trouvé aucun benchmark tiers reproductible mesurant le RSS de Bun sur plusieurs jours face à Node. Toutes les mesures citées proviennent soit de Bun, soit d'un utilisateur unique.\n5. **Effet Docker/conteneur non élucidé** : #19930 et #25948 impliquent tous deux des conteneurs, et #19930 constate explicitement un écart Docker vs local. Personne n'a publié de diagnostic de cette différence — piste ouverte, non résolue.\n\n---\n\n## 5. Synthèse opérationnelle\n\nCe que les preuves soutiennent, en ordre décroissant de solidité :\n\n1. **Les gains de performance sont réels** sur des charges I/O-bound, avec des chiffres vérifiables — mais mesurés sur un seul service documenté.\n2. **La sémantique HTTP de Bun diffère de celle de Node d'une manière qui crée des fuites dans du code Node par ailleurs correct.** C'est le piège de migration le mieux documenté, et il est évitable une fois connu.\n3. **Bun a bien eu des fuites mémoire natives**, reconnues par ses propres notes de version, avec des délais de correction parfois longs (#12117 : ~2 ans).\n4. **Les lacunes de compatibilité sont connues et bornées** — `cluster` hors Linux, Node-API partiel, `HeapProfiler` absent. Ce sont des critères de décision vérifiables *avant* migration, pas des surprises.\n\nLes positions les plus tranchées des deux bords — « inutilisable en production » comme « migration sans douleur » — sont celles pour lesquelles les preuves manquent le plus.\n\n**Sources principales :**\n- [Trigger.dev — Why we replaced Node.js with Bun for 5x throughput](https://trigger.dev/blog/firebun)\n- [Bun v1.3.13 release notes](https://bun.com/blog/bun-v1.3.13)\n- [Bun — Node.js Compatibility](https://bun.com/docs/runtime/nodejs-compat)\n- [Bun — Debugging JavaScript Memory Leaks](https://bun.com/blog/debugging-memory-leaks)\n- [Bun v1.4](https://bun.com/blog/bun-v1.4) · [index du blog](https://bun.com/blog)\n- [The Register — Anthropic bakes memory fixes into Bun](https://www.theregister.com/2026/04/21/anthropics_bun_1113_released_with_memory_fixes/)\n- GitHub : [#12117](https://github.com/oven-sh/bun/issues/12117) · [#19930](https://github.com/oven-sh/bun/issues/19930) · [#25948](https://github.com/oven-sh/bun/issues/25948) · [#29083](https://github.com/oven-sh/bun/issues/29083)\n- [dev.to/brendonovich — Moving OpenCode Desktop to Electron](https://dev.to/brendonovich/moving-opencode-desktop-to-electron-4hip)\n- [Revue technique de la réécriture Rust](https://fawadhs.dev/blog/bun-rust-rewrite-technical-review)",
+  "cli_version": "2.1.243 (Claude Code)",
+  "locale": "en-US",
+  "started_at": "2026-08-27T15:34:36.354Z",
+  "duration_ms": 193822,
+  "prompt_sha256": "7f9615067a6fe5c5ecabbdef3dd4c00be29cc782343d82349696c8eb0d3c0b09",
+  "raw_trace": "events.sanitized.jsonl",
+  "policy_evidence": "policy.json",
+  "isolation": {
+    "temporary_cwd": true,
+    "cwd_unchanged": true,
+    "forbidden_tool_calls": []
+  }
+}

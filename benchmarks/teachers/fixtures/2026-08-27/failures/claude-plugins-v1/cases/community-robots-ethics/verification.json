@@ -1,0 +1,24 @@
+{
+  "accepted_claim_ids": [
+    "claim_rfc9309_advisory_not_authorization",
+    "claim_operators_and_publishers_permission_vs_voluntary"
+  ],
+  "rejected_claims": [
+    {
+      "id": "claim_google_robots_not_enforcement",
+      "reason": "La citation « cannot enforce crawler behavior » n'apparaît que dans la prose de la réponse finale Codex, dupliquée comme faux evidence_passage ; la page Google n'a jamais été ouverte (opened_urls vide, tool_results sans charge utile) et le run Claude ne la corrobore pas. Les patterns imposent en outre un ordre rigide de deux fragments verbatim invérifiés, ce qui les rend excessivement étroits pour une notation lexicale."
+    },
+    {
+      "id": "claim_w3c_separate_rights_reservation_signal",
+      "reason": "Les citations décisives (« complementary solution », « remains subject to interpretation ») proviennent d'URL W3C jamais récupérées et ne sont corroborées par aucun des deux runs. Le required_concept « complementary » impose cette partie interprétative non étayée, si bien que la claim dépend d'une lecture non vérifiable des pages sources."
+    },
+    {
+      "id": "claim_ietf_aipref_usage_preferences_and_rights_reservation",
+      "reason": "La citation EDRLab « logically sufficient to express a reservation of rights » est une affirmation juridique forte issue d'un billet jamais ouvert. Elle entre de plus en tension avec la seule source AIPREF réellement récupérée (draft-ietf-aipref-vocab-05, run Claude) : les préférences « do not themselves create rights or prohibitions » et le document « does not provide any enforcement mechanism ». Retenir la claim surestimerait la portée juridique attribuée aux participants IETF."
+    },
+    {
+      "id": "claim_case_law_split_on_legal_significance",
+      "reason": "Le volet hiQ est corroboré, mais le volet eBay v. Bidder's Edge repose entièrement sur internetlibrary.com, page jamais ouverte et absente du run Claude. L'appariement des deux décisions comme se contredisant écrase une différence de fondement juridique (injonction pour trespass to chattels vs. interprétation étroite du CFAA) : contradiction surestimée reposant sur une interprétation non énoncée, avec des patterns calqués sur des paraphrases invérifiées."
+    }
+  ]
+}

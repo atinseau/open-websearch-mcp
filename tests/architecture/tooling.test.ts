@@ -33,6 +33,7 @@ test("ARCH-010 exactly pins the Bun-native toolchain", async () => {
   expect(packageManifest.packageManager).toBe("bun@1.4.0");
   expect(packageManifest.engines).toEqual({ bun: "1.4.0" });
   expect(packageManifest.devDependencies).toEqual({
+    "@modelcontextprotocol/client": "2.0.0",
     "@types/bun": "1.4.0",
     oxfmt: "0.65.0",
     oxlint: "1.80.0",
@@ -136,11 +137,23 @@ test("ARCH-008 preserves the architecture cases owned by SPK-005", async () => {
     "fixtures/invalid/bare-node-internal-http.ts",
     "fixtures/invalid/bare-node-internal-stream.ts",
     "fixtures/invalid/bare-node-internal-tls.ts",
+    "fixtures/invalid/complexity.ts",
     "fixtures/invalid/cross-feature-internal.ts",
     "fixtures/invalid/cycle-a.ts",
     "fixtures/invalid/cycle-b.ts",
+    "fixtures/invalid/max-depth.ts",
+    "fixtures/invalid/max-lines-per-function.ts",
+    "fixtures/invalid/max-lines.ts",
+    "fixtures/invalid/max-params.ts",
+    "fixtures/invalid/max-statements.ts",
     "fixtures/invalid/node-import.ts",
     "fixtures/invalid/node-sqlite-import.ts",
+    "fixtures/valid/complexity.ts",
+    "fixtures/valid/max-depth.ts",
+    "fixtures/valid/max-lines-per-function.ts",
+    "fixtures/valid/max-lines.ts",
+    "fixtures/valid/max-params.ts",
+    "fixtures/valid/max-statements.ts",
     "fixtures/valid/public-feature-import.ts",
   ]);
 });
