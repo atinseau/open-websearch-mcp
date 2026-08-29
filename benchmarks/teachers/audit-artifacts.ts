@@ -51,33 +51,32 @@ export function assertSanitized(
   sensitiveContainer = false,
   sensitiveKey = false,
 ): void {
-  if (
-    sensitiveKey &&
-    (typeof value !== "object" || value === null || Array.isArray(value)) &&
-    value !== "[REDACTED]"
-  ) {
-    throw new Error(`${label}.${key} contains unsanitized identity or credential data`);
-  }
-  if (
-    sensitiveContainer &&
-    key !== undefined &&
-    !isSafeSensitiveMetadataKey(key) &&
-    (typeof value !== "object" || value === null || Array.isArray(value)) &&
-    value !== "[REDACTED]"
-  ) {
-    throw new Error(`${label}.${key} contains data inside a sensitive object`);
-  }
-  if (typeof value === "string") {
-    if (hasUnsanitizedString(value)) throw new Error(`${label} contains unsanitized data`);
-    return;
-  }
+  assertRedactedScalar(value, label, key, sensitiveContainer, sensitiveKey);
+  if (typeof value === "string") return assertSanitizedString(value, label);
   if (Array.isArray(value)) {
-    value.forEach((item, index) =>
-      assertSanitized(item, `${label}[${index}]`, undefined, sensitiveContainer),
-    );
+    assertSanitizedArray(value, label, sensitiveContainer);
     return;
   }
   if (typeof value !== "object" || value === null) return;
+  assertSanitizedObject(value, label, sensitiveContainer, sensitiveKey);
+}
+
+function assertRedactedScalar(value: unknown, label: string, key: string | undefined, sensitiveContainer: boolean, sensitiveKey: boolean): void {
+  if (typeof value === "object" && value !== null && !Array.isArray(value)) return;
+  if (value === "[REDACTED]") return;
+  if (sensitiveKey) throw new Error(`${label}.${key} contains unsanitized identity or credential data`);
+  if (sensitiveContainer && key !== undefined && !isSafeSensitiveMetadataKey(key)) throw new Error(`${label}.${key} contains data inside a sensitive object`);
+}
+
+function assertSanitizedString(value: string, label: string): void {
+  if (hasUnsanitizedString(value)) throw new Error(`${label} contains unsanitized data`);
+}
+
+function assertSanitizedArray(value: unknown[], label: string, sensitiveContainer: boolean): void {
+  value.forEach((item, index) => assertSanitized(item, `${label}[${index}]`, undefined, sensitiveContainer));
+}
+
+function assertSanitizedObject(value: object, label: string, sensitiveContainer: boolean, sensitiveKey: boolean): void {
   for (const [entryKey, entryValue] of Object.entries(value)) {
     if (hasUnsanitizedString(entryKey)) throw new Error(`${label} contains an unsanitized key`);
     assertSanitized(
@@ -168,8 +167,13 @@ export async function readRefreshMetadata(root: string, date: string): Promise<R
 }
 
 async function assertRefreshCadence(root: string, metadata: RefreshMetadata): Promise<void> {
-  const priorDates: string[] = [];
-  const otherInitialDates: string[] = [];
+  const datedMetadata = await storedRefreshMetadata(root);
+  const priorDates = priorRefreshDates(datedMetadata, metadata.date);
+  assertInitialRefresh(metadata, datedMetadata, priorDates);
+  assertMonthlyCadence(metadata, priorDates);
+}
+
+async function storedRefreshMetadata(root: string): Promise<Map<string, JsonRecord>> {
   const datedMetadata = new Map<string, JsonRecord>();
   for (const name of ["manifest.json", "refresh.json"] as const) {
     for await (const path of new Bun.Glob(`*/${name}`).scan({
@@ -185,26 +189,35 @@ async function assertRefreshCadence(root: string, metadata: RefreshMetadata): Pr
       );
     }
   }
-  for (const [candidate, other] of datedMetadata) {
-    if (candidate === undefined || candidate === metadata.date) continue;
+  return datedMetadata;
+}
+
+function priorRefreshDates(datedMetadata: Map<string, JsonRecord>, date: string): string[] {
+  const priorDates: string[] = [];
+  for (const candidate of datedMetadata.keys()) {
+    if (candidate === date) continue;
     requiredDate(candidate, "refresh directory date");
-    if (candidate < metadata.date) priorDates.push(candidate);
-    if (other.trigger === "initial") otherInitialDates.push(candidate);
-  }
-  if (metadata.trigger === "initial" && otherInitialDates.length > 0) {
-    throw new Error(`initial refresh trigger already used by ${otherInitialDates.sort()[0]}`);
+    if (candidate < date) priorDates.push(candidate);
   }
   priorDates.sort();
+  return priorDates;
+}
+
+function assertInitialRefresh(metadata: RefreshMetadata, datedMetadata: Map<string, JsonRecord>, priorDates: string[]): void {
+  const initialDates = [...datedMetadata].filter(([date, other]) => date !== metadata.date && other.trigger === "initial").map(([date]) => date).sort();
+  if (metadata.trigger === "initial" && initialDates.length > 0) throw new Error(`initial refresh trigger already used by ${initialDates[0]}`);
   const priorDate = priorDates.at(-1);
   if (priorDate === undefined) {
-    if (metadata.trigger !== "initial")
-      throw new Error("the first teacher refresh must use the initial trigger");
+    if (metadata.trigger !== "initial") throw new Error("the first teacher refresh must use the initial trigger");
     return;
   }
-  if (metadata.trigger === "initial") {
-    throw new Error(`initial refresh trigger cannot follow ${priorDate}`);
-  }
+  if (metadata.trigger === "initial") throw new Error(`initial refresh trigger cannot follow ${priorDate}`);
+}
+
+function assertMonthlyCadence(metadata: RefreshMetadata, priorDates: string[]): void {
   if (metadata.trigger !== "monthly") return;
+  const priorDate = priorDates.at(-1);
+  if (priorDate === undefined) return;
   const elapsedDays = (Date.parse(metadata.date) - Date.parse(priorDate)) / 86_400_000;
   if (elapsedDays < 28)
     throw new Error(`monthly refresh follows ${priorDate} by only ${elapsedDays} days`);
