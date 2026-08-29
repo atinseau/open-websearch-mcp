@@ -1,5 +1,7 @@
 import { expect, test } from "bun:test";
 
+import { createExtractorRegistry } from "@/features/extraction";
+
 import {
   assessPublicUrl,
   createRobotsPolicy,
@@ -267,4 +269,30 @@ test("EXTRACT-004 removes concealed content whatever form the concealment takes"
     expect(sanitizeExternalHtml(`<p>visible</p>${vector}`)).not.toContain("LEAKED");
   }
   expect(sanitizeExternalHtml("<p>visible</p><div aria-hidden=false>KEPT</div>")).toContain("KEPT");
+});
+
+test("EXTRACT-004 resists entity-encoded concealment and a lying content type", async () => {
+  // A rule spelled with entities renders exactly like the plain form, so the
+  // concealment test must decode before it compares.
+  for (const vector of [
+    '<div style="display&#58;none">LEAKED</div>',
+    '<div style="display&#x3a;none">LEAKED</div>',
+    '<div style="display&colon;none">LEAKED</div>',
+  ]) {
+    expect(sanitizeExternalHtml(`<p>visible</p>${vector}`)).not.toContain("LEAKED");
+  }
+
+  // An origin may declare any type it likes. Declaring JSON and serving markup
+  // must not become a way around sanitization: unparseable bodies are returned
+  // as text, so that text still has to be sanitized.
+  const hostile = "<script>ACTIVE()</script><div hidden>LEAKED</div><p>VISIBLE</p>";
+  const lied = await createExtractorRegistry().extract({
+    documentUrl: new URL("https://docs.example.test/data"),
+    renderedText: hostile,
+    body: hostile,
+    headers: new Headers({ "content-type": "application/json" }),
+  });
+  expect(lied.passages.map((passage) => passage.text).join(" ")).not.toContain("LEAKED");
+  expect(lied.passages.map((passage) => passage.text).join(" ")).not.toContain("<script");
+  expect(lied.passages.map((passage) => passage.text).join(" ")).toContain("VISIBLE");
 });

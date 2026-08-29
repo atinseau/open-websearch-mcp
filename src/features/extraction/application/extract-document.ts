@@ -9,7 +9,8 @@ import { extractLinks } from "@/features/extraction/domain/links";
 import { markdownBlocks, type ContentBlock } from "@/features/extraction/domain/markdown";
 import { identifyMime, isRawGitHub } from "@/features/extraction/domain/mime";
 import { extractPdfText } from "@/features/extraction/domain/pdf";
-import { codeWarnings, safeText } from "@/features/extraction/domain/safe-content";
+import { codeWarnings } from "@/features/extraction/domain/safe-content";
+import { documentText } from "@/features/extraction/domain/document-text";
 
 const VERSION = "1";
 const DEFAULT_PASSAGES = 2;
@@ -51,53 +52,6 @@ function extractPdf(input: ExtractionInput, mimeType: string): ExtractionResult 
     codeBlocks: [],
     ...links,
   };
-}
-
-function documentText(input: ExtractionInput, mimeType: string): string {
-  const body = bodyText(input.body);
-  if (mimeType === "text/html") return htmlText(input, body);
-  return nonHtmlText(input, mimeType, body);
-}
-
-function bodyText(body: ExtractionInput["body"]): string {
-  if (typeof body === "string") return body;
-  return body ? new TextDecoder().decode(body) : "";
-}
-
-function nonHtmlText(input: ExtractionInput, mimeType: string, body: string): string {
-  if (isRawGitHub(input.documentUrl))
-    return rawCodeMarkdown(body || input.renderedText, input.documentUrl);
-  if (mimeType === "application/json") return jsonText(body || input.renderedText);
-  if (mimeType === "application/xml" || mimeType === "text/xml")
-    return safeText(body || input.renderedText, true);
-  // Markdown legitimately permits inline HTML, and a renderer that emits
-  // Markdown for an HTML page carries whatever markup the page contained.
-  // Sniffing the value decides whether it needs HTML sanitization; assuming it
-  // never does let raw tags reach evidence through the Markdown branch.
-  const value = input.markdown || body || input.renderedText;
-  return safeText(value, /<\/?[a-z][^>]*>/i.test(value));
-}
-
-function rawCodeMarkdown(value: string, url: URL): string {
-  const extension =
-    url.pathname
-      .split(".")
-      .at(-1)
-      ?.replace(/[^a-z0-9]/gi, "") ?? "";
-  return `\`\`\`${extension}\n${value}\n\`\`\``;
-}
-
-function htmlText(input: ExtractionInput, body: string): string {
-  const value = input.markdown || input.renderedText || body;
-  return safeText(value, /<\/?[a-z][^>]*>/i.test(value));
-}
-
-function jsonText(value: string): string {
-  try {
-    return JSON.stringify(JSON.parse(value), null, 2);
-  } catch {
-    return value;
-  }
 }
 
 function passagesFrom(

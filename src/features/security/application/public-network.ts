@@ -56,7 +56,10 @@ export { assessPublicUrl, sanitizeOutboundUrl, type PublicUrlAssessment };
 
 /** Removes executable and invisible markup before it can become evidence. */
 export function sanitizeExternalHtml(html: string): string {
-  const withoutActive = html
+  // Concealment can be spelled with HTML entities: `display&#58;none` renders
+  // exactly like `display:none`. Decode the forms that can disguise a rule
+  // before testing, so the check sees what a browser would.
+  const withoutActive = decodeConcealmentEntities(html)
     .replace(
       /<(script|style|form|iframe|object|embed|svg|template|noscript)[\s\S]*?<\/\1\s*>/gi,
       "",
@@ -81,6 +84,27 @@ export function sanitizeExternalHtml(html: string): string {
       .replace(/ *\n */g, "\n")
       .trim()
   );
+}
+
+/** Resolves the entity spellings that can disguise a CSS concealment rule. */
+function decodeConcealmentEntities(html: string): string {
+  const named: Record<string, string> = {
+    "&colon;": ":",
+    "&semi;": ";",
+    "&lpar;": "(",
+    "&rpar;": ")",
+  };
+  return html.replace(/&#x?[0-9a-f]+;|&[a-z]+;/gi, (entity) => {
+    const lowered = entity.toLowerCase();
+    const name = named[lowered];
+    if (name !== undefined) return name;
+    const numeric = /^&#(x)?([0-9a-f]+);$/i.exec(entity);
+    if (!numeric) return entity;
+    const code = Number.parseInt(numeric[2] ?? "", numeric[1] ? 16 : 10);
+    return Number.isFinite(code) && code > 0 && code < 0x11_00_00
+      ? String.fromCodePoint(code)
+      : entity;
+  });
 }
 
 export function createPublicNetworkClient(options: PublicNetworkOptions): PublicNetworkClient {
