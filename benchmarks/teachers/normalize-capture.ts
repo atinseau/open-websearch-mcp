@@ -90,7 +90,7 @@ function assertCapturePolicy(
 
 function createRun(input: {
   date: string;
-  provider: string;
+  provider: "codex";
   teacherCase: ReturnType<typeof teacherCases>[number];
   prompt: string;
   policy: Record<string, unknown>;

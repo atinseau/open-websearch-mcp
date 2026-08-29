@@ -34,13 +34,18 @@ export async function runProcess(
 ): Promise<ProcessCapture> {
   const started = performance.now();
   const controlledCommand = controlledProcessCommand(command, options.allowedChildExecutables);
-  const process = Bun.spawn(controlledCommand, {
+  // Spawning per branch keeps Bun's precise stdio types; a conditional `stdin`
+  // widens them to `number | FileSink | undefined` and loses the narrowing.
+  const spawnOptions = {
     cwd: options.cwd,
     env: options.env ?? Bun.env,
-    stdin: options.input === undefined ? "ignore" : "pipe",
     stdout: "pipe",
     stderr: "pipe",
-  });
+  } as const;
+  const process =
+    options.input === undefined
+      ? Bun.spawn(controlledCommand, { ...spawnOptions, stdin: "ignore" })
+      : Bun.spawn(controlledCommand, { ...spawnOptions, stdin: "pipe" });
   const terminate = (): void => process.kill(9);
   let timedOut = false;
   const timeout = setTimeout(() => {
@@ -76,8 +81,19 @@ type CapturedIo = {
   ioFailure?: string;
 };
 
+type PipedProcess = {
+  readonly stdin: Bun.FileSink | undefined;
+  readonly stdout: ReadableStream<Uint8Array>;
+  readonly stderr: ReadableStream<Uint8Array>;
+  readonly exited: Promise<number>;
+};
+
+/**
+ * Accepts the piped shape rather than `ReturnType<typeof Bun.spawn>`, whose
+ * union of every stdio mode would erase the narrowing the caller established.
+ */
 async function captureProcessIo(
-  process: ReturnType<typeof Bun.spawn>,
+  process: PipedProcess,
   options: ProcessOptions,
   terminate: () => void,
 ): Promise<CapturedIo> {
@@ -113,7 +129,7 @@ async function captureProcessIo(
 }
 
 async function writeInput(
-  sink: WritableStream<Uint8Array> | undefined,
+  sink: Bun.FileSink | undefined,
   input: string | undefined,
 ): Promise<void> {
   if (input === undefined) return;

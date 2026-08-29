@@ -15,14 +15,7 @@ import {
   assertTaskShapes,
 } from "./state-schema.ts";
 import { assertCurrentTask, assertReferencedFiles } from "./state-current.ts";
-import {
-  removeRootFields,
-  setRootFields,
-  setTableString,
-  setTaskAttempts,
-  setTaskEvidence,
-  setTaskState,
-} from "./state-edits.ts";
+import { setRootFields, setTaskEvidence, setTaskState } from "./state-edits.ts";
 import { acquireControllerLock } from "./controller-lock.ts";
 import {
   atomicWrite,
@@ -31,7 +24,7 @@ import {
   persistPrepare,
   persistStep,
 } from "./step-trace.ts";
-import { isRecord, run } from "./process-utils.ts";
+import { run } from "./process-utils.ts";
 
 export type {
   ControllerOptions,
