@@ -2,6 +2,7 @@ import { inspectCodexProbe, sanitizeJsonl } from "./contract.ts";
 import { probePolicyDocument } from "./capture-probe-policy.ts";
 import { scheduleMalformedArchive } from "./capture-probe-malformed.ts";
 import { executeProbe } from "./capture-probe-execute.ts";
+import { scheduleRejectedArchive } from "./capture-probe-rejected.ts";
 import { buildTeacherRun } from "./capture-probe-run.ts";
 import type { ProbePlan } from "./capture-probe-plan.ts";
 import { withRefreshMutation } from "./refresh-lifecycle.ts";
@@ -109,20 +110,18 @@ export async function runPlannedProbe(input: {
   }
 
   if (!accepted) {
-    const archivedOutput = failureOutput(target, startedAt);
-    schedulePublication(async () => {
-      await withRefreshMutation(root, date, async () => {
-        await writeCaptureArtifacts(archivedOutput, sanitizedEvents, policy);
-      });
-      console.log(
-        JSON.stringify({
-          provider,
-          case_id: teacherCase?.id,
-          output: archivedOutput,
-          exit_code: exitCode,
-          inspection,
-        }),
-      );
+    scheduleRejectedArchive({
+      target,
+      root,
+      date,
+      provider,
+      caseId: teacherCase?.id,
+      startedAt,
+      exitCode,
+      inspection,
+      sanitizedEvents,
+      policy,
+      schedulePublication,
     });
     throw new Error(`${provider} policy or run failed`);
   }
