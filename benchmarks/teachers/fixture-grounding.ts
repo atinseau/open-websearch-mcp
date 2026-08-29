@@ -139,23 +139,32 @@ function conceptGrounded(concept: string, corpus: GroundingCorpus): boolean {
 function hasBoundedSpan(occurrences: number[][], window: number): boolean {
   const cursors = occurrences.map(() => 0);
   for (;;) {
-    let minimum = Number.POSITIVE_INFINITY;
-    let maximum = Number.NEGATIVE_INFINITY;
-    let minimumList = 0;
-    for (const [list, positions] of occurrences.entries()) {
-      const position = positions[cursors[list] ?? 0];
-      if (position === undefined) return false;
-      if (position < minimum) {
-        minimum = position;
-        minimumList = list;
-      }
-      if (position > maximum) maximum = position;
-    }
-    if (maximum - minimum <= window) return true;
-    const advanced = (cursors[minimumList] ?? 0) + 1;
-    cursors[minimumList] = advanced;
-    if (advanced >= (occurrences[minimumList]?.length ?? 0)) return false;
+    const span = currentSpan(occurrences, cursors);
+    if (span === undefined) return false;
+    if (span.maximum - span.minimum <= window) return true;
+    if (!advanceCursor(cursors, occurrences, span.minimumList)) return false;
   }
+}
+
+function currentSpan(occurrences: number[][], cursors: number[]):
+  | { minimum: number; maximum: number; minimumList: number }
+  | undefined {
+  let minimum = Number.POSITIVE_INFINITY;
+  let maximum = Number.NEGATIVE_INFINITY;
+  let minimumList = 0;
+  for (const [list, positions] of occurrences.entries()) {
+    const position = positions[cursors[list] ?? 0];
+    if (position === undefined) return undefined;
+    if (position < minimum) { minimum = position; minimumList = list; }
+    if (position > maximum) maximum = position;
+  }
+  return { minimum, maximum, minimumList };
+}
+
+function advanceCursor(cursors: number[], occurrences: number[][], list: number): boolean {
+  const advanced = (cursors[list] ?? 0) + 1;
+  cursors[list] = advanced;
+  return advanced < (occurrences[list]?.length ?? 0);
 }
 
 /**
