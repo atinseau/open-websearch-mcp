@@ -36,6 +36,12 @@ not a search product.
    and validators to disk, where they survived a restart. `no-cache` remains
    stored but stale, which is correct.
 
+   An audit correctly noted that when this change first landed it was inert:
+   no production path yet produced a document carrying `cache-control`, so the
+   guard could not fire outside its unit test. That gap is closed below — the
+   renderer now surfaces the origin's headers — but the sequencing is recorded
+   here rather than left to imply the protection was end-to-end from the start.
+
 4. **Robots lookups validate DNS.** The static URL check cannot see where a
    public hostname resolves, so a site could have its own `robots.txt` fetched
    from a private address. The production policy now resolves and validates the
@@ -76,6 +82,15 @@ Conditional revalidation is not issued. The validators are stored now, but no
 `If-None-Match`/`If-Modified-Since` request is made, so a stale entry is
 re-rendered in full rather than revalidated. That is real remaining work,
 recorded here rather than claimed as done.
+
+## A regression this work introduced, and caught
+
+Extracting the freshness helpers into their own module double-escaped a regex:
+`max-age=(\\d+)` searched for a literal backslash, so `max-age` never matched
+and every page silently fell back to the 24-hour content-class TTL. It was
+inert while no path supplied cache headers, and would have become a real
+correctness bug the moment they were wired. No test covered `max-age`, which is
+precisely why it survived; one now does.
 
 Eviction, by contrast, is now driven by the product: every stored page applies
 the configured `cache.max_bytes` ceiling, so `CACHE-006` holds at runtime and
