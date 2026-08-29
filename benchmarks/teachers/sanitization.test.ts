@@ -44,7 +44,13 @@ const credentialFixtures = [
 ] as const;
 
 test("sanitizes identity and machine data without removing research evidence", () => {
-  const raw = [
+  const sanitized = sanitizeJsonl(sanitizationFixture(), ["/Users/example/private/case"]);
+  expectRedactedSecrets(sanitized);
+  expectPreservedEvidence(sanitized);
+});
+
+function sanitizationFixture(): string {
+  return [
     JSON.stringify({
       session_id: "123e4567-e89b-42d3-a456-426614174000",
       sessionId: "camel-session-value",
@@ -103,11 +109,7 @@ test("sanitizes identity and machine data without removing research evidence", (
       },
     }),
   ].join("\n");
-
-  const sanitized = sanitizeJsonl(raw, ["/Users/example/private/case"]);
-  expectRedactedSecrets(sanitized);
-  expectPreservedEvidence(sanitized);
-});
+}
 
 function expectRedactedSecrets(sanitized: string): void {
   for (const secret of [
