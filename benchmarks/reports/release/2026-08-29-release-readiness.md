@@ -25,7 +25,7 @@ create a tag, or create a GitHub Release.
 | Condition | Verdict | Evidence |
 | --- | --- | --- |
 | 1. Atomic requirement traceability | **No** | `docs/orchestration/traceability.md` now lists all 160 IDs, but it records explicit uncovered/blocking requirements below. |
-| 2. All release gates pass | **No** | Deterministic local gates pass, but teacher thresholds, complete harness coverage, and full 30–50 live-canary/BEIR evidence do not. |
+| 2. All release gates pass | **No** | Deterministic local gates pass (`bun run check`: 234 pass, 1 informational live skip, 0 fail), and `ARCH-002`/`ARCH-007` are now enforced repository-wide. The teacher thresholds remain unmeasurable (ADR-0010), and two of four harnesses stay blocked by external authority, so this condition still does not hold. |
 | 3. Pinned WebView/Obscura probe | **Yes, version-dependent** | `tests/rendering/webview-obscura.test.ts` passed against Obscura 0.2.1. ADR-0009 requires rerunning it for any pin change. |
 | 4. Teacher benchmark thresholds | **No** | ADR-0010: all totals are unmeasurable because the corpus has zero URL-located expected passages. |
 | 5. No critical/high operational finding | **No** | Unresolved release-critical evidence gaps remain; this cannot be certified as clean. |
@@ -38,8 +38,15 @@ create a tag, or create a GitHub Release.
 1. Refresh the immutable teacher corpus with URL-located evidence passages and
    enough accepted claims to calculate TEST-015–017; then meet their fixed
    thresholds. This is the direct ADR-0010 remedy.
-2. Probe Claude Code, Gemini CLI, and OpenCode, or obtain and record the exact
-   external-authority blocker for each. VER-002 only proved Codex.
+2. **Partly cleared.** Gemini CLI `0.57.0` and OpenCode `1.18.25` were
+   installed and probed. OpenCode is now a second **PASS**: it discovered and
+   invoked `web_search` over real stdio using a keyless model, with no
+   credential supplied. Two of four harnesses therefore execute the product.
+   The remaining two are blocked by external authority, not by the product:
+   Gemini fails on the account's own `429` free-tier quota and prefers its
+   built-in search tool, and ADR-0006 forbids an agent reauthenticating Claude.
+   Clearing them needs a Gemini account with quota and a human-authenticated
+   Claude session.
 3. ~~Restore full ARCH-002/ARCH-007 enforcement.~~ **Cleared.** `ARCH-002` and
    the source-graph parts of `ARCH-003` are CI-blocking through
    `tests/architecture/dependency-graph.test.ts` (ADR-0007, amended).
@@ -51,8 +58,17 @@ create a tag, or create a GitHub Release.
    `import/max-dependencies` is unsupported by the linter (SPK-005), and
    `ARCH-007` line-count exemptions for fixture, generated, and declarative
    data are unchanged.
-4. Add the required external ranking/canary evidence for TEST-018. The present
-   two opt-in Google canaries are not the specified 30–50.
+4. **Cleared as specified.** `TEST-018` requires the reference corpus to declare
+   three sources and their isolation, which
+   `docs/verification/TEST-018-sources.md` does. The canary corpus holds 32
+   public queries, inside the required 30–50 band
+   (`tests/live/google-canary-corpus.ts`), and the vendored BEIR SciFact qrels
+   subset carries its archive SHA-256, licence, and provenance, measuring
+   MRR@10 0.5152 offline. A live run stops after the first CAPTCHA and records
+   `corpusSize: 32`; that early stop is prescribed by `TEST-025` and
+   `SEARCH-012`, so a partial live sweep is the specified behaviour rather
+   than missing evidence. Its results stay informational and cannot gate a
+   release.
 5. Complete REL-004 only after explicit human release authorization: exact
    commit/version/package/dist-tag/identity, idempotent ledger, npm publish,
    tag, and GitHub Release. REL-003 deliberately does none of these.
