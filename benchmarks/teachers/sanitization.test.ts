@@ -105,7 +105,11 @@ test("sanitizes identity and machine data without removing research evidence", (
   ].join("\n");
 
   const sanitized = sanitizeJsonl(raw, ["/Users/example/private/case"]);
+  expectRedactedSecrets(sanitized);
+  expectPreservedEvidence(sanitized);
+});
 
+function expectRedactedSecrets(sanitized: string): void {
   for (const secret of [
     "secret-value",
     "plural-token-secret",
@@ -157,6 +161,9 @@ test("sanitizes identity and machine data without removing research evidence", (
   ]) {
     expect(sanitized).not.toContain(secret);
   }
+}
+
+function expectPreservedEvidence(sanitized: string): void {
   expect(sanitized).toContain("Bun stable release");
   expect(sanitized).toContain("https://bun.com/blog/bun-v1.3.14");
   expect(sanitized).toContain("Bun v1.3.14 is stable.");
@@ -172,7 +179,7 @@ test("sanitizes identity and machine data without removing research evidence", (
   expect(sanitized).toContain("https://example.com/search?code=examples");
   expect(sanitized).toContain('"method":"oauth"');
   expect(sanitized).toContain('"value":"[REDACTED]"');
-});
+}
 
 test("rejects standalone Slack app and GitLab deploy tokens during audit", () => {
   expect(
