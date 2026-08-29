@@ -16,14 +16,9 @@ import {
 } from "./state-schema.ts";
 import { assertCurrentTask, assertReferencedFiles } from "./state-current.ts";
 import { setRootFields, setTaskEvidence, setTaskState } from "./state-edits.ts";
-import {
-  atomicWrite,
-  createTrace,
-  nextStepNumber,
-  persistPrepare,
-  persistStep,
-} from "./step-trace.ts";
+import { atomicWrite, nextStepNumber, persistPrepare } from "./step-trace.ts";
 import { run } from "./process-utils.ts";
+import { changedPaths, fullContentDigest, persistControllerStep, reviewedContentDigest } from "./controller-step-persistence.ts";
 
 export type {
   ControllerOptions,
@@ -74,47 +69,6 @@ Finish with exactly CONTROLLER_RESULT: followed by one JSON object with this sha
 {"status":"continue|review|verified|paused|blocked_external|failed","step":"plan|implementation|verification|review|integration|failure|blocker","summary":"...","changed_paths":["..."],"checks":[{"command":"...","cwd":"...","exit_code":0,"output":"..."}],"decisions":["..."],"findings":[{"severity":"blocker|high|medium|low","summary":"..."}],"blocker":{"authority":"...","error":"...","human_action":"..."},"next_action":"..."}`;
 }
 
-async function changedPaths(worktree: string, baseSha: string): Promise<string[]> {
-  const committed = await run(["git", "diff", "--name-only", `${baseSha}..HEAD`], worktree);
-  const tracked = await run(["git", "diff", "--name-only", "HEAD"], worktree);
-  const untracked = await run(["git", "ls-files", "--others", "--exclude-standard"], worktree);
-  return [
-    ...new Set(
-      [...committed.split("\n"), ...tracked.split("\n"), ...untracked.split("\n")].filter(Boolean),
-    ),
-  ].sort();
-}
-
-async function contentDigest(worktree: string, paths: string[]): Promise<string> {
-  const hash = new Bun.CryptoHasher("sha256");
-  for (const path of paths) {
-    hash.update(`${path}\0`);
-    const file = Bun.file(`${worktree}/${path}`);
-    hash.update((await file.exists()) ? await file.arrayBuffer() : "<deleted>");
-    hash.update("\0");
-  }
-  return hash.digest("hex");
-}
-
-async function reviewedContentDigest(
-  worktree: string,
-  baseSha: string,
-  taskId: string,
-): Promise<string> {
-  const controllerPaths = ["docs/orchestration/state.toml", `docs/orchestration/runs/${taskId}/`];
-  const paths = (await changedPaths(worktree, baseSha)).filter(
-    (path) =>
-      !controllerPaths.some(
-        (controllerPath) =>
-          path === controllerPath || path.startsWith(`${controllerPath.replace(/\/$/u, "")}/`),
-      ),
-  );
-  return contentDigest(worktree, paths);
-}
-
-async function fullContentDigest(worktree: string, baseSha: string): Promise<string> {
-  return contentDigest(worktree, await changedPaths(worktree, baseSha));
-}
 
 async function executeCheck(
   check: OpenCodeStepResult["checks"][number],
@@ -645,12 +599,6 @@ function enforceClaimEvidence(
   return received;
 }
 
-function taskStateForStatus(status: StepStatus): TaskState {
-  if (status === "review") return "review";
-  if (status === "verified") return "verified";
-  if (status === "blocked_external") return "blocked_external";
-  return "in_progress";
-}
 
 /**
  * Runs one OpenCode step, reruns the declared checks when it claims
@@ -980,48 +928,6 @@ function createStepRequest(
   };
 }
 
-async function persistControllerStep(input: {
-  step: ResumedWorktree;
-  options: ControllerOptions;
-  request: OpenCodeRequest;
-  result: OpenCodeStepResult;
-}): Promise<void> {
-  const { step, options, request, result } = input;
-  const taskState = taskStateForStatus(result.status);
-  const headSha = await run(["git", "rev-parse", "HEAD"], step.worktree);
-  const reviewedDiff =
-    result.status === "verified"
-      ? await reviewedContentDigest(step.worktree, step.baseSha, step.taskId)
-      : undefined;
-  const traceRelative = `docs/orchestration/runs/${step.taskId}/${String(step.stepNumber).padStart(4, "0")}-${result.step}.md`;
-  const trace = createTrace({
-    taskId: step.taskId,
-    attempt: step.attempt,
-    stepNumber: step.stepNumber,
-    request,
-    result,
-    branch: step.branch,
-    baseSha: step.baseSha,
-    headSha,
-  });
-  await persistStep({
-    worktree: step.worktree,
-    taskId: step.taskId,
-    taskState,
-    model: options.model,
-    variant: options.variant,
-    relativeWorktree: step.relativeWorktree,
-    branch: step.branch,
-    baseSha: step.baseSha,
-    attempt: step.attempt,
-    stepNumber: step.stepNumber,
-    traceRelative,
-    trace,
-    sessionId: result.session_id === "unavailable" ? undefined : result.session_id,
-    headSha: result.status === "verified" ? headSha : undefined,
-    reviewedDiff,
-  });
-}
 
 export async function runControllerStep(
   options: ControllerOptions,
