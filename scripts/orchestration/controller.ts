@@ -194,6 +194,50 @@ async function establishRootContext(options: ControllerOptions): Promise<Control
   return { repository, rootState, state: rootState };
 }
 
+function interruptedResult(request: OpenCodeRequest): OpenCodeStepResult {
+  return {
+    status: "paused",
+    step: "failure",
+    session_id: request.session_id ?? "unavailable",
+    summary: "Controller interrupted before the next OpenCode step",
+    changed_paths: [],
+    checks: [],
+    decisions: [],
+    findings: [],
+    next_action: "Resume the recorded task from this trace",
+  };
+}
+
+function invocationFailure(error: unknown, request: OpenCodeRequest): OpenCodeStepResult {
+  const interrupted = error instanceof Error && error.name === "ControllerInterrupted";
+  const unavailable = error instanceof Error && error.name === "ModelUnavailable";
+  return {
+    status: interrupted || unavailable ? "paused" : "failed",
+    step: "failure",
+    session_id: request.session_id ?? "unavailable",
+    summary: `OpenCode invocation failed: ${error instanceof Error ? error.message : String(error)}`,
+    changed_paths: [],
+    checks: [],
+    decisions: [],
+    findings: [],
+    next_action: unavailable
+      ? "Ask the user to select an available capable model, then resume"
+      : "Resume the recorded task and retry the interrupted step",
+  };
+}
+
+async function invokeControllerStep(
+  options: ControllerOptions,
+  request: OpenCodeRequest,
+): Promise<OpenCodeStepResult> {
+  if (options.isInterrupted?.()) return interruptedResult(request);
+  try {
+    return await options.invokeOpenCode(request);
+  } catch (error) {
+    return invocationFailure(error, request);
+  }
+}
+
 async function runControllerStep(
   options: ControllerOptions,
   forceFreshSession = false,
@@ -460,40 +504,7 @@ async function runControllerStep(
     prompt: createPrompt(taskId, task, latestTrace),
     timeout_ms: state.policy.agent_timeout_minutes * 60_000,
   };
-  let received: OpenCodeStepResult;
-  if (options.isInterrupted?.()) {
-    received = {
-      status: "paused",
-      step: "failure",
-      session_id: request.session_id ?? "unavailable",
-      summary: "Controller interrupted before the next OpenCode step",
-      changed_paths: [],
-      checks: [],
-      decisions: [],
-      findings: [],
-      next_action: "Resume the recorded task from this trace",
-    };
-  } else {
-    try {
-      received = await options.invokeOpenCode(request);
-    } catch (error) {
-      const interrupted = error instanceof Error && error.name === "ControllerInterrupted";
-      const modelUnavailable = error instanceof Error && error.name === "ModelUnavailable";
-      received = {
-        status: interrupted || modelUnavailable ? "paused" : "failed",
-        step: "failure",
-        session_id: request.session_id ?? "unavailable",
-        summary: `OpenCode invocation failed: ${error instanceof Error ? error.message : String(error)}`,
-        changed_paths: [],
-        checks: [],
-        decisions: [],
-        findings: [],
-        next_action: modelUnavailable
-          ? "Ask the user to select an available capable model, then resume"
-          : "Resume the recorded task and retry the interrupted step",
-      };
-    }
-  }
+  let received = await invokeControllerStep(options, request);
   const requiredChecks = [
     { command: "bun scripts/orchestration/validate.ts --repo .", cwd: worktree, exit_code: -1 },
     { command: "bun test scripts/orchestration", cwd: worktree, exit_code: -1 },
