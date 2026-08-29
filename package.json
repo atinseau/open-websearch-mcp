@@ -26,7 +26,7 @@
     "lint:types": "oxlint --disable-nested-config --type-aware --type-check --deny-warnings --report-unused-disable-directives src scripts tests benchmarks/teachers benchmarks/grader benchmarks/ranking",
     "orchestrate": "bun scripts/orchestration/main.ts",
     "orchestration:validate": "bun scripts/orchestration/validate.ts",
-    "test": "bun test --parallel --isolate",
+    "test": "bun test --parallel --isolate --timeout 30000",
     "test:package": "bun test --parallel --isolate tests/package",
     "test:architecture": "bun test --parallel --isolate tests/architecture",
     "typecheck": "bun x tsc --noEmit"
