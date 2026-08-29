@@ -5,12 +5,8 @@ import {
   claudeEventTypes,
   claudeForbiddenInvocationTypes,
   claudeSystemSubtypes,
-  codexEventTypes,
-  codexForbiddenTypes,
-  codexItemTypes,
   type ClaudeInspection,
   type ClaudeToolCall,
-  type CodexInspection,
 } from "./probe-shared.ts";
 
 /** Mutable tallies accumulated while walking one Claude event stream. */

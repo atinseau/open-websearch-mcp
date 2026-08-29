@@ -19,16 +19,8 @@ import {
   validateFixture,
   validateTeacherRun,
 } from "./contract.ts";
-import {
-  array,
-  hasEmbeddedCredential,
-  isSafeSensitiveMetadataKey,
-  isSensitiveKey,
-  record,
-  requiredDate,
-  requiredString,
-  type JsonRecord,
-} from "./contract-json.ts";
+import { array, record, requiredDate, requiredString, type JsonRecord } from "./contract-json.ts";
+import { assertLegacyArtifactSanitized, assertLegacySanitized } from "./audit-legacy.ts";
 import { compactRun } from "./derive-fixture-support.ts";
 import {
   normalizeDraftEvidence,
@@ -548,67 +540,4 @@ async function verifyArtifacts(
   return expected;
 }
 
-const legacyMachineData = /\/Users\/|\/(?:private\/)?var\/folders\/|\/tmp\//;
-export function assertLegacySanitized(
-  value: unknown,
-  label: string,
-  key?: string,
-  sensitiveContainer = false,
-  sensitiveKey = false,
-): void {
-  if (
-    sensitiveKey &&
-    (typeof value !== "object" || value === null || Array.isArray(value)) &&
-    value !== "[REDACTED]"
-  ) {
-    throw new Error(`${label}.${key} contains unsanitized legacy identity data`);
-  }
-  if (
-    sensitiveContainer &&
-    key !== undefined &&
-    !isSafeSensitiveMetadataKey(key) &&
-    (typeof value !== "object" || value === null || Array.isArray(value)) &&
-    value !== "[REDACTED]"
-  ) {
-    throw new Error(`${label}.${key} contains data inside a sensitive legacy object`);
-  }
-  if (typeof value === "string") {
-    if (legacyMachineData.test(value) || hasEmbeddedCredential(value)) {
-      throw new Error(`${label} contains unsanitized legacy data`);
-    }
-    return;
-  }
-  if (Array.isArray(value)) {
-    value.forEach((item, index) =>
-      assertLegacySanitized(item, `${label}[${index}]`, undefined, sensitiveContainer, false),
-    );
-    return;
-  }
-  if (typeof value !== "object" || value === null) return;
-  for (const [entryKey, entryValue] of Object.entries(value)) {
-    assertLegacySanitized(
-      entryValue,
-      label,
-      entryKey,
-      sensitiveContainer || sensitiveKey,
-      isSensitiveKey(entryKey, value),
-    );
-  }
-}
-
-async function assertLegacyArtifactSanitized(root: string, path: string): Promise<void> {
-  const absolutePath = `${root}/${path}`;
-  if (path.endsWith(".json")) {
-    assertLegacySanitized(await Bun.file(absolutePath).json(), path);
-    return;
-  }
-  if (path.endsWith(".jsonl")) {
-    assertLegacySanitized(await jsonl(absolutePath), path);
-    return;
-  }
-  if (path.endsWith(".md")) {
-    assertLegacySanitized(await Bun.file(absolutePath).text(), path);
-    return;
-  }
-  throw new Error(`unsupported teacher artifact type: ${path}`);
-}
+export { assertLegacySanitized } from "./audit-legacy.ts";
