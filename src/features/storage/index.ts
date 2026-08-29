@@ -17,6 +17,7 @@ export type {
 
 /** Persists investigation identity and consumed-page reservations. */
 export interface InvestigationRepository {
+  ensureInvestigation(investigationId: InvestigationId): Promise<void>;
   reserveConsumedPage(input: ConsumedPageReservation): Promise<ConsumedPageReservationResult>;
 }
 

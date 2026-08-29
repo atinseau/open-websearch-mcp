@@ -1,7 +1,14 @@
 import type { ConfigurationSnapshot } from "@/features/configuration";
 
-/** Stable identity for one isolated persistent search journey. */
-export type InvestigationId = string;
+export {
+  createInvestigationService,
+  type ExplorationResult,
+  type InvestigationService,
+  type PageExploration,
+} from "./application/investigations.ts";
+export type { ConsumptionResult, Investigation, InvestigationId } from "./domain/investigation.ts";
+
+import type { InvestigationId } from "./domain/investigation.ts";
 
 /** Context created once per MCP call and retained for its complete lifetime. */
 export interface CallContext {

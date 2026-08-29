@@ -86,6 +86,13 @@ class WorkspaceStorage implements Storage {
     }
   }
 
+  async ensureInvestigation(investigationId: string): Promise<void> {
+    const now = new Date().toISOString();
+    this.sqlite.database
+      .prepare("INSERT OR IGNORE INTO investigations (id, created_at, updated_at) VALUES (?, ?, ?)")
+      .run(investigationId, now, now);
+  }
+
   close(): void {
     this.sqlite.close();
   }
