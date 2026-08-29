@@ -263,9 +263,33 @@ function assertPolicy(
   policy: JsonRecord,
 ): void {
   assertPolicyMetadata(context, teacherCase, provider, run, policy);
-  if (context.legacy) return;
+  if (context.legacy) {
+    // The sealed 2026-08-27 refresh still carries Claude runs; its isolation
+    // flags must stay audited even though current refreshes are Codex-only.
+    if (provider === "claude") assertLegacyClaudePolicy(teacherCase, policy);
+    return;
+  }
   const command = policyCommand(context, teacherCase, provider, policy);
   assertCurrentCodexPolicy(command, teacherCase, run);
+}
+
+/** Verifies the retained historical Claude runs kept their native tool policy. */
+function assertLegacyClaudePolicy(teacherCase: TeacherCase, policy: JsonRecord): void {
+  // Empty strings are legitimate here: the isolation flags include
+  // `--setting-sources ""`, so only the type is asserted.
+  const command = array(policy.command, "legacy teacher policy command").map((value, index) => {
+    if (typeof value !== "string") {
+      throw new Error(`legacy teacher policy command[${index}] must be a string`);
+    }
+    return value;
+  });
+  // Every sealed 2026-08-27 Claude run enabled both native Web tools; the
+  // search-only variant belonged to the later, now-retired refresh.
+  assertLegacyClaudeIsolationCommand(command, "WebSearch,WebFetch");
+  assertCommandPair(command, "--output-format", "stream-json");
+  for (const flag of ["--verbose", "--include-partial-messages", "--include-hook-events"]) {
+    assertCommandFlag(command, flag);
+  }
 }
 
 function assertPolicyMetadata(
