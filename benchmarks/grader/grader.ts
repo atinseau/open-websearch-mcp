@@ -1,0 +1,168 @@
+/** Deterministic, offline conformity grader for versioned teacher fixtures. */
+export const weights = {
+  evidenceCoverage: 35,
+  sourceRecall: 25,
+  rank: 15,
+  extraction: 10,
+  diversity: 10,
+  tokenBudget: 5,
+} as const;
+
+export type ComponentName = keyof typeof weights;
+export type Measurement = number | "unmeasurable";
+export type Classification =
+  | "excellent"
+  | "relevant"
+  | "degraded"
+  | "not_relevant"
+  | "unmeasurable";
+
+type Source = { url: string; equivalent_urls: string[] };
+type Claim = {
+  id: string;
+  required_concepts: string[];
+  acceptable_patterns: string[];
+  sources: Source[];
+  evidence_passages: { url: string; text: string }[];
+  weight: number;
+};
+export type TeacherFixture = { case_id: string; claims: Claim[] };
+export type ResultPage = { url: string; text: string; token_count?: number };
+export type CaseResult = { case_id: string; results: ResultPage[] };
+export type CaseScore = {
+  case_id: string;
+  components: Record<ComponentName, Measurement>;
+  total: Measurement;
+  classification: Classification;
+  reasons: string[];
+};
+
+const tokenBudget = 6_000;
+
+export function gradeCase(fixture: TeacherFixture, result: CaseResult): CaseScore {
+  if (fixture.case_id !== result.case_id) throw new Error("fixture/result case ids differ");
+  const claims = fixture.claims;
+  const reasons: string[] = [];
+  if (claims.length === 0) reasons.push("fixture contains no accepted claims");
+  const denominator = claims.reduce((total, claim) => total + claim.weight, 0);
+  const claimRatio = (predicate: (claim: Claim) => boolean): Measurement =>
+    denominator === 0 ? "unmeasurable" : weighted(claims, predicate) / denominator;
+  const components: Record<ComponentName, Measurement> = {
+    evidenceCoverage: points(
+      claimRatio((claim) => evidenceMatches(claim, result.results)),
+      weights.evidenceCoverage,
+    ),
+    sourceRecall: points(
+      claimRatio((claim) => sourceRanks(claim, result.results).length > 0),
+      weights.sourceRecall,
+    ),
+    rank: points(rankRatio(claims, result.results, denominator), weights.rank),
+    extraction: points(extractionRatio(claims, result.results, denominator), weights.extraction),
+    diversity: points(diversityRatio(claims, result.results, denominator), weights.diversity),
+    tokenBudget: points(tokenRatio(result.results), weights.tokenBudget),
+  };
+  if (components.extraction === "unmeasurable")
+    reasons.push("no URL-located expected evidence passages");
+  const total = Object.values(components).some((component) => component === "unmeasurable")
+    ? "unmeasurable"
+    : Object.values(components).reduce<number>((sum, component) => sum + Number(component), 0);
+  return { case_id: fixture.case_id, components, total, classification: classify(total), reasons };
+}
+
+function normalized(value: string): string {
+  return value.normalize("NFKC").toLocaleLowerCase("und");
+}
+function evidenceMatches(claim: Claim, results: readonly ResultPage[]): boolean {
+  const text = normalized(results.map((result) => result.text).join("\n"));
+  return (
+    claim.required_concepts.every((concept) => text.includes(normalized(concept))) &&
+    claim.acceptable_patterns.some((pattern) => new RegExp(pattern, "iu").test(text))
+  );
+}
+function sourceRanks(claim: Claim, results: readonly ResultPage[]): number[] {
+  const accepted = new Set(
+    claim.sources.flatMap((source) => [source.url, ...source.equivalent_urls]),
+  );
+  return results.flatMap((result, index) => (accepted.has(result.url) ? [index + 1] : []));
+}
+function rankRatio(
+  claims: readonly Claim[],
+  results: readonly ResultPage[],
+  denominator: number,
+): Measurement {
+  if (denominator === 0) return "unmeasurable";
+  return (
+    claims.reduce((sum, claim) => {
+      const rank = sourceRanks(claim, results)[0];
+      return sum + (rank === undefined ? 0 : claim.weight / rank);
+    }, 0) / denominator
+  );
+}
+function extractionRatio(
+  claims: readonly Claim[],
+  results: readonly ResultPage[],
+  denominator: number,
+): Measurement {
+  const passageClaims = claims.filter((claim) => claim.evidence_passages.length > 0);
+  const passageWeight = passageClaims.reduce((sum, claim) => sum + claim.weight, 0);
+  if (denominator === 0 || passageWeight === 0) return "unmeasurable";
+  return (
+    weighted(passageClaims, (claim) =>
+      claim.evidence_passages.every((passage) =>
+        results.some(
+          (result) =>
+            result.url === passage.url &&
+            normalized(result.text).includes(normalized(passage.text)),
+        ),
+      ),
+    ) / passageWeight
+  );
+}
+function diversityRatio(
+  claims: readonly Claim[],
+  results: readonly ResultPage[],
+  denominator: number,
+): Measurement {
+  if (denominator === 0) return "unmeasurable";
+  return (
+    claimRatioByWeight(claims, (claim) => {
+      const ranks = sourceRanks(claim, results);
+      if (ranks.length === 0) return 0;
+      const hosts = new Set(
+        ranks.map((rank) => new URL(results[rank - 1]?.url ?? "https://invalid.test").host),
+      );
+      return hosts.size / ranks.length;
+    }) / denominator
+  );
+}
+function claimRatioByWeight(claims: readonly Claim[], score: (claim: Claim) => number): number {
+  return claims.reduce((sum, claim) => sum + claim.weight * score(claim), 0);
+}
+function weighted(claims: readonly Claim[], predicate: (claim: Claim) => boolean): number {
+  return claims.reduce((sum, claim) => sum + (predicate(claim) ? claim.weight : 0), 0);
+}
+function tokenRatio(results: readonly ResultPage[]): number {
+  const used = results.reduce(
+    (sum, result) => sum + (result.token_count ?? lexicalTokens(result.text)),
+    0,
+  );
+  return Math.max(0, 1 - Math.max(0, used - tokenBudget) / tokenBudget);
+}
+function lexicalTokens(text: string): number {
+  return normalized(text)
+    .split(/[^\p{L}\p{N}_]+/u)
+    .filter(Boolean).length;
+}
+function points(ratio: Measurement, maximum: number): Measurement {
+  return ratio === "unmeasurable" ? ratio : round(ratio * maximum);
+}
+function round(value: number): number {
+  return Math.round(value * 1000) / 1000;
+}
+export function classify(total: Measurement): Classification {
+  if (total === "unmeasurable") return "unmeasurable";
+  if (total >= 85) return "excellent";
+  if (total >= 70) return "relevant";
+  if (total >= 50) return "degraded";
+  return "not_relevant";
+}
