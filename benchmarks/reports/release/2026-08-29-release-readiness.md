@@ -40,9 +40,17 @@ create a tag, or create a GitHub Release.
    thresholds. This is the direct ADR-0010 remedy.
 2. Probe Claude Code, Gemini CLI, and OpenCode, or obtain and record the exact
    external-authority blocker for each. VER-002 only proved Codex.
-3. Restore full ARCH-002/ARCH-007 enforcement: mechanical feature boundaries,
-   dependency/import limits, and numeric limits outside `src/` remain debt
-   (ADRs 0007/0008).
+3. ~~Restore full ARCH-002/ARCH-007 enforcement.~~ **Cleared.** `ARCH-002` and
+   the source-graph parts of `ARCH-003` are CI-blocking through
+   `tests/architecture/dependency-graph.test.ts` (ADR-0007, amended).
+   `ARCH-007` numeric limits now live in the root `.oxlintrc.jsonc` and
+   `lint:limits` runs over `src scripts tests benchmarks`; the nested
+   `src/.oxlintrc.jsonc` was deleted so no narrower configuration can apply
+   (ADR-0008, debt cleared). Compliance was reached by extraction, never by
+   relaxing a threshold. Two limitations remain and are not claimed as green:
+   `import/max-dependencies` is unsupported by the linter (SPK-005), and
+   `ARCH-007` line-count exemptions for fixture, generated, and declarative
+   data are unchanged.
 4. Add the required external ranking/canary evidence for TEST-018. The present
    two opt-in Google canaries are not the specified 30–50.
 5. Complete REL-004 only after explicit human release authorization: exact
