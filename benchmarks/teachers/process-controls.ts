@@ -33,18 +33,7 @@ export async function runProcess(
   options: ProcessOptions,
 ): Promise<ProcessCapture> {
   const started = performance.now();
-  const sandboxProfile =
-    options.allowedChildExecutables === undefined
-      ? "(version 1) (allow default) (deny process-fork) (deny signal)"
-      : `(version 1) (allow default) (deny signal) (deny process-exec) (allow process-exec ${[
-          command[0],
-          ...options.allowedChildExecutables,
-        ]
-          .map((path) => `(literal ${JSON.stringify(path)})`)
-          .join(" ")})`;
-  const controlledCommand = leafCommands.has(command[0] ?? "")
-    ? command
-    : ["/usr/bin/sandbox-exec", "-p", sandboxProfile, ...command];
+  const controlledCommand = controlledProcessCommand(command, options.allowedChildExecutables);
   const process = Bun.spawn(controlledCommand, {
     cwd: options.cwd,
     env: options.env ?? Bun.env,
@@ -52,14 +41,46 @@ export async function runProcess(
     stdout: "pipe",
     stderr: "pipe",
   });
-  const terminate = (): void => {
-    process.kill(9);
-  };
+  const terminate = (): void => process.kill(9);
   let timedOut = false;
   const timeout = setTimeout(() => {
     timedOut = true;
     terminate();
   }, options.timeoutMs);
+  let captured: CapturedIo;
+  try {
+    captured = await captureProcessIo(process, options, terminate);
+  } finally {
+    clearTimeout(timeout);
+  }
+  return processCapture(captured, timedOut, options, started);
+}
+
+function controlledProcessCommand(command: string[], allowed: string[] | undefined): string[] {
+  if (leafCommands.has(command[0] ?? "")) return command;
+  return ["/usr/bin/sandbox-exec", "-p", sandboxProfile(command, allowed), ...command];
+}
+
+function sandboxProfile(command: string[], allowed: string[] | undefined): string {
+  if (allowed === undefined) return "(version 1) (allow default) (deny process-fork) (deny signal)";
+  const executables = [command[0], ...allowed]
+    .map((path) => `(literal ${JSON.stringify(path)})`)
+    .join(" ");
+  return `(version 1) (allow default) (deny signal) (deny process-exec) (allow process-exec ${executables})`;
+}
+
+type CapturedIo = {
+  stdout: { text: string; exceeded: boolean };
+  stderr: { text: string; exceeded: boolean };
+  exitCode: number;
+  ioFailure?: string;
+};
+
+async function captureProcessIo(
+  process: ReturnType<typeof Bun.spawn>,
+  options: ProcessOptions,
+  terminate: () => void,
+): Promise<CapturedIo> {
   let ioFailure: string | undefined;
   const guard = async <T>(label: string, action: Promise<T>, fallback: T): Promise<T> => {
     try {
@@ -70,22 +91,9 @@ export async function runProcess(
       return fallback;
     }
   };
-  const input = guard(
-    "stdin",
-    (async () => {
-      if (options.input === undefined) return;
-      const sink = process.stdin;
-      if (sink === undefined) throw new Error("process stdin pipe is unavailable");
-      await sink.write(options.input);
-      await sink.end();
-    })(),
-    undefined,
-  );
-  let stdout: { text: string; exceeded: boolean };
-  let stderr: { text: string; exceeded: boolean };
-  let exitCode: number;
+  const input = guard("stdin", writeInput(process.stdin, options.input), undefined);
   try {
-    [stdout, stderr, exitCode] = await Promise.all([
+    const [stdout, stderr, exitCode] = await Promise.all([
       guard("stdout", readBounded(process.stdout, options.maxOutputBytes, terminate), {
         text: "",
         exceeded: false,
@@ -97,12 +105,30 @@ export async function runProcess(
       process.exited,
       input,
     ]);
+    return { stdout, stderr, exitCode, ioFailure };
   } catch (error) {
     terminate();
     throw error;
-  } finally {
-    clearTimeout(timeout);
   }
+}
+
+async function writeInput(
+  sink: WritableStream<Uint8Array> | undefined,
+  input: string | undefined,
+): Promise<void> {
+  if (input === undefined) return;
+  if (sink === undefined) throw new Error("process stdin pipe is unavailable");
+  await sink.write(input);
+  await sink.end();
+}
+
+function processCapture(
+  captured: CapturedIo,
+  timedOut: boolean,
+  options: ProcessOptions,
+  started: number,
+): ProcessCapture {
+  const { stdout, stderr, exitCode, ioFailure } = captured;
   const exceeded = stdout.exceeded ? "stdout" : stderr.exceeded ? "stderr" : undefined;
   const executionFailure = timedOut
     ? `process exceeded ${options.timeoutMs} ms`
