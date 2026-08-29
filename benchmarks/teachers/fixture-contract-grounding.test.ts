@@ -176,7 +176,14 @@ test("normalizes harmless non-ECMAScript pattern escapes", () => {
 });
 
 test("rejects accepted fixture evidence absent from teacher runs", () => {
-  const draft = {
+  const draft = unsupportedDraft();
+  expectUnsupportedPassage(draft);
+  expectUnsupportedEquivalentUrl(draft);
+  expectPartialUrlDoesNotCount(draft);
+});
+
+function unsupportedDraft() {
+  return {
     claims: [
       {
         id: "unsupported",
@@ -190,6 +197,9 @@ test("rejects accepted fixture evidence absent from teacher runs", () => {
     ],
     rejected_claims: [],
   };
+}
+
+function expectUnsupportedPassage(draft: ReturnType<typeof unsupportedDraft>): void {
   expect(() =>
     assembleFixture(
       { id: "case", question: "Question?", locale: "en-US" },
@@ -206,6 +216,9 @@ test("rejects accepted fixture evidence absent from teacher runs", () => {
       { accepted_claim_ids: ["unsupported"], rejected_claims: [] },
     ),
   ).toThrow("passage is absent from teacher-run evidence");
+}
+
+function expectUnsupportedEquivalentUrl(draft: ReturnType<typeof unsupportedDraft>): void {
   draft.claims[0]!.evidence_passages = [];
   draft.claims[0]!.sources[0]!.equivalent_urls = ["https://example.com/unobserved"];
   expect(() =>
@@ -217,6 +230,9 @@ test("rejects accepted fixture evidence absent from teacher runs", () => {
       { accepted_claim_ids: ["unsupported"], rejected_claims: [] },
     ),
   ).toThrow("source is absent from teacher-run evidence");
+}
+
+function expectPartialUrlDoesNotCount(draft: ReturnType<typeof unsupportedDraft>): void {
   draft.claims[0]!.sources[0]!.equivalent_urls = [];
   draft.claims[0]!.sources[0]!.url = "https://example.com/path";
   expect(() =>
@@ -237,4 +253,4 @@ test("rejects accepted fixture evidence absent from teacher runs", () => {
       { accepted_claim_ids: ["unsupported"], rejected_claims: [] },
     ),
   ).toThrow("source is absent from teacher-run evidence");
-});
+}
