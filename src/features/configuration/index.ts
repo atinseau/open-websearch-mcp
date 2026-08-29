@@ -1,9 +1,13 @@
+import type { FullConfiguration } from "@/features/configuration/domain/configuration";
+
 /** A duration measured in milliseconds. */
 export type Milliseconds = number;
 
 /** Immutable configuration captured when an MCP call begins. */
 export interface ConfigurationSnapshot {
   readonly scheduler: SchedulerConfiguration;
+  /** Full validated configuration, immutable for the duration of an MCP call. */
+  readonly configuration?: Readonly<FullConfiguration>;
 }
 
 /** Values controlling the process-global navigation scheduler. */
@@ -35,3 +39,23 @@ export interface SchedulerBackpressure {
 export interface ConfigurationProvider {
   snapshot(): ConfigurationSnapshot;
 }
+
+export type { FullConfiguration } from "@/features/configuration/domain/configuration";
+export {
+  configurationSchema,
+  defaultConfiguration,
+} from "@/features/configuration/domain/configuration";
+export { createSessionLogger, type SessionLogger } from "@/features/configuration/adapters/logger";
+export {
+  createConfigurationService,
+  type ConfigurationService,
+  type ConfigurationServiceOptions,
+  type DoctorReport,
+  type MachineProfile,
+} from "@/features/configuration/application/service";
+export { resolveWorkspace, type Workspace } from "@/features/configuration/adapters/workspace";
+export {
+  createObscuraInstaller,
+  type ObscuraArtifact,
+  type ObscuraInstaller,
+} from "@/features/configuration/adapters/installer";
