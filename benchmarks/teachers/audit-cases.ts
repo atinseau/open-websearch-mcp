@@ -262,6 +262,19 @@ function assertPolicy(
   run: JsonRecord,
   policy: JsonRecord,
 ): void {
+  assertPolicyMetadata(context, teacherCase, provider, run, policy);
+  if (context.legacy) return;
+  const command = policyCommand(context, teacherCase, provider, policy);
+  assertCurrentCodexPolicy(command, teacherCase, run);
+}
+
+function assertPolicyMetadata(
+  context: AuditContext,
+  teacherCase: TeacherCase,
+  provider: "codex" | "claude",
+  run: JsonRecord,
+  policy: JsonRecord,
+): void {
   if (policy.provider !== provider || policy.cli_version !== run.cli_version) {
     throw new Error(`${teacherCase.id}/${provider} has mismatched policy metadata`);
   }
@@ -286,7 +299,14 @@ function assertPolicy(
       `${teacherCase.id}/${provider} has incomplete isolation evidence in ${context.date}`,
     );
   }
-  if (context.legacy) return;
+}
+
+function policyCommand(
+  context: AuditContext,
+  teacherCase: TeacherCase,
+  provider: "codex" | "claude",
+  policy: JsonRecord,
+): string[] {
   const command = array(policy.command, "teacher policy command").map((value, index) => {
     if (typeof value !== "string")
       throw new Error(`teacher policy command[${index}] must be a string`);
@@ -296,35 +316,33 @@ function assertPolicy(
   if (command.at(-1) !== expectedPrompt) {
     throw new Error(`${teacherCase.id}/${provider} did not use the snapshotted common prompt`);
   }
-  if (provider === "codex") {
-    assertCommandPair(command, "--model", requiredString(run.model, "Codex run model"));
-    for (const flag of [
-      "--ephemeral",
-      "--ignore-user-config",
-      "--ignore-rules",
-      "--strict-config",
-      "--skip-git-repo-check",
-    ]) {
-      assertCommandFlag(command, flag);
-    }
-    assertCommandPair(command, "--sandbox", "read-only");
-    assertCommandPair(command, "-c", 'approval_policy="never"');
-    assertCommandPair(command, "-c", 'history.persistence="none"');
-    for (const control of ['web_search="live"', ...codexSkillControls]) {
-      if (!command.includes(control)) {
-        throw new Error(`${teacherCase.id}/codex is missing policy control ${control}`);
-      }
-    }
-    for (const feature of codexDisabledFeatures) assertCommandPair(command, "--disable", feature);
-  } else {
-    const expectedTools =
-      teacherCase.id === "technical-sqlite-fts5" ? "WebSearch" : "WebSearch,WebFetch";
-    assertLegacyClaudeIsolationCommand(command, expectedTools);
-    assertCommandPair(command, "--output-format", "stream-json");
-    for (const flag of ["--verbose", "--include-partial-messages", "--include-hook-events"]) {
-      assertCommandFlag(command, flag);
-    }
+  if (provider !== "codex")
+    throw new Error(`${teacherCase.id} has a non-Codex teacher run in a current refresh`);
+  return command;
+}
+
+function assertCurrentCodexPolicy(
+  command: string[],
+  teacherCase: TeacherCase,
+  run: JsonRecord,
+): void {
+  assertCommandPair(command, "--model", requiredString(run.model, "Codex run model"));
+  for (const flag of [
+    "--ephemeral",
+    "--ignore-user-config",
+    "--ignore-rules",
+    "--strict-config",
+    "--skip-git-repo-check",
+  ])
+    assertCommandFlag(command, flag);
+  assertCommandPair(command, "--sandbox", "read-only");
+  assertCommandPair(command, "-c", 'approval_policy="never"');
+  assertCommandPair(command, "-c", 'history.persistence="none"');
+  for (const control of ['web_search="live"', ...codexSkillControls]) {
+    if (!command.includes(control))
+      throw new Error(`${teacherCase.id}/codex is missing policy control ${control}`);
   }
+  for (const feature of codexDisabledFeatures) assertCommandPair(command, "--disable", feature);
 }
 
 async function auditFixture(context: AuditContext, teacherCase: TeacherCase): Promise<void> {
