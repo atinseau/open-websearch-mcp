@@ -140,3 +140,36 @@ test("EXTRACT-004 keeps passage structure when rendered Markdown embeds inline H
   expect(clean.passages.some((passage) => /<a\b/i.test(passage.text))).toBeFalse();
   expect(clean.passages.some((passage) => passage.text.includes("the reference"))).toBeTrue();
 });
+
+test("EXTRACT-009 keeps substantive text when a page has no heading structure", async () => {
+  // A renderer returning plain page text yields headingless blocks. Deduping on
+  // heading treated `undefined === undefined` as a duplicate, so whichever block
+  // scored first — usually navigation chrome — silently replaced the whole page.
+  const chrome = `NAV_CHROME ${"Docs Guides Reference Blog Install ".repeat(70)}`;
+  const body = `SUBSTANTIVE ${"The deterministic ranker keeps ordering stable across searches. ".repeat(30)}`;
+  const text = `${chrome}\n${body}`;
+
+  const result = await registry.extract(
+    input({ markdown: text, renderedText: text, maxChars: 12_000 }),
+  );
+  expect(result.status).toBe("success");
+  expect(result.passages.length).toBeGreaterThan(1);
+  expect(result.passages.some((passage) => passage.text.includes("SUBSTANTIVE"))).toBeTrue();
+  expect(result.passages.some((passage) => passage.text.includes("NAV_CHROME"))).toBeTrue();
+});
+
+test("EXTRACT-002 routes a declared PDF away from the HTML path", async () => {
+  // The renderer used to label every document `text/html`, so a PDF's raw bytes
+  // were parsed as markup and surfaced as evidence. An honest failure is the
+  // required outcome; binary noise is not.
+  const bytes = new TextEncoder().encode("%PDF-1.7\n%\u00e2\u00e3\u00cf\u00d3\nbinary noise");
+  const result = await registry.extract({
+    documentUrl: new URL("https://docs.example.test/spec.pdf"),
+    renderedText: "",
+    body: bytes,
+    headers: new Headers({ "content-type": "application/pdf" }),
+  });
+  expect(result.status).toBe("unsupported_or_ocr_required");
+  expect(result.mimeType).toBe("application/pdf");
+  expect(result.passages).toBeEmpty();
+});

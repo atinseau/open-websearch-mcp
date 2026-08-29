@@ -10,6 +10,7 @@ type LinkValue = { readonly href?: unknown; readonly text?: unknown };
 type TransferMonitor = {
   readonly bytes: () => number;
   readonly exceeded: () => boolean;
+  readonly contentType: () => string | undefined;
   readonly stop: () => void;
 };
 
@@ -49,7 +50,13 @@ export class WebViewRenderer implements Renderer {
       const settledAt = Date.now();
       await pause(this.#options.configuration.settleTimeoutMs, signal);
       if (monitor.exceeded()) throw new Error("download_budget_exceeded");
-      const document = await documentFrom(view, url, monitor.bytes(), settledAt);
+      const document = await documentFrom(
+        view,
+        url,
+        monitor.bytes(),
+        settledAt,
+        monitor.contentType(),
+      );
       // WebView resolves redirects internally. Rejecting the resolved URL prevents any
       // redirected document from becoming evidence; production Obscura itself has no
       // private-network exemption, so a private redirect cannot be loaded either.
@@ -89,6 +96,7 @@ function assertPublic(policy: WebViewRendererOptions["policy"], url: URL): void 
 function monitorTransfer(view: Bun.WebView, maximumBytes: number): TransferMonitor {
   let transferBytes = 0;
   let overBudget = false;
+  let documentType: string | undefined;
   const dataRequests = new Set<string>();
   const observe = (bytes: unknown): void => {
     if (typeof bytes !== "number" || !Number.isFinite(bytes)) return;
@@ -113,13 +121,9 @@ function monitorTransfer(view: Bun.WebView, maximumBytes: number): TransferMonit
   };
   const response = (event: Event) => {
     const payload = messageData(event);
-    const headers =
-      isRecord(payload) && isRecord(payload.response) && isRecord(payload.response.headers)
-        ? payload.response.headers
-        : {};
-    const length = Object.entries(headers).find(
-      ([name]) => name.toLowerCase() === "content-length",
-    )?.[1];
+    const headers = responseHeaders(payload);
+    documentType ??= declaredDocumentType(payload, headers);
+    const length = headerValue(headers, "content-length");
     if (typeof length === "string" && Number(length) > maximumBytes) {
       overBudget = true;
       view.close();
@@ -131,6 +135,7 @@ function monitorTransfer(view: Bun.WebView, maximumBytes: number): TransferMonit
   return {
     bytes: () => transferBytes,
     exceeded: () => overBudget,
+    contentType: () => documentType,
     stop: () => {
       view.removeEventListener("Network.dataReceived", data);
       view.removeEventListener("Network.loadingFinished", finished);
@@ -143,6 +148,30 @@ function messageData(event: Event): unknown {
   return event instanceof MessageEvent ? event.data : undefined;
 }
 
+function responseHeaders(payload: unknown): Record<string, unknown> {
+  return isRecord(payload) && isRecord(payload.response) && isRecord(payload.response.headers)
+    ? payload.response.headers
+    : {};
+}
+
+function headerValue(headers: Record<string, unknown>, name: string): unknown {
+  return Object.entries(headers).find(([key]) => key.toLowerCase() === name)?.[1];
+}
+
+/**
+ * Reads the content type the origin declared for the main document. Sub-resource
+ * responses are ignored, so a page's own type is not shadowed by an image or
+ * script it happens to load first.
+ */
+function declaredDocumentType(
+  payload: unknown,
+  headers: Record<string, unknown>,
+): string | undefined {
+  if (!isRecord(payload) || payload.type !== "Document") return undefined;
+  const declared = headerValue(headers, "content-type");
+  return typeof declared === "string" ? declared : undefined;
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
 }
@@ -152,6 +181,7 @@ async function documentFrom(
   url: URL,
   transferBytes: number,
   settledAt: number,
+  contentType: string | undefined,
 ): Promise<RenderedDocument> {
   const content = await view.evaluate<{ text?: unknown; links?: unknown }>(
     // `innerText` on the live body captures inline script and style bodies on
@@ -166,6 +196,7 @@ async function documentFrom(
     text,
     markdown: text,
     links: links(content.links),
+    contentType,
     diagnostics: { title: view.title, transferBytes, settledMs: Date.now() - settledAt },
   };
 }

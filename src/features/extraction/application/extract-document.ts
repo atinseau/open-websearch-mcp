@@ -209,11 +209,14 @@ function select(
     .sort((a, b) => b.score - a.score);
   const selected: EvidencePassage[] = [];
   for (const item of ranked) {
-    if (
-      selected.length >= limit ||
-      selected.some((value) => value.heading === item.passage.heading)
-    )
-      continue;
+    // Diversity is per heading, but an absent heading is not a shared heading.
+    // Treating `undefined === undefined` as a duplicate collapsed every
+    // headingless slice of an unstructured page into one passage, so a page
+    // whose navigation chrome scored first lost all of its substantive text.
+    const duplicate =
+      item.passage.heading !== undefined &&
+      selected.some((value) => value.heading === item.passage.heading);
+    if (selected.length >= limit || duplicate) continue;
     selected.push({
       ...item.passage,
       sourceUrl: url,

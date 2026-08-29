@@ -31,6 +31,12 @@ export interface RenderedDocument {
   readonly markdown: string;
   readonly links: readonly RenderedLink[];
   readonly diagnostics: RenderDiagnostics;
+  /**
+   * Content type the origin declared for the main document, when it announced
+   * one. Extraction needs it to route a PDF or a media file away from the HTML
+   * path; assuming `text/html` made binary bytes surface as page evidence.
+   */
+  readonly contentType?: string;
 }
 
 export interface RenderedLink {

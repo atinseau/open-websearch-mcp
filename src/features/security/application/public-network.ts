@@ -57,10 +57,16 @@ export { assessPublicUrl, sanitizeOutboundUrl, type PublicUrlAssessment };
 /** Removes executable and invisible markup before it can become evidence. */
 export function sanitizeExternalHtml(html: string): string {
   const withoutActive = html
-    .replace(/<(script|style|form|iframe|object|embed|svg|template)[\s\S]*?<\/\1\s*>/gi, "")
-    .replace(/<(script|style|form|iframe|object|embed|svg|template)\b[^>]*\/?\s*>/gi, "")
     .replace(
-      /<[^>]*(?:hidden|aria-hidden\s*=\s*["']?true|style\s*=\s*["'][^"']*(?:display\s*:\s*none|visibility\s*:\s*hidden))[^>]*>[\s\S]*?<\/[^>]+>/gi,
+      /<(script|style|form|iframe|object|embed|svg|template|noscript)[\s\S]*?<\/\1\s*>/gi,
+      "",
+    )
+    .replace(/<(script|style|form|iframe|object|embed|svg|template|noscript)\b[^>]*\/?\s*>/gi, "")
+    .replace(
+      // `hidden` must be its own attribute, not the tail of `aria-hidden`, or
+      // `aria-hidden=false` would strip visible content. Style values may be
+      // unquoted, so the concealment test must not require quotes.
+      /<[^>]*(?:\shidden(?=[\s>=])|aria-hidden\s*=\s*["']?true|style\s*=\s*(?:["'][^"']*|[^\s"'>]*)(?:display\s*:\s*none|visibility\s*:\s*hidden))[^>]*>[\s\S]*?<\/[^>]+>/gi,
       "",
     )
     .replace(/\s(?:on\w+|href|src)\s*=\s*(["'])\s*(?:javascript|data|vbscript):[\s\S]*?\1/gi, "");

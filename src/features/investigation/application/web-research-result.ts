@@ -16,7 +16,9 @@ export function extractionInput(document: RenderedDocument, focus?: string, maxC
     renderedText: document.text,
     markdown: document.markdown,
     links: document.links,
-    headers: new Headers({ "content-type": "text/html" }),
+    // Trust what the origin declared. Forcing `text/html` sent PDFs and other
+    // binaries down the HTML path, so their raw bytes became page evidence.
+    headers: new Headers({ "content-type": document.contentType ?? "text/html" }),
     focus,
     maxChars,
   };

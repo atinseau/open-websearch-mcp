@@ -248,3 +248,23 @@ test("PROD-006 navigation authority never treats extracted links as requests", a
   await client.fetch(new URL("https://public.example/explicit"), "explicit_open");
   expect(seen).toEqual(["https://public.example/explicit"]);
 });
+
+test("EXTRACT-004 removes concealed content whatever form the concealment takes", () => {
+  // Each vector reached evidence at some point: unquoted style values, the
+  // `noscript` element, and `hidden` as a bare attribute. `aria-hidden=false`
+  // is the inverse mistake — content that must survive.
+  const concealed = [
+    "<div style=display:none>LEAKED</div>",
+    '<div style="display:none">LEAKED</div>',
+    "<div style=visibility:hidden>LEAKED</div>",
+    '<div aria-hidden="true">LEAKED</div>',
+    "<div hidden>LEAKED</div>",
+    "<noscript>LEAKED</noscript>",
+    "<script>LEAKED</script>",
+    "<style>.a{content:'LEAKED'}</style>",
+  ];
+  for (const vector of concealed) {
+    expect(sanitizeExternalHtml(`<p>visible</p>${vector}`)).not.toContain("LEAKED");
+  }
+  expect(sanitizeExternalHtml("<p>visible</p><div aria-hidden=false>KEPT</div>")).toContain("KEPT");
+});
