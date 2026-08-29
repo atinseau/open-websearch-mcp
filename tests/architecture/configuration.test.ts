@@ -1,10 +1,10 @@
 import { afterAll, expect, test } from "bun:test";
 import {
   createConfigurationService,
-  createObscuraInstaller,
   createSessionLogger,
   resolveWorkspace,
 } from "@/features/configuration";
+import { createObscuraInstaller, type ObscuraTransport } from "@/features/rendering";
 
 const roots: string[] = [];
 function workspace() {
@@ -140,18 +140,43 @@ test("INSTALL-001..003 install once, switch atomically, and retain the healthy v
   const service = createConfigurationService({ workspace: workspace() });
   await service.prepareForCall();
   let probes = 0;
-  const installer = createObscuraInstaller(service.workspace(), async (file) => {
-    probes++;
-    return !file.includes("2.0.0");
-  });
-  const executable = new TextEncoder().encode("fixture-obscura");
-  const sha256 = await sha(executable);
-  await Promise.all(
-    Array.from({ length: 4 }, () => installer.install({ version: "1.0.0", sha256, executable })),
+  const archive = new TextEncoder().encode("fixture-obscura");
+  const sha256 = await sha(archive);
+  const transport: ObscuraTransport = {
+    async download(_url, destination) {
+      await Bun.write(destination, archive);
+    },
+    async list() {
+      return [
+        { path: "obscura", kind: "file" },
+        { path: "obscura-worker", kind: "file" },
+      ];
+    },
+    async extract(_archive, destination) {
+      await Bun.write(`${destination}/obscura`, archive);
+      await Bun.write(`${destination}/obscura-worker`, archive);
+    },
+  };
+  const installer = createObscuraInstaller(
+    service.workspace(),
+    async (file) => {
+      probes++;
+      return !file.includes("2.0.0");
+    },
+    transport,
   );
+  const pin = (version: string) => ({
+    version,
+    variant: "macos-arm64" as const,
+    url: "https://example.test/obscura.zip",
+    sha256,
+    sizeBytes: archive.byteLength,
+    expectedFiles: ["obscura", "obscura-worker"] as const,
+  });
+  await Promise.all(Array.from({ length: 4 }, () => installer.install(pin("1.0.0"))));
   expect(probes).toBe(1);
   expect(await installer.activeVersion()).toBe("1.0.0");
-  expect(installer.install({ version: "2.0.0", sha256, executable })).rejects.toThrow("probe");
+  expect(installer.install(pin("2.0.0"))).rejects.toThrow("probe");
   expect(await installer.activeVersion()).toBe("1.0.0");
   expect(await Bun.file(`${service.workspace().root}/bin/obscura/1.0.0/obscura`).exists()).toBe(
     true,
