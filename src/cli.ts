@@ -1,6 +1,7 @@
 import { createConfigurationService, resolveWorkspace } from "@/features/configuration";
 import { createProductionRoot } from "@/bootstrap";
 import { serveStdio } from "@/mcp";
+import { createReleaseFixtureTools } from "@/mcp/release-fixture";
 
 export interface CliDependencies {
   startMcp(): Promise<void>;
@@ -22,10 +23,16 @@ export async function runCli(
   throw new Error(`unknown_command:${command}`);
 }
 
-if (import.meta.main) {
+/** Constructs the runtime dependencies used by both the source and packed executable. */
+export async function runCommandLine(): Promise<void> {
   const configuration = createConfigurationService({ workspace: resolveWorkspace() });
   await runCli(Bun.argv.slice(2), {
     async startMcp() {
+      if (Bun.env.OPEN_WEBSEARCH_MCP_RELEASE_FIXTURE === "1") {
+        await serveStdio(createReleaseFixtureTools());
+        await new Promise<void>((resolve) => process.stdin.once("end", resolve));
+        return;
+      }
       const root = await createProductionRoot({});
       try {
         await serveStdio(root.tools, root.maxInboundMessageBytes);
@@ -41,3 +48,5 @@ if (import.meta.main) {
     write: (value) => console.log(value.trimEnd()),
   });
 }
+
+if (import.meta.main) await runCommandLine();
