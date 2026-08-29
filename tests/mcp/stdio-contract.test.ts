@@ -2,6 +2,8 @@ import { expect, test } from "bun:test";
 import { Client } from "@modelcontextprotocol/client";
 import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
 
+import { structuredToolResultSchema } from "@/mcp/contracts";
+
 function createClient(): Client {
   return new Client(
     { name: "contract-client", version: "0.0.0" },
@@ -94,4 +96,72 @@ test("MCP-008: server negotiates each supported legacy protocol revision", async
     expect((await client.listTools()).tools).toHaveLength(2);
     await client.close();
   }
+});
+
+test("MCP-009: server advertises tools only", async () => {
+  const client = createClient();
+  await client.connect(createTransport());
+  expect(client.getServerCapabilities()).toEqual({ tools: { listChanged: true } });
+  expect((await client.listTools()).tools.map((tool) => tool.name).sort()).toEqual([
+    "web_open",
+    "web_search",
+  ]);
+  expect((await client.listResources()).resources).toEqual([]);
+  expect((await client.listPrompts()).prompts).toEqual([]);
+  await client.close();
+});
+
+test("MCP-006: content-only and structured-only consumers each receive essential results", async () => {
+  const client = createClient();
+  await client.connect(createTransport());
+  const response = await client.callTool({ name: "web_search", arguments: { query: "portable" } });
+  const textOnly = response.content?.find((item) => item.type === "text")?.text;
+  const structuredOnly = structuredToolResultSchema.parse(response.structuredContent);
+  expect(textOnly).toContain("investigation_id=investigation-fixture");
+  expect(textOnly).toContain("Fixture evidence: portable");
+  expect(structuredOnly.investigation_id).toBe("investigation-fixture");
+  expect(structuredOnly.results).toHaveLength(1);
+  await client.close();
+});
+
+test("MCP-009: client cancellation aborts an in-flight stdio tool call", async () => {
+  const client = createClient();
+  await client.connect(createTransport());
+  const abortController = new AbortController();
+  const pending = client.callTool(
+    { name: "web_search", arguments: { query: "cancel" } },
+    { signal: abortController.signal },
+  );
+  setTimeout(() => abortController.abort(), 10);
+  let cancelled = false;
+  try {
+    await pending;
+  } catch {
+    cancelled = true;
+  }
+  expect(cancelled).toBe(true);
+  await client.close();
+});
+
+test("MCP-011: concurrent calls preserve JSON-RPC response correlation", async () => {
+  const client = createClient();
+  await client.connect(createTransport());
+  const completionOrder: string[] = [];
+  const slow = client
+    .callTool({ name: "web_search", arguments: { query: "slow" } })
+    .then((response) => {
+      completionOrder.push("slow");
+      return response;
+    });
+  const fast = client
+    .callTool({ name: "web_search", arguments: { query: "fast" } })
+    .then((response) => {
+      completionOrder.push("fast");
+      return response;
+    });
+  const [slowResult, fastResult] = await Promise.all([slow, fast]);
+  expect(completionOrder).toEqual(["fast", "slow"]);
+  expect(slowResult.content?.[0]).toMatchObject({ text: expect.stringContaining("slow") });
+  expect(fastResult.content?.[0]).toMatchObject({ text: expect.stringContaining("fast") });
+  await client.close();
 });
