@@ -1,0 +1,21 @@
+{
+  "text": "Results for operators",
+  "links": [
+    {
+      "url": "https://www.google.com/url?q=https%3A%2F%2Fexample.com%2Foperators",
+      "text": "Google operators reference"
+    },
+    {
+      "url": "https://www.google.com/aclk?sa=l&adurl=https%3A%2F%2Fads.example%2Fbuy",
+      "text": "Sponsored result"
+    },
+    {
+      "url": "https://sponsor.example/buy",
+      "text": "Sponsored direct result"
+    },
+    {
+      "url": "https://www.google.com/search?q=related+operators",
+      "text": "Related searches: advanced operators"
+    }
+  ]
+}

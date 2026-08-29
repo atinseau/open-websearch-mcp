@@ -20,6 +20,8 @@ export interface RenderRequest {
   readonly investigationId: InvestigationId;
   readonly kind: "destination" | "google_serp";
   readonly explicitOpen: boolean;
+  /** Google-only anonymous profile, kept distinct from destination contexts. */
+  readonly profile?: "google-public";
 }
 
 export interface RenderedDocument {

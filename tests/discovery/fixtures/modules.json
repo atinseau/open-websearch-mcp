@@ -1,0 +1,11 @@
+{
+  "text": "Results",
+  "links": [
+    { "url": "https://news.example/story", "text": "News: reported result" },
+    { "url": "https://reddit.com/r/example/comments/1", "text": "Discussion: community answer" },
+    { "url": "https://youtube.com/watch?v=example", "text": "Video: explanation" },
+    { "url": "https://arxiv.org/abs/1234.5678", "text": "Academic paper" },
+    { "url": "https://example.com/report.pdf", "text": "Document PDF report" },
+    { "url": "https://maps.example/place", "text": "Other results: map listing" }
+  ]
+}
