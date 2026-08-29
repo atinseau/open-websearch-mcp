@@ -32,29 +32,60 @@ test("serializes refresh writers and rejects post-seal mutation", async () => {
 
 async function expectContendedRefreshRejected(root: string, date: string): Promise<void> {
   await withRefreshMutation(root, date, async () => {
-    await expectRejection(withRefreshMutation(root, date, async () => {}), "refresh is busy");
+    await expectRejection(
+      withRefreshMutation(root, date, async () => {}),
+      "refresh is busy",
+    );
   });
 }
 
 async function expectStaleLocksRecovered(root: string, date: string): Promise<void> {
-  const exitedProcess = Bun.spawn(["/usr/bin/true"]); await exitedProcess.exited;
+  const exitedProcess = Bun.spawn(["/usr/bin/true"]);
+  await exitedProcess.exited;
   const staleCandidate = `${root}/.refresh-locks/${date}.lock.${crypto.randomUUID()}.candidate`;
   const malformedCandidate = `${root}/.refresh-locks/${date}.lock.${crypto.randomUUID()}.candidate`;
-  const staleOwner = { pid: exitedProcess.pid, token: crypto.randomUUID(), process_start: "stale process", acquired_at: new Date().toISOString() };
-  await Bun.write(staleCandidate, `${JSON.stringify(staleOwner)}\n`); await Bun.write(malformedCandidate, "{\n");
-  await Bun.write(`${root}/.refresh-locks/${date}.lock`, `${JSON.stringify({ ...staleOwner, token: crypto.randomUUID() })}\n`);
+  const staleOwner = {
+    pid: exitedProcess.pid,
+    token: crypto.randomUUID(),
+    process_start: "stale process",
+    acquired_at: new Date().toISOString(),
+  };
+  await Bun.write(staleCandidate, `${JSON.stringify(staleOwner)}\n`);
+  await Bun.write(malformedCandidate, "{\n");
+  await Bun.write(
+    `${root}/.refresh-locks/${date}.lock`,
+    `${JSON.stringify({ ...staleOwner, token: crypto.randomUUID() })}\n`,
+  );
   const results = await competingRefreshMutations(root, date);
-  expect(await Bun.file(staleCandidate).exists()).toBe(false); expect(await Bun.file(malformedCandidate).exists()).toBe(false);
+  expect(await Bun.file(staleCandidate).exists()).toBe(false);
+  expect(await Bun.file(malformedCandidate).exists()).toBe(false);
   expect(results.filter((result) => result.status === "fulfilled")).toHaveLength(1);
   expect(results.filter((result) => result.status === "rejected")).toHaveLength(1);
 }
 
-async function competingRefreshMutations(root: string, date: string): Promise<PromiseSettledResult<void>[]> {
-  let entered = 0; let release: (() => void) | undefined;
-  const held = new Promise<void>((resolve) => { release = resolve; });
-  const recoveries = Promise.allSettled([withRefreshMutation(root, date, async () => { entered += 1; await held; }), withRefreshMutation(root, date, async () => { entered += 1; await held; })]);
+async function competingRefreshMutations(
+  root: string,
+  date: string,
+): Promise<PromiseSettledResult<void>[]> {
+  let entered = 0;
+  let release: (() => void) | undefined;
+  const held = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  const recoveries = Promise.allSettled([
+    withRefreshMutation(root, date, async () => {
+      entered += 1;
+      await held;
+    }),
+    withRefreshMutation(root, date, async () => {
+      entered += 1;
+      await held;
+    }),
+  ]);
   await waitForRefreshEntry(() => entered);
-  expect(entered).toBe(1); release?.(); return recoveries;
+  expect(entered).toBe(1);
+  release?.();
+  return recoveries;
 }
 
 async function waitForRefreshEntry(entered: () => number): Promise<void> {
@@ -67,7 +98,10 @@ async function waitForRefreshEntry(entered: () => number): Promise<void> {
 async function expectSealedRefreshRejected(root: string, date: string): Promise<void> {
   await Bun.write(`${root}/runs/${date}/manifest.json`, "{}\n");
   await expectRejection(assertRefreshWritable(root, date), "already sealed");
-  await expectRejection(withRefreshMutation(root, date, async () => {}), "already sealed");
+  await expectRejection(
+    withRefreshMutation(root, date, async () => {}),
+    "already sealed",
+  );
 }
 
 test("snapshots refresh inputs once", async () => {
@@ -159,71 +193,55 @@ test("allows initial refresh only once and bounds monthly cadence", async () => 
     `${Bun.env.TMPDIR ?? "/tmp"}/refresh-cadence.XXXXXX`,
   ]);
   try {
-    await command([
-      "/bin/mkdir",
-      "-p",
-      `${root}/runs/2026-07-01`,
-      `${root}/runs/2026-08-01`,
-      `${root}/runs/2026-08-20`,
-    ]);
-    await Bun.write(
-      `${root}/runs/2026-08-01/manifest.json`,
-      `${JSON.stringify({
-        schema_version: 1,
-        refresh: {
-          date: "2026-08-01",
-          trigger: "initial",
-          immutable: true,
-          teachers: [],
-        },
-        artifacts: [],
-      })}\n`,
-    );
-    await Bun.write(
-      `${root}/runs/2026-08-20/refresh.json`,
-      `${JSON.stringify({
-        schema_version: 1,
-        date: "2026-08-20",
-        trigger: "initial",
-        reason: "Invalid second initial corpus",
-        immutable: true,
-      })}\n`,
-    );
-    await Bun.write(
-      `${root}/runs/2026-08-01/refresh.json`,
-      `${JSON.stringify({
-        schema_version: 1,
-        date: "2026-08-01",
-        trigger: "monthly",
-        reason: "Sidecar must not override the sealed manifest",
-        immutable: true,
-      })}\n`,
-    );
-    await expectRejection(readRefreshMetadata(root, "2026-08-20"), "initial refresh trigger");
-    await Bun.write(
-      `${root}/runs/2026-07-01/refresh.json`,
-      `${JSON.stringify({
-        schema_version: 1,
-        date: "2026-07-01",
-        trigger: "initial",
-        reason: "Invalid backdated initial corpus",
-        immutable: true,
-      })}\n`,
-    );
-    await expectRejection(readRefreshMetadata(root, "2026-07-01"), "already used");
-    await command(["/bin/rm", "-rf", `${root}/runs/2026-07-01`]);
-    await Bun.write(
-      `${root}/runs/2026-08-20/refresh.json`,
-      `${JSON.stringify({
-        schema_version: 1,
-        date: "2026-08-20",
-        trigger: "monthly",
-        reason: "Too soon",
-        immutable: true,
-      })}\n`,
-    );
-    await expectRejection(readRefreshMetadata(root, "2026-08-20"), "only 19 days");
+    await prepareCadenceRuns(root);
+    await expectInvalidInitialRefreshes(root);
+    await expectTooFrequentMonthlyRefresh(root);
   } finally {
     await command(["/bin/rm", "-rf", root]);
   }
 });
+
+async function prepareCadenceRuns(root: string): Promise<void> {
+  await command([
+    "/bin/mkdir",
+    "-p",
+    `${root}/runs/2026-07-01`,
+    `${root}/runs/2026-08-01`,
+    `${root}/runs/2026-08-20`,
+  ]);
+  await Bun.write(
+    `${root}/runs/2026-08-01/manifest.json`,
+    `${JSON.stringify({ schema_version: 1, refresh: { date: "2026-08-01", trigger: "initial", immutable: true, teachers: [] }, artifacts: [] })}\n`,
+  );
+  await writeRefresh(root, "2026-08-20", "initial", "Invalid second initial corpus");
+  await writeRefresh(
+    root,
+    "2026-08-01",
+    "monthly",
+    "Sidecar must not override the sealed manifest",
+  );
+}
+
+async function expectInvalidInitialRefreshes(root: string): Promise<void> {
+  await expectRejection(readRefreshMetadata(root, "2026-08-20"), "initial refresh trigger");
+  await writeRefresh(root, "2026-07-01", "initial", "Invalid backdated initial corpus");
+  await expectRejection(readRefreshMetadata(root, "2026-07-01"), "already used");
+  await command(["/bin/rm", "-rf", `${root}/runs/2026-07-01`]);
+}
+
+async function expectTooFrequentMonthlyRefresh(root: string): Promise<void> {
+  await writeRefresh(root, "2026-08-20", "monthly", "Too soon");
+  await expectRejection(readRefreshMetadata(root, "2026-08-20"), "only 19 days");
+}
+
+async function writeRefresh(
+  root: string,
+  date: string,
+  trigger: "initial" | "monthly",
+  reason: string,
+): Promise<void> {
+  await Bun.write(
+    `${root}/runs/${date}/refresh.json`,
+    `${JSON.stringify({ schema_version: 1, date, trigger, reason, immutable: true })}\n`,
+  );
+}
