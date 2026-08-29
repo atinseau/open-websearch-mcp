@@ -23,97 +23,146 @@ export async function readLock(path: string): Promise<LockOwner | undefined> {
   };
 }
 
-export async function acquireControllerLock(repository: string): Promise<() => Promise<void>> {
+type LockPaths = {
+  readonly repository: string;
+  readonly lockRoot: string;
+  readonly lock: string;
+  readonly recovery: string;
+  readonly candidate: string;
+  readonly token: string;
+};
+
+/** A lock file older than this with no live owner is treated as abandoned. */
+const staleLockSeconds = 30;
+const retryDelayMs = 20;
+
+function lockPaths(repository: string): LockPaths {
   const lockRoot = `${repository}/.worktree`;
-  const lock = `${lockRoot}/.controller-lock`;
-  const recovery = `${lockRoot}/.controller-lock-recovery`;
   const token = crypto.randomUUID();
-  const candidate = `${lockRoot}/.controller-owner-${process.pid}-${token}.json`;
+  return {
+    repository,
+    lockRoot,
+    lock: `${lockRoot}/.controller-lock`,
+    recovery: `${lockRoot}/.controller-lock-recovery`,
+    candidate: `${lockRoot}/.controller-owner-${process.pid}-${token}.json`,
+    token,
+  };
+}
+
+async function processIsAlive(pid: number): Promise<boolean> {
+  const probe = Bun.spawn(["kill", "-0", String(pid)], { stdout: "ignore", stderr: "ignore" });
+  return (await probe.exited) === 0;
+}
+
+async function writtenRecently(path: string, repository: string): Promise<boolean> {
+  const modifiedAt = Number(await run(["stat", "-f", "%m", path], repository));
+  return Date.now() / 1_000 - modifiedAt < staleLockSeconds;
+}
+
+async function remove(path: string, repository: string): Promise<void> {
+  await run(["rm", path], repository).catch(() => undefined);
+}
+
+async function removeOwnedCandidate(owner: LockOwner | undefined, paths: LockPaths): Promise<void> {
+  if (!owner?.candidate?.startsWith(`${paths.lockRoot}/.controller-owner-`)) return;
+  await remove(owner.candidate, paths.repository);
+}
+
+function releaseHandle(paths: LockPaths): () => Promise<void> {
+  return async () => {
+    const held = await readLock(paths.lock);
+    if (held?.token === paths.token) await remove(paths.lock, paths.repository);
+    await remove(paths.candidate, paths.repository);
+  };
+}
+
+/** Clears an abandoned recovery marker; returns true when the caller should retry. */
+async function clearRecoveryMarker(paths: LockPaths): Promise<boolean> {
+  const owner = await readLock(paths.recovery);
+  if (
+    owner?.pid
+      ? await processIsAlive(owner.pid)
+      : await writtenRecently(paths.recovery, paths.repository)
+  ) {
+    await Bun.sleep(retryDelayMs);
+    return true;
+  }
+  await remove(paths.recovery, paths.repository);
+  await removeOwnedCandidate(owner, paths);
+  return true;
+}
+
+/** Throws when a live or freshly written lock proves another controller owns it. */
+async function assertLockIsAbandoned(
+  current: LockOwner | undefined,
+  paths: LockPaths,
+): Promise<void> {
+  const contended =
+    !current?.pid || !current.token
+      ? await writtenRecently(paths.lock, paths.repository)
+      : await processIsAlive(current.pid);
+  if (!contended) return;
+  await remove(paths.candidate, paths.repository);
+  throw new Error(
+    !current?.pid || !current.token
+      ? "Another controller is acquiring the lock"
+      : "Another controller is already running",
+  );
+}
+
+/** Replaces a lock proven stale; returns the release handle when it succeeds. */
+async function stealStaleLock(
+  current: LockOwner | undefined,
+  paths: LockPaths,
+): Promise<(() => Promise<void>) | undefined> {
+  try {
+    const stale = await readLock(paths.lock);
+    if (stale?.token !== current?.token && (stale || current)) return undefined;
+    await remove(paths.lock, paths.repository);
+    await removeOwnedCandidate(stale, paths);
+    await run(["ln", paths.candidate, paths.lock], paths.repository);
+    return releaseHandle(paths);
+  } finally {
+    await remove(paths.recovery, paths.repository);
+  }
+}
+
+async function attemptAcquire(paths: LockPaths): Promise<(() => Promise<void>) | undefined> {
+  if (await Bun.file(paths.recovery).exists()) {
+    await clearRecoveryMarker(paths);
+    return undefined;
+  }
+  try {
+    await run(["ln", paths.candidate, paths.lock], paths.repository);
+    return releaseHandle(paths);
+  } catch {
+    const current = await readLock(paths.lock);
+    await assertLockIsAbandoned(current, paths);
+    try {
+      await run(["ln", paths.candidate, paths.recovery], paths.repository);
+    } catch {
+      await Bun.sleep(retryDelayMs);
+      return undefined;
+    }
+    return await stealStaleLock(current, paths);
+  }
+}
+
+export async function acquireControllerLock(repository: string): Promise<() => Promise<void>> {
+  const paths = lockPaths(repository);
   const owner: LockOwner = {
     pid: process.pid,
-    token,
-    candidate,
+    token: paths.token,
+    candidate: paths.candidate,
     started_at: new Date().toISOString(),
   };
-  await run(["mkdir", "-p", lockRoot], repository);
-  await Bun.write(candidate, JSON.stringify(owner));
+  await run(["mkdir", "-p", paths.lockRoot], repository);
+  await Bun.write(paths.candidate, JSON.stringify(owner));
 
   for (let attempt = 0; attempt < 5; attempt += 1) {
-    if (await Bun.file(recovery).exists()) {
-      const recoveryOwner = await readLock(recovery);
-      if (recoveryOwner?.pid) {
-        const probe = Bun.spawn(["kill", "-0", String(recoveryOwner.pid)], {
-          stdout: "ignore",
-          stderr: "ignore",
-        });
-        if ((await probe.exited) === 0) {
-          await Bun.sleep(20);
-          continue;
-        }
-      } else {
-        const modifiedAt = Number(await run(["stat", "-f", "%m", recovery], repository));
-        if (Date.now() / 1_000 - modifiedAt < 30) {
-          await Bun.sleep(20);
-          continue;
-        }
-      }
-      await run(["rm", recovery], repository).catch(() => undefined);
-      if (recoveryOwner?.candidate?.startsWith(`${lockRoot}/.controller-owner-`)) {
-        await run(["rm", recoveryOwner.candidate], repository).catch(() => undefined);
-      }
-      continue;
-    }
-    try {
-      await run(["ln", candidate, lock], repository);
-      return async () => {
-        const current = await readLock(lock);
-        if (current?.token === token) await run(["rm", lock], repository).catch(() => undefined);
-        await run(["rm", candidate], repository).catch(() => undefined);
-      };
-    } catch {
-      const current = await readLock(lock);
-      if (!current?.pid || !current.token) {
-        const modifiedAt = Number(await run(["stat", "-f", "%m", lock], repository));
-        if (Date.now() / 1_000 - modifiedAt < 30) {
-          await run(["rm", candidate], repository).catch(() => undefined);
-          throw new Error("Another controller is acquiring the lock");
-        }
-      } else {
-        const probe = Bun.spawn(["kill", "-0", String(current.pid)], {
-          stdout: "ignore",
-          stderr: "ignore",
-        });
-        if ((await probe.exited) === 0) {
-          await run(["rm", candidate], repository).catch(() => undefined);
-          throw new Error("Another controller is already running");
-        }
-      }
-
-      try {
-        await run(["ln", candidate, recovery], repository);
-      } catch {
-        await Bun.sleep(20);
-        continue;
-      }
-      try {
-        const stale = await readLock(lock);
-        if (stale?.token === current?.token || (!stale && !current)) {
-          await run(["rm", lock], repository).catch(() => undefined);
-          if (stale?.candidate?.startsWith(`${lockRoot}/.controller-owner-`)) {
-            await run(["rm", stale.candidate], repository).catch(() => undefined);
-          }
-          await run(["ln", candidate, lock], repository);
-          return async () => {
-            const held = await readLock(lock);
-            if (held?.token === token) await run(["rm", lock], repository).catch(() => undefined);
-            await run(["rm", candidate], repository).catch(() => undefined);
-          };
-        }
-      } finally {
-        await run(["rm", recovery], repository).catch(() => undefined);
-      }
-    }
+    const release = await attemptAcquire(paths);
+    if (release) return release;
   }
-  await run(["rm", candidate], repository).catch(() => undefined);
+  await remove(paths.candidate, repository);
   throw new Error("Could not acquire controller lock");
 }
