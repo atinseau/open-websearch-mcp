@@ -837,19 +837,14 @@ type ResumedWorktree = {
   sessionId: string | undefined;
 };
 
-/**
- * Reconciles the one active worktree back to a runnable step. Returns a
- * finished result when the task is already integrated or awaits integration.
- */
-async function resumeActiveWorktree(input: {
+async function loadActiveWorktreeState(input: {
   active: WorktreeRecord;
   rootRecord: WorktreeRecord | undefined;
   rootState: OrchestrationState;
   options: ControllerOptions;
   repository: string;
-  forceFreshSession: boolean;
-}): Promise<ResumedWorktree | { finished: OpenCodeStepResult }> {
-  const { active, rootRecord, rootState, options, repository, forceFreshSession } = input;
+}): Promise<{ activePath: string; state: OrchestrationState }> {
+  const { active, rootRecord, rootState, options, repository } = input;
   const activePath = active.worktree;
   if (!activePath) throw new Error("Active worktree record has no path");
   if (
@@ -862,6 +857,35 @@ async function resumeActiveWorktree(input: {
   if (await recoverWorktreeState({ activePath, active, rootState, state, options, repository })) {
     state = await validateRepository(activePath);
   }
+  return { activePath, state };
+}
+
+/**
+ * Reconciles the one active worktree back to a runnable step. Returns a
+ * finished result when the task is already integrated or awaits integration.
+ */
+type ResumeActiveWorktreeInput = {
+  active: WorktreeRecord;
+  rootRecord: WorktreeRecord | undefined;
+  rootState: OrchestrationState;
+  options: ControllerOptions;
+  repository: string;
+  forceFreshSession: boolean;
+};
+
+async function resumeActiveWorktree(
+  input: ResumeActiveWorktreeInput,
+): Promise<ResumedWorktree | { finished: OpenCodeStepResult }> {
+  const { active, rootRecord, rootState, options, repository, forceFreshSession } = input;
+  const loaded = await loadActiveWorktreeState({
+    active,
+    rootRecord,
+    rootState,
+    options,
+    repository,
+  });
+  const { activePath } = loaded;
+  let { state } = loaded;
   const resumed = resolveActiveTask(state, rootState, active, repository);
   const { taskId, attempt, relativeWorktree, worktree, branch, baseSha } = resumed;
   const caught = await catchUpWorktreeLedger({
@@ -907,117 +931,121 @@ async function resumeActiveWorktree(input: {
   };
 }
 
-export async function runControllerStep(
+async function startControllerWorktree(
+  rootState: OrchestrationState,
   options: ControllerOptions,
-  forceFreshSession = false,
-): Promise<OpenCodeStepResult> {
-  const { repository, rootState } = await establishRootContext(options);
-  const records = await readWorktreeRecords(repository);
+  repository: string,
+): Promise<ResumedWorktree> {
+  const started = await startNextReadyTask(rootState, options, repository);
+  const state = await validateRepository(started.worktree);
+  const task = state.tasks[started.taskId]!;
+  return {
+    state,
+    task,
+    ...started,
+    stepNumber: await nextStepNumber(started.worktree, started.taskId),
+    previousTaskState: task.state,
+    previousSessionId: undefined,
+    sessionId: undefined,
+  };
+}
+
+async function resolveControllerWorktree(input: {
+  rootState: OrchestrationState;
+  options: ControllerOptions;
+  repository: string;
+  forceFreshSession: boolean;
+}): Promise<ResumedWorktree | { finished: OpenCodeStepResult }> {
+  const records = await readWorktreeRecords(input.repository);
   const [rootRecord, ...worktreeRecords] = records;
   if (worktreeRecords.length > 1) throw new Error("Only one implementation worktree may be active");
-
-  let state = rootState;
-  let taskId: string;
-  let task: Task;
-  let attempt: number;
-  let relativeWorktree: string;
-  let worktree: string;
-  let branch: string;
-  let baseSha: string;
-  let stepNumber: number;
-  let sessionId: string | undefined;
-  let previousSessionId: string | undefined;
-  let previousTaskState: TaskState;
-  let latestTrace: string;
-
   const active = worktreeRecords[0];
-  if (active) {
-    const resumed = await resumeActiveWorktree({
-      active,
-      rootRecord,
-      rootState,
-      options,
-      repository,
-      forceFreshSession,
-    });
-    if ("finished" in resumed) return resumed.finished;
-    ({
-      state,
-      taskId,
-      task,
-      attempt,
-      relativeWorktree,
-      worktree,
-      branch,
-      baseSha,
-      latestTrace,
-      stepNumber,
-      previousTaskState,
-      previousSessionId,
-      sessionId,
-    } = resumed);
-  } else {
-    const started = await startNextReadyTask(state, options, repository);
-    ({ taskId, attempt, relativeWorktree, worktree, branch, baseSha, latestTrace } = started);
-    state = await validateRepository(worktree);
-    task = state.tasks[taskId]!;
-    previousTaskState = task.state;
-    previousSessionId = undefined;
-    stepNumber = await nextStepNumber(worktree, taskId);
-  }
+  return active
+    ? resumeActiveWorktree({ ...input, active, rootRecord })
+    : startControllerWorktree(input.rootState, input.options, input.repository);
+}
 
-  const request: OpenCodeRequest = {
-    task: taskId,
-    cwd: worktree,
+function createStepRequest(
+  step: ResumedWorktree,
+  options: ControllerOptions,
+): OpenCodeRequest {
+  return {
+    task: step.taskId,
+    cwd: step.worktree,
     model: options.model,
     variant: options.variant,
-    session_id: sessionId,
-    prompt: createPrompt(taskId, task, latestTrace),
-    timeout_ms: state.policy.agent_timeout_minutes * 60_000,
+    session_id: step.sessionId,
+    prompt: createPrompt(step.taskId, step.task, step.latestTrace),
+    timeout_ms: step.state.policy.agent_timeout_minutes * 60_000,
   };
-  const result = await executeAndValidateStep({
-    options,
-    request,
-    task,
-    taskId,
-    worktree,
-    baseSha,
-    previousTaskState,
-    previousSessionId,
-  });
+}
+
+async function persistControllerStep(input: {
+  step: ResumedWorktree;
+  options: ControllerOptions;
+  request: OpenCodeRequest;
+  result: OpenCodeStepResult;
+}): Promise<void> {
+  const { step, options, request, result } = input;
   const taskState = taskStateForStatus(result.status);
-  const headSha = await run(["git", "rev-parse", "HEAD"], worktree);
+  const headSha = await run(["git", "rev-parse", "HEAD"], step.worktree);
   const reviewedDiff =
     result.status === "verified"
-      ? await reviewedContentDigest(worktree, baseSha, taskId)
+      ? await reviewedContentDigest(step.worktree, step.baseSha, step.taskId)
       : undefined;
-  const traceRelative = `docs/orchestration/runs/${taskId}/${String(stepNumber).padStart(4, "0")}-${result.step}.md`;
+  const traceRelative = `docs/orchestration/runs/${step.taskId}/${String(step.stepNumber).padStart(4, "0")}-${result.step}.md`;
   const trace = createTrace({
-    taskId,
-    attempt,
-    stepNumber,
+    taskId: step.taskId,
+    attempt: step.attempt,
+    stepNumber: step.stepNumber,
     request,
     result,
-    branch,
-    baseSha,
+    branch: step.branch,
+    baseSha: step.baseSha,
     headSha,
   });
   await persistStep({
-    worktree,
-    taskId,
+    worktree: step.worktree,
+    taskId: step.taskId,
     taskState,
     model: options.model,
     variant: options.variant,
-    relativeWorktree,
-    branch,
-    baseSha,
-    attempt,
-    stepNumber,
+    relativeWorktree: step.relativeWorktree,
+    branch: step.branch,
+    baseSha: step.baseSha,
+    attempt: step.attempt,
+    stepNumber: step.stepNumber,
     traceRelative,
     trace,
     sessionId: result.session_id === "unavailable" ? undefined : result.session_id,
     headSha: result.status === "verified" ? headSha : undefined,
     reviewedDiff,
   });
+}
+
+export async function runControllerStep(
+  options: ControllerOptions,
+  forceFreshSession = false,
+): Promise<OpenCodeStepResult> {
+  const { repository, rootState } = await establishRootContext(options);
+  const step = await resolveControllerWorktree({
+    rootState,
+    options,
+    repository,
+    forceFreshSession,
+  });
+  if ("finished" in step) return step.finished;
+  const request = createStepRequest(step, options);
+  const result = await executeAndValidateStep({
+    options,
+    request,
+    task: step.task,
+    taskId: step.taskId,
+    worktree: step.worktree,
+    baseSha: step.baseSha,
+    previousTaskState: step.previousTaskState,
+    previousSessionId: step.previousSessionId,
+  });
+  await persistControllerStep({ step, options, request, result });
   return result;
 }
