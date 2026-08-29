@@ -15,17 +15,18 @@ import {
   isolatedTeacherHome,
   teacherProcessEnvironment,
 } from "./derive-fixture-support.ts";
+import {
+  captureOutputExists,
+  failureOutput,
+  publishAcceptedCapture,
+  type CaptureTarget,
+  writeCaptureArtifacts,
+  writeMalformedCapture,
+} from "./capture-probe-publication.ts";
 
 type Provider = "codex";
 type CaptureInspection = ReturnType<typeof inspectCodexProbe>;
-type AcceptedCapture = {
-  sanitizedEvents: string;
-  policy: Record<string, unknown>;
-  run: unknown;
-  startedAt: string;
-  exitCode: number;
-  inspection: CaptureInspection;
-};
+type AcceptedCapture = { sanitizedEvents: string; policy: Record<string, unknown>; run: unknown; startedAt: string; exitCode: number; inspection: CaptureInspection };
 
 export async function captureProbe(
   provider: Provider,
@@ -43,93 +44,9 @@ export async function captureProbe(
     teacherCase === undefined
       ? `${root}/runs/${date}/probes/${provider}`
       : `${root}/runs/${date}/cases/${teacherCase.id}/${provider}`;
-  const eventsPath = `${output}/events.sanitized.jsonl`;
-  const policyPath = `${output}/policy.json`;
-  const runPath = `${output}/run.json`;
-  if (await outputExists()) {
+  const target: CaptureTarget = { root, date, provider, caseId: teacherCase?.id, output };
+  if (await captureOutputExists(target)) {
     throw new Error(`immutable probe already exists: ${output}`);
-  }
-
-  function failedOutputPath(capturedCaseId: string | undefined, captureStartedAt: string): string {
-    const timestamp = captureStartedAt.replaceAll(/[-:.]/g, "");
-    return `${root}/runs/${date}/failures/${capturedCaseId ?? "probe"}/${provider}-policy-${timestamp}`;
-  }
-
-  async function outputExists(): Promise<boolean> {
-    return (
-      (await Bun.file(eventsPath).exists()) ||
-      (await Bun.file(policyPath).exists()) ||
-      (await Bun.file(runPath).exists())
-    );
-  }
-
-  async function writeCaptureArtifacts(
-    directory: string,
-    events: string,
-    policy: unknown,
-    run?: unknown,
-  ): Promise<void> {
-    await publishArtifacts(directory, {
-      "events.sanitized.jsonl": `${events}\n`,
-      "policy.json": `${JSON.stringify(policy, null, 2)}\n`,
-      ...(run === undefined ? {} : { "run.json": `${JSON.stringify(run, null, 2)}\n` }),
-    });
-  }
-
-  async function writeMalformedCapture(directory: string, result: unknown): Promise<void> {
-    await publishArtifacts(directory, {
-      "result.sanitized.json": `${JSON.stringify(result, null, 2)}\n`,
-    });
-  }
-
-  async function publishArtifacts(directory: string, files: Record<string, string>): Promise<void> {
-    const temporary = `${directory}.tmp-${crypto.randomUUID()}`;
-    try {
-      await commandOutput(["/bin/mkdir", "-p", temporary]);
-      for (const [name, contents] of Object.entries(files)) {
-        await Bun.write(`${temporary}/${name}`, contents);
-      }
-      const exists = await runProcess(["/bin/test", "-e", directory], {
-        timeoutMs: 30_000,
-        maxOutputBytes: 1_048_576,
-      });
-      if (exists.exit_code === 0 && exists.failure === undefined)
-        throw new Error(`immutable probe already exists: ${directory}`);
-      await commandOutput(["/bin/mv", temporary, directory]);
-    } finally {
-      await commandOutput(["/bin/rm", "-rf", temporary]);
-    }
-  }
-
-  async function publishAcceptedCapture(capture: AcceptedCapture): Promise<void> {
-    let archivedOutput = output;
-    let collision = false;
-    await withRefreshMutation(root, date, async () => {
-      if (await outputExists()) {
-        collision = true;
-        archivedOutput = failedOutputPath(teacherCase?.id, capture.startedAt);
-        await writeCaptureArtifacts(archivedOutput, capture.sanitizedEvents, {
-          ...capture.policy,
-          failure: `immutable probe already exists: ${output}`,
-        });
-        return;
-      }
-      await writeCaptureArtifacts(output, capture.sanitizedEvents, capture.policy, capture.run);
-    });
-    if (collision) {
-      throw new Error(
-        `immutable probe already exists: ${output}; attempt archived at ${archivedOutput}`,
-      );
-    }
-    console.log(
-      JSON.stringify({
-        provider,
-        case_id: teacherCase?.id,
-        output: archivedOutput,
-        exit_code: capture.exitCode,
-        inspection: capture.inspection,
-      }),
-    );
   }
 
   const binary = await canonicalExecutable(provider);
@@ -209,7 +126,7 @@ export async function captureProbe(
     try {
       sanitizedEvents = sanitizeJsonl(stdout, paths);
     } catch (error) {
-      const archivedOutput = failedOutputPath(teacherCase?.id, startedAt);
+      const archivedOutput = failureOutput(target, startedAt);
       const sanitizedStdout = JSON.parse(sanitizeJsonl(JSON.stringify({ stdout }), paths)).stdout;
       const failure = JSON.parse(
         sanitizeJsonl(
@@ -256,7 +173,7 @@ export async function captureProbe(
         .map((line) => JSON.parse(line));
       inspection = inspectCodexProbe(events);
     } catch (error) {
-      const archivedOutput = failedOutputPath(teacherCase?.id, startedAt);
+      const archivedOutput = failureOutput(target, startedAt);
       const failurePolicy = JSON.parse(
         sanitizeJsonl(
           JSON.stringify({
@@ -350,7 +267,7 @@ export async function captureProbe(
         validateTeacherRun(run);
       }
     } catch (error) {
-      const archivedOutput = failedOutputPath(teacherCase?.id, startedAt);
+      const archivedOutput = failureOutput(target, startedAt);
       const failure = JSON.parse(
         sanitizeJsonl(
           JSON.stringify({
@@ -371,7 +288,7 @@ export async function captureProbe(
     }
 
     if (!accepted) {
-      const archivedOutput = failedOutputPath(teacherCase?.id, startedAt);
+      const archivedOutput = failureOutput(target, startedAt);
       pendingPublication = async () => {
         await withRefreshMutation(root, date, async () => {
           await writeCaptureArtifacts(archivedOutput, sanitizedEvents, policy);
@@ -406,7 +323,7 @@ export async function captureProbe(
         return;
       }
       const capture = acceptedCapture;
-      if (capture !== undefined) await publishAcceptedCapture(capture);
+      if (capture !== undefined) await publishAcceptedCapture(target, capture);
     });
   }
   if (captureFailure !== undefined) throw captureFailure;
