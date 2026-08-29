@@ -516,8 +516,7 @@ test("runController independently reruns checks before verified completion", asy
   ).toContain("false");
 });
 
-test("runController reconciles a merged verified task before selecting the next planned task", async () => {
-  const repository = await createRepository();
+async function verifyAndMergeBoot002(repository: string): Promise<string> {
   const boot002 = `${repository}/.worktree/boot-002-a1`;
   let boot002Calls = 0;
   await runController({
@@ -553,7 +552,10 @@ test("runController reconciles a merged verified task before selecting the next 
   await Bun.$`git -C ${boot002} add .`.quiet();
   await Bun.$`git -C ${boot002} -c user.name=Test -c user.email=test@example.com commit -m boot002`.quiet();
   await Bun.$`git -C ${repository} merge --ff-only agent/boot-002-a1`.quiet();
+  return boot002;
+}
 
+async function selectBoot003(repository: string): Promise<OpenCodeRequest | undefined> {
   let nextRequest: OpenCodeRequest | undefined;
   await runController({
     repository,
@@ -573,7 +575,13 @@ test("runController reconciles a merged verified task before selecting the next 
       };
     },
   });
+  return nextRequest;
+}
 
+test("runController reconciles a merged verified task before selecting the next planned task", async () => {
+  const repository = await createRepository();
+  const boot002 = await verifyAndMergeBoot002(repository);
+  const nextRequest = await selectBoot003(repository);
   expect(nextRequest?.task).toBe("BOOT-003");
   expect(nextRequest?.cwd).toBe(`${repository}/.worktree/boot-003-a1`);
   expect(await Bun.file(`${boot002}/docs/orchestration/state.toml`).exists()).toBe(false);
