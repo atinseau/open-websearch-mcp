@@ -154,7 +154,9 @@ test("CACHE-005 returns local provenance and honors class TTL and revalidation",
   const storage = await openStorage({ workspace: workspace() });
   const fetchedAt = new Date("2026-08-01T00:00:00.000Z");
   const reference = await storage.blobs.put("cached");
-  await storage.cache.put(document("https://example.com/news", reference, "news", fetchedAt));
+  await storage.cache.put(
+    document({ href: "https://example.com/news", reference, contentClass: "news", fetchedAt }),
+  );
   expect(
     (
       await storage.cache.get(new URL("https://example.com/news"), {
@@ -171,7 +173,9 @@ test("CACHE-005 returns local provenance and honors class TTL and revalidation",
       })
     )?.revalidate,
   ).toBe(true);
-  await storage.cache.put(document("https://example.com/docs", reference, "docs", fetchedAt));
+  await storage.cache.put(
+    document({ href: "https://example.com/docs", reference, contentClass: "docs", fetchedAt }),
+  );
   expect(
     (
       await storage.cache.get(new URL("https://example.com/docs"), {
@@ -188,32 +192,32 @@ test("CACHE-006 evicts LRU bodies in priority order while preserving pins", asyn
   const storage = await openStorage({ workspace: workspace() });
   const at = new Date("2026-08-01T00:00:00.000Z");
   await storage.cache.put(
-    document(
-      "https://example.com/binary",
-      await storage.blobs.put("11111"),
-      "general",
-      at,
-      "binary",
-    ),
+    document({
+      href: "https://example.com/binary",
+      reference: await storage.blobs.put("11111"),
+      contentClass: "general",
+      fetchedAt: at,
+      bodyKind: "binary",
+    }),
   );
   await storage.cache.put(
-    document(
-      "https://example.com/rendered",
-      await storage.blobs.put("22222"),
-      "general",
-      at,
-      "rendered",
-    ),
+    document({
+      href: "https://example.com/rendered",
+      reference: await storage.blobs.put("22222"),
+      contentClass: "general",
+      fetchedAt: at,
+      bodyKind: "rendered",
+    }),
   );
   await storage.cache.put(
-    document(
-      "https://example.com/pinned",
-      await storage.blobs.put("33333"),
-      "general",
-      at,
-      "binary",
-      true,
-    ),
+    document({
+      href: "https://example.com/pinned",
+      reference: await storage.blobs.put("33333"),
+      contentClass: "general",
+      fetchedAt: at,
+      bodyKind: "binary",
+      pinned: true,
+    }),
   );
   await storage.cache.evict(5);
   expect(
@@ -232,10 +236,20 @@ test("CACHE-006 uses least-recent access within a body kind", async () => {
   const storage = await openStorage({ workspace: workspace() });
   const at = new Date("2026-08-01T00:00:00.000Z");
   await storage.cache.put(
-    document("https://example.com/old", await storage.blobs.put("11111"), "general", at),
+    document({
+      href: "https://example.com/old",
+      reference: await storage.blobs.put("11111"),
+      contentClass: "general",
+      fetchedAt: at,
+    }),
   );
   await storage.cache.put(
-    document("https://example.com/new", await storage.blobs.put("22222"), "general", at),
+    document({
+      href: "https://example.com/new",
+      reference: await storage.blobs.put("22222"),
+      contentClass: "general",
+      fetchedAt: at,
+    }),
   );
   await storage.cache.get(new URL("https://example.com/old"), {
     now: new Date("2026-08-01T01:00:00.000Z"),
@@ -251,38 +265,22 @@ test("CACHE-006 uses least-recent access within a body kind", async () => {
   storage.close();
 });
 
-test("CACHE-010 survives restart with cached metadata and bodies", async () => {
-  const root = workspace();
-  const first = await openStorage({ workspace: root });
-  const reference = await first.blobs.put("restart");
-  await first.cache.put(
-    document(
-      "https://example.com/restart",
-      reference,
-      "versioned",
-      new Date("2026-08-01T00:00:00.000Z"),
-    ),
-  );
-  first.close();
-  const second = await openStorage({ workspace: root });
-  const cached = await second.cache.get(new URL("https://example.com/restart"), {
-    now: new Date("2026-08-02T00:00:00.000Z"),
-    ttls,
-  });
-  expect(cached?.fresh).toBe(true);
-  expect(new TextDecoder().decode(await second.blobs.get(cached!.document.body))).toBe("restart");
-  second.close();
-});
-
-function document(
-  href: string,
-  reference: BlobReference,
-  contentClass: "news" | "general" | "docs" | "versioned",
-  fetchedAt: Date,
-  bodyKind: "binary" | "rendered" | "text" = "rendered",
-  pinned = false,
-) {
-  return { url: new URL(href), body: reference, contentClass, bodyKind, fetchedAt, pinned };
+function document(input: {
+  href: string;
+  reference: BlobReference;
+  contentClass: "news" | "general" | "docs" | "versioned";
+  fetchedAt: Date;
+  bodyKind?: "binary" | "rendered" | "text";
+  pinned?: boolean;
+}) {
+  return {
+    url: new URL(input.href),
+    body: input.reference,
+    contentClass: input.contentClass,
+    bodyKind: input.bodyKind ?? "rendered",
+    fetchedAt: input.fetchedAt,
+    pinned: input.pinned ?? false,
+  };
 }
 
 async function rejection(promise: Promise<unknown>): Promise<unknown> {

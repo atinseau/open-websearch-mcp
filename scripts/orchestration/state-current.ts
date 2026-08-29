@@ -46,7 +46,8 @@ function hasValidTaskLocation(
     Number.isInteger(attempt) &&
     attempt! >= 1 &&
     state.current_branch === `agent/${taskId.toLowerCase()}-a${attempt}` &&
-    state.current_worktree === `${state.policy.worktree_root}/${taskId.toLowerCase()}-a${attempt}` &&
+    state.current_worktree ===
+      `${state.policy.worktree_root}/${taskId.toLowerCase()}-a${attempt}` &&
     /^[0-9a-f]{40}$/u.test(state.current_base_sha ?? "") &&
     Number.isInteger(state.current_step) &&
     state.current_step! >= 1 &&
