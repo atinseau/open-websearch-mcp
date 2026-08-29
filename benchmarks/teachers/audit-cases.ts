@@ -24,18 +24,16 @@ import {
   verificationFromLegacyClaudeEnvelope,
 } from "./fixture-contract.ts";
 import { verifyDraftGrounding } from "./fixture-grounding.ts";
-import { codexDisabledFeatures, codexSkillControls } from "./policy-controls.ts";
 import { inspectLegacyClaudeProbe, inspectLegacyCodexProbe } from "./contract-probes.ts";
 import { readRefreshInputs } from "./refresh-inputs.ts";
 import { assertKnownCaseArtifacts } from "./audit-case-artifacts.ts";
 import {
-  assertCommandPair,
   assertPolicy,
   assertRunIdentity,
-  assertSuccessfulPolicy,
   type AuditContext,
   type TeacherCase,
 } from "./audit-case-policy.ts";
+import { assertDerivationPolicy, assertVerificationPolicy } from "./audit-fixture-policy.ts";
 
 export async function auditTeacherCorpus(
   root: string,
@@ -243,52 +241,15 @@ async function auditFixture(context: AuditContext, teacherCase: TeacherCase): Pr
     throw new Error(`${teacherCase.id} fixture differs from its archived derivation`);
   }
   await assertFixtureFiles(directory, teacherCase.id, false);
-  const derivationPolicy = record(
+  assertDerivationPolicy(
     await Bun.file(`${directory}/derivation-policy.json`).json(),
-    "fixture derivation policy",
+    teacherCase.id,
   );
-  assertSuccessfulPolicy(derivationPolicy, "codex", teacherCase.id);
-  if (derivationPolicy.model !== "gpt-5.4") {
-    throw new Error(`${teacherCase.id} fixture derivation used an unexpected model`);
-  }
-  const controls = record(derivationPolicy.controls, "fixture derivation controls");
-  if (controls.tools_disabled !== true || controls.skills_disabled !== true)
-    throw new Error(`${teacherCase.id} fixture derivation did not disable tools and skills`);
-  const command = array(derivationPolicy.command, "fixture derivation command").map(
-    (value, index) => requiredString(value, `fixture derivation command[${index}]`),
-  );
-  for (const control of ['web_search="disabled"', ...codexSkillControls]) {
-    if (!command.includes(control)) {
-      throw new Error(`${teacherCase.id} fixture derivation is missing policy control ${control}`);
-    }
-  }
-  for (const feature of codexDisabledFeatures) assertCommandPair(command, "--disable", feature);
-
-  const verificationPolicy = record(
+  assertVerificationPolicy(
     await Bun.file(`${directory}/verification-policy.json`).json(),
-    "fixture verification policy",
+    verification,
+    teacherCase.id,
   );
-  if (
-    verificationPolicy.verifier !== "grounding" ||
-    verificationPolicy.deterministic !== true ||
-    verificationPolicy.uses_llm !== false ||
-    verificationPolicy.uses_network !== false
-  ) {
-    throw new Error(`${teacherCase.id} fixture verification is not the deterministic verifier`);
-  }
-  const accepted = array(
-    record(verification, "fixture verification").accepted_claim_ids,
-    "accepted_claim_ids",
-    true,
-  ).length;
-  const rejected = array(
-    record(verification, "fixture verification").rejected_claims,
-    "verification rejected_claims",
-    true,
-  ).length;
-  if (verificationPolicy.accepted !== accepted || verificationPolicy.rejected !== rejected) {
-    throw new Error(`${teacherCase.id} fixture verification policy miscounts its outcome`);
-  }
 }
 
 function draftFromEvents(events: unknown[]): unknown {
