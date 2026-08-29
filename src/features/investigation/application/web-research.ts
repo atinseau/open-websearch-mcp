@@ -123,7 +123,7 @@ class WebResearchApplication implements InvestigationApplication {
         // An explicitly opened page is evidence the product has already paid to
         // fetch. Storing it lets a later search answer from cache when Google
         // is unavailable, which is what makes the fallback above useful.
-        await this.cache(document, extracted);
+        await this.cache(document, extracted, context);
         return pageResult({
           document,
           extracted,
@@ -288,7 +288,11 @@ class WebResearchApplication implements InvestigationApplication {
     return consumed.state === "consumed" ? consumed.response : undefined;
   }
 
-  private async cache(document: RenderedDocument, extracted: ExtractionResult): Promise<void> {
-    await storeRenderedEvidence(this.#storage, document, extracted, this.#now());
+  private async cache(
+    document: RenderedDocument,
+    extracted: ExtractionResult,
+    context: CallContext,
+  ): Promise<void> {
+    await storeRenderedEvidence(this.#storage, document, extracted, this.#now(), context);
   }
 }

@@ -45,7 +45,13 @@ export async function prepareCandidate(
     const document = await dependencies.render(candidate.url, context);
     const extracted = await dependencies.extractor.extract(extractionInput(document));
     if (extracted.status !== "success") return undefined;
-    await storeRenderedEvidence(dependencies.storage, document, extracted, dependencies.now());
+    await storeRenderedEvidence(
+      dependencies.storage,
+      document,
+      extracted,
+      dependencies.now(),
+      context,
+    );
     return { candidate, document, extracted };
   } catch {
     return undefined;

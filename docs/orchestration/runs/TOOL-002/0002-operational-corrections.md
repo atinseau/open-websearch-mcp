@@ -72,9 +72,12 @@ remains searchable.
 
 ## Still open
 
-LRU eviction exists in storage and is unit-tested, but no product path calls
-it, so the 5 GiB ceiling in `CACHE-006` is not enforced at runtime.
-Conditional revalidation is likewise not issued: the validators are now stored,
-but no `If-None-Match`/`If-Modified-Since` request is made, so a stale entry is
-re-rendered in full rather than revalidated. Both are real remaining work,
+Conditional revalidation is not issued. The validators are stored now, but no
+`If-None-Match`/`If-Modified-Since` request is made, so a stale entry is
+re-rendered in full rather than revalidated. That is real remaining work,
 recorded here rather than claimed as done.
+
+Eviction, by contrast, is now driven by the product: every stored page applies
+the configured `cache.max_bytes` ceiling, so `CACHE-006` holds at runtime and
+not merely in a unit test. Proven by storing four pages under a 400-byte limit
+and observing the store hold fewer than four.

@@ -1,7 +1,8 @@
 import { expect, test } from "bun:test";
 
-import { createWebResearchApplication } from "@/features/investigation";
+import { createWebResearchApplication, type CallContext } from "@/features/investigation";
 import type { Renderer } from "@/features/rendering";
+import { defaultConfiguration } from "@/features/configuration";
 import { openStorage } from "@/features/storage";
 import { structuredToolResultSchema } from "@/mcp/contracts";
 import {
@@ -158,5 +159,29 @@ test("CACHE-005 honours the origin's own cache directives end to end", async () 
   const second = createWebResearchApplication({ storage, renderer: publicRenderer });
   await second.webOpen({ url: new URL("https://public.example/page") }, context());
   expect((await storage.cache.search("needle", 5)).results.length).toBeGreaterThan(0);
+  storage.close();
+});
+
+test("CACHE-006 enforces the configured ceiling as pages are stored", async () => {
+  // Eviction existed but no product path called it, so the ceiling was never
+  // enforced at runtime and the cache could grow without bound.
+  const storage = await openStorage({ workspace: workspace() });
+  const tiny: CallContext = {
+    abortController: new AbortController(),
+    configuration: {
+      scheduler: context().configuration.scheduler,
+      configuration: {
+        ...defaultConfiguration,
+        cache: { ...defaultConfiguration.cache, max_bytes: 400 },
+      },
+    },
+  };
+  const application = createWebResearchApplication({ storage, renderer: renderer() });
+  for (const path of ["one", "two", "three", "four"]) {
+    await application.webOpen({ url: new URL(`https://bulk.example/${path}`) }, tiny);
+  }
+  const stored = (await storage.cache.search("needle", 50)).results;
+  expect(stored.length).toBeGreaterThan(0);
+  expect(stored.length).toBeLessThan(4);
   storage.close();
 });

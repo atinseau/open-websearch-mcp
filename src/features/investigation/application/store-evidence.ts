@@ -2,6 +2,8 @@ import type { ExtractionResult } from "@/features/extraction";
 import type { RenderedDocument } from "@/features/rendering";
 import type { Storage } from "@/features/storage";
 
+import type { CallContext } from "../index.ts";
+
 /**
  * Stores a rendered page as reusable evidence. The declared content type is
  * carried through so freshness follows the origin's own cache directives,
@@ -12,6 +14,7 @@ export async function storeRenderedEvidence(
   document: RenderedDocument,
   extracted: ExtractionResult,
   fetchedAt: Date,
+  context?: CallContext,
 ): Promise<void> {
   const body = await storage.blobs.put(document.markdown);
   await storage.cache.put({
@@ -23,6 +26,10 @@ export async function storeRenderedEvidence(
     mainContent: extracted.passages.map((passage) => passage.text).join("\n"),
     headers: originHeaders(document),
   });
+  // CACHE-006 caps the store at a configured ceiling. Eviction existed but no
+  // product path drove it, so the limit was never enforced at runtime and the
+  // cache could grow without bound.
+  await storage.cache.evict(context?.configuration.configuration?.cache.max_bytes);
 }
 
 /**
