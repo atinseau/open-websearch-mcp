@@ -83,6 +83,26 @@ test("ARCH-010 composed web runtime injects the renderer and public policy into 
   expect(renderer).toBeDefined();
 });
 
+test("RENDER-005 rejects a configuration pin not packaged as immutable release data", async () => {
+  const root = `/private/tmp/open-websearch-pin-${crypto.randomUUID()}`;
+  await Bun.write(
+    `${root}/config.toml`,
+    '[renderer.obscura]\nversion = "latest"\nvariant = "aarch64-macos-stealth"\n',
+  );
+  expect(await rejection(createProductionRoot({ workspace: resolveWorkspace(root) }))).toContain(
+    `${root}/config.toml requests latest/aarch64-macos-stealth; expected 0.2.1/aarch64-macos-stealth`,
+  );
+});
+
+async function rejection(promise: Promise<unknown>): Promise<string> {
+  try {
+    await promise;
+    return "resolved";
+  } catch (error) {
+    return error instanceof Error ? error.message : "unknown";
+  }
+}
+
 function result() {
   return { investigation_id: "root-test", status: "success", confidence: "high", results: [] };
 }

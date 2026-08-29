@@ -27,6 +27,8 @@ export interface PreparedPageConsumption<T> {
   readonly signal: AbortSignal;
   /** Produces the complete exploitable response without consuming its page. */
   readonly prepareForEmission: () => Promise<T>;
+  /** Resolves the page identity after preparation and before the atomic reservation. */
+  readonly resolvedUrl?: (response: T) => URL;
 }
 
 export function createInvestigationService(
@@ -62,7 +64,7 @@ class PersistentInvestigationService implements InvestigationService {
 
     const reservation = await this.repository.reserveConsumedPage({
       investigationId: investigation.id,
-      url: input.url,
+      url: input.resolvedUrl?.(response) ?? input.url,
       signal: input.signal,
     });
     if (reservation.reserved) return { state: "consumed", investigation, response };

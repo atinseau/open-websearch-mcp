@@ -18,6 +18,16 @@ function createTransport(): StdioClientTransport {
   });
 }
 
+function createProductionTransport(): StdioClientTransport {
+  return new StdioClientTransport({
+    command: "bun",
+    args: ["src/cli.ts"],
+    cwd: import.meta.dir + "/../..",
+    stderr: "pipe",
+    env: { ...Bun.env, HOME: `/private/tmp/open-websearch-cli-${crypto.randomUUID()}` },
+  });
+}
+
 test("MCP-001/MCP-002/MCP-003/MCP-005/MCP-006: official client calls real stdio server", async () => {
   const client = createClient();
   const transport = createTransport();
@@ -47,6 +57,18 @@ test("MCP-001/MCP-002/MCP-003/MCP-005/MCP-006: official client calls real stdio 
   });
   await client.close();
 });
+
+test("MCP-001 real package bin initializes, lists tools, and accepts web_search", async () => {
+  const client = createClient();
+  await client.connect(createProductionTransport());
+  expect((await client.listTools()).tools.map((tool) => tool.name).sort()).toEqual([
+    "web_open",
+    "web_search",
+  ]);
+  const search = await client.callTool({ name: "web_search", arguments: { query: "evidence" } });
+  expect(search.structuredContent).toMatchObject({ status: expect.any(String) });
+  await client.close();
+}, 30_000);
 
 test("MCP-002/MCP-003: SDK rejects invalid arguments before application dispatch", async () => {
   const client = createClient();

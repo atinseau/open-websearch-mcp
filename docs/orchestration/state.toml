@@ -355,56 +355,70 @@ evidence = [
 ]
 
 [tasks.WEB-001]
-state = "planned"
+state = "verified"
 spec = "docs/spec/05-rendering-extraction.md"
 depends_on = ["FND-002"]
 write_set = ["src/features/rendering/install", "tests/integration/installer"]
-evidence = []
+requirements = ["INSTALL-001", "INSTALL-002", "INSTALL-003"]
+acceptance_gates = ["command:bun test --parallel --isolate tests/rendering/installer.test.ts"]
+evidence = ["docs/orchestration/runs/WEB-001/0001-implementation.md", "docs/orchestration/runs/TOOL-002/0002-product-review-corrections.md"]
 
 [tasks.WEB-002]
-state = "planned"
+state = "verified"
 spec = "docs/spec/05-rendering-extraction.md"
 depends_on = ["WEB-001", "SPK-002", "FND-005"]
 write_set = ["src/features/rendering", "tests/integration/rendering"]
-evidence = []
+requirements = ["RENDER-001", "RENDER-003", "RENDER-005", "RENDER-006", "RENDER-007"]
+acceptance_gates = ["command:bun test --parallel --isolate tests/rendering/webview-obscura.test.ts"]
+evidence = ["docs/orchestration/runs/WEB-002/0001-implementation-and-verification.md", "docs/orchestration/runs/TOOL-002/0002-product-review-corrections.md"]
 
 [tasks.WEB-003]
-state = "planned"
+state = "verified"
 spec = "docs/spec/07-security-trust.md"
 depends_on = ["FND-001", "SPK-005"]
 write_set = ["src/features/security", "tests/security"]
-evidence = []
+requirements = ["SECURITY-003", "SECURITY-004", "SECURITY-005", "SECURITY-006"]
+acceptance_gates = ["command:bun test --parallel --isolate tests/security/public-network.test.ts tests/rendering/webview-obscura.test.ts"]
+evidence = ["docs/orchestration/runs/WEB-003/0001-implementation.md", "docs/orchestration/runs/WEB-003/0002-review-corrections.md", "docs/adr/0009-delegate-renderer-network-enforcement-to-pinned-obscura.md"]
 
 [tasks.WEB-004]
-state = "planned"
+state = "verified"
 spec = "docs/spec/05-rendering-extraction.md"
 depends_on = ["FND-003", "WEB-003"]
 write_set = ["src/features/storage/downloads", "tests/integration/downloads"]
-evidence = []
+requirements = ["RENDER-008", "RENDER-009"]
+acceptance_gates = ["command:bun run check"]
+evidence = ["docs/orchestration/runs/WEB-004/0001-implementation.md"]
 
 [tasks.WEB-005]
-state = "planned"
+state = "verified"
 spec = "docs/spec/05-rendering-extraction.md"
 depends_on = ["WEB-002", "WEB-004", "SPK-004"]
 write_set = ["src/features/extraction", "tests/contracts/extraction"]
-evidence = []
+requirements = ["EXTRACT-001", "EXTRACT-004", "EXTRACT-005", "EXTRACT-009", "EXTRACT-010", "EXTRACT-011"]
+acceptance_gates = ["command:bun run check"]
+evidence = ["docs/orchestration/runs/WEB-005/0001-implementation.md"]
 
 [tasks.WEB-006]
-state = "planned"
+state = "verified"
 spec = "docs/spec/04-discovery-google.md"
 depends_on = ["WEB-002", "WEB-003"]
 write_set = ["src/features/discovery", "tests/integration/discovery"]
-evidence = []
+requirements = ["SEARCH-001", "SEARCH-008", "SEARCH-012"]
+acceptance_gates = ["command:bun run check"]
+evidence = ["docs/orchestration/runs/WEB-006/0001-implementation.md"]
 
 [tasks.WEB-007]
-state = "planned"
+state = "verified"
 spec = "docs/spec/06-ranking-cache-investigations.md"
 depends_on = ["WEB-005", "SPK-001"]
 write_set = ["src/features/ranking", "tests/contracts/ranking"]
-evidence = []
+requirements = ["RANK-004", "RANK-005", "RANK-012"]
+acceptance_gates = ["command:bun run check"]
+evidence = ["docs/orchestration/runs/WEB-007/0001-implementation.md"]
 
 [tasks.WEB-008]
-state = "planned"
+state = "verified"
 spec = "docs/spec/06-ranking-cache-investigations.md"
 depends_on = ["FND-003", "WEB-005", "WEB-007"]
 write_set = [
@@ -412,21 +426,27 @@ write_set = [
   "src/features/ranking/deduplication",
   "tests/integration/cache",
 ]
-evidence = []
+requirements = ["CACHE-008", "CACHE-009", "CACHE-011"]
+acceptance_gates = ["command:bun run check"]
+evidence = ["docs/orchestration/runs/WEB-008/0002-implementation-and-verification.md"]
 
 [tasks.TOOL-001]
-state = "planned"
+state = "verified"
 spec = "docs/spec/03-mcp-contract.md"
 depends_on = ["FND-004", "FND-005", "FND-006", "WEB-002", "WEB-005", "WEB-008"]
 write_set = ["src/features/open", "src/mcp/tools/web-open", "tests/e2e/web-open"]
-evidence = []
+requirements = ["MCP-003", "MCP-004", "MCP-013"]
+acceptance_gates = ["command:bun test --parallel --isolate tests/e2e/web-tools.test.ts"]
+evidence = ["docs/orchestration/runs/TOOL-001/0001-implementation.md"]
 
 [tasks.TOOL-002]
-state = "planned"
+state = "verified"
 spec = "docs/spec/03-mcp-contract.md"
 depends_on = ["TOOL-001", "WEB-006", "WEB-007", "WEB-008"]
 write_set = ["src/features/search", "src/mcp/tools/web-search", "tests/e2e/web-search"]
-evidence = []
+requirements = ["MCP-001", "MCP-002", "MCP-009", "PROD-007"]
+acceptance_gates = ["command:bun test --parallel --isolate tests/mcp/stdio-contract.test.ts tests/e2e/web-tools.test.ts"]
+evidence = ["docs/orchestration/runs/TOOL-002/0001-implementation.md", "docs/orchestration/runs/TOOL-002/0002-product-review-corrections.md"]
 
 [tasks.VER-001]
 state = "planned"

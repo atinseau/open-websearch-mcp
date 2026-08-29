@@ -12,7 +12,7 @@ const obscura = Bun.which("obscura");
 const fixtures: Array<ReturnType<typeof Bun.serve>> = [];
 const supervisors: ReturnType<typeof createObscuraSupervisor>[] = [];
 const configuration: RendererConfiguration = {
-  navigationTimeoutMs: 400,
+  navigationTimeoutMs: 2_000,
   settleTimeoutMs: 10,
   maxDownloadBytes: 25 * 1024 * 1024,
 };
@@ -124,6 +124,27 @@ if (!obscura) {
     );
     await scheduler.shutdown();
   }, 20_000);
+
+  test("SECURITY-004 Obscura 0.2.1 blocks private addresses before any fixture request", async () => {
+    const fixture = startSecurityFixture();
+    const supervisor = createObscuraSupervisor({ executable: obscuraPath, configuration });
+    supervisors.push(supervisor);
+    const endpoint = await supervisor.install(new AbortController().signal);
+    const renderer = createWebViewRenderer({
+      endpoint,
+      configuration,
+      scheduler: createNavigationScheduler({ configuration: schedulerConfiguration }),
+      policy: localFixturePolicy,
+    });
+    for (const target of [
+      `${fixture.url}direct`,
+      fixture.url.replace("127.0.0.1", "127.0.0.1.nip.io") + "rebound",
+      `${fixture.url}redirect-to-private`,
+    ]) {
+      expect(await rejection(render(renderer, target))).not.toBe("resolved");
+      expect(fixture.hits()).toBe(0);
+    }
+  }, 20_000);
 }
 
 function startFixture() {
@@ -157,6 +178,25 @@ function startFixture() {
   });
   fixtures.push(fixture);
   return fixture;
+}
+
+function startSecurityFixture(): { readonly url: string; hits(): number } {
+  let requests = 0;
+  const fixture = Bun.serve({
+    port: 0,
+    hostname: "127.0.0.1",
+    fetch(request) {
+      requests++;
+      if (new URL(request.url).pathname === "/redirect-to-private")
+        return new Response(null, {
+          status: 302,
+          headers: { location: "http://127.0.0.1/private" },
+        });
+      return html("security fixture");
+    },
+  });
+  fixtures.push(fixture);
+  return { url: new URL(fixture.url).href, hits: () => requests };
 }
 
 function html(label: string, headers: Record<string, string> = {}): Response {

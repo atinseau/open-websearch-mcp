@@ -217,6 +217,62 @@ test("PROD-007 concurrent progressive searches emit a page once", async () => {
   storage.close();
 });
 
+test("PROD-007 reserves the canonical resolved identity for redirect aliases", async () => {
+  const storage = await openStorage({ workspace: workspace() });
+  const final = new URL("https://example.com/evidence/?utm_source=search");
+  const application = createWebResearchApplication({
+    storage,
+    renderer: { render: async () => document(final) },
+    discovery: fixtureDiscovery([
+      "https://example.com/redirect-a",
+      "https://example.com/redirect-b",
+    ]),
+  });
+  const result = structuredToolResultSchema.parse(
+    await application
+      .webSearch({ query: "needle", maxResults: 2, investigationId: "redirect-aliases" }, context())
+      .then((value) => value.structuredContent),
+  );
+  expect(result.results).toHaveLength(1);
+  expect(result.results[0]?.final_url).toBe("https://example.com/evidence/?utm_source=search");
+  const redirectedOpen = await application.webOpen(
+    { url: new URL("https://example.com/another-alias"), investigationId: "redirect-aliases" },
+    context(),
+  );
+  expect(structuredToolResultSchema.parse(redirectedOpen.structuredContent).results).toHaveLength(
+    0,
+  );
+  storage.close();
+});
+
+test("TOOL-002 aborts outstanding candidate preparation once the quota is met", async () => {
+  const storage = await openStorage({ workspace: workspace() });
+  const slowStarted = Promise.withResolvers<void>();
+  const slowAborted = Promise.withResolvers<void>();
+  const application = createWebResearchApplication({
+    storage,
+    discovery: fixtureDiscovery(["https://fast.example/needle", "https://slow.example/needle"]),
+    renderer: {
+      render: async (request) => {
+        if (request.url.hostname === "fast.example") return document(request.url);
+        slowStarted.resolve();
+        await new Promise<void>((_resolve, reject) =>
+          request.signal.addEventListener("abort", () => {
+            slowAborted.resolve();
+            reject(request.signal.reason);
+          }),
+        );
+        return document(request.url);
+      },
+    },
+  });
+  const response = await application.webSearch({ query: "needle", maxResults: 1 }, context());
+  await slowStarted.promise;
+  expect(structuredToolResultSchema.parse(response.structuredContent).results).toHaveLength(1);
+  await slowAborted.promise;
+  storage.close();
+});
+
 function fixtureDiscovery(urls: readonly string[]): GoogleDiscoveryService {
   return {
     profile: () => ({ id: "google-public", persistent: true, importsUserCredentials: false }),

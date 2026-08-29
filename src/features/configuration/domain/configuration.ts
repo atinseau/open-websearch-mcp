@@ -145,7 +145,7 @@ export const defaultConfiguration: FullConfiguration = {
     initial_concurrency: 8,
     max_concurrency: 40,
     max_per_host: 2,
-    obscura: { version: "0.0.0", variant: "aarch64-macos-stealth" },
+    obscura: { version: "0.2.1", variant: "aarch64-macos-stealth" },
   },
   cache: {
     max_bytes: 5_368_709_120,

@@ -10,6 +10,8 @@ export interface ObscuraArtifact {
   readonly url: string;
   readonly sha256: string;
   readonly sizeBytes: number;
+  /** Bounded decompressed archive size; release pins may set a tighter value. */
+  readonly maximumExtractedBytes?: number;
   readonly expectedFiles: readonly ("obscura" | "obscura-worker")[];
 }
 
@@ -63,7 +65,7 @@ async function stageAndActivate(
   transport: ObscuraTransport,
 ): Promise<string> {
   const stage = `${base}/.${artifact.version}.installing`;
-  const archive = `${base}/.${artifact.version}.download`;
+  const archive = `${base}/.${artifact.version}.download${archiveExtension(artifact.url)}`;
   removeDirectory(stage);
   removeFile(archive);
   await createDirectory(stage);
@@ -71,7 +73,7 @@ async function stageAndActivate(
   try {
     await transport.download(new URL(artifact.url), archive, artifact.sizeBytes);
     await verifyArchive(archive, artifact, transport);
-    await transport.extract(archive, stage, artifact.sizeBytes);
+    await transport.extract(archive, stage, extractedSizeLimit(artifact));
     await verifyExtracted(stage, artifact);
     if (!(await probe(`${stage}/obscura`))) throw new Error("obscura_probe_failed");
     await writeManifest(stage, artifact);
@@ -86,11 +88,15 @@ async function stageAndActivate(
   }
 }
 
+function archiveExtension(url: string): string {
+  const path = new URL(url).pathname;
+  return path.endsWith(".tar.gz") ? ".tar.gz" : path.endsWith(".tgz") ? ".tgz" : ".zip";
+}
+
 function validatePin(artifact: ObscuraArtifact): void {
   if (!/^[0-9A-Za-z._-]+$/u.test(artifact.version)) throw new Error("obscura_invalid_release_pin");
   if (artifact.variant !== "macos-arm64") throw new Error("obscura_invalid_release_variant");
-  if (!Number.isSafeInteger(artifact.sizeBytes) || artifact.sizeBytes < 1)
-    throw new Error("obscura_invalid_archive_limit");
+  validateArchiveLimits(artifact);
   if (!/^[a-f0-9]{64}$/u.test(artifact.sha256)) throw new Error("obscura_invalid_release_hash");
   const url = new URL(artifact.url);
   if (url.protocol !== "https:") throw new Error("obscura_release_requires_https");
@@ -99,6 +105,21 @@ function validatePin(artifact: ObscuraArtifact): void {
     !artifact.expectedFiles.includes("obscura-worker")
   )
     throw new Error("obscura_archive_missing_required_files");
+}
+
+function validateArchiveLimits(artifact: ObscuraArtifact): void {
+  if (!Number.isSafeInteger(artifact.sizeBytes) || artifact.sizeBytes < 1)
+    throw new Error("obscura_invalid_archive_limit");
+  if (
+    artifact.maximumExtractedBytes !== undefined &&
+    (!Number.isSafeInteger(artifact.maximumExtractedBytes) ||
+      artifact.maximumExtractedBytes < artifact.sizeBytes)
+  )
+    throw new Error("obscura_invalid_extracted_archive_limit");
+}
+
+function extractedSizeLimit(artifact: ObscuraArtifact): number {
+  return artifact.maximumExtractedBytes ?? artifact.sizeBytes * 4;
 }
 
 async function verifyArchive(

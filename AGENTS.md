@@ -42,6 +42,9 @@ without a new ADR.
 - [ADR-0008](docs/adr/0008-scope-arch-007-limits-to-product-source.md):
   `ARCH-007` numeric limits apply to `src` via `src/.oxlintrc.jsonc`.
   `scripts/` and `benchmarks/` are recorded debt, not exempt.
+- [ADR-0009](docs/adr/0009-delegate-renderer-network-enforcement-to-pinned-obscura.md):
+  Obscura `0.2.1` enforces renderer DNS/redirect public-network controls;
+  rerun its adversarial integration test before accepting any pin change.
 - `SPK-002` selected exactly one `Bun.WebView` renderer bound to an explicitly
   owned Obscura CDP endpoint. Production never ships the fallback CDP path too.
 - `SPK-003` calibrated the scheduler. Consume

@@ -17,4 +17,5 @@ export {
   type RobotsDecision,
   type RobotsPolicy,
 } from "@/features/security/domain/robots";
+export { createRobotsPolicy } from "@/features/security/application/robots-policy";
 export { redactDiagnostic, safeArchiveEntry } from "@/features/security/domain/privacy";

@@ -1,4 +1,6 @@
 import { createConfigurationService, resolveWorkspace } from "@/features/configuration";
+import { createProductionRoot } from "@/bootstrap";
+import { serveStdio } from "@/mcp";
 
 export interface CliDependencies {
   startMcp(): Promise<void>;
@@ -24,7 +26,13 @@ if (import.meta.main) {
   const configuration = createConfigurationService({ workspace: resolveWorkspace() });
   await runCli(Bun.argv.slice(2), {
     async startMcp() {
-      throw new Error("mcp_composition_not_available");
+      const root = await createProductionRoot({});
+      try {
+        await serveStdio(root.tools, root.maxInboundMessageBytes);
+        await new Promise<void>((resolve) => process.stdin.once("end", resolve));
+      } finally {
+        await root.close();
+      }
     },
     doctor: () => configuration.doctor(),
     async benchmark() {

@@ -13,7 +13,12 @@ import {
   type Renderer,
   type RendererConfiguration,
 } from "@/features/rendering";
-import { assessPublicUrl, type PublicUrlPolicy } from "@/features/security";
+import {
+  assessPublicUrl,
+  createRobotsPolicy,
+  type PublicUrlPolicy,
+  type RobotsPolicy,
+} from "@/features/security";
 import { BlobStore, createStorage, SqliteStore, type Storage } from "@/features/storage";
 import {
   createWebResearchApplication,
@@ -22,6 +27,8 @@ import {
 } from "@/features/investigation";
 import type { McpToolAdapter, McpToolDependencies } from "@/mcp";
 import { createMcpToolAdapter } from "@/mcp/tools";
+
+import { productionObscuraArtifact } from "./obscura-artifact.ts";
 
 /** Composition root; future infrastructure is assembled here, not in features. */
 export function composeMcpTools(dependencies: McpToolDependencies): McpToolAdapter {
@@ -39,8 +46,9 @@ export interface ProductionRootOptions {
   readonly application?: InvestigationApplication;
   readonly workspace?: Workspace;
   readonly probe?: (executable: string) => Promise<boolean>;
-  /** Release-only pin; omitted only by non-web composition tests. */
+  /** Test-only override; production always uses the immutable package pin. */
   readonly obscuraArtifact?: ObscuraArtifact;
+  readonly robots?: RobotsPolicy;
 }
 
 /** Builds the runtime once; every tool call reloads config before crossing the application seam. */
@@ -59,36 +67,61 @@ export async function createProductionRoot(
     new BlobStore(`${workspace.root}/cache/blobs`),
   );
   const logger = await createSessionLogger(workspace, (message) => console.error(message));
-  const installer = createObscuraInstaller(workspace, options.probe ?? (async () => false));
-  const web = options.obscuraArtifact
-    ? createWebRuntime(
-        installer,
-        options.obscuraArtifact,
-        rendererConfiguration(first.configuration?.renderer),
-        first.scheduler,
-      )
-    : undefined;
-  const application = applicationFor(options.application, storage, web?.renderer);
-  bindWebRuntime(application, web?.renderer, web?.policy);
+  const installer = createObscuraInstaller(workspace, options.probe ?? probeObscura);
+  const web = createWebRuntime(
+    installer,
+    options.obscuraArtifact ??
+      configuredObscuraArtifact(first.configuration?.renderer.obscura, workspace.config),
+    rendererConfiguration(first.configuration?.renderer),
+    first.scheduler,
+  );
+  const application = applicationFor(
+    options.application,
+    storage,
+    web?.renderer,
+    options.robots ?? createRobotsPolicy(),
+  );
+  bindWebRuntime(application, web.renderer, web.policy);
   const tools = makeTools(application, configuration, logger, installer);
   return {
     tools,
     storage,
     maxInboundMessageBytes: first.configuration?.mcp.max_inbound_message_bytes ?? 4 * 1024 * 1024,
     async close() {
-      await web?.close();
+      await web.close();
       storage.close();
       await logger.close();
     },
   };
 }
 
+function configuredObscuraArtifact(
+  configured: { readonly version: string; readonly variant: string } | undefined,
+  configPath: string,
+): ObscuraArtifact {
+  if (
+    configured &&
+    (configured.version !== productionObscuraArtifact.version ||
+      configured.variant !== "aarch64-macos-stealth")
+  )
+    throw new Error(
+      `obscura_release_pin_not_packaged: ${configPath} requests ${configured.version}/${configured.variant}; expected ${productionObscuraArtifact.version}/aarch64-macos-stealth. Remove the renderer.obscura override or set the packaged pin.`,
+    );
+  return productionObscuraArtifact;
+}
+
+async function probeObscura(executable: string): Promise<boolean> {
+  const process = Bun.spawn([executable, "--version"], { stdout: "ignore", stderr: "ignore" });
+  return (await process.exited) === 0;
+}
+
 function applicationFor(
   application: InvestigationApplication | undefined,
   storage: Storage,
   renderer: Renderer | undefined,
+  robots: RobotsPolicy,
 ): InvestigationApplication {
-  return application ?? createWebResearchApplication({ storage, renderer });
+  return application ?? createWebResearchApplication({ storage, renderer, robots });
 }
 
 function rendererConfiguration(

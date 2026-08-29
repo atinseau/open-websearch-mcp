@@ -2,6 +2,7 @@ import { expect, test } from "bun:test";
 
 import {
   assessPublicUrl,
+  createRobotsPolicy,
   createPublicNetworkClient,
   redactDiagnostic,
   safeArchiveEntry,
@@ -176,6 +177,18 @@ test("SECURITY-005 applies robots to automatic search and records explicit-open 
     "robots_disallowed",
   );
   expect(calls).toBe(2);
+});
+
+test("SECURITY-005 production robots policy blocks a matching automatic destination", async () => {
+  const policy = createRobotsPolicy({
+    fetch: async () => new Response("User-agent: OpenWebSearchMCP\nDisallow: /private"),
+  });
+  expect(
+    await policy.canCrawl(new URL("https://public.example/private/report"), "OpenWebSearchMCP"),
+  ).toBeFalse();
+  expect(
+    await policy.canCrawl(new URL("https://public.example/public"), "OpenWebSearchMCP"),
+  ).toBeTrue();
 });
 
 test("SECURITY-006 keeps provenance while removing trackers and fragments", async () => {

@@ -7,9 +7,10 @@ import {
 import { selectPreRenderCandidates } from "@/features/ranking";
 import type { RenderedDocument, Renderer } from "@/features/rendering";
 import { decideRobots, type RobotsPolicy } from "@/features/security";
-import type { Storage } from "@/features/storage";
+import { canonicalizeUrl, type Storage } from "@/features/storage";
 
 import { createInvestigationService, type InvestigationService } from "./investigations.ts";
+import { startPreparation, type Prepared } from "./search-preparation.ts";
 import type {
   CallContext,
   EvidenceResult,
@@ -126,6 +127,7 @@ class WebResearchApplication implements InvestigationApplication {
           now: this.#now(),
         });
       },
+      resolvedUrl: (response) => canonicalizeUrl(new URL(response.final_url)),
     });
     if (result.state === "consumed")
       return tool(result.investigation.id, success([result.response]));
@@ -184,14 +186,11 @@ class WebResearchApplication implements InvestigationApplication {
     context: CallContext,
   ): Promise<readonly EvidenceResult[]> {
     const pending = new Map(
-      candidates.map((ranked, id) => [
-        id,
-        this.prepareCandidate(ranked.candidate, context).then((prepared) => ({
-          id,
-          prepared,
-          score: ranked.score,
-        })),
-      ]),
+      candidates.map((ranked, id) =>
+        startPreparation(id, ranked.candidate, ranked.score, context, (candidate, preparation) =>
+          this.prepareCandidate(candidate, preparation),
+        ),
+      ),
     );
     const results: EvidenceResult[] = [];
     while (
@@ -199,7 +198,7 @@ class WebResearchApplication implements InvestigationApplication {
       results.length < (input.maxResults ?? 5) &&
       !context.abortController.signal.aborted
     ) {
-      const settled = await Promise.race(pending.values());
+      const settled = await Promise.race(Array.from(pending.values(), (task) => task.promise));
       pending.delete(settled.id);
       if (!settled.prepared) continue;
       const emitted = await this.consumeSearchPage(
@@ -210,6 +209,7 @@ class WebResearchApplication implements InvestigationApplication {
       );
       if (emitted) results.push(emitted);
     }
+    for (const task of pending.values()) task.controller.abort(new Error("search_quota_met"));
     return results.sort((a, b) => b.score - a.score);
   }
 
@@ -277,6 +277,7 @@ class WebResearchApplication implements InvestigationApplication {
           score,
           now: this.#now(),
         }),
+      resolvedUrl: () => canonicalizeUrl(prepared.document.url),
     });
     return consumed.state === "consumed" ? consumed.response : undefined;
   }
@@ -292,9 +293,4 @@ class WebResearchApplication implements InvestigationApplication {
       mainContent: extracted.passages.map((passage) => passage.text).join("\n"),
     });
   }
-}
-interface Prepared {
-  readonly candidate: Candidate;
-  readonly document: RenderedDocument;
-  readonly extracted: ExtractionResult;
 }
