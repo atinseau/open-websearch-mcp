@@ -1,4 +1,5 @@
 import type { InvestigationId } from "@/features/investigation";
+import type { PublicUrlPolicy } from "@/features/security";
 import { AdaptiveNavigationScheduler } from "@/features/rendering/application/scheduler";
 import { ObscuraSupervisor } from "@/features/rendering/adapters/obscura-supervisor";
 import { WebViewRenderer } from "@/features/rendering/adapters/webview-renderer";
@@ -67,12 +68,16 @@ export interface ObscuraSupervisorOptions {
   readonly executable: string;
   readonly configuration: RendererConfiguration;
   readonly diagnostic?: (message: string) => void;
+  /** Test fixtures only; production rejects this switch unconditionally. */
+  readonly allowPrivateNetworkForTest?: boolean;
 }
 
 export interface WebViewRendererOptions {
   readonly endpoint: RendererEndpoint;
   readonly configuration: RendererConfiguration;
   readonly scheduler: NavigationScheduler;
+  /** Mandatory public-destination gate. It is evaluated before every navigation. */
+  readonly policy: PublicUrlPolicy;
 }
 
 /** Process-global, fair, cancellable navigation scheduling seam. */

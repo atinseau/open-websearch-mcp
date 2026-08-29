@@ -106,9 +106,11 @@ test("RENDER-011 rejects honest and lying declared sizes plus aggregate overflow
 
 test("SECURITY-004 aborts a decompression bomb after decoded bytes exceed the bound", async () => {
   const storage = await openStorage({ workspace: workspace() });
-  const compressedHeader = new Response(body("123456", "789012"), {
-    headers: { "content-encoding": "gzip", "content-length": "2" },
-  });
+  const source = body("x".repeat(128 * 1024));
+  const compressed = new Uint8Array(
+    await new Response(source.pipeThrough(compression("gzip"))).arrayBuffer(),
+  );
+  const compressedHeader = new Response(compressed, { headers: { "content-encoding": "gzip" } });
   expect(
     await rejection(
       downloadDocument({
@@ -117,11 +119,18 @@ test("SECURITY-004 aborts a decompression bomb after decoded bytes exceed the bo
         transport: transport(compressedHeader),
         blobs: storage.blobs,
         budget: createDownloadBudget(10),
+        maximumDecodedBytes: 1024,
       }),
     ),
   ).toBeInstanceOf(Error);
   storage.close();
 });
+
+function compression(format: CompressionFormat): ReadableWritablePair<Uint8Array, Uint8Array> {
+  // Bun's DOM declarations expose a wider input buffer than pipeThrough accepts.
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+  return new CompressionStream(format) as unknown as ReadableWritablePair<Uint8Array, Uint8Array>;
+}
 
 test("CACHE-002 persists streamed content under an atomic content hash", async () => {
   const root = workspace();

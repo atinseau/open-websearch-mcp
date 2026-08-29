@@ -71,7 +71,7 @@ async function stageAndActivate(
   try {
     await transport.download(new URL(artifact.url), archive, artifact.sizeBytes);
     await verifyArchive(archive, artifact, transport);
-    await transport.extract(archive, stage);
+    await transport.extract(archive, stage, artifact.sizeBytes);
     await verifyExtracted(stage, artifact);
     if (!(await probe(`${stage}/obscura`))) throw new Error("obscura_probe_failed");
     await writeManifest(stage, artifact);

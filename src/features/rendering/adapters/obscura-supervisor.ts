@@ -46,6 +46,11 @@ export class ObscuraSupervisor implements RendererSupervisor {
 
   async #start(): Promise<RendererEndpoint> {
     const port = loopbackPort();
+    if (this.#options.allowPrivateNetworkForTest && Bun.env.NODE_ENV !== "test")
+      throw new Error("private_network_test_switch_forbidden");
+    const testOnlyPrivateNetwork = this.#options.allowPrivateNetworkForTest
+      ? ["--allow-private-network"]
+      : [];
     const child = Bun.spawn(
       [
         this.#options.executable,
@@ -55,7 +60,7 @@ export class ObscuraSupervisor implements RendererSupervisor {
         "--port",
         `${port}`,
         "--stealth",
-        "--allow-private-network",
+        ...testOnlyPrivateNetwork,
       ],
       { stdin: "ignore", stdout: "ignore", stderr: "ignore", detached: true },
     );

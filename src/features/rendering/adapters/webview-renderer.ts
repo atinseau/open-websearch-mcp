@@ -22,6 +22,7 @@ export class WebViewRenderer implements Renderer {
   }
 
   render(request: RenderRequest): Promise<RenderedDocument> {
+    assertPublic(this.#options.policy, request.url);
     return this.#options.scheduler.schedule(
       {
         investigationId: request.investigationId,
@@ -48,7 +49,12 @@ export class WebViewRenderer implements Renderer {
       const settledAt = Date.now();
       await pause(this.#options.configuration.settleTimeoutMs, signal);
       if (monitor.exceeded()) throw new Error("download_budget_exceeded");
-      return await documentFrom(view, url, monitor.bytes(), settledAt);
+      const document = await documentFrom(view, url, monitor.bytes(), settledAt);
+      // WebView resolves redirects internally. Rejecting the resolved URL prevents any
+      // redirected document from becoming evidence; production Obscura itself has no
+      // private-network exemption, so a private redirect cannot be loaded either.
+      assertPublic(this.#options.policy, document.url);
+      return document;
     } finally {
       signal.removeEventListener("abort", cancel);
       monitor.stop();
@@ -63,6 +69,7 @@ export class WebViewRenderer implements Renderer {
     exceeded: () => boolean,
   ): Promise<void> {
     await view.navigate("about:blank");
+    assertPublic(this.#options.policy, url);
     await view.cdp("Network.enable");
     try {
       await raceAbort(view.navigate(url.toString()), signal);
@@ -72,6 +79,11 @@ export class WebViewRenderer implements Renderer {
     }
     if (exceeded()) throw new Error("download_budget_exceeded");
   }
+}
+
+function assertPublic(policy: WebViewRendererOptions["policy"], url: URL): void {
+  const assessment = policy.assess(url);
+  if (!assessment.allowed) throw new Error(assessment.reason ?? "non_public_destination");
 }
 
 function monitorTransfer(view: Bun.WebView, maximumBytes: number): TransferMonitor {

@@ -1,6 +1,9 @@
 import { expect, test } from "bun:test";
 import { createProductionRoot } from "@/bootstrap";
 import { resolveWorkspace } from "@/features/configuration";
+import type { InvestigationApplication } from "@/features/investigation";
+import type { Renderer } from "@/features/rendering";
+import type { PublicUrlPolicy } from "@/features/security";
 
 test("ARCH-010 real composed call loads config, opens storage, and writes a session log", async () => {
   const root = `/private/tmp/open-websearch-root-${crypto.randomUUID()}`;
@@ -26,6 +29,58 @@ test("ARCH-010 real composed call loads config, opens storage, and writes a sess
   expect(
     (await Array.fromAsync(new Bun.Glob("*.jsonl").scan({ cwd: `${root}/logs` }))).length,
   ).toBe(1);
+});
+
+test("ARCH-010 composed web runtime injects the renderer and public policy into its application", async () => {
+  const root = `/private/tmp/open-websearch-web-runtime-${crypto.randomUUID()}`;
+  const workspace = resolveWorkspace(root);
+  let renderer: Renderer | undefined;
+  let policy: PublicUrlPolicy | undefined;
+  const application: InvestigationApplication & {
+    bindWebRuntime(renderer: Renderer, policy: PublicUrlPolicy): void;
+  } = {
+    bindWebRuntime(boundRenderer, boundPolicy) {
+      renderer = boundRenderer;
+      policy = boundPolicy;
+    },
+    async webSearch() {
+      return { investigationId: "root-test", structuredContent: result() };
+    },
+    async webOpen() {
+      if (!renderer || !policy) throw new Error("web_runtime_not_bound");
+      expect(policy.assess(new URL("http://127.0.0.1/admin")).allowed).toBeFalse();
+      let failure: unknown;
+      try {
+        await renderer.render({
+          url: new URL("http://127.0.0.1/admin"),
+          signal: new AbortController().signal,
+          investigationId: "root-test",
+          kind: "destination",
+          explicitOpen: true,
+        });
+      } catch (error) {
+        failure = error;
+      }
+      expect(failure).toBeInstanceOf(Error);
+      if (failure instanceof Error) expect(failure.message).toContain("non_public_address");
+      return { investigationId: "root-test", structuredContent: result() };
+    },
+  };
+  const composed = await createProductionRoot({
+    workspace,
+    obscuraArtifact: {
+      version: "fixture",
+      variant: "macos-arm64",
+      url: "https://example.com/obscura.zip",
+      sha256: "0".repeat(64),
+      sizeBytes: 1,
+      expectedFiles: ["obscura", "obscura-worker"],
+    },
+    application,
+  });
+  await composed.tools.webOpen({ url: new URL("https://example.com") });
+  await composed.close();
+  expect(renderer).toBeDefined();
 });
 
 function result() {

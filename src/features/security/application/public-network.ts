@@ -184,19 +184,21 @@ async function readBounded(
   maxDecompressedBytes: number,
 ): Promise<Uint8Array> {
   if (!response.body) return new Uint8Array();
-  const raw = await readStream(response.body, maxBytes);
   const encoding = response.headers.get("content-encoding")?.toLowerCase();
-  if (!encoding || encoding === "identity") return raw;
+  if (!encoding || encoding === "identity") return readStream(response.body, maxBytes);
   const format = compressionFormat(encoding);
   if (!format) throw new Error("unsupported_content_encoding");
-  return readStream(
-    new Blob([raw.slice().buffer]).stream().pipeThrough(new DecompressionStream(format)),
-    maxDecompressedBytes,
-  );
+  return readStream(response.body.pipeThrough(decompression(format)), maxDecompressedBytes);
 }
 function compressionFormat(encoding: string): CompressionFormat | undefined {
   if (encoding === "gzip" || encoding === "deflate") return encoding;
   return undefined;
+}
+function decompression(format: CompressionFormat): ReadableWritablePair<Uint8Array, Uint8Array> {
+  // Bun's DOM declarations expose a wider input buffer than pipeThrough accepts.
+  // Runtime values are byte streams; keeping this boundary here preserves streaming.
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+  return new DecompressionStream(format) as unknown as ReadableWritablePair<Uint8Array, Uint8Array>;
 }
 async function readStream(stream: ReadableStream<Uint8Array>, limit: number): Promise<Uint8Array> {
   const reader = stream.getReader();

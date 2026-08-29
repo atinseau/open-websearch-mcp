@@ -7,7 +7,8 @@ export interface ObscuraArchiveEntry {
 export interface ObscuraTransport {
   download(url: URL, destination: string, maximumBytes: number): Promise<void>;
   list(archive: string): Promise<readonly ObscuraArchiveEntry[]>;
-  extract(archive: string, destination: string): Promise<void>;
+  /** Must reject before extraction when archive members exceed this decoded-byte limit. */
+  extract(archive: string, destination: string, maximumExtractedBytes: number): Promise<void>;
 }
 
 export const defaultObscuraTransport: ObscuraTransport = {
@@ -49,7 +50,26 @@ async function listZip(archive: string): Promise<readonly ObscuraArchiveEntry[]>
     .map((path) => ({ path, kind: path.endsWith("/") ? "directory" : "file" }));
 }
 
-async function extractZip(archive: string, destination: string): Promise<void> {
+async function extractZip(
+  archive: string,
+  destination: string,
+  maximumExtractedBytes: number,
+): Promise<void> {
+  const listing = Bun.spawnSync(["/usr/bin/unzip", "-Z", "-l", archive]);
+  if (listing.exitCode !== 0) throw new Error("obscura_archive_inspection_failed");
+  const total = decodedZipBytes(new TextDecoder().decode(listing.stdout));
+  if (total > maximumExtractedBytes) throw new Error("obscura_extraction_too_large");
   const result = Bun.spawnSync(["/usr/bin/unzip", "-q", archive, "-d", destination]);
   if (result.exitCode !== 0) throw new Error("obscura_archive_extraction_failed");
+}
+
+function decodedZipBytes(listing: string): number {
+  let total = 0;
+  for (const line of listing.split("\n")) {
+    const match = /^\s*(\d+)\s+/u.exec(line);
+    if (!match) continue;
+    total += Number(match[1]);
+    if (!Number.isSafeInteger(total)) throw new Error("obscura_archive_size_invalid");
+  }
+  return total;
 }

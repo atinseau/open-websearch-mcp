@@ -4,7 +4,16 @@ import {
   resolveWorkspace,
   type Workspace,
 } from "@/features/configuration";
-import { createObscuraInstaller } from "@/features/rendering";
+import {
+  createNavigationScheduler,
+  createObscuraInstaller,
+  createObscuraSupervisor,
+  createWebViewRenderer,
+  type ObscuraArtifact,
+  type Renderer,
+  type RendererConfiguration,
+} from "@/features/rendering";
+import { assessPublicUrl, type PublicUrlPolicy } from "@/features/security";
 import { BlobStore, createStorage, SqliteStore, type Storage } from "@/features/storage";
 import type { CallContext, InvestigationApplication } from "@/features/investigation";
 import type { McpToolAdapter, McpToolDependencies } from "@/mcp";
@@ -26,6 +35,8 @@ export interface ProductionRootOptions {
   readonly application: InvestigationApplication;
   readonly workspace?: Workspace;
   readonly probe?: (executable: string) => Promise<boolean>;
+  /** Release-only pin; omitted only by non-web composition tests. */
+  readonly obscuraArtifact?: ObscuraArtifact;
 }
 
 /** Builds the runtime once; every tool call reloads config before crossing the application seam. */
@@ -45,15 +56,100 @@ export async function createProductionRoot(
   );
   const logger = await createSessionLogger(workspace, (message) => console.error(message));
   const installer = createObscuraInstaller(workspace, options.probe ?? (async () => false));
+  const web = options.obscuraArtifact
+    ? createWebRuntime(
+        installer,
+        options.obscuraArtifact,
+        rendererConfiguration(first.configuration?.renderer),
+        first.scheduler,
+      )
+    : undefined;
+  bindWebRuntime(options.application, web?.renderer, web?.policy);
   const tools = makeTools(options.application, configuration, logger, installer);
   return {
     tools,
     storage,
     maxInboundMessageBytes: first.configuration?.mcp.max_inbound_message_bytes ?? 4 * 1024 * 1024,
     async close() {
+      await web?.close();
       storage.close();
       await logger.close();
     },
+  };
+}
+
+function rendererConfiguration(
+  renderer:
+    | {
+        readonly navigation_timeout_ms: number;
+        readonly settle_timeout_ms: number;
+        readonly max_download_bytes: number;
+      }
+    | undefined,
+): RendererConfiguration | undefined {
+  return renderer
+    ? {
+        navigationTimeoutMs: renderer.navigation_timeout_ms,
+        settleTimeoutMs: renderer.settle_timeout_ms,
+        maxDownloadBytes: renderer.max_download_bytes,
+      }
+    : undefined;
+}
+
+type WebRuntimeConsumer = InvestigationApplication & {
+  bindWebRuntime?(renderer: Renderer, policy: PublicUrlPolicy): void;
+};
+
+function bindWebRuntime(
+  application: InvestigationApplication,
+  renderer: Renderer | undefined,
+  policy: PublicUrlPolicy | undefined,
+): void {
+  if (renderer && policy) (application as WebRuntimeConsumer).bindWebRuntime?.(renderer, policy);
+}
+
+function createWebRuntime(
+  installer: ReturnType<typeof createObscuraInstaller>,
+  artifact: ObscuraArtifact,
+  configuration: RendererConfiguration | undefined,
+  schedulerConfiguration: import("@/features/configuration").SchedulerConfiguration,
+): { readonly renderer: Renderer; readonly policy: PublicUrlPolicy; close(): Promise<void> } {
+  if (!configuration) throw new Error("renderer_configuration_missing");
+  const scheduler = createNavigationScheduler({ configuration: schedulerConfiguration });
+  const policy: PublicUrlPolicy = { assess: assessPublicUrl };
+  let started:
+    | Promise<{ readonly renderer: Renderer; readonly close: () => Promise<void> }>
+    | undefined;
+  return {
+    policy,
+    renderer: {
+      render: async (request) => {
+        const assessment = policy.assess(request.url);
+        if (!assessment.allowed) throw new Error(assessment.reason ?? "non_public_destination");
+        started ??= startRenderer(installer, artifact, configuration, scheduler, policy);
+        return (await started).renderer.render(request);
+      },
+    },
+    async close() {
+      await scheduler.shutdown();
+      await started?.then((runtime) => runtime.close());
+    },
+  };
+}
+
+async function startRenderer(
+  installer: ReturnType<typeof createObscuraInstaller>,
+  artifact: ObscuraArtifact,
+  configuration: RendererConfiguration,
+  scheduler: ReturnType<typeof createNavigationScheduler>,
+  policy: PublicUrlPolicy,
+): Promise<{ readonly renderer: Renderer; readonly close: () => Promise<void> }> {
+  const installed = await installer.ensure(artifact);
+  const supervisor = createObscuraSupervisor({ executable: `${installed}/obscura`, configuration });
+  const endpoint = await supervisor.install(new AbortController().signal);
+  return {
+    renderer: createWebViewRenderer({ endpoint, configuration, scheduler, policy }),
+    close: () => supervisor.shutdown(),
   };
 }
 

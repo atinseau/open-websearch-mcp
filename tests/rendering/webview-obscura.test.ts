@@ -6,6 +6,7 @@ import {
   createWebViewRenderer,
   type RendererConfiguration,
 } from "@/features/rendering";
+import { assessPublicUrl } from "@/features/security";
 
 const obscura = Bun.which("obscura");
 const fixtures: Array<ReturnType<typeof Bun.serve>> = [];
@@ -15,6 +16,7 @@ const configuration: RendererConfiguration = {
   settleTimeoutMs: 10,
   maxDownloadBytes: 25 * 1024 * 1024,
 };
+const localFixturePolicy = { assess: () => ({ allowed: true }) };
 const schedulerConfiguration = {
   startCapacity: 2,
   maximumCapacity: 2,
@@ -42,19 +44,44 @@ afterEach(async () => {
   for (const supervisor of supervisors.splice(0)) await supervisor.shutdown();
 });
 
+test("SECURITY-004 renderer refuses a private initial destination before creating a WebView", async () => {
+  let scheduled = false;
+  const renderer = createWebViewRenderer({
+    endpoint: { cdpUrl: new URL("ws://127.0.0.1:9222") },
+    configuration,
+    scheduler: {
+      async schedule() {
+        scheduled = true;
+        throw new Error("scheduler_called");
+      },
+      async shutdown() {},
+    },
+    policy: { assess: assessPublicUrl },
+  });
+  expect(await rejection(render(renderer, "http://127.0.0.1:8080/admin"))).toContain(
+    "non_public_address",
+  );
+  expect(scheduled).toBeFalse();
+});
+
 if (!obscura) {
   test.skip("RENDER-001 requires the pinned Obscura binary", () => undefined);
 } else {
   const obscuraPath: string = obscura ?? "";
   test("RENDER-003/004/006/007/ORCH-008 renders isolated targets and cleans its owned group", async () => {
     const fixture = startFixture();
-    const supervisor = createObscuraSupervisor({ executable: obscuraPath, configuration });
+    const supervisor = createObscuraSupervisor({
+      executable: obscuraPath,
+      configuration,
+      allowPrivateNetworkForTest: true,
+    });
     supervisors.push(supervisor);
     const endpoint = await supervisor.install(new AbortController().signal);
     const renderer = createWebViewRenderer({
       endpoint,
       configuration,
       scheduler: createNavigationScheduler({ configuration: schedulerConfiguration }),
+      policy: localFixturePolicy,
     });
     const first = await render(renderer, `${fixture.url}set`);
     const second = await render(renderer, `${fixture.url}read`);
@@ -74,7 +101,11 @@ if (!obscura) {
 
   test("RENDER-007 aborts a timed navigation and RENDER download accounting stops over-budget targets", async () => {
     const fixture = startFixture();
-    const supervisor = createObscuraSupervisor({ executable: obscuraPath, configuration });
+    const supervisor = createObscuraSupervisor({
+      executable: obscuraPath,
+      configuration,
+      allowPrivateNetworkForTest: true,
+    });
     supervisors.push(supervisor);
     const endpoint = await supervisor.install(new AbortController().signal);
     const scheduler = createNavigationScheduler({ configuration: schedulerConfiguration });
@@ -82,6 +113,7 @@ if (!obscura) {
       endpoint,
       configuration: { ...configuration, navigationTimeoutMs: 100, maxDownloadBytes: 1024 },
       scheduler,
+      policy: localFixturePolicy,
     });
     expect(await rejection(render(renderer, `${fixture.url}slow`))).toContain("navigation_timeout");
     expect(await rejection(render(renderer, `${fixture.url}large`))).toContain(
