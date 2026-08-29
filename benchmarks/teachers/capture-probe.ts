@@ -8,13 +8,9 @@ import {
 import { requiredDate } from "./contract-json.ts";
 import { assertRefreshWritable, withRefreshMutation } from "./refresh-lifecycle.ts";
 import { ensureRefreshInputs } from "./refresh-inputs.ts";
-import { codexDisabledArgs, codexSkillArgs } from "./policy-controls.ts";
+import { prepareProbeInvocation } from "./capture-probe-invocation.ts";
 import { canonicalExecutable, commandOutput, runProcess } from "./process-controls.ts";
-import {
-  cleanupBeforePublication,
-  isolatedTeacherHome,
-  teacherProcessEnvironment,
-} from "./derive-fixture-support.ts";
+import { cleanupBeforePublication } from "./derive-fixture-support.ts";
 import {
   captureOutputExists,
   failureOutput,
@@ -26,7 +22,14 @@ import {
 
 type Provider = "codex";
 type CaptureInspection = ReturnType<typeof inspectCodexProbe>;
-type AcceptedCapture = { sanitizedEvents: string; policy: Record<string, unknown>; run: unknown; startedAt: string; exitCode: number; inspection: CaptureInspection };
+type AcceptedCapture = {
+  sanitizedEvents: string;
+  policy: Record<string, unknown>;
+  run: unknown;
+  startedAt: string;
+  exitCode: number;
+  inspection: CaptureInspection;
+};
 
 export async function captureProbe(
   provider: Provider,
@@ -61,54 +64,17 @@ export async function captureProbe(
   let pendingPublication: (() => Promise<void>) | undefined;
   let captureFailure: unknown;
   try {
-    const cwd = `${temporaryRoot}/cwd`;
-    const isolatedHome = isolatedTeacherHome(temporaryRoot);
-    const isolatedConfig = `${temporaryRoot}/config`;
-    await commandOutput(["/bin/mkdir", "-m", "700", cwd, isolatedHome, isolatedConfig]);
-
-    const commonPrompt =
-      teacherCase === undefined
-        ? "Use native Web Search to identify the latest stable Bun release. Cite every factual claim with source URLs. Do not use local files or any non-Web tool."
-        : refreshInputs.prompt.replace("{{question}}", teacherCase.question);
-
-    const environment = teacherProcessEnvironment(isolatedHome, { CODEX_HOME: isolatedConfig });
-    const sourceHome = Bun.env.CODEX_HOME ?? `${Bun.env.HOME}/.codex`;
-    const sourceAuth = `${sourceHome}/auth.json`;
-    if (!(await Bun.file(sourceAuth).exists())) throw new Error("Codex auth.json is missing");
-    await commandOutput([
-      "/usr/bin/install",
-      "-m",
-      "600",
-      sourceAuth,
-      `${isolatedConfig}/auth.json`,
-    ]);
-    const args = [
-      "exec",
-      ...(teacherCase === undefined ? [] : ["--model", "gpt-5.4"]),
-      "--cd",
+    const {
       cwd,
-      "--skip-git-repo-check",
-      "--ephemeral",
-      "--ignore-user-config",
-      "--ignore-rules",
-      "--strict-config",
-      "--sandbox",
-      "read-only",
-      "--json",
-      "--color",
-      "never",
-      "-c",
-      'approval_policy="never"',
-      "-c",
-      'web_search="live"',
-      "-c",
-      'history.persistence="none"',
-      "-c",
-      "project_doc_max_bytes=0",
-      ...codexSkillArgs(),
-      ...codexDisabledArgs(),
-      commonPrompt,
-    ];
+      prompt: commonPrompt,
+      environment,
+      args,
+    } = await prepareProbeInvocation({
+      temporaryRoot,
+      question: teacherCase?.question,
+      promptTemplate: refreshInputs.prompt,
+      isCase: teacherCase !== undefined,
+    });
 
     const startedAt = new Date().toISOString();
     const result = await runProcess([binary, ...args], {
