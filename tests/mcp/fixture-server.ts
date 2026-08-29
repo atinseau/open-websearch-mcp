@@ -42,10 +42,7 @@ const result = {
 };
 
 const tools: McpToolAdapter = {
-  webSearch: async (_input, _signal) => ({
-    investigationId: result.investigation_id,
-    structuredContent: result,
-  }),
+  webSearch: async (input, signal) => delayedResult(input.query, signal),
   webOpen: async (_input, _signal) => ({
     investigationId: result.investigation_id,
     structuredContent: result,
@@ -53,3 +50,27 @@ const tools: McpToolAdapter = {
 };
 
 await serveStdio(tools);
+
+async function delayedResult(query: string, signal: AbortSignal | undefined) {
+  const delay = query === "slow" || query === "cancel" ? 100 : query === "fast" ? 5 : 0;
+  if (delay) await waitFor(delay, signal);
+  return {
+    investigationId: result.investigation_id,
+    structuredContent: {
+      ...result,
+      results: result.results.map((entry) => ({ ...entry, title: `${entry.title}: ${query}` })),
+    },
+  };
+}
+
+function waitFor(milliseconds: number, signal: AbortSignal | undefined): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(resolve, milliseconds);
+    const cancel = () => {
+      clearTimeout(timer);
+      reject(signal?.reason ?? new DOMException("Cancelled", "AbortError"));
+    };
+    if (signal?.aborted) cancel();
+    else signal?.addEventListener("abort", cancel, { once: true });
+  });
+}
