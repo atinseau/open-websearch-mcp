@@ -703,6 +703,66 @@ async function executeAndValidateStep(input: {
   });
 }
 
+/** Reads the task identity a resumable worktree ledger records. */
+function resolveActiveTask(
+  state: OrchestrationState,
+  rootState: OrchestrationState,
+  active: WorktreeRecord,
+  repository: string,
+): {
+  taskId: string;
+  task: Task;
+  attempt: number;
+  relativeWorktree: string;
+  worktree: string;
+  branch: string;
+  baseSha: string;
+} {
+  if (
+    !state.current_task ||
+    !state.current_attempt ||
+    !state.current_branch ||
+    !state.current_base_sha
+  ) {
+    throw new Error("Active worktree has no resumable task state");
+  }
+  const taskId = state.current_task;
+  const task = state.tasks[taskId];
+  if (!task) throw new Error(`Active worktree references unknown task ${taskId}`);
+  const attempt = state.current_attempt;
+  const relativeWorktree =
+    state.current_worktree ??
+    `${rootState.policy.worktree_root}/${taskId.toLowerCase()}-a${attempt}`;
+  const branch = state.current_branch;
+  if (active.branch !== `refs/heads/${branch}`) {
+    throw new Error(`Recorded branch ${branch} does not own ${relativeWorktree}`);
+  }
+  return {
+    taskId,
+    task,
+    attempt,
+    relativeWorktree,
+    worktree: `${repository}/${relativeWorktree}`,
+    branch,
+    baseSha: state.current_base_sha,
+  };
+}
+
+/** The highest-numbered durable trace a task has written. */
+async function readLatestTrace(
+  worktree: string,
+  taskId: string,
+): Promise<{ latestName: string; latestStep: number }> {
+  const traceNames = [
+    ...new Bun.Glob("[0-9][0-9][0-9][0-9]-*.md").scanSync({
+      cwd: `${worktree}/docs/orchestration/runs/${taskId}`,
+    }),
+  ].sort();
+  const latestName = traceNames.at(-1);
+  if (!latestName) throw new Error(`Active task ${taskId} has no durable trace`);
+  return { latestName, latestStep: Number(latestName.slice(0, 4)) };
+}
+
 async function runControllerStep(
   options: ControllerOptions,
   forceFreshSession = false,
@@ -740,38 +800,12 @@ async function runControllerStep(
     if (await recoverWorktreeState({ activePath, active, rootState, state, options, repository })) {
       state = await validateRepository(activePath);
     }
-    if (
-      !state.current_task ||
-      !state.current_attempt ||
-      !state.current_branch ||
-      !state.current_base_sha
-    ) {
-      throw new Error("Active worktree has no resumable task state");
-    }
-    taskId = state.current_task;
-    task = state.tasks[taskId]!;
-    if (!task) throw new Error(`Active worktree references unknown task ${taskId}`);
-    attempt = state.current_attempt;
-    relativeWorktree =
-      state.current_worktree ??
-      `${rootState.policy.worktree_root}/${taskId.toLowerCase()}-a${attempt}`;
-    worktree = `${repository}/${relativeWorktree}`;
-    branch = state.current_branch;
-    if (active.branch !== `refs/heads/${branch}`) {
-      throw new Error(`Recorded branch ${branch} does not own ${relativeWorktree}`);
-    }
-    baseSha = state.current_base_sha;
-    const traceNames = [
-      ...new Bun.Glob("[0-9][0-9][0-9][0-9]-*.md").scanSync({
-        cwd: `${worktree}/docs/orchestration/runs/${taskId}`,
-      }),
-    ].sort();
-    const latestName = traceNames.at(-1);
-    if (!latestName) throw new Error(`Active task ${taskId} has no durable trace`);
+    const resumed = resolveActiveTask(state, rootState, active, repository);
+    ({ taskId, task, attempt, relativeWorktree, worktree, branch, baseSha } = resumed);
+    const { latestName, latestStep } = await readLatestTrace(worktree, taskId);
     latestTrace = await Bun.file(
       `${worktree}/docs/orchestration/runs/${taskId}/${latestName}`,
     ).text();
-    const latestStep = Number(latestName.slice(0, 4));
     if (latestStep > (state.current_step ?? 0)) {
       await reconcileTraceIntoState({
         activePath,
