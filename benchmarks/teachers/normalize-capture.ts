@@ -17,38 +17,90 @@ export async function normalizeCapture(
 ): Promise<void> {
   requiredDate(date, "capture date");
   await assertRefreshWritable(root, date);
-  const refreshInputs = await readRefreshInputs(root, date);
-  const cases = teacherCases(refreshInputs.corpus);
-  const teacherCase = cases.find((item) => item.id === caseId);
-  if (teacherCase === undefined) throw new Error(`unknown case: ${caseId}`);
-
   const output = `${root}/runs/${date}/cases/${caseId}/${provider}`;
   const runPath = `${output}/run.json`;
   if (await Bun.file(runPath).exists()) throw new Error(`immutable run already exists: ${runPath}`);
+  const { teacherCase, prompt } = await captureCase(root, date, caseId);
+  const { policy, controls, events, inspection } = await captureEvidence(output, provider);
+  const run = createRun({
+    date,
+    provider,
+    teacherCase,
+    prompt,
+    policy,
+    controls,
+    events,
+    inspection,
+  });
+  validateTeacherRun(run);
+  await persistRun(root, date, runPath, run);
+  console.log(JSON.stringify({ provider, case_id: caseId, run: runPath }));
+}
+
+async function captureCase(
+  root: string,
+  date: string,
+  caseId: string,
+): Promise<{ teacherCase: ReturnType<typeof teacherCases>[number]; prompt: string }> {
+  const refreshInputs = await readRefreshInputs(root, date);
+  const teacherCase = teacherCases(refreshInputs.corpus).find((item) => item.id === caseId);
+  if (teacherCase === undefined) throw new Error(`unknown case: ${caseId}`);
+  return {
+    teacherCase,
+    prompt: refreshInputs.prompt.replace("{{question}}", teacherCase.question),
+  };
+}
+
+async function captureEvidence(
+  output: string,
+  provider: string,
+): Promise<{
+  policy: Record<string, unknown>;
+  controls: Record<string, unknown>;
+  events: unknown[];
+  inspection: ReturnType<typeof inspectCodexProbe>;
+}> {
   const policy = record(await Bun.file(`${output}/policy.json`).json(), "capture policy");
   const controls = record(policy.controls, "capture policy controls");
-  const processResult = record(policy.process, "capture policy process");
-  if (processResult.exit_code !== 0 || processResult.failure !== undefined) {
-    throw new Error(`${provider} capture process did not complete successfully`);
-  }
-  if (
-    controls.isolated_temporary_cwd !== true ||
-    controls.cwd_unchanged !== true ||
-    controls.wrapper_shim_bypassed !== true ||
-    controls.session_persistence_disabled !== true
-  ) {
-    throw new Error(`${provider} capture policy does not prove isolation`);
-  }
+  assertCapturePolicy(record(policy.process, "capture policy process"), controls, provider);
   const events = (await Bun.file(`${output}/events.sanitized.jsonl`).text())
     .split("\n")
     .filter(Boolean)
     .map((line) => JSON.parse(line));
   const inspection = inspectCodexProbe(events);
   if (!inspection.accepted) throw new Error(`${provider} event policy was not accepted`);
+  return { policy, controls, events, inspection };
+}
 
-  const prompt = refreshInputs.prompt.replace("{{question}}", teacherCase.question);
+function assertCapturePolicy(
+  processResult: Record<string, unknown>,
+  controls: Record<string, unknown>,
+  provider: string,
+): void {
+  if (processResult.exit_code !== 0 || processResult.failure !== undefined)
+    throw new Error(`${provider} capture process did not complete successfully`);
+  const isolated = [
+    "isolated_temporary_cwd",
+    "cwd_unchanged",
+    "wrapper_shim_bypassed",
+    "session_persistence_disabled",
+  ].every((key) => controls[key] === true);
+  if (!isolated) throw new Error(`${provider} capture policy does not prove isolation`);
+}
+
+function createRun(input: {
+  date: string;
+  provider: string;
+  teacherCase: ReturnType<typeof teacherCases>[number];
+  prompt: string;
+  policy: Record<string, unknown>;
+  controls: Record<string, unknown>;
+  events: unknown[];
+  inspection: ReturnType<typeof inspectCodexProbe>;
+}): Record<string, unknown> {
+  const { date, provider, teacherCase, prompt, policy, controls, events, inspection } = input;
   const normalized = normalizeTeacherRun(provider, events, "gpt-5.4");
-  const run = {
+  return {
     schema_version: 1,
     run_id: `${date}_${provider}_${teacherCase.id}`,
     case_id: teacherCase.id,
@@ -67,7 +119,14 @@ export async function normalizeCapture(
       forbidden_tool_calls: inspection.forbidden_tool_calls,
     },
   };
-  validateTeacherRun(run);
+}
+
+async function persistRun(
+  root: string,
+  date: string,
+  runPath: string,
+  run: Record<string, unknown>,
+): Promise<void> {
   await withRefreshMutation(root, date, async () => {
     if (await Bun.file(runPath).exists())
       throw new Error(`immutable run already exists: ${runPath}`);
@@ -79,7 +138,6 @@ export async function normalizeCapture(
       if (await Bun.file(temporary).exists()) await Bun.file(temporary).delete();
     }
   });
-  console.log(JSON.stringify({ provider, case_id: caseId, run: runPath }));
 }
 
 if (import.meta.main) {

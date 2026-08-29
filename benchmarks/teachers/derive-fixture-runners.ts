@@ -37,31 +37,10 @@ export async function deriveDraft(
   const paths = await createTemporaryPaths(`derive-${teacherCase.id}`);
   let pendingFailure: (() => Promise<void>) | undefined;
   try {
-    await installCodexAuth(context, paths);
-    const schemaPath = `${paths.root}/draft.schema.json`;
-    const responsePath = `${paths.root}/draft.json`;
-    await Bun.write(schemaPath, context.draftSchema);
-    const args = codexArgs(paths, schemaPath, responsePath);
-    const startedAt = new Date().toISOString();
-    const environment = teacherProcessEnvironment(paths.home, { CODEX_HOME: paths.config });
-    const result = await runWithInput(
-      [context.codex, ...args],
-      derivationPrompt(teacherCase, evidence),
-      { cwd: paths.cwd, env: environment },
-    );
-    const sensitivePaths = [paths.root, Bun.env.HOME ?? ""];
-    if (
-      result.exit_code !== 0 ||
-      result.failure !== undefined ||
-      !(await Bun.file(responsePath).exists())
-    ) {
-      pendingFailure = async () => {
-        await writeFailure(context, teacherCase, "codex", result, sensitivePaths);
-      };
-      throw new Error(
-        `Codex fixture derivation failed for ${teacherCase.id}: ${result.failure ?? result.stderr}`,
-      );
-    }
+    const execution = await runDerivation(context, teacherCase, evidence, paths);
+    const { args, startedAt, result, responsePath, sensitivePaths, environment } = execution;
+    pendingFailure = () => writeFailure(context, teacherCase, "codex", result, sensitivePaths);
+    await assertDerivationSucceeded(result, responsePath, teacherCase.id);
     try {
       const draft = normalizeDraftEvidence(
         evidence,
@@ -81,9 +60,6 @@ export async function deriveDraft(
       });
       return draft;
     } catch (error) {
-      pendingFailure = async () => {
-        await writeFailure(context, teacherCase, "codex", result, sensitivePaths);
-      };
       throw new Error(`Codex returned an invalid fixture draft for ${teacherCase.id}`, {
         cause: error,
       });
@@ -94,6 +70,57 @@ export async function deriveDraft(
       if (publishFailure !== undefined) await publishFailure();
     });
   }
+}
+
+async function runDerivation(
+  context: DerivationContext,
+  teacherCase: TeacherCase,
+  evidence: unknown,
+  paths: TemporaryPaths,
+): Promise<{
+  args: string[];
+  startedAt: string;
+  result: ProcessResult;
+  responsePath: string;
+  sensitivePaths: string[];
+  environment: Record<string, string | undefined>;
+}> {
+  await installCodexAuth(context, paths);
+  const schemaPath = `${paths.root}/draft.schema.json`;
+  const responsePath = `${paths.root}/draft.json`;
+  await Bun.write(schemaPath, context.draftSchema);
+  const args = codexArgs(paths, schemaPath, responsePath);
+  const startedAt = new Date().toISOString();
+  const environment = teacherProcessEnvironment(paths.home, { CODEX_HOME: paths.config });
+  const result = await runWithInput(
+    [context.codex, ...args],
+    derivationPrompt(teacherCase, evidence),
+    { cwd: paths.cwd, env: environment },
+  );
+  return {
+    args,
+    startedAt,
+    result,
+    responsePath,
+    sensitivePaths: [paths.root, Bun.env.HOME ?? ""],
+    environment,
+  };
+}
+
+async function assertDerivationSucceeded(
+  result: ProcessResult,
+  responsePath: string,
+  caseId: string,
+): Promise<void> {
+  if (
+    result.exit_code === 0 &&
+    result.failure === undefined &&
+    (await Bun.file(responsePath).exists())
+  )
+    return;
+  throw new Error(
+    `Codex fixture derivation failed for ${caseId}: ${result.failure ?? result.stderr}`,
+  );
 }
 
 async function installCodexAuth(context: DerivationContext, paths: TemporaryPaths): Promise<void> {
