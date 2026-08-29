@@ -58,6 +58,8 @@ export interface RendererEndpoint {
 export interface RendererSupervisorStatus {
   readonly ownedProcessId: number | undefined;
   readonly endpoint: URL | undefined;
+  /** False once the owned renderer has exited; callers must not reuse its CDP URL. */
+  readonly available: boolean;
 }
 
 export interface RendererConfiguration {

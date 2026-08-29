@@ -193,8 +193,20 @@ async function startRenderer(
   const installed = await installer.ensure(artifact);
   const supervisor = createObscuraSupervisor({ executable: `${installed}/obscura`, configuration });
   const endpoint = await supervisor.install(new AbortController().signal);
+  const renderer = createWebViewRenderer({ endpoint, configuration, scheduler, policy });
   return {
-    renderer: createWebViewRenderer({ endpoint, configuration, scheduler, policy }),
+    renderer: {
+      async render(request) {
+        if (!supervisor.status().available) throw new Error("renderer_unavailable");
+        try {
+          return await renderer.render(request);
+        } catch (error) {
+          if (!supervisor.status().available)
+            throw new Error("renderer_unavailable", { cause: error });
+          throw error;
+        }
+      },
+    },
     close: () => supervisor.shutdown(),
   };
 }

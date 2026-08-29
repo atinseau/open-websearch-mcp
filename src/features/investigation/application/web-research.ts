@@ -27,6 +27,7 @@ import {
   cacheRead,
   pageResult,
   discoveryFailure,
+  reasonForRuntimeFailure,
   reasonForExtraction,
   searchResponse,
   success,
@@ -83,10 +84,7 @@ class WebResearchApplication implements InvestigationApplication {
     try {
       return await this.openPrepared(input, context, investigation.id);
     } catch (error) {
-      return tool(
-        investigation.id,
-        empty("error", "low", error instanceof ExpectedFailure ? error.reason : "network_error"),
-      );
+      return tool(investigation.id, empty("error", "low", reasonForRuntimeFailure(error)));
     }
   }
 
@@ -219,13 +217,19 @@ class WebResearchApplication implements InvestigationApplication {
     explicitOpen: boolean,
   ): Promise<RenderedDocument> {
     if (!this.#renderer) throw new ExpectedFailure("renderer_unavailable");
-    return this.#renderer.render({
-      url,
-      signal: context.abortController.signal,
-      investigationId: "pending",
-      kind: "destination",
-      explicitOpen,
-    });
+    try {
+      return await this.#renderer.render({
+        url,
+        signal: context.abortController.signal,
+        investigationId: "pending",
+        kind: "destination",
+        explicitOpen,
+      });
+    } catch (error) {
+      if (error instanceof Error && error.message.includes("renderer_unavailable"))
+        throw new ExpectedFailure("renderer_unavailable");
+      throw error;
+    }
   }
 
   private async prepareCandidate(

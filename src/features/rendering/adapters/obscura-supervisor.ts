@@ -26,7 +26,11 @@ export class ObscuraSupervisor implements RendererSupervisor {
   }
 
   status() {
-    return { ownedProcessId: this.#child?.pid, endpoint: this.#endpoint?.cdpUrl };
+    return {
+      ownedProcessId: this.#child?.pid,
+      endpoint: this.#endpoint?.cdpUrl,
+      available: this.#child?.exitCode === null && this.#endpoint !== undefined,
+    };
   }
 
   async shutdown(): Promise<void> {
@@ -65,6 +69,9 @@ export class ObscuraSupervisor implements RendererSupervisor {
       { stdin: "ignore", stdout: "ignore", stderr: "ignore", detached: true },
     );
     this.#child = child;
+    void child.exited.then(() => {
+      if (this.#child === child) this.#endpoint = undefined;
+    });
     try {
       const endpoint = await withTimeout(waitForEndpoint(port, child), startupTimeoutMs);
       this.#endpoint = endpoint;
