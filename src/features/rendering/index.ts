@@ -1,4 +1,5 @@
 import type { InvestigationId } from "@/features/investigation";
+import { AdaptiveNavigationScheduler } from "@/features/rendering/application/scheduler";
 
 /** The only production document-rendering capability. */
 export interface Renderer {
@@ -40,4 +41,36 @@ export interface NavigationRequest {
   readonly kind: "destination" | "google_serp";
   readonly explicitOpen: boolean;
   readonly signal: AbortSignal;
+  /** Navigation deadline; defaults to the configured renderer deadline. */
+  readonly timeoutMs?: number;
+}
+
+export interface SchedulerClock {
+  now(): number;
+  setTimeout(callback: () => void, delayMs: number): unknown;
+  clearTimeout(timer: unknown): void;
+}
+
+export interface RssTelemetry {
+  rssBytes(): number | undefined;
+}
+
+export interface NavigationSchedulerOptions {
+  readonly configuration: import("@/features/configuration").SchedulerConfiguration;
+  readonly clock?: SchedulerClock;
+  readonly telemetry?: RssTelemetry;
+  readonly navigationTimeoutMs?: number;
+}
+
+export interface SchedulerStatus {
+  readonly capacity: number;
+  readonly active: number;
+  readonly queued: number;
+}
+
+/** Creates the one process-global scheduler owned by the composition root. */
+export function createNavigationScheduler(
+  options: NavigationSchedulerOptions,
+): NavigationScheduler & { status(): SchedulerStatus } {
+  return new AdaptiveNavigationScheduler(options);
 }
