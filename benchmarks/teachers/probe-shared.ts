@@ -13,6 +13,20 @@ export type ClaudeInspection = {
 };
 export type ClaudeToolCall = { name: string; input: Record<string, unknown> };
 
+/** Mutable tallies accumulated while walking one Claude event stream. */
+export type ClaudeProbeState = {
+  calls: string[];
+  forbidden: Set<string>;
+  toolIds: Map<string, ClaudeToolCall>;
+  initAccepted: boolean;
+  successfulResult: boolean;
+  authenticationFailed: boolean;
+  validSearches: number;
+  searchResults: number;
+  initEvents: number;
+  resultEvents: number;
+};
+
 export const codexForbiddenTypes = new Set([
   "collab_tool_call",
   "command_execution",
