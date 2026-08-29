@@ -70,7 +70,12 @@ function nonHtmlText(input: ExtractionInput, mimeType: string, body: string): st
   if (mimeType === "application/json") return jsonText(body || input.renderedText);
   if (mimeType === "application/xml" || mimeType === "text/xml")
     return safeText(body || input.renderedText, true);
-  return safeText(input.markdown || body || input.renderedText, false);
+  // Markdown legitimately permits inline HTML, and a renderer that emits
+  // Markdown for an HTML page carries whatever markup the page contained.
+  // Sniffing the value decides whether it needs HTML sanitization; assuming it
+  // never does let raw tags reach evidence through the Markdown branch.
+  const value = input.markdown || body || input.renderedText;
+  return safeText(value, /<\/?[a-z][^>]*>/i.test(value));
 }
 
 function rawCodeMarkdown(value: string, url: URL): string {
@@ -113,9 +118,21 @@ function groupText(
   const output: Omit<EvidencePassage, "sourceUrl" | "trust" | "score" | "passageHash">[] = [];
   let current: ContentBlock[] = [];
   for (const block of blocks) {
-    if (block.code || block.text.length > PASSAGE_SIZE) {
+    if (block.code) {
       pushGroup(output, current, page);
       current = [];
+      continue;
+    }
+    if (block.text.length > PASSAGE_SIZE) {
+      // A renderer that returns plain page text yields one very long block,
+      // because `innerText` separates paragraphs with single newlines rather
+      // than the blank lines Markdown needs. Dropping it silently cost the page
+      // every passage it had. Split it on sentence boundaries instead: a
+      // truncated passage is still evidence, an absent one is not.
+      pushGroup(output, current, page);
+      current = [];
+      for (const piece of splitOversized(block.text))
+        pushGroup(output, [{ ...block, text: piece }], page);
       continue;
     }
     if (
@@ -154,6 +171,30 @@ function joinedLength(blocks: readonly ContentBlock[], next: ContentBlock): numb
   return (
     blocks.reduce((size, block) => size + block.text.length, next.text.length) + blocks.length * 2
   );
+}
+
+/**
+ * Cuts an oversized block into passage-sized pieces, preferring sentence ends
+ * so a passage stays quotable. Falls back to a hard cut when a single run has
+ * no boundary, which keeps pathological input bounded rather than unbounded.
+ */
+function splitOversized(text: string): readonly string[] {
+  const pieces: string[] = [];
+  let rest = text.trim();
+  while (rest.length > PASSAGE_SIZE) {
+    const window = rest.slice(0, PASSAGE_SIZE);
+    const boundary = Math.max(
+      window.lastIndexOf(". "),
+      window.lastIndexOf("! "),
+      window.lastIndexOf("? "),
+      window.lastIndexOf("\n"),
+    );
+    const cut = boundary > PASSAGE_SIZE / 2 ? boundary + 1 : PASSAGE_SIZE;
+    pieces.push(rest.slice(0, cut).trim());
+    rest = rest.slice(cut).trim();
+  }
+  if (rest) pieces.push(rest);
+  return pieces;
 }
 
 function select(

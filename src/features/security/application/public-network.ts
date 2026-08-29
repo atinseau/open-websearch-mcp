@@ -64,10 +64,17 @@ export function sanitizeExternalHtml(html: string): string {
       "",
     )
     .replace(/\s(?:on\w+|href|src)\s*=\s*(["'])\s*(?:javascript|data|vbscript):[\s\S]*?\1/gi, "");
-  return withoutActive
-    .replace(/<[^>]+>/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+  return (
+    withoutActive
+      .replace(/<[^>]+>/g, " ")
+      // Collapse runs of spaces and tabs, but keep blank lines: they are the only
+      // paragraph boundary the passage grouper has. Flattening every newline made
+      // one inline tag in rendered Markdown erase the whole page's structure.
+      .replace(/[^\S\n]+/g, " ")
+      .replace(/ *\n[ \n]*\n */g, "\n\n")
+      .replace(/ *\n */g, "\n")
+      .trim()
+  );
 }
 
 export function createPublicNetworkClient(options: PublicNetworkOptions): PublicNetworkClient {

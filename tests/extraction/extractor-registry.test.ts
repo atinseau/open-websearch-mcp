@@ -116,3 +116,27 @@ test("EXTRACT-011 separates bounded content and navigation links while removing 
     ),
   ).toBeFalse();
 });
+
+test("EXTRACT-004 keeps passage structure when rendered Markdown embeds inline HTML", async () => {
+  // Obscura returns Markdown for text/html. A single inline tag used to make the
+  // whole document look like HTML, and HTML sanitization collapses every
+  // newline into a space — erasing the block boundaries passages are built
+  // from. One stray link must not cost the page all of its evidence.
+  const markdown = [
+    "# Retrieval guide",
+    "",
+    "Deterministic ranking keeps the ordering stable across repeated searches.",
+    "",
+    "## Evidence",
+    "",
+    'Passages carry heading paths, as shown at <a href="https://docs.example.test/x">the reference</a>.',
+    "",
+  ].join("\n");
+
+  const clean = await registry.extract(input({ markdown, renderedText: markdown }));
+  expect(clean.status).toBe("success");
+  expect(clean.passages.length).toBeGreaterThan(1);
+  expect(clean.passages.some((passage) => passage.headingPath?.includes("Evidence"))).toBeTrue();
+  expect(clean.passages.some((passage) => /<a\b/i.test(passage.text))).toBeFalse();
+  expect(clean.passages.some((passage) => passage.text.includes("the reference"))).toBeTrue();
+});

@@ -154,7 +154,11 @@ async function documentFrom(
   settledAt: number,
 ): Promise<RenderedDocument> {
   const content = await view.evaluate<{ text?: unknown; links?: unknown }>(
-    "({ text: document.body?.innerText ?? '', links: Array.from(document.links, link => ({ href: link.href, text: link.innerText || link.textContent || '' })) })",
+    // `innerText` on the live body captures inline script and style bodies on
+    // pages that inject them as visible-but-unstyled nodes, and that text then
+    // becomes "evidence". Strip non-content nodes from a detached clone first;
+    // links are still read from the live document so hrefs stay resolved.
+    "(() => { const body = document.body; let text = ''; if (body) { const clone = body.cloneNode(true); for (const n of clone.querySelectorAll('script,style,noscript,template,svg')) n.remove(); text = clone.innerText || clone.textContent || ''; } return { text, links: Array.from(document.links, link => ({ href: link.href, text: link.innerText || link.textContent || '' })) }; })()",
   );
   const text = typeof content.text === "string" ? content.text : "";
   return {
