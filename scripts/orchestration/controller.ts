@@ -520,6 +520,31 @@ function resolveTaskChecks(
   return { unresolvedGates, checksToRun };
 }
 
+/**
+ * Reports paths a step touched outside its declared write set. The controller's
+ * own ledger and trace directory are always permitted.
+ */
+function writeSetFindings(
+  actualPaths: string[],
+  task: Task,
+  taskId: string,
+): OpenCodeStepResult["findings"] {
+  const controllerPaths = ["docs/orchestration/state.toml", `docs/orchestration/runs/${taskId}/`];
+  const outside = actualPaths.filter(
+    (path) =>
+      ![...task.write_set, ...controllerPaths].some(
+        (allowed) => path === allowed || path.startsWith(`${allowed.replace(/\/$/u, "")}/`),
+      ),
+  );
+  if (outside.length === 0) return [];
+  return [
+    {
+      severity: "high",
+      summary: `Changed paths outside the task write set: ${outside.join(", ")}`,
+    },
+  ];
+}
+
 async function runControllerStep(
   options: ControllerOptions,
   forceFreshSession = false,
@@ -671,27 +696,12 @@ async function runControllerStep(
     };
   }
   const actualPaths = await changedPaths(worktree, baseSha);
-  const controllerPaths = ["docs/orchestration/state.toml", `docs/orchestration/runs/${taskId}/`];
-  const outsideWriteSet = actualPaths.filter(
-    (path) =>
-      ![...task.write_set, ...controllerPaths].some(
-        (allowed) => path === allowed || path.startsWith(`${allowed.replace(/\/$/u, "")}/`),
-      ),
-  );
+  const writeSetViolations = writeSetFindings(actualPaths, task, taskId);
   received = {
     ...received,
     changed_paths: actualPaths,
     checks: actualChecks,
-    findings:
-      outsideWriteSet.length === 0
-        ? received.findings
-        : [
-            ...received.findings,
-            {
-              severity: "high",
-              summary: `Changed paths outside the task write set: ${outsideWriteSet.join(", ")}`,
-            },
-          ],
+    findings: [...received.findings, ...writeSetViolations],
   };
   const invalidVerification =
     received.status === "verified" &&
@@ -716,7 +726,7 @@ async function runControllerStep(
       !received.blocker.error.trim() ||
       !received.blocker.human_action.trim());
   const result: OpenCodeStepResult =
-    outsideWriteSet.length > 0
+    writeSetViolations.length > 0
       ? {
           ...received,
           status: "failed",
