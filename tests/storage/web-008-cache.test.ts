@@ -201,3 +201,24 @@ test("CACHE-005 never writes a no-store response to disk", async () => {
   expect(await reopened.cache.get(new URL("https://public.example/page"), read)).toBeDefined();
   reopened.close();
 });
+
+test("CACHE-005 expires an entry at the origin's own max-age", async () => {
+  // A regex typo made `max-age` never match, so every page silently fell back
+  // to the 24h content-class TTL. No test exercised max-age, which is exactly
+  // why it went unnoticed.
+  const storage = await openStorage({ workspace: workspace() });
+  await storage.cache.put({
+    ...document("https://short.example/page", await storage.blobs.put("body"), "short lived"),
+    headers: new Headers({ "cache-control": "public, max-age=60" }),
+  });
+  const read = (offsetSeconds: number) => ({
+    now: new Date(fetchedAt.getTime() + offsetSeconds * 1000),
+    ttls,
+  });
+  const url = new URL("https://short.example/page");
+  expect((await storage.cache.get(url, read(30)))?.fresh).toBeTrue();
+  // Past its declared lifetime but well inside the 24h general TTL: without the
+  // origin's directive this would still be reported fresh.
+  expect((await storage.cache.get(url, read(120)))?.fresh).toBeFalse();
+  storage.close();
+});

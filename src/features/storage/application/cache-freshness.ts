@@ -15,7 +15,7 @@ export function column(row: unknown, name: string): unknown {
 export function expiration(document: CachedDocument): Date | undefined {
   const control = document.headers?.get("cache-control") ?? "";
   if (/no-cache/iu.test(control)) return document.fetchedAt;
-  const match = /max-age=(\\d+)/iu.exec(control);
+  const match = /max-age=(\d+)/iu.exec(control);
   return match === null
     ? undefined
     : new Date(document.fetchedAt.getTime() + Number(match[1]) * 1000);
