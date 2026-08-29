@@ -12,6 +12,16 @@
   },
   "ignorePatterns": [".worktree/**", "tests/architecture/fixtures/**"],
   "rules": {
+    // ARCH-007 numeric limits. These applied to `src` alone while `scripts/`
+    // and `benchmarks/` still violated them; that debt is now cleared, so the
+    // limits are enforced repository-wide. `tests/architecture/fixtures/**`
+    // stays excluded above: those files are deliberate violations that prove
+    // the gate rejects what it should.
+    "complexity": ["error", 10],
+    "max-depth": ["error", 4],
+    "max-lines": ["error", 300],
+    "max-lines-per-function": ["error", 60],
+    "max-params": ["error", 5],
     "import/no-cycle": "error",
     "no-await-in-loop": "off",
     "no-eval": "error",
