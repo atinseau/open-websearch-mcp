@@ -266,43 +266,93 @@ evidence = [
 ]
 
 [tasks.FND-002]
-state = "planned"
+state = "verified"
 spec = "docs/spec/08-configuration-operations.md"
 depends_on = ["FND-001"]
-write_set = [
-  "src/features/configuration",
-  "src/features/logging",
-  "tests/integration/configuration",
+write_set = ["src/features/configuration", "src/bootstrap", "tests", "package.json"]
+requirements = [
+  "CONFIG-001",
+  "CONFIG-002",
+  "CONFIG-003",
+  "CONFIG-004",
+  "CONFIG-005",
+  "CONFIG-006",
+  "INSTALL-001",
+  "INSTALL-002",
+  "INSTALL-003",
+  "LOG-001",
+  "LOG-002",
+  "LOG-003",
 ]
-evidence = []
+acceptance_gates = ["command:bun run check"]
+attempts = [
+  { attempt = 1, branch = "agent/fnd-002-a1", worktree = ".worktree/fnd-002", base_sha = "459d2bdd8d0a2b6b8c6c4f5e2b7e5d3a1c9f8e7d" },
+]
+evidence = [
+  "docs/orchestration/runs/FND-002/0001-implementation.md",
+  "docs/orchestration/runs/FND-002/0002-verification.md",
+  "docs/orchestration/runs/FND-002/0003-review-corrections.md",
+]
 
 [tasks.FND-003]
-state = "planned"
+state = "verified"
 spec = "docs/spec/06-ranking-cache-investigations.md"
 depends_on = ["FND-001", "SPK-005"]
-write_set = ["src/features/storage", "tests/integration/storage"]
-evidence = []
+write_set = ["src/features/storage", "tests"]
+requirements = ["CACHE-002", "CACHE-003", "CACHE-004"]
+acceptance_gates = ["command:bun run check"]
+evidence = [
+  "docs/orchestration/runs/FND-003/0001-implementation-and-verification.md",
+  "docs/orchestration/runs/FND-003/0002-trace-correction.md",
+]
 
 [tasks.FND-004]
-state = "planned"
+state = "verified"
 spec = "docs/spec/06-ranking-cache-investigations.md"
 depends_on = ["FND-003"]
-write_set = ["src/features/investigation", "tests/contracts/investigation"]
-evidence = []
+write_set = ["src/features/investigation", "src/features/storage", "tests"]
+requirements = ["CACHE-009"]
+acceptance_gates = ["command:bun run check"]
+evidence = ["docs/orchestration/runs/FND-004/0001-implementation.md"]
 
 [tasks.FND-005]
-state = "planned"
+state = "verified"
 spec = "docs/spec/02-architecture-runtime.md"
 depends_on = ["FND-001", "SPK-003"]
-write_set = ["src/features/scheduling", "tests/contracts/scheduling"]
-evidence = []
+write_set = ["src/features/rendering", "tests"]
+requirements = [
+  "ORCH-001",
+  "ORCH-002",
+  "ORCH-003",
+  "ORCH-004",
+  "ORCH-005",
+  "ORCH-006",
+  "ORCH-007",
+]
+acceptance_gates = ["command:bun run check"]
+evidence = ["docs/orchestration/runs/FND-005/0001-implementation.md"]
 
 [tasks.FND-006]
-state = "planned"
+state = "verified"
 spec = "docs/spec/03-mcp-contract.md"
 depends_on = ["FND-001", "SPK-005"]
-write_set = ["src/mcp", "tests/contracts/mcp"]
-evidence = []
+write_set = ["src/mcp", "tests", "package.json", "tsconfig.json"]
+requirements = [
+  "MCP-001",
+  "MCP-002",
+  "MCP-003",
+  "MCP-004",
+  "MCP-005",
+  "MCP-006",
+  "MCP-007",
+  "MCP-009",
+  "MCP-010",
+]
+acceptance_gates = ["command:bun run check"]
+evidence = [
+  "docs/orchestration/runs/FND-006/0001-implementation-and-verification.md",
+  "docs/orchestration/runs/FND-006/0002-trace-correction.md",
+]
 
 [tasks.WEB-001]
 state = "planned"
