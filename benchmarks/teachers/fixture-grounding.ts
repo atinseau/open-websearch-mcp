@@ -1,4 +1,5 @@
 import { array, record, requiredString, webUrl, type JsonRecord } from "./contract-json.ts";
+import { claimTextGrounded } from "./fixture-grounding-lexical.ts";
 
 export type GroundingVerification = {
   accepted_claim_ids: string[];
@@ -69,7 +70,7 @@ function rejectionReason(
       return `required concept is absent from teacher-run evidence: ${concept}`;
     }
   }
-  if (!claimTextGrounded(requiredString(claim.text, `claim ${id} text`), corpus)) {
+  if (!claimTextGrounded(requiredString(claim.text, `claim ${id} text`), corpus.text)) {
     return "claim text is not lexically grounded in teacher-run evidence";
   }
   for (const [index, patternValue] of array(
@@ -146,16 +147,20 @@ function hasBoundedSpan(occurrences: number[][], window: number): boolean {
   }
 }
 
-function currentSpan(occurrences: number[][], cursors: number[]):
-  | { minimum: number; maximum: number; minimumList: number }
-  | undefined {
+function currentSpan(
+  occurrences: number[][],
+  cursors: number[],
+): { minimum: number; maximum: number; minimumList: number } | undefined {
   let minimum = Number.POSITIVE_INFINITY;
   let maximum = Number.NEGATIVE_INFINITY;
   let minimumList = 0;
   for (const [list, positions] of occurrences.entries()) {
     const position = positions[cursors[list] ?? 0];
     if (position === undefined) return undefined;
-    if (position < minimum) { minimum = position; minimumList = list; }
+    if (position < minimum) {
+      minimum = position;
+      minimumList = list;
+    }
     if (position > maximum) maximum = position;
   }
   return { minimum, maximum, minimumList };
@@ -198,90 +203,6 @@ function escapeRegExp(value: string): string {
  * carrying the false assertion. Short function words are ignored because they
  * carry no evidential weight.
  */
-function claimTextGrounded(text: string, corpus: GroundingCorpus): boolean {
-  const contentWords = new Set(
-    text
-      .toLowerCase()
-      .split(/[^a-z0-9]+/u)
-      .filter((word) => word.length > 3 && !claimStopWords.has(word)),
-  );
-  if (contentWords.size === 0) return false;
-  return [...contentWords].every((word) => containsWord(corpus.text, word));
-}
-
-/**
- * Matches a whole word rather than a substring, so "cat" is not grounded by
- * "concatenate".
- */
-function containsWord(haystack: string, word: string): boolean {
-  return RegExp(`(?<![a-z0-9])${escapeRegExp(word)}(?![a-z0-9])`, "u").test(haystack);
-}
-
-const claimStopWords = new Set([
-  "that",
-  "this",
-  "these",
-  "those",
-  "with",
-  "from",
-  "into",
-  "than",
-  "then",
-  "when",
-  "while",
-  "where",
-  "which",
-  "their",
-  "there",
-  "them",
-  "they",
-  "also",
-  "have",
-  "has",
-  "had",
-  "been",
-  "being",
-  "does",
-  "not",
-  "but",
-  "and",
-  "for",
-  "are",
-  "its",
-  "it",
-  "the",
-  "only",
-  "each",
-  "both",
-  "same",
-  "such",
-  "over",
-  "under",
-  "after",
-  "before",
-  "because",
-  "however",
-  "rather",
-  "still",
-  "some",
-  "more",
-  "most",
-  "other",
-  "another",
-  "every",
-  "must",
-  "should",
-  "would",
-  "could",
-  "will",
-  "can",
-  "may",
-  "does",
-  "using",
-  "used",
-  "use",
-]);
-
 /**
  * Flattens every observable teacher-run field a claim may be graded against
  * into one lowercase haystack plus the set of observed URLs.
