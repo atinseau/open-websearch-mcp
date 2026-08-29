@@ -15,3 +15,5 @@ export interface McpToolDependencies {
   readonly application: InvestigationApplication;
   readonly calls: CallContextFactory;
 }
+
+export { createMcpServer, serveStdio } from "@/mcp/server";

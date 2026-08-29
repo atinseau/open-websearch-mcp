@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "check": "bun run format:check && bun run lint && bun run lint:limits && bun run lint:types && bun run typecheck && bun run test && bun run orchestration:validate -- --repo .",
-    "format": "oxfmt --disable-nested-config --no-error-on-unmatched-pattern src scripts tests/architecture tests/storage benchmarks/teachers/*.ts benchmarks/teachers/*.json benchmarks/teachers/schemas package.json tsconfig.json .oxlintrc.jsonc .oxfmtrc.jsonc",
-    "format:check": "oxfmt --check --disable-nested-config --no-error-on-unmatched-pattern src scripts tests/architecture tests/storage benchmarks/teachers/*.ts benchmarks/teachers/*.json benchmarks/teachers/schemas package.json tsconfig.json .oxlintrc.jsonc .oxfmtrc.jsonc",
-    "lint": "oxlint --disable-nested-config --deny-warnings --report-unused-disable-directives-severity off src scripts tests/architecture tests/storage benchmarks/teachers/*.ts",
+    "format": "oxfmt --disable-nested-config --no-error-on-unmatched-pattern src scripts tests benchmarks/teachers/*.ts benchmarks/teachers/*.json benchmarks/teachers/schemas package.json tsconfig.json .oxlintrc.jsonc .oxfmtrc.jsonc",
+    "format:check": "oxfmt --check --disable-nested-config --no-error-on-unmatched-pattern src scripts tests benchmarks/teachers/*.ts benchmarks/teachers/*.json benchmarks/teachers/schemas package.json tsconfig.json .oxlintrc.jsonc .oxfmtrc.jsonc",
+    "lint": "oxlint --disable-nested-config --deny-warnings --report-unused-disable-directives-severity off src scripts tests benchmarks/teachers/*.ts",
     "lint:limits": "oxlint --deny-warnings --report-unused-disable-directives-severity off src",
-    "lint:types": "oxlint --disable-nested-config --type-aware --type-check --deny-warnings --report-unused-disable-directives src scripts tests/architecture tests/storage benchmarks/teachers/*.ts",
+    "lint:types": "oxlint --disable-nested-config --type-aware --type-check --deny-warnings --report-unused-disable-directives src scripts tests benchmarks/teachers/*.ts",
     "orchestrate": "bun scripts/orchestration/main.ts",
     "orchestration:validate": "bun scripts/orchestration/validate.ts",
     "test": "bun test --parallel --isolate",
@@ -17,9 +17,11 @@
     "typecheck": "bun x tsc --noEmit"
   },
   "dependencies": {
-    "zod": "4.5.2"
+    "@modelcontextprotocol/server": "2.0.0",
+    "zod": "4.5.1"
   },
   "devDependencies": {
+    "@modelcontextprotocol/client": "2.0.0",
     "@types/bun": "1.4.0",
     "oxfmt": "0.65.0",
     "oxlint": "1.80.0",
