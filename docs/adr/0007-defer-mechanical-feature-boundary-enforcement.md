@@ -1,41 +1,44 @@
-# Defer mechanical feature-boundary enforcement
+# Enforce feature boundaries through the source-graph architecture test
 
-Status: accepted
+Status: accepted (amended)
 
-`ARCH-002` requires that one feature may import another feature's public
-`index.ts` but never its internals. SPK-005 proved no stable mechanism can
-enforce this today: Oxlint `1.80.0` has no native context-sensitive rule for it,
-and the one candidate that does work, `eslint-plugin-boundaries@7.2.0` via
-Oxlint's `jsPlugins`, is reachable only through a config path that
-`oxlint --help` states is "experimental and require[s] running via Node.js" —
-which `PROD-005` forbids. `ARCH-005` prohibits both weakening the rule and
-writing a custom linter, so the spike escalated for an external decision.
+SPK-005 correctly rejected the Node-dependent experimental plugin path. The
+repository subsequently gained `tests/architecture/dependency-graph.test.ts`, a
+Bun test that reads every TypeScript source file in `src` and asserts the
+architecture directly. Extending that existing structural test is permitted by
+the project contract; it is not a custom linter.
 
-We defer mechanical enforcement rather than adopt the plugin. The boundary rules
-stay normative and are upheld by structure and review while features are written;
-they are not silently downgraded. Dependency direction and the >12 import-
-declaration limit are likewise unsupported by any proven stable mechanism and are
-deferred on the same basis.
+The test now resolves both `@/` and relative specifiers before applying the
+feature rule. A feature may reach another feature only through exactly
+`features/<name>` (its public `index.ts`); a relative traversal into another
+feature is therefore rejected as well. Literal `import("…")` references are
+included in the graph, and computed dynamic imports are rejected outright so a
+string-concatenated internal path cannot escape the check. `no-eval`,
+`typescript/no-require-imports`, and TypeScript resolution remain independent
+root-lint/typecheck protections.
+
+This is equivalent enforcement for the repository's supported TypeScript module
+forms. It deliberately does not attempt to parse arbitrary JavaScript embedded
+in strings or third-party generated artifacts; those are outside `src`, and a
+computed runtime import in `src` fails the architecture test instead of being
+silently unanalysed.
 
 ## Considered options
 
-1. **Adopt the pinned plugin anyway.** Gives real enforcement immediately, but
+1. **Adopt the pinned plugin anyway.** Gives real enforcement, but
    introduces Node into the lint toolchain, breaking `PROD-005` — trading a
    runtime invariant for an architecture check.
 2. **Find another stable tool that runs under Bun.** Preserves every invariant,
    but no such tool is known to exist, and searching blocks the foundations.
-3. **Defer (chosen).** Costs mechanical enforcement during foundation work, but
-   breaks no invariant and incurs no tooling debt.
+3. **Use the existing graph test (chosen).** Keeps enforcement under Bun,
+   exercises the real source graph, and avoids a custom lint implementation.
 
 ## Consequences
 
-- `FND-001` must establish the feature skeleton so boundaries are obvious by
-  structure, and its review must check them explicitly. Every later feature task
-  inherits that review obligation.
-- The violation class this would have caught — a cross-feature internal import —
-  is now caught by humans and agents, not by CI. That is a real gap, and the risk
-  grows with the number of features.
-- `TEST-024` cannot claim boundary enforcement in the release gate. Revisit when
-  Oxlint stabilises a Bun-compatible plugin interface, or when a stable native
-  rule appears; the SPK-005 fixture matrix is retained so any candidate can be
-  re-evaluated against the same positive and negative cases.
+- `ARCH-002` and the source-graph parts of `ARCH-003` are CI-blocking through
+  the isolated architecture test.
+- The source-graph test must be extended with every new supported import form;
+  it must never be weakened to accept a form it cannot resolve.
+- The retained SPK-005 plugin matrix remains useful evidence if Oxlint later
+  offers a stable Bun-compatible native mechanism, but is no longer required for
+  current boundary enforcement.

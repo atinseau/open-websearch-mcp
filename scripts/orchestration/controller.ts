@@ -1,94 +1,29 @@
-export type TaskState =
-  | "planned"
-  | "ready"
-  | "in_progress"
-  | "review"
-  | "verified"
-  | "blocked_external";
+import type {
+  ControllerOptions,
+  OpenCodeRequest,
+  OpenCodeStepResult,
+  OrchestrationState,
+  StepStatus,
+  Task,
+  TaskState,
+} from "./controller-types.ts";
+import {
+  assertDependencyGraph,
+  assertPolicy,
+  assertReadiness,
+  assertRootShape,
+  assertTaskShapes,
+} from "./state-schema.ts";
+import { assertCurrentTask, assertReferencedFiles } from "./state-current.ts";
 
-export type Task = {
-  state: TaskState;
-  spec: string;
-  depends_on: string[];
-  write_set: string[];
-  evidence: string[];
-  requirements?: string[];
-  acceptance_gates?: string[];
-  attempts?: Array<{ attempt: number; branch: string; worktree: string; base_sha: string }>;
-};
-
-export type OrchestrationState = {
-  schema_version: number;
-  project: string;
-  state: string;
-  spec_revision: string;
-  last_trace: string;
-  environment: Record<string, unknown>;
-  artifacts: Record<string, unknown>;
-  current_task?: string;
-  current_attempt?: number;
-  current_worktree?: string;
-  current_branch?: string;
-  current_base_sha?: string;
-  current_session?: string;
-  current_step?: number;
-  current_head_sha?: string;
-  current_reviewed_diff?: string;
-  policy: {
-    max_active_worktrees: number;
-    max_step_retries: number;
-    agent_timeout_minutes: number;
-    trace_after_every_step: boolean;
-    worktree_root: string;
-  };
-  tasks: Record<string, Task>;
-};
-
-export type StepStatus =
-  | "ready"
-  | "continue"
-  | "review"
-  | "verified"
-  | "paused"
-  | "blocked_external"
-  | "failed";
-
-export type OpenCodeRequest = {
-  task: string;
-  cwd: string;
-  model: string;
-  variant?: string;
-  session_id?: string;
-  prompt: string;
-  timeout_ms: number;
-};
-
-export type OpenCodeStepResult = {
-  status: StepStatus;
-  step:
-    | "plan"
-    | "implementation"
-    | "verification"
-    | "review"
-    | "integration"
-    | "failure"
-    | "blocker";
-  session_id: string;
-  summary: string;
-  changed_paths: string[];
-  checks: Array<{ command: string; cwd: string; exit_code: number; output?: string }>;
-  decisions: string[];
-  findings: Array<{ severity: "blocker" | "high" | "medium" | "low"; summary: string }>;
-  blocker?: { authority: string; error: string; human_action: string };
-  next_action: string;
-};
-
-export type ControllerOptions = {
-  repository: string;
-  model: string;
-  variant?: string;
-  isInterrupted?: () => boolean;
-  invokeOpenCode: (request: OpenCodeRequest) => Promise<OpenCodeStepResult>;
+export type {
+  ControllerOptions,
+  OpenCodeRequest,
+  OpenCodeStepResult,
+  OrchestrationState,
+  StepStatus,
+  Task,
+  TaskState,
 };
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -104,261 +39,22 @@ function isStepStatus(value: unknown): value is StepStatus {
   );
 }
 
+/** Reads and fully validates the orchestration ledger before any step runs. */
 export async function validateRepository(repository: string): Promise<OrchestrationState> {
-  const root = repository.replace(/\/$/u, "");
-  // The complete schema is checked immediately below before this value escapes.
+  const root = repository.replace(/[/]$/u, "");
+  // The complete schema is checked by the assertions below before this value escapes.
   // oxlint-disable-next-line typescript/no-unsafe-type-assertion
   const state = Bun.TOML.parse(
     await Bun.file(`${root}/docs/orchestration/state.toml`).text(),
   ) as OrchestrationState;
 
-  if (
-    state.schema_version !== 3 ||
-    typeof state.project !== "string" ||
-    !state.project ||
-    !["bootstrapped", "active", "complete", "blocked_external"].includes(state.state) ||
-    typeof state.spec_revision !== "string" ||
-    typeof state.last_trace !== "string" ||
-    !state.environment ||
-    typeof state.environment !== "object" ||
-    Array.isArray(state.environment) ||
-    !state.artifacts ||
-    typeof state.artifacts !== "object" ||
-    Array.isArray(state.artifacts) ||
-    !state.tasks ||
-    Array.isArray(state.tasks)
-  ) {
-    throw new Error("Invalid orchestration state");
-  }
-  const rootFields = new Set([
-    "schema_version",
-    "project",
-    "state",
-    "spec_revision",
-    "current_task",
-    "current_attempt",
-    "current_worktree",
-    "current_branch",
-    "current_base_sha",
-    "current_session",
-    "current_step",
-    "current_head_sha",
-    "current_reviewed_diff",
-    "last_trace",
-    "environment",
-    "artifacts",
-    "policy",
-    "tasks",
-  ]);
-  const unknownRoot = Object.keys(state).find((field) => !rootFields.has(field));
-  if (unknownRoot) throw new Error(`Unknown orchestration state field ${unknownRoot}`);
-  const policyFields = new Set([
-    "max_active_worktrees",
-    "max_step_retries",
-    "agent_timeout_minutes",
-    "trace_after_every_step",
-    "worktree_root",
-  ]);
-  const unknownPolicy = Object.keys(state.policy).find((field) => !policyFields.has(field));
-  if (unknownPolicy) throw new Error(`Unknown orchestration policy field ${unknownPolicy}`);
-  if (
-    state.policy?.max_active_worktrees !== 1 ||
-    state.policy.worktree_root !== ".worktree" ||
-    !Number.isInteger(state.policy.max_step_retries) ||
-    state.policy.max_step_retries < 1 ||
-    !Number.isFinite(state.policy.agent_timeout_minutes) ||
-    state.policy.agent_timeout_minutes <= 0 ||
-    // TOML input is untyped at runtime; truthy non-booleans must not satisfy the trace policy.
-    // oxlint-disable-next-line typescript/no-unnecessary-boolean-literal-compare
-    state.policy.trace_after_every_step !== true
-  ) {
-    throw new Error("Policy requires one active worktree under .worktree");
-  }
-
-  const taskFields = new Set([
-    "state",
-    "spec",
-    "depends_on",
-    "write_set",
-    "evidence",
-    "requirements",
-    "acceptance_gates",
-    "attempts",
-  ]);
-  const taskStates = new Set<TaskState>([
-    "planned",
-    "ready",
-    "in_progress",
-    "review",
-    "verified",
-    "blocked_external",
-  ]);
-  for (const [taskId, task] of Object.entries(state.tasks)) {
-    for (const field of Object.keys(task)) {
-      if (!taskFields.has(field)) throw new Error(`${taskId} has unknown field ${field}`);
-    }
-    if (
-      !taskStates.has(task.state) ||
-      typeof task.spec !== "string" ||
-      !Array.isArray(task.depends_on) ||
-      !task.depends_on.every((value) => typeof value === "string") ||
-      !Array.isArray(task.write_set) ||
-      !task.write_set.every((value) => typeof value === "string") ||
-      !Array.isArray(task.evidence) ||
-      !task.evidence.every((value) => typeof value === "string") ||
-      (task.requirements !== undefined &&
-        (!Array.isArray(task.requirements) ||
-          !task.requirements.every((value) => typeof value === "string"))) ||
-      (task.acceptance_gates !== undefined &&
-        (!Array.isArray(task.acceptance_gates) ||
-          !task.acceptance_gates.every(
-            (value) =>
-              typeof value === "string" &&
-              Boolean(value.trim()) &&
-              (!value.startsWith("command:") || Boolean(value.slice("command:".length).trim())),
-          ))) ||
-      (task.attempts !== undefined &&
-        (!Array.isArray(task.attempts) ||
-          task.attempts.some(
-            (attempt) =>
-              !attempt ||
-              !Number.isInteger(attempt.attempt) ||
-              attempt.attempt < 1 ||
-              typeof attempt.branch !== "string" ||
-              typeof attempt.worktree !== "string" ||
-              !/^[0-9a-f]{40}$/u.test(attempt.base_sha),
-          )))
-    ) {
-      throw new Error(`${taskId} has invalid task fields`);
-    }
-  }
-  if (state.state === "complete") {
-    const openTask = Object.entries(state.tasks).find(([, task]) => task.state !== "verified");
-    if (openTask)
-      throw new Error(
-        `Project cannot be complete while task ${openTask[0]} is ${openTask[1].state}`,
-      );
-  }
-
-  const visited = new Set<string>();
-  const visiting: string[] = [];
-  const visit = (taskId: string): void => {
-    const cycleStart = visiting.indexOf(taskId);
-    if (cycleStart !== -1) {
-      throw new Error(`Dependency cycle: ${[...visiting.slice(cycleStart), taskId].join(" -> ")}`);
-    }
-    if (visited.has(taskId)) return;
-
-    visiting.push(taskId);
-    for (const dependency of state.tasks[taskId]?.depends_on ?? []) {
-      if (!Object.hasOwn(state.tasks, dependency)) {
-        throw new Error(`${taskId} depends on unknown task ${dependency}`);
-      }
-      visit(dependency);
-    }
-    visiting.pop();
-    visited.add(taskId);
-  };
-  for (const taskId of Object.keys(state.tasks)) visit(taskId);
-
-  for (const [taskId, task] of Object.entries(state.tasks)) {
-    if (task.state !== "ready") continue;
-    const unverified = task.depends_on.find(
-      (dependency) => state.tasks[dependency]?.state !== "verified",
-    );
-    if (unverified) throw new Error(`Ready task ${taskId} has unverified dependency ${unverified}`);
-  }
-  for (const [taskId, task] of Object.entries(state.tasks)) {
-    if (task.state !== "in_progress" && task.state !== "review") continue;
-    const unverified = task.depends_on.find(
-      (dependency) => state.tasks[dependency]?.state !== "verified",
-    );
-    if (unverified)
-      throw new Error(`Active task ${taskId} has unverified dependency ${unverified}`);
-  }
-
-  const activeTasks = Object.entries(state.tasks)
-    .filter(([, task]) => task.state === "in_progress" || task.state === "review")
-    .map(([taskId]) => taskId);
-  if (activeTasks.length > 1) throw new Error("Only one task may be active");
-  if (activeTasks.length === 1 && state.current_task !== activeTasks[0]) {
-    throw new Error(`current_task must identify active task ${activeTasks[0]}`);
-  }
-  if (
-    state.current_worktree &&
-    (!state.current_worktree.startsWith(`${state.policy.worktree_root}/`) ||
-      state.current_worktree.split("/").includes(".."))
-  ) {
-    throw new Error("current_worktree must be below .worktree");
-  }
-  const currentFields = [
-    "current_attempt",
-    "current_branch",
-    "current_worktree",
-    "current_base_sha",
-    "current_head_sha",
-    "current_reviewed_diff",
-    "current_step",
-    "current_session",
-  ] as const;
-  if (state.current_task === undefined) {
-    if (currentFields.some((field) => Object.hasOwn(state, field))) {
-      throw new Error("Current task fields require current_task");
-    }
-  } else {
-    if (typeof state.current_task !== "string" || !state.tasks[state.current_task]) {
-      throw new Error(`Unknown current_task ${state.current_task}`);
-    }
-    const expectedAttempt = state.current_attempt;
-    const currentTask = state.tasks[state.current_task]!;
-    if (
-      !Number.isInteger(expectedAttempt) ||
-      expectedAttempt! < 1 ||
-      state.current_branch !== `agent/${state.current_task.toLowerCase()}-a${expectedAttempt}` ||
-      state.current_worktree !==
-        `${state.policy.worktree_root}/${state.current_task.toLowerCase()}-a${expectedAttempt}` ||
-      !/^[0-9a-f]{40}$/u.test(state.current_base_sha ?? "") ||
-      !Number.isInteger(state.current_step) ||
-      state.current_step! < 1 ||
-      !state.last_trace.startsWith(
-        `docs/orchestration/runs/${state.current_task}/${String(state.current_step).padStart(4, "0")}-`,
-      ) ||
-      (state.current_head_sha !== undefined && !/^[0-9a-f]{40}$/u.test(state.current_head_sha)) ||
-      (state.current_reviewed_diff !== undefined &&
-        !/^[0-9a-f]{64}$/u.test(state.current_reviewed_diff)) ||
-      (state.current_session !== undefined && typeof state.current_session !== "string")
-    ) {
-      throw new Error(`Invalid current task state for ${state.current_task}`);
-    }
-    if (
-      !currentTask.attempts?.some(
-        (attempt) =>
-          attempt.attempt === expectedAttempt &&
-          attempt.branch === state.current_branch &&
-          attempt.worktree === state.current_worktree &&
-          attempt.base_sha === state.current_base_sha,
-      )
-    ) {
-      throw new Error(`Current attempt is missing from ${state.current_task} attempts`);
-    }
-    if (!currentTask.evidence.includes(state.last_trace)) {
-      throw new Error(`Current trace is missing from ${state.current_task} evidence`);
-    }
-  }
-
-  const references = new Set([
-    ...(state.last_trace ? [state.last_trace] : []),
-    ...Object.values(state.tasks).flatMap((task) => [task.spec, ...task.evidence]),
-  ]);
-  for (const reference of references) {
-    if (!reference || reference.startsWith("/") || reference.split("/").includes("..")) {
-      throw new Error(`Invalid repository-relative path ${reference}`);
-    }
-    if (!(await Bun.file(`${root}/${reference}`).exists())) {
-      throw new Error(`Missing referenced file ${reference}`);
-    }
-  }
-
+  assertRootShape(state);
+  assertPolicy(state);
+  assertTaskShapes(state);
+  assertDependencyGraph(state);
+  assertReadiness(state);
+  assertCurrentTask(state);
+  await assertReferencedFiles(state, root);
   return state;
 }
 

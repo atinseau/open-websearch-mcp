@@ -13,9 +13,33 @@ const featureNames = [
   "storage",
 ] as const;
 
-type SourceFile = { readonly path: string; readonly imports: readonly string[] };
+type SourceFile = {
+  readonly path: string;
+  readonly imports: readonly string[];
+  readonly importDeclarations: number;
+  readonly hasComputedDynamicImport: boolean;
+};
 
 const importPattern = /(?:from|import)\s+["']([^"']+)["']/gu;
+const importDeclarationPattern = /^\s*import\s+(?!\()/gmu;
+const computedDynamicImportPattern = /\bimport\s*\(\s*(?!["'])/u;
+
+function resolvedPath(from: string, specifier: string): string | undefined {
+  if (specifier.startsWith("@/")) return specifier.slice(2);
+  if (!specifier.startsWith(".")) return undefined;
+
+  const segments = from.split("/").slice(0, -1);
+  for (const segment of specifier.split("/")) {
+    if (!segment || segment === ".") continue;
+    if (segment === "..") segments.pop();
+    else segments.push(segment);
+  }
+  return segments.join("/");
+}
+
+function featureOf(path: string): string | undefined {
+  return path.startsWith("features/") ? path.split("/")[1] : undefined;
+}
 
 /**
  * The real import graph of `src`, read from source rather than inferred from
@@ -28,7 +52,12 @@ async function sourceGraph(): Promise<readonly SourceFile[]> {
   for await (const relative of new Bun.Glob("**/*.ts").scan({ cwd: `${repository}/src` })) {
     const text = await Bun.file(`${repository}/src/${relative}`).text();
     const imports = [...text.matchAll(importPattern)].map((match) => match[1] ?? "");
-    files.push({ path: relative, imports });
+    files.push({
+      path: relative,
+      imports,
+      importDeclarations: [...text.matchAll(importDeclarationPattern)].length,
+      hasComputedDynamicImport: computedDynamicImportPattern.test(text),
+    });
   }
   expect(files.length).toBeGreaterThan(0);
   return files;
@@ -36,14 +65,21 @@ async function sourceGraph(): Promise<readonly SourceFile[]> {
 
 test("ARCH-002 features are reached only through their public index", async () => {
   for (const file of await sourceGraph()) {
-    const owningFeature = file.path.startsWith("features/") ? file.path.split("/")[1] : undefined;
+    const owningFeature = featureOf(file.path);
     for (const specifier of file.imports) {
-      const match = /^@\/features\/([^/]+)(\/.*)?$/u.exec(specifier);
-      if (!match) continue;
-      const [, feature, rest] = match;
+      const target = resolvedPath(file.path, specifier);
+      const feature = target ? featureOf(target) : undefined;
+      if (!feature) continue;
       if (feature === owningFeature) continue;
-      expect(rest ?? "", `${file.path} reaches into ${specifier}`).toBe("");
+      expect(target, `${file.path} reaches into ${specifier}`).toBe(`features/${feature}`);
     }
+    expect(file.hasComputedDynamicImport, `${file.path} has a computed dynamic import`).toBe(false);
+  }
+});
+
+test("ARCH-007 limits each source file to twelve import declarations", async () => {
+  for (const file of await sourceGraph()) {
+    expect(file.importDeclarations, `${file.path} import declarations`).toBeLessThanOrEqual(12);
   }
 });
 
