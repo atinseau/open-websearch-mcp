@@ -1,5 +1,3 @@
-import { array, extractedWebUrls, record } from "./contract-json.ts";
-
 export type CodexInspection = {
   accepted: boolean;
   searches: number;
