@@ -18,11 +18,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    "scripts/**/*.ts",
-    "tests/**/*.ts",
-    "benchmarks/teachers/*.ts"
-  ],
+  "include": ["src/**/*.ts", "scripts/**/*.ts", "tests/**/*.ts", "benchmarks/teachers/*.ts"],
   "exclude": ["tests/architecture/fixtures"]
 }
