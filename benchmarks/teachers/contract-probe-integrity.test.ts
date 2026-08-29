@@ -44,6 +44,11 @@ function validClaudeEvents(): unknown[] {
 }
 
 test("rejects ambiguous or uncorrelated provider event streams", () => {
+  expectClaudeStreamIntegrity();
+  expectCodexStreamIntegrity();
+});
+
+function expectClaudeStreamIntegrity(): void {
   const claude = validClaudeEvents();
   claude.push({ type: "result", is_error: false, result: "duplicate" });
   expect(inspectClaudeProbe(claude).accepted).toBeFalse();
@@ -139,7 +144,9 @@ test("rejects ambiguous or uncorrelated provider event streams", () => {
     plugins: [],
   };
   expect(inspectClaudeProbe(missingModel).accepted).toBeFalse();
+}
 
+function expectCodexStreamIntegrity(): void {
   const codex: unknown[] = [
     {
       type: "item.completed",
@@ -173,7 +180,7 @@ test("rejects ambiguous or uncorrelated provider event streams", () => {
   expect(inspectClaudeProbe(genericNestedClaude).forbidden_tool_calls).toContain(
     "function_call:Bash",
   );
-});
+}
 
 test("rejects malformed provider events without throwing", () => {
   expect(inspectCodexProbe([{ type: "item.completed" }, null])).toMatchObject({

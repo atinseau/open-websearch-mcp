@@ -102,13 +102,17 @@ function sanitizationFixture(): string {
         thinking: "provider reasoning",
         signature: "opaque-provider-signature",
       },
-      researchMetadata: {
-        uuid: "RFC-uuid-example",
-        signature: "Ed25519 specification signature",
-        "product-token": "ExampleBot",
-      },
+      researchMetadata: researchMetadata(),
     }),
   ].join("\n");
+}
+
+function researchMetadata() {
+  return {
+    uuid: "RFC-uuid-example",
+    signature: "Ed25519 specification signature",
+    "product-token": "ExampleBot",
+  };
 }
 
 function expectRedactedSecrets(sanitized: string): void {
