@@ -88,6 +88,8 @@ test("RANK-004 each configured post-extraction component moves the score in its 
           text: "deterministic ranking",
           sourceUrl: new URL("https://example.test/passage"),
           trust: "external_untrusted",
+          score: 1,
+          passageHash: "passage-hash",
         },
       ],
     }),
@@ -184,7 +186,13 @@ test("RANK-002 post-extraction passages can rescore a page above its pre-render 
   const result = createRanker().rank({
     candidates: [first, second],
     evidence: [
-      { text: "deterministic ranking", sourceUrl: second.url, trust: "external_untrusted" },
+      {
+        text: "deterministic ranking",
+        sourceUrl: second.url,
+        trust: "external_untrusted",
+        score: 1,
+        passageHash: "second-hash",
+      },
     ],
     query: "deterministic ranking",
     observedAt,
