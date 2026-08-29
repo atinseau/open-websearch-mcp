@@ -23,12 +23,14 @@ export type AcceptedCapture = {
  * schedules its own archival and rethrows, so the caller publishes exactly one
  * outcome: the scheduled failure archive, or the accepted capture.
  */
-export async function runPlannedProbe(input: {
+type PlannedProbeInput = {
   plan: ProbePlan;
   provider: "codex";
   date: string;
   schedulePublication: (publish: () => Promise<void>) => void;
-}): Promise<AcceptedCapture> {
+};
+
+export async function runPlannedProbe(input: PlannedProbeInput): Promise<AcceptedCapture> {
   const { plan, provider, date, schedulePublication } = input;
   const { root, target, teacherCase, cliVersion } = plan;
   const { stdout, prompt: commonPrompt, observation } = await executeProbe({ plan, provider });
