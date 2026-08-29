@@ -237,11 +237,33 @@ evidence = [
   "docs/orchestration/runs/SPK-005/0004-spike-frontier-reconciliation.md",
 ]
 [tasks.FND-001]
-state = "planned"
+state = "verified"
 spec = "docs/spec/02-architecture-runtime.md"
 depends_on = ["SPK-005"]
-write_set = ["src", "tests/architecture"]
-evidence = []
+write_set = ["src", "tests/architecture", "package.json", "docs/adr"]
+requirements = [
+  "ARCH-001",
+  "ARCH-002",
+  "ARCH-003",
+  "ARCH-004",
+  "ARCH-005",
+  "ARCH-006",
+  "ARCH-007",
+  "ARCH-008",
+  "ARCH-009",
+  "ARCH-010",
+]
+acceptance_gates = ["command:bun run check", "command:bun pm pack --dry-run --ignore-scripts"]
+attempts = [
+  { attempt = 1, branch = "agent/fnd-001-a1", worktree = ".worktree/fnd-001-a1", base_sha = "02e9c8b37283a12162cabdb7f404cf06125e31fd" },
+]
+evidence = [
+  "docs/orchestration/runs/FND-001/0001-prepare.md",
+  "docs/orchestration/runs/FND-001/0002-implementation.md",
+  "docs/orchestration/runs/FND-001/0003-verification.md",
+  "docs/orchestration/runs/FND-001/0004-review-corrections.md",
+  "docs/adr/0008-scope-arch-007-limits-to-product-source.md",
+]
 
 [tasks.FND-002]
 state = "planned"

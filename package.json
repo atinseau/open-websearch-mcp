@@ -4,10 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "bun run format:check && bun run lint && bun run lint:types && bun run typecheck && bun run test && bun run orchestration:validate -- --repo .",
+    "check": "bun run format:check && bun run lint && bun run lint:limits && bun run lint:types && bun run typecheck && bun run test && bun run orchestration:validate -- --repo .",
     "format": "oxfmt --disable-nested-config --no-error-on-unmatched-pattern src scripts tests/architecture benchmarks/teachers/*.ts benchmarks/teachers/*.json benchmarks/teachers/schemas package.json tsconfig.json .oxlintrc.jsonc .oxfmtrc.jsonc",
     "format:check": "oxfmt --check --disable-nested-config --no-error-on-unmatched-pattern src scripts tests/architecture benchmarks/teachers/*.ts benchmarks/teachers/*.json benchmarks/teachers/schemas package.json tsconfig.json .oxlintrc.jsonc .oxfmtrc.jsonc",
     "lint": "oxlint --disable-nested-config --deny-warnings --report-unused-disable-directives-severity off src scripts tests/architecture benchmarks/teachers/*.ts",
+    "lint:limits": "oxlint --deny-warnings --report-unused-disable-directives-severity off src",
     "lint:types": "oxlint --disable-nested-config --type-aware --type-check --deny-warnings --report-unused-disable-directives src scripts tests/architecture benchmarks/teachers/*.ts",
     "orchestrate": "bun scripts/orchestration/main.ts",
     "orchestration:validate": "bun scripts/orchestration/validate.ts",
