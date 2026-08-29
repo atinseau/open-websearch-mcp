@@ -111,31 +111,42 @@ export function inspectClaudeProbe(events: unknown[]): ClaudeInspection {
 }
 
 export function inspectLegacyClaudeProbe(events: unknown[]): ClaudeInspection {
-  const calls: string[] = [];
-  const forbidden = new Set<string>();
-  let initAccepted = false;
-  let successfulResult = false;
-  let authenticationFailed = false;
+  const state = createLegacyClaudeState();
   for (const candidate of events) {
     const event = record(candidate, "legacy Claude event");
-    if (event.type === "system" && event.subtype === "init") {
-      initAccepted = legacyInitAccepted(event);
-    }
-    if (event.type === "assistant") collectLegacyCalls(event, calls, forbidden);
-    if (typeof event.type === "string" && event.type.startsWith("hook_")) {
-      forbidden.add(event.type);
-    }
-    if (event.type === "result") {
-      authenticationFailed = claudeAuthenticationFailed(event);
-      successfulResult = event.is_error === false && !authenticationFailed;
-    }
+    collectLegacyClaudeEvent(event, state);
   }
   return {
-    accepted: initAccepted && successfulResult && calls.length > 0 && forbidden.size === 0,
-    tool_calls: calls,
-    forbidden_tool_calls: [...forbidden],
-    authentication_failed: authenticationFailed,
+    accepted: legacyClaudeAccepted(state),
+    tool_calls: state.calls,
+    forbidden_tool_calls: [...state.forbidden],
+    authentication_failed: state.authenticationFailed,
   };
+}
+
+type LegacyClaudeState = Pick<
+  ClaudeProbeState,
+  "calls" | "forbidden" | "initAccepted" | "successfulResult" | "authenticationFailed"
+>;
+
+function createLegacyClaudeState(): LegacyClaudeState {
+  return { calls: [], forbidden: new Set<string>(), initAccepted: false, successfulResult: false, authenticationFailed: false };
+}
+
+function collectLegacyClaudeEvent(event: Record<string, unknown>, state: LegacyClaudeState): void {
+  if (event.type === "system" && event.subtype === "init") state.initAccepted = legacyInitAccepted(event);
+  if (event.type === "assistant") collectLegacyCalls(event, state.calls, state.forbidden);
+  collectClaudeHook(event, state.forbidden);
+  if (event.type === "result") collectLegacyClaudeResult(event, state);
+}
+
+function collectLegacyClaudeResult(event: Record<string, unknown>, state: LegacyClaudeState): void {
+  state.authenticationFailed = claudeAuthenticationFailed(event);
+  state.successfulResult = event.is_error === false && !state.authenticationFailed;
+}
+
+function legacyClaudeAccepted(state: LegacyClaudeState): boolean {
+  return state.initAccepted && state.successfulResult && state.calls.length > 0 && state.forbidden.size === 0;
 }
 
 /** The sealed refresh proved isolation through its init event alone. */
@@ -226,33 +237,49 @@ function collectClaudeCalls(
   let validSearches = 0;
   for (const candidate of array(message.content, "Claude content", true)) {
     const content = record(candidate, "Claude content item");
-    if (typeof content.type !== "string" || !claudeAssistantContentTypes.has(content.type)) {
-      forbidden.add(`assistant-content:${String(content.type)}`);
-      continue;
-    }
-    if (content.type !== "tool_use") continue;
-    if (typeof content.name !== "string") {
-      forbidden.add("tool_use:missing-name");
-      continue;
-    }
-    calls.push(content.name);
-    if (!claudeAllowedTools.has(content.name)) forbidden.add(content.name);
-    if (typeof content.id === "string" && content.id.length > 0) {
-      if (toolIds.has(content.id)) forbidden.add(`tool_use:duplicate-id:${content.id}`);
-      toolIds.set(content.id, {
-        name: content.name,
-        input: record(content.input, `Claude ${content.name} input`),
-      });
-    } else {
-      forbidden.add(`${content.name}:missing-id`);
-    }
-    if (content.name !== "WebSearch") continue;
-    const input = record(content.input, "Claude WebSearch input");
-    if (typeof input.query === "string" && input.query.length > 0) {
-      validSearches += 1;
-    }
+    validSearches += collectClaudeContent(content, calls, forbidden, toolIds);
   }
   return validSearches;
+}
+
+function collectClaudeContent(
+  content: Record<string, unknown>, calls: string[], forbidden: Set<string>, toolIds: Map<string, ClaudeToolCall>,
+): number {
+  if (typeof content.type !== "string" || !claudeAssistantContentTypes.has(content.type)) {
+    forbidden.add(`assistant-content:${String(content.type)}`);
+    return 0;
+  }
+  if (content.type !== "tool_use") return 0;
+  return collectClaudeToolUse(content, calls, forbidden, toolIds);
+}
+
+function collectClaudeToolUse(
+  content: Record<string, unknown>, calls: string[], forbidden: Set<string>, toolIds: Map<string, ClaudeToolCall>,
+): number {
+  if (typeof content.name !== "string") {
+    forbidden.add("tool_use:missing-name");
+    return 0;
+  }
+  calls.push(content.name);
+  if (!claudeAllowedTools.has(content.name)) forbidden.add(content.name);
+  collectClaudeToolId(content, toolIds, forbidden);
+  return validClaudeSearch(content);
+}
+
+function collectClaudeToolId(content: Record<string, unknown>, toolIds: Map<string, ClaudeToolCall>, forbidden: Set<string>): void {
+  if (typeof content.id !== "string" || content.id.length === 0) {
+    forbidden.add(`${content.name}:missing-id`);
+    return;
+  }
+  if (toolIds.has(content.id)) forbidden.add(`tool_use:duplicate-id:${content.id}`);
+  toolIds.set(content.id, { name: content.name as string, input: record(content.input, `Claude ${content.name} input`) });
+}
+
+function validClaudeSearch(content: Record<string, unknown>): number {
+  if (content.name !== "WebSearch") return 0;
+  const input = record(content.input, "Claude WebSearch input");
+  if (typeof input.query !== "string" || input.query.length === 0) return 0;
+  return 1;
 }
 
 function collectClaudeResults(
@@ -351,17 +378,28 @@ function recordForbiddenInvocation(
   object: Record<string, unknown>,
   forbidden: Set<string>,
 ): void {
-  const name = typeof object.name === "string" ? object.name : "unknown";
-  if (typeof object.type === "string" && claudeForbiddenInvocationTypes.has(object.type)) {
-    forbidden.add(`${object.type}:${name}`);
+  recordForbiddenType(object, forbidden);
+  recordForbiddenProgress(object, forbidden);
+  recordForbiddenToolUse(object, forbidden);
+}
+
+function recordForbiddenType(object: Record<string, unknown>, forbidden: Set<string>): void {
+  if (object.type === "server_tool_use") {
+    forbidden.add(`server_tool_use:${typeof object.name === "string" ? object.name : "unknown"}`);
+    return;
   }
-  if (object.type === "server_tool_use") forbidden.add(`server_tool_use:${name}`);
-  if (object.type === "tool_progress") {
-    const tool = typeof object.tool_name === "string" ? object.tool_name : "unknown";
-    if (!claudeAllowedTools.has(tool)) forbidden.add(`tool_progress:${tool}`);
-  }
-  if (object.type === "tool_use") {
-    if (typeof object.name !== "string") forbidden.add("tool_use:missing-name");
-    else if (!claudeAllowedTools.has(object.name)) forbidden.add(object.name);
-  }
+  if (typeof object.type !== "string" || !claudeForbiddenInvocationTypes.has(object.type)) return;
+  forbidden.add(`${object.type}:${typeof object.name === "string" ? object.name : "unknown"}`);
+}
+
+function recordForbiddenProgress(object: Record<string, unknown>, forbidden: Set<string>): void {
+  if (object.type !== "tool_progress") return;
+  const tool = typeof object.tool_name === "string" ? object.tool_name : "unknown";
+  if (!claudeAllowedTools.has(tool)) forbidden.add(`tool_progress:${tool}`);
+}
+
+function recordForbiddenToolUse(object: Record<string, unknown>, forbidden: Set<string>): void {
+  if (object.type !== "tool_use") return;
+  if (typeof object.name !== "string") forbidden.add("tool_use:missing-name");
+  else if (!claudeAllowedTools.has(object.name)) forbidden.add(object.name);
 }
