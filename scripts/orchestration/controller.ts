@@ -556,19 +556,19 @@ function verificationClaimIsInvalid(
   },
 ): boolean {
   if (received.status !== "verified") return false;
-  return (
-    context.previousTaskState !== "review" ||
-    received.step !== "review" ||
-    !received.session_id ||
-    received.session_id === context.previousSessionId ||
-    !context.task.acceptance_gates?.length ||
-    context.unresolvedGates.length > 0 ||
-    received.checks.length === 0 ||
-    received.checks.some((check) => check.exit_code !== 0) ||
-    received.findings.some(
-      (finding) => finding.severity === "blocker" || finding.severity === "high",
-    )
+  const freshReviewSession =
+    context.previousTaskState === "review" &&
+    received.step === "review" &&
+    Boolean(received.session_id) &&
+    received.session_id !== context.previousSessionId;
+  const gatesResolved =
+    Boolean(context.task.acceptance_gates?.length) && context.unresolvedGates.length === 0;
+  const checksPassed =
+    received.checks.length > 0 && received.checks.every((check) => check.exit_code === 0);
+  const noSeriousFindings = !received.findings.some(
+    (finding) => finding.severity === "blocker" || finding.severity === "high",
   );
+  return !(freshReviewSession && gatesResolved && checksPassed && noSeriousFindings);
 }
 
 /** An external block requires an exact authority, error, and human action. */
