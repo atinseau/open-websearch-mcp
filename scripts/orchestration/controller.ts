@@ -286,6 +286,28 @@ async function reconcileTraceIntoState(input: {
 }
 
 /**
+ * Resolves the task a recovery branch names, refusing anything that is not a
+ * dependency-complete task eligible to start.
+ */
+function recoverableTask(
+  branchTaskSlug: string | undefined,
+  rootState: OrchestrationState,
+): { taskId: string; task: Task } {
+  const taskId = branchTaskSlug
+    ? Object.keys(rootState.tasks).find((id) => id.toLowerCase() === branchTaskSlug)
+    : undefined;
+  const task = taskId ? rootState.tasks[taskId] : undefined;
+  const eligible =
+    task &&
+    (task.state === "ready" || task.state === "planned") &&
+    task.depends_on.every((dependency) => rootState.tasks[dependency]?.state === "verified");
+  if (!taskId || !task || !eligible) {
+    throw new Error("Active worktree has no recoverable task state");
+  }
+  return { taskId, task };
+}
+
+/**
  * Rebuilds the ledger for a worktree whose recorded task identity disagrees with
  * its branch, so an interrupted prepare step can resume. Returns true when it
  * rewrote state and the caller must revalidate.
@@ -311,26 +333,13 @@ async function recoverWorktreeState(input: {
   ) {
     return false;
   }
-  const recoveredTaskId = branchMatch
-    ? Object.keys(rootState.tasks).find((id) => id.toLowerCase() === branchMatch[1])
-    : undefined;
-  const recoveredTask = recoveredTaskId ? rootState.tasks[recoveredTaskId] : undefined;
-  if (
-    !branchMatch ||
-    !recoveredTaskId ||
-    !recoveredTask ||
-    (recoveredTask.state !== "ready" && recoveredTask.state !== "planned") ||
-    !recoveredTask.depends_on.every(
-      (dependency) => rootState.tasks[dependency]?.state === "verified",
-    )
-  ) {
-    throw new Error("Active worktree has no recoverable task state");
-  }
+  const recovered = recoverableTask(branchMatch?.[1], rootState);
+  if (!branchMatch) throw new Error("Active worktree has no recoverable task state");
   const recoveredAttempt = Number(branchMatch[2]);
   await persistPrepare({
     repository,
     worktree: activePath,
-    taskId: recoveredTaskId,
+    taskId: recovered.taskId,
     attempt: recoveredAttempt,
     relativeWorktree: actualRelative!,
     branch: actualBranch!,
@@ -341,7 +350,7 @@ async function recoverWorktreeState(input: {
     model: options.model,
     variant: options.variant,
     timeoutMs: rootState.policy.agent_timeout_minutes * 60_000,
-    markReady: recoveredTask.state === "planned",
+    markReady: recovered.task.state === "planned",
   });
   return true;
 }
