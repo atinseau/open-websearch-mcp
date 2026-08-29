@@ -44,11 +44,14 @@ function validClaudeEvents(): unknown[] {
 }
 
 test("rejects ambiguous or uncorrelated provider event streams", () => {
-  expectClaudeStreamIntegrity();
+  expectClaudeCorrelationIntegrity();
+  expectClaudeForbiddenToolReporting();
+  expectClaudeEnvelopeIntegrity();
   expectCodexStreamIntegrity();
 });
 
-function expectClaudeStreamIntegrity(): void {
+/** A stream is rejected when its results cannot be correlated to its queries. */
+function expectClaudeCorrelationIntegrity(): void {
   const claude = validClaudeEvents();
   claude.push({ type: "result", is_error: false, result: "duplicate" });
   expect(inspectClaudeProbe(claude).accepted).toBeFalse();
@@ -68,6 +71,10 @@ function expectClaudeStreamIntegrity(): void {
   expect(inspectClaudeProbe(claude).forbidden_tool_calls).toContain(
     "event:unexpected-provider-event",
   );
+}
+
+/** Every tool the provider may not use is named in forbidden_tool_calls. */
+function expectClaudeForbiddenToolReporting(): void {
   const nestedTool = validClaudeEvents();
   nestedTool.push({
     type: "stream_event",
@@ -106,6 +113,10 @@ function expectClaudeStreamIntegrity(): void {
   const toolProgress = validClaudeEvents();
   toolProgress.push({ type: "tool_progress", tool_name: "Bash" });
   expect(inspectClaudeProbe(toolProgress).forbidden_tool_calls).toContain("tool_progress:Bash");
+}
+
+/** Mixed, malformed, or incomplete envelopes are reported rather than accepted. */
+function expectClaudeEnvelopeIntegrity(): void {
   const mixedResults = validClaudeEvents();
   mixedResults[2] = {
     type: "user",
