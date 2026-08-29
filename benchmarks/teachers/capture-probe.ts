@@ -1,17 +1,14 @@
-import { inspectCodexProbe, sanitizeJsonl, teacherCases } from "./contract.ts";
-import { requiredDate } from "./contract-json.ts";
+import { inspectCodexProbe, sanitizeJsonl } from "./contract.ts";
 import { probePolicyDocument } from "./capture-probe-policy.ts";
 import { buildTeacherRun } from "./capture-probe-run.ts";
-import { assertRefreshWritable, withRefreshMutation } from "./refresh-lifecycle.ts";
-import { ensureRefreshInputs } from "./refresh-inputs.ts";
+import { planProbe } from "./capture-probe-plan.ts";
+import { withRefreshMutation } from "./refresh-lifecycle.ts";
 import { prepareProbeInvocation } from "./capture-probe-invocation.ts";
-import { canonicalExecutable, commandOutput, runProcess } from "./process-controls.ts";
+import { commandOutput, runProcess } from "./process-controls.ts";
 import { cleanupBeforePublication } from "./derive-fixture-support.ts";
 import {
-  captureOutputExists,
   failureOutput,
   publishAcceptedCapture,
-  type CaptureTarget,
   writeCaptureArtifacts,
   writeMalformedCapture,
 } from "./capture-probe-publication.ts";
@@ -33,29 +30,15 @@ export async function captureProbe(
   date = Bun.env.TEACHER_REFRESH_DATE ?? new Date().toISOString().slice(0, 10),
 ): Promise<void> {
   const root = import.meta.dir;
-  requiredDate(date, "capture date");
-  const refreshInputs = await ensureRefreshInputs(root, date);
-  const cases = teacherCases(refreshInputs.corpus);
-  const teacherCase = caseId === undefined ? undefined : cases.find((item) => item.id === caseId);
-  if (caseId !== undefined && teacherCase === undefined) throw new Error(`unknown case: ${caseId}`);
-  await assertRefreshWritable(root, date);
-  const output =
-    teacherCase === undefined
-      ? `${root}/runs/${date}/probes/${provider}`
-      : `${root}/runs/${date}/cases/${teacherCase.id}/${provider}`;
-  const target: CaptureTarget = { root, date, provider, caseId: teacherCase?.id, output };
-  if (await captureOutputExists(target)) {
-    throw new Error(`immutable probe already exists: ${output}`);
-  }
-
-  const binary = await canonicalExecutable(provider);
-  const allowedChildExecutable = await canonicalExecutable("codex-code-mode-host");
-  const cliVersion = await commandOutput([binary, "--version"]);
-  const temporaryRoot = await commandOutput([
-    "/usr/bin/mktemp",
-    "-d",
-    `${Bun.env.TMPDIR ?? "/tmp"}/spk-001-${provider}.XXXXXX`,
-  ]);
+  const {
+    target,
+    teacherCase,
+    promptTemplate,
+    binary,
+    allowedChildExecutable,
+    cliVersion,
+    temporaryRoot,
+  } = await planProbe({ root, provider, caseId, date });
   let acceptedCapture: AcceptedCapture | undefined;
   let pendingPublication: (() => Promise<void>) | undefined;
   let captureFailure: unknown;
@@ -68,7 +51,7 @@ export async function captureProbe(
     } = await prepareProbeInvocation({
       temporaryRoot,
       question: teacherCase?.question,
-      promptTemplate: refreshInputs.prompt,
+      promptTemplate,
       isCase: teacherCase !== undefined,
     });
 
