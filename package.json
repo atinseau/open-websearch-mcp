@@ -1,10 +1,19 @@
 {
   "name": "open-websearch-mcp",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.1",
+  "description": "Local-first MCP server for deterministic Web evidence retrieval.",
+  "license": "Apache-2.0",
   "bin": {
-    "open-websearch-mcp": "./src/cli.ts"
+    "open-websearch-mcp": "./bin/open-websearch-mcp.ts"
   },
+  "files": [
+    "bin",
+    "src",
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "tsconfig.json"
+  ],
   "type": "module",
   "scripts": {
     "check": "bun run format:check && bun run lint && bun run lint:limits && bun run lint:types && bun run typecheck && bun run test && bun run orchestration:validate -- --repo .",
@@ -16,6 +25,7 @@
     "orchestrate": "bun scripts/orchestration/main.ts",
     "orchestration:validate": "bun scripts/orchestration/validate.ts",
     "test": "bun test --parallel --isolate",
+    "test:package": "bun test --parallel --isolate tests/package",
     "test:architecture": "bun test --parallel --isolate tests/architecture",
     "typecheck": "bun x tsc --noEmit"
   },
