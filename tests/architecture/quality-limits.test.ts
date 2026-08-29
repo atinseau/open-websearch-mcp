@@ -81,21 +81,24 @@ test("ARCH-007 native limits reject their negative fixtures", async () => {
   }
 });
 
-test("ARCH-007 thresholds are configured for product source", async () => {
+test("ARCH-007 thresholds are configured repository-wide", async () => {
   const configuration = record(
-    Bun.JSONC.parse(await Bun.file(`${repository}/src/.oxlintrc.jsonc`).text()),
+    Bun.JSONC.parse(await Bun.file(`${repository}/.oxlintrc.jsonc`).text()),
   );
   const configured = record(configuration.rules);
 
-  expect(Object.keys(configured).sort()).toEqual(Object.keys(rules).sort());
   for (const [rule, expected] of Object.entries(rules)) {
     expect(configured[rule]).toEqual(expected);
   }
 
   const scripts = record((await manifest()).scripts);
   expect(scripts["lint:limits"]).toBeString();
-  // Nesting is what applies src/.oxlintrc.jsonc, so this script must not opt out.
-  expect(scripts["lint:limits"]).not.toContain("--disable-nested-config");
+  // ADR-0008's debt is cleared: the limits now live in the root configuration
+  // and every product, script, test, and benchmark path is checked against
+  // them. The gate must therefore cover all four roots, not `src` alone.
+  for (const root of ["src", "scripts", "tests", "benchmarks"]) {
+    expect(scripts["lint:limits"]).toContain(root);
+  }
   expect(scripts.check).toContain("lint:limits");
 });
 

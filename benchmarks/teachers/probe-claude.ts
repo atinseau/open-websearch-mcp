@@ -184,23 +184,24 @@ function collectClaudeToolUse(
   }
   calls.push(content.name);
   if (!claudeAllowedTools.has(content.name)) forbidden.add(content.name);
-  collectClaudeToolId(content, toolIds, forbidden);
+  collectClaudeToolId(content, content.name, toolIds, forbidden);
   return validClaudeSearch(content);
 }
 
 function collectClaudeToolId(
   content: Record<string, unknown>,
+  name: string,
   toolIds: Map<string, ClaudeToolCall>,
   forbidden: Set<string>,
 ): void {
   if (typeof content.id !== "string" || content.id.length === 0) {
-    forbidden.add(`${content.name}:missing-id`);
+    forbidden.add(`${name}:missing-id`);
     return;
   }
   if (toolIds.has(content.id)) forbidden.add(`tool_use:duplicate-id:${content.id}`);
   toolIds.set(content.id, {
-    name: content.name as string,
-    input: record(content.input, `Claude ${content.name} input`),
+    name,
+    input: record(content.input, `Claude ${name} input`),
   });
 }
 
