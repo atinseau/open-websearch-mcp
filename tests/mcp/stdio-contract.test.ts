@@ -37,6 +37,14 @@ test("MCP-001/MCP-002/MCP-003/MCP-005/MCP-006: official client calls real stdio 
   expect(text?.text).toContain("```ts\nconst untrusted = true;\n```");
   expect(text?.text).toContain("trust=external_untrusted");
   expect(text?.text).toContain('warnings=["zero_width_space"]');
+  const open = await client.callTool({
+    name: "web_open",
+    arguments: { url: "https://example.com/evidence" },
+  });
+  expect(open.structuredContent).toMatchObject({
+    investigation_id: "investigation-fixture",
+    status: "success",
+  });
   await client.close();
 });
 

@@ -46,6 +46,13 @@ export type {
 export interface InvestigationRepository {
   ensureInvestigation(investigationId: InvestigationId): Promise<void>;
   reserveConsumedPage(input: ConsumedPageReservation): Promise<ConsumedPageReservationResult>;
+  recordRobotsOverride(input: RobotsOverrideRecord): Promise<void>;
+  listRobotsOverrides(investigationId: InvestigationId): Promise<readonly RobotsOverrideRecord[]>;
+}
+export interface RobotsOverrideRecord {
+  readonly investigationId: InvestigationId;
+  readonly url: URL;
+  readonly recordedAt: Date;
 }
 
 export interface ConsumedPageReservation {

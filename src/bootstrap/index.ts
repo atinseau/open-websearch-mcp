@@ -15,7 +15,11 @@ import {
 } from "@/features/rendering";
 import { assessPublicUrl, type PublicUrlPolicy } from "@/features/security";
 import { BlobStore, createStorage, SqliteStore, type Storage } from "@/features/storage";
-import type { CallContext, InvestigationApplication } from "@/features/investigation";
+import {
+  createWebResearchApplication,
+  type CallContext,
+  type InvestigationApplication,
+} from "@/features/investigation";
 import type { McpToolAdapter, McpToolDependencies } from "@/mcp";
 import { createMcpToolAdapter } from "@/mcp/tools";
 
@@ -32,7 +36,7 @@ export interface ProductionRoot {
 }
 
 export interface ProductionRootOptions {
-  readonly application: InvestigationApplication;
+  readonly application?: InvestigationApplication;
   readonly workspace?: Workspace;
   readonly probe?: (executable: string) => Promise<boolean>;
   /** Release-only pin; omitted only by non-web composition tests. */
@@ -64,8 +68,9 @@ export async function createProductionRoot(
         first.scheduler,
       )
     : undefined;
-  bindWebRuntime(options.application, web?.renderer, web?.policy);
-  const tools = makeTools(options.application, configuration, logger, installer);
+  const application = applicationFor(options.application, storage, web?.renderer);
+  bindWebRuntime(application, web?.renderer, web?.policy);
+  const tools = makeTools(application, configuration, logger, installer);
   return {
     tools,
     storage,
@@ -76,6 +81,14 @@ export async function createProductionRoot(
       await logger.close();
     },
   };
+}
+
+function applicationFor(
+  application: InvestigationApplication | undefined,
+  storage: Storage,
+  renderer: Renderer | undefined,
+): InvestigationApplication {
+  return application ?? createWebResearchApplication({ storage, renderer });
 }
 
 function rendererConfiguration(

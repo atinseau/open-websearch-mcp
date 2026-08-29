@@ -38,9 +38,9 @@ export function sourceQuality(candidate: CandidateRankingInput): number {
   const contentLength = candidate.content?.trim().length ?? 0;
   const substantial = contentLength >= 800 ? 1 : contentLength >= 200 ? 0.6 : 0.25;
   const positives =
-    Number(candidate.hasAuthor) +
-    Number(candidate.hasCitations) +
-    Number(candidate.originalProvenance);
+    Number(Boolean(candidate.hasAuthor)) +
+    Number(Boolean(candidate.hasCitations)) +
+    Number(Boolean(candidate.originalProvenance));
   const headings = Math.min((candidate.headings?.length ?? 0) / 4, 1);
   const boilerplate = Math.min(Math.max(candidate.boilerplateRatio ?? 0, 0), 1);
   return clamp(0.45 * substantial + 0.2 * headings + 0.35 * (positives / 3) - 0.3 * boilerplate);

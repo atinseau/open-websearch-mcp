@@ -127,4 +127,8 @@ const migrations = [
       CREATE INDEX cache_aliases_canonical ON cache_aliases(canonical_url);
     `,
   },
+  {
+    version: 4,
+    sql: `CREATE TABLE robots_overrides (id INTEGER PRIMARY KEY, investigation_id TEXT NOT NULL REFERENCES investigations(id), url TEXT NOT NULL, recorded_at TEXT NOT NULL); CREATE INDEX robots_overrides_investigation ON robots_overrides(investigation_id, url);`,
+  },
 ] as const;

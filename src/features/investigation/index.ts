@@ -7,6 +7,10 @@ export {
   type PageExploration,
 } from "./application/investigations.ts";
 export type { ConsumptionResult, Investigation, InvestigationId } from "./domain/investigation.ts";
+export {
+  createWebResearchApplication,
+  type WebResearchDependencies,
+} from "./application/web-research.ts";
 
 import type { InvestigationId } from "./domain/investigation.ts";
 
@@ -78,20 +82,18 @@ export interface EvidenceResult {
   readonly fetched_at: string;
   readonly score: number;
   readonly trust: "external_untrusted";
-  readonly passages: readonly EvidencePassage[];
+  readonly passages: readonly {
+    readonly text: string;
+    readonly score: number;
+    readonly heading?: string;
+    readonly fragment?: string;
+    readonly document_page?: number;
+    readonly passage_hash: string;
+  }[];
   readonly code_blocks: readonly EvidenceCodeBlock[];
   readonly content_links: readonly ContentLink[];
   readonly navigation_links: readonly NavigationLink[];
   readonly content_hash: string;
-}
-
-export interface EvidencePassage {
-  readonly text: string;
-  readonly score: number;
-  readonly heading?: string;
-  readonly fragment?: string;
-  readonly document_page?: number;
-  readonly passage_hash: string;
 }
 
 export interface EvidenceCodeBlock {

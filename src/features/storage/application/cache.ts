@@ -243,6 +243,10 @@ function readDocument(row: unknown): CachedDocument {
     fetchedAt: new Date(String(column(row, "fetched_at"))),
     headers: new Headers(headers(column(row, "headers_json"))),
     pinned: Number(column(row, "pinned")) === 1,
+    mainContent:
+      typeof column(row, "main_content") === "string"
+        ? String(column(row, "main_content"))
+        : undefined,
   };
 }
 

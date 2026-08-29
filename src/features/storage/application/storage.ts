@@ -109,6 +109,27 @@ class WorkspaceStorage implements Storage {
       .run(investigationId, now, now);
   }
 
+  async recordRobotsOverride(input: import("../index.ts").RobotsOverrideRecord): Promise<void> {
+    this.sqlite.database
+      .prepare("INSERT INTO robots_overrides (investigation_id, url, recorded_at) VALUES (?, ?, ?)")
+      .run(input.investigationId, input.url.href, input.recordedAt.toISOString());
+  }
+
+  async listRobotsOverrides(
+    investigationId: string,
+  ): Promise<readonly import("../index.ts").RobotsOverrideRecord[]> {
+    return this.sqlite.database
+      .prepare(
+        "SELECT url, recorded_at FROM robots_overrides WHERE investigation_id = ? ORDER BY id",
+      )
+      .all(investigationId)
+      .map((row) => ({
+        investigationId,
+        url: new URL(String(column(row, "url"))),
+        recordedAt: new Date(String(column(row, "recorded_at"))),
+      }));
+  }
+
   close(): void {
     this.sqlite.close();
   }
