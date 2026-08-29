@@ -8,7 +8,7 @@ afterEach(async () => {
   }
 });
 
-test("the CLI invokes OpenCode with explicit model, variant, cwd, and JSON events", async () => {
+async function createCliRepository(): Promise<string> {
   const repository = `/tmp/open-websearch-cli-${crypto.randomUUID()}`;
   fixtures.push(repository);
   await Bun.$`mkdir -p ${repository}/bin ${repository}/docs/orchestration/runs/BOOT-001 ${repository}/docs/spec`.quiet();
@@ -66,7 +66,12 @@ console.log(JSON.stringify({
   await Bun.$`git init -b main ${repository}`.quiet();
   await Bun.$`git -C ${repository} add .`.quiet();
   await Bun.$`git -C ${repository} -c user.name=Test -c user.email=test@example.com commit -m base`.quiet();
+  return repository;
+}
 
+async function invokeCli(
+  repository: string,
+): Promise<{ stdout: string; stderr: string; exitCode: number }> {
   const capture = `${repository}/opencode-args.json`;
   const child = Bun.spawn(
     [
@@ -91,6 +96,13 @@ console.log(JSON.stringify({
     new Response(child.stderr).text(),
     child.exited,
   ]);
+  return { stdout, stderr, exitCode };
+}
+
+test("the CLI invokes OpenCode with explicit model, variant, cwd, and JSON events", async () => {
+  const repository = await createCliRepository();
+  const capture = `${repository}/opencode-args.json`;
+  const { stdout, stderr, exitCode } = await invokeCli(repository);
 
   expect(stderr).toBe("");
   expect(exitCode).toBe(0);

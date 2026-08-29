@@ -109,17 +109,29 @@ if (!obscura) {
     supervisors.push(supervisor);
     const endpoint = await supervisor.install(new AbortController().signal);
     const scheduler = createNavigationScheduler({ configuration: schedulerConfiguration });
-    const renderer = createWebViewRenderer({
+    // Navigation deadline and download budget are separate limits. A single
+    // renderer configured with both makes them race: under parallel load the
+    // 100ms deadline can fire first and mask the budget rejection. Each limit
+    // therefore gets a renderer where it is the only reachable cause.
+    const timedRenderer = createWebViewRenderer({
       endpoint,
-      configuration: { ...configuration, navigationTimeoutMs: 100, maxDownloadBytes: 1024 },
+      configuration: { ...configuration, navigationTimeoutMs: 100 },
       scheduler,
       policy: localFixturePolicy,
     });
-    expect(await rejection(render(renderer, `${fixture.url}slow`))).toContain("navigation_timeout");
-    expect(await rejection(render(renderer, `${fixture.url}large`))).toContain(
+    const budgetedRenderer = createWebViewRenderer({
+      endpoint,
+      configuration: { ...configuration, maxDownloadBytes: 1024 },
+      scheduler,
+      policy: localFixturePolicy,
+    });
+    expect(await rejection(render(timedRenderer, `${fixture.url}slow`))).toContain(
+      "navigation_timeout",
+    );
+    expect(await rejection(render(budgetedRenderer, `${fixture.url}large`))).toContain(
       "download_budget_exceeded",
     );
-    expect(await rejection(render(renderer, `${fixture.url}stream`))).toContain(
+    expect(await rejection(render(budgetedRenderer, `${fixture.url}stream`))).toContain(
       "download_budget_exceeded",
     );
     await scheduler.shutdown();
