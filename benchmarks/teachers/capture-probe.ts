@@ -6,6 +6,7 @@ import {
   validateTeacherRun,
 } from "./contract.ts";
 import { requiredDate } from "./contract-json.ts";
+import { probePolicyDocument } from "./capture-probe-policy.ts";
 import { assertRefreshWritable, withRefreshMutation } from "./refresh-lifecycle.ts";
 import { ensureRefreshInputs } from "./refresh-inputs.ts";
 import { prepareProbeInvocation } from "./capture-probe-invocation.ts";
@@ -88,6 +89,19 @@ export async function captureProbe(
     const cwdContents = await commandOutput(["/bin/ls", "-A", cwd]);
     const paths = [temporaryRoot, Bun.env.HOME ?? ""];
     const sanitizedStderr = JSON.parse(sanitizeJsonl(JSON.stringify({ stderr }), paths)).stderr;
+    const observation = {
+      provider,
+      cliVersion,
+      startedAt,
+      durationMs,
+      args,
+      cwdContents,
+      environment,
+      exitCode,
+      sanitizedStderr,
+      processFailure: result.failure,
+      paths,
+    };
     let sanitizedEvents: string;
     try {
       sanitizedEvents = sanitizeJsonl(stdout, paths);
@@ -140,35 +154,9 @@ export async function captureProbe(
       inspection = inspectCodexProbe(events);
     } catch (error) {
       const archivedOutput = failureOutput(target, startedAt);
-      const failurePolicy = JSON.parse(
-        sanitizeJsonl(
-          JSON.stringify({
-            schema_version: 1,
-            provider,
-            cli_version: cliVersion,
-            started_at: startedAt,
-            duration_ms: durationMs,
-            command: [provider, ...args],
-            controls: {
-              isolated_temporary_cwd: true,
-              cwd_unchanged: cwdContents.length === 0,
-              wrapper_shim_bypassed: true,
-              session_persistence_disabled: true,
-              environment_keys: Object.keys(environment).sort(),
-              isolated_account_state: true,
-              isolated_config_state: true,
-              allowed_child_executables: ["codex-code-mode-host"],
-            },
-            process: {
-              exit_code: exitCode,
-              stderr: sanitizedStderr,
-              ...(result.failure === undefined ? {} : { failure: result.failure }),
-            },
-            failure: error instanceof Error ? error.message : String(error),
-          }),
-          paths,
-        ),
-      );
+      const failurePolicy = probePolicyDocument(observation, {
+        failure: error instanceof Error ? error.message : String(error),
+      });
       pendingPublication = async () => {
         await withRefreshMutation(root, date, async () => {
           await writeCaptureArtifacts(archivedOutput, sanitizedEvents, failurePolicy);
@@ -177,35 +165,7 @@ export async function captureProbe(
       throw error;
     }
     const accepted = inspection.accepted && exitCode === 0 && result.failure === undefined;
-    const policy = JSON.parse(
-      sanitizeJsonl(
-        JSON.stringify({
-          schema_version: 1,
-          provider,
-          cli_version: cliVersion,
-          started_at: startedAt,
-          duration_ms: durationMs,
-          command: [provider, ...args],
-          controls: {
-            isolated_temporary_cwd: true,
-            cwd_unchanged: cwdContents.length === 0,
-            wrapper_shim_bypassed: true,
-            session_persistence_disabled: true,
-            environment_keys: Object.keys(environment).sort(),
-            isolated_account_state: true,
-            isolated_config_state: true,
-            allowed_child_executables: ["codex-code-mode-host"],
-          },
-          process: {
-            exit_code: exitCode,
-            stderr: sanitizedStderr,
-            ...(result.failure === undefined ? {} : { failure: result.failure }),
-          },
-          inspection,
-        }),
-        paths,
-      ),
-    );
+    const policy = probePolicyDocument(observation, { inspection });
     let run: unknown;
     try {
       if (teacherCase !== undefined && accepted) {
