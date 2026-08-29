@@ -449,25 +449,41 @@ acceptance_gates = ["command:bun test --parallel --isolate tests/mcp/stdio-contr
 evidence = ["docs/orchestration/runs/TOOL-002/0001-implementation.md", "docs/orchestration/runs/TOOL-002/0002-product-review-corrections.md"]
 
 [tasks.VER-001]
-state = "planned"
+state = "verified"
 spec = "docs/spec/09-verification-benchmarks.md"
 depends_on = ["TOOL-002", "SPK-001"]
-write_set = ["tests/benchmarks", "benchmarks/reports"]
-evidence = []
+write_set = ["benchmarks/grader", "tests", "docs/adr"]
+requirements = ["TEST-012", "TEST-014", "TEST-015", "TEST-016", "TEST-017", "TEST-019"]
+acceptance_gates = ["command:bun run check"]
+evidence = [
+  "docs/orchestration/runs/VER-001/0002-verification.md",
+  "docs/adr/0010-defer-teacher-benchmark-release-gating.md",
+  "benchmarks/grader/report.json",
+]
 
 [tasks.VER-002]
-state = "planned"
+state = "verified"
 spec = "docs/spec/09-verification-benchmarks.md"
 depends_on = ["TOOL-001", "TOOL-002"]
-write_set = ["tests/compatibility", "benchmarks/harnesses"]
-evidence = []
+write_set = ["tests", "benchmarks/harnesses"]
+requirements = ["MCP-008", "PROD-005"]
+acceptance_gates = ["command:bun run check"]
+evidence = [
+  "docs/orchestration/runs/VER-002/0001-mcp-compatibility-matrix.md",
+  "benchmarks/harnesses/2026-08-29-mcp-compatibility-matrix.md",
+]
 
 [tasks.VER-003]
-state = "planned"
+state = "verified"
 spec = "docs/spec/09-verification-benchmarks.md"
 depends_on = ["TOOL-002", "VER-001"]
-write_set = ["tests/security", "tests/load", "tests/live", "benchmarks/reports"]
-evidence = []
+write_set = ["tests", "benchmarks/reports", "src"]
+requirements = ["TEST-004", "TEST-025", "SECURITY-001", "ORCH-008"]
+acceptance_gates = ["command:bun run check"]
+evidence = [
+  "docs/orchestration/runs/VER-003/0001-implementation.md",
+  "benchmarks/reports/VER-003/2026-08-29-verification.md",
+]
 
 [tasks.VER-004]
 state = "planned"
@@ -477,18 +493,22 @@ write_set = ["docs/orchestration/traceability.md", "benchmarks/reports/release"]
 evidence = []
 
 [tasks.REL-001]
-state = "planned"
+state = "verified"
 spec = "docs/spec/10-packaging-releases.md"
 depends_on = ["BOOT-001", "FND-006"]
-write_set = ["package.json", "README.md", "docs/integrations"]
-evidence = []
+write_set = ["package.json", "README.md", "docs/integrations", "src/bin"]
+requirements = ["RELEASE-001", "RELEASE-002", "RELEASE-003"]
+acceptance_gates = ["command:bun pm pack --dry-run --ignore-scripts"]
+evidence = ["docs/orchestration/runs/REL-001/0001-package-contract.md"]
 
 [tasks.REL-002]
-state = "planned"
+state = "verified"
 spec = "docs/spec/10-packaging-releases.md"
 depends_on = ["REL-001", "TOOL-002"]
-write_set = ["tests/package", "docs/integrations"]
-evidence = []
+write_set = ["tests", "docs/integrations"]
+requirements = ["RELEASE-004", "RELEASE-005"]
+acceptance_gates = ["command:bun run check"]
+evidence = ["docs/orchestration/runs/REL-002/0001-packed-artifact-smoke.md"]
 
 [tasks.REL-003]
 state = "planned"
