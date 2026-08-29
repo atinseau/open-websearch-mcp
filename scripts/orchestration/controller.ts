@@ -763,6 +763,151 @@ async function readLatestTrace(
   return { latestName, latestStep: Number(latestName.slice(0, 4)) };
 }
 
+/**
+ * Folds any unrecorded trace back into the ledger and runs the prepare step when
+ * the task is merely ready, so the caller sees a task in its true state.
+ */
+async function catchUpWorktreeLedger(input: {
+  activePath: string;
+  repository: string;
+  options: ControllerOptions;
+  state: OrchestrationState;
+  task: Task;
+  identity: {
+    taskId: string;
+    attempt: number;
+    relativeWorktree: string;
+    worktree: string;
+    branch: string;
+    baseSha: string;
+  };
+}): Promise<{ state: OrchestrationState; task: Task; latestTrace: string }> {
+  const { activePath, repository, options, identity } = input;
+  const { taskId, attempt, relativeWorktree, worktree, branch, baseSha } = identity;
+  let state = input.state;
+  let task = input.task;
+  const { latestName, latestStep } = await readLatestTrace(worktree, taskId);
+  let latestTrace = await Bun.file(
+    `${worktree}/docs/orchestration/runs/${taskId}/${latestName}`,
+  ).text();
+  if (latestStep > (state.current_step ?? 0)) {
+    await reconcileTraceIntoState({
+      activePath,
+      taskId,
+      task,
+      baseSha,
+      latestName,
+      latestTrace,
+      latestStep,
+    });
+    state = await validateRepository(activePath);
+    task = state.tasks[taskId]!;
+  }
+  if (task.state === "ready") {
+    latestTrace = await persistPrepare({
+      repository,
+      worktree: activePath,
+      taskId,
+      attempt,
+      relativeWorktree,
+      branch,
+      baseSha,
+      model: options.model,
+      variant: options.variant,
+      timeoutMs: state.policy.agent_timeout_minutes * 60_000,
+    });
+    state = await validateRepository(activePath);
+    task = state.tasks[taskId]!;
+  }
+  return { state, task, latestTrace };
+}
+
+type ResumedWorktree = {
+  state: OrchestrationState;
+  taskId: string;
+  task: Task;
+  attempt: number;
+  relativeWorktree: string;
+  worktree: string;
+  branch: string;
+  baseSha: string;
+  latestTrace: string;
+  stepNumber: number;
+  previousTaskState: TaskState;
+  previousSessionId: string | undefined;
+  sessionId: string | undefined;
+};
+
+/**
+ * Reconciles the one active worktree back to a runnable step. Returns a
+ * finished result when the task is already integrated or awaits integration.
+ */
+async function resumeActiveWorktree(input: {
+  active: WorktreeRecord;
+  rootRecord: WorktreeRecord | undefined;
+  rootState: OrchestrationState;
+  options: ControllerOptions;
+  repository: string;
+  forceFreshSession: boolean;
+}): Promise<ResumedWorktree | { finished: OpenCodeStepResult }> {
+  const { active, rootRecord, rootState, options, repository, forceFreshSession } = input;
+  const activePath = active.worktree;
+  if (!activePath) throw new Error("Active worktree record has no path");
+  if (
+    !rootRecord ||
+    !activePath.startsWith(`${rootRecord.worktree}/${rootState.policy.worktree_root}/`)
+  ) {
+    throw new Error(`Worktree is outside ${rootState.policy.worktree_root}: ${activePath}`);
+  }
+  let state = await validateRepository(activePath);
+  if (await recoverWorktreeState({ activePath, active, rootState, state, options, repository })) {
+    state = await validateRepository(activePath);
+  }
+  const resumed = resolveActiveTask(state, rootState, active, repository);
+  const { taskId, attempt, relativeWorktree, worktree, branch, baseSha } = resumed;
+  const caught = await catchUpWorktreeLedger({
+    activePath,
+    repository,
+    options,
+    state,
+    task: resumed.task,
+    identity: resumed,
+  });
+  ({ state } = caught);
+  let task = caught.task;
+  const latestTrace = caught.latestTrace;
+  if (task.state === "verified") {
+    const reconciled = await reconcileVerifiedTask({
+      activePath,
+      repository,
+      taskId,
+      state,
+      rootState,
+    });
+    const finished =
+      reconciled === "merged"
+        ? await runControllerStep(options)
+        : pausedForIntegration(taskId, state);
+    return { finished };
+  }
+  assertWorktreeModelMatches(state, options);
+  return {
+    state,
+    taskId,
+    task,
+    attempt,
+    relativeWorktree,
+    worktree,
+    branch,
+    baseSha,
+    latestTrace,
+    stepNumber: await nextStepNumber(worktree, taskId),
+    previousTaskState: task.state,
+    previousSessionId: state.current_session,
+    sessionId: task.state === "review" || forceFreshSession ? undefined : state.current_session,
+  };
+}
+
 async function runControllerStep(
   options: ControllerOptions,
   forceFreshSession = false,
@@ -788,69 +933,30 @@ async function runControllerStep(
 
   const active = worktreeRecords[0];
   if (active) {
-    const activePath = active.worktree;
-    if (!activePath) throw new Error("Active worktree record has no path");
-    if (
-      !rootRecord ||
-      !activePath.startsWith(`${rootRecord.worktree}/${rootState.policy.worktree_root}/`)
-    ) {
-      throw new Error(`Worktree is outside ${rootState.policy.worktree_root}: ${activePath}`);
-    }
-    state = await validateRepository(activePath);
-    if (await recoverWorktreeState({ activePath, active, rootState, state, options, repository })) {
-      state = await validateRepository(activePath);
-    }
-    const resumed = resolveActiveTask(state, rootState, active, repository);
-    ({ taskId, task, attempt, relativeWorktree, worktree, branch, baseSha } = resumed);
-    const { latestName, latestStep } = await readLatestTrace(worktree, taskId);
-    latestTrace = await Bun.file(
-      `${worktree}/docs/orchestration/runs/${taskId}/${latestName}`,
-    ).text();
-    if (latestStep > (state.current_step ?? 0)) {
-      await reconcileTraceIntoState({
-        activePath,
-        taskId,
-        task,
-        baseSha,
-        latestName,
-        latestTrace,
-        latestStep,
-      });
-      state = await validateRepository(activePath);
-      task = state.tasks[taskId]!;
-    }
-    if (task.state === "ready") {
-      latestTrace = await persistPrepare({
-        repository,
-        worktree: activePath,
-        taskId,
-        attempt,
-        relativeWorktree,
-        branch,
-        baseSha,
-        model: options.model,
-        variant: options.variant,
-        timeoutMs: state.policy.agent_timeout_minutes * 60_000,
-      });
-      state = await validateRepository(activePath);
-      task = state.tasks[taskId]!;
-    }
-    if (task.state === "verified") {
-      const reconciled = await reconcileVerifiedTask({
-        activePath,
-        repository,
-        taskId,
-        state,
-        rootState,
-      });
-      if (reconciled === "merged") return runControllerStep(options);
-      return pausedForIntegration(taskId, state);
-    }
-    assertWorktreeModelMatches(state, options);
-    stepNumber = await nextStepNumber(worktree, taskId);
-    previousTaskState = task.state;
-    previousSessionId = state.current_session;
-    sessionId = task.state === "review" || forceFreshSession ? undefined : state.current_session;
+    const resumed = await resumeActiveWorktree({
+      active,
+      rootRecord,
+      rootState,
+      options,
+      repository,
+      forceFreshSession,
+    });
+    if ("finished" in resumed) return resumed.finished;
+    ({
+      state,
+      taskId,
+      task,
+      attempt,
+      relativeWorktree,
+      worktree,
+      branch,
+      baseSha,
+      latestTrace,
+      stepNumber,
+      previousTaskState,
+      previousSessionId,
+      sessionId,
+    } = resumed);
   } else {
     const started = await startNextReadyTask(state, options, repository);
     ({ taskId, attempt, relativeWorktree, worktree, branch, baseSha, latestTrace } = started);
