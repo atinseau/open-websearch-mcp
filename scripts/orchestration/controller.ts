@@ -474,6 +474,52 @@ async function startNextReadyTask(
   return { taskId, attempt, relativeWorktree, worktree, branch, baseSha, latestTrace };
 }
 
+const namedGateCommands: Record<string, string> = {
+  "control-loop": "bun test scripts/orchestration/controller.test.ts",
+  "state-validation": "bun test scripts/orchestration/state.test.ts",
+  "step-traces": "bun test scripts/orchestration/main.test.ts",
+  "compaction-resume": "bun test scripts/orchestration/controller.test.ts",
+  "worktree-confinement": "bun test scripts/orchestration/controller.test.ts",
+};
+
+/**
+ * Resolves a task's declared acceptance gates into runnable checks. A verified
+ * claim must additionally rerun the mandatory controller checks, so the union is
+ * deduplicated by command and working directory.
+ */
+function resolveTaskChecks(
+  task: Task,
+  worktree: string,
+  received: OpenCodeStepResult,
+): { unresolvedGates: string[]; checksToRun: OpenCodeStepResult["checks"] } {
+  const resolvedGates = (task.acceptance_gates ?? []).map((gate) => ({
+    gate,
+    command: gate.startsWith("command:")
+      ? gate.slice("command:".length).trim()
+      : namedGateCommands[gate],
+  }));
+  const unresolvedGates = resolvedGates.filter(({ command }) => !command).map(({ gate }) => gate);
+  if (received.status !== "verified") {
+    return { unresolvedGates, checksToRun: received.checks };
+  }
+  const requiredChecks = [
+    { command: "bun scripts/orchestration/validate.ts --repo .", cwd: worktree, exit_code: -1 },
+    { command: "bun test scripts/orchestration", cwd: worktree, exit_code: -1 },
+  ];
+  const gateChecks = resolvedGates
+    .filter((gate): gate is { gate: string; command: string } => Boolean(gate.command))
+    .map(({ command }) => ({ command, cwd: worktree, exit_code: -1 }));
+  const checksToRun = [
+    ...new Map(
+      [...received.checks, ...requiredChecks, ...gateChecks].map((check) => [
+        `${check.cwd}\0${check.command}`,
+        check,
+      ]),
+    ).values(),
+  ];
+  return { unresolvedGates, checksToRun };
+}
+
 async function runControllerStep(
   options: ControllerOptions,
   forceFreshSession = false,
@@ -608,36 +654,7 @@ async function runControllerStep(
     timeout_ms: state.policy.agent_timeout_minutes * 60_000,
   };
   let received = await invokeControllerStep(options, request);
-  const requiredChecks = [
-    { command: "bun scripts/orchestration/validate.ts --repo .", cwd: worktree, exit_code: -1 },
-    { command: "bun test scripts/orchestration", cwd: worktree, exit_code: -1 },
-  ];
-  const namedGates: Record<string, string> = {
-    "control-loop": "bun test scripts/orchestration/controller.test.ts",
-    "state-validation": "bun test scripts/orchestration/state.test.ts",
-    "step-traces": "bun test scripts/orchestration/main.test.ts",
-    "compaction-resume": "bun test scripts/orchestration/controller.test.ts",
-    "worktree-confinement": "bun test scripts/orchestration/controller.test.ts",
-  };
-  const resolvedGates = (task.acceptance_gates ?? []).map((gate) => ({
-    gate,
-    command: gate.startsWith("command:") ? gate.slice("command:".length).trim() : namedGates[gate],
-  }));
-  const unresolvedGates = resolvedGates.filter(({ command }) => !command).map(({ gate }) => gate);
-  const gateChecks = resolvedGates
-    .filter((gate): gate is { gate: string; command: string } => Boolean(gate.command))
-    .map(({ command }) => ({ command, cwd: worktree, exit_code: -1 }));
-  const checksToRun =
-    received.status === "verified"
-      ? [
-          ...new Map(
-            [...received.checks, ...requiredChecks, ...gateChecks].map((check) => [
-              `${check.cwd}\0${check.command}`,
-              check,
-            ]),
-          ).values(),
-        ]
-      : received.checks;
+  const { unresolvedGates, checksToRun } = resolveTaskChecks(task, worktree, received);
   const actualChecks =
     received.status === "verified"
       ? await Promise.all(
