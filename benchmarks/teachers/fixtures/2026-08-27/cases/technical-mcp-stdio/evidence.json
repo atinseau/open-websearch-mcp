@@ -1,0 +1,471 @@
+{
+  "schema_version": 1,
+  "case_id": "technical-mcp-stdio",
+  "runs": [
+    {
+      "run_id": "2026-08-27_codex_technical-mcp-stdio",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "official Model Context Protocol specification initialize tools/list stdio message framing modelcontextprotocol.io",
+        "https://modelcontextprotocol.io/specification/2026-07-28",
+        "site:modelcontextprotocol.io/specification/2026-07-28/basic/lifecycle Model Context Protocol lifecycle 2026-07-28",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic/lifecycle",
+        "\"https://modelcontextprotocol.io/specification/2026-07-28/basic/lifecycle\"",
+        "'initialize' in https://modelcontextprotocol.io/specification/2026-07-28",
+        "'tools/list' in https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+        "site:modelcontextprotocol.io/specification/2026-07-28 _meta io.modelcontextprotocol protocolVersion clientCapabilities clientInfo",
+        "site:modelcontextprotocol.io/specification/2026-07-28 \"_meta\" \"io.modelcontextprotocol/protocolVersion\"",
+        "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+        "'notifications/tools/list_changed' in https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+        "site:modelcontextprotocol.io/specification/2026-07-28/schema ListToolsResult tools list ttlMs cacheScope nextCursor",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+        "'`ListToolsResult`' in https://modelcontextprotocol.io/specification/2026-07-28/schema",
+        "'`ListToolsRequest`' in https://modelcontextprotocol.io/specification/2026-07-28/schema",
+        "'Per-request protocol fields' in https://modelcontextprotocol.io/specification/2026-07-28/basic"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [],
+      "cited_urls": [
+        "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic",
+        "https://modelcontextprotocol.io/specification/2026-07-28/server/discover",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports",
+        "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+        "https://modelcontextprotocol.io/specification/2026-07-28/schema",
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/changelog"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/basic"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/discover",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/server/discover"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/schema",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/schema"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle",
+          "title": "https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "text": "**Supported Facts**\n\nThe current official MCP revision is `2026-07-28`, and in that revision the protocol is stateless: the modern protocol removed the `initialize` / `notifications/initialized` handshake. (https://modelcontextprotocol.io/specification/2026-07-28/changelog, https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning)\n\nFor a modern stdio server, version selection is not done by a session handshake. Each request carries its protocol version in `_meta.io.modelcontextprotocol/protocolVersion`, and if the server does not support that version it must return `UnsupportedProtocolVersionError` with the versions it does support. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nA modern server must also treat `_meta.io.modelcontextprotocol/clientCapabilities` as required on every request, and must reject a request missing required `_meta` fields with JSON-RPC `-32602` (`Invalid params`). (https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nServers must not rely on undeclared client capabilities; if a request needs a capability the client did not declare, the server must return `MissingRequiredClientCapabilityError` (`-32021`). (https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nServers must implement `server/discover`, and clients may use it before any other request to learn supported versions, capabilities, and identity. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/server/discover)\n\nOn stdio, the server reads JSON-RPC from `stdin` and writes JSON-RPC to `stdout`; each message is exactly one JSON-RPC request, notification, or response; messages are newline-delimited and must not contain embedded newlines. (https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)\n\nOn stdio, the server may write UTF-8 log text to `stderr`"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+          "text": "**Supported Facts**\n\nThe current official MCP revision is `2026-07-28`, and in that revision the protocol is stateless: the modern protocol removed the `initialize` / `notifications/initialized` handshake. (https://modelcontextprotocol.io/specification/2026-07-28/changelog, https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning)\n\nFor a modern stdio server, version selection is not done by a session handshake. Each request carries its protocol version in `_meta.io.modelcontextprotocol/protocolVersion`, and if the server does not support that version it must return `UnsupportedProtocolVersionError` with the versions it does support. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nA modern server must also treat `_meta.io.modelcontextprotocol/clientCapabilities` as required on every request, and must reject a request missing required `_meta` fields with JSON-RPC `-32602` (`Invalid params`). (https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nServers must not rely on undeclared client capabilities; if a request needs a capability the client did not declare, the server must return `MissingRequiredClientCapabilityError` (`-32021`). (https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nServers must implement `server/discover`, and clients may use it before any other request to learn supported versions, capabilities, and identity. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/server/discover)\n\nOn stdio, the server reads JSON-RPC from `stdin` and writes JSON-RPC to `stdout`; each message is exactly one JSON-RPC request, notification, or response; messages are newline-delimited and must not contain embedded newlines. (https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)\n\nOn stdio, the server may write UTF-8 log text to `stderr`"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic",
+          "text": "**Supported Facts**\n\nThe current official MCP revision is `2026-07-28`, and in that revision the protocol is stateless: the modern protocol removed the `initialize` / `notifications/initialized` handshake. (https://modelcontextprotocol.io/specification/2026-07-28/changelog, https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning)\n\nFor a modern stdio server, version selection is not done by a session handshake. Each request carries its protocol version in `_meta.io.modelcontextprotocol/protocolVersion`, and if the server does not support that version it must return `UnsupportedProtocolVersionError` with the versions it does support. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nA modern server must also treat `_meta.io.modelcontextprotocol/clientCapabilities` as required on every request, and must reject a request missing required `_meta` fields with JSON-RPC `-32602` (`Invalid params`). (https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nServers must not rely on undeclared client capabilities; if a request needs a capability the client did not declare, the server must return `MissingRequiredClientCapabilityError` (`-32021`). (https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nServers must implement `server/discover`, and clients may use it before any other request to learn supported versions, capabilities, and identity. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/server/discover)\n\nOn stdio, the server reads JSON-RPC from `stdin` and writes JSON-RPC to `stdout`; each message is exactly one JSON-RPC request, notification, or response; messages are newline-delimited and must not contain embedded newlines. (https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)\n\nOn stdio, the server may write UTF-8 log text to `stderr`"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/discover",
+          "text": "**Supported Facts**\n\nThe current official MCP revision is `2026-07-28`, and in that revision the protocol is stateless: the modern protocol removed the `initialize` / `notifications/initialized` handshake. (https://modelcontextprotocol.io/specification/2026-07-28/changelog, https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning)\n\nFor a modern stdio server, version selection is not done by a session handshake. Each request carries its protocol version in `_meta.io.modelcontextprotocol/protocolVersion`, and if the server does not support that version it must return `UnsupportedProtocolVersionError` with the versions it does support. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nA modern server must also treat `_meta.io.modelcontextprotocol/clientCapabilities` as required on every request, and must reject a request missing required `_meta` fields with JSON-RPC `-32602` (`Invalid params`). (https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nServers must not rely on undeclared client capabilities; if a request needs a capability the client did not declare, the server must return `MissingRequiredClientCapabilityError` (`-32021`). (https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nServers must implement `server/discover`, and clients may use it before any other request to learn supported versions, capabilities, and identity. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/server/discover)\n\nOn stdio, the server reads JSON-RPC from `stdin` and writes JSON-RPC to `stdout`; each message is exactly one JSON-RPC request, notification, or response; messages are newline-delimited and must not contain embedded newlines. (https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)\n\nOn stdio, the server may write UTF-8 log text to `stderr`"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+          "text": "**Supported Facts**\n\nThe current official MCP revision is `2026-07-28`, and in that revision the protocol is stateless: the modern protocol removed the `initialize` / `notifications/initialized` handshake. (https://modelcontextprotocol.io/specification/2026-07-28/changelog, https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning)\n\nFor a modern stdio server, version selection is not done by a session handshake. Each request carries its protocol version in `_meta.io.modelcontextprotocol/protocolVersion`, and if the server does not support that version it must return `UnsupportedProtocolVersionError` with the versions it does support. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nA modern server must also treat `_meta.io.modelcontextprotocol/clientCapabilities` as required on every request, and must reject a request missing required `_meta` fields with JSON-RPC `-32602` (`Invalid params`). (https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nServers must not rely on undeclared client capabilities; if a request needs a capability the client did not declare, the server must return `MissingRequiredClientCapabilityError` (`-32021`). (https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nServers must implement `server/discover`, and clients may use it before any other request to learn supported versions, capabilities, and identity. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/server/discover)\n\nOn stdio, the server reads JSON-RPC from `stdin` and writes JSON-RPC to `stdout`; each message is exactly one JSON-RPC request, notification, or response; messages are newline-delimited and must not contain embedded newlines. (https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)\n\nOn stdio, the server may write UTF-8 log text to `stderr`"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports",
+          "text": "**Supported Facts**\n\nThe current official MCP revision is `2026-07-28`, and in that revision the protocol is stateless: the modern protocol removed the `initialize` / `notifications/initialized` handshake. (https://modelcontextprotocol.io/specification/2026-07-28/changelog, https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning)\n\nFor a modern stdio server, version selection is not done by a session handshake. Each request carries its protocol version in `_meta.io.modelcontextprotocol/protocolVersion`, and if the server does not support that version it must return `UnsupportedProtocolVersionError` with the versions it does support. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nA modern server must also treat `_meta.io.modelcontextprotocol/clientCapabilities` as required on every request, and must reject a request missing required `_meta` fields with JSON-RPC `-32602` (`Invalid params`). (https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nServers must not rely on undeclared client capabilities; if a request needs a capability the client did not declare, the server must return `MissingRequiredClientCapabilityError` (`-32021`). (https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nServers must implement `server/discover`, and clients may use it before any other request to learn supported versions, capabilities, and identity. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/server/discover)\n\nOn stdio, the server reads JSON-RPC from `stdin` and writes JSON-RPC to `stdout`; each message is exactly one JSON-RPC request, notification, or response; messages are newline-delimited and must not contain embedded newlines. (https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)\n\nOn stdio, the server may write UTF-8 log text to `stderr`"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+          "text": "**Supported Facts**\n\nThe current official MCP revision is `2026-07-28`, and in that revision the protocol is stateless: the modern protocol removed the `initialize` / `notifications/initialized` handshake. (https://modelcontextprotocol.io/specification/2026-07-28/changelog, https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning)\n\nFor a modern stdio server, version selection is not done by a session handshake. Each request carries its protocol version in `_meta.io.modelcontextprotocol/protocolVersion`, and if the server does not support that version it must return `UnsupportedProtocolVersionError` with the versions it does support. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nA modern server must also treat `_meta.io.modelcontextprotocol/clientCapabilities` as required on every request, and must reject a request missing required `_meta` fields with JSON-RPC `-32602` (`Invalid params`). (https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nServers must not rely on undeclared client capabilities; if a request needs a capability the client did not declare, the server must return `MissingRequiredClientCapabilityError` (`-32021`). (https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nServers must implement `server/discover`, and clients may use it before any other request to learn supported versions, capabilities, and identity. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/server/discover)\n\nOn stdio, the server reads JSON-RPC from `stdin` and writes JSON-RPC to `stdout`; each message is exactly one JSON-RPC request, notification, or response; messages are newline-delimited and must not contain embedded newlines. (https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)\n\nOn stdio, the server may write UTF-8 log text to `stderr`"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/schema",
+          "text": "**Supported Facts**\n\nThe current official MCP revision is `2026-07-28`, and in that revision the protocol is stateless: the modern protocol removed the `initialize` / `notifications/initialized` handshake. (https://modelcontextprotocol.io/specification/2026-07-28/changelog, https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning)\n\nFor a modern stdio server, version selection is not done by a session handshake. Each request carries its protocol version in `_meta.io.modelcontextprotocol/protocolVersion`, and if the server does not support that version it must return `UnsupportedProtocolVersionError` with the versions it does support. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nA modern server must also treat `_meta.io.modelcontextprotocol/clientCapabilities` as required on every request, and must reject a request missing required `_meta` fields with JSON-RPC `-32602` (`Invalid params`). (https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nServers must not rely on undeclared client capabilities; if a request needs a capability the client did not declare, the server must return `MissingRequiredClientCapabilityError` (`-32021`). (https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nServers must implement `server/discover`, and clients may use it before any other request to learn supported versions, capabilities, and identity. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/server/discover)\n\nOn stdio, the server reads JSON-RPC from `stdin` and writes JSON-RPC to `stdout`; each message is exactly one JSON-RPC request, notification, or response; messages are newline-delimited and must not contain embedded newlines. (https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)\n\nOn stdio, the server may write UTF-8 log text to `stderr`"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle",
+          "text": "**Supported Facts**\n\nThe current official MCP revision is `2026-07-28`, and in that revision the protocol is stateless: the modern protocol removed the `initialize` / `notifications/initialized` handshake. (https://modelcontextprotocol.io/specification/2026-07-28/changelog, https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning)\n\nFor a modern stdio server, version selection is not done by a session handshake. Each request carries its protocol version in `_meta.io.modelcontextprotocol/protocolVersion`, and if the server does not support that version it must return `UnsupportedProtocolVersionError` with the versions it does support. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nA modern server must also treat `_meta.io.modelcontextprotocol/clientCapabilities` as required on every request, and must reject a request missing required `_meta` fields with JSON-RPC `-32602` (`Invalid params`). (https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nServers must not rely on undeclared client capabilities; if a request needs a capability the client did not declare, the server must return `MissingRequiredClientCapabilityError` (`-32021`). (https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nServers must implement `server/discover`, and clients may use it before any other request to learn supported versions, capabilities, and identity. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/server/discover)\n\nOn stdio, the server reads JSON-RPC from `stdin` and writes JSON-RPC to `stdout`; each message is exactly one JSON-RPC request, notification, or response; messages are newline-delimited and must not contain embedded newlines. (https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)\n\nOn stdio, the server may write UTF-8 log text to `stderr`"
+        }
+      ],
+      "final_answer": "**Supported Facts**\n\nThe current official MCP revision is `2026-07-28`, and in that revision the protocol is stateless: the modern protocol removed the `initialize` / `notifications/initialized` handshake. (https://modelcontextprotocol.io/specification/2026-07-28/changelog, https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning)\n\nFor a modern stdio server, version selection is not done by a session handshake. Each request carries its protocol version in `_meta.io.modelcontextprotocol/protocolVersion`, and if the server does not support that version it must return `UnsupportedProtocolVersionError` with the versions it does support. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nA modern server must also treat `_meta.io.modelcontextprotocol/clientCapabilities` as required on every request, and must reject a request missing required `_meta` fields with JSON-RPC `-32602` (`Invalid params`). (https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nServers must not rely on undeclared client capabilities; if a request needs a capability the client did not declare, the server must return `MissingRequiredClientCapabilityError` (`-32021`). (https://modelcontextprotocol.io/specification/2026-07-28/basic)\n\nServers must implement `server/discover`, and clients may use it before any other request to learn supported versions, capabilities, and identity. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/server/discover)\n\nOn stdio, the server reads JSON-RPC from `stdin` and writes JSON-RPC to `stdout`; each message is exactly one JSON-RPC request, notification, or response; messages are newline-delimited and must not contain embedded newlines. (https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)\n\nOn stdio, the server may write UTF-8 log text to `stderr`, but it must not write anything to `stdout` that is not a valid MCP message. (https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)\n\nOn stdio, there is no header layer; request metadata stays in the JSON-RPC body under `_meta`. (https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)\n\nOn stdio, the server must not initiate JSON-RPC requests on `stdout`; server output is limited to responses and notifications. (https://modelcontextprotocol.io/specification/2026-07-28/basic/transports, https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)\n\nIf a server supports tools, it must declare the `tools` capability. (https://modelcontextprotocol.io/specification/2026-07-28/server/tools)\n\nA server that declares `tools` must answer `tools/list` with the tools currently available to the requesting client. That set may be empty, may change over time, and may vary by per-request authorization, but it must not vary by connection or as a side effect of other requests on the connection. (https://modelcontextprotocol.io/specification/2026-07-28/server/tools)\n\nThe spec says the server should return tools in a deterministic order. (https://modelcontextprotocol.io/specification/2026-07-28/server/tools)\n\n`tools/list` is a paginated request: the request params are `PaginatedRequestParams`, which means `_meta` is required and `cursor` is optional. (https://modelcontextprotocol.io/specification/2026-07-28/schema)\n\nA successful `tools/list` response is `ListToolsResultResponse`, whose `result` is `ListToolsResult`. In the current protocol version, `ListToolsResult` includes `resultType`, `ttlMs`, `cacheScope`, and `tools`, with `nextCursor` optional. (https://modelcontextprotocol.io/specification/2026-07-28/schema)\n\nFor this protocol version, the server must include `resultType` in the result. (https://modelcontextprotocol.io/specification/2026-07-28/schema)\n\nEach tool definition includes `name`, optional `title`, `description`, optional `icons`, and `inputSchema`; `inputSchema` must be a valid JSON Schema object, not `null`. `outputSchema` and `annotations` are optional. (https://modelcontextprotocol.io/specification/2026-07-28/server/tools)\n\nIf the server advertised `tools.listChanged`, then when the tool list changes it should send `notifications/tools/list_changed` to clients that opened a `subscriptions/listen` stream with `toolsListChanged: true`. (https://modelcontextprotocol.io/specification/2026-07-28/server/tools)\n\n**Legacy `initialize`**\n\nThe current official spec classifies `initialize` as legacy behavior: legacy versions are `2025-11-25` and earlier, while modern versions are `2026-07-28` and later. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning)\n\nA server that wants to support both modern and legacy clients may implement both behaviors. On stdio, a dual-era client should probe with `server/discover` first; if it gets a recognized modern error such as `UnsupportedProtocolVersionError`, it stays in the modern flow, and if it gets some other error or no timely response, it falls back to legacy `initialize`. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)\n\nThe current spec also says a modern-only server should name the protocol versions it supports in any error it returns to an `initialize` request, because legacy clients have no forward-upgrade mechanism. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning)\n\nIn the official legacy lifecycle spec (`2025-11-25`), initialization had to be the first interaction; the client sent `initialize` with protocol version, client capabilities, and client info; the server responded with its protocol version, server capabilities, and server info; then the client sent `notifications/initialized`. (https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle)\n\nThat same legacy page says the client should not send non-ping requests before the `initialize` response, and the server should not send non-ping, non-logging requests before `notifications/initialized`. (https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle)\n\nThe legacy page also says version negotiation during `initialize` worked by the client sending a supported version, the server echoing it if supported or returning another supported version if not, and the client disconnecting if it could not support the server’s chosen version. (https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle)\n\n**Inference**\n\nTherefore, for a stdio server that implements only the current modern MCP revision, there is no required `initialize` exchange at all; the required behavior is per-request `_meta` handling, version rejection via `UnsupportedProtocolVersionError` when needed, `server/discover`, and newline-delimited JSON-RPC framing over stdio. This conclusion is an inference from the current spec’s removal of `initialize`, its per-request versioning rules, and its stdio transport rules. (https://modelcontextprotocol.io/specification/2026-07-28/changelog, https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)\n\n**Disagreement / Uncertainty / Lack Of Good Evidence**\n\nThe main point of potential confusion is that the question assumes `initialize` is part of the current stdio flow, but the current official revision treats it as legacy compatibility, not as part of the modern protocol. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2026-07-28/changelog)\n\nI do not have direct official evidence for a modern `initialize` request or response shape, because the current `2026-07-28` spec removed that handshake; the only official evidence I found for `initialize` semantics is in the backward-compatibility rules and the older legacy lifecycle page. (https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning, https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle)"
+    },
+    {
+      "run_id": "2026-08-27_claude_technical-mcp-stdio",
+      "provider": "claude",
+      "model": "claude-opus-5[1m]",
+      "queries": [
+        "Model Context Protocol specification latest version 2025 stdio transport lifecycle initialize"
+      ],
+      "tool_results": [
+        {
+          "tool": "WebFetch",
+          "summary": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Specification\n\n<div id=\"enable-section-numbers\" />\n\n[Model Context Protocol](https://modelcontextprotocol.io) (MCP) is an open protocol that\nenables seamless integration between LLM applications and external data sources and\ntools. Whether you're building an AI-powered IDE, enhancing a chat interface, or creati"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Lifecycle – Model Context Protocol Specification: https://spec.modelcontextprotocol.io/specification/2025-03-26/basic/lifecycle/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Lifecycle - Model Context Protocol: https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The Definitive Guide to Model Context Protocol (MCP) in 2025 | Data Science Dojo: https://datasciencedojo.com/blog/guide-to-model-context-protocol/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Model Context Protocol Specification Version Timeline - Version-by-Version Changes and Adoption Milestones | hidekazu-konishi.com: https://hidekazu-konishi.com/entry/mcp_specification_version_timeline.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Exploring the Future of MCP Transports | Model Context Protocol Blog: https://blog.modelcontextprotocol.io/posts/2025-12-19-mcp-transport-future/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The 2026-07-28 MCP Specification Release Candidate | Model Context Protocol Blog: https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Model Context Protocol (MCP). MCP is an open protocol that… | by Aserdargun | Medium: https://medium.com/@aserdargun/model-context-protocol-mcp-e453b47cf254"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "MCP Cheat Sheet: Complete Model Context Protocol Reference (2026): https://www.webfuse.com/mcp-cheat-sheet"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Specification – Model Context Protocol （MCP）: https://modelcontextprotocol.info/specification/"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Versioning and Compatibility\n\n<div id=\"enable-section-numbers\" />\n\nThis page defines how a client and server agree on what they are speaking:\nthe protocol version, declared on every request; optional extensions,\nnegotiated through capabilities; and interoperability with earlier,\nhandshake-based protocol revisio"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Overview\n\n<div id=\"enable-section-numbers\" />\n\nThis page defines what a transport must provide to carry MCP messages, the\nstandard transport bindings, and the requirements for defining new ones.\n\nProtocol semantics are identical on every transport. A transport is a\n**binding**: it defines how messages are frame"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Tools\n\n<div id=\"enable-section-numbers\" />\n\nThe Model Context Protocol (MCP) allows servers to expose tools that can be invoked by\nlanguage models. Tools enable models to interact with external systems, such as querying\ndatabases, calling APIs, or performing computations. Each tool is uniquely identified by\na n"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# stdio\n\n<div id=\"enable-section-numbers\" />\n\nIn the **stdio** transport, the client launches the MCP server as a subprocess.\nThe two ends communicate over the subprocess's standard streams:\n\n* The server reads JSON-RPC messages from `stdin` and writes JSON-RPC messages to\n  `stdout`.\n* Each message is a single J"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Overview\n\n<div id=\"enable-section-numbers\" />\n\nThe Model Context Protocol consists of several key components that work together:\n\n* **Base Protocol**: Core JSON-RPC message types\n* **Versioning and Compatibility**: Protocol version negotiation, extension negotiation, and interoperability with earlier protocol r"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Discovery\n\n<div id=\"enable-section-numbers\" />\n\n`server/discover` lets a client query a server's supported protocol versions,\ncapabilities, and identity before sending any other requests. Servers **MUST**\nimplement it.\n\n## Request\n\nThe request carries no body parameters beyond the standard `_meta`:\n\n```json the"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Versioning\n\nThe Model Context Protocol uses string-based version identifiers following the format\n`YYYY-MM-DD`, to indicate the last date backwards incompatible changes were made.\n\n<Info>\n  The protocol version will *not* be incremented when the\n  protocol is updated, as long as the changes maintain backwards c"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Lifecycle\n\n<div id=\"enable-section-numbers\" />\n\nThe Model Context Protocol (MCP) defines a rigorous lifecycle for client-server\nconnections that ensures proper capability negotiation and state management.\n\n1. **Initialization**: Capability negotiation and protocol version agreement\n2. **Operation**: Normal prot"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Transports\n\n<div id=\"enable-section-numbers\" />\n\nMCP uses JSON-RPC to encode messages. JSON-RPC messages **MUST** be UTF-8 encoded.\n\nThe protocol currently defines two standard transport mechanisms for client-server\ncommunication:\n\n1. [stdio](#stdio), communication over standard in and standard out\n2. [Streamab"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Pagination\n\n<div id=\"enable-section-numbers\" />\n\nThe Model Context Protocol (MCP) supports paginating list operations that may return\nlarge result sets. Pagination allows servers to yield results in smaller chunks rather\nthan all at once.\n\nPagination is especially important when connecting to external services "
+        }
+      ],
+      "opened_urls": [
+        "https://modelcontextprotocol.io/specification/",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic/lifecycle",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports",
+        "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic/index",
+        "https://modelcontextprotocol.io/specification/2026-07-28/server/discover",
+        "https://modelcontextprotocol.io/specification/versioning",
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle",
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/transports",
+        "https://modelcontextprotocol.io/specification/2026-07-28/server/utilities/pagination"
+      ],
+      "cited_urls": [
+        "https://modelcontextprotocol.io/specification/versioning",
+        "https://modelcontextprotocol.io/specification/",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic/index",
+        "https://modelcontextprotocol.io/specification/2026-07-28/server/discover",
+        "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+        "https://modelcontextprotocol.io/specification/2026-07-28/server/utilities/pagination",
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle",
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/transports",
+        "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/",
+        "https://github.com/modelcontextprotocol/specification"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/",
+          "title": "https://modelcontextprotocol.io/specification/"
+        },
+        {
+          "url": "https://spec.modelcontextprotocol.io/specification/2025-03-26/basic/lifecycle/",
+          "title": "Lifecycle – Model Context Protocol Specification"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle",
+          "title": "https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle"
+        },
+        {
+          "url": "https://datasciencedojo.com/blog/guide-to-model-context-protocol/",
+          "title": "The Definitive Guide to Model Context Protocol (MCP) in 2025 | Data Science Dojo"
+        },
+        {
+          "url": "https://hidekazu-konishi.com/entry/mcp_specification_version_timeline.html",
+          "title": "Model Context Protocol Specification Version Timeline - Version-by-Version Changes and Adoption Milestones | hidekazu-konishi.com"
+        },
+        {
+          "url": "https://blog.modelcontextprotocol.io/posts/2025-12-19-mcp-transport-future/",
+          "title": "Exploring the Future of MCP Transports | Model Context Protocol Blog"
+        },
+        {
+          "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/",
+          "title": "The 2026-07-28 MCP Specification Release Candidate | Model Context Protocol Blog"
+        },
+        {
+          "url": "https://medium.com/@aserdargun/model-context-protocol-mcp-e453b47cf254",
+          "title": "Model Context Protocol (MCP). MCP is an open protocol that… | by Aserdargun | Medium"
+        },
+        {
+          "url": "https://www.webfuse.com/mcp-cheat-sheet",
+          "title": "MCP Cheat Sheet: Complete Model Context Protocol Reference (2026)"
+        },
+        {
+          "url": "https://modelcontextprotocol.info/specification/",
+          "title": "Specification – Model Context Protocol （MCP）"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/lifecycle",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/basic/lifecycle"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/index",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/basic/index"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/discover",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/server/discover"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/versioning",
+          "title": "https://modelcontextprotocol.io/specification/versioning"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/transports",
+          "title": "https://modelcontextprotocol.io/specification/2025-11-25/basic/transports"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/utilities/pagination",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/server/utilities/pagination"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning"
+        },
+        {
+          "url": "https://github.com/modelcontextprotocol/specification",
+          "title": "https://github.com/modelcontextprotocol/specification"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/",
+          "text": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Specification\n\n<div id=\"enable-section-numbers\" />\n\n[Model Context Protocol](https://modelcontextprotocol.io) (MCP) is an open protocol that\nenables seamless integration between LLM applications and external data sources and\ntools. Whether you're building an AI-powered IDE, enhancing a chat interface, or creating\ncustom AI workflows, MCP provides a standardized way to connect LLMs with the context\nthey need.\n\nThis specification defines the authoritative protocol requirements, based on the\nTypeScript schema in\n[schema.ts](https://github.com/modelcontextprotocol/specification/blob/main/schema/2026-07-28/schema.ts).\n\nFor implementation guides and examples, visit\n[modelcontextprotocol.io](https://modelcontextprotocol.io).\n\nThe key words \"MUST\", \"MUST NOT\", \"REQUIRED\", \"SHALL\", \"SHALL NOT\", \"SHOULD\", \"SHOULD\nNOT\", \"RECOMMENDED\", \"NOT RECOMMENDED\", \"MAY\", and \"OPTIONAL\" in this document are to be\ninterpreted as described in [BCP 14](https://datatracker.ietf.org/doc/html/bcp14)\n\\[[RFC2119](https://datatracker.ietf.org/doc/html/rfc2119)]\n\\[[RFC8174](https://datatracker.ietf.org/doc/html/rfc8174)] when, and only when, they\nappear in all capitals, as shown here.\n\n## Overview\n\nMCP provides a standardized way for applications to:\n\n* Share contextual information with language models\n* Expose tools and capabilities to AI systems\n* Build composable integrations and workflows\n\nThe protocol uses [JSON-RPC](https://www.jsonrpc.org/) 2.0 messages to establish\ncommunication between:\n\n* **Hosts**: LLM applications that initiate connections\n* **Clients**: Connectors within the host application\n* **Servers**: Services that provide context and capabilities\n\nMCP takes some inspiration from the\n[Language Server Protocol](https://microsoft.github.io/language-server-protocol/), which\nstandardizes how to add s"
+        },
+        {
+          "url": "https://spec.modelcontextprotocol.io/specification/2025-03-26/basic/lifecycle/",
+          "text": "Lifecycle – Model Context Protocol Specification"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle",
+          "text": "Lifecycle - Model Context Protocol"
+        },
+        {
+          "url": "https://datasciencedojo.com/blog/guide-to-model-context-protocol/",
+          "text": "The Definitive Guide to Model Context Protocol (MCP) in 2025 | Data Science Dojo"
+        },
+        {
+          "url": "https://hidekazu-konishi.com/entry/mcp_specification_version_timeline.html",
+          "text": "Model Context Protocol Specification Version Timeline - Version-by-Version Changes and Adoption Milestones | hidekazu-konishi.com"
+        },
+        {
+          "url": "https://blog.modelcontextprotocol.io/posts/2025-12-19-mcp-transport-future/",
+          "text": "Exploring the Future of MCP Transports | Model Context Protocol Blog"
+        },
+        {
+          "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/",
+          "text": "The 2026-07-28 MCP Specification Release Candidate | Model Context Protocol Blog"
+        },
+        {
+          "url": "https://medium.com/@aserdargun/model-context-protocol-mcp-e453b47cf254",
+          "text": "Model Context Protocol (MCP). MCP is an open protocol that… | by Aserdargun | Medium"
+        },
+        {
+          "url": "https://www.webfuse.com/mcp-cheat-sheet",
+          "text": "MCP Cheat Sheet: Complete Model Context Protocol Reference (2026)"
+        },
+        {
+          "url": "https://modelcontextprotocol.info/specification/",
+          "text": "Specification – Model Context Protocol （MCP）"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/lifecycle",
+          "text": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Versioning and Compatibility\n\n<div id=\"enable-section-numbers\" />\n\nThis page defines how a client and server agree on what they are speaking:\nthe protocol version, declared on every request; optional extensions,\nnegotiated through capabilities; and interoperability with earlier,\nhandshake-based protocol revisions.\n\nThere is no negotiation handshake. Every request carries its protocol\nversion, and the server accepts or rejects each request independently:\n\n```mermaid theme={null}\nsequenceDiagram\n    participant Client\n    participant Server\n\n    Client->>Server: request (with `_meta`)\n    alt server supports requested version\n        Server-->>Client: result\n    else version unsupported\n        Server-->>Client: UnsupportedProtocolVersionError\n        Note over Client,Server: Client retries with a mutually supported version\n    end\n```\n\n## Terminology\n\nThis page uses the following terms for interoperability across protocol\nrevisions:\n\n* **Modern**: protocol versions that convey version, identity, and\n  capabilities as per-request metadata (revision `2026-07-28` and later).\n* **Legacy**: protocol versions that establish a session with an\n  `initialize` handshake (`2025-11-25` and earlier).\n* **Dual-era**: an implementation that supports both modern and legacy\n  versions.\n\n## Protocol Version Negotiation\n\nEvery request declares the protocol version it is using in its\n[`_meta`](/specification/2026-07-28/basic/index#meta) field. On HTTP, this is\nalso carried in the\n[`MCP-Protocol-Version` header](/specification/2026-07-28/basic/transports/streamable-http#protocol-version-header).\n\nIf the server does not implement the requested version (whether the version\nis unknown to the server, or is a known version the server has chosen not to\nsupport), it **MUST** respond with an\n[`UnsupportedProtoc"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports",
+          "text": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Overview\n\n<div id=\"enable-section-numbers\" />\n\nThis page defines what a transport must provide to carry MCP messages, the\nstandard transport bindings, and the requirements for defining new ones.\n\nProtocol semantics are identical on every transport. A transport is a\n**binding**: it defines how messages are framed and delivered, how request\nmetadata is carried, and how cancellation and termination are signaled. It\ndoes not define what the messages mean: the\n[message patterns](/specification/2026-07-28/basic/patterns) are part of the core\nprotocol and are the same on every binding. The binding pages specify the\nstandard transports:\n\n1. [stdio](/specification/2026-07-28/basic/transports/stdio): newline-delimited\n   messages over the standard streams of a client-launched subprocess.\n2. [Streamable HTTP](/specification/2026-07-28/basic/transports/streamable-http):\n   each message is an HTTP POST to a single MCP endpoint; replies arrive as\n   a JSON object or a request-scoped SSE stream.\n\nIt is also possible for clients and servers to implement\n[custom transports](#custom-transports).\n\n## Messages\n\nMCP uses JSON-RPC to encode messages. JSON-RPC messages **MUST** be UTF-8\nencoded.\n\nA binding **MUST** deliver client-sent *requests* and *notifications* to the\nserver, and server-sent *responses* and *notifications* to the client. No\nother message direction exists: per the\n[message patterns](/specification/2026-07-28/basic/patterns), servers do not\ninitiate JSON-RPC requests and clients do not send JSON-RPC responses.\n\n## Request Metadata\n\nAll protocol metadata travels in the message body: every request carries its\nprotocol version and client capabilities in\n[`_meta.io.modelcontextprotocol/*`](/specification/2026-07-28/basic/index#meta)\nfields.\n\nA binding **MAY** additionally mirror selected b"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+          "text": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Tools\n\n<div id=\"enable-section-numbers\" />\n\nThe Model Context Protocol (MCP) allows servers to expose tools that can be invoked by\nlanguage models. Tools enable models to interact with external systems, such as querying\ndatabases, calling APIs, or performing computations. Each tool is uniquely identified by\na name and includes metadata describing its schema.\n\n<Note>\n  For brevity, the request examples on this page omit the `_meta` request\n  metadata (`io.modelcontextprotocol/protocolVersion`,\n  `io.modelcontextprotocol/clientInfo`, and\n  `io.modelcontextprotocol/clientCapabilities`). Every request **MUST** include\n  the required `_meta` fields; see\n  [`_meta`](/specification/2026-07-28/basic/index#meta).\n</Note>\n\n## User Interaction Model\n\nTools in MCP are designed to be **model-controlled**, meaning that the language model can\ndiscover and invoke tools automatically based on its contextual understanding and the\nuser's prompts.\n\nHowever, implementations are free to expose tools through any interface pattern that\nsuits their needs—the protocol itself does not mandate any specific user\ninteraction model.\n\n<Warning>\n  For trust & safety and security, there **SHOULD** always\n  be a human in the loop with the ability to deny tool invocations.\n\n  Applications **SHOULD**:\n\n  * Provide UI that makes clear which tools are being exposed to the AI model\n  * Insert clear visual indicators when tools are invoked\n  * Present confirmation prompts to the user for operations, to ensure a human is in the\n    loop\n</Warning>\n\n## Capabilities\n\nServers that support tools **MUST** declare the `tools` capability:\n\n```json theme={null}\n{\n  \"capabilities\": {\n    \"tools\": {\n      \"listChanged\": true\n    }\n  }\n}\n```\n\n`listChanged` indicates whether the server will emit notifications when the list of\navailabl"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+          "text": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# stdio\n\n<div id=\"enable-section-numbers\" />\n\nIn the **stdio** transport, the client launches the MCP server as a subprocess.\nThe two ends communicate over the subprocess's standard streams:\n\n* The server reads JSON-RPC messages from `stdin` and writes JSON-RPC messages to\n  `stdout`.\n* Each message is a single JSON-RPC request, notification, or response.\n* Messages are delimited by newlines, and **MUST NOT** contain embedded newlines.\n* The server **MAY** write UTF-8 strings to `stderr` for any logging purposes\n  including informational, debug, and error messages.\n* The client **MAY** capture, forward, or ignore the server's `stderr` output and\n  **SHOULD NOT** assume `stderr` output indicates error conditions.\n* The server **MUST NOT** write anything to its `stdout` that is not a valid MCP\n  message.\n* The client **MUST NOT** write anything to the server's `stdin` that is not a\n  valid MCP message.\n\nStandard streams are the canonical channel, but nothing in this binding\ndepends on them except the process lifecycle. The wire format (one\nnewline-delimited JSON-RPC message per line over a reliable bidirectional\nbyte stream) works unchanged over Unix domain sockets, TCP connections, or\nany similar channel.\n[Custom transports](/specification/2026-07-28/basic/transports#custom-transports)\nbuilt on such streams **SHOULD** reuse this framing and the message rules on\nthis page; only the subprocess-specific aspects (launch, `stderr`, shutdown\nby closing the stream, process restart) need channel-specific equivalents.\n\n## Sending Messages\n\nThe client sends messages by writing JSON-RPC *requests* and *notifications*\nto the server's `stdin`, one message per line. The client **MUST NOT** write\nJSON-RPC *responses*.\n\n## Receiving Messages\n\nThe client reads server messages from `stdout`, one messag"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/index",
+          "text": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Overview\n\n<div id=\"enable-section-numbers\" />\n\nThe Model Context Protocol consists of several key components that work together:\n\n* **Base Protocol**: Core JSON-RPC message types\n* **Versioning and Compatibility**: Protocol version negotiation, extension negotiation, and interoperability with earlier protocol revisions\n* **Message Patterns**: Messaging patterns supported by the core protocol including request and response, multi round-trip requests (MRTR), and subscribe and notify\n* **Authorization**: Authentication and authorization framework for HTTP-based transports\n* **Server Features**: Resources, prompts, and tools exposed by servers\n* **Client Features**: Elicitation, sampling and root directory lists provided by clients\n* **Utilities**: Cross-cutting concerns like logging and argument completion\n\nAll implementations **MUST** support the base protocol, versioning,\nand the message patterns. Other components **MAY** be implemented based on the specific needs of the\napplication.\n\nThese protocol layers establish clear separation of concerns while enabling rich\ninteractions between clients and servers. The modular design allows implementations to\nsupport exactly the features they need.\n\n## Messages\n\nAll messages between MCP clients and servers **MUST** follow the\n[JSON-RPC 2.0](https://www.jsonrpc.org/specification) specification. The protocol defines\nthese types of messages:\n\n### Requests\n\n[Requests](/specification/2026-07-28/schema#jsonrpcrequest) are sent from the client to the server, to initiate an operation.\n\n```typescript theme={null}\n{\n  jsonrpc: \"2.0\";\n  id: string | number;\n  method: string;\n  params?: {\n    [key: string]: unknown;\n  };\n}\n```\n\n* Requests **MUST** include a string or integer ID.\n* Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n* The request ID **MU"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/discover",
+          "text": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Discovery\n\n<div id=\"enable-section-numbers\" />\n\n`server/discover` lets a client query a server's supported protocol versions,\ncapabilities, and identity before sending any other requests. Servers **MUST**\nimplement it.\n\n## Request\n\nThe request carries no body parameters beyond the standard `_meta`:\n\n```json theme={null}\n{\n  \"jsonrpc\": \"2.0\",\n  \"id\": \"discover-1\",\n  \"method\": \"server/discover\",\n  \"params\": {\n    \"_meta\": {\n      \"io.modelcontextprotocol/protocolVersion\": \"2026-07-28\",\n      \"io.modelcontextprotocol/clientInfo\": {\n        \"name\": \"ExampleClient\",\n        \"version\": \"1.0.0\"\n      },\n      \"io.modelcontextprotocol/clientCapabilities\": {}\n    }\n  }\n}\n```\n\n## Response\n\nThe server replies with its supported protocol versions, capabilities, and\nidentity. This operation supports [caching](/specification/2026-07-28/server/utilities/caching).\n\n```json theme={null}\n{\n  \"jsonrpc\": \"2.0\",\n  \"id\": \"discover-1\",\n  \"result\": {\n    \"resultType\": \"complete\",\n    \"supportedVersions\": [\"2026-07-28\"],\n    \"capabilities\": {\n      \"tools\": {},\n      \"resources\": {}\n    },\n    \"_meta\": {\n      \"io.modelcontextprotocol/serverInfo\": {\n        \"name\": \"ExampleServer\",\n        \"version\": \"1.0.0\"\n      }\n    },\n    \"instructions\": \"This server provides weather and resource utilities.\",\n    \"ttlMs\": 3600000,\n    \"cacheScope\": \"public\"\n  }\n}\n```\n\n## When to Call\n\nCalling `server/discover` is optional for clients — a client may invoke any\nRPC inline and handle\n[`UnsupportedProtocolVersionError`](/specification/2026-07-28/schema#unsupportedprotocolversionerror)\nif the server does not support the requested version. However, `server/discover`\nis useful in two scenarios:\n\n* **Presenting server information.** While a client doesn't need to call\n  `server/discover` to use the server, it's a convenient w"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/versioning",
+          "text": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Versioning\n\nThe Model Context Protocol uses string-based version identifiers following the format\n`YYYY-MM-DD`, to indicate the last date backwards incompatible changes were made.\n\n<Info>\n  The protocol version will *not* be incremented when the\n  protocol is updated, as long as the changes maintain backwards compatibility. This allows\n  for incremental improvements while preserving interoperability.\n</Info>\n\n## Revisions\n\nRevisions may be marked as:\n\n* **Draft**: in-progress specifications, not yet ready for consumption.\n* **Current**: the current protocol version, which is ready for use and may continue to\n  receive backwards compatible changes.\n* **Final**: past, complete specifications that will not be changed.\n\nThe **current** protocol version is [**2026-07-28**](/specification/2026-07-28/).\n\n## Feature States\n\nIndividual features of the specification may additionally be marked as\n**Deprecated** under the\n[feature lifecycle and deprecation policy](/community/feature-lifecycle):\nthe feature remains part of the specification, but is scheduled for removal.\nDeprecated features document a migration path (or state that none is required)\nand remain in the specification for at least twelve months, or at least\nninety days under the policy's\n[expedited-removal exception](/community/feature-lifecycle#expedited-removal),\nbefore they become eligible for removal, after which they may be **Removed**\nin a future revision.\n\nFeatures that are currently Deprecated are listed in the\n[deprecated features registry](/specification/2026-07-28/deprecated).\n\n## Negotiation\n\nEvery request declares the protocol version it is using via the\n`io.modelcontextprotocol/protocolVersion` key in its\n[`_meta`](/specification/2026-07-28/basic/index#meta) field, and the server accepts or\nrejects each request indepen"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle",
+          "text": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Lifecycle\n\n<div id=\"enable-section-numbers\" />\n\nThe Model Context Protocol (MCP) defines a rigorous lifecycle for client-server\nconnections that ensures proper capability negotiation and state management.\n\n1. **Initialization**: Capability negotiation and protocol version agreement\n2. **Operation**: Normal protocol communication\n3. **Shutdown**: Graceful termination of the connection\n\n```mermaid theme={null}\nsequenceDiagram\n    participant Client\n    participant Server\n\n    Note over Client,Server: Initialization Phase\n    activate Client\n    Client->>+Server: initialize request\n    Server-->>Client: initialize response\n    Client--)Server: initialized notification\n\n    Note over Client,Server: Operation Phase\n    rect rgb(200, 220, 250)\n        note over Client,Server: Normal protocol operations\n    end\n\n    Note over Client,Server: Shutdown\n    Client--)-Server: Disconnect\n    deactivate Server\n    Note over Client,Server: Connection closed\n```\n\n## Lifecycle Phases\n\n### Initialization\n\nThe initialization phase **MUST** be the first interaction between client and server.\nDuring this phase, the client and server:\n\n* Establish protocol version compatibility\n* Exchange and negotiate capabilities\n* Share implementation details\n\nThe client **MUST** initiate this phase by sending an `initialize` request containing:\n\n* Protocol version supported\n* Client capabilities\n* Client implementation information\n\n```json theme={null}\n{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"initialize\",\n  \"params\": {\n    \"protocolVersion\": \"2025-11-25\",\n    \"capabilities\": {\n      \"roots\": {\n        \"listChanged\": true\n      },\n      \"sampling\": {},\n      \"elicitation\": {\n        \"form\": {},\n        \"url\": {}\n      },\n      \"tasks\": {\n        \"requests\": {\n          \"elicitation\": {\n            \"create\": {}\n "
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/transports",
+          "text": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Transports\n\n<div id=\"enable-section-numbers\" />\n\nMCP uses JSON-RPC to encode messages. JSON-RPC messages **MUST** be UTF-8 encoded.\n\nThe protocol currently defines two standard transport mechanisms for client-server\ncommunication:\n\n1. [stdio](#stdio), communication over standard in and standard out\n2. [Streamable HTTP](#streamable-http)\n\nClients **SHOULD** support stdio whenever possible.\n\nIt is also possible for clients and servers to implement\n[custom transports](#custom-transports) in a pluggable fashion.\n\n## stdio\n\nIn the **stdio** transport:\n\n* The client launches the MCP server as a subprocess.\n* The server reads JSON-RPC messages from its standard input (`stdin`) and sends messages\n  to its standard output (`stdout`).\n* Messages are individual JSON-RPC requests, notifications, or responses.\n* Messages are delimited by newlines, and **MUST NOT** contain embedded newlines.\n* The server **MAY** write UTF-8 strings to its standard error (`stderr`) for any\n  logging purposes including informational, debug, and error messages.\n* The client **MAY** capture, forward, or ignore the server's `stderr` output\n  and **SHOULD NOT** assume `stderr` output indicates error conditions.\n* The server **MUST NOT** write anything to its `stdout` that is not a valid MCP message.\n* The client **MUST NOT** write anything to the server's `stdin` that is not a valid MCP\n  message.\n\n```mermaid theme={null}\nsequenceDiagram\n    participant Client\n    participant Server Process\n\n    Client->>+Server Process: Launch subprocess\n    loop Message Exchange\n        Client->>Server Process: Write to stdin\n        Server Process->>Client: Write to stdout\n        Server Process--)Client: Optional logs on stderr\n    end\n    Client->>Server Process: Close stdin, terminate subprocess\n    deactivate Server Process\n```"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/utilities/pagination",
+          "text": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Pagination\n\n<div id=\"enable-section-numbers\" />\n\nThe Model Context Protocol (MCP) supports paginating list operations that may return\nlarge result sets. Pagination allows servers to yield results in smaller chunks rather\nthan all at once.\n\nPagination is especially important when connecting to external services over the\ninternet, but also useful for local integrations to avoid performance issues with large\ndata sets.\n\n<Note>\n  For brevity, the request examples on this page omit the `_meta` request\n  metadata (`io.modelcontextprotocol/protocolVersion`,\n  `io.modelcontextprotocol/clientInfo`, and\n  `io.modelcontextprotocol/clientCapabilities`). Every request **MUST** include\n  the required `_meta` fields; see\n  [`_meta`](/specification/2026-07-28/basic/index#meta).\n</Note>\n\n## Pagination Model\n\nPagination in MCP uses an opaque cursor-based approach, instead of numbered pages.\n\n* The **cursor** is an opaque string token, representing a position in the result set\n* **Page size** is determined by the server, and clients **MUST NOT** assume a fixed page\n  size\n\n## Response Format\n\nPagination starts when the server sends a **response** that includes:\n\n* The current page of results\n* An optional `nextCursor` field if more results exist\n\n```json theme={null}\n{\n  \"jsonrpc\": \"2.0\",\n  \"id\": \"123\",\n  \"result\": {\n    \"resultType\": \"complete\",\n    \"resources\": [...],\n    \"nextCursor\": \"eyJwYWdlIjogM30=\",\n    \"ttlMs\": 300000,\n    \"cacheScope\": \"public\"\n  }\n}\n```\n\n## Request Format\n\nAfter receiving a cursor, the client can *continue* paginating by issuing a request\nincluding that cursor:\n\n```json theme={null}\n{\n  \"jsonrpc\": \"2.0\",\n  \"id\": \"124\",\n  \"method\": \"resources/list\",\n  \"params\": {\n    \"cursor\": \"eyJwYWdlIjogMn0=\"\n  }\n}\n```\n\n## Pagination Flow\n\n```mermaid theme={null}\nsequenceDiagram\n    part"
+        }
+      ],
+      "final_answer": "## Short answer up front\n\nThe premise of the question needs one correction before anything else: **the current official MCP specification revision, `2026-07-28`, no longer has an `initialize` handshake at all.** The spec's versioning page states plainly: \"The **current** protocol version is [**2026-07-28**]\" and that revisions are marked Draft / Current / Final ([versioning](https://modelcontextprotocol.io/specification/versioning)). The spec index links all its sections at `/specification/2026-07-28/...` and cites `schema/2026-07-28/schema.ts` as authoritative ([specification index](https://modelcontextprotocol.io/specification/)).\n\nIn that revision, `initialize` is classified as **\"legacy\"** — the spec's own term for \"protocol versions that establish a session with an `initialize` handshake (`2025-11-25` and earlier)\", versus **\"modern\"** versions that \"convey version, identity, and capabilities as per-request metadata (revision `2026-07-28` and later)\" ([versioning & compatibility](https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning)).\n\nSo I'll answer twice: what the current spec requires, and what the legacy `initialize` handshake required (still relevant for interop).\n\n---\n\n## 1. Current spec (2026-07-28): what a stdio server MUST do\n\n### Message framing — essentially unchanged\n\nFrom the [stdio binding](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio):\n\n- Server reads JSON-RPC from `stdin`, writes JSON-RPC to `stdout`.\n- \"Each message is a single JSON-RPC request, notification, or response.\"\n- \"Messages are delimited by newlines, and **MUST NOT** contain embedded newlines.\"\n- Server **MAY** write UTF-8 strings to `stderr` for logging; the client **MAY** capture/forward/ignore it and **SHOULD NOT** assume `stderr` output indicates errors.\n- Server **MUST NOT** write anything to `stdout` that is not a valid MCP message; client **MUST NOT** write anything to `stdin` that isn't one.\n- JSON-RPC messages **MUST** be UTF-8 encoded ([transports overview](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports)).\n\nDirection rules are now tighter than most people remember: \"The server **MUST NOT** write JSON-RPC *requests* to `stdout`,\" and the client **MUST NOT** write JSON-RPC *responses*. Server→client interaction happens via `InputRequiredResult` replies instead ([stdio](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)). Notifications delivered on a `subscriptions/listen` stream **MUST** carry `io.modelcontextprotocol/subscriptionId` in `_meta` so the client can correlate them.\n\nThere is no `Content-Length` header framing anywhere in MCP stdio — it is line-delimited JSON, unlike LSP.\n\n### Version negotiation — no handshake, per-request\n\n> \"There is no negotiation handshake. Every request carries its protocol version, and the server accepts or rejects each request independently.\" ([versioning & compatibility](https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning))\n\nConcretely, for a stdio server:\n\n- Every client request carries `_meta[\"io.modelcontextprotocol/protocolVersion\"]` (**required**) and `_meta[\"io.modelcontextprotocol/clientCapabilities\"]` (**required**); `clientInfo` is optional but clients **SHOULD** send it ([`_meta`](https://modelcontextprotocol.io/specification/2026-07-28/basic/index)).\n- \"A request missing any required field is malformed; the server **MUST** reject it with JSON-RPC error code `-32602` (Invalid params).\"\n- If the server doesn't implement the requested version it **MUST** return `UnsupportedProtocolVersionError`, code **`-32022`**, with `data.supported` listing versions it does support and `data.requested`. The client **SHOULD** then retry with a mutually supported version.\n- \"A server **MUST NOT** rely on capabilities the client has not declared\" — if it needs an undeclared capability it **MUST** return `MissingRequiredClientCapabilityError` (`-32021`) with `data.requiredCapabilities`.\n- Servers **SHOULD** include `_meta[\"io.modelcontextprotocol/serverInfo\"]` in every result.\n- On stdio there is no header layer; all metadata is inline in the body ([stdio](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)). The `MCP-Protocol-Version` header is Streamable-HTTP-only.\n\n### `server/discover` is mandatory\n\n\"Servers **MUST** implement `server/discover`\" ([discovery](https://modelcontextprotocol.io/specification/2026-07-28/server/discover); repeated in [versioning](https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning)). It returns `supportedVersions`, `capabilities`, optional `instructions`, and `serverInfo` in `_meta`. Calling it is optional *for clients*; implementing it is not optional for servers.\n\n### Statelessness\n\nThis is the big behavioral requirement people miss when porting: \"Servers **MUST NOT** rely on prior requests over the same connection to establish context (e.g., capabilities, protocol version, client identity).\" A stdio process is explicitly **not** a session — \"clients may interleave unrelated requests on the same transport, and a server must not treat connection or process identity as a proxy for conversation or session continuity\" ([base protocol](https://modelcontextprotocol.io/specification/2026-07-28/basic/index)).\n\n### `tools/list`\n\nFrom [server/tools](https://modelcontextprotocol.io/specification/2026-07-28/server/tools):\n\n- Servers supporting tools **MUST** declare the `tools` capability (with optional `listChanged`).\n- They **MUST** respond to `tools/list` with the currently available set. It **MAY** be empty and **MAY** change over time, but **MUST NOT** vary per-connection or as a side effect of other requests. It **MAY** vary by the authorization presented on the request.\n- Servers **SHOULD** return tools in deterministic order.\n- The result **MUST** include `resultType` (`\"complete\"`), per the general rule that \"The `result` **MUST** include a `resultType` field\" ([base protocol](https://modelcontextprotocol.io/specification/2026-07-28/basic/index)). Clients **MUST** treat an absent `resultType` as `\"complete\"` for backward compatibility.\n- `inputSchema` **MUST** be a valid JSON Schema object (not `null`), defaulting to JSON Schema 2020-12 absent `$schema`. If `outputSchema` is given, servers **MUST** produce conforming structured results.\n- Pagination: cursors are opaque; \"Page size is determined by the server, and clients **MUST NOT** assume a fixed page size\"; clients **SHOULD** treat missing `nextCursor` as end of results; an empty string is a valid cursor and **MUST NOT** be treated as the end; invalid cursors **SHOULD** yield `-32602` ([pagination](https://modelcontextprotocol.io/specification/2026-07-28/server/utilities/pagination)).\n- `notifications/tools/list_changed` is now tied to `subscriptions/listen` with `toolsListChanged: true`, not broadcast freely.\n\n### Shutdown\n\nClient **SHOULD** close stdin, wait, then forcibly terminate. Notably: \"Servers **SHOULD** exit promptly when their standard input is closed or reads return end-of-file. This is the primary graceful-shutdown signal and the only portable one\" ([stdio](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)).\n\n---\n\n## 2. Legacy (2025-11-25 and earlier): the `initialize` handshake\n\nIf your question is really \"what does my existing stdio server need to do,\" this is likely the relevant text ([2025-11-25 lifecycle](https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle)):\n\n- The initialization phase **MUST** be the first interaction. Client **MUST** send `initialize` with `protocolVersion`, `capabilities`, `clientInfo`.\n- The server **MUST** respond with its own capabilities and information (`protocolVersion`, `capabilities`, `serverInfo`, optional `instructions`).\n- The client **MUST** then send `notifications/initialized`.\n- Version negotiation: client **MUST** send a version it supports, **SHOULD** be the latest. \"If the server supports the requested protocol version, it **MUST** respond with the same version. Otherwise, the server **MUST** respond with another protocol version it supports,\" **SHOULD** be the server's latest. If the client doesn't support the server's answer, it **SHOULD** disconnect.\n- Client **SHOULD NOT** send requests other than pings before the `initialize` response; server **SHOULD NOT** send requests other than pings and logging before `initialized`.\n- Both parties **MUST** respect the negotiated version and **MUST** only use negotiated capabilities.\n\nFraming in 2025-11-25 stdio is textually identical to the current text (newline-delimited, no embedded newlines, UTF-8, nothing non-MCP on stdout) ([2025-11-25 transports](https://modelcontextprotocol.io/specification/2025-11-25/basic/transports)).\n\n---\n\n## 3. Interop between the two eras\n\nThe spec gives explicit stdio mechanics ([stdio backward compatibility](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio), [compatibility matrix](https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning)):\n\n- A dual-era client **SHOULD** probe with `server/discover` first. `DiscoverResult` ⇒ modern. A recognized modern error like `-32022` ⇒ modern, retry with a supported version, do **not** fall back. Any other error, or a timeout ⇒ legacy, fall back to `initialize`.\n- \"The fallback **MUST NOT** be keyed to one specific error code\" — legacy servers reply to unknown pre-`initialize` methods with implementation-defined errors (commonly `-32601` or `-32602`) or not at all.\n- Modern client + legacy server = **fails**; legacy client + modern server = **fails** (legacy clients have no fall-forward). A modern-only server **SHOULD** name its supported versions in whatever error it returns to `initialize`, since that error may be the only diagnostic a legacy client can show.\n- A dual-era server picks its era from how the client opens, and **MAY** serve both concurrently on the same process.\n\n---\n\n## Epistemic status\n\n**Directly supported by the cited spec pages:** everything above with a quoted MUST/SHOULD.\n\n**Inference, not stated in the spec:** that the `2026-07-28` per-request model is a substantial rewrite likely to outrun SDK support — the removal of `initialize`, mandatory `server/discover`, `resultType`, and enforced statelessness are large enough changes that a server built against 2025-11-25 will not satisfy 2026-07-28 without work. That's my reading of the diff, not a spec claim.\n\n**Not verified — I did not check this:** whether the official TypeScript/Python SDKs currently implement `2026-07-28`, and what real-world clients (Claude Desktop, IDEs) negotiate today. Search results surfaced a [release-candidate blog post](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/) and one search snippet asserted 2025-11-25 was still current with 2026-07-28 as an RC — that snippet is contradicted by the spec site itself, which now marks 2026-07-28 as Current, and I'm going with the spec site. If you need SDK-level ground truth, the schema files under `schema/2026-07-28/` in the [specification repo](https://github.com/modelcontextprotocol/specification) are the authoritative check.\n\n**A genuine ambiguity in the docs:** `/specification/2026-07-28/basic/lifecycle` serves the \"Versioning and Compatibility\" page rather than a lifecycle page — the lifecycle concept was folded into versioning. I mention it because a stale bookmark to that URL now returns materially different content than it used to.\n\nSources:\n- [MCP Specification index](https://modelcontextprotocol.io/specification/)\n- [Versioning](https://modelcontextprotocol.io/specification/versioning)\n- [2026-07-28 — Versioning and Compatibility](https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning)\n- [2026-07-28 — Base protocol / `_meta`](https://modelcontextprotocol.io/specification/2026-07-28/basic/index)\n- [2026-07-28 — Transports overview](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports)\n- [2026-07-28 — stdio](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)\n- [2026-07-28 — server/discover](https://modelcontextprotocol.io/specification/2026-07-28/server/discover)\n- [2026-07-28 — Tools](https://modelcontextprotocol.io/specification/2026-07-28/server/tools)\n- [2026-07-28 — Pagination](https://modelcontextprotocol.io/specification/2026-07-28/server/utilities/pagination)\n- [2025-11-25 — Lifecycle](https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle)\n- [2025-11-25 — Transports](https://modelcontextprotocol.io/specification/2025-11-25/basic/transports)"
+    }
+  ]
+}

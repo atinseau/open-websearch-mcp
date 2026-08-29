@@ -1,0 +1,274 @@
+{
+  "claims": [
+    {
+      "id": "c1",
+      "text": "RFC 9309 says crawlers match robots.txt user-agent groups using a product token that contains only letters, underscores, and hyphens, and matching is case-insensitive.",
+      "required_concepts": ["user-agent", "product-token", "case-insensitive"],
+      "acceptable_patterns": [
+        "product token.{0,80}(letters|underscores|hyphens)",
+        "case-insensitive matching",
+        "user-agent"
+      ],
+      "sources": [
+        {
+          "url": "https://datatracker.ietf.org/doc/rfc9309/",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://datatracker.ietf.org/doc/rfc9309/",
+          "text": "A crawler uses its product token to find relevant groups. The product token must contain only letters, underscores, and hyphens, and crawlers must use case-insensitive matching to find the group that matches the product token."
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+          "text": "Crawlers identify themselves with a \"product token\" containing only letters, underscores, and hyphens. The token \"SHOULD be a substring of the identification string that the crawler sends to the service.\" Matching is case-insensitive."
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "c2",
+      "text": "If more than one group matches a crawler's user-agent, RFC 9309 requires combining those groups' rules; if no specific group matches, crawlers must use the `*` group if present, and if neither exists then no rules apply.",
+      "required_concepts": ["group-merge", "wildcard-group", "no-rules"],
+      "acceptable_patterns": [
+        "more than one group matches.{0,80}combine",
+        "user-agent line with the \"\\*\" value",
+        "no rules apply"
+      ],
+      "sources": [
+        {
+          "url": "https://datatracker.ietf.org/doc/rfc9309/",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.rfc-editor.org/rfc/rfc9309.txt",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://datatracker.ietf.org/doc/rfc9309/",
+          "text": "If more than one group matches the user-agent, the crawler must combine those groups’ rules into one group and then parse that combined group under the rule-processing rules in Section 2.2.2.\n\nIf no matching group exists, crawlers must obey the group whose `user-agent` value is `*`, if such a group is present. If no group matches and there is no `*` group, or if no groups are present at all, then no rules apply."
+        },
+        {
+          "url": "https://www.rfc-editor.org/rfc/rfc9309.txt",
+          "text": "\"If no matching group exists, crawlers MUST obey the group with a user-agent line with the \"*\" value, if present.\" Additionally, \"If no group matches the product token and there is no group with a user-agent line with the \"*\" value, or no groups are present at all, no rules apply.\""
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "c3",
+      "text": "For allow/disallow evaluation, RFC 9309 says matching should be case-sensitive, must start with the first octet of the path, and the most specific match is the one with the most octets.",
+      "required_concepts": ["allow", "disallow", "most-specific"],
+      "acceptable_patterns": [
+        "most specific match found MUST be used",
+        "most octets",
+        "first octet of the path"
+      ],
+      "sources": [
+        {
+          "url": "https://datatracker.ietf.org/doc/rfc9309/",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://datatracker.ietf.org/doc/rfc9309/",
+          "text": "To decide whether a URI is allowed, a crawler must match the URI against the paths in `allow` and `disallow` rules. Matching should be case-sensitive, must start with the first octet of the path, and the most specific match must be used. RFC 9309 defines the “most specific” match as the one with the most octets."
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+          "text": "Path matching evaluation requires: \"The matching SHOULD be case sensitive. The matching MUST start with the first octet of the path. The most specific match found MUST be used.\""
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "c4",
+      "text": "If an `allow` rule and a `disallow` rule are equivalent, RFC 9309 says the `allow` rule should be used; if no rule matches, or the group has no rules, the URI is allowed, and `/robots.txt` is implicitly allowed.",
+      "required_concepts": ["equivalent-rules", "default-allow", "robots.txt"],
+      "acceptable_patterns": ["allow rule should be used", "URI is allowed", "/robots\\.txt"],
+      "sources": [
+        {
+          "url": "https://datatracker.ietf.org/doc/rfc9309/",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.rfc-editor.org/rfc/rfc9309.txt",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://datatracker.ietf.org/doc/rfc9309/",
+          "text": "If an `allow` rule and a `disallow` rule are equivalent, the `allow` rule should be used. If no rule in the applicable group matches, or if the group has no rules, the URI is allowed. The `/robots.txt` URI is implicitly allowed."
+        },
+        {
+          "url": "https://www.rfc-editor.org/rfc/rfc9309.txt",
+          "text": "The document clarifies that \"If no match is found amongst the rules in a group for a matching user-agent or there are no rules in the group, the URI is allowed. The /robots.txt URI is implicitly allowed.\""
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "c5",
+      "text": "Before comparison, RFC 9309 requires percent-encoding octets outside ASCII and octets in the reserved range; percent-encoded ASCII octets in the URI must be decoded before comparison unless they represent reserved characters or are outside the unreserved range.",
+      "required_concepts": ["percent-encoding", "reserved", "comparison"],
+      "acceptable_patterns": [
+        "MUST be percent-encoded",
+        "percent-encoded ASCII octet",
+        "decoded before comparison"
+      ],
+      "sources": [
+        {
+          "url": "https://datatracker.ietf.org/doc/rfc9309/",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.rfc-editor.org/rfc/rfc9309.txt",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://datatracker.ietf.org/doc/rfc9309/",
+          "text": "Before comparison, octets in the URI and in robots.txt paths that are outside ASCII, and octets in the reserved range defined by RFC 3986, must be percent-encoded.\n\nIf the URI contains a percent-encoded ASCII octet, it must be decoded before comparison, unless the octet is a reserved URI character under RFC 3986 or is outside the unreserved range."
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+          "text": "Non-ASCII characters and reserved characters \"MUST be percent-encoded as defined by RFC3986 prior to comparison.\" Percent-encoded ASCII octets in URIs must be decoded before comparison unless they represent reserved characters."
+        },
+        {
+          "url": "https://www.rfc-editor.org/rfc/rfc9309.txt",
+          "text": "For encoding: \"Octets in the URI and robots.txt paths outside the range of the ASCII coded character set...MUST be percent-encoded as defined by [RFC3986] prior to comparison.\""
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "c6",
+      "text": "RFC 9309 says crawlers should support special characters `#`, `$`, and `*`, and if they need to match those characters literally in a URI, they should use percent encoding.",
+      "required_concepts": ["special-chars", "literal-match", "percent-encoding"],
+      "acceptable_patterns": ["special characters", "\\$", "\\*", "use \"%\" encoding"],
+      "sources": [
+        {
+          "url": "https://datatracker.ietf.org/doc/rfc9309/",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://datatracker.ietf.org/doc/rfc9309/",
+          "text": "RFC 9309 also says crawlers must support special characters such as `*` and `$`, and if crawlers need to match those characters literally in the URI, they should use percent encoding."
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+          "text": "Three special characters require support:\n- **#**: Line comment designator\n- **$**: End-of-pattern marker\n- **\\***: Zero or more character wildcard\n\nFor literal matching: \"If crawlers match special characters verbatim in the URI, crawlers SHOULD use '%' encoding.\""
+        }
+      ],
+      "weight": 0.8
+    },
+    {
+      "id": "c7",
+      "text": "For robots.txt fetch handling, RFC 9309 treats unavailable responses as allowing access: 400-499 responses are examples of `Unavailable`, and if robots.txt is unavailable to the crawler, it may access any resources on the server.",
+      "required_concepts": ["unavailable", "4xx", "may-access"],
+      "acceptable_patterns": ["400-499", "Unavailable", "MAY access any resources"],
+      "sources": [
+        {
+          "url": "https://datatracker.ietf.org/doc/rfc9309/",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.rfc-editor.org/rfc/rfc9309.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://datatracker.ietf.org/doc/rfc9309/",
+          "text": "RFC 9309 defines `Unavailable` as the case where the crawler tries to fetch `/robots.txt` and the server responds with a status indicating the resource is unavailable; in HTTP, 4xx status codes are given as the example. If the status indicates the robots.txt file is unavailable to the crawler, the crawler may access any resources on the server."
+        },
+        {
+          "url": "https://www.rfc-editor.org/rfc/rfc9309.html",
+          "text": "\"'Unavailable' means the crawler tries to fetch the robots.txt file and the server responds with status codes indicating that the resource in question is unavailable. For example, in the context of HTTP, such status codes are in the 400-499 range.\n\nIf a server status code indicates that the robots.txt file is unavailable to the crawler, then the crawler MAY access any resources on the server.\""
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+          "text": "**Unavailable Status**: 400-499 status codes mean the crawler \"MAY access any resources on the server.\""
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "c8",
+      "text": "RFC 9309 distinguishes `Unreachable` from `Unavailable`: if robots.txt is unreachable because of server or network errors, crawlers must assume complete disallow; HTTP 500-599 responses are examples, and after more than five consecutive redirects crawlers may assume robots.txt is unavailable.",
+      "required_concepts": ["unreachable", "complete-disallow", "redirects"],
+      "acceptable_patterns": ["complete disallow", "500-599", "five consecutive redirects"],
+      "sources": [
+        {
+          "url": "https://datatracker.ietf.org/doc/rfc9309/",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.rfc-editor.org/rfc/rfc9309.txt",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://datatracker.ietf.org/doc/rfc9309/",
+          "text": "By contrast, if robots.txt is `Unreachable` because of server or network errors, the file is considered undefined and the crawler must assume complete disallow; in HTTP, 5xx status codes are given as the example."
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+          "text": "\"If the robots.txt file is unreachable due to server or network errors, this means the robots.txt file is undefined and the crawler MUST assume complete disallow. For example, in the context of HTTP, server errors are identified by status codes in the 500-599 range.\"\n\n\"If there are more than five consecutive redirects, crawlers MAY assume that the robots.txt file is unavailable.\""
+        },
+        {
+          "url": "https://www.rfc-editor.org/rfc/rfc9309.txt",
+          "text": "**Redirects:** Crawlers \"SHOULD follow at least five consecutive redirects.\" Beyond five redirects, \"crawlers MAY assume that the robots.txt file is unavailable.\"\n\n**Unreachable Status:** On 500-599 errors, \"the crawler MUST assume complete disallow.\""
+        }
+      ],
+      "weight": 1
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "RFC 9309 says `allow` always overrides `disallow`.",
+      "reason": "Contradicted by the supplied evidence, which says the most specific match must be used and only says `allow` should be used when an `allow` and `disallow` rule are equivalent."
+    },
+    {
+      "text": "RFC 9309 provides a complete exhaustive list of every HTTP status code that counts as `Unavailable`.",
+      "reason": "Unsupported and overly broad. The supplied evidence says 400-499 codes are an example or mean unavailable in HTTP summaries, but does not provide an exhaustive per-status matrix."
+    },
+    {
+      "text": "Reported errata for RFC 9309 change the current normative requirements for robots.txt handling.",
+      "reason": "Unsupported and time-unstable. The supplied evidence lists reported errata, not verified changes to the normative text."
+    }
+  ]
+}

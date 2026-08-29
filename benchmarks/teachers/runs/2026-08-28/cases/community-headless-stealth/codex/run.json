@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "run_id": "2026-08-28_codex_community-headless-stealth",
+  "case_id": "community-headless-stealth",
+  "provider": "codex",
+  "model": "gpt-5.4",
+  "queries": [
+    "puppeteer-extra-plugin-stealth README passes all public bot tests",
+    "site:bot.sannysoft.com headless chrome test webdriver public bot test",
+    "SannySoft puppeteer stealth screenshot passes browser test",
+    "site:blog.castle.io how to detect puppeteer stealth",
+    "site:github.com playwright-stealth github README don't expect simplest bot detection methods",
+    "undetected-chromedriver nowsecure.nl issue github"
+  ],
+  "tool_results": [
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    }
+  ],
+  "opened_urls": [
+    "https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md",
+    "https://datadome.co/bot-management-protection/detecting-headless-chrome-puppeteer-extra-plugin-stealth/",
+    "https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/",
+    "https://github.com/Kaliiiiiiiiii-Vinyzu/patchright",
+    "https://gist.github.com/uinstinct/eb6608a6f42ea797526cc9acc2c38649",
+    "https://docs.fingerprint.com/docs/bot-detection/overview",
+    "https://github.com/ultrafunkamsterdam/undetected-chromedriver/discussions/1519",
+    "https://intoli.com/blog/not-possible-to-block-chrome-headless/"
+  ],
+  "cited_urls": [
+    "https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md",
+    "https://github.com/ultrafunkamsterdam/undetected-chromedriver",
+    "https://pypi.org/project/playwright-stealth/",
+    "https://github.com/Kaliiiiiiiiii-Vinyzu/patchright",
+    "https://github.com/Kaliiiiiiiiii-Vinyzu/patchright-python",
+    "https://camoufox.com/stealth/",
+    "https://github.com/CloakHQ/cloakbrowser",
+    "https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md",
+    "https://intoli.com/blog/making-chrome-headless-undetectable/",
+    "https://intoli.com/blog/not-possible-to-block-chrome-headless/",
+    "https://fingerprint.com/blog/build-your-own-bot-detection-script/",
+    "https://www.browserscan.net/bot-detection",
+    "https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/",
+    "https://docs.fingerprint.com/docs/bot-detection/overview",
+    "https://fingerprint.com/products/bot-detection/",
+    "https://www.browserscan.net/bot-detection",
+    "https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/",
+    "https://gist.github.com/uinstinct/eb6608a6f42ea797526cc9acc2c38649",
+    "https://github.com/CloakHQ/cloakbrowser",
+    "https://gist.github.com/uinstinct/eb6608a6f42ea797526cc9acc2c38649",
+    "https://github.com/ultrafunkamsterdam/undetected-chromedriver/discussions/1519",
+    "https://github.com/daijro/camoufox/issues/277",
+    "https://github.com/Kaliiiiiiiiii-Vinyzu/patchright-python/issues/95",
+    "https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md",
+    "https://camoufox.com/stealth/",
+    "https://github.com/Kaliiiiiiiiii-Vinyzu/patchright",
+    "https://docs.fingerprint.com/docs/bot-detection/overview",
+    "https://www.browserscan.net/bot-detection",
+    "https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/"
+  ],
+  "selected_sources": [
+    {
+      "url": "https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md",
+      "title": "https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md"
+    },
+    {
+      "url": "https://datadome.co/bot-management-protection/detecting-headless-chrome-puppeteer-extra-plugin-stealth/",
+      "title": "https://datadome.co/bot-management-protection/detecting-headless-chrome-puppeteer-extra-plugin-stealth/"
+    },
+    {
+      "url": "https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/",
+      "title": "https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/"
+    },
+    {
+      "url": "https://github.com/Kaliiiiiiiiii-Vinyzu/patchright",
+      "title": "https://github.com/Kaliiiiiiiiii-Vinyzu/patchright"
+    },
+    {
+      "url": "https://gist.github.com/uinstinct/eb6608a6f42ea797526cc9acc2c38649",
+      "title": "https://gist.github.com/uinstinct/eb6608a6f42ea797526cc9acc2c38649"
+    },
+    {
+      "url": "https://docs.fingerprint.com/docs/bot-detection/overview",
+      "title": "https://docs.fingerprint.com/docs/bot-detection/overview"
+    },
+    {
+      "url": "https://github.com/ultrafunkamsterdam/undetected-chromedriver/discussions/1519",
+      "title": "https://github.com/ultrafunkamsterdam/undetected-chromedriver/discussions/1519"
+    },
+    {
+      "url": "https://intoli.com/blog/not-possible-to-block-chrome-headless/",
+      "title": "https://intoli.com/blog/not-possible-to-block-chrome-headless/"
+    },
+    {
+      "url": "https://github.com/ultrafunkamsterdam/undetected-chromedriver",
+      "title": "https://github.com/ultrafunkamsterdam/undetected-chromedriver"
+    },
+    {
+      "url": "https://pypi.org/project/playwright-stealth/",
+      "title": "https://pypi.org/project/playwright-stealth/"
+    },
+    {
+      "url": "https://github.com/Kaliiiiiiiiii-Vinyzu/patchright-python",
+      "title": "https://github.com/Kaliiiiiiiiii-Vinyzu/patchright-python"
+    },
+    {
+      "url": "https://camoufox.com/stealth/",
+      "title": "https://camoufox.com/stealth/"
+    },
+    {
+      "url": "https://github.com/CloakHQ/cloakbrowser",
+      "title": "https://github.com/CloakHQ/cloakbrowser"
+    },
+    {
+      "url": "https://intoli.com/blog/making-chrome-headless-undetectable/",
+      "title": "https://intoli.com/blog/making-chrome-headless-undetectable/"
+    },
+    {
+      "url": "https://fingerprint.com/blog/build-your-own-bot-detection-script/",
+      "title": "https://fingerprint.com/blog/build-your-own-bot-detection-script/"
+    },
+    {
+      "url": "https://www.browserscan.net/bot-detection",
+      "title": "https://www.browserscan.net/bot-detection"
+    },
+    {
+      "url": "https://fingerprint.com/products/bot-detection/",
+      "title": "https://fingerprint.com/products/bot-detection/"
+    },
+    {
+      "url": "https://github.com/daijro/camoufox/issues/277",
+      "title": "https://github.com/daijro/camoufox/issues/277"
+    },
+    {
+      "url": "https://github.com/Kaliiiiiiiiii-Vinyzu/patchright-python/issues/95",
+      "title": "https://github.com/Kaliiiiiiiiii-Vinyzu/patchright-python/issues/95"
+    }
+  ],
+  "evidence_passages": [],
+  "final_answer": "Short answer: the communities conflict sharply. One camp makes near-absolute claims that stealth patches make automation “undetected” or even make detection “impossible,” while another camp, including some of the same projects, says stealth only removes obvious leaks and does not prevent determined detection. Sources: `puppeteer-extra-plugin-stealth` says it “passes all public bot tests” but also says there are still ways to detect headless Chromium and that preventing all detection is “probably impossible” ([GitHub README](https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md)); `undetected-chromedriver` says it “does not trigger anti-bot services like Distill Network / Imperva / DataDome / Botprotect.io” ([GitHub README](https://github.com/ultrafunkamsterdam/undetected-chromedriver)); `playwright_stealth` says the opposite and warns: “Don’t expect this to bypass anything but the simplest of bot detection methods” ([PyPI](https://pypi.org/project/playwright-stealth/)); Patchright says it is “considered undetectable” and lists Cloudflare, DataDome, Fingerprint, Sannysoft, BrowserScan, and others as passing, while also admitting its init-script approach “can be detected by Timing Attacks” ([GitHub README](https://github.com/Kaliiiiiiiiii-Vinyzu/patchright), [Patchright Python README](https://github.com/Kaliiiiiiiiii-Vinyzu/patchright-python)); Camoufox says JavaScript inspection cannot detect Playwright in its model, but the same docs say fingerprint inconsistencies and sophisticated behavior analysis can still detect it ([Camoufox docs](https://camoufox.com/stealth/)); CloakBrowser claims it “passes every bot detection test” and “30/30 tests passed” ([GitHub README](https://github.com/CloakHQ/cloakbrowser)).\n\n**Supported fact**\nStealth patches clearly can help against older or simpler browser-surface checks. `puppeteer-extra-plugin-stealth` publishes public test targets and scripts for `bot.sannysoft.com`, `fpscanner`, and `areyouheadless`, and its changelog says those tests were green in its reported runs ([GitHub README](https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md)). Intoli’s 2017 and 2018 articles publicly demonstrated bypassing headless-detection checks by patching browser APIs or injecting JavaScript before page scripts run, and the 2018 article says the resulting screenshot passed its test page ([Intoli 2017](https://intoli.com/blog/making-chrome-headless-undetectable/), [Intoli 2018](https://intoli.com/blog/not-possible-to-block-chrome-headless/)). Public detector recipes from Fingerprint and BrowserScan also show why these patches help: they explicitly test signals such as `navigator.webdriver`, `Headless` in the user agent, missing `navigator.languages`, browser-feature inconsistencies, and unnatural behavior patterns ([Fingerprint guide](https://fingerprint.com/blog/build-your-own-bot-detection-script/), [BrowserScan](https://www.browserscan.net/bot-detection)). DataDome likewise says that with the newer Headless Chrome, once an attacker changes the UA and removes `navigator.webdriver`, “very few inconsistencies” remain in the fingerprint, which supports the narrower claim that public fingerprint tests can sometimes be beaten by targeted patches ([DataDome](https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/)).\n\n**Supported contradiction**\nThere is also public evidence against broad “prevents bot detection” claims. Fingerprint says its bot detection analyzes “hundreds of browser attributes and network signals,” classifies Selenium/Puppeteer/Playwright as bad bots, supports detecting “antidetect browsers,” and also offers an HTTP-metadata-based API that works without any browser JavaScript at all ([Fingerprint docs](https://docs.fingerprint.com/docs/bot-detection/overview), [product page](https://fingerprint.com/products/bot-detection/)). BrowserScan explicitly says behavior, browser properties, traffic patterns, and machine learning are all relevant, not just `navigator.webdriver` ([BrowserScan](https://www.browserscan.net/bot-detection)). DataDome says CDP-side-effect detection targets the underlying automation protocol used by Puppeteer, Playwright, and Selenium, rather than only surface-level browser inconsistencies ([DataDome](https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/)). A public independent-ish test report from May 21, 2026 found no tested stack achieved a clean sweep: Patchwright scored 18/20, Camoufox 13/20, CloakBrowser 14 PASS plus 3 PARTIAL, and Sannysoft still failed for some of them in that environment ([public gist](https://gist.github.com/uinstinct/eb6608a6f42ea797526cc9acc2c38649)). That directly contradicts universal claims like “passes every bot detection test” or “prevents bot detection” in the general case ([CloakBrowser README](https://github.com/CloakHQ/cloakbrowser), [public gist](https://gist.github.com/uinstinct/eb6608a6f42ea797526cc9acc2c38649)).\n\n**Disagreement / uncertainty**\nSome public failure reports are reproducible enough to matter, but they are weaker evidence than controlled comparisons. An `undetected-chromedriver` discussion from August 29, 2023 reports `nowsecure.nl` getting stuck in an “infinite checkbox loop” on Chrome 116 / Selenium 4.11.2, and another user reported the same on August 31, 2023 ([GitHub discussion](https://github.com/ultrafunkamsterdam/undetected-chromedriver/discussions/1519)). A Camoufox issue from April 18, 2025 reports Seatgeek/DataDome blocking the browser every time, with version numbers and a one-step reproduction path ([GitHub issue](https://github.com/daijro/camoufox/issues/277)). A Patchright bug from January 1, 2026 says BrowserScan detected it as a bot when the patched driver was not actually installed, which shows that “undetectable” outcomes can depend on exact packaging and setup rather than the brand name alone ([GitHub issue](https://github.com/Kaliiiiiiiiii-Vinyzu/patchright-python/issues/95)). These reports support skepticism, but they are still anecdotal and environment-sensitive.\n\n**Inference**\nThe real conflict is mostly about scope. The strongest claims are best read as “can beat some public browser-fingerprint tests, under a particular setup,” not “prevents bot detection in general.” That inference is supported by the mismatch between absolute marketing claims and the same projects’ own caveats, plus public evidence that modern detection also uses behavior, network signals, IP/session reputation, and protocol-level artifacts ([puppeteer-extra README](https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md), [Camoufox docs](https://camoufox.com/stealth/), [Patchright README](https://github.com/Kaliiiiiiiiii-Vinyzu/patchright), [Fingerprint docs](https://docs.fingerprint.com/docs/bot-detection/overview), [BrowserScan](https://www.browserscan.net/bot-detection), [DataDome](https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/)).\n\n**Lack of good evidence**\nI did not find strong public evidence for the absolute claims in the strict sense of independent, version-pinned, repeatable, same-day tests across multiple commercial anti-bot systems and network conditions. Most positive evidence is self-reported by tool authors or based on public test pages; most negative evidence is either vendor research or user issue reports. That means “stealth patches can reduce easy detections” is well supported, while “stealth patches prevent bot detection” is not.",
+  "cli_version": "codex-cli 0.149.1",
+  "locale": "en-US",
+  "started_at": "2026-08-28T14:58:19.288Z",
+  "duration_ms": 190494,
+  "prompt_sha256": "301f8e70ee06427a70f7413b557670bc1a83e63844a72bad61f45ba7bfeb6eb1",
+  "raw_trace": "events.sanitized.jsonl",
+  "policy_evidence": "policy.json",
+  "isolation": {
+    "temporary_cwd": true,
+    "cwd_unchanged": true,
+    "forbidden_tool_calls": []
+  }
+}

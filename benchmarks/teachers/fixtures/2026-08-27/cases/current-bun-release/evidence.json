@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "case_id": "current-bun-release",
+  "runs": [
+    {
+      "run_id": "2026-08-27_codex_current-bun-release",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "site:bun.com/blog Bun release 2026 stable Bun release blog",
+        "https://bun.com/blog/bun-v1.4",
+        "site:github.com/oven-sh/bun/releases bun-v1.4 GitHub release",
+        "https://github.com/oven-sh/bun/releases/tag/bun-v1.4.0",
+        "'August 20, 2026' in https://bun.com/blog/bun-v1.4",
+        "'fixes over 2,900 issues' in https://bun.com/blog/bun-v1.4",
+        "'bun test --parallel' in https://bun.com/blog/bun-v1.4",
+        "https://bun.com/blog"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [],
+      "cited_urls": [
+        "https://github.com/oven-sh/bun/releases/tag/bun-v1.4.0",
+        "https://bun.com/blog",
+        "https://bun.com/blog/bun-v1.4"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://github.com/oven-sh/bun/releases/tag/bun-v1.4.0",
+          "title": "https://github.com/oven-sh/bun/releases/tag/bun-v1.4.0"
+        },
+        {
+          "url": "https://bun.com/blog",
+          "title": "https://bun.com/blog"
+        },
+        {
+          "url": "https://bun.com/blog/bun-v1.4",
+          "title": "https://bun.com/blog/bun-v1.4"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://github.com/oven-sh/bun/releases/tag/bun-v1.4.0",
+          "text": "**Answer**\n\nThe latest stable Bun release I found as of **August 27, 2026** is **Bun v1.4.0** (marketed as **Bun 1.4**). The official GitHub release page marks **Bun v1.4** as **“Latest”**, and the official Bun blog lists **“Bun 1.4”** as the latest release and shows **“Install Bun v1.4.0.”**  \nSources: https://github.com/oven-sh/bun/releases/tag/bun-v1.4.0 , https://bun.com/blog\n\nIt was published on **August 20, 2026** according to the dated official release post for Bun 1.4.  \nSource: https://bun.com/blog/bun-v1.4\n\n**Most consequential changes, according to the official release sources**\n\n`Supported fact:` Bun 1.4 is the first Bun release written in Rust; the release post says, “Bun is now written in Rust.”  \nSource: https://bun.com/blog/bun-v1.4\n\n`Supported fact:` The release post highlights a major **Node.js compatibility** jump: Bun 1.4 adds **1,517 newly passing tests** from the **Node.js v26.3.0** test suite, which the post calls Bun’s biggest compatibility jump since 1.0.  \nSource: https://bun.com/blog/bun-v1.4\n\n`Supported fact:` The release post also foregrounds large **runtime/performance** changes: **5x lower idle CPU usage**, **up to 35% lower memory usage**, and **50% faster startup on Linux**.  \nSource: https://bun.com/blog/bun-v1.4\n\n`Supported fact:` Bun 1.4 adds several major built-ins that replace common external tools, including **`Bun.Image`** for image processing, **`Bun.WebView`** for headless browser automation, **`Bun.markdown`** for Markdown parsing/rendering, **`Bun.cron()`** for scheduling, and **`Bun.Terminal`** for pseudo-terminal control.  \nSources: https://bun.com/blog/bun-v1.4 , https://bun.com/blog\n\n`Supported fact:` Bun 1.4 adds **parallel script execution** via **`bun run --parallel`**, **parallel test execution** via **`bun test --parallel`**, and package-management commands such as **`bun audit fix`**, **`bun dedupe`**, and **`bun prune`**.  \nSource: https://bun.com/blog/bun-v1.4\n\n`Supported fact:` Bun 1.4 introduces an opt-in **g"
+        },
+        {
+          "url": "https://bun.com/blog",
+          "text": "**Answer**\n\nThe latest stable Bun release I found as of **August 27, 2026** is **Bun v1.4.0** (marketed as **Bun 1.4**). The official GitHub release page marks **Bun v1.4** as **“Latest”**, and the official Bun blog lists **“Bun 1.4”** as the latest release and shows **“Install Bun v1.4.0.”**  \nSources: https://github.com/oven-sh/bun/releases/tag/bun-v1.4.0 , https://bun.com/blog\n\nIt was published on **August 20, 2026** according to the dated official release post for Bun 1.4.  \nSource: https://bun.com/blog/bun-v1.4\n\n**Most consequential changes, according to the official release sources**\n\n`Supported fact:` Bun 1.4 is the first Bun release written in Rust; the release post says, “Bun is now written in Rust.”  \nSource: https://bun.com/blog/bun-v1.4\n\n`Supported fact:` The release post highlights a major **Node.js compatibility** jump: Bun 1.4 adds **1,517 newly passing tests** from the **Node.js v26.3.0** test suite, which the post calls Bun’s biggest compatibility jump since 1.0.  \nSource: https://bun.com/blog/bun-v1.4\n\n`Supported fact:` The release post also foregrounds large **runtime/performance** changes: **5x lower idle CPU usage**, **up to 35% lower memory usage**, and **50% faster startup on Linux**.  \nSource: https://bun.com/blog/bun-v1.4\n\n`Supported fact:` Bun 1.4 adds several major built-ins that replace common external tools, including **`Bun.Image`** for image processing, **`Bun.WebView`** for headless browser automation, **`Bun.markdown`** for Markdown parsing/rendering, **`Bun.cron()`** for scheduling, and **`Bun.Terminal`** for pseudo-terminal control.  \nSources: https://bun.com/blog/bun-v1.4 , https://bun.com/blog\n\n`Supported fact:` Bun 1.4 adds **parallel script execution** via **`bun run --parallel`**, **parallel test execution** via **`bun test --parallel`**, and package-management commands such as **`bun audit fix`**, **`bun dedupe`**, and **`bun prune`**.  \nSource: https://bun.com/blog/bun-v1.4\n\n`Supported fact:` Bun 1.4 introduces an opt-in **g"
+        },
+        {
+          "url": "https://bun.com/blog/bun-v1.4",
+          "text": "**Answer**\n\nThe latest stable Bun release I found as of **August 27, 2026** is **Bun v1.4.0** (marketed as **Bun 1.4**). The official GitHub release page marks **Bun v1.4** as **“Latest”**, and the official Bun blog lists **“Bun 1.4”** as the latest release and shows **“Install Bun v1.4.0.”**  \nSources: https://github.com/oven-sh/bun/releases/tag/bun-v1.4.0 , https://bun.com/blog\n\nIt was published on **August 20, 2026** according to the dated official release post for Bun 1.4.  \nSource: https://bun.com/blog/bun-v1.4\n\n**Most consequential changes, according to the official release sources**\n\n`Supported fact:` Bun 1.4 is the first Bun release written in Rust; the release post says, “Bun is now written in Rust.”  \nSource: https://bun.com/blog/bun-v1.4\n\n`Supported fact:` The release post highlights a major **Node.js compatibility** jump: Bun 1.4 adds **1,517 newly passing tests** from the **Node.js v26.3.0** test suite, which the post calls Bun’s biggest compatibility jump since 1.0.  \nSource: https://bun.com/blog/bun-v1.4\n\n`Supported fact:` The release post also foregrounds large **runtime/performance** changes: **5x lower idle CPU usage**, **up to 35% lower memory usage**, and **50% faster startup on Linux**.  \nSource: https://bun.com/blog/bun-v1.4\n\n`Supported fact:` Bun 1.4 adds several major built-ins that replace common external tools, including **`Bun.Image`** for image processing, **`Bun.WebView`** for headless browser automation, **`Bun.markdown`** for Markdown parsing/rendering, **`Bun.cron()`** for scheduling, and **`Bun.Terminal`** for pseudo-terminal control.  \nSources: https://bun.com/blog/bun-v1.4 , https://bun.com/blog\n\n`Supported fact:` Bun 1.4 adds **parallel script execution** via **`bun run --parallel`**, **parallel test execution** via **`bun test --parallel`**, and package-management commands such as **`bun audit fix`**, **`bun dedupe`**, and **`bun prune`**.  \nSource: https://bun.com/blog/bun-v1.4\n\n`Supported fact:` Bun 1.4 introduces an opt-in **g"
+        }
+      ],
+      "final_answer": "**Answer**\n\nThe latest stable Bun release I found as of **August 27, 2026** is **Bun v1.4.0** (marketed as **Bun 1.4**). The official GitHub release page marks **Bun v1.4** as **“Latest”**, and the official Bun blog lists **“Bun 1.4”** as the latest release and shows **“Install Bun v1.4.0.”**  \nSources: https://github.com/oven-sh/bun/releases/tag/bun-v1.4.0 , https://bun.com/blog\n\nIt was published on **August 20, 2026** according to the dated official release post for Bun 1.4.  \nSource: https://bun.com/blog/bun-v1.4\n\n**Most consequential changes, according to the official release sources**\n\n`Supported fact:` Bun 1.4 is the first Bun release written in Rust; the release post says, “Bun is now written in Rust.”  \nSource: https://bun.com/blog/bun-v1.4\n\n`Supported fact:` The release post highlights a major **Node.js compatibility** jump: Bun 1.4 adds **1,517 newly passing tests** from the **Node.js v26.3.0** test suite, which the post calls Bun’s biggest compatibility jump since 1.0.  \nSource: https://bun.com/blog/bun-v1.4\n\n`Supported fact:` The release post also foregrounds large **runtime/performance** changes: **5x lower idle CPU usage**, **up to 35% lower memory usage**, and **50% faster startup on Linux**.  \nSource: https://bun.com/blog/bun-v1.4\n\n`Supported fact:` Bun 1.4 adds several major built-ins that replace common external tools, including **`Bun.Image`** for image processing, **`Bun.WebView`** for headless browser automation, **`Bun.markdown`** for Markdown parsing/rendering, **`Bun.cron()`** for scheduling, and **`Bun.Terminal`** for pseudo-terminal control.  \nSources: https://bun.com/blog/bun-v1.4 , https://bun.com/blog\n\n`Supported fact:` Bun 1.4 adds **parallel script execution** via **`bun run --parallel`**, **parallel test execution** via **`bun test --parallel`**, and package-management commands such as **`bun audit fix`**, **`bun dedupe`**, and **`bun prune`**.  \nSource: https://bun.com/blog/bun-v1.4\n\n`Supported fact:` Bun 1.4 introduces an opt-in **global virtual store** for isolated installs; the release post says this can deliver **up to 7x faster installs**.  \nSources: https://bun.com/blog/bun-v1.4 , https://bun.com/blog\n\n**Inference**\n\n`Inference:` If “most consequential” means “most emphasized by Bun’s own official release materials,” the top changes are probably: **the Rust rewrite**, **the large Node.js compatibility jump**, **the runtime/performance improvements**, and **the new built-in standard-library features/tools**. I infer that from the blog homepage summary and the Bun 1.4 release post’s lead section and section prominence, not from an explicit ranked list.  \nSources used for the inference: https://bun.com/blog , https://bun.com/blog/bun-v1.4\n\n**Disagreement, uncertainty, and evidence quality**\n\n`Disagreement:` I found **no disagreement** between the official Bun blog and the official GitHub release page about the latest stable release being Bun 1.4 / v1.4.0.  \nSources: https://bun.com/blog , https://github.com/oven-sh/bun/releases/tag/bun-v1.4.0\n\n`Uncertainty:` The GitHub page I opened shows the release time as **“20 Aug 14:07”** in relative UI formatting, while the Bun blog gives the explicit calendar date **August 20, 2026**. The year is explicit on the blog post, so I rely on the blog for the full publication date.  \nSources: https://github.com/oven-sh/bun/releases/tag/bun-v1.4.0 , https://bun.com/blog/bun-v1.4\n\n`Lack of good evidence:` I did **not** find an official Bun source that explicitly ranks changes by importance, so any ordering of “most consequential” changes is necessarily an inference from Bun’s own summaries and headings rather than a directly stated official ranking.  \nSources: https://bun.com/blog , https://bun.com/blog/bun-v1.4"
+    },
+    {
+      "run_id": "2026-08-27_claude_current-bun-release",
+      "provider": "claude",
+      "model": "claude-opus-5[1m]",
+      "queries": ["Bun latest release version 2026"],
+      "tool_results": [
+        {
+          "tool": "WebFetch",
+          "summary": "# Bun v1.4 Release Information\n\n**Version:** Bun v1.4.0\n\n**Release Date:** August 20, 2024 at 14:07 UTC\n\n**Key Information:**\n\nThe release page indicates this is version 1.4.0 of Bun, a free, open-source, MIT-licensed JavaScript runtime. While the page references \"the blog post\" for detailed changes, the specific technical improvements and features are not enumerated in the visible content provided.\n\nThe release includes installation instructions for multiple platforms (Linux/macOS via curl, Win"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun Introduces Built-in Database Clients and Zero-Config Frontend Development - InfoQ: https://www.infoq.com/news/2026/01/bun-v3-1-release/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun (software): https://en.wikipedia.org/wiki/Bun_(software)"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Blog | Bun: https://bun.com/blog"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Android 17: https://en.wikipedia.org/wiki/Android_17"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun — A fast all-in-one JavaScript runtime: https://bun.com/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Releasealert: https://releasealert.dev/npmjs/_/bun"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun | endoflife.date: https://endoflife.date/bun"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun vs Node.js 2026: 3x req/s, 91K Stars [Tested] - Tech Insider: https://tech-insider.org/bun-vs-node-js-2026/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Releases · oven-sh/bun: https://github.com/oven-sh/bun/releases"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Most Recent Bun Releases\n\nBased on the GitHub releases page, here are the newest Bun versions in order:\n\n1. **Bun v1.4.0** - Released August 20, 2026 (marked as \"Latest\")\n2. **Bun v1.3.14** - Released May 13, 2025\n3. **Bun v1.3.13** - Released April 20, 2025\n4. **Bun v1.3.12** - Released April 10, 2025\n5. **Bun v1.3.11** - Released March 18, 2025\n6. **Bun v1.3.10** - Released February 26, 2025\n7. **Bun v1.3.9** - Released February 8, 2025\n8. **Bun v1.3.8** - Released January 29, 2025\n9. **Bun "
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Recent Bun Blog Posts\n\nHere are the most recent posts from the Bun blog:\n\n## 2026\n1. **August 20, 2026 - Bun 1.4** (Release)\n   \"Bun 1.4 rewrites Bun in Rust, ships built-in headless browser automation (Bun.WebView), Bun.Image, Bun.markdown, JSON5, JSONL, Terminal and cron APIs\"\n\n2. **July 8, 2026 - Rewriting Bun in Rust**\n   Explains the technical decisions behind converting Bun from Zig to Rust\n\n3. **May 13, 2026 - Bun v1.3.14** (Release)\n   Addresses 380 issues with improvements to Bun.Imag"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "The version field of this package is **1.4.0**.\n\nThis is shown in the JSON data as `\"version\":\"1.4.0\"` and corresponds to the Bun JavaScript runtime package."
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Bun 1.4: Major Release Summary\n\n**Publication Date:** August 20, 2026\n\n## Most Consequential Changes\n\n### Complete Rust Rewrite\nThe biggest structural change is that Bun has been entirely rewritten from Zig to Rust. This is the first production release, though internal tools like Claude Code have been using the Rust version for months.\n\n### Performance Improvements\nThe release delivers dramatic efficiency gains:\n- **CPU usage:** Production CPU dropped by 2× for large applications; idle CPU usa"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Bun Release Information\n\n**Latest Release:** Version 1.4.0, released on August 19, 2026\n\n**Support Status:** According to the page, \"Bun does not have a clearly defined support policy.\" The documentation shows only one release entry (version 1) with a generic \"2 years and 11 months ago\" timestamp from September 7, 2023.\n\n**For versions 1.4 and 1.3:** The page provides no specific EOL or support timelines for these versions. It notes that security support is available but doesn't specify durati"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Bun 1.4 Blog Post: Key Topics\n\n## Breaking Changes/Migration Notes\n\nThe post does not explicitly mention breaking changes or migration notes. It focuses on new features rather than compatibility issues.\n\n## Global Virtual Store & Install Speed\n\nThe post states: **\"On a warm isolated install, copying packages into `node_modules` (`clonefileat()` on macOS) was 95% of main-thread time\"** and reports that **\"on the common CI path (lockfile present, cache warm, `node_modules` wiped), a 1,400-packag"
+        }
+      ],
+      "opened_urls": [
+        "https://github.com/oven-sh/bun/releases/latest",
+        "https://github.com/oven-sh/bun/releases",
+        "https://bun.com/blog",
+        "https://bun.com/blog/bun-v1.4",
+        "https://registry.npmjs.org/bun/latest",
+        "https://endoflife.date/bun"
+      ],
+      "cited_urls": [
+        "https://github.com/oven-sh/bun/releases/latest",
+        "https://github.com/oven-sh/bun/releases",
+        "https://bun.com/blog/bun-v1.4",
+        "https://bun.com/blog",
+        "https://registry.npmjs.org/bun/latest",
+        "https://endoflife.date/bun"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://github.com/oven-sh/bun/releases/latest",
+          "title": "https://github.com/oven-sh/bun/releases/latest"
+        },
+        {
+          "url": "https://www.infoq.com/news/2026/01/bun-v3-1-release/",
+          "title": "Bun Introduces Built-in Database Clients and Zero-Config Frontend Development - InfoQ"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Bun_(software)",
+          "title": "Bun (software)"
+        },
+        {
+          "url": "https://bun.com/blog",
+          "title": "https://bun.com/blog"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Android_17",
+          "title": "Android 17"
+        },
+        {
+          "url": "https://bun.com/",
+          "title": "Bun — A fast all-in-one JavaScript runtime"
+        },
+        {
+          "url": "https://releasealert.dev/npmjs/_/bun",
+          "title": "Releasealert"
+        },
+        {
+          "url": "https://endoflife.date/bun",
+          "title": "https://endoflife.date/bun"
+        },
+        {
+          "url": "https://tech-insider.org/bun-vs-node-js-2026/",
+          "title": "Bun vs Node.js 2026: 3x req/s, 91K Stars [Tested] - Tech Insider"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/releases",
+          "title": "https://github.com/oven-sh/bun/releases"
+        },
+        {
+          "url": "https://registry.npmjs.org/bun/latest",
+          "title": "https://registry.npmjs.org/bun/latest"
+        },
+        {
+          "url": "https://bun.com/blog/bun-v1.4",
+          "title": "https://bun.com/blog/bun-v1.4"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://github.com/oven-sh/bun/releases/latest",
+          "text": "# Bun v1.4 Release Information\n\n**Version:** Bun v1.4.0\n\n**Release Date:** August 20, 2024 at 14:07 UTC\n\n**Key Information:**\n\nThe release page indicates this is version 1.4.0 of Bun, a free, open-source, MIT-licensed JavaScript runtime. While the page references \"the blog post\" for detailed changes, the specific technical improvements and features are not enumerated in the visible content provided.\n\nThe release includes installation instructions for multiple platforms (Linux/macOS via curl, Windows via PowerShell) and an upgrade path for existing users. The announcement acknowledges contributions from approximately 100+ community members who contributed bug fixes and improvements since version 1.3.\n\nThe page received significant community engagement, with over 260 combined emoji reactions reflecting positive reception of the release."
+        },
+        {
+          "url": "https://www.infoq.com/news/2026/01/bun-v3-1-release/",
+          "text": "Bun Introduces Built-in Database Clients and Zero-Config Frontend Development - InfoQ"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Bun_(software)",
+          "text": "Bun (software)"
+        },
+        {
+          "url": "https://bun.com/blog",
+          "text": "Blog | Bun"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Android_17",
+          "text": "Android 17"
+        },
+        {
+          "url": "https://bun.com/",
+          "text": "Bun — A fast all-in-one JavaScript runtime"
+        },
+        {
+          "url": "https://releasealert.dev/npmjs/_/bun",
+          "text": "Releasealert"
+        },
+        {
+          "url": "https://endoflife.date/bun",
+          "text": "Bun | endoflife.date"
+        },
+        {
+          "url": "https://tech-insider.org/bun-vs-node-js-2026/",
+          "text": "Bun vs Node.js 2026: 3x req/s, 91K Stars [Tested] - Tech Insider"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/releases",
+          "text": "Releases · oven-sh/bun"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/releases",
+          "text": "# Most Recent Bun Releases\n\nBased on the GitHub releases page, here are the newest Bun versions in order:\n\n1. **Bun v1.4.0** - Released August 20, 2026 (marked as \"Latest\")\n2. **Bun v1.3.14** - Released May 13, 2025\n3. **Bun v1.3.13** - Released April 20, 2025\n4. **Bun v1.3.12** - Released April 10, 2025\n5. **Bun v1.3.11** - Released March 18, 2025\n6. **Bun v1.3.10** - Released February 26, 2025\n7. **Bun v1.3.9** - Released February 8, 2025\n8. **Bun v1.3.8** - Released January 29, 2025\n9. **Bun v1.3.7** - Released January 27, 2025\n10. **Bun v1.3.6** - Released January 13, 2025\n\nThe newest release is **Bun v1.4.0**, which is officially designated as the \"Latest\" version. No pre-release designation appears for this release."
+        },
+        {
+          "url": "https://bun.com/blog",
+          "text": "# Recent Bun Blog Posts\n\nHere are the most recent posts from the Bun blog:\n\n## 2026\n1. **August 20, 2026 - Bun 1.4** (Release)\n   \"Bun 1.4 rewrites Bun in Rust, ships built-in headless browser automation (Bun.WebView), Bun.Image, Bun.markdown, JSON5, JSONL, Terminal and cron APIs\"\n\n2. **July 8, 2026 - Rewriting Bun in Rust**\n   Explains the technical decisions behind converting Bun from Zig to Rust\n\n3. **May 13, 2026 - Bun v1.3.14** (Release)\n   Addresses 380 issues with improvements to Bun.Image, HTTP/2 and HTTP/3 support, and faster warm installs\n\n4. **April 20, 2026 - Bun v1.3.13** (Release)\n   Introduces parallel testing, faster gzip compression, and enhanced WebSocket support\n\n5. **April 9, 2026 - Bun v1.3.12** (Release)\n   Adds markdown rendering, WebView browser automation, and in-process cron scheduling\n\n## Key Announcement\n**December 2, 2025 - Bun is joining Anthropic**\nThe Bun project was acquired by Anthropic, which is integrating it into Claude Code and future AI products."
+        },
+        {
+          "url": "https://registry.npmjs.org/bun/latest",
+          "text": "The version field of this package is **1.4.0**.\n\nThis is shown in the JSON data as `\"version\":\"1.4.0\"` and corresponds to the Bun JavaScript runtime package."
+        },
+        {
+          "url": "https://bun.com/blog/bun-v1.4",
+          "text": "# Bun 1.4: Major Release Summary\n\n**Publication Date:** August 20, 2026\n\n## Most Consequential Changes\n\n### Complete Rust Rewrite\nThe biggest structural change is that Bun has been entirely rewritten from Zig to Rust. This is the first production release, though internal tools like Claude Code have been using the Rust version for months.\n\n### Performance Improvements\nThe release delivers dramatic efficiency gains:\n- **CPU usage:** Production CPU dropped by 2× for large applications; idle CPU usage decreased by 5×\n- **Memory:** HTTP server applications see 13–48% memory reductions (Fastify down 48%, Express down 46%)\n- **Startup:** Windows startup is 2.5× faster; Linux startup is 2× faster with less than half the memory\n- **Binary size:** Reductions up to 17% on Linux and Windows\n\n### Node.js Compatibility Surge\nBun added 1,517 newly passing tests from the Node.js test suite—its biggest compatibility jump since version 1.0. Critical modules like `node:http`, `node:fs`, and `node:stream` now pass approximately 97% of Node's tests.\n\n### Built-in Standard Library\nFifteen previously external dependencies are now integrated:\n\n> \"Every one of these ships in the Bun binary — no install step, no native build, no lockfile entry\"\n\nNew APIs include `Bun.Image`, `Bun.WebView`, `Bun.markdown`, `Bun.cron()`, `Bun.Terminal`, and `Bun.Archive`, alongside expanded utilities for JSON/XML parsing and terminal operations.\n\n### Testing & Building Enhancements\n- `bun test --parallel` distributes test files across worker processes\n- `bun test --shard` enables distributed CI testing\n- Built-in React Compiler runs 19× faster than Babel plugin equivalents\n- `bun run --parallel` executes scripts concurrently with output prefixing\n\n### Developer Tooling\nNew observability features include `--cpu-prof-md` and `--heap-prof-md` for Markdown-formatted profiling reports readable over SSH or in terminals, plus `process.on(\"memoryPressure\")` for OS-level memory notifications."
+        },
+        {
+          "url": "https://endoflife.date/bun",
+          "text": "# Bun Release Information\n\n**Latest Release:** Version 1.4.0, released on August 19, 2026\n\n**Support Status:** According to the page, \"Bun does not have a clearly defined support policy.\" The documentation shows only one release entry (version 1) with a generic \"2 years and 11 months ago\" timestamp from September 7, 2023.\n\n**For versions 1.4 and 1.3:** The page provides no specific EOL or support timelines for these versions. It notes that security support is available but doesn't specify duration or which versions are covered. The site recommends users \"should be running one of the supported release numbers listed above\" but doesn't detail what those support periods entail."
+        },
+        {
+          "url": "https://bun.com/blog/bun-v1.4",
+          "text": "# Bun 1.4 Blog Post: Key Topics\n\n## Breaking Changes/Migration Notes\n\nThe post does not explicitly mention breaking changes or migration notes. It focuses on new features rather than compatibility issues.\n\n## Global Virtual Store & Install Speed\n\nThe post states: **\"On a warm isolated install, copying packages into `node_modules` (`clonefileat()` on macOS) was 95% of main-thread time\"** and reports that **\"on the common CI path (lockfile present, cache warm, `node_modules` wiped), a 1,400-package install is 7x faster.\"**\n\nThe feature uses symlinks instead of copies, but it's opt-in: **\"The global store is opt-in: it applies when you select the isolated linker, which is not the default for existing projects.\"**\n\n## Windows ARM64 Support\n\nThe post includes binary size comparisons showing Windows ARM64: **\"75.1 MB\"** for Bun 1.4, down from **\"90.2 MB\"** in 1.3.14. It's listed among supported platforms but receives no special discussion of new support.\n\n## Built-in APIs Replacing npm Packages\n\nThe post lists 15 dependencies now built-in:\n\n- **`Bun.Image`** replaces **sharp**\n- **`Bun.WebView`** replaces **puppeteer**\n- **`Bun.markdown`** replaces **marked**\n- **`Bun.cron()`** replaces **node-cron**\n- **`Bun.Terminal`** replaces **node-pty**\n- **`bun run --parallel`** replaces **concurrently** and **npm-run-all**\n\nPlus replacements for json5, fast-xml-parser, tar, string-width, slice-ansi, cli-truncate, and wrap-ansi."
+        }
+      ],
+      "final_answer": "## Latest stable Bun release: **v1.4.0**\n\n**Version and date (supported fact).** Bun v1.4.0 is the current latest stable release. It is marked \"Latest\" on GitHub's releases page with a publication date of August 20, 2026 ([github.com/oven-sh/bun/releases/latest](https://github.com/oven-sh/bun/releases/latest), [releases list](https://github.com/oven-sh/bun/releases)), and the official announcement post on the Bun blog is dated August 20, 2026 ([bun.com/blog/bun-v1.4](https://bun.com/blog/bun-v1.4), [bun.com/blog](https://bun.com/blog)). Independently, the npm registry's `latest` dist-tag for the `bun` package resolves to `1.4.0` ([registry.npmjs.org/bun/latest](https://registry.npmjs.org/bun/latest)).\n\n**No patch release yet (supported, with a caveat).** As of today (2026-08-27), no 1.4.x patch has shipped: GitHub lists v1.4.0 as the newest release, with v1.3.14 (May 13, 2026) before it, and npm still points `latest` at 1.4.0 ([GitHub releases](https://github.com/oven-sh/bun/releases), [bun.com/blog](https://bun.com/blog), [npm](https://registry.npmjs.org/bun/latest)). Caveat: fetched pages may be cached, so a very recent patch could be missed.\n\n**Minor date disagreement.** endoflife.date lists the 1.4.0 release date as August 19, 2026 ([endoflife.date/bun](https://endoflife.date/bun)), one day earlier than GitHub and the official blog. I trust the official sources; the discrepancy is most plausibly a timezone artifact — that last part is my inference, not something any source states.\n\n### Most consequential changes, per the official announcement\n\nAll of the following come from the official release post at [bun.com/blog/bun-v1.4](https://bun.com/blog/bun-v1.4):\n\n- **Bun is rewritten from Zig to Rust.** 1.4.0 is the first production release of the Rust implementation; the post says internal tools including Claude Code had been running it for months. This is the headline structural change.\n- **Large runtime efficiency gains.** Production CPU usage dropped ~2× for large applications and idle CPU ~5×; HTTP server memory fell 13–48% (Fastify −48%, Express −46%); startup is 2.5× faster on Windows and 2× faster on Linux; binary size shrank up to 17% (e.g. Windows ARM64 from 90.2 MB to 75.1 MB).\n- **Biggest Node.js compatibility jump since 1.0:** 1,517 newly passing Node.js test-suite tests, with `node:http`, `node:fs`, and `node:stream` at roughly 97% pass rates.\n- **Fifteen common npm dependencies absorbed into the binary**, including `Bun.Image` (replacing sharp), `Bun.WebView` (puppeteer), `Bun.markdown` (marked), `Bun.cron()` (node-cron), `Bun.Terminal` (node-pty), `bun run --parallel` (concurrently / npm-run-all), plus `Bun.Archive` and replacements for json5, fast-xml-parser, tar, string-width, slice-ansi, cli-truncate, and wrap-ansi. The post's framing: \"Every one of these ships in the Bun binary — no install step, no native build, no lockfile entry.\"\n- **Faster installs via a global virtual store**, using symlinks instead of copies. On the common CI path (lockfile present, cache warm, `node_modules` wiped), a 1,400-package install is **7× faster**. Important qualifier stated in the post: this is **opt-in** — it applies only when you select the isolated linker, \"which is not the default for existing projects.\"\n- **Testing and tooling:** `bun test --parallel` (worker processes) and `--shard` for distributed CI, a built-in React Compiler said to be 19× faster than the Babel plugin, Markdown-format profiling output (`--cpu-prof-md`, `--heap-prof-md`), and `process.on(\"memoryPressure\")`.\n\n### Where evidence is thin\n\n- **Breaking changes / migration.** The announcement post does not enumerate breaking changes or migration notes — it is framed around new features. Given a full language rewrite, I would *expect* behavioral edge-case differences, but that is inference; I found no official statement either confirming or denying breaking changes, so treat \"drop-in upgrade\" as unverified.\n- **Windows ARM64.** A search result summary described Windows ARM64 as a new capability in 1.4, but the official post only shows it in a binary-size table without announcing it as new. I can't confirm the \"new platform support\" claim from official sources.\n- **Context.** The Bun blog lists a December 2, 2025 post announcing that Bun is joining Anthropic ([bun.com/blog](https://bun.com/blog)), and a July 8, 2026 post explaining the Rust rewrite rationale. I did not open either, so I'm reporting only their existence and titles, not their contents.\n- One search result (an InfoQ item referencing a \"Bun v3.1\" release) appears inconsistent with every official source, which show a 1.x line. I did not open it and place no weight on it.\n\n**Sources:**\n- [Bun v1.4.0 release (GitHub, latest)](https://github.com/oven-sh/bun/releases/latest)\n- [oven-sh/bun releases list](https://github.com/oven-sh/bun/releases)\n- [Bun 1.4 announcement blog post](https://bun.com/blog/bun-v1.4)\n- [Bun blog index](https://bun.com/blog)\n- [npm registry: bun@latest](https://registry.npmjs.org/bun/latest)\n- [endoflife.date/bun](https://endoflife.date/bun)"
+    }
+  ]
+}

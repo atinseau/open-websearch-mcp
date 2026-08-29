@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "case_id": "current-mcp-release",
+  "question": "What is the newest published Model Context Protocol specification revision as of today, and which changes from the preceding revision matter most to local tool servers?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim_current_revision",
+      "text": "As of 2026-08-27, the newest published MCP specification revision was `2026-07-28`.",
+      "required_concepts": ["2026-07-28", "current"],
+      "acceptable_patterns": [
+        "2026-07-28",
+        "current protocol version.{0,40}2026-07-28",
+        "official release of the specification version 2026-07-28"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/versioning",
+          "equivalent_urls": ["https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning"]
+        },
+        {
+          "url": "https://blog.modelcontextprotocol.io/",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/versioning",
+          "text": "The **current** protocol version is [**2026-07-28**](/specification/2026-07-28/)."
+        },
+        {
+          "url": "https://blog.modelcontextprotocol.io/",
+          "text": "2. **The 2026-07-28 Specification** (July 28, 2026)\n   - Authors: David Soria Parra and Den Delimarsky\n   - This post announces the official release of the specification version 2026-07-28."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_current-mcp-release",
+        "claude_run": "2026-08-27_claude_current-mcp-release"
+      }
+    },
+    {
+      "id": "claim_previous_revision",
+      "text": "The `2026-07-28` changelog identifies `2025-11-25` as the preceding revision.",
+      "required_concepts": ["2026-07-28", "2025-11-25", "previous"],
+      "acceptable_patterns": [
+        "since the previous revision, \\[?2025-11-25\\]?",
+        "previous revision.{0,20}2025-11-25"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "text": "This document lists changes made to the Model Context Protocol (MCP) specification since\nthe previous revision, [2025-11-25](/specification/2025-11-25)."
+        }
+      ],
+      "weight": 0.9,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_current-mcp-release",
+        "claude_run": "2026-08-27_claude_current-mcp-release"
+      }
+    },
+    {
+      "id": "claim_stateless_core",
+      "text": "Revision `2026-07-28` removes protocol-level sessions and the `initialize`/`notifications/initialized` handshake, making MCP stateless.",
+      "required_concepts": ["stateless", "sessions", "initialize"],
+      "acceptable_patterns": [
+        "Remove protocol-level sessions",
+        "Make MCP stateless",
+        "remove the `initialize`/`notifications/initialized` handshake"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "text": "1. Remove protocol-level sessions and the `Mcp-Session-Id` header from the Streamable HTTP transport."
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "text": "2. Make MCP stateless: remove the `initialize`/`notifications/initialized` handshake."
+        },
+        {
+          "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/",
+          "text": "1. **Stateless Protocol Core**: Removes the `initialize` handshake and `Mcp-Session-Id` header, enabling deployment behind standard load balancers without sticky routing or shared session stores."
+        }
+      ],
+      "weight": 0.95,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_current-mcp-release",
+        "claude_run": "2026-08-27_claude_current-mcp-release"
+      }
+    },
+    {
+      "id": "claim_per_request_meta",
+      "text": "In `2026-07-28`, every request carries protocol version and client capabilities in `_meta`, and the server accepts or rejects each request independently.",
+      "required_concepts": ["_meta", "protocolVersion", "clientCapabilities"],
+      "acceptable_patterns": [
+        "Every request now carries its protocol version and client capabilities in `_meta`",
+        "Every request declares the protocol version it is using via the",
+        "server accepts or rejects each request indepen"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/versioning",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "text": "Every request now carries its protocol version and client capabilities in `_meta` (`io.modelcontextprotocol/protocolVersion`, `io.modelcontextprotocol/clientCapabilities`)."
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/versioning",
+          "text": "Every request declares the protocol version it is using via the\n`io.modelcontextprotocol/protocolVersion` key in its\n[`_meta`](/specification/2026-07-28/basic/index#meta) field, and the server accepts or\nrejects each request indepen"
+        }
+      ],
+      "weight": 0.8,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_current-mcp-release",
+        "claude_run": "2026-08-27_claude_current-mcp-release"
+      }
+    },
+    {
+      "id": "claim_server_discover",
+      "text": "`2026-07-28` adds `server/discover`; servers must implement it, and clients may use it as a backward-compatibility probe on STDIO.",
+      "required_concepts": ["server/discover", "MUST", "STDIO"],
+      "acceptable_patterns": [
+        "Add `server/discover`",
+        "servers MUST implement this RPC",
+        "backward-compatibility probe on STDIO"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "text": "3. Add `server/discover`: servers MUST implement this RPC to advertise their supported protocol versions, capabilities, and identity. Clients MAY call it before any other request for up-front version selection, or use it as a backward-compatibility probe on STDIO ([SEP-2575](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2575))."
+        }
+      ],
+      "weight": 0.95,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_current-mcp-release",
+        "claude_run": "2026-08-27_claude_current-mcp-release"
+      }
+    },
+    {
+      "id": "claim_subscriptions_listen",
+      "text": "`2026-07-28` replaces the HTTP GET endpoint and `resources/subscribe`/`resources/unsubscribe` with `subscriptions/listen` for server-to-client change notifications.",
+      "required_concepts": ["subscriptions/listen", "resources/subscribe", "resources/unsubscribe"],
+      "acceptable_patterns": [
+        "Replace the HTTP GET endpoint and `resources/subscribe`/`resources/unsubscribe` with `subscriptions/listen`",
+        "subscriptions/listen"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "text": "4. Replace the HTTP GET endpoint and `resources/subscribe`/`resources/unsubscribe` with `subscriptions/listen`: a single long-lived POST-response stream for opted-in server-to-client change notifications."
+        }
+      ],
+      "weight": 0.7,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_current-mcp-release",
+        "claude_run": "2026-08-27_claude_current-mcp-release"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "The stateless core is the single biggest or most important change for local tool servers.",
+      "reason": "The supplied evidence explicitly labels this ordering as inference and says no official source ranks changes specifically for local servers."
+    },
+    {
+      "text": "`ttlMs` and `cacheScope` are required on `tools/list` and related results.",
+      "reason": "This appears in a run final answer, but the supplied evidence passages here do not directly support it."
+    },
+    {
+      "text": "A newer published `2026-08` MCP specification revision exists as of 2026-08-27.",
+      "reason": "The supplied evidence says the current protocol version is `2026-07-28` and only mentions a future roadmap/next release, not a published newer revision."
+    },
+    {
+      "text": "The newest published revision is the `2026-07-28` release candidate.",
+      "reason": "The supplied evidence distinguishes the May 21, 2026 release candidate from the official July 28, 2026 release of `2026-07-28`."
+    }
+  ]
+}

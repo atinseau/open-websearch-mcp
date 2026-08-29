@@ -1,0 +1,11 @@
+{
+  "accepted_claim_ids": [
+    "claim_current_spec_no_initialize",
+    "claim_per_request_version_negotiation",
+    "claim_required_request_meta",
+    "claim_server_discover_required",
+    "claim_stdio_framing",
+    "claim_tools_list_requirements"
+  ],
+  "rejected_claims": []
+}

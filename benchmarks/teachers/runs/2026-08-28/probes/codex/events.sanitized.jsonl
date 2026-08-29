@@ -1,0 +1,7 @@
+{"type":"thread.started","thread_id":"[REDACTED]"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"I’ll verify this against Bun’s official release sources and cite each factual statement directly."}}
+{"type":"item.started","item":{"id":"exec-b50ea849-ca62-45cd-aab5-003f8c3d5655","type":"web_search","query":"","action":{"type":"other"}}}
+{"type":"item.completed","item":{"id":"exec-b50ea849-ca62-45cd-aab5-003f8c3d5655","type":"web_search","query":"site:bun.sh blog latest Bun release stable ...","action":{"type":"search","queries":["site:bun.sh blog latest Bun release stable","site:github.com/oven-sh/bun/releases latest release Bun"]}}}
+{"type":"item.completed","item":{"id":"item_2","type":"agent_message","text":"The latest stable Bun release is **Bun v1.3.14**. Bun’s official GitHub release page marks it “Latest,” and the official Homebrew formula specifies version `1.3.14`. [GitHub Releases](https://github.com/oven-sh/bun/releases) · [Official Homebrew formula](https://github.com/oven-sh/homebrew-bun/blob/main/Formula/bun.rb)"}}
+{"type":"turn.completed","usage":{"input_tokens":27078,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":243,"reasoning_output_tokens":65}}

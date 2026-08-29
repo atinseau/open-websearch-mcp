@@ -1,0 +1,8 @@
+{"type":"thread.started","thread_id":"[REDACTED]"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"`[features].web_search_request` is deprecated because web search is enabled by default. (Set `web_search` to `\"live\"`, `\"indexed\"`, `\"cached\"`, or `\"disabled\"` at the top level (or under a profile) in config.toml if you want to override it.)"}}
+{"type":"item.completed","item":{"id":"item_1","type":"error","message":"Code Mode is unavailable because code-mode host is disabled. Code mode will fail closed; enable `features.code_mode_host` and install `codex-code-mode-host`."}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_2","type":"agent_message","text":"I’ll verify Bun’s current stable release using web sources, prioritizing Bun’s official release pages."}}
+{"type":"item.completed","item":{"id":"item_3","type":"agent_message","text":"The web-search host returned a transient disabled-host error. I’m retrying the same read-only web lookup."}}
+{"type":"item.completed","item":{"id":"item_4","type":"agent_message","text":"I couldn’t verify the latest stable Bun release because native Web Search is currently unavailable—the search host returned “disabled” on both attempts. I won’t guess or cite unverified information."}}
+{"type":"turn.completed","usage":{"input_tokens":28882,"cached_input_tokens":17920,"cache_write_input_tokens":0,"output_tokens":264,"reasoning_output_tokens":57}}

@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "case_id": "technical-mcp-stdio",
+  "question": "What does the current official Model Context Protocol specification require from a stdio server during initialize and tools/list, including version negotiation and message framing?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim_current_spec_no_initialize",
+      "text": "In the current official MCP revision (`2026-07-28`), the modern protocol is stateless and does not use the `initialize` / `notifications/initialized` handshake.",
+      "required_concepts": ["2026-07-28", "stateless", "no initialize"],
+      "acceptable_patterns": [
+        "2026-07-28",
+        "stateless",
+        "removed the `?initialize`? ?/ ?`?notifications/initialized`? handshake|no negotiation handshake|does not use .*initialize"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/versioning",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "text": "The current official MCP revision is `2026-07-28`, and in that revision the protocol is stateless: the modern protocol removed the `initialize` / `notifications/initialized` handshake."
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+          "text": "There is no negotiation handshake. Every request carries its protocol version, and the server accepts or rejects each request independently:"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/versioning",
+          "text": "The **current** protocol version is [**2026-07-28**](/specification/2026-07-28/)."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-mcp-stdio",
+        "claude_run": "2026-08-27_claude_technical-mcp-stdio"
+      }
+    },
+    {
+      "id": "claim_per_request_version_negotiation",
+      "text": "For current MCP, version negotiation is per request: each request carries `_meta.io.modelcontextprotocol/protocolVersion`, and a server that does not support that version must return `UnsupportedProtocolVersionError`.",
+      "required_concepts": ["_meta", "protocolVersion", "UnsupportedProtocolVersionError"],
+      "acceptable_patterns": [
+        "_meta\\.(io\\.)?modelcontextprotocol/protocolVersion|io\\.modelcontextprotocol/protocolVersion",
+        "UnsupportedProtocolVersionError",
+        "every request carries its protocol version|declares the protocol version"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/versioning",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+          "text": "Every request declares the protocol version it is using in its [`_meta`](/specification/2026-07-28/basic/index#meta) field."
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+          "text": "If the server does not implement the requested version (whether the version is unknown to the server, or is a known version the server has chosen not to support), it **MUST** respond with an [`UnsupportedProtocolVersionError`"
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-mcp-stdio",
+        "claude_run": "2026-08-27_claude_technical-mcp-stdio"
+      }
+    },
+    {
+      "id": "claim_required_request_meta",
+      "text": "Every request, including `tools/list`, must include the required `_meta` fields; at minimum the evidence explicitly identifies protocol version and client capabilities as required, and missing required `_meta` fields must be rejected with JSON-RPC `-32602` (`Invalid params`).",
+      "required_concepts": ["required _meta", "clientCapabilities", "-32602"],
+      "acceptable_patterns": [
+        "Every request .*MUST.*include.*_meta",
+        "clientCapabilities",
+        "-32602|Invalid params"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic",
+          "text": "A modern server must also treat `_meta.io.modelcontextprotocol/clientCapabilities` as required on every request, and must reject a request missing required `_meta` fields with JSON-RPC `-32602` (`Invalid params`)."
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+          "text": "For brevity, the request examples on this page omit the `_meta` request metadata (`io.modelcontextprotocol/protocolVersion`, `io.modelcontextprotocol/clientInfo`, and `io.modelcontextprotocol/clientCapabilities`). Every request **MUST** include the required `_meta` fields; see [`_meta`](/specification/2026-07-28/basic/index#meta)."
+        }
+      ],
+      "weight": 0.95,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-mcp-stdio",
+        "claude_run": "2026-08-27_claude_technical-mcp-stdio"
+      }
+    },
+    {
+      "id": "claim_server_discover_required",
+      "text": "Current-spec servers must implement `server/discover`, which clients may use before any other request to learn supported versions, capabilities, and identity.",
+      "required_concepts": ["server/discover", "supported versions", "capabilities"],
+      "acceptable_patterns": [
+        "Servers .*MUST.*implement `?server/discover`?",
+        "before any other request|before sending any other requests",
+        "supported versions, capabilities, and identity"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/discover",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/discover",
+          "text": "`server/discover` lets a client query a server's supported protocol versions, capabilities, and identity before sending any other requests. Servers **MUST** implement it."
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+          "text": "Servers must implement `server/discover`, and clients may use it before any other request to learn supported versions, capabilities, and identity."
+        }
+      ],
+      "weight": 0.9,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-mcp-stdio",
+        "claude_run": "2026-08-27_claude_technical-mcp-stdio"
+      }
+    },
+    {
+      "id": "claim_stdio_framing",
+      "text": "On stdio, the server reads JSON-RPC from `stdin` and writes JSON-RPC to `stdout`; each message is one UTF-8 JSON-RPC request, notification, or response, messages are newline-delimited with no embedded newlines, and the server must not write non-MCP data to `stdout`.",
+      "required_concepts": ["stdio", "stdin", "stdout", "newline-delimited"],
+      "acceptable_patterns": [
+        "reads JSON-RPC messages from `?stdin`?",
+        "writes JSON-RPC messages to `?stdout`?",
+        "newline[- ]delimited|delimited by newlines",
+        "MUST NOT.*embedded newlines|MUST NOT.*stdout.*not a valid MCP message|UTF-8"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/latest/basic/transports",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+          "text": "* The server reads JSON-RPC messages from `stdin` and writes JSON-RPC messages to `stdout`.\n* Each message is a single JSON-RPC request, notification, or response.\n* Messages are delimited by newlines, and **MUST NOT** contain embedded newlines."
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+          "text": "* The server **MUST NOT** write anything to its `stdout` that is not a valid MCP message."
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/latest/basic/transports",
+          "text": "MCP uses JSON-RPC to encode messages. JSON-RPC messages **MUST** be UTF-8 encoded."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-mcp-stdio",
+        "claude_run": "2026-08-27_claude_technical-mcp-stdio"
+      }
+    },
+    {
+      "id": "claim_tools_list_requirements",
+      "text": "A server that supports tools must declare the `tools` capability and must answer `tools/list` with the tools currently available to the requesting client; that set may be empty or change over time, but it must not vary by connection, and the server should return tools in a deterministic order.",
+      "required_concepts": ["tools capability", "tools/list", "deterministic order"],
+      "acceptable_patterns": [
+        "support tools .*MUST.*declare the `?tools`? capability",
+        "MUST respond to `?tools/list`?",
+        "currently available to the requesting client",
+        "MUST NOT vary by connection",
+        "SHOULD return tools in a deterministic order"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+          "text": "Servers that support tools **MUST** declare the `tools` capability:"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+          "text": "Servers that declare the `tools` capability **MUST** respond to `tools/list` requests with the set of tools currently available to the requesting client. That set **MAY** be empty and **MAY** change over time, but it **MUST NOT** vary by connection or as a side effect of other requests on the connection."
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+          "text": "The spec says the server should return tools in a deterministic order."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-mcp-stdio",
+        "claude_run": "2026-08-27_claude_technical-mcp-stdio"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "A current MCP stdio server is required to begin with an `initialize` request/response handshake before `tools/list`.",
+      "reason": "Contradicted by supplied evidence that the current `2026-07-28` protocol is stateless and that there is no negotiation handshake; `initialize` is described as legacy behavior."
+    },
+    {
+      "text": "`tools/list` requires specific schema fields such as `nextCursor`, `ttlMs`, `cacheScope`, or `resultType` in every successful response.",
+      "reason": "The supplied evidence includes candidate statements about schema details, but the quoted evidence passages provided here do not directly support all of those response-shape requirements."
+    },
+    {
+      "text": "stdio MCP uses an LSP-style header layer such as `Content-Length` for framing.",
+      "reason": "Unsupported by the supplied evidence, which instead states that stdio messages are newline-delimited and must not contain embedded newlines."
+    }
+  ]
+}

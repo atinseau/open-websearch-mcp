@@ -1,0 +1,1193 @@
+{
+  "schema_version": 1,
+  "refresh": {
+    "date": "2026-08-28",
+    "trigger": "major-change",
+    "reason": "Codex teacher policy hardening (explicit skill disablement) and the ADR-0006 move to a single Codex teacher with deterministic grounding verification.",
+    "immutable": true,
+    "teachers": [
+      {
+        "provider": "codex",
+        "model": "gpt-5.4",
+        "cli_version": "codex-cli 0.149.1"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "path": "fixtures/2026-08-28/cases/academic-bm25/codex-events.sanitized.jsonl",
+      "sha256": "7308059791014ff58ab68c05f3b7c9c60a8c36be9839c0f5454c672b7cd6db04",
+      "bytes": 6104
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/academic-bm25/derivation-policy.json",
+      "sha256": "f521565e9e45fb048265b91685dadbe0d7842ecd3ecd25f12ec52daa360ab04f",
+      "bytes": 2152
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/academic-bm25/draft.json",
+      "sha256": "5ef4badb1d707f9489d7217c732dcd3f3f737dbb0aaf05ecae242c908f6c0265",
+      "bytes": 6919
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/academic-bm25/evidence.json",
+      "sha256": "d542afa290444bc444cd24d61826ad844b659557f9a46fa5f8899454ecfc0ebc",
+      "bytes": 26034
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/academic-bm25/fixture.json",
+      "sha256": "d9745eee21741cbd2a2f7fdcdf622fe285a8564236bb48c206c16acd7a8a18d6",
+      "bytes": 3219
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/academic-bm25/verification-policy.json",
+      "sha256": "c23f3cbd6c8de2e2eabe572f86cb74e71ed8daee201cc855a901e675688f3f4c",
+      "bytes": 158
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/academic-bm25/verification.json",
+      "sha256": "748fd6c1921d3a86d6e8198f7c5214b62af418f512d6274920cd449641029877",
+      "bytes": 853
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/academic-browser-fingerprinting/codex-events.sanitized.jsonl",
+      "sha256": "5b8e1e3d0aeb83ad2815f86f9c100f6966aa2de002f47174e122232a374befe9",
+      "bytes": 5287
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/academic-browser-fingerprinting/derivation-policy.json",
+      "sha256": "7473c3a2adf96e4197554ec038cb49a886212b82617da9435257f5d261dec0e3",
+      "bytes": 2152
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/academic-browser-fingerprinting/draft.json",
+      "sha256": "4fdf482c2f0859de2d80a149bfa1ac308449e89e4432cf3771aead6c3300c667",
+      "bytes": 5914
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/academic-browser-fingerprinting/evidence.json",
+      "sha256": "f33575f91dfc76ffb711e98f71e98834c3c5ca6ecbb1fe4998e8551391db81d1",
+      "bytes": 13276
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/academic-browser-fingerprinting/fixture.json",
+      "sha256": "ce5a83a5156fa87d27af3e41d867ace9c044cdd2a2b412186bd296779593c1cc",
+      "bytes": 3927
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/academic-browser-fingerprinting/verification-policy.json",
+      "sha256": "2139e6e77dbc7bf4947fedc3ea4c85a46db45109247b220a8911a3caac079601",
+      "bytes": 158
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/academic-browser-fingerprinting/verification.json",
+      "sha256": "25d0498cc7fc576f739cb7a712a4fd71c0725e5ea1f6149dd9f1d68ef4c14124",
+      "bytes": 774
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/academic-retrieval-diversity/codex-events.sanitized.jsonl",
+      "sha256": "d1c1283a045b52d3fa283c117126bf62e95bf22ee843949edf4454ad3be7a8ac",
+      "bytes": 6192
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/academic-retrieval-diversity/derivation-policy.json",
+      "sha256": "c167e9356b993a8cdd1b65cf792279d22d7d98a044eb9a1f9564aabb9461c541",
+      "bytes": 2152
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/academic-retrieval-diversity/draft.json",
+      "sha256": "90f6148e99bd64c2658b43abccdc8c4c38543c26bfe38c1366fc991ea34a5630",
+      "bytes": 6955
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/academic-retrieval-diversity/evidence.json",
+      "sha256": "bc613f3600f9cc7549b6791ca721e1c7649c90449504a847b057dd7dcc4d00b4",
+      "bytes": 11849
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/academic-retrieval-diversity/fixture.json",
+      "sha256": "f6ed28f9b44e745a7fca365ffae57aabce7a3caa64faba54961facf92b2a3f5c",
+      "bytes": 3401
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/academic-retrieval-diversity/verification-policy.json",
+      "sha256": "69c9e636e123ed796206f331b5a47b9addb676723e042d347daa34fe508d6b8f",
+      "bytes": 158
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/academic-retrieval-diversity/verification.json",
+      "sha256": "3ebfb53b430f7625850faf1ae9fcddfb5ddf4f7925bfddc0995fa0fc57cc4c4b",
+      "bytes": 741
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/ambiguous-best-search/codex-events.sanitized.jsonl",
+      "sha256": "839b4e47f17aeae2735db764e81b646c7a87270c4a7af56eb8176ca4c79c1684",
+      "bytes": 5757
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/ambiguous-best-search/derivation-policy.json",
+      "sha256": "b552bf4654af6406ef50afb8fe6c3e40c615f9c5cb9dc31c613533d3616cd635",
+      "bytes": 2152
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/ambiguous-best-search/draft.json",
+      "sha256": "be2cae4b39c4de588c4faedbfd2c4448bff8d1e9fd265bfaec5b89497ef4ddd8",
+      "bytes": 6427
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/ambiguous-best-search/evidence.json",
+      "sha256": "c6f22517a7087bca75ad73ca0fdc441397fd88410adf90a6dad7d183958db402",
+      "bytes": 14629
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/ambiguous-best-search/fixture.json",
+      "sha256": "92fbefc3c158d0da089cf4f5573e161c5be24b79e427092ad36112cfaa68e1c1",
+      "bytes": 3626
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/ambiguous-best-search/verification-policy.json",
+      "sha256": "69c9e636e123ed796206f331b5a47b9addb676723e042d347daa34fe508d6b8f",
+      "bytes": 158
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/ambiguous-best-search/verification.json",
+      "sha256": "7d219cf2f1ec66365deba434de503d4a08714d85c345188051484cabc10cbf9b",
+      "bytes": 891
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/ambiguous-xanadu-tuesday/codex-events.sanitized.jsonl",
+      "sha256": "ab65f895c1edc79c0375c521583e0ea4b9458aebc5b0edb64129cad383e3b575",
+      "bytes": 5128
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/ambiguous-xanadu-tuesday/derivation-policy.json",
+      "sha256": "dd15cd843bf9dff56217dfaceb1d2b258dff849ccd11b98d1a365bbf1083d854",
+      "bytes": 2152
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/ambiguous-xanadu-tuesday/draft.json",
+      "sha256": "9226b78590c4537b1574e3236994cb02b83ddb642b6795c7ab9f31bf8ac02df5",
+      "bytes": 5807
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/ambiguous-xanadu-tuesday/evidence.json",
+      "sha256": "907276004a3c074af47048bd9da1fecb54cbe18db27f67a893fd0e3dfc828076",
+      "bytes": 10116
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/ambiguous-xanadu-tuesday/fixture.json",
+      "sha256": "3001d855edac1e9fe6cbd9cb3d7e843b7d6507378209792cc215ca66d555d0c1",
+      "bytes": 2981
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/ambiguous-xanadu-tuesday/verification-policy.json",
+      "sha256": "c23f3cbd6c8de2e2eabe572f86cb74e71ed8daee201cc855a901e675688f3f4c",
+      "bytes": 158
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/ambiguous-xanadu-tuesday/verification.json",
+      "sha256": "939b3d2d86ca5a2e2e182c7c76ea6f57059e873602cee1ffc4a30636f352c17a",
+      "bytes": 907
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-bun-production/codex-events.sanitized.jsonl",
+      "sha256": "10e2d39f86f07eeb9071076540bfd54cfc818e667fca7853c43c13a02313e8ea",
+      "bytes": 5313
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-bun-production/derivation-policy.json",
+      "sha256": "ff3c01872dda86ba4f4c4095292044ddfcb5ee5d44979bb4d390a6e836fad7cb",
+      "bytes": 2152
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-bun-production/draft.json",
+      "sha256": "fa6fc98ce22c9d98ed09b616931a08f6230f9ac51daa852f30fc478a7fafc9a2",
+      "bytes": 6022
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-bun-production/evidence.json",
+      "sha256": "de53a0e41ed96883a88ddadbc0a9837aaf08bde2d7d703c9ea9272406cbb62c0",
+      "bytes": 18756
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-bun-production/fixture.json",
+      "sha256": "eac12878ae04d97659a123182cc329f2491b586bbc72e2f6c00f87f156b3597a",
+      "bytes": 3778
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-bun-production/verification-policy.json",
+      "sha256": "d4b0ec3310fb1352aa8456398c91778403477c5e4de07bdcd09855c937fa8f36",
+      "bytes": 158
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-bun-production/verification.json",
+      "sha256": "544e2a68a14e02ab241d5e53ca96e42e5a892918a69d7c166e04853d62fbd5ec",
+      "bytes": 670
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-headless-stealth/codex-events.sanitized.jsonl",
+      "sha256": "473efb311872166dce05b0ce28d3715934033ea77675550577b33ec789fb31da",
+      "bytes": 6933
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-headless-stealth/derivation-policy.json",
+      "sha256": "ac6555b2cd98988a734cc4c1d74f22a054e08f165acfded9c92d781b0cede17a",
+      "bytes": 2152
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-headless-stealth/draft.json",
+      "sha256": "bd003994dc8f1a2acf123041efce4ca8ebd402d7fbe94357825923b72df5f350",
+      "bytes": 7786
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-headless-stealth/evidence.json",
+      "sha256": "aecb6d5a9be140d805a397a8e89c31767f11f56dff3935becf1a03a9b9010425",
+      "bytes": 17490
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-headless-stealth/fixture.json",
+      "sha256": "e0d1b7bb34c11a51940d035f668b9b16eb7a54749961e9b327ecaabda0d9fd8a",
+      "bytes": 3715
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-headless-stealth/verification-policy.json",
+      "sha256": "69c9e636e123ed796206f331b5a47b9addb676723e042d347daa34fe508d6b8f",
+      "bytes": 158
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-headless-stealth/verification.json",
+      "sha256": "ff44627e824f637e8a7615fd5f72d13f130a2ad1416e35c61ae262f4c869330c",
+      "bytes": 787
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-robots-ethics/codex-events.sanitized.jsonl",
+      "sha256": "f97f94a9e336039e6a6bae738280b9e0ac58834f062b41911e04320aacea06b8",
+      "bytes": 7220
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-robots-ethics/derivation-policy.json",
+      "sha256": "344ca3aee46755aed84a32ffbe52167afb55caf980bb183561c9fe2a65a8ecbc",
+      "bytes": 2152
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-robots-ethics/draft.json",
+      "sha256": "e6e197ec73f75f648b28aa4762463f1c9fb5709710f690c5bcf7528cf92b898e",
+      "bytes": 7965
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-robots-ethics/evidence.json",
+      "sha256": "9b90ae3b5630c7afc9840e08a030342cd7d8a05f2fa9ca3568c5fe31c138daf4",
+      "bytes": 24446
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-robots-ethics/fixture.json",
+      "sha256": "2c8f131344c1a8aa504fb5a979bc64356aef6e9f9e8a3d0a704fb5df61782d65",
+      "bytes": 3908
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-robots-ethics/verification-policy.json",
+      "sha256": "c23f3cbd6c8de2e2eabe572f86cb74e71ed8daee201cc855a901e675688f3f4c",
+      "bytes": 158
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/community-robots-ethics/verification.json",
+      "sha256": "64225770e4a486751c2bcdcf7cb50b319026b115e8d12bef63f595dfdc5a4abc",
+      "bytes": 880
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-apple-security/codex-events.sanitized.jsonl",
+      "sha256": "fe7dd9d261feb2fdbcc6ad4756c0818f5487dbf7ffec06ce30d6ddbc7042cffd",
+      "bytes": 3323
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-apple-security/derivation-policy.json",
+      "sha256": "8ca029f20801f59a132f8f7262f80363d25b42d63a533ab89be6dba09031d3be",
+      "bytes": 2152
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-apple-security/draft.json",
+      "sha256": "085669490d2646bafb730d8f4894ed7e7d320c7569c0be620aebe06528c50ec2",
+      "bytes": 3639
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-apple-security/evidence.json",
+      "sha256": "b9ba08f4e89fdadf3a3a41c0be7b34f68cfb83f16147eb81880dc6f6dff23ffd",
+      "bytes": 4763
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-apple-security/fixture.json",
+      "sha256": "14e1a8c14b506b1769c00104b5f805a7cf9e3d740d1f33f69e702d7792888e73",
+      "bytes": 2138
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-apple-security/verification-policy.json",
+      "sha256": "f273e3aa29b9b1f9396be6ab35dda336d58e1ccb2264a98bf9dafa4ab4219f65",
+      "bytes": 158
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-apple-security/verification.json",
+      "sha256": "a76d93cc0f4bc1a17c96f8a9228ade7d3489460340fb9439004ce1180d6a7814",
+      "bytes": 548
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-bun-release/codex-events.sanitized.jsonl",
+      "sha256": "8f4dca00002505cd498282d63e42c66b536f2f0794c77f90a4ded1cc4b3c9fb5",
+      "bytes": 4191
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-bun-release/derivation-policy.json",
+      "sha256": "b2e5e7abb5e2be97d6aad4c6c76bb212dcd52c57c67d0843ea46d7ed0e779073",
+      "bytes": 2152
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-bun-release/draft.json",
+      "sha256": "f7d4e870e8250e4170e7786994a92cf995ff76bad9bd6a8c473679558138509a",
+      "bytes": 4509
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-bun-release/evidence.json",
+      "sha256": "5ec2ac40d303b82e44f1b1a94b376b336b885515a35fa10e8b78a048e198bfed",
+      "bytes": 7319
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-bun-release/fixture.json",
+      "sha256": "15b62852cb952f010ead6d1dc21882acab39349fe057382079fe0251db120b1e",
+      "bytes": 2884
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-bun-release/verification-policy.json",
+      "sha256": "54e03c08b3f406c145599bd6a4c7ee2599ee86222913253c8efc8d9af6d058ec",
+      "bytes": 158
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-bun-release/verification.json",
+      "sha256": "e12c96c8c01f5951b2a1e5b3d3b9af7b697f93984ba3f29e79945bfaef7b3a90",
+      "bytes": 711
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-mcp-release/codex-events.sanitized.jsonl",
+      "sha256": "061013431a6b777299262dd6515c1c828e0e92006fa24e4266a4aeaa0e76408b",
+      "bytes": 5117
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-mcp-release/derivation-policy.json",
+      "sha256": "378d44df3153f45e47b7f855fc5d909cf9c18db0e06f8233e0c1608f2330f664",
+      "bytes": 2152
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-mcp-release/draft.json",
+      "sha256": "634456ff6a6be249fdee593a18e252bc5f23cdfb9f257567e54a40c5529903a5",
+      "bytes": 5780
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-mcp-release/evidence.json",
+      "sha256": "7d975c804f74a33245f31b31ed6ac72f3430433149bfa64d540ffe77de609fba",
+      "bytes": 16031
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-mcp-release/fixture.json",
+      "sha256": "089914c5592b93c4ee9e7ed63362441f25ef7bb7bd9f11236e2de15590a41520",
+      "bytes": 3443
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-mcp-release/verification-policy.json",
+      "sha256": "d4b0ec3310fb1352aa8456398c91778403477c5e4de07bdcd09855c937fa8f36",
+      "bytes": 158
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/current-mcp-release/verification.json",
+      "sha256": "5976bcf92881bcc7787afaa1522ac5d087f656e13038f2eb1339bc0a07417cd7",
+      "bytes": 658
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-es-climate/codex-events.sanitized.jsonl",
+      "sha256": "11ad65cd69a2149c85ef4343d5fa9499f86497883a8c00c83c0f2a4959927cb8",
+      "bytes": 8236
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-es-climate/derivation-policy.json",
+      "sha256": "4998baf459a08d94821bf38778e59127cadb111f2531acccdca3fb11a89e856c",
+      "bytes": 2152
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-es-climate/draft.json",
+      "sha256": "aa153d98d79a70d8f30a4908ed1d39c63905d296ea0a1d1d393f843c3db742d1",
+      "bytes": 9339
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-es-climate/evidence.json",
+      "sha256": "45d6801e09d803d32711575b425ab202671fc53ed4c3eac6b545e69640924fff",
+      "bytes": 22383
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-es-climate/fixture.json",
+      "sha256": "6e63fa49e5d68151b43f59108778bdf838067b66bd634b5da0fe919fc00c79f2",
+      "bytes": 4556
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-es-climate/verification-policy.json",
+      "sha256": "c23f3cbd6c8de2e2eabe572f86cb74e71ed8daee201cc855a901e675688f3f4c",
+      "bytes": 158
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-es-climate/verification.json",
+      "sha256": "2aa810b7df4368781ab79962af87c4bd0789313a0ca040c3b7f8506965c57003",
+      "bytes": 891
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-fr-open-data/codex-events.sanitized.jsonl",
+      "sha256": "e2468a9d6def835c6791aeda670f51dc5dc1e6cea77e56a41d1cf089027776e6",
+      "bytes": 6147
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-fr-open-data/derivation-policy.json",
+      "sha256": "fde74369f2d6cb30ec3c6c3edfaf84888771fa25b6e2a3b0e86f68b983340213",
+      "bytes": 2152
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-fr-open-data/draft.json",
+      "sha256": "bba2f67244256e716eef3885834ef70eb51eb18588194b4bae91c1d6934bb0cf",
+      "bytes": 6855
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-fr-open-data/evidence.json",
+      "sha256": "919c97357b294836f7a137ce187006fa7a5b36fdf24fce44a888ac3cb509e766",
+      "bytes": 17190
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-fr-open-data/fixture.json",
+      "sha256": "af7471fbaa6d1c142a592d29d6c64d4b1a1fbc94761f48f25ecc456c6dc08845",
+      "bytes": 4124
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-fr-open-data/verification-policy.json",
+      "sha256": "c23f3cbd6c8de2e2eabe572f86cb74e71ed8daee201cc855a901e675688f3f4c",
+      "bytes": 158
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-fr-open-data/verification.json",
+      "sha256": "f407b195ebaf713030c2bac462254c67a2ac761269b9c6822b4c486aae3d00e8",
+      "bytes": 920
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-ja-web-standards/codex-events.sanitized.jsonl",
+      "sha256": "2f281bd9108402c7b7267768a956934251e8349ee6e6d4cecdc56bcf649586ab",
+      "bytes": 6921
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-ja-web-standards/derivation-policy.json",
+      "sha256": "8dbafd49a1d8ee3db610e43966f8c2c78457ae7b437d9f1aa3545c3a7ce25e63",
+      "bytes": 2152
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-ja-web-standards/draft.json",
+      "sha256": "2ae303dd1748bf2b0b358f324169cee587acf453c0e4f0560d1cea6eb71bd37c",
+      "bytes": 7912
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-ja-web-standards/evidence.json",
+      "sha256": "057de45c722dd29babc7d69f63d752d058aaf39a2b3ef4261ee0e502937e7d33",
+      "bytes": 21114
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-ja-web-standards/fixture.json",
+      "sha256": "65b400a2f345b209cbfb97a1abcd602ff12e73f406e1ac775a960b7ff52b1220",
+      "bytes": 5478
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-ja-web-standards/verification-policy.json",
+      "sha256": "54d1aed8dd49757b5f86a7a6d5c14ae3c32b373dc5631fdaffbc98d4ddabb734",
+      "bytes": 158
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/multilingual-ja-web-standards/verification.json",
+      "sha256": "e0c4a85037dded52d8e7af063beb17246352d924ca254b7b431339106e33e803",
+      "bytes": 799
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-bun-webview/codex-events.sanitized.jsonl",
+      "sha256": "971bd67ad45005b61f96de4f6ccb69026635726d2491bdcf32ec8fe1aa1f9627",
+      "bytes": 4848
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-bun-webview/derivation-policy.json",
+      "sha256": "06b12d728a220a3d97c9143093f542f8c4054a9d8ca770fbdc230c6fb299951d",
+      "bytes": 2152
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-bun-webview/draft.json",
+      "sha256": "6e7c8b03560e96170f91605701ccbb118048fc3c55915e4c97e65a9cb198adac",
+      "bytes": 5210
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-bun-webview/evidence.json",
+      "sha256": "761045412fe975b8de74f0053282b6262b91326053af3aa5947d71323a79f309",
+      "bytes": 7334
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-bun-webview/fixture.json",
+      "sha256": "ecbb289e1a707ee2b3df32005f6c7e27baab45c6167449f7e00f0040b00c13aa",
+      "bytes": 5215
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-bun-webview/verification-policy.json",
+      "sha256": "586f8f4701b71c91c6eef68836b621a73ebbbd04db298db655749974f7224594",
+      "bytes": 158
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-bun-webview/verification.json",
+      "sha256": "900083bdbb468f49ccef8461f1b2a3608d90a45029523fb08588321c6db079e8",
+      "bytes": 305
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-mcp-stdio/codex-events.sanitized.jsonl",
+      "sha256": "a1b7bd60332b1cfeb00165c5471cfe4395789bbe1193c9c08c56480453e303c0",
+      "bytes": 6580
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-mcp-stdio/derivation-policy.json",
+      "sha256": "e13dedf569c9b22f051907713eb5c23cb369eaa4a798ad2eb3a171fd66fe551b",
+      "bytes": 2152
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-mcp-stdio/draft.json",
+      "sha256": "78e92d5165ac76edf912b422fd5eca6014fcea6b22dc8ff725f001b264920c96",
+      "bytes": 7215
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-mcp-stdio/evidence.json",
+      "sha256": "6568dbaecb40f2cc58a1e4db0d57e160a2e4dce5bdf252dddfc2a46a75f13470",
+      "bytes": 15740
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-mcp-stdio/fixture.json",
+      "sha256": "c521af599df08a9cbe73b42562d720d88b6965175999bd659ab6b999205e9168",
+      "bytes": 4978
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-mcp-stdio/verification-policy.json",
+      "sha256": "c1932e47d8d3002926afc9532c8c83404b58a72231562015ee05584849ca5b67",
+      "bytes": 158
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-mcp-stdio/verification.json",
+      "sha256": "546085d084e6fe780d0e2f76ad5bd47146f44126e50a6b75cc7a9891cdd264c4",
+      "bytes": 643
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-pdfjs/codex-events.sanitized.jsonl",
+      "sha256": "30ec4e6a8ebc6508fdbfcc521036d2ebba37dc6a6369c93106d3f68f829a832d",
+      "bytes": 6255
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-pdfjs/derivation-policy.json",
+      "sha256": "d4c08feee57b72e1e7d6491230efc0f8ca5552cf07b81dc1096084ddb3d5dfc7",
+      "bytes": 2152
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-pdfjs/draft.json",
+      "sha256": "37a779f57db38b80c93154b40e34af2fb4b68f3959105c7bdff94c6a1ee1a9da",
+      "bytes": 6890
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-pdfjs/evidence.json",
+      "sha256": "49e20480829b088ce6db89538e3803a695dd26f56dbdeeddf3cfb05b2605527e",
+      "bytes": 15689
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-pdfjs/fixture.json",
+      "sha256": "21998a5dd0cc3c76171139adb2b3a1e2ed8cb1218d18ef12f2e69df4f0910ff2",
+      "bytes": 3996
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-pdfjs/verification-policy.json",
+      "sha256": "2139e6e77dbc7bf4947fedc3ea4c85a46db45109247b220a8911a3caac079601",
+      "bytes": 158
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-pdfjs/verification.json",
+      "sha256": "1550359ff722d9cd131f4af447adb76bcaeffca995c4d8120fca352ecc0cf923",
+      "bytes": 762
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-robots-rfc/codex-events.sanitized.jsonl",
+      "sha256": "5441a81fa5e6b8ed2dd5ab3fc758dfc3c493dd521facb16a1038e2919681e881",
+      "bytes": 5679
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-robots-rfc/derivation-policy.json",
+      "sha256": "0857f589106daf8bbbb07d8a8e0dda14752722c9f9bb68d30c31ef964746bd4e",
+      "bytes": 2152
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-robots-rfc/draft.json",
+      "sha256": "a985fcb5ae7a327cb0d462e53d806c54aeb3e4aa3d2a3179b702d82311fb39b5",
+      "bytes": 6352
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-robots-rfc/evidence.json",
+      "sha256": "61cdf5432896a82cc7c60d1a44ee3095d05fc333a0f0ab35d288aaba750a19e9",
+      "bytes": 5603
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-robots-rfc/fixture.json",
+      "sha256": "b534bef141bfcd04839b89fe85598fe4b5ce8c914f9f1d8f55ee48ea4524ddc2",
+      "bytes": 4074
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-robots-rfc/verification-policy.json",
+      "sha256": "46343ad88308240ded1cacdc8c6c541931a4b3ec548e6b358c722e4f71039ce3",
+      "bytes": 158
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-robots-rfc/verification.json",
+      "sha256": "cd2d1d8dc289941a5fc1ef663a249f793364baeef6870d7b28abc4d6ff266175",
+      "bytes": 865
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-sqlite-fts5/codex-events.sanitized.jsonl",
+      "sha256": "15ef45224f527adc4b8734b202dd36cebd47321e5cee556b816cce520f7b96b5",
+      "bytes": 6960
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-sqlite-fts5/derivation-policy.json",
+      "sha256": "53cd86d5099f1cc88d6451843e5cff36e50b7c3a425199feba7674118ff7cf92",
+      "bytes": 2152
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-sqlite-fts5/draft.json",
+      "sha256": "04e3f8ccd023c28f040e1e2983779597036a35e18ebc66e4c6d302bf5f2bd464",
+      "bytes": 8001
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-sqlite-fts5/evidence.json",
+      "sha256": "ce81b53ab749f2dd3c70771f863f4becf47a287fe65a0f109c83f7d4abce5950",
+      "bytes": 10223
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-sqlite-fts5/fixture.json",
+      "sha256": "e481ee7daec05247b1fd79e37beeafb04a5bef3508e8b1c640fed333dcae4952",
+      "bytes": 5101
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-sqlite-fts5/verification-policy.json",
+      "sha256": "54d1aed8dd49757b5f86a7a6d5c14ae3c32b373dc5631fdaffbc98d4ddabb734",
+      "bytes": 158
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-sqlite-fts5/verification.json",
+      "sha256": "0d2eb11b3ec243e41f912242461f23b6e1b55ac0c2d327c92b8efa853f308c2c",
+      "bytes": 1014
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-url-canonicalization/codex-events.sanitized.jsonl",
+      "sha256": "8d1607863d0a68aad09ee0b065693b135e1a791113d7cb69832abad5093c6ff6",
+      "bytes": 5699
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-url-canonicalization/derivation-policy.json",
+      "sha256": "2a89c37704bc1d175d8a4ad039834f53f1a3931c8593130c228fe6aa62840c95",
+      "bytes": 2152
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-url-canonicalization/draft.json",
+      "sha256": "b0113da6601885e876cd7c060731b4c73980d815e29050a2c02ee7b17113fdc2",
+      "bytes": 6369
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-url-canonicalization/evidence.json",
+      "sha256": "3696f43274b4b4bd5aba0e0c60b8bcd4cf7d19e1040e31d3b00c757495f27f67",
+      "bytes": 10222
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-url-canonicalization/fixture.json",
+      "sha256": "f0d4c4c2bd905b8cc5c5d59d80eb85bd5400e085e4f79f0272896e613de7a2c6",
+      "bytes": 5324
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-url-canonicalization/verification-policy.json",
+      "sha256": "3a7661beb3aec04eb5fd8689f3feaa8835086550abba88f5bd1f93ee42acf0cf",
+      "bytes": 158
+    },
+    {
+      "path": "fixtures/2026-08-28/cases/technical-url-canonicalization/verification.json",
+      "sha256": "2d59662cbfcd7862fe507c20913239504a9affc1ff625c3344e26c0f159092be",
+      "bytes": 646
+    },
+    {
+      "path": "runs/2026-08-28/cases/academic-bm25/codex/events.sanitized.jsonl",
+      "sha256": "06df2f896ff784929131f19429b70be3e496e64dff80c06f6ce6938b7d9933de",
+      "bytes": 22598
+    },
+    {
+      "path": "runs/2026-08-28/cases/academic-bm25/codex/policy.json",
+      "sha256": "ec5dd694258d6a2f609d3ec40681821f2d37aeb84cc41c921a18820b0f980e59",
+      "bytes": 2987
+    },
+    {
+      "path": "runs/2026-08-28/cases/academic-bm25/codex/run.json",
+      "sha256": "c2d4ed7124354f2eb8ad010ed16e3392ffcda686c7e7099721b6273b54f7a3a6",
+      "bytes": 25633
+    },
+    {
+      "path": "runs/2026-08-28/cases/academic-browser-fingerprinting/codex/events.sanitized.jsonl",
+      "sha256": "8d8aeea6c72446a6c30a46ed363e7075f0095bd350664e223963ebc059b75c0f",
+      "bytes": 14343
+    },
+    {
+      "path": "runs/2026-08-28/cases/academic-browser-fingerprinting/codex/policy.json",
+      "sha256": "0a00835c35b98f9f66d7c047d16728852afb35adee6176948f00af8b47ec6f23",
+      "bytes": 2713
+    },
+    {
+      "path": "runs/2026-08-28/cases/academic-browser-fingerprinting/codex/run.json",
+      "sha256": "7d137509b6043e2cbbbd9812048f80a0435c4a0c7a3a4337c8e1c2bb39f7889e",
+      "bytes": 13151
+    },
+    {
+      "path": "runs/2026-08-28/cases/academic-retrieval-diversity/codex/events.sanitized.jsonl",
+      "sha256": "866ef225b628ce21bb1a242ea67770e91b7836bb1eeacc21205e00770197671e",
+      "bytes": 13519
+    },
+    {
+      "path": "runs/2026-08-28/cases/academic-retrieval-diversity/codex/policy.json",
+      "sha256": "5d36721165a53a92db86400d87f3d00190878464c1a8d2bdff4f522061634c3b",
+      "bytes": 2938
+    },
+    {
+      "path": "runs/2026-08-28/cases/academic-retrieval-diversity/codex/run.json",
+      "sha256": "89142165798f3803a70b1c55944225c2e838a4900e21d332f702b4099f0a4828",
+      "bytes": 11736
+    },
+    {
+      "path": "runs/2026-08-28/cases/ambiguous-best-search/codex/events.sanitized.jsonl",
+      "sha256": "3cb70e3a2b20a19f6056992d6c5b33cbc7da86787ddddf2ba14bfce97b837d4d",
+      "bytes": 13785
+    },
+    {
+      "path": "runs/2026-08-28/cases/ambiguous-best-search/codex/policy.json",
+      "sha256": "bd68a5882a23b869148e70a6da2c5b9303ca52348a5131b3e964df84c6835700",
+      "bytes": 3611
+    },
+    {
+      "path": "runs/2026-08-28/cases/ambiguous-best-search/codex/run.json",
+      "sha256": "d5835da1c0eef7a8b8494efbddbce8265c1803bea01982749fba7acec8c5259f",
+      "bytes": 14316
+    },
+    {
+      "path": "runs/2026-08-28/cases/ambiguous-xanadu-tuesday/codex/events.sanitized.jsonl",
+      "sha256": "638b44828d58799e9b25ac46e68725805e84d50721a6508152667f8705e64827",
+      "bytes": 12200
+    },
+    {
+      "path": "runs/2026-08-28/cases/ambiguous-xanadu-tuesday/codex/policy.json",
+      "sha256": "0f8114d511eb4fdb205630509a19549db31a25cb9cc88a238efbfa302d327890",
+      "bytes": 2849
+    },
+    {
+      "path": "runs/2026-08-28/cases/ambiguous-xanadu-tuesday/codex/run.json",
+      "sha256": "76c5fafae0d5d536e2b7eb430b7d0de93cc3933bc346c775cb95e98bdf5993b0",
+      "bytes": 9879
+    },
+    {
+      "path": "runs/2026-08-28/cases/community-bun-production/codex/events.sanitized.jsonl",
+      "sha256": "2aedd3573a36b328bbc5ce6a2e5683d0f6cb06e399f455958f2797c3f5821c3d",
+      "bytes": 18642
+    },
+    {
+      "path": "runs/2026-08-28/cases/community-bun-production/codex/policy.json",
+      "sha256": "5b4e90b45e2f3bbefa5e7020b8f7c5ebb8db7fa03953f3107f8c8492ba5e4978",
+      "bytes": 3420
+    },
+    {
+      "path": "runs/2026-08-28/cases/community-bun-production/codex/run.json",
+      "sha256": "8f3a3d841ea9338ee05afd5161270b6e6530a662a246d31dd1f193e05e8b70e5",
+      "bytes": 18295
+    },
+    {
+      "path": "runs/2026-08-28/cases/community-headless-stealth/codex/events.sanitized.jsonl",
+      "sha256": "b4914bcaa410a5ca606bb2adb8e636bc30980add84068062962563d581590aea",
+      "bytes": 16711
+    },
+    {
+      "path": "runs/2026-08-28/cases/community-headless-stealth/codex/policy.json",
+      "sha256": "c52aa340cb7866c790d09d8d36c09b1d96d390c9902f638abe28a0722cbcc0f9",
+      "bytes": 3858
+    },
+    {
+      "path": "runs/2026-08-28/cases/community-headless-stealth/codex/run.json",
+      "sha256": "96365d25e453a4787b65a6addf0ebe554b45dfba751bc5f2c42d0350470e40c2",
+      "bytes": 17069
+    },
+    {
+      "path": "runs/2026-08-28/cases/community-robots-ethics/codex/events.sanitized.jsonl",
+      "sha256": "9ee64ac18b19c391d5de7449ec8a07cbb38196c7ab6e47efc92ee7ab37b999db",
+      "bytes": 24951
+    },
+    {
+      "path": "runs/2026-08-28/cases/community-robots-ethics/codex/policy.json",
+      "sha256": "29ccc8311eaf2995513208d8db2e74ae60bfe6335394cdb492c1a26682a7e140",
+      "bytes": 4151
+    },
+    {
+      "path": "runs/2026-08-28/cases/community-robots-ethics/codex/run.json",
+      "sha256": "03f80c4c53fe90c63940c1dd30d5dbacb8aa240667a31060eb076cfd7cf0b59e",
+      "bytes": 23749
+    },
+    {
+      "path": "runs/2026-08-28/cases/current-apple-security/codex/events.sanitized.jsonl",
+      "sha256": "6a75f97fb623e3cadbb2615a5b06fa832b0b5351a1975c81536e904a300791bd",
+      "bytes": 5887
+    },
+    {
+      "path": "runs/2026-08-28/cases/current-apple-security/codex/policy.json",
+      "sha256": "e87b9033410c86b734e863fbb533f8e27596f458016535c33067a4679f35b42f",
+      "bytes": 2656
+    },
+    {
+      "path": "runs/2026-08-28/cases/current-apple-security/codex/run.json",
+      "sha256": "1556ce065eb97d432aa3d8e9888ad648824becec0f4e34581d5440c7938a113e",
+      "bytes": 4893
+    },
+    {
+      "path": "runs/2026-08-28/cases/current-bun-release/codex/events.sanitized.jsonl",
+      "sha256": "37b2b91b6136bdc41f9b55018e9ab3b0e27cd1817ab32314a715cce45e1a2199",
+      "bytes": 7763
+    },
+    {
+      "path": "runs/2026-08-28/cases/current-bun-release/codex/policy.json",
+      "sha256": "7d7da959be6d8110a49f0a892db5a486a204531241a4c478b84aea0465d3256d",
+      "bytes": 2692
+    },
+    {
+      "path": "runs/2026-08-28/cases/current-bun-release/codex/run.json",
+      "sha256": "c8bacfd65ec03a2e0e781352341b470ef2d0285c179dd95fee8db32ed922fd86",
+      "bytes": 7349
+    },
+    {
+      "path": "runs/2026-08-28/cases/current-mcp-release/codex/events.sanitized.jsonl",
+      "sha256": "c8cda5a2cd8962cc788d81a4d90ea681ba32cd5d63326f815489aa361e5e5baf",
+      "bytes": 15717
+    },
+    {
+      "path": "runs/2026-08-28/cases/current-mcp-release/codex/policy.json",
+      "sha256": "9d1bac94221d48cc26054d9f9cd2098a89d086e0de206e3664c1a3d86362b0a0",
+      "bytes": 3595
+    },
+    {
+      "path": "runs/2026-08-28/cases/current-mcp-release/codex/run.json",
+      "sha256": "d7ab66b74e2767d77272a9e9b86a4e77df0b9e14602600155a7e47c8edc10d7f",
+      "bytes": 15750
+    },
+    {
+      "path": "runs/2026-08-28/cases/multilingual-es-climate/codex/events.sanitized.jsonl",
+      "sha256": "8602ad393c86ffd51b20746e08577d6b42816e8b0c73231b804bd0b680b02bde",
+      "bytes": 18486
+    },
+    {
+      "path": "runs/2026-08-28/cases/multilingual-es-climate/codex/policy.json",
+      "sha256": "ff38313b43f6e36d40c81351b518f3e0828b733d34cb5f80a881c1c5ce3fff8e",
+      "bytes": 3480
+    },
+    {
+      "path": "runs/2026-08-28/cases/multilingual-es-climate/codex/run.json",
+      "sha256": "e9b7bae3e8b021d726fe6bda71154cd3a04da235260c892c86e8c3ad376fee5c",
+      "bytes": 22150
+    },
+    {
+      "path": "runs/2026-08-28/cases/multilingual-fr-open-data/codex/events.sanitized.jsonl",
+      "sha256": "f87ff8a9bd5768c22822607997a8be0c86de8678b963de81770bd6e75b0f26d6",
+      "bytes": 16178
+    },
+    {
+      "path": "runs/2026-08-28/cases/multilingual-fr-open-data/codex/policy.json",
+      "sha256": "0b2b6dcdd3bb513669f2593a3e308b20f20dce406b80a3afcd572885fc3709f3",
+      "bytes": 3419
+    },
+    {
+      "path": "runs/2026-08-28/cases/multilingual-fr-open-data/codex/run.json",
+      "sha256": "0c9177a475347d46badb30470e09f81d2a180b4745d01d5c9d0c0297ea269522",
+      "bytes": 16897
+    },
+    {
+      "path": "runs/2026-08-28/cases/multilingual-ja-web-standards/codex/events.sanitized.jsonl",
+      "sha256": "19385dd5f17e9de44f10b29a28a4fe2e555aadde4501308918e884f2b43b467c",
+      "bytes": 21537
+    },
+    {
+      "path": "runs/2026-08-28/cases/multilingual-ja-web-standards/codex/policy.json",
+      "sha256": "038d47c2e5d0c8bdd7001c824096d1676036495e3d751594dfb72ef41a2af93c",
+      "bytes": 3668
+    },
+    {
+      "path": "runs/2026-08-28/cases/multilingual-ja-web-standards/codex/run.json",
+      "sha256": "f57c4ae2347e38f155e964b82ab54cae557eaa7b1b192f4d8dde06b20481b0a9",
+      "bytes": 20525
+    },
+    {
+      "path": "runs/2026-08-28/cases/technical-bun-webview/codex/events.sanitized.jsonl",
+      "sha256": "0a61a78477fa14cc16d9543428a34edbdf3aae0669cd00a8fa54d0552890c84d",
+      "bytes": 8124
+    },
+    {
+      "path": "runs/2026-08-28/cases/technical-bun-webview/codex/policy.json",
+      "sha256": "8fba54286ed67ffefddfbafa586de4b769f5b035ea7843d17b3527c39c6722e2",
+      "bytes": 2677
+    },
+    {
+      "path": "runs/2026-08-28/cases/technical-bun-webview/codex/run.json",
+      "sha256": "5ba143da3d45d48fba331b00e827e826c8b4a9a331844d412a85b19b00d24a4f",
+      "bytes": 7372
+    },
+    {
+      "path": "runs/2026-08-28/cases/technical-mcp-stdio/codex/events.sanitized.jsonl",
+      "sha256": "4b215380cbdb0c15dba94076211524ceb83b5e38ce6cd51fa92c8cf452f43d6f",
+      "bytes": 15363
+    },
+    {
+      "path": "runs/2026-08-28/cases/technical-mcp-stdio/codex/policy.json",
+      "sha256": "ab4a8e7c1d08b4adf606036219c083ed175435ccabc9b3190e510e23ba0b48c9",
+      "bytes": 3294
+    },
+    {
+      "path": "runs/2026-08-28/cases/technical-mcp-stdio/codex/run.json",
+      "sha256": "939e9752b58e3d52f6d03796ea0198be7878057f3ff8376740f3bb9345542ef2",
+      "bytes": 15487
+    },
+    {
+      "path": "runs/2026-08-28/cases/technical-pdfjs/codex/events.sanitized.jsonl",
+      "sha256": "152a0b2d4599063d62ae8715f2288fc66338f2362173449141e9276f895dd77a",
+      "bytes": 16080
+    },
+    {
+      "path": "runs/2026-08-28/cases/technical-pdfjs/codex/policy.json",
+      "sha256": "254489e25e52610dfe125dfd31ef23502a455c4d8c86ef574fc5f253392ae233",
+      "bytes": 3216
+    },
+    {
+      "path": "runs/2026-08-28/cases/technical-pdfjs/codex/run.json",
+      "sha256": "ff0ab4eb8682865318dba54de07a3cc33eae65e202e1373079685deca9ca2e2f",
+      "bytes": 15416
+    },
+    {
+      "path": "runs/2026-08-28/cases/technical-robots-rfc/codex/events.sanitized.jsonl",
+      "sha256": "89a0c191cb6a93a2d6d07b483e4099df37be74e71fea84b9bf135d0d2ee43de8",
+      "bytes": 5834
+    },
+    {
+      "path": "runs/2026-08-28/cases/technical-robots-rfc/codex/policy.json",
+      "sha256": "d42e0b44d6cb6d38a1d161aa4af565c9edb1a5eeb4314fa6a85757103a1c3e18",
+      "bytes": 2594
+    },
+    {
+      "path": "runs/2026-08-28/cases/technical-robots-rfc/codex/run.json",
+      "sha256": "3cf206c5186e906b5b6d274d66f96875af3333894945f95c2554ea8d4bb06447",
+      "bytes": 5813
+    },
+    {
+      "path": "runs/2026-08-28/cases/technical-sqlite-fts5/codex/events.sanitized.jsonl",
+      "sha256": "23d36c8cba379e3e21d8fa43ec54ff1d3b93372dfe2639026b083889911e4f1a",
+      "bytes": 10978
+    },
+    {
+      "path": "runs/2026-08-28/cases/technical-sqlite-fts5/codex/policy.json",
+      "sha256": "a796269931ac18180f93debd9c581d4a6299524d835786650ffa4f2b39aaff25",
+      "bytes": 2789
+    },
+    {
+      "path": "runs/2026-08-28/cases/technical-sqlite-fts5/codex/run.json",
+      "sha256": "e467d08863a3f2cc5490783d2094bdf2274cd643cdecef55c964844086528771",
+      "bytes": 10125
+    },
+    {
+      "path": "runs/2026-08-28/cases/technical-url-canonicalization/codex/events.sanitized.jsonl",
+      "sha256": "ae8bc90bcf18eb78eae1fc4df13270ff690654a2a57df549c41370e74deff9a6",
+      "bytes": 9280
+    },
+    {
+      "path": "runs/2026-08-28/cases/technical-url-canonicalization/codex/policy.json",
+      "sha256": "479922b1da69b9e4244d21a506322656e129f9dd55ebce13b0f9afcc9b4aa5f0",
+      "bytes": 2986
+    },
+    {
+      "path": "runs/2026-08-28/cases/technical-url-canonicalization/codex/run.json",
+      "sha256": "48cb4bdf32c3a7e073534e8c9bbaea52fe1db439d8715a740c575999fe139fdc",
+      "bytes": 10116
+    },
+    {
+      "path": "runs/2026-08-28/failures/current-bun-release/claude-policy-20260828T144028373Z/events.sanitized.jsonl",
+      "sha256": "e0512bb59220dce0160332eee7db03a5a52a73cbc8fc8c2c67d00f5a8ec398ca",
+      "bytes": 3178
+    },
+    {
+      "path": "runs/2026-08-28/failures/current-bun-release/claude-policy-20260828T144028373Z/policy.json",
+      "sha256": "902ee45fe7eb59afabdf49b1ac174cc789ab6d2360639a2e71a69247f574a4fd",
+      "bytes": 2159
+    },
+    {
+      "path": "runs/2026-08-28/failures/current-bun-release/claude-policy-20260828T144029736Z/events.sanitized.jsonl",
+      "sha256": "ab9f2887f9bca19d841457d07001eb90172523e6910df93ad080e33cd185a56f",
+      "bytes": 3178
+    },
+    {
+      "path": "runs/2026-08-28/failures/current-bun-release/claude-policy-20260828T144029736Z/policy.json",
+      "sha256": "5711df8e5203ff5d2ad492ab4bb5196e69cfb3c6c8373a231d6275e407f8e1e3",
+      "bytes": 2159
+    },
+    {
+      "path": "runs/2026-08-28/failures/current-bun-release/claude-policy-20260828T144031253Z/events.sanitized.jsonl",
+      "sha256": "46c8451fe18f9d883ef300f4563c85c5696f8db7361934039bad2d669fb2fdca",
+      "bytes": 3178
+    },
+    {
+      "path": "runs/2026-08-28/failures/current-bun-release/claude-policy-20260828T144031253Z/policy.json",
+      "sha256": "7f29ad4e79f1cd5d76a05d285b2b568ba3cc282cbc950e41e7c65a9fd818171a",
+      "bytes": 2159
+    },
+    {
+      "path": "runs/2026-08-28/failures/current-bun-release/claude-policy-20260828T172009578Z/events.sanitized.jsonl",
+      "sha256": "cd0524273f5e6f4434774012ca4c411fc47a5f1c9f77d66e696a1dfcf80ed6bb",
+      "bytes": 3140
+    },
+    {
+      "path": "runs/2026-08-28/failures/current-bun-release/claude-policy-20260828T172009578Z/policy.json",
+      "sha256": "e2adafeee3f11b55e4f0fec32ceb88762a2f0227f89f0cf921a872e739b576de",
+      "bytes": 2176
+    },
+    {
+      "path": "runs/2026-08-28/failures/current-bun-release/claude-policy-20260828T172012642Z/events.sanitized.jsonl",
+      "sha256": "6323c0d39b0544c12f99419d48b46c0ea5cbe3710aa148b15028ba28ee198113",
+      "bytes": 3140
+    },
+    {
+      "path": "runs/2026-08-28/failures/current-bun-release/claude-policy-20260828T172012642Z/policy.json",
+      "sha256": "dbfd26bb30a3c941729d62129042d94e17404da8bdab30d9dc725e3426a6d39b",
+      "bytes": 2176
+    },
+    {
+      "path": "runs/2026-08-28/failures/current-bun-release/claude-policy-20260828T172015560Z/events.sanitized.jsonl",
+      "sha256": "24de256c70aa97ccb7f8b8bcebcebac8d0d75c8f55ecf7c6730b0c6b6dcf37dc",
+      "bytes": 3140
+    },
+    {
+      "path": "runs/2026-08-28/failures/current-bun-release/claude-policy-20260828T172015560Z/policy.json",
+      "sha256": "cf0778fcf6dc4b4ad9eaaceb0989ef0fc91eda780c9d500caf82dce4d2f0242e",
+      "bytes": 2176
+    },
+    {
+      "path": "runs/2026-08-28/failures/probe/claude-policy-20260828T141718009Z/events.sanitized.jsonl",
+      "sha256": "8239abb69d82741f49ec67c8ca579b639734c96505ec8039fd1eb0a776f33f60",
+      "bytes": 2682
+    },
+    {
+      "path": "runs/2026-08-28/failures/probe/claude-policy-20260828T141718009Z/policy.json",
+      "sha256": "5a118ecbe7e802f5f60b9f5c5a85e44f7ddf1ae21a68a4e29f7e13d8dcd42822",
+      "bytes": 1856
+    },
+    {
+      "path": "runs/2026-08-28/failures/probe/claude-policy-20260828T141918803Z/events.sanitized.jsonl",
+      "sha256": "b1df71fa4069a0b76cb28d7dcb1a6fc9dd509cd3b50366769f8b99631f7d0777",
+      "bytes": 2682
+    },
+    {
+      "path": "runs/2026-08-28/failures/probe/claude-policy-20260828T141918803Z/policy.json",
+      "sha256": "6060b3477a6550fe08df3e310d05e33ad6036c79e8134c30634b149ca9be3f8f",
+      "bytes": 1892
+    },
+    {
+      "path": "runs/2026-08-28/failures/probe/claude-policy-20260828T142042230Z/events.sanitized.jsonl",
+      "sha256": "a94c90173d44088c21b5dd25cd2a4d4762dff18f43fbc82993aa335fb28879d3",
+      "bytes": 2682
+    },
+    {
+      "path": "runs/2026-08-28/failures/probe/claude-policy-20260828T142042230Z/policy.json",
+      "sha256": "a4a1651e968f6c0d37fa526ad7a4f77a2d7b6755b2f8a856bdd1e84c2413e329",
+      "bytes": 1892
+    },
+    {
+      "path": "runs/2026-08-28/failures/probe/claude-policy-20260828T142143535Z/events.sanitized.jsonl",
+      "sha256": "a229d58d5bbd8d4ef6576864d7d1719c5a1294c7fc35d111b834593b7008e77f",
+      "bytes": 2682
+    },
+    {
+      "path": "runs/2026-08-28/failures/probe/claude-policy-20260828T142143535Z/policy.json",
+      "sha256": "13e357827805cbd9a683098d404fe0f20d2052368b9e0e7b2820c1918295872f",
+      "bytes": 1892
+    },
+    {
+      "path": "runs/2026-08-28/failures/probe/codex-policy-20260828T141148693Z/events.sanitized.jsonl",
+      "sha256": "c66c07af6eb4dab4ed3bee487d2b5a6c7106a64eea4ff529bc54e480eb12907c",
+      "bytes": 871
+    },
+    {
+      "path": "runs/2026-08-28/failures/probe/codex-policy-20260828T141148693Z/policy.json",
+      "sha256": "bda78626f98259da1d7c6cefb0e0a53b0f6e5a37127d14713c3e92dca269ed4d",
+      "bytes": 2425
+    },
+    {
+      "path": "runs/2026-08-28/failures/probe/codex-policy-20260828T141308871Z/events.sanitized.jsonl",
+      "sha256": "7ab4f6bd58612f8dce010236845409847c8a4ee7cfb44245e9c5b36e7c6fed15",
+      "bytes": 1134
+    },
+    {
+      "path": "runs/2026-08-28/failures/probe/codex-policy-20260828T141308871Z/policy.json",
+      "sha256": "5fe870417f0dbac4ecb4d7cc7d763824352cd52b1e167a3bb48756306e0507bf",
+      "bytes": 2423
+    },
+    {
+      "path": "runs/2026-08-28/failures/probe/codex-policy-20260828T141357225Z/events.sanitized.jsonl",
+      "sha256": "72cb2a614090ba7bfb0087c1ebea6766d82c4c5f2dcdb4d1e1bf557d4b36ea33",
+      "bytes": 1185
+    },
+    {
+      "path": "runs/2026-08-28/failures/probe/codex-policy-20260828T141357225Z/policy.json",
+      "sha256": "622aa6d9601c65f6ce93ce979e4c4c82065cc65c569146b6eafad31c9e5ecfc6",
+      "bytes": 2373
+    },
+    {
+      "path": "runs/2026-08-28/failures/probe/codex-policy-20260828T141427243Z/events.sanitized.jsonl",
+      "sha256": "c4c4fa67136d35b70078e61c7de8b815b3c0e31a0804af1948046c707cddfa1c",
+      "bytes": 1467
+    },
+    {
+      "path": "runs/2026-08-28/failures/probe/codex-policy-20260828T141427243Z/policy.json",
+      "sha256": "9168a270e89532a1b81dcd981fa1b966d90011af0c58dc849896f9a0876aa80e",
+      "bytes": 2465
+    },
+    {
+      "path": "runs/2026-08-28/failures/technical-robots-rfc/codex-policy-20260828T143034677Z/events.sanitized.jsonl",
+      "sha256": "47f3607be3863bada1f8ee7b231f85e20f509c2b0e8c5c6e2658ad5e0815d4f6",
+      "bytes": 5854
+    },
+    {
+      "path": "runs/2026-08-28/failures/technical-robots-rfc/codex-policy-20260828T143034677Z/policy.json",
+      "sha256": "6ede44f6a02ae642e6b99d5cbff3f987f72d97ee990589d2c290250233cbdfc7",
+      "bytes": 2596
+    },
+    {
+      "path": "runs/2026-08-28/inputs/corpus.json",
+      "sha256": "7510a6cac1d221e16de0eebea15fdbee69bf99dd25aef59efac63387116b6c39",
+      "bytes": 6073
+    },
+    {
+      "path": "runs/2026-08-28/inputs/prompt.md",
+      "sha256": "1ee0de65295793a3691b084f051cc49ecc05a3833fbb359300c6e56e87895051",
+      "bytes": 318
+    },
+    {
+      "path": "runs/2026-08-28/probes/codex/events.sanitized.jsonl",
+      "sha256": "170fb8f34b10e08b20eea669e8b1c141070b676b510c574ea0b2614ecd5f3ccf",
+      "bytes": 1268
+    },
+    {
+      "path": "runs/2026-08-28/probes/codex/policy.json",
+      "sha256": "891cdff9c7ad14fde85da388d1d49b02fe0f1dab9a537ee4f18bbfb611216ab5",
+      "bytes": 2306
+    },
+    {
+      "path": "runs/2026-08-28/refresh.json",
+      "sha256": "448d1d812c8a72e3b07f59783902c5812a765b5580438cbc5a6549c2fcf380af",
+      "bytes": 266
+    }
+  ]
+}

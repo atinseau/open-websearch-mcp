@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "case_id": "academic-browser-fingerprinting",
+  "question": "What do recent primary research papers demonstrate about browser-fingerprint detectability of automated Chromium sessions, and what limitations do the authors report?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim_headless_chromium_soft_blocks",
+      "text": "A 2026 measurement study found that Chromium headless sessions were soft-blocked more often than Chromium headed or Firefox sessions: 15.2% versus about 6.8% to 7.2% across the other three browser conditions on 10,000 sites.",
+      "required_concepts": ["chromium_headless", "soft_block_rate", "comparison"],
+      "acceptable_patterns": [
+        "Chromium headless had a 15\\.2% soft-block rate[, ]+while Chromium headed, Firefox headless, and Firefox headed were all around 6\\.8% to 7\\.2%",
+        "on 10,000 sites.*Chromium headless.*15\\.2%.*6\\.8% to 7\\.2%"
+      ],
+      "sources": [
+        {
+          "url": "https://arxiv.org/html/2606.14525v1",
+          "equivalent_urls": ["https://arxiv.org/html/2606.14525v1"]
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://arxiv.org/html/2606.14525v1",
+          "text": "For ordinary headless Chromium automation, the strongest recent direct evidence is Gundelach et al. (2026): on 10,000 sites and four browser conditions, Chromium headless had a 15.2% soft-block rate, while Chromium headed, Firefox headless, and Firefox headed were all around 6.8% to 7.2%."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_academic-browser-fingerprinting",
+        "claude_run": "2026-08-27_claude_academic-browser-fingerprinting"
+      }
+    },
+    {
+      "id": "claim_header_signals_explain_many_blocks",
+      "text": "In that 2026 study, many Chromium-headless-only blocks were attributable to shallow header signals: after spoofing only the `User-Agent` and `sec-ch-ua` headers, 590 of 784 responding sites, or 75%, switched back to HTTP 2xx.",
+      "required_concepts": ["header_signals", "sec_ch_ua", "75_percent"],
+      "acceptable_patterns": [
+        "spoofed only the `User-Agent` and `sec-ch-ua` headers.*590 of 784.*75%.*HTTP 2xx",
+        "75% of Chromium-headless-only blocks.*header"
+      ],
+      "sources": [
+        {
+          "url": "https://arxiv.org/html/2606.14525v1",
+          "equivalent_urls": ["https://arxiv.org/html/2606.14525v1"]
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://arxiv.org/html/2606.14525v1",
+          "text": "That same paper shows that much of current detectability for headless Chromium is still “cheap” fingerprinting rather than deep behavior modeling: when the authors spoofed only the `User-Agent` and `sec-ch-ua` headers on sites blocked exclusively in Chromium headless, 590 of 784 responding sites, or 75%, switched back to HTTP 2xx."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_academic-browser-fingerprinting",
+        "claude_run": "2026-08-27_claude_academic-browser-fingerprinting"
+      }
+    },
+    {
+      "id": "claim_browser_fp_weaker_for_ai_agents",
+      "text": "A 2026 study of AI browsing agents reported that browser fingerprints alone had weaker classification performance, with F1 about 0.80 to 0.82, while behavioral fingerprints were near-perfect at about 0.999; the paper also noted that several agents shared the same browser fingerprint.",
+      "required_concepts": ["browser_fingerprint", "behavioral_fingerprint", "f1"],
+      "acceptable_patterns": [
+        "browser fingerprints alone had weaker classification performance.*F1.*0\\.80 to 0\\.82",
+        "behavioral fingerprints were near-perfect.*0\\.999",
+        "several agents shared the same browser fingerprint"
+      ],
+      "sources": [
+        {
+          "url": "https://arxiv.org/html/2605.01247v1",
+          "equivalent_urls": ["https://arxiv.org/html/2605.01247v1"]
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://arxiv.org/html/2605.01247v1",
+          "text": "Wang et al. (2026) show an important limit on browser-fingerprint-only detection for more human-like automation. In their controlled study of seven AI browsing agents and humans, browser fingerprints alone had weaker classification performance (`F1` about 0.80 to 0.82), while behavioral fingerprints were near-perfect (`F1` about 0.999), and several agents shared the same browser fingerprint."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_academic-browser-fingerprinting",
+        "claude_run": "2026-08-27_claude_academic-browser-fingerprinting"
+      }
+    },
+    {
+      "id": "claim_reported_limitations",
+      "text": "The authors report important limitations: the 2024 inconsistency-based detector could be bypassed if bots changed attributes without introducing inconsistencies and could not be evaluated at large scale on real-user ground truth; the 2026 headless-Chromium measurement was limited to one European datacenter, Tranco Top 10K homepages, and explicit HTTP 403/429/503 blocks, with no true human-browsing baseline; and the 2026 AI-agent study was limited by its coverage of agents, tasks, and system configurations.",
+      "required_concepts": ["limitations", "scope", "human_baseline"],
+      "acceptable_patterns": [
+        "could defeat their method if they learn to alter fingerprint attributes without introducing inconsistencies",
+        "single European datacenter.*Tranco Top 10K homepages",
+        "limited by the coverage of browsing agents, tasks, and system configurations"
+      ],
+      "sources": [
+        {
+          "url": "https://arxiv.org/pdf/2406.07647",
+          "equivalent_urls": ["https://arxiv.org/pdf/2406.07647"]
+        },
+        {
+          "url": "https://arxiv.org/html/2606.14525v1",
+          "equivalent_urls": ["https://arxiv.org/html/2606.14525v1"]
+        },
+        {
+          "url": "https://arxiv.org/html/2605.01247v1",
+          "equivalent_urls": ["https://arxiv.org/html/2605.01247v1"]
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://arxiv.org/pdf/2406.07647",
+          "text": "Venugopalan et al. (2024) explicitly say evasive bots could defeat their method if they learn to alter fingerprint attributes without introducing inconsistencies; they also note that stronger “unmodifiable” attributes would help detection but would raise privacy concerns. They further report that large-scale real-user evaluation was not feasible because reliable real-user ground truth is hard to obtain, and that temporal inconsistency checks can be bypassed by deleting cookies."
+        },
+        {
+          "url": "https://arxiv.org/html/2606.14525v1",
+          "text": "Gundelach et al. (2026) say their scans came from one European datacenter at one point in time, covered only Tranco Top 10K homepages, and observed only explicit HTTP 403/429/503 blocks rather than degraded HTTP 200 responses. They also say they lacked a true human-browsing baseline, that their JavaScript proxies create detectable artifacts, and that observing an API probe does not prove the site blocked because of that probe."
+        },
+        {
+          "url": "https://arxiv.org/html/2605.01247v1",
+          "text": "Wang et al. (2026) say their findings are limited by the coverage of browsing agents, tasks, and system configurations, and that future agents may adopt more human-like behaviors. They also warn that the lack of shared browser fingerprints between humans and agents in their dataset should not be read as proof that such overlap would not occur in practice."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_academic-browser-fingerprinting",
+        "claude_run": "2026-08-27_claude_academic-browser-fingerprinting"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "All Chromium automation is trivially detectable in all settings.",
+      "reason": "The supplied evidence explicitly says the papers do not support that broad claim."
+    },
+    {
+      "text": "Modern stealth Chromium is indistinguishable from humans.",
+      "reason": "The supplied evidence says it did not find recent primary evidence justifying that claim."
+    },
+    {
+      "text": "Browser fingerprinting alone reliably catches all Chromium automation.",
+      "reason": "The supplied evidence says browser fingerprints alone can have limited power, especially for more human-like automation."
+    },
+    {
+      "text": "The same 2026 study reported widespread JavaScript-side automation probing: `navigator.webdriver` was probed on 2,730 of 7,944 successfully scanned sites, or 34%, and Tier-1 automation honeypots were checked on 46% of sites.",
+      "reason": "Overly narrow / non-robust grading patterns. Pattern 1 requires the exact counts '2,730 of 7,944', which appear only in the Codex run's self-quoted final answer and are corroborated by no retrieved source text; the independently fetched summary of arXiv:2606.14525 gives only the percentages (34% probe navigator.webdriver, 46% probe at least one Tier 1 automation artifact). Pattern 2 demands the verbatim string 'Tier-1 automation honeypots were checked on 46% of sites', which even the corroborating evidence phrases differently ('probe at least one Tier 1 automation artifact'), so a correct answer would fail both alternatives. There is also concept drift between 'Tier-1 honeypots' as asserted and 'Tier 1 automation artifact' as evidenced."
+    },
+    {
+      "text": "A 2024 paper reported that changing browser fingerprints helped bots evade commercial defenses, but the altered fingerprints often became internally inconsistent and were then detectable; in its honey-site study, average evasion was 52.93% against DataDome and 44.56% against BotD, and the inconsistency-based detector reduced evasive traffic by 48.11% and 44.95% respectively while achieving a 96.84% true-negative rate on sampled real-user traffic.",
+      "reason": "Rests entirely on self-referential evidence. The Codex run opened no URLs and every tool result payload is absent, so the cited evidence_passage for https://arxiv.org/pdf/2406.07647 is simply a copy of the run's own final answer rather than any source content. Six precise statistics (507,080 requests, 20 bot services, 52.93%, 44.56%, 48.11%, 44.95%, 96.84%) and the attribution to 'Venugopalan et al. (2024)' are unverifiable from the supplied evidence, and the second teacher run never surfaced this arXiv ID or paper at all. Accepting would risk baking invented figures and a possibly-wrong arXiv identifier into the fixture."
+    },
+    {
+      "text": "A 2025 paper found that automated Chrome/Puppeteer crawling missed 211 of 471 fingerprinting websites observed in real-user browsing, or 45%, and attributed much of that gap to authentication flows, bot detection, cookie-consent gating, and other interaction-dependent triggers.",
+      "reason": "Same self-referential defect: the evidence_passage for https://arxiv.org/html/2502.01608v1 is a verbatim copy of the Codex final answer, with no retrieved page content behind it, and the independent run never encountered this arXiv ID (it surfaced the unrelated 2502.14326). The paper identity ('Annamalai et al. 2025'), the figures '211 of 471 / 45%', and the causal attribution to authentication, bot detection and cookie-consent gating are all unverifiable here. The claim is also only tangential to the case question, which asks about detectability of automated sessions rather than crawler coverage of fingerprinting deployments."
+    }
+  ]
+}

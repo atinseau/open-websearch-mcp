@@ -1,0 +1,1630 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-08-28T21:25:54.463Z",
+  "finishedAt": "2026-08-28T21:26:16.108Z",
+  "command": "bun spikes/obscura-load/load.ts docs/spikes/SPK-003/measurements.json",
+  "environment": {
+    "bun": "1.4.0",
+    "obscura": "obscura 0.2.1",
+    "fixturePort": 49915,
+    "storageDir": "/private/tmp/spk-003-1787952354463-119189-profile",
+    "platform": "MacIntel"
+  },
+  "trials": [
+    {
+      "level": 1,
+      "kind": "cold",
+      "samples": [
+        {
+          "pageClass": "static",
+          "elapsedMs": 22.864541000000003,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 605.965125,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 1209.180709,
+          "outcome": "ok"
+        }
+      ],
+      "elapsedMs": 1838.3032500000002,
+      "throughputPerSecond": 1.6319396704542626,
+      "p50Ms": 605.965125,
+      "p95Ms": 1209.180709,
+      "timeoutRate": 0,
+      "errorRate": 0,
+      "eventLoopMaxDelayMs": 1.1896669999998721,
+      "telemetry": {
+        "rssBytes": 111542272,
+        "cpuPercent": 0.1
+      },
+      "orphanResources": [],
+      "profileReuse": false
+    },
+    {
+      "level": 1,
+      "kind": "warm",
+      "samples": [
+        {
+          "pageClass": "static",
+          "elapsedMs": 15.14870800000017,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 487.3207500000003,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 1174.4878750000003,
+          "outcome": "ok"
+        }
+      ],
+      "elapsedMs": 1677.1000410000001,
+      "throughputPerSecond": 1.7888020551303534,
+      "p50Ms": 487.3207500000003,
+      "p95Ms": 1174.4878750000003,
+      "timeoutRate": 0,
+      "errorRate": 0,
+      "eventLoopMaxDelayMs": 1.5309579999998277,
+      "telemetry": {
+        "rssBytes": 116686848,
+        "cpuPercent": 0.30000000000000004
+      },
+      "orphanResources": [],
+      "profileReuse": true
+    },
+    {
+      "level": 4,
+      "kind": "cold",
+      "samples": [
+        {
+          "pageClass": "static",
+          "elapsedMs": 396.89429100000007,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 404.09058400000004,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 404.1034160000004,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 407.8937500000002,
+          "outcome": "ok"
+        }
+      ],
+      "elapsedMs": 408.05337499999996,
+      "throughputPerSecond": 9.80263917679887,
+      "p50Ms": 404.09058400000004,
+      "p95Ms": 407.8937500000002,
+      "timeoutRate": 0,
+      "errorRate": 0,
+      "eventLoopMaxDelayMs": 1.1555829999997513,
+      "telemetry": {
+        "rssBytes": 62275584,
+        "cpuPercent": 1.1
+      },
+      "orphanResources": [],
+      "profileReuse": false
+    },
+    {
+      "level": 4,
+      "kind": "warm",
+      "samples": [
+        {
+          "pageClass": "static",
+          "elapsedMs": 385.4262920000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 390.4499999999998,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 390.4692500000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 392.8919159999996,
+          "outcome": "ok"
+        }
+      ],
+      "elapsedMs": 392.9991660000005,
+      "throughputPerSecond": 10.178138647754777,
+      "p50Ms": 390.4499999999998,
+      "p95Ms": 392.8919159999996,
+      "timeoutRate": 0,
+      "errorRate": 0,
+      "eventLoopMaxDelayMs": 1.1602920000004815,
+      "telemetry": {
+        "rssBytes": 62685184,
+        "cpuPercent": 1.2999999999999998
+      },
+      "orphanResources": [],
+      "profileReuse": true
+    },
+    {
+      "level": 8,
+      "kind": "cold",
+      "samples": [
+        {
+          "pageClass": "static",
+          "elapsedMs": 434.57087500000034,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 451.2223329999997,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 451.22050000000036,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 451.22508299999936,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 451.22870799999964,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 451.23304200000075,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 451.23704200000066,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 454.012334,
+          "outcome": "ok"
+        }
+      ],
+      "elapsedMs": 454.2252500000004,
+      "throughputPerSecond": 17.612407060153508,
+      "p50Ms": 451.22508299999936,
+      "p95Ms": 454.012334,
+      "timeoutRate": 0,
+      "errorRate": 0,
+      "eventLoopMaxDelayMs": 1.171875,
+      "telemetry": {
+        "rssBytes": 64061440,
+        "cpuPercent": 1.2
+      },
+      "orphanResources": [],
+      "profileReuse": false
+    },
+    {
+      "level": 8,
+      "kind": "warm",
+      "samples": [
+        {
+          "pageClass": "static",
+          "elapsedMs": 435.5537089999998,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 452.73995900000045,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 452.7479579999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 452.7527090000003,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 452.7560830000002,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 452.760166,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 452.7651249999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 455.46800000000076,
+          "outcome": "ok"
+        }
+      ],
+      "elapsedMs": 455.55870799999957,
+      "throughputPerSecond": 17.56085408864582,
+      "p50Ms": 452.7527090000003,
+      "p95Ms": 455.46800000000076,
+      "timeoutRate": 0,
+      "errorRate": 0,
+      "eventLoopMaxDelayMs": 1.1673749999999927,
+      "telemetry": {
+        "rssBytes": 64143360,
+        "cpuPercent": 1.7000000000000002
+      },
+      "orphanResources": [],
+      "profileReuse": true
+    },
+    {
+      "level": 16,
+      "kind": "cold",
+      "samples": [
+        {
+          "pageClass": "static",
+          "elapsedMs": 864.517417,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 864.4434579999997,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 895.6945000000005,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 895.7114579999998,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 895.7170409999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 895.7234589999998,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 895.7389579999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 895.7435410000007,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 895.7480000000005,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 895.7496249999995,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 895.7500840000002,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 895.753917,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 895.7562080000007,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 895.7576250000002,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 895.7582090000005,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 898.0791669999999,
+          "outcome": "ok"
+        }
+      ],
+      "elapsedMs": 898.2434169999997,
+      "throughputPerSecond": 17.812543568020388,
+      "p50Ms": 895.7435410000007,
+      "p95Ms": 898.0791669999999,
+      "timeoutRate": 0,
+      "errorRate": 0,
+      "eventLoopMaxDelayMs": 2.8216250000004948,
+      "telemetry": {
+        "rssBytes": 65732608,
+        "cpuPercent": 2
+      },
+      "orphanResources": [],
+      "profileReuse": false
+    },
+    {
+      "level": 16,
+      "kind": "warm",
+      "samples": [
+        {
+          "pageClass": "static",
+          "elapsedMs": 855.8248749999993,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 890.5092089999998,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 890.5165830000005,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 890.5184580000005,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 890.5209159999995,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 890.5232079999996,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 890.5255000000006,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 890.5298340000008,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 890.5215839999992,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 890.5233749999998,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 890.5272919999998,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 890.5299580000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 890.5343329999996,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 890.5377079999998,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 890.5413749999998,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 892.9401250000001,
+          "outcome": "ok"
+        }
+      ],
+      "elapsedMs": 893.08925,
+      "throughputPerSecond": 17.91534272750456,
+      "p50Ms": 890.5233749999998,
+      "p95Ms": 892.9401250000001,
+      "timeoutRate": 0,
+      "errorRate": 0,
+      "eventLoopMaxDelayMs": 1.1942499999995562,
+      "telemetry": {
+        "rssBytes": 65290240,
+        "cpuPercent": 1.8
+      },
+      "orphanResources": [],
+      "profileReuse": true
+    },
+    {
+      "level": 24,
+      "kind": "cold",
+      "samples": [
+        {
+          "pageClass": "static",
+          "elapsedMs": 1713.0182079999995,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 1712.9534159999994,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 1712.9584589999995,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 1712.963084000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 1712.9695419999998,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 1713.0353750000004,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 1713.051125,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 1713.0578749999995,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 1713.0647920000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 1713.0687080000007,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 1713.0740419999993,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 1713.077209000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 1713.0702499999998,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 1713.072459,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 1713.0772910000005,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 1713.0849170000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 1713.0882909999991,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 1713.0928750000003,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 1713.0972080000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 1713.101291,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 1713.1061659999987,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 1713.1084579999988,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 1713.114375,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 1716.123208,
+          "outcome": "ok"
+        }
+      ],
+      "elapsedMs": 1716.3058339999998,
+      "throughputPerSecond": 13.983521773660769,
+      "p50Ms": 1713.072459,
+      "p95Ms": 1713.114375,
+      "timeoutRate": 0,
+      "errorRate": 0,
+      "eventLoopMaxDelayMs": 1.3179170000003069,
+      "telemetry": {
+        "rssBytes": 65830912,
+        "cpuPercent": 1
+      },
+      "orphanResources": [],
+      "profileReuse": false
+    },
+    {
+      "level": 24,
+      "kind": "warm",
+      "samples": [
+        {
+          "pageClass": "static",
+          "elapsedMs": 1713.4322500000017,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 1713.4001250000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 1768.8021660000013,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 1768.822333,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 1768.833208,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 1768.8374160000003,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 1768.8420420000002,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 1768.8568749999995,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 1768.8671670000003,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 1768.875958999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 1768.8841670000002,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 1768.8875000000007,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 1768.8903329999994,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 1768.8943749999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 1768.8988750000008,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 1768.9067909999994,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 1768.9114170000012,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 1768.916208999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 1768.9219999999987,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 1768.9250420000008,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 1768.9295409999995,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 1768.9338329999991,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 1768.9423330000009,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 1771.4882500000003,
+          "outcome": "ok"
+        }
+      ],
+      "elapsedMs": 1771.5949169999985,
+      "throughputPerSecond": 13.54711495822158,
+      "p50Ms": 1768.8875000000007,
+      "p95Ms": 1768.9423330000009,
+      "timeoutRate": 0,
+      "errorRate": 0,
+      "eventLoopMaxDelayMs": 2.1563330000008136,
+      "telemetry": {
+        "rssBytes": 67403776,
+        "cpuPercent": 1
+      },
+      "orphanResources": [],
+      "profileReuse": true
+    },
+    {
+      "level": 32,
+      "kind": "cold",
+      "samples": [
+        {
+          "pageClass": "static",
+          "elapsedMs": 2097.128666999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2165.1925840000004,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2165.2019579999996,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2165.2133329999997,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 2165.2250829999994,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 2165.217166999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 2165.2313749999994,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 2165.236584,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2165.243541,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2165.2479999999996,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2165.253625000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 2165.2582920000004,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 2165.265708000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 2165.270584,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 2165.2775409999995,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2165.2834170000006,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2165.284375000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2165.2834170000006,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 2165.2851250000003,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 2165.2878340000007,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 2165.289832999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 2165.292958,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2165.298583,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2165.2982089999987,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2165.2997080000005,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 2165.3025419999994,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 2165.3052499999994,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 2165.307458000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 2165.3098329999993,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2165.314875,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2165.3169579999994,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2167.4553749999995,
+          "outcome": "ok"
+        }
+      ],
+      "elapsedMs": 2167.6921669999992,
+      "throughputPerSecond": 14.762243683468553,
+      "p50Ms": 2165.2834170000006,
+      "p95Ms": 2165.3169579999994,
+      "timeoutRate": 0,
+      "errorRate": 0,
+      "eventLoopMaxDelayMs": 1.2790829999994457,
+      "telemetry": {
+        "rssBytes": 67993600,
+        "cpuPercent": 1.7000000000000002
+      },
+      "orphanResources": [],
+      "profileReuse": false
+    },
+    {
+      "level": 32,
+      "kind": "warm",
+      "samples": [
+        {
+          "pageClass": "static",
+          "elapsedMs": 2078.851833999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2078.7822499999984,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2143.4327080000003,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2143.4491670000007,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 2143.4823749999996,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 2143.4894160000003,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 2143.4945420000004,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 2143.497542000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2143.5037090000005,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2143.51275,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2143.517250000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 2143.522499999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 2143.527333,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 2143.530291000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 2143.532625,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2143.537124999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2143.5408339999994,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2143.5428329999995,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 2143.5459580000006,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 2143.5527500000007,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 2143.561291,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 2143.56675,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2143.5757080000003,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2143.5776669999996,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2143.580333,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 2143.5841660000006,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 2143.587625,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 2143.591042,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 2143.5935419999987,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2143.5988749999997,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2143.603667000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2145.791332999999,
+          "outcome": "ok"
+        }
+      ],
+      "elapsedMs": 2145.993292000001,
+      "throughputPerSecond": 14.911509797953267,
+      "p50Ms": 2143.537124999999,
+      "p95Ms": 2143.603667000001,
+      "timeoutRate": 0,
+      "errorRate": 0,
+      "eventLoopMaxDelayMs": 1.2260420000002341,
+      "telemetry": {
+        "rssBytes": 67485696,
+        "cpuPercent": 1.9
+      },
+      "orphanResources": [],
+      "profileReuse": true
+    },
+    {
+      "level": 40,
+      "kind": "cold",
+      "samples": [
+        {
+          "pageClass": "static",
+          "elapsedMs": 2606.185708000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2606.1261670000004,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2606.131333000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2606.1447500000013,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 2606.152500000002,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 2606.1631670000006,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 2606.185792000002,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 2606.1967910000003,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2606.203374999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2606.206542,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2606.2124160000003,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 2606.217333999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 2606.220416,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 2606.2238750000015,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 2606.228000000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2606.2347499999996,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2606.2380409999987,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2606.2417079999996,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 2606.2508750000015,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 2606.2544160000016,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 2606.2574170000007,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 2606.260583000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2606.266958,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2606.2715420000004,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2606.2729999999992,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 2606.2745840000007,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 2606.277959000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 2606.2803749999985,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 2606.2836670000015,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2606.2902079999985,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2606.2951249999987,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2606.2984160000015,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 2606.3025420000013,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 2606.3118329999998,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 2606.316499999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 2606.319374999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2606.3232080000016,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2606.326165999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2606.3299160000006,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 2608.5487500000017,
+          "outcome": "ok"
+        }
+      ],
+      "elapsedMs": 2608.728874999999,
+      "throughputPerSecond": 15.333138059431345,
+      "p50Ms": 2606.2544160000016,
+      "p95Ms": 2606.326165999999,
+      "timeoutRate": 0,
+      "errorRate": 0,
+      "eventLoopMaxDelayMs": 1.5359580000003916,
+      "telemetry": {
+        "rssBytes": 71041024,
+        "cpuPercent": 1.8
+      },
+      "orphanResources": [],
+      "profileReuse": false
+    },
+    {
+      "level": 40,
+      "kind": "warm",
+      "samples": [
+        {
+          "pageClass": "static",
+          "elapsedMs": 2517.382458,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2604.486208999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2604.5077500000007,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2604.521166999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 2604.5335410000007,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 2604.551416000002,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 2604.563875,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 2604.5730000000003,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2604.584667000003,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2604.5879999999997,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2604.5942920000016,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 2604.599459000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 2604.601584,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 2604.6039579999997,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 2604.607415999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2604.6124579999996,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2604.615417000001,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2604.6185829999995,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 2604.625333,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 2604.628459000003,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 2604.6247089999997,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 2604.6279590000013,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2604.634541000003,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2604.6387079999986,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2604.639707999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 2604.641791000002,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 2604.6451669999988,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 2604.648250000002,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 2604.6504999999997,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2604.6567080000023,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2604.668249999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2604.673499999997,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 2604.6786250000005,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "community",
+          "elapsedMs": 2604.680457999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "error",
+          "elapsedMs": 2604.684541999999,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "static",
+          "elapsedMs": 2604.6897910000007,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "js-heavy",
+          "elapsedMs": 2604.680666,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "slow",
+          "elapsedMs": 2604.683041999997,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "technical",
+          "elapsedMs": 2604.6883339999986,
+          "outcome": "ok"
+        },
+        {
+          "pageClass": "news",
+          "elapsedMs": 2606.8168330000008,
+          "outcome": "ok"
+        }
+      ],
+      "elapsedMs": 2606.9985000000015,
+      "throughputPerSecond": 15.343315310691578,
+      "p50Ms": 2604.625333,
+      "p95Ms": 2604.6883339999986,
+      "timeoutRate": 0,
+      "errorRate": 0,
+      "eventLoopMaxDelayMs": 1.2169580000008864,
+      "telemetry": {
+        "rssBytes": 68157440,
+        "cpuPercent": 2
+      },
+      "orphanResources": [],
+      "profileReuse": true
+    }
+  ],
+  "navigationCount": 254,
+  "explicitTests": {
+    "missingMemoryTelemetry": {
+      "simulated": true,
+      "expectedControllerBehavior": "do not grow beyond lastSafeCapacity; retain latency/error backpressure"
+    },
+    "newMachineProfile": {
+      "storageDir": "/private/tmp/spk-003-1787952354463-119189-profile",
+      "profileExistedBeforeRun": false
+    },
+    "growthFrom8": [
+      {
+        "level": 8,
+        "kind": "cold",
+        "p95Ms": 454.012334,
+        "rssBytes": 64061440
+      },
+      {
+        "level": 8,
+        "kind": "warm",
+        "p95Ms": 455.46800000000076,
+        "rssBytes": 64143360
+      },
+      {
+        "level": 16,
+        "kind": "cold",
+        "p95Ms": 898.0791669999999,
+        "rssBytes": 65732608
+      },
+      {
+        "level": 16,
+        "kind": "warm",
+        "p95Ms": 892.9401250000001,
+        "rssBytes": 65290240
+      },
+      {
+        "level": 24,
+        "kind": "cold",
+        "p95Ms": 1713.114375,
+        "rssBytes": 65830912
+      },
+      {
+        "level": 24,
+        "kind": "warm",
+        "p95Ms": 1768.9423330000009,
+        "rssBytes": 67403776
+      },
+      {
+        "level": 32,
+        "kind": "cold",
+        "p95Ms": 2165.3169579999994,
+        "rssBytes": 67993600
+      },
+      {
+        "level": 32,
+        "kind": "warm",
+        "p95Ms": 2143.603667000001,
+        "rssBytes": 67485696
+      },
+      {
+        "level": 40,
+        "kind": "cold",
+        "p95Ms": 2606.326165999999,
+        "rssBytes": 71041024
+      },
+      {
+        "level": 40,
+        "kind": "warm",
+        "p95Ms": 2604.6883339999986,
+        "rssBytes": 68157440
+      }
+    ],
+    "persistedProfileReuse": {
+      "storageDir": "/private/tmp/spk-003-1787952354463-119189-profile",
+      "warmTrials": 7
+    }
+  },
+  "rawLog": "stderr:\n2026-08-28T21:25:54.904778Z  WARN obscura_browser::page: ES module error (https://static.cloudflareinsights.com/beacon.min.js/v3d52b47920f24c319d37e2661827c42b1787588026925): Module load error: Module https://static.cloudflareinsights.com/beacon.min.js/v3d52b47920f24c319d37e2661827c42b1787588026925 returned HTTP 0\n\nstdout:\n\n   ____  _                              \n  / __ \\| |                             \n | |  | | |__  ___  ___ _   _ _ __ __ _ \n | |  | | '_ \\/ __|/ __| | | | '__/ _` |\n | |__| | |_) \\__ \\ (__| |_| | | | (_| |\n  \\____/|_.__/|___/\\___|\\__,_|_|  \\__,_|\n                   \n  Headless Browser v0.2.1\n  CDP server: ws://127.0.0.1:47085/devtools/browser\n\n\nstderr:\n2026-08-28T21:25:56.763917Z  WARN obscura_browser::page: ES module error (https://static.cloudflareinsights.com/beacon.min.js/v3d52b47920f24c319d37e2661827c42b1787588026925): Module load error: Module https://static.cloudflareinsights.com/beacon.min.js/v3d52b47920f24c319d37e2661827c42b1787588026925 returned HTTP 0\n\nstdout:\n\n   ____  _                              \n  / __ \\| |                             \n | |  | | |__  ___  ___ _   _ _ __ __ _ \n | |  | | '_ \\/ __|/ __| | | | '__/ _` |\n | |__| | |_) \\__ \\ (__| |_| | | | (_| |\n  \\____/|_.__/|___/\\___|\\__,_|_|  \\__,_|\n                   \n  Headless Browser v0.2.1\n  CDP server: ws://127.0.0.1:48170/devtools/browser\n\n\nstderr:\n\nstdout:\n\n   ____  _                              \n  / __ \\| |                             \n | |  | | |__  ___  ___ _   _ _ __ __ _ \n | |  | | '_ \\/ __|/ __| | | | '__/ _` |\n | |__| | |_) \\__ \\ (__| |_| | | | (_| |\n  \\____/|_.__/|___/\\___|\\__,_|_|  \\__,_|\n                   \n  Headless Browser v0.2.1\n  CDP server: ws://127.0.0.1:46504/devtools/browser\n\n\nstderr:\n\nstdout:\n\n   ____  _                              \n  / __ \\| |                             \n | |  | | |__  ___  ___ _   _ _ __ __ _ \n | |  | | '_ \\/ __|/ __| | | | '__/ _` |\n | |__| | |_) \\__ \\ (__| |_| | | | (_| |\n  \\____/|_.__/|___/\\___|\\__,_|_|  \\__,_|\n                   \n  Headless Browser v0.2.1\n  CDP server: ws://127.0.0.1:48985/devtools/browser\n\n\nstderr:\n\nstdout:\n\n   ____  _                              \n  / __ \\| |                             \n | |  | | |__  ___  ___ _   _ _ __ __ _ \n | |  | | '_ \\/ __|/ __| | | | '__/ _` |\n | |__| | |_) \\__ \\ (__| |_| | | | (_| |\n  \\____/|_.__/|___/\\___|\\__,_|_|  \\__,_|\n                   \n  Headless Browser v0.2.1\n  CDP server: ws://127.0.0.1:45641/devtools/browser\n\n\nstderr:\n\nstdout:\n\n   ____  _                              \n  / __ \\| |                             \n | |  | | |__  ___  ___ _   _ _ __ __ _ \n | |  | | '_ \\/ __|/ __| | | | '__/ _` |\n | |__| | |_) \\__ \\ (__| |_| | | | (_| |\n  \\____/|_.__/|___/\\___|\\__,_|_|  \\__,_|\n                   \n  Headless Browser v0.2.1\n  CDP server: ws://127.0.0.1:49064/devtools/browser\n\n\nstderr:\n\nstdout:\n\n   ____  _                              \n  / __ \\| |                             \n | |  | | |__  ___  ___ _   _ _ __ __ _ \n | |  | | '_ \\/ __|/ __| | | | '__/ _` |\n | |__| | |_) \\__ \\ (__| |_| | | | (_| |\n  \\____/|_.__/|___/\\___|\\__,_|_|  \\__,_|\n                   \n  Headless Browser v0.2.1\n  CDP server: ws://127.0.0.1:45090/devtools/browser\n\n\nstderr:\n\nstdout:\n\n   ____  _                              \n  / __ \\| |                             \n | |  | | |__  ___  ___ _   _ _ __ __ _ \n | |  | | '_ \\/ __|/ __| | | | '__/ _` |\n | |__| | |_) \\__ \\ (__| |_| | | | (_| |\n  \\____/|_.__/|___/\\___|\\__,_|_|  \\__,_|\n                   \n  Headless Browser v0.2.1\n  CDP server: ws://127.0.0.1:48627/devtools/browser\n\n\nstderr:\n\nstdout:\n\n   ____  _                              \n  / __ \\| |                             \n | |  | | |__  ___  ___ _   _ _ __ __ _ \n | |  | | '_ \\/ __|/ __| | | | '__/ _` |\n | |__| | |_) \\__ \\ (__| |_| | | | (_| |\n  \\____/|_.__/|___/\\___|\\__,_|_|  \\__,_|\n                   \n  Headless Browser v0.2.1\n  CDP server: ws://127.0.0.1:49423/devtools/browser\n\n\nstderr:\n\nstdout:\n\n   ____  _                              \n  / __ \\| |                             \n | |  | | |__  ___  ___ _   _ _ __ __ _ \n | |  | | '_ \\/ __|/ __| | | | '__/ _` |\n | |__| | |_) \\__ \\ (__| |_| | | | (_| |\n  \\____/|_.__/|___/\\___|\\__,_|_|  \\__,_|\n                   \n  Headless Browser v0.2.1\n  CDP server: ws://127.0.0.1:47529/devtools/browser\n\n\nstderr:\n\nstdout:\n\n   ____  _                              \n  / __ \\| |                             \n | |  | | |__  ___  ___ _   _ _ __ __ _ \n | |  | | '_ \\/ __|/ __| | | | '__/ _` |\n | |__| | |_) \\__ \\ (__| |_| | | | (_| |\n  \\____/|_.__/|___/\\___|\\__,_|_|  \\__,_|\n                   \n  Headless Browser v0.2.1\n  CDP server: ws://127.0.0.1:48775/devtools/browser\n\n\nstderr:\n\nstdout:\n\n   ____  _                              \n  / __ \\| |                             \n | |  | | |__  ___  ___ _   _ _ __ __ _ \n | |  | | '_ \\/ __|/ __| | | | '__/ _` |\n | |__| | |_) \\__ \\ (__| |_| | | | (_| |\n  \\____/|_.__/|___/\\___|\\__,_|_|  \\__,_|\n                   \n  Headless Browser v0.2.1\n  CDP server: ws://127.0.0.1:49389/devtools/browser\n\n\nstderr:\n\nstdout:\n\n   ____  _                              \n  / __ \\| |                             \n | |  | | |__  ___  ___ _   _ _ __ __ _ \n | |  | | '_ \\/ __|/ __| | | | '__/ _` |\n | |__| | |_) \\__ \\ (__| |_| | | | (_| |\n  \\____/|_.__/|___/\\___|\\__,_|_|  \\__,_|\n                   \n  Headless Browser v0.2.1\n  CDP server: ws://127.0.0.1:45250/devtools/browser\n\n\nstderr:\n\nstdout:\n\n   ____  _                              \n  / __ \\| |                             \n | |  | | |__  ___  ___ _   _ _ __ __ _ \n | |  | | '_ \\/ __|/ __| | | | '__/ _` |\n | |__| | |_) \\__ \\ (__| |_| | | | (_| |\n  \\____/|_.__/|___/\\___|\\__,_|_|  \\__,_|\n                   \n  Headless Browser v0.2.1\n  CDP server: ws://127.0.0.1:49146/devtools/browser\n\n",
+  "childPid": 19332
+}

@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "case_id": "ambiguous-xanadu-tuesday",
+  "question": "What happened to Project Xanadu last Tuesday, and why did it happen?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim_no_public_event_evidence",
+      "text": "Assuming \"last Tuesday\" is August 25, 2026, the supplied evidence says there was no good web evidence of a new public Project Xanadu event on that date.",
+      "required_concepts": [
+        "last_tuesday",
+        "2026-08-25",
+        "no_good_web_evidence",
+        "new_public_event",
+        "Project_Xanadu"
+      ],
+      "acceptable_patterns": [
+        "Assuming[\\s\\S]*August 25, 2026[\\s\\S]*no good web evidence of a new public Project Xanadu event on that date",
+        "no good web evidence of a new public Project Xanadu event on that date"
+      ],
+      "sources": [
+        {
+          "url": "https://www.xanadu.com/xuhome.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.aus.xanadu.com/xanadu/faq.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://xanadu.com/xuDemoPage.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.xanadu.com/xuhome.html",
+          "text": "Assuming “last Tuesday” means August 25, 2026 ... I found no good web evidence of a new public Project Xanadu event on that date."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_ambiguous-xanadu-tuesday",
+        "claude_run": "2026-08-27_claude_ambiguous-xanadu-tuesday"
+      }
+    },
+    {
+      "id": "claim_other_xanadu_news_was_quantum_company",
+      "text": "The clearly dated August 25, 2026 Xanadu news in the supplied evidence was about Xanadu Quantum Technologies and Mitsubishi Chemical, not about Project Xanadu.",
+      "required_concepts": [
+        "August_25_2026",
+        "Xanadu_Quantum_Technologies",
+        "Mitsubishi_Chemical",
+        "not_Project_Xanadu"
+      ],
+      "acceptable_patterns": [
+        "clearly dated[\\s\\S]*August 25, 2026[\\s\\S]*about Xanadu Quantum Technologies and Mitsubishi Chemical[\\s\\S]*not about Project Xanadu",
+        "Canada-Japan Funding Fuels Xanadu and Mitsubishi Chemical Partnership on Quantum Semiconductor Research"
+      ],
+      "sources": [
+        {
+          "url": "https://investors.xanadu.ai/news-releases/news-release-details/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://thequantuminsider.com/2026/08/25/xanadu-mitsubishi-quantum-semiconductor-manufacturing/",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://investors.xanadu.ai/news-releases/news-release-details/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical",
+          "text": "The clearly dated August 25, 2026 “Xanadu” news I did find was about Xanadu Quantum Technologies and Mitsubishi Chemical expanding a quantum-semiconductor collaboration, not about Project Xanadu."
+        }
+      ],
+      "weight": 0.9,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_ambiguous-xanadu-tuesday",
+        "claude_run": "2026-08-27_claude_ambiguous-xanadu-tuesday"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Project Xanadu definitely had no activity at all last Tuesday.",
+      "reason": "Unsupported and too absolute. The supplied evidence says only that no good web evidence was found and explicitly notes this does not prove nothing happened privately or off-web."
+    },
+    {
+      "text": "Project Xanadu shut down last Tuesday.",
+      "reason": "Unsupported. No supplied evidence reports a shutdown."
+    },
+    {
+      "text": "Ted Nelson died last Tuesday, causing a Project Xanadu event.",
+      "reason": "Unsupported and contradictory to the supplied evidence; no supplied passage documents such an event."
+    },
+    {
+      "text": "The August 25, 2026 Xanadu news was about Project Xanadu's own announcement.",
+      "reason": "Contradicted by the supplied evidence, which says the clearly dated August 25, 2026 Xanadu news was about Xanadu Quantum Technologies and Mitsubishi Chemical, not Project Xanadu."
+    },
+    {
+      "text": "The supplied evidence describes the Project Xanadu web pages it found as old or archival rather than showing a dated August 2026 Project Xanadu announcement.",
+      "reason": "Depends on page-level details (the 'crudcheck 01.05.23' marker, 'WE FIGHT ON' message, 'Last-modified: 2002/04/12' on aus.xanadu.com/xanadu/faq.html, and the 'Future of Text Conference, August 25, 2016' demo page) for which the supplied evidence contains no retrieved content. The Codex run's opened_urls is empty and every tool_result states the search payload was not exposed; its evidence_passages are just its own final_answer duplicated under five URLs, so they do not attest to what those pages say. The Claude run corroborates only xanadu.com/xuhome.html and never touches aus.xanadu.com/xanadu/faq.html or xanadu.com/xuDemoPage.html. The third acceptable_pattern ('web presence[\\s\\S]*historical rather than actively updated') also grades an interpretive characterization rather than a checkable fact."
+    },
+    {
+      "text": "The most defensible conclusion in the supplied evidence is that nothing well-documented and publicly notable appears to have happened to Project Xanadu itself last Tuesday, and there is no solid public event evidence to explain why.",
+      "reason": "Explicitly the run's inference layer ('most defensible conclusion', 'likeliest explanation') rather than anything the cited sources state; the three listed sources are archival Project Xanadu pages that cannot support a conclusion about last Tuesday, and two of them (aus.xanadu.com/xanadu/faq.html, xanadu.com/xuDemoPage.html) have no verified content anywhere in the evidence. It also restates the supported negative finding already carried by claim_no_public_event_evidence, and its grading is brittle: both acceptable_patterns require long verbatim teacher wording, and required_concepts such as 'most_defensible_conclusion' and 'why' are too vague to grade deterministically."
+    }
+  ]
+}

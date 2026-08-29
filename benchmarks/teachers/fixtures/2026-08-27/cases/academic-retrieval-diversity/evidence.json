@@ -1,0 +1,863 @@
+{
+  "schema_version": 1,
+  "case_id": "academic-retrieval-diversity",
+  "runs": [
+    {
+      "run_id": "2026-08-27_codex_academic-retrieval-diversity",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "Carbonell Goldstein maximal marginal relevance pdf 1998 diversification search results primary paper",
+        "https://dl.acm.org/doi/pdf/10.1145/290941.291025",
+        "'MMR ≡ argmax' in https://aclanthology.org/X98-1025.pdf",
+        "https://aclanthology.org/X98-1025.pdf",
+        "'user study' in https://aclanthology.org/X98-1025.pdf",
+        "SIGIR 2010 search result diversification MMR xQuAD pdf",
+        "https://terrierteam.dcs.gla.ac.uk/publications/ecir2010_rodrygo_div.pdf",
+        "'MMRlist' in https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf",
+        "https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf",
+        "Carbonell Goldstein 1998 maximal marginal relevance user study pdf",
+        "https://dl.acm.org/doi/abs/10.1145/290941.291025",
+        "https://jiafengguo.github.io/2015/2015-Learning%20Maximal%20Marginal%20Relevance%20Model%20via%20Directy%20Optimizing%20Diversity%20Evaluation%20Measures.pdf",
+        "'[5]' in https://jiafengguo.github.io/2015/2015-Learning%20Maximal%20Marginal%20Relevance%20Model%20via%20Directy%20Optimizing%20Diversity%20Evaluation%20Measures.pdf",
+        "Clarke Kolla Cormack novelty and diversity in information retrieval evaluation pdf",
+        "Redundancy diversity and interdependent document relevance pdf Radlinski Bennett Carterette Joachims",
+        "'MMR' in https://terrierteam.dcs.gla.ac.uk/publications/ecir2010_rodrygo_div.pdf",
+        "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [],
+      "cited_urls": [
+        "https://aclanthology.org/X98-1025.pdf",
+        "https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf",
+        "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "title": "https://aclanthology.org/X98-1025.pdf"
+        },
+        {
+          "url": "https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf",
+          "title": "https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf"
+        },
+        {
+          "url": "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf",
+          "title": "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "text": "**Supported fact**\n\nMMR trades relevance against novelty with a user-tunable linear score: at each step, it picks the remaining document with high query similarity and low similarity to already selected documents, i.e. relevance is rewarded and redundancy is penalized. This is the core definition in Carbonell and Goldstein’s original paper: https://aclanthology.org/X98-1025.pdf\n\nIn that formulation, `λ = 1` reduces to the standard relevance-ranked list, `λ = 0` reduces to maximal diversity among the retrieved set, and intermediate `λ` values optimize a linear combination of the two criteria. The same paper says smaller `λ` is for “sampling” the information space and larger `λ` is for focusing on overlapping/reinforcing relevant documents; for document retrieval, the authors report a strategy of starting around `λ = 0.3` and then moving to around `λ = 0.7` after query reformulation or relevance feedback: https://aclanthology.org/X98-1025.pdf\n\nThe original paper provides two kinds of direct evidence for diversification. First, in a Reuters reranking example, the authors report that a duplicate article is pushed down, a “novel but still relevant” document moves up, and similar documents are demoted as `λ` decreases, which is exactly the intended relevance/novelty tradeoff: https://aclanthology.org/X98-1025.pdf\n\nSecond, the same paper reports a pilot user study with 5 undergraduate users over 9 search tasks; users compared standard SMART ranking with MMR reranking at `λ = 0.5`, and 4 of 5 chose the MMR method for a final search task. However, the authors also state that the study was too small to yield statistically significant trends for speed or recall: https://aclanthology.org/X98-1025.pdf\n\nLater primary IR work gives stronger benchmark-style evidence that MMR-style diversification can beat non-diversified ranking in some search settings. Zhu et al. (SIGIR 2014) used MMR with a learned relevance function (`MMRlist`) and tuned `λ` by cross-validation on TREC Web Track"
+        },
+        {
+          "url": "https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf",
+          "text": "**Supported fact**\n\nMMR trades relevance against novelty with a user-tunable linear score: at each step, it picks the remaining document with high query similarity and low similarity to already selected documents, i.e. relevance is rewarded and redundancy is penalized. This is the core definition in Carbonell and Goldstein’s original paper: https://aclanthology.org/X98-1025.pdf\n\nIn that formulation, `λ = 1` reduces to the standard relevance-ranked list, `λ = 0` reduces to maximal diversity among the retrieved set, and intermediate `λ` values optimize a linear combination of the two criteria. The same paper says smaller `λ` is for “sampling” the information space and larger `λ` is for focusing on overlapping/reinforcing relevant documents; for document retrieval, the authors report a strategy of starting around `λ = 0.3` and then moving to around `λ = 0.7` after query reformulation or relevance feedback: https://aclanthology.org/X98-1025.pdf\n\nThe original paper provides two kinds of direct evidence for diversification. First, in a Reuters reranking example, the authors report that a duplicate article is pushed down, a “novel but still relevant” document moves up, and similar documents are demoted as `λ` decreases, which is exactly the intended relevance/novelty tradeoff: https://aclanthology.org/X98-1025.pdf\n\nSecond, the same paper reports a pilot user study with 5 undergraduate users over 9 search tasks; users compared standard SMART ranking with MMR reranking at `λ = 0.5`, and 4 of 5 chose the MMR method for a final search task. However, the authors also state that the study was too small to yield statistically significant trends for speed or recall: https://aclanthology.org/X98-1025.pdf\n\nLater primary IR work gives stronger benchmark-style evidence that MMR-style diversification can beat non-diversified ranking in some search settings. Zhu et al. (SIGIR 2014) used MMR with a learned relevance function (`MMRlist`) and tuned `λ` by cross-validation on TREC Web Track"
+        },
+        {
+          "url": "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf",
+          "text": "**Supported fact**\n\nMMR trades relevance against novelty with a user-tunable linear score: at each step, it picks the remaining document with high query similarity and low similarity to already selected documents, i.e. relevance is rewarded and redundancy is penalized. This is the core definition in Carbonell and Goldstein’s original paper: https://aclanthology.org/X98-1025.pdf\n\nIn that formulation, `λ = 1` reduces to the standard relevance-ranked list, `λ = 0` reduces to maximal diversity among the retrieved set, and intermediate `λ` values optimize a linear combination of the two criteria. The same paper says smaller `λ` is for “sampling” the information space and larger `λ` is for focusing on overlapping/reinforcing relevant documents; for document retrieval, the authors report a strategy of starting around `λ = 0.3` and then moving to around `λ = 0.7` after query reformulation or relevance feedback: https://aclanthology.org/X98-1025.pdf\n\nThe original paper provides two kinds of direct evidence for diversification. First, in a Reuters reranking example, the authors report that a duplicate article is pushed down, a “novel but still relevant” document moves up, and similar documents are demoted as `λ` decreases, which is exactly the intended relevance/novelty tradeoff: https://aclanthology.org/X98-1025.pdf\n\nSecond, the same paper reports a pilot user study with 5 undergraduate users over 9 search tasks; users compared standard SMART ranking with MMR reranking at `λ = 0.5`, and 4 of 5 chose the MMR method for a final search task. However, the authors also state that the study was too small to yield statistically significant trends for speed or recall: https://aclanthology.org/X98-1025.pdf\n\nLater primary IR work gives stronger benchmark-style evidence that MMR-style diversification can beat non-diversified ranking in some search settings. Zhu et al. (SIGIR 2014) used MMR with a learned relevance function (`MMRlist`) and tuned `λ` by cross-validation on TREC Web Track"
+        }
+      ],
+      "final_answer": "**Supported fact**\n\nMMR trades relevance against novelty with a user-tunable linear score: at each step, it picks the remaining document with high query similarity and low similarity to already selected documents, i.e. relevance is rewarded and redundancy is penalized. This is the core definition in Carbonell and Goldstein’s original paper: https://aclanthology.org/X98-1025.pdf\n\nIn that formulation, `λ = 1` reduces to the standard relevance-ranked list, `λ = 0` reduces to maximal diversity among the retrieved set, and intermediate `λ` values optimize a linear combination of the two criteria. The same paper says smaller `λ` is for “sampling” the information space and larger `λ` is for focusing on overlapping/reinforcing relevant documents; for document retrieval, the authors report a strategy of starting around `λ = 0.3` and then moving to around `λ = 0.7` after query reformulation or relevance feedback: https://aclanthology.org/X98-1025.pdf\n\nThe original paper provides two kinds of direct evidence for diversification. First, in a Reuters reranking example, the authors report that a duplicate article is pushed down, a “novel but still relevant” document moves up, and similar documents are demoted as `λ` decreases, which is exactly the intended relevance/novelty tradeoff: https://aclanthology.org/X98-1025.pdf\n\nSecond, the same paper reports a pilot user study with 5 undergraduate users over 9 search tasks; users compared standard SMART ranking with MMR reranking at `λ = 0.5`, and 4 of 5 chose the MMR method for a final search task. However, the authors also state that the study was too small to yield statistically significant trends for speed or recall: https://aclanthology.org/X98-1025.pdf\n\nLater primary IR work gives stronger benchmark-style evidence that MMR-style diversification can beat non-diversified ranking in some search settings. Zhu et al. (SIGIR 2014) used MMR with a learned relevance function (`MMRlist`) and tuned `λ` by cross-validation on TREC Web Track data; on WT2009, WT2010, and WT2011, `MMRlist` improved over `ListMLE` on ERR-IA, α-NDCG, and NRBP. For example, ERR-IA improved from `0.1913` to `0.2022` on WT2009, from `0.2436` to `0.2735` on WT2010, and from `0.4172` to `0.4284` on WT2011: https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf\n\n**Disagreement / mixed evidence**\n\nPrimary research does not show that MMR is uniformly beneficial. Santos, Macdonald, and Ounis (WWW 2010) evaluated MMR as an implicit diversification baseline on the TREC 2009 Web Track and found cases where MMR hurt the original ranking. For the BM25 baseline, α-NDCG@10 dropped from `0.186` to `0.150` and IA-P@10 dropped from `0.071` to `0.058` after MMR reranking; for DPH, MMR was nearly neutral; for LM, it was only slightly positive on some metrics. In the same study, xQuAD was reported as the only approach that consistently improved all three baseline rankers: https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf\n\nThat same paper also describes MMR as the “canonical” implicit diversification approach and says it selects documents by combining query similarity with dissimilarity to earlier-ranked documents, which confirms that later diversification work treats MMR as a standard baseline even when it is not the best performer: https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf\n\n**Inference**\n\nBased on those primary studies, the safest conclusion is that MMR is a plausible and historically important diversification heuristic, but the empirical support is mixed: the original direct evidence is small and partly qualitative, while larger TREC-style evidence suggests MMR can help relative to pure relevance ranking in some setups but is often outperformed by later explicit diversification methods such as xQuAD or learning-based approaches. This is an inference from https://aclanthology.org/X98-1025.pdf, https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf, and https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf\n\n**Uncertainty / lack of good evidence**\n\nI did not find a strong, primary, large-sample user study showing that plain MMR itself consistently improves real user satisfaction in web search. The original Carbonell-Goldstein study explicitly says its 5-user pilot was too small for statistically significant speed/recall conclusions: https://aclanthology.org/X98-1025.pdf\n\nI also did not find primary evidence that there is one universally best `λ`; the papers treat `λ` as something to tune by task or cross-validation, and the observed gains vary by baseline ranker and dataset: https://aclanthology.org/X98-1025.pdf, https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf, https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf"
+    },
+    {
+      "run_id": "2026-08-27_claude_academic-retrieval-diversity",
+      "provider": "claude",
+      "model": "claude-opus-5[1m]",
+      "queries": [
+        "Carbonell Goldstein 1998 \"maximal marginal relevance\" SIGIR reordering documents reranking",
+        "maximal marginal relevance MMR lambda parameter evaluation evidence diversity retrieval",
+        "Zhai Cohen Lafferty 2003 \"Beyond Independent Relevance\" subtopic retrieval MMR evaluation results",
+        "xQuAD Santos 2010 explicit diversification baseline MMR underperforms comparison TREC diversity",
+        "\"MMR\" Carbonell Goldstein \"linear combination of independently measured\" \"relevance and novelty\" formula lambda \"0.3\" OR \"0.7\" user study SIGIR 98 full text",
+        "Carbonell Goldstein MMR paper own evaluation user study summaries \"TREC\" reranking results preference lambda 0.3 experiments described",
+        "empirical comparison implicit diversification MMR alpha-nDCG TREC Web track diversity task \"little\" OR \"no significant improvement\" over relevance baseline"
+      ],
+      "tool_results": [
+        {
+          "tool": "WebSearch",
+          "summary": "Maximal Marginal Relevance. Maximal Marginal Relevance (MMR) is a… | by Anton Dergunov | Medium: https://medium.com/@adergunov/maximal-marginal-relevance-144c23b42be5"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Less Is More: Maximal Marginal Relevance as a Summarisation Feature | Springer Nature Link: https://link.springer.com/chapter/10.1007/978-3-642-04417-5_37"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Probabilistic latent maximal marginal relevance | Proceedings of the 33rd international ACM SIGIR conference on Research and development in information retrieval: https://dl.acm.org/doi/10.1145/1835449.1835639"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Multi-document Summarization with Maximal Marginal Relevance-guided Reinforcement Learning: https://arxiv.org/pdf/2010.00117"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "SIGIR'98 posters: The Use of MMR, Diversity-Based Reranking ...: https://people.eng.unimelb.edu.au/ammoffat/sigir98/abstracts/carbonell.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Unsupervised Broadcast News Summarization; a comparative study on Maximal Marginal Relevance (MMR) and Latent Semantic Analysis (LSA): https://arxiv.org/pdf/2301.02284"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Probabilistic Latent Maximal Marginal Relevance Shengbo Guo ANU & NICTA: https://ssanner.github.io/papers/anu/sigir10.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Better RAG using Relevant Information Gain: https://arxiv.org/pdf/2407.12101"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Retrieval-Enhanced Named Entity Recognition: https://arxiv.org/pdf/2410.13118"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "AIC CTU system at AVeriTeC: Re-framing automated fact-checking as a simple RAG task: https://arxiv.org/pdf/2410.11446"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Simple Vector Stores - Maximum Marginal Relevance Retrieval | Developer Documentation: https://developers.llamaindex.ai/python/framework/integrations/vector_stores/simpleindexdemommr/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Unsupervised Broadcast News Summarization; a comparative study on Maximal Marginal Relevance (MMR) and Latent Semantic Analysis (LSA): https://arxiv.org/pdf/2301.02284"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Considering Length Diversity in Retrieval-Augmented Summarization: https://arxiv.org/pdf/2503.09249"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "MIRROR: A Multi-Agent Framework with Iterative Adaptive Revision and Hierarchical Retrieval for Optimization Modeling in Operations Research: https://arxiv.org/pdf/2602.03318"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "ARAGOG: Advanced RAG Output Grading: https://arxiv.org/pdf/2404.01037"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Perform Maximal Marginal Relevance search with LangChain on Bigtable | Google Cloud Documentation: https://docs.cloud.google.com/bigtable/docs/mmr-vector-search"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Using Generic Summarization to Improve Music Information Retrieval Tasks: https://arxiv.org/pdf/1503.06666"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Vector search with MMR reranking | OpenSearch Documentation: https://docs.opensearch.org/latest/vector-search/specialized-operations/vector-search-mmr/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Maximal Marginal Relevance. Maximal Marginal Relevance (MMR) is a… | by Anton Dergunov | Medium: https://medium.com/@adergunov/maximal-marginal-relevance-144c23b42be5"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Vector Retrieval with Similarity and Diversity: How Hard Is It?: https://arxiv.org/pdf/2407.04573"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "I appreciate your request, but I need to be direct: the content you've provided appears to be a corrupted or garbled PDF file containing primarily binary data, xref tables, and encoded stream objects rather than readable text.\n\nThe material shows PDF structural elements (object definitions, font descriptors, image filters) but lacks extractable human-readable content about an MMR formula, lambda parameters, diversity arguments, or experimental results.\n\n**To help you effectively, I would need:**"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# MMR (Maximal Marginal Relevance) - SIGIR'98 Overview\n\n## Core Concept\nThe paper by Carbonell and Goldstein introduces MMR, a technique that \"strives to reduce redundancy while maintaining query relevance in re-ranking retrieved documents.\" The approach balances two key objectives: relevance to the user's query and novelty of information.\n\n## Key Applications\nThe authors demonstrate MMR's utility across three domains:\n- Document retrieval reranking\n- Single document summarization\n- Multi-docume"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "dblp: Beyond independent relevance: methods and evaluation metrics for subtopic retrieval.: https://dblp.org/rec/conf/sigir/ZhaiCL03.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Estimating interference in the QPRP for subtopic retrieval | Proceedings of the 33rd international ACM SIGIR conference on Research and development in information retrieval: https://dl.acm.org/doi/10.1145/1835449.1835593"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Beyond Independent Relevance: Methods and Evaluation Metrics for Subtopic Retrieval - Illinois Experts: https://experts.illinois.edu/en/publications/beyond-independent-relevance-methods-and-evaluation-metrics-for-s/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Explicit relevance models in intent-oriented information retrieval diversification | Proceedings of the 35th international ACM SIGIR conference on Research and development in information retrieval: https://dl.acm.org/doi/10.1145/2348283.2348297"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Statistical Language Models for Information Retrieval A Critical Review | Foundations and Trends in Information Retrieval: https://dl.acm.org/doi/abs/10.1561/1500000008"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Beyond independent relevance: methods and evaluation metrics for subtopic retrieval.: https://www.researchgate.net/publication/221301281_Beyond_independent_relevance_methods_and_evaluation_metrics_for_subtopic_retrieval"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Sparse Spatial Selection for Novelty-Based Search Result Diversification | Springer Nature Link: https://link.springer.com/chapter/10.1007/978-3-642-24583-1_34"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "CAViaR: Context Aware Video Recommendations: https://arxiv.org/pdf/2304.08435"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Proceedings of the 26th Annual International ACM SIGIR Conference on Research and Development in Information Retrieval | IxDF: https://ixdf.org/literature/conference/proceedings-of-the-26th-annual-international-acm-sigir-conference-on-research-and-development-in-information-retrieval"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "On the Mathematical Relationship between Expected n-call@k and the   Relevance vs. Diversity Trade-off: https://arxiv.org/pdf/1609.06568"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "(PDF) Explicit Search Result Diversification through Sub-queries: https://www.researchgate.net/publication/221397267_Explicit_Search_Result_Diversification_through_Sub-queries"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "MA4DIV: Multi-Agent Reinforcement Learning for Search Result Diversification: https://arxiv.org/html/2403.17421v2"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "[PDF] Explicit web search result diversification | Semantic Scholar: https://www.semanticscholar.org/paper/Explicit-web-search-result-diversification-Santos/9b9c66bfb4cca231f38de8d6624c8dd674a3554f"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Search results diversification for effective fair ranking in academic search | Discover Computing | Springer Nature Link: https://link.springer.com/article/10.1007/s10791-021-09399-z"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "On the role of novelty for search result diversification | Discover Computing | Springer Nature Link: https://link.springer.com/article/10.1007/s10791-011-9180-x"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Selectively Diversifying Web Search Results Rodrygo L. T. Santos: http://terrierteam.dcs.gla.ac.uk/publications/santos2010cikm.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Adaptive Quality-Diversity Trade-offs for Large-Scale Batch Recommendation: https://arxiv.org/pdf/2602.02024"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Structural Learning of Diverse Ranking: https://arxiv.org/pdf/1504.04596"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Explicit Search Result Diversification through Sub-queries | Springer Nature Link: https://link.springer.com/chapter/10.1007/978-3-642-12275-0_11"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "A Comparative Study of Search Result Diversification Methods: https://www.eecis.udel.edu/~hfang/pubs/ddr11.pdf"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Diversification Methods Comparison Analysis\n\nI apologize, but the provided content appears to be a corrupted or compressed PDF file that cannot be properly parsed. The text shown is primarily binary/encoded data rather than readable content about diversification methods.\n\nTo properly extract information about:\n- **Diversification methods compared** (MMR, xQuAD, PM-2, etc.)\n- **Datasets and metrics used**\n- **Empirical results with numerical data**\n- **MMR performance comparisons**\n- **Authors'"
+        },
+        {
+          "tool": "Web",
+          "summary": "Error: connect ECONNREFUSED 192.17.58.170:443"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "The server returned HTTP 403 Forbidden.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Vector Retrieval with Similarity and Diversity: How Hard Is It?: https://arxiv.org/pdf/2407.04573"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Vector Retrieval with Similarity and Diversity: How Hard Is It?: https://arxiv.org/html/2407.04573"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Semantic Summarization of Egocentric Photo Stream Events: https://arxiv.org/pdf/1511.00438"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Unsupervised Broadcast News Summarization; a comparative study on   Maximal Marginal Relevance (MMR) and Latent Semantic Analysis (LSA): https://arxiv.org/pdf/2301.02284"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "CoverageBench: Evaluating Information Coverage across Tasks and Domains: https://arxiv.org/pdf/2603.20034"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Maximal Marginal Relevance. Maximal Marginal Relevance (MMR) is a… | by Anton Dergunov | Medium: https://medium.com/@adergunov/maximal-marginal-relevance-144c23b42be5"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "SUMMARIZATION: (1) USING MMR FOR DIVERSITY- BASED: https://aclanthology.org/X98-1025.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Multi-document Summarization with Maximal Marginal Relevance-guided   Reinforcement Learning: https://arxiv.org/pdf/2010.00117"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "SIGIR'98 posters: The Use of MMR, Diversity-Based Reranking ...: https://people.eng.unimelb.edu.au/ammoffat/sigir98/abstracts/carbonell.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Web-scale entity summarization: https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8229960"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "REDIRECT DETECTED: The URL redirects to a location that was not fetched automatically.\n\nOriginal URL: https://www.cs.cmu.edu/~lafferty/pub/subtopic.pdf\nRedirect URL (from the server's Location header — server-supplied, not verified): http://www.stat.uchicago.edu/~lafferty/\nStatus: 302 Found\n\nTo complete your request, I need to fetch content from the redirected URL. Please use WebFetch again with these parameters:\n- url: \"http://www.stat.uchicago.edu/~lafferty/\"\n- prompt: \"Extract: description of"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# MMR (Maximal Marginal Relevance) Extraction\n\nI cannot extract the requested information from the provided content. The document appears to be a PDF with heavy compression and image encoding (CCITTFaxDecode compression, binary image streams). The text layer contains garbled binary data and PDF structural metadata rather than readable article content.\n\nTo properly extract:\n- MMR mathematical definition/formula\n- Lambda (λ) explanation with recommended values\n- Novelty/anti-redundancy motivation\n"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "REDIRECT DETECTED: The URL redirects to a location that was not fetched automatically.\n\nOriginal URL: https://link.springer.com/article/10.1007/s10791-011-9180-x\nRedirect URL (from the server's Location header — server-supplied, not verified): https://idp.springer.com/authorize?response_type=cookie&client_id=springerlink&redirect_uri=https%3A%2F%2Flink.springer.com%2Farticle%2F10.1007%2Fs10791-011-9180-x\nStatus: 303 See Other\n\nTo complete your request, I need to fetch content from the redirected"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Vector Retrieval with Similarity and Diversity: Hardness and Approach\n\n## MMR Objective and Lambda's Role\n\nThe paper states the MMR formula as:\n\n> \"MMR=arg⁡maxdi∈R∖S​[λ⋅Sim₁(di,q)−(1−λ)⋅maxdj∈S⁡Sim₂(di,dj)]\"\n\nRegarding lambda's critical limitation, the authors note:\n\n> \"the optimal varies across scenarios and cannot be known a priori\"\n\nThey emphasize that \"selecting an appropriate λ to achieve the desired balance between relevance and diversity...is less predictable\" in high-dimensional spaces"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "On the role of novelty for search result diversification | Discover Computing | Springer Nature Link: https://link.springer.com/article/10.1007/s10791-011-9180-x"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The top-k retrieval performances measured by ERR-IA, α-nDCG and... | Download Table: https://www.researchgate.net/figure/The-top-k-retrieval-performances-measured-by-ERR-IA-a-nDCG-and-s-recall-on-the-TREC_tbl1_234719680"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Mining subtopics from different aspects for diversifying search results | Discover Computing | Springer Nature Link: https://link.springer.com/article/10.1007/s10791-012-9215-y"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Diversification and Fairness in Search: Two Sides of the Same Coin? | ACM Transactions on Information Systems: https://doi.org/10.1145/3774320"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Combining Implicit and Explicit Topic Representations for Result Diversiﬁcation: https://dl.acm.org/doi/pdf/10.1145/2348283.2348397"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Efficient Diversification of Web Search Results: https://arxiv.org/pdf/1105.4255"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "A Meta-Evaluation of Evaluation Methods for Diversified Search | Springer Nature Link: https://link.springer.com/chapter/10.1007/978-3-319-76941-7_43"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "(PDF) The use of mmr and diversity-based reranking in document reranking and summarization: https://www.researchgate.net/publication/243774776_The_use_of_mmr_and_diversity-based_reranking_in_document_reranking_and_summarization"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "CoverageBench: Evaluating Information Coverage across Tasks and Domains: https://arxiv.org/pdf/2603.20034"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Summarization: (1) Using MMR for Diversity- Based Reranking and (2) Evaluating Summaries - ACL Anthology: https://aclanthology.org/X98-1025/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "SUMMARIZATION: (1) USING MMR FOR DIVERSITY- BASED: https://aclanthology.org/X98-1025.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "On Search Engine Evaluation Metrics: https://arxiv.org/pdf/1302.2318"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "(PDF) The Use of MMR, Diversity-Based Reranking for Reordering Documents and Producing Summaries: https://www.researchgate.net/publication/2269571_The_Use_of_MMR_Diversity-Based_Reranking_for_Reordering_Documents_and_Producing_Summaries"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The Use of MMR, Diversity-Based Reranking for Reordering Documents and Producing Summaries - Carbonell, Goldstein (ResearchIndex): http://people.csail.mit.edu/gremio/Grembrary/question-answering/carbonell98use.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Centroid-based summarization of multiple documents: sentence extraction,   utility-based evaluation, and user studies: https://arxiv.org/pdf/cs/0005020"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The Use of MMR and Diversity-Based Reranking in Document Reranking and Summarization | Semantic Scholar: https://www.semanticscholar.org/paper/The-Use-of-MMR-and-Diversity-Based-Reranking-in-and-Carbonell-Goldstein/fb27d922754a8bfb8dee582f0231f55174fd50e3"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Dimensionality on Summarization: https://arxiv.org/pdf/1507.00209"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "The server returned HTTP 500 Internal Server Error.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Paper Information\n\n**Title:** \"Summarization: (1) Using MMR for Diversity- Based Reranking and (2) Evaluating Summaries\"\n\n**Authors:** Jade Goldstein and Jaime Carbonell\n\n**Venue/Year:** TIPSTER TEXT PROGRAM PHASE III Workshop, October 1998 (Baltimore, Maryland)\n\n**Abstract:** The webpage provided does not include the full abstract text for this paper. The page contains metadata, citation information, and export options, but the actual abstract content is not displayed in the content you share"
+        }
+      ],
+      "opened_urls": [
+        "https://www.cs.cmu.edu/~jgc/publication/The_Use_MMR_Diversity_Based_LTMIR_1998.pdf",
+        "https://people.eng.unimelb.edu.au/ammoffat/sigir98/abstracts/carbonell.html",
+        "http://sifaka.cs.uiuc.edu/czhai/pub/sigir03-subtopic.pdf",
+        "https://www.eecis.udel.edu/~hfang/pubs/ddr11.pdf",
+        "https://dl.acm.org/doi/10.1145/290941.291025",
+        "https://aclanthology.org/X98-1025.pdf",
+        "https://www.cs.cmu.edu/~lafferty/pub/subtopic.pdf",
+        "https://arxiv.org/html/2407.04573",
+        "https://link.springer.com/article/10.1007/s10791-011-9180-x",
+        "https://aclanthology.org/X98-1025/",
+        "http://people.csail.mit.edu/gremio/Grembrary/question-answering/carbonell98use.html"
+      ],
+      "cited_urls": [
+        "https://people.eng.unimelb.edu.au/ammoffat/sigir98/abstracts/carbonell.html",
+        "https://aclanthology.org/X98-1025/",
+        "https://arxiv.org/html/2407.04573",
+        "https://www.researchgate.net/publication/243774776_The_use_of_mmr_and_diversity-based_reranking_in_document_reranking_and_summarization",
+        "https://dblp.org/rec/conf/sigir/ZhaiCL03.html",
+        "https://experts.illinois.edu/en/publications/beyond-independent-relevance-methods-and-evaluation-metrics-for-s/",
+        "https://link.springer.com/article/10.1007/s10791-011-9180-x",
+        "https://www.semanticscholar.org/paper/9b9c66bfb4cca231f38de8d6624c8dd674a3554f",
+        "https://www.eecis.udel.edu/~hfang/pubs/ddr11.pdf",
+        "https://doi.org/10.1145/3774320",
+        "https://docs.opensearch.org/latest/vector-search/specialized-operations/vector-search-mmr/",
+        "https://docs.cloud.google.com/bigtable/docs/mmr-vector-search"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://medium.com/@adergunov/maximal-marginal-relevance-144c23b42be5",
+          "title": "Maximal Marginal Relevance. Maximal Marginal Relevance (MMR) is a… | by Anton Dergunov | Medium"
+        },
+        {
+          "url": "https://link.springer.com/chapter/10.1007/978-3-642-04417-5_37",
+          "title": "Less Is More: Maximal Marginal Relevance as a Summarisation Feature | Springer Nature Link"
+        },
+        {
+          "url": "https://dl.acm.org/doi/10.1145/1835449.1835639",
+          "title": "Probabilistic latent maximal marginal relevance | Proceedings of the 33rd international ACM SIGIR conference on Research and development in information retrieval"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2010.00117",
+          "title": "Multi-document Summarization with Maximal Marginal Relevance-guided   Reinforcement Learning"
+        },
+        {
+          "url": "https://people.eng.unimelb.edu.au/ammoffat/sigir98/abstracts/carbonell.html",
+          "title": "SIGIR'98 posters: The Use of MMR, Diversity-Based Reranking ..."
+        },
+        {
+          "url": "https://arxiv.org/pdf/2301.02284",
+          "title": "Unsupervised Broadcast News Summarization; a comparative study on   Maximal Marginal Relevance (MMR) and Latent Semantic Analysis (LSA)"
+        },
+        {
+          "url": "https://ssanner.github.io/papers/anu/sigir10.pdf",
+          "title": "Probabilistic Latent Maximal Marginal Relevance Shengbo Guo ANU & NICTA"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2407.12101",
+          "title": "Better RAG using Relevant Information Gain"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2410.13118",
+          "title": "Retrieval-Enhanced Named Entity Recognition"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2410.11446",
+          "title": "AIC CTU system at AVeriTeC: Re-framing automated fact-checking as a simple RAG task"
+        },
+        {
+          "url": "https://developers.llamaindex.ai/python/framework/integrations/vector_stores/simpleindexdemommr/",
+          "title": "Simple Vector Stores - Maximum Marginal Relevance Retrieval | Developer Documentation"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2503.09249",
+          "title": "Considering Length Diversity in Retrieval-Augmented Summarization"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2602.03318",
+          "title": "MIRROR: A Multi-Agent Framework with Iterative Adaptive Revision and Hierarchical Retrieval for Optimization Modeling in Operations Research"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2404.01037",
+          "title": "ARAGOG: Advanced RAG Output Grading"
+        },
+        {
+          "url": "https://docs.cloud.google.com/bigtable/docs/mmr-vector-search",
+          "title": "Perform Maximal Marginal Relevance search with LangChain on Bigtable | Google Cloud Documentation"
+        },
+        {
+          "url": "https://arxiv.org/pdf/1503.06666",
+          "title": "Using Generic Summarization to Improve Music Information Retrieval Tasks"
+        },
+        {
+          "url": "https://docs.opensearch.org/latest/vector-search/specialized-operations/vector-search-mmr/",
+          "title": "Vector search with MMR reranking | OpenSearch Documentation"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2407.04573",
+          "title": "Vector Retrieval with Similarity and Diversity: How Hard Is It?"
+        },
+        {
+          "url": "https://www.cs.cmu.edu/~jgc/publication/The_Use_MMR_Diversity_Based_LTMIR_1998.pdf",
+          "title": "https://www.cs.cmu.edu/~jgc/publication/The_Use_MMR_Diversity_Based_LTMIR_1998.pdf"
+        },
+        {
+          "url": "https://dblp.org/rec/conf/sigir/ZhaiCL03.html",
+          "title": "dblp: Beyond independent relevance: methods and evaluation metrics for subtopic retrieval."
+        },
+        {
+          "url": "https://dl.acm.org/doi/10.1145/1835449.1835593",
+          "title": "Estimating interference in the QPRP for subtopic retrieval | Proceedings of the 33rd international ACM SIGIR conference on Research and development in information retrieval"
+        },
+        {
+          "url": "https://experts.illinois.edu/en/publications/beyond-independent-relevance-methods-and-evaluation-metrics-for-s/",
+          "title": "Beyond Independent Relevance: Methods and Evaluation Metrics for Subtopic Retrieval - Illinois Experts"
+        },
+        {
+          "url": "https://dl.acm.org/doi/10.1145/2348283.2348297",
+          "title": "Explicit relevance models in intent-oriented information retrieval diversification | Proceedings of the 35th international ACM SIGIR conference on Research and development in information retrieval"
+        },
+        {
+          "url": "https://dl.acm.org/doi/abs/10.1561/1500000008",
+          "title": "Statistical Language Models for Information Retrieval A Critical Review | Foundations and Trends in Information Retrieval"
+        },
+        {
+          "url": "https://www.researchgate.net/publication/221301281_Beyond_independent_relevance_methods_and_evaluation_metrics_for_subtopic_retrieval",
+          "title": "Beyond independent relevance: methods and evaluation metrics for subtopic retrieval."
+        },
+        {
+          "url": "https://link.springer.com/chapter/10.1007/978-3-642-24583-1_34",
+          "title": "Sparse Spatial Selection for Novelty-Based Search Result Diversification | Springer Nature Link"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2304.08435",
+          "title": "CAViaR: Context Aware Video Recommendations"
+        },
+        {
+          "url": "https://ixdf.org/literature/conference/proceedings-of-the-26th-annual-international-acm-sigir-conference-on-research-and-development-in-information-retrieval",
+          "title": "Proceedings of the 26th Annual International ACM SIGIR Conference on Research and Development in Information Retrieval | IxDF"
+        },
+        {
+          "url": "https://arxiv.org/pdf/1609.06568",
+          "title": "On the Mathematical Relationship between Expected n-call@k and the   Relevance vs. Diversity Trade-off"
+        },
+        {
+          "url": "https://www.researchgate.net/publication/221397267_Explicit_Search_Result_Diversification_through_Sub-queries",
+          "title": "(PDF) Explicit Search Result Diversification through Sub-queries"
+        },
+        {
+          "url": "https://arxiv.org/html/2403.17421v2",
+          "title": "MA4DIV: Multi-Agent Reinforcement Learning for Search Result Diversification"
+        },
+        {
+          "url": "https://www.semanticscholar.org/paper/Explicit-web-search-result-diversification-Santos/9b9c66bfb4cca231f38de8d6624c8dd674a3554f",
+          "title": "[PDF] Explicit web search result diversification | Semantic Scholar"
+        },
+        {
+          "url": "https://link.springer.com/article/10.1007/s10791-021-09399-z",
+          "title": "Search results diversification for effective fair ranking in academic search | Discover Computing | Springer Nature Link"
+        },
+        {
+          "url": "https://link.springer.com/article/10.1007/s10791-011-9180-x",
+          "title": "On the role of novelty for search result diversification | Discover Computing | Springer Nature Link"
+        },
+        {
+          "url": "http://terrierteam.dcs.gla.ac.uk/publications/santos2010cikm.pdf",
+          "title": "Selectively Diversifying Web Search Results Rodrygo L. T. Santos"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2602.02024",
+          "title": "Adaptive Quality-Diversity Trade-offs for Large-Scale Batch Recommendation"
+        },
+        {
+          "url": "https://arxiv.org/pdf/1504.04596",
+          "title": "Structural Learning of Diverse Ranking"
+        },
+        {
+          "url": "https://link.springer.com/chapter/10.1007/978-3-642-12275-0_11",
+          "title": "Explicit Search Result Diversification through Sub-queries | Springer Nature Link"
+        },
+        {
+          "url": "https://www.eecis.udel.edu/~hfang/pubs/ddr11.pdf",
+          "title": "https://www.eecis.udel.edu/~hfang/pubs/ddr11.pdf"
+        },
+        {
+          "url": "https://dl.acm.org/doi/10.1145/290941.291025",
+          "title": "https://dl.acm.org/doi/10.1145/290941.291025"
+        },
+        {
+          "url": "https://arxiv.org/html/2407.04573",
+          "title": "https://arxiv.org/html/2407.04573"
+        },
+        {
+          "url": "https://arxiv.org/pdf/1511.00438",
+          "title": "Semantic Summarization of Egocentric Photo Stream Events"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2603.20034",
+          "title": "CoverageBench: Evaluating Information Coverage across Tasks and Domains"
+        },
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "title": "SUMMARIZATION: (1) USING MMR FOR DIVERSITY- BASED"
+        },
+        {
+          "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8229960",
+          "title": "Web-scale entity summarization"
+        },
+        {
+          "url": "https://www.cs.cmu.edu/~lafferty/pub/subtopic.pdf",
+          "title": "https://www.cs.cmu.edu/~lafferty/pub/subtopic.pdf"
+        },
+        {
+          "url": "https://www.researchgate.net/figure/The-top-k-retrieval-performances-measured-by-ERR-IA-a-nDCG-and-s-recall-on-the-TREC_tbl1_234719680",
+          "title": "The top-k retrieval performances measured by ERR-IA, α-nDCG and... | Download Table"
+        },
+        {
+          "url": "https://link.springer.com/article/10.1007/s10791-012-9215-y",
+          "title": "Mining subtopics from different aspects for diversifying search results | Discover Computing | Springer Nature Link"
+        },
+        {
+          "url": "https://doi.org/10.1145/3774320",
+          "title": "Diversification and Fairness in Search: Two Sides of the Same Coin? | ACM Transactions on Information Systems"
+        },
+        {
+          "url": "https://dl.acm.org/doi/pdf/10.1145/2348283.2348397",
+          "title": "Combining Implicit and Explicit Topic Representations for Result Diversiﬁcation"
+        },
+        {
+          "url": "https://arxiv.org/pdf/1105.4255",
+          "title": "Efficient Diversification of Web Search Results"
+        },
+        {
+          "url": "https://link.springer.com/chapter/10.1007/978-3-319-76941-7_43",
+          "title": "A Meta-Evaluation of Evaluation Methods for Diversified Search | Springer Nature Link"
+        },
+        {
+          "url": "https://www.researchgate.net/publication/243774776_The_use_of_mmr_and_diversity-based_reranking_in_document_reranking_and_summarization",
+          "title": "(PDF) The use of mmr and diversity-based reranking in document reranking and summarization"
+        },
+        {
+          "url": "https://aclanthology.org/X98-1025/",
+          "title": "https://aclanthology.org/X98-1025/"
+        },
+        {
+          "url": "https://arxiv.org/pdf/1302.2318",
+          "title": "On Search Engine Evaluation Metrics"
+        },
+        {
+          "url": "https://www.researchgate.net/publication/2269571_The_Use_of_MMR_Diversity-Based_Reranking_for_Reordering_Documents_and_Producing_Summaries",
+          "title": "(PDF) The Use of MMR, Diversity-Based Reranking for Reordering Documents and Producing Summaries"
+        },
+        {
+          "url": "http://people.csail.mit.edu/gremio/Grembrary/question-answering/carbonell98use.html",
+          "title": "http://people.csail.mit.edu/gremio/Grembrary/question-answering/carbonell98use.html"
+        },
+        {
+          "url": "https://arxiv.org/pdf/cs/0005020",
+          "title": "Centroid-based summarization of multiple documents: sentence extraction,   utility-based evaluation, and user studies"
+        },
+        {
+          "url": "https://www.semanticscholar.org/paper/The-Use-of-MMR-and-Diversity-Based-Reranking-in-and-Carbonell-Goldstein/fb27d922754a8bfb8dee582f0231f55174fd50e3",
+          "title": "The Use of MMR and Diversity-Based Reranking in Document Reranking and Summarization | Semantic Scholar"
+        },
+        {
+          "url": "https://arxiv.org/pdf/1507.00209",
+          "title": "Dimensionality on Summarization"
+        },
+        {
+          "url": "https://www.semanticscholar.org/paper/9b9c66bfb4cca231f38de8d6624c8dd674a3554f",
+          "title": "https://www.semanticscholar.org/paper/9b9c66bfb4cca231f38de8d6624c8dd674a3554f"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://medium.com/@adergunov/maximal-marginal-relevance-144c23b42be5",
+          "text": "Maximal Marginal Relevance. Maximal Marginal Relevance (MMR) is a… | by Anton Dergunov | Medium"
+        },
+        {
+          "url": "https://link.springer.com/chapter/10.1007/978-3-642-04417-5_37",
+          "text": "Less Is More: Maximal Marginal Relevance as a Summarisation Feature | Springer Nature Link"
+        },
+        {
+          "url": "https://dl.acm.org/doi/10.1145/1835449.1835639",
+          "text": "Probabilistic latent maximal marginal relevance | Proceedings of the 33rd international ACM SIGIR conference on Research and development in information retrieval"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2010.00117",
+          "text": "Multi-document Summarization with Maximal Marginal Relevance-guided Reinforcement Learning"
+        },
+        {
+          "url": "https://people.eng.unimelb.edu.au/ammoffat/sigir98/abstracts/carbonell.html",
+          "text": "SIGIR'98 posters: The Use of MMR, Diversity-Based Reranking ..."
+        },
+        {
+          "url": "https://arxiv.org/pdf/2301.02284",
+          "text": "Unsupervised Broadcast News Summarization; a comparative study on Maximal Marginal Relevance (MMR) and Latent Semantic Analysis (LSA)"
+        },
+        {
+          "url": "https://ssanner.github.io/papers/anu/sigir10.pdf",
+          "text": "Probabilistic Latent Maximal Marginal Relevance Shengbo Guo ANU & NICTA"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2407.12101",
+          "text": "Better RAG using Relevant Information Gain"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2410.13118",
+          "text": "Retrieval-Enhanced Named Entity Recognition"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2410.11446",
+          "text": "AIC CTU system at AVeriTeC: Re-framing automated fact-checking as a simple RAG task"
+        },
+        {
+          "url": "https://developers.llamaindex.ai/python/framework/integrations/vector_stores/simpleindexdemommr/",
+          "text": "Simple Vector Stores - Maximum Marginal Relevance Retrieval | Developer Documentation"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2503.09249",
+          "text": "Considering Length Diversity in Retrieval-Augmented Summarization"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2602.03318",
+          "text": "MIRROR: A Multi-Agent Framework with Iterative Adaptive Revision and Hierarchical Retrieval for Optimization Modeling in Operations Research"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2404.01037",
+          "text": "ARAGOG: Advanced RAG Output Grading"
+        },
+        {
+          "url": "https://docs.cloud.google.com/bigtable/docs/mmr-vector-search",
+          "text": "Perform Maximal Marginal Relevance search with LangChain on Bigtable | Google Cloud Documentation"
+        },
+        {
+          "url": "https://arxiv.org/pdf/1503.06666",
+          "text": "Using Generic Summarization to Improve Music Information Retrieval Tasks"
+        },
+        {
+          "url": "https://docs.opensearch.org/latest/vector-search/specialized-operations/vector-search-mmr/",
+          "text": "Vector search with MMR reranking | OpenSearch Documentation"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2407.04573",
+          "text": "Vector Retrieval with Similarity and Diversity: How Hard Is It?"
+        },
+        {
+          "url": "https://www.cs.cmu.edu/~jgc/publication/The_Use_MMR_Diversity_Based_LTMIR_1998.pdf",
+          "text": "I appreciate your request, but I need to be direct: the content you've provided appears to be a corrupted or garbled PDF file containing primarily binary data, xref tables, and encoded stream objects rather than readable text.\n\nThe material shows PDF structural elements (object definitions, font descriptors, image filters) but lacks extractable human-readable content about an MMR formula, lambda parameters, diversity arguments, or experimental results.\n\n**To help you effectively, I would need:**\n\n1. A properly decoded PDF or text version of the document\n2. The original paper title and authors\n3. A clearer source format (HTML, plain text, or properly rendered PDF)\n\nIf you're looking for information about **Maximal Marginal Relevance (MMR)**, this is typically associated with Jaime Carbonell's work on diversity in information retrieval. However, I cannot extract specific formulas, lambda values, or experimental details from the corrupted file you've shared.\n\nCould you provide the document in a readable format?\n\n[Binary content (application/pdf, 274.4KB) also saved to [REDACTED_PATH]"
+        },
+        {
+          "url": "https://people.eng.unimelb.edu.au/ammoffat/sigir98/abstracts/carbonell.html",
+          "text": "# MMR (Maximal Marginal Relevance) - SIGIR'98 Overview\n\n## Core Concept\nThe paper by Carbonell and Goldstein introduces MMR, a technique that \"strives to reduce redundancy while maintaining query relevance in re-ranking retrieved documents.\" The approach balances two key objectives: relevance to the user's query and novelty of information.\n\n## Key Applications\nThe authors demonstrate MMR's utility across three domains:\n- Document retrieval reranking\n- Single document summarization\n- Multi-document summarization (showing the strongest results)\n\n## Evaluation Results\nThe abstract notes that preliminary findings show benefits for MMR in document retrieval and single-document tasks, with results validated by the SUMMAC conference evaluation. However, the most significant advantage emerges in non-redundant multi-document summarization, where \"MMR results are clearly superior to non-MMR passage selection.\"\n\n## Notable Limitation\nThe provided abstract does not include the specific mathematical formula, lambda parameter values, or detailed quantitative evaluation metrics—only qualitative claims about comparative performance.\n\n**Conference Details:** SIGIR'98, Melbourne, Australia (August 24-28, 1998)"
+        },
+        {
+          "url": "https://dblp.org/rec/conf/sigir/ZhaiCL03.html",
+          "text": "dblp: Beyond independent relevance: methods and evaluation metrics for subtopic retrieval."
+        },
+        {
+          "url": "https://dl.acm.org/doi/10.1145/1835449.1835593",
+          "text": "Estimating interference in the QPRP for subtopic retrieval | Proceedings of the 33rd international ACM SIGIR conference on Research and development in information retrieval"
+        },
+        {
+          "url": "https://experts.illinois.edu/en/publications/beyond-independent-relevance-methods-and-evaluation-metrics-for-s/",
+          "text": "Beyond Independent Relevance: Methods and Evaluation Metrics for Subtopic Retrieval - Illinois Experts"
+        },
+        {
+          "url": "https://dl.acm.org/doi/10.1145/2348283.2348297",
+          "text": "Explicit relevance models in intent-oriented information retrieval diversification | Proceedings of the 35th international ACM SIGIR conference on Research and development in information retrieval"
+        },
+        {
+          "url": "https://dl.acm.org/doi/abs/10.1561/1500000008",
+          "text": "Statistical Language Models for Information Retrieval A Critical Review | Foundations and Trends in Information Retrieval"
+        },
+        {
+          "url": "https://www.researchgate.net/publication/221301281_Beyond_independent_relevance_methods_and_evaluation_metrics_for_subtopic_retrieval",
+          "text": "Beyond independent relevance: methods and evaluation metrics for subtopic retrieval."
+        },
+        {
+          "url": "https://link.springer.com/chapter/10.1007/978-3-642-24583-1_34",
+          "text": "Sparse Spatial Selection for Novelty-Based Search Result Diversification | Springer Nature Link"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2304.08435",
+          "text": "CAViaR: Context Aware Video Recommendations"
+        },
+        {
+          "url": "https://ixdf.org/literature/conference/proceedings-of-the-26th-annual-international-acm-sigir-conference-on-research-and-development-in-information-retrieval",
+          "text": "Proceedings of the 26th Annual International ACM SIGIR Conference on Research and Development in Information Retrieval | IxDF"
+        },
+        {
+          "url": "https://arxiv.org/pdf/1609.06568",
+          "text": "On the Mathematical Relationship between Expected n-call@k and the   Relevance vs. Diversity Trade-off"
+        }
+      ],
+      "final_answer": "## Short answer\n\nMMR replaces \"rank each document by its relevance to the query\" with \"rank each document by its *marginal* relevance — relevance minus redundancy with what has already been shown,\" using a single tunable knob λ. The formulation is well established and widely adopted; the *empirical* evidence that this particular similarity-based (implicit) form of diversification improves retrieval effectiveness is much weaker than its popularity suggests, and later TREC-based evaluations find it gives at best marginal, non-significant gains over a plain relevance baseline.\n\n---\n\n## 1. The mechanism (supported)\n\nMMR was introduced by Jaime Carbonell and Jade Goldstein at SIGIR '98, \"The use of MMR, diversity-based reranking for reordering documents and producing summaries,\" which \"strives to reduce redundancy while maintaining query relevance in re-ranking retrieved documents and in selecting appropriate passages for text summarization\" ([SIGIR'98 abstract](https://people.eng.unimelb.edu.au/ammoffat/sigir98/abstracts/carbonell.html)). A companion primary write-up appeared as Goldstein & Carbonell, TIPSTER Phase III Workshop, 1998 ([ACL Anthology X98-1025](https://aclanthology.org/X98-1025/)).\n\nThe criterion is a **linear combination of independently measured relevance and novelty**, applied greedily:\n\n> MMR = argmax over dᵢ ∈ R\\S of [ λ · Sim₁(dᵢ, q) − (1 − λ) · max over dⱼ ∈ S of Sim₂(dᵢ, dⱼ) ]\n\nwhere R is the candidate set, S the already-selected documents, q the query ([arXiv:2407.04573, HTML](https://arxiv.org/html/2407.04573)). λ ∈ [0,1] is the weighting factor: at λ = 1 MMR reduces to a standard relevance-ranked list; at λ = 0 it maximizes diversity among selected items ([arXiv:2407.04573](https://arxiv.org/html/2407.04573)).\n\nThree properties follow directly from that formula (**inference**, not quoted claims):\n\n- The novelty term uses **max** similarity to the selected set, not a sum or average. So MMR penalizes a document for being close to its *nearest* already-selected neighbor. It suppresses near-duplicates sharply but is comparatively insensitive to a result set that is broadly homogeneous without containing any close pair.\n- Diversity is defined **relative to the result list**, not to query aspects or user intents. MMR has no model of *what* subtopics exist or how likely each is — a point later work makes explicit as the weakness of \"implicit\" diversification (see §3).\n- The greedy, one-at-a-time construction means the output is an approximation to the set-level objective, not its optimum.\n\n**Uncertain:** λ values recommended in the original text (a figure like \"λ ≈ 0.3 for exploratory search, higher for focused search\" circulates widely). I could not verify recommended values against the primary paper in this session — the CMU PDF of the SIGIR paper and the ACL Anthology PDF are both scanned image files with no extractable text layer, and the ACM Digital Library page returns 403. Treat any specific λ recommendation attributed to Carbonell & Goldstein as unverified here.\n\n## 2. Evidence in the original paper (supported, but weak by modern standards)\n\nThe authors' own reported evidence was, in their words, preliminary and mostly qualitative:\n\n- For **document reranking and single-document summarization**, \"preliminary results indicate the benefits of MMR,\" with single-document results \"borne out by\" the SUMMAC-style summarization evaluation ([SIGIR'98 abstract](https://people.eng.unimelb.edu.au/ammoffat/sigir98/abstracts/carbonell.html)).\n- The **clearest** benefit claimed is for non-redundant **multi-document summarization**, where \"MMR results are clearly superior to non-MMR passage selection\" ([SIGIR'98 abstract](https://people.eng.unimelb.edu.au/ammoffat/sigir98/abstracts/carbonell.html)).\n- The retrieval evidence includes a **blind user preference study**: users were asked to find information from documents, told only that \"method R\" or \"method S\" had been used, and a majority preferred the MMR ordering as giving the broadest/most interesting topics (reported via [search-indexed summaries of the paper](https://www.researchgate.net/publication/243774776_The_use_of_mmr_and_diversity-based_reranking_in_document_reranking_and_summarization); I could not read the primary text directly, so the study's size and statistical treatment are unknown to me).\n\n**Assessment (inference):** the strongest evidence in the founding paper is for *summarization*, not for search-result diversification. The retrieval evidence is a small preference study plus an unofficial trial-run evaluation — suggestive, not decisive.\n\n## 3. Later evidence — and this is where it gets less favorable\n\n**Framing and metrics.** Zhai, Cohen & Lafferty (SIGIR 2003) formalized *subtopic retrieval* — finding documents covering many subtopics of a topic — noting that here \"the utility of a document in a ranking is dependent on other documents in the ranking, violating the assumption of independent relevance.\" They gave a probabilistic extension of MMR and introduced subtopic-recall-style metrics ([dblp record](https://dblp.org/rec/conf/sigir/ZhaiCL03.html); [Illinois Experts record](https://experts.illinois.edu/en/publications/beyond-independent-relevance-methods-and-evaluation-metrics-for-s/)). This is the paper that made MMR-style diversity *measurable*; I was unable to retrieve its full text (the UIUC host refused connection and the CMU mirror redirects), so I am not reporting its specific numbers.\n\n**Head-to-head evaluation on TREC.** The most directly relevant negative evidence: on the TREC Web track diversity topics, MMR and MVA (novelty-based, implicit methods) show \"at best marginal yet not significant improvements over the non-diversified ranking produced by DPH, even under training,\" with the largest observed improvement being **+3% (MVA's α-nDCG on the WT09 topics)** — results the authors say \"corroborate observations regarding the lack of empirical validation of novelty-based approaches for diversifying Web search results\" ([Santos, Macdonald & Ounis, *On the role of novelty for search result diversification*, Information Retrieval Journal](https://link.springer.com/article/10.1007/s10791-011-9180-x)). Note the source of this quotation is one of the xQuAD authors, i.e. a party with a stake in the comparison; the finding is nonetheless a controlled comparison on shared TREC data.\n\n**Implicit vs. explicit.** Multiple comparative evaluations report that explicit, aspect-aware methods (xQuAD, PM-2) outperform MMR on all diversity measures, with MMR \"least effective due to its simple predefined 'marginal relevance', which tries to capture novelty only based on inter-document similarity\"; xQuAD instances took top performance in the TREC 2009 and 2010 Web track diversity tasks ([Santos et al., *Explicit web search result diversification*, Semantic Scholar](https://www.semanticscholar.org/paper/9b9c66bfb4cca231f38de8d6624c8dd674a3554f); [comparative study, U. Delaware](https://www.eecis.udel.edu/~hfang/pubs/ddr11.pdf)). A recent TOIS study likewise reports MMR yielding only marginal improvements over the retrieval baseline while xQuAD is significantly better on α#-nDCG at all depths ([*Diversification and Fairness in Search*, ACM TOIS](https://doi.org/10.1145/3774320)). **Caveat on access:** the Delaware PDF would not parse and the TOIS/Springer pages are gated; I am relying on indexed summaries for these two, so treat the exact wording as second-hand while the direction of the finding is consistent across all three sources.\n\n**Computational side.** Jointly optimizing similarity and diversity is genuinely hard: the decision problem of vector retrieval under this objective is proved **NP-complete** (by reduction from k-subset-sum), and the authors note that the optimal λ \"varies across scenarios and cannot be known a priori\" ([arXiv:2407.04573](https://arxiv.org/html/2407.04573)). This supports the practical complaint that MMR's benefit is λ-dependent and its greedy solution is a heuristic.\n\n## 4. What is disputed, and what is simply not well evidenced\n\n- **Not disputed:** the formulation itself, the meaning of λ, and MMR's usefulness as a *redundancy filter* — e.g. in multi-document summarization, where the original paper's evidence was strongest ([SIGIR'98](https://people.eng.unimelb.edu.au/ammoffat/sigir98/abstracts/carbonell.html)), and in modern RAG/vector-store pipelines where it is a standard option ([OpenSearch docs](https://docs.opensearch.org/latest/vector-search/specialized-operations/vector-search-mmr/), [Google Cloud Bigtable docs](https://docs.cloud.google.com/bigtable/docs/mmr-vector-search)). Those product docs establish adoption, not effectiveness.\n- **Disputed / weakly supported:** that MMR improves *search result* quality on intent-diversity benchmarks. The TREC-based evidence points to marginal, statistically non-significant gains ([IRJ](https://link.springer.com/article/10.1007/s10791-011-9180-x)).\n- **Genuine gap:** I found no primary study establishing a principled, transferable way to set λ; the literature I could reach explicitly says the optimum is scenario-dependent and unknowable in advance ([arXiv:2407.04573](https://arxiv.org/html/2407.04573)).\n- **My own access limits:** the two most important primary texts (Carbonell & Goldstein 1998; Zhai et al. 2003) were not readable through my tools — scanned PDFs, a 403, a refused connection, and paywall redirects. Everything I attribute to them above comes from the SIGIR poster abstract, the ACL Anthology metadata, bibliographic records, or clearly-labeled indexed summaries. A definitive account of their internal numbers requires the actual PDFs.\n\n**Bottom line (inference):** MMR is best understood as a *redundancy-removal* heuristic with a clean, cheap, interpretable knob — strong evidence for de-duplication and summarization, thin evidence as a search-diversification method compared to approaches that model query aspects explicitly.\n\nSources:\n- https://people.eng.unimelb.edu.au/ammoffat/sigir98/abstracts/carbonell.html\n- https://aclanthology.org/X98-1025/\n- https://arxiv.org/html/2407.04573\n- https://link.springer.com/article/10.1007/s10791-011-9180-x\n- https://dblp.org/rec/conf/sigir/ZhaiCL03.html\n- https://experts.illinois.edu/en/publications/beyond-independent-relevance-methods-and-evaluation-metrics-for-s/\n- https://www.semanticscholar.org/paper/9b9c66bfb4cca231f38de8d6624c8dd674a3554f\n- https://www.eecis.udel.edu/~hfang/pubs/ddr11.pdf\n- https://doi.org/10.1145/3774320\n- https://www.researchgate.net/publication/243774776_The_use_of_mmr_and_diversity-based_reranking_in_document_reranking_and_summarization\n- https://docs.opensearch.org/latest/vector-search/specialized-operations/vector-search-mmr/\n- https://docs.cloud.google.com/bigtable/docs/mmr-vector-search"
+    }
+  ]
+}

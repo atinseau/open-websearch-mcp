@@ -2,16 +2,7 @@ schema_version = 3
 project = "open-websearch-mcp"
 state = "bootstrapped"
 spec_revision = "simple-opencode-loop"
-current_task = "BOOT-004"
-current_attempt = 1
-current_worktree = ".worktree/boot-004-a1"
-current_branch = "agent/boot-004-a1"
-current_base_sha = "053e1997c53b3578e47a13795287de56f95062ad"
-current_head_sha = "11e3fb72686317deeee200406288c17bc3a25262"
-current_reviewed_diff = "af86b30f64bea9f198eec28ddd447e1e740092934f2542e095e82230266710e8"
-current_step = 6
-current_session = "ses_fbcd309daffefNpOT8mJECViZm"
-last_trace = "docs/orchestration/runs/BOOT-004/0006-review.md"
+last_trace = "docs/orchestration/runs/SPK-005/0004-spike-frontier-reconciliation.md"
 
 [environment]
 repo_initialized = true
@@ -39,7 +30,15 @@ worktree_root = ".worktree"
 state = "verified"
 spec = "docs/spec/10-packaging-releases.md"
 depends_on = []
-write_set = [".git", "LICENSE", "NOTICE", ".gitignore", "scripts/bootstrap-validator.ts", ".github/workflows/orchestration-audit.yml", "repository-settings"]
+write_set = [
+  ".git",
+  "LICENSE",
+  "NOTICE",
+  ".gitignore",
+  "scripts/bootstrap-validator.ts",
+  ".github/workflows/orchestration-audit.yml",
+  "repository-settings",
+]
 requirements = ["RELEASE-001"]
 acceptance_gates = ["repository-main-origin", "apache-files", "minimal-audit-ci"]
 attempts = []
@@ -49,21 +48,61 @@ evidence = ["docs/orchestration/runs/0000-specification-handoff.md"]
 state = "verified"
 spec = "docs/orchestration/driver-contract.md"
 depends_on = ["BOOT-001"]
-write_set = ["package.json", "scripts/bootstrap-validator.ts", "scripts/orchestration", "docs/orchestration/runs/BOOT-002", "docs/orchestration/state.toml"]
+write_set = [
+  "package.json",
+  "scripts/bootstrap-validator.ts",
+  "scripts/orchestration",
+  "docs/orchestration/runs/BOOT-002",
+  "docs/orchestration/state.toml",
+]
 requirements = ["ORCH-009", "ORCH-010", "ORCH-011", "ORCH-012", "ORCH-013"]
-acceptance_gates = ["control-loop", "state-validation", "step-traces", "compaction-resume", "worktree-confinement"]
-attempts = [{ attempt = 1, branch = "agent/boot-002-a1", worktree = ".worktree/boot-002-a1", base_sha = "54c2d714e4e63a381a96b1778d1fd18f6b2152f6" }]
-evidence = ["docs/orchestration/runs/BOOT-002/0001-prepare.md", "docs/orchestration/runs/BOOT-002/0002-implementation.md", "docs/orchestration/runs/BOOT-002/0003-review.md"]
+acceptance_gates = [
+  "control-loop",
+  "state-validation",
+  "step-traces",
+  "compaction-resume",
+  "worktree-confinement",
+]
+attempts = [
+  { attempt = 1, branch = "agent/boot-002-a1", worktree = ".worktree/boot-002-a1", base_sha = "54c2d714e4e63a381a96b1778d1fd18f6b2152f6" },
+]
+evidence = [
+  "docs/orchestration/runs/BOOT-002/0001-prepare.md",
+  "docs/orchestration/runs/BOOT-002/0002-implementation.md",
+  "docs/orchestration/runs/BOOT-002/0003-review.md",
+]
 
 [tasks.BOOT-003]
 state = "verified"
 spec = "docs/spec/02-architecture-runtime.md"
 depends_on = ["BOOT-002"]
-write_set = ["package.json", "bun.lock", "tsconfig.json", ".oxlintrc.jsonc", ".oxfmtrc.jsonc", "scripts/bootstrap-validator.ts", "scripts/orchestration", "src", "tests/architecture"]
+write_set = [
+  "package.json",
+  "bun.lock",
+  "tsconfig.json",
+  ".oxlintrc.jsonc",
+  ".oxfmtrc.jsonc",
+  "scripts/bootstrap-validator.ts",
+  "scripts/orchestration",
+  "src",
+  "tests/architecture",
+]
 requirements = ["ARCH-008", "ARCH-009", "ARCH-010"]
 acceptance_gates = ["command:bun run check"]
-attempts = [{ attempt = 1, branch = "agent/boot-003-a1", worktree = ".worktree/boot-003-a1", base_sha = "8bf3c3669a635aeeaf403797dc51adfad670fce0" }]
-evidence = ["docs/orchestration/runs/BOOT-003/0001-ready.md", "docs/orchestration/runs/BOOT-003/0002-prepare.md", "docs/orchestration/runs/BOOT-003/0003-implementation.md", "docs/orchestration/runs/BOOT-003/0004-correction.md", "docs/orchestration/runs/BOOT-003/0005-correction.md", "docs/orchestration/runs/BOOT-003/0006-correction.md", "docs/orchestration/runs/BOOT-003/0007-correction.md", "docs/orchestration/runs/BOOT-003/0008-correction.md", "docs/orchestration/runs/BOOT-003/0009-review.md"]
+attempts = [
+  { attempt = 1, branch = "agent/boot-003-a1", worktree = ".worktree/boot-003-a1", base_sha = "8bf3c3669a635aeeaf403797dc51adfad670fce0" },
+]
+evidence = [
+  "docs/orchestration/runs/BOOT-003/0001-ready.md",
+  "docs/orchestration/runs/BOOT-003/0002-prepare.md",
+  "docs/orchestration/runs/BOOT-003/0003-implementation.md",
+  "docs/orchestration/runs/BOOT-003/0004-correction.md",
+  "docs/orchestration/runs/BOOT-003/0005-correction.md",
+  "docs/orchestration/runs/BOOT-003/0006-correction.md",
+  "docs/orchestration/runs/BOOT-003/0007-correction.md",
+  "docs/orchestration/runs/BOOT-003/0008-correction.md",
+  "docs/orchestration/runs/BOOT-003/0009-review.md",
+]
 
 [tasks.BOOT-004]
 state = "verified"
@@ -71,45 +110,132 @@ spec = "docs/spec/10-packaging-releases.md"
 depends_on = ["BOOT-001", "BOOT-003"]
 write_set = [".github/workflows"]
 requirements = ["RELEASE-007"]
-acceptance_gates = ["command:bun install --frozen-lockfile --ignore-scripts && bun run check && bun pm pack --dry-run --ignore-scripts && actionlint .github/workflows/orchestration-audit.yml"]
-attempts = [{ attempt = 1, branch = "agent/boot-004-a1", worktree = ".worktree/boot-004-a1", base_sha = "053e1997c53b3578e47a13795287de56f95062ad" }]
-evidence = ["docs/orchestration/runs/BOOT-004/0001-ready.md", "docs/orchestration/runs/BOOT-004/0002-prepare.md", "docs/orchestration/runs/BOOT-004/0003-implementation.md", "docs/orchestration/runs/BOOT-004/0004-correction.md", "docs/orchestration/runs/BOOT-004/0005-evidence-correction.md", "docs/orchestration/runs/BOOT-004/0006-review.md"]
+acceptance_gates = [
+  "command:bun install --frozen-lockfile --ignore-scripts && bun run check && bun pm pack --dry-run --ignore-scripts && actionlint .github/workflows/orchestration-audit.yml",
+]
+attempts = [
+  { attempt = 1, branch = "agent/boot-004-a1", worktree = ".worktree/boot-004-a1", base_sha = "053e1997c53b3578e47a13795287de56f95062ad" },
+]
+evidence = [
+  "docs/orchestration/runs/BOOT-004/0001-ready.md",
+  "docs/orchestration/runs/BOOT-004/0002-prepare.md",
+  "docs/orchestration/runs/BOOT-004/0003-implementation.md",
+  "docs/orchestration/runs/BOOT-004/0004-correction.md",
+  "docs/orchestration/runs/BOOT-004/0005-evidence-correction.md",
+  "docs/orchestration/runs/BOOT-004/0006-review.md",
+]
 
 [tasks.SPK-001]
-state = "planned"
+state = "verified"
 spec = "docs/spec/01-feasibility-spikes.md"
 depends_on = ["BOOT-002"]
-write_set = ["benchmarks/teachers", "docs/spikes/SPK-001"]
-evidence = []
+write_set = ["benchmarks/teachers", "docs/spikes/SPK-001", "package.json", "tsconfig.json"]
+requirements = ["TEST-005", "TEST-006", "TEST-007", "TEST-008", "TEST-009", "TEST-010", "TEST-011"]
+acceptance_gates = [
+  "command:bun x oxfmt --check --disable-nested-config benchmarks/teachers && bun x oxlint --disable-nested-config --deny-warnings benchmarks/teachers && bun x tsc -p benchmarks/teachers/tsconfig.json --noEmit && bun test --parallel --isolate benchmarks/teachers && bun run check && bun pm pack --dry-run --ignore-scripts",
+]
+attempts = [
+  { attempt = 1, branch = "agent/spk-001-a1", worktree = ".worktree/spk-001-a1", base_sha = "eb30c3a28554740a6512116d0b29521ed610c553" },
+]
+evidence = [
+  "docs/orchestration/runs/SPK-001/0001-ready.md",
+  "docs/orchestration/runs/SPK-001/0002-prepare.md",
+  "docs/orchestration/runs/SPK-001/0003-implementation.md",
+  "docs/orchestration/runs/SPK-001/0004-correction.md",
+  "docs/orchestration/runs/SPK-001/0005-review-correction.md",
+  "docs/orchestration/runs/SPK-001/0006-review-correction.md",
+  "docs/orchestration/runs/SPK-001/0007-third-review-correction.md",
+  "docs/orchestration/runs/SPK-001/0008-fourth-review-correction.md",
+  "docs/orchestration/runs/SPK-001/0009-fifth-review-correction.md",
+  "docs/orchestration/runs/SPK-001/0010-sixth-review-correction.md",
+  "docs/orchestration/runs/SPK-001/0011-seventh-review-correction.md",
+  "docs/orchestration/runs/SPK-001/0012-eighth-review-correction.md",
+  "docs/orchestration/runs/SPK-001/0013-ninth-review-correction.md",
+  "docs/orchestration/runs/SPK-001/0014-immutable-refresh-correction.md",
+  "docs/orchestration/runs/SPK-001/0015-final-review-correction.md",
+  "docs/orchestration/runs/SPK-001/0016-process-scope-correction.md",
+  "docs/orchestration/runs/SPK-001/0017-cleanup-verification-correction.md",
+  "docs/orchestration/runs/SPK-001/0018-release-review-correction.md",
+  "docs/orchestration/runs/SPK-001/0019-atomic-legacy-correction.md",
+  "docs/orchestration/runs/SPK-001/0020-process-identity-credential-correction.md",
+  "docs/orchestration/runs/SPK-001/0021-release-gate-security-correction.md",
+  "docs/orchestration/runs/SPK-001/0022-final-security-review-correction.md",
+  "docs/orchestration/runs/SPK-001/0023-historical-eligibility-correction.md",
+  "docs/orchestration/runs/SPK-001/0024-cleanup-legacy-audit-correction.md",
+  "docs/orchestration/runs/SPK-001/0025-final-audit-reseal-correction.md",
+  "docs/orchestration/runs/SPK-001/0026-environment-history-correction.md",
+  "docs/orchestration/runs/SPK-001/0027-codex-only-teacher-redesign.md",
+]
 
 [tasks.SPK-002]
-state = "planned"
+state = "verified"
 spec = "docs/spec/01-feasibility-spikes.md"
 depends_on = ["BOOT-003"]
 write_set = ["spikes/webview-obscura", "docs/spikes/SPK-002"]
-evidence = []
+requirements = ["TEST-020", "RENDER-005", "RENDER-006"]
+acceptance_gates = ["command:bun run check"]
+attempts = [
+  { attempt = 1, branch = "agent/spk-002-a1", worktree = ".worktree/spk-002-a1", base_sha = "eb30c3a28554740a6512116d0b29521ed610c553" },
+]
+evidence = [
+  "docs/spikes/SPK-002/report.md",
+  "docs/spikes/SPK-002/challenge.md",
+  "docs/spikes/SPK-002/probe-result.json",
+]
 
 [tasks.SPK-003]
-state = "planned"
+state = "verified"
 spec = "docs/spec/01-feasibility-spikes.md"
 depends_on = ["SPK-002"]
 write_set = ["spikes/obscura-load", "docs/spikes/SPK-003"]
-evidence = []
+requirements = ["TEST-021"]
+acceptance_gates = ["command:bun run check"]
+attempts = [
+  { attempt = 1, branch = "agent/spk-003-a1", worktree = ".worktree/spk-003-a1", base_sha = "1ad1127b74ef9d0be3c4c8375d4c0a1404cbc742" },
+]
+evidence = [
+  "docs/spikes/SPK-003/report.md",
+  "docs/spikes/SPK-003/challenge.md",
+  "docs/spikes/SPK-003/measurements.json",
+  "docs/spikes/SPK-003/controller-fixture.json",
+  "docs/orchestration/runs/SPK-003/0001-measurement.md",
+]
 
 [tasks.SPK-004]
-state = "planned"
+state = "verified"
 spec = "docs/spec/01-feasibility-spikes.md"
 depends_on = ["SPK-001", "SPK-002"]
 write_set = ["spikes/extraction", "docs/spikes/SPK-004"]
-evidence = []
+requirements = ["TEST-013", "EXTRACT-007"]
+acceptance_gates = ["command:bun run check"]
+attempts = [
+  { attempt = 1, branch = "agent/spk-004-a1", worktree = ".worktree/spk-004-a1", base_sha = "1ad1127b74ef9d0be3c4c8375d4c0a1404cbc742" },
+]
+evidence = [
+  "docs/spikes/SPK-004/report.md",
+  "docs/spikes/SPK-004/challenge.md",
+  "docs/spikes/SPK-004/measurements.json",
+]
 
 [tasks.SPK-005]
-state = "planned"
+state = "verified"
 spec = "docs/spec/01-feasibility-spikes.md"
 depends_on = ["BOOT-003"]
 write_set = ["spikes/compatibility", "docs/spikes/SPK-005"]
-evidence = []
-
+requirements = ["ARCH-005", "ARCH-006", "TEST-022", "TEST-023"]
+acceptance_gates = ["command:bun run check"]
+attempts = [
+  { attempt = 1, branch = "agent/spk-005-a1", worktree = ".worktree/spk-005-a1", base_sha = "eb30c3a28554740a6512116d0b29521ed610c553" },
+]
+evidence = [
+  "docs/spikes/SPK-005/report.md",
+  "docs/spikes/SPK-005/challenge.md",
+  "docs/adr/0007-defer-mechanical-feature-boundary-enforcement.md",
+  "docs/orchestration/runs/SPK-005/0001-prepare.md",
+  "docs/orchestration/runs/SPK-005/0002-implementation.md",
+  "docs/orchestration/runs/SPK-005/0003-verification.md",
+  "docs/orchestration/runs/SPK-005/0004-spike-frontier-reconciliation.md",
+]
 [tasks.FND-001]
 state = "planned"
 spec = "docs/spec/02-architecture-runtime.md"
@@ -121,7 +247,11 @@ evidence = []
 state = "planned"
 spec = "docs/spec/08-configuration-operations.md"
 depends_on = ["FND-001"]
-write_set = ["src/features/configuration", "src/features/logging", "tests/integration/configuration"]
+write_set = [
+  "src/features/configuration",
+  "src/features/logging",
+  "tests/integration/configuration",
+]
 evidence = []
 
 [tasks.FND-003]
@@ -205,7 +335,11 @@ evidence = []
 state = "planned"
 spec = "docs/spec/06-ranking-cache-investigations.md"
 depends_on = ["FND-003", "WEB-005", "WEB-007"]
-write_set = ["src/features/storage/cache", "src/features/ranking/deduplication", "tests/integration/cache"]
+write_set = [
+  "src/features/storage/cache",
+  "src/features/ranking/deduplication",
+  "tests/integration/cache",
+]
 evidence = []
 
 [tasks.TOOL-001]
@@ -275,5 +409,9 @@ evidence = []
 state = "planned"
 spec = "docs/spec/10-packaging-releases.md"
 depends_on = ["REL-003"]
-write_set = ["external:github-release", "external:npm-publication", "docs/orchestration/runs/REL-004"]
+write_set = [
+  "external:github-release",
+  "external:npm-publication",
+  "docs/orchestration/runs/REL-004",
+]
 evidence = []

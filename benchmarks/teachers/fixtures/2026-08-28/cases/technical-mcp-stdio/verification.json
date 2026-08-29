@@ -1,0 +1,25 @@
+{
+  "accepted_claim_ids": ["c4", "c6"],
+  "rejected_claims": [
+    {
+      "id": "c1",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "c2",
+      "reason": "required concept is absent from teacher-run evidence: unsupported-error"
+    },
+    {
+      "id": "c3",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "c5",
+      "reason": "required concept is absent from teacher-run evidence: connection-stability"
+    },
+    {
+      "id": "c7",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    }
+  ]
+}

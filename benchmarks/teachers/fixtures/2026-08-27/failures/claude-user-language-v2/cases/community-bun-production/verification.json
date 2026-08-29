@@ -1,0 +1,9 @@
+{
+  "accepted_claim_ids": ["c1", "c2", "c3", "c4", "c5", "c7"],
+  "rejected_claims": [
+    {
+      "id": "c6",
+      "reason": "L'affirmation regroupe trois faits d'inégale solidité. Les crashs de pods 4 Go (issue #19930) et la croissance mémoire Mongoose 50 Mo → 170 Mo (issue #25948) sont corroborés par le contenu réellement récupéré dans le run Claude, mais le détail « RSS à 2,46 Go suivi d'une segmentation fault » sur l'issue #20912 (ainsi que « 300 Mo → 1,5 Go en un jour » et « container death ») ne repose que sur la prose auto-rapportée du run Codex : les tool_results Codex ne contiennent aucun payload et le run Claude n'a jamais ouvert #20912. De plus, les acceptable_patterns sont des décalques verbatim du phrasé de Codex (« crashing 4 GB pods from memory growth », « RSS at 2\\.46 GB followed by a segmentation fault ») plutôt que des citations de source, donc trop étroits pour une notation lexicale déterministe : une réponse exacte mais formulée différemment échouerait."
+    }
+  ]
+}

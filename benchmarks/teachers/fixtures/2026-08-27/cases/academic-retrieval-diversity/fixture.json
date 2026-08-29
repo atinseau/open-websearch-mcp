@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "case_id": "academic-retrieval-diversity",
+  "question": "According to primary information-retrieval research, how does maximal marginal relevance trade relevance against novelty, and what evidence supports its use for diversifying search results?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim_1",
+      "text": "Maximal marginal relevance reranks greedily by choosing the remaining document with high query similarity and low similarity to already selected documents, so it rewards relevance and penalizes redundancy.",
+      "required_concepts": ["mmr", "query_similarity", "selected_docs", "redundancy"],
+      "acceptable_patterns": [
+        "Maximal marginal relevance .* high query similarity .* low similarity to already selected documents",
+        "relevance .* rewarded .* redundancy .* penalized",
+        "MMR .* choosing the remaining document .* query similarity .* selected"
+      ],
+      "sources": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "text": "MMR trades relevance against novelty with a user-tunable linear score: at each step, it picks the remaining document with high query similarity and low similarity to already selected documents, i.e. relevance is rewarded and redundancy is penalized."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_academic-retrieval-diversity",
+        "claude_run": "2026-08-27_claude_academic-retrieval-diversity"
+      }
+    },
+    {
+      "id": "claim_2",
+      "text": "In the original formulation, λ controls the relevance-novelty tradeoff: λ = 1 gives the standard relevance-ranked list, λ = 0 gives maximal diversity within the retrieved set, and intermediate λ values optimize a linear combination of the two criteria.",
+      "required_concepts": ["lambda", "relevance", "diversity"],
+      "acceptable_patterns": [
+        "λ\\s*=\\s*1 .* standard relevance-ranked list",
+        "λ\\s*=\\s*0 .* maximal diversity",
+        "intermediate .* linear combination"
+      ],
+      "sources": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "text": "In that formulation, `λ = 1` reduces to the standard relevance-ranked list, `λ = 0` reduces to maximal diversity among the retrieved set, and intermediate `λ` values optimize a linear combination of the two criteria."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_academic-retrieval-diversity",
+        "claude_run": "2026-08-27_claude_academic-retrieval-diversity"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "MMR is uniformly beneficial for diversifying search results.",
+      "reason": "Contradicted by supplied evidence that WWW 2010 found cases where MMR hurt baseline rankings."
+    },
+    {
+      "text": "The original MMR user study established statistically significant improvements in speed or recall.",
+      "reason": "Unsupported and contradicted by the supplied evidence saying the pilot study was too small to yield statistically significant trends for speed or recall."
+    },
+    {
+      "text": "There is one universally best λ value for MMR.",
+      "reason": "Unsupported by the supplied evidence, which presents λ as a task-tunable tradeoff parameter and reports different settings or cross-validation."
+    },
+    {
+      "text": "Primary evidence proves MMR is better than later explicit diversification methods such as xQuAD.",
+      "reason": "Contradicted by the supplied evidence that xQuAD was the only approach consistently improving all three baseline rankers in the cited WWW 2010 study."
+    },
+    {
+      "text": "The original paper describes smaller λ as useful for sampling the information space and larger λ as useful for focusing on overlapping or reinforcing relevant documents; for document retrieval it reports starting around λ = 0.3 and later moving to around λ = 0.7 after query reformulation or relevance feedback.",
+      "reason": "The lambda = 0.3 -> 0.7 strategy and the 'sampling'/'reinforcing' phrasing rest solely on the Codex run's own answer text echoed as an evidence passage; Codex opened no URLs and no tool payload is supplied. The second supplied run fetched the same PDF (and the CMU mirror) and reports it is a scanned image with no extractable text layer, explicitly warning: 'Treat any specific lambda recommendation attributed to Carbonell & Goldstein as unverified here.' The pattern '0\\.3 .* 0\\.7' is also loose enough to match unrelated numbers."
+    },
+    {
+      "text": "As direct qualitative evidence for diversification, the original paper reports a Reuters reranking example where a duplicate article was pushed down, a novel but still relevant document moved up, and similar documents were demoted as λ decreased.",
+      "reason": "The Reuters reranking narrative (duplicate pushed down, 'novel but still relevant' moved up, similar documents demoted) has no corroboration anywhere in the supplied evidence outside the Codex answer echo, and the source PDF is reported unreadable by the other run. The patterns are also exact-phrase matches ('Reuters reranking example', 'duplicate article .* pushed down') that a correct, well-sourced response need not reproduce, making them overly narrow for lexical grading."
+    },
+    {
+      "text": "The original paper also reports a small pilot user study: 5 undergraduate users over 9 search tasks compared standard SMART ranking with MMR reranking at λ = 0.5, 4 of 5 chose MMR for a final task, but the study was too small for statistically significant speed or recall trends.",
+      "reason": "Only the existence of a user preference study favoring MMR is corroborated (the second run, from indexed summaries, notes 'a majority preferred the MMR ordering' but states 'the study's size and statistical treatment are unknown to me'). The distinguishing specifics graded by the patterns - 5 undergraduate users, 9 search tasks, lambda = 0.5, 4 of 5, and the 'too small for statistically significant' caveat - come only from the Codex answer echo attributed to a PDF the other run found to have no text layer."
+    },
+    {
+      "text": "Later primary IR work reported stronger benchmark-style evidence that an MMR-style method can outperform a non-diversified ranker in some settings: Zhu et al. (SIGIR 2014) reported that `MMRlist` improved over `ListMLE` on ERR-IA, α-NDCG, and NRBP on WT2009, WT2010, and WT2011, with ERR-IA rising from 0.1913 to 0.2022 on WT2009, 0.2436 to 0.2735 on WT2010, and 0.4172 to 0.4284 on WT2011.",
+      "reason": "The four ERR-IA figures (0.1913/0.2022, 0.2436/0.2735, 0.4172/0.4284) and the MMRlist-vs-ListMLE comparison are attributed to a course-page PDF (dmice.ohsu.edu/.../zhu_2014.pdf) that no supplied run opened and that appears nowhere in the second run's results. Nothing in the supplied evidence independently attests these numbers, and the second run's TREC-based findings point the other way, so this reads as invented benchmark detail."
+    },
+    {
+      "text": "Primary evidence is mixed rather than uniformly positive: Santos, Macdonald, and Ounis (WWW 2010) reported cases where MMR hurt the original ranking, including BM25 α-NDCG@10 dropping from 0.186 to 0.150 and IA-P@10 dropping from 0.071 to 0.058 after MMR reranking; the same study reported xQuAD as the only approach that consistently improved all three baseline rankers.",
+      "reason": "The cited source (ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf) was never opened by either run and appears nowhere in the second run's retrieved results, so the figures 0.186 -> 0.150 and 0.071 -> 0.058 are unverified. The independently corroborated finding is materially weaker - 'at best marginal yet not significant improvements' and MMR being 'least effective' - so 'MMR hurt the original ranking' plus the superlative 'only approach that consistently improved all three baseline rankers' overstates the contradictory evidence while grading on unverified decimals."
+    }
+  ]
+}

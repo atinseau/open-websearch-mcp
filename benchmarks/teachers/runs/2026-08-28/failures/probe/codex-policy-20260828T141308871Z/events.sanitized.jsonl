@@ -1,0 +1,7 @@
+{"type":"thread.started","thread_id":"[REDACTED]"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"Code Mode is unavailable because code-mode host is disabled. Code mode will fail closed; enable `features.code_mode_host` and install `codex-code-mode-host`."}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"I’ll verify the current stable release against Bun’s official release channels and cite each factual statement directly."}}
+{"type":"item.completed","item":{"id":"item_2","type":"agent_message","text":"The search endpoint did not initialize on the first attempt, so I’m retrying with the official Bun release page directly."}}
+{"type":"item.completed","item":{"id":"item_3","type":"agent_message","text":"I can’t reliably identify the latest stable Bun release because native Web Search is unavailable in this session. I won’t guess or provide an uncited version number."}}
+{"type":"turn.completed","usage":{"input_tokens":28906,"cached_input_tokens":17920,"cache_write_input_tokens":0,"output_tokens":310,"reasoning_output_tokens":91}}

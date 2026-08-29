@@ -1,0 +1,17 @@
+{
+  "accepted_claim_ids": [
+    "claim_1",
+    "claim_2",
+    "claim_3",
+    "claim_4",
+    "claim_6",
+    "claim_7",
+    "claim_8"
+  ],
+  "rejected_claims": [
+    {
+      "id": "claim_5",
+      "reason": "Performance figures are partly contradicted by the fetched release-post evidence and the grading patterns are exact-string matches on those disputed numbers. The independently fetched summary of https://bun.com/blog/bun-v1.4 reports HTTP-server memory reductions of 13-48% (Fastify -48%, Express -46%), which conflicts with 'up to 35% lower memory usage', and reports Linux startup as '2x faster', which the required pattern '50% faster startup on Linux' would not match in any faithful answer. Only '5x lower idle CPU usage' is corroborated, leaving the claim as written unsupported and lexically ungradeable."
+    }
+  ]
+}

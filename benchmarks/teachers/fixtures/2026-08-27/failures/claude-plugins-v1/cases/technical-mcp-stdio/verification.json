@@ -1,0 +1,16 @@
+{
+  "accepted_claim_ids": [
+    "claim_current_spec_no_initialize",
+    "claim_per_request_version_negotiation",
+    "claim_discover_required",
+    "claim_stdio_framing",
+    "claim_stdio_output_constraints",
+    "claim_server_message_direction"
+  ],
+  "rejected_claims": [
+    {
+      "id": "claim_tools_list_requirements",
+      "reason": "Le passage de preuve attribué à https://modelcontextprotocol.io/specification/2026-07-28/server/tools (« A server that declares `tools` must answer `tools/list`… must not vary by connection… The spec says the server should return tools in a deterministic order ») n'apparaît pas dans le contenu réellement récupéré de cette page (le fetch s'arrête à « `listChanged` indicates whether the server will emit notifications… »). Il s'agit de prose de la réponse finale de Codex présentée comme citation de source. Seule la partie « Servers that support tools MUST declare the `tools` capability » est attestée verbatim ; le concept requis « deterministic_order » et le motif « deterministic order » n'ont aucun ancrage dans les preuves fournies, et l'invariance par connexion n'est étayée que par le changelog (« List endpoints (`tools/list`…) no longer vary per-connection »), source non déclarée dans la claim. La claim mêle donc des faits attestés et non attestés, ce qui la rend non fiable pour une notation lexicale."
+    }
+  ]
+}

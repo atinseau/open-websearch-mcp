@@ -1,0 +1,9 @@
+{
+  "accepted_claim_ids": ["c1", "c2", "c3", "c5", "c6"],
+  "rejected_claims": [
+    {
+      "id": "c4",
+      "reason": "Attribution rests only on the Codex run's self-reported final answer: Codex's opened_urls is empty and its tool payloads were not exposed, and neither run fetched okapi_trec4.pdf (the Claude run recovered only the analogous TREC-3 formula), so the TREC-4-specific details (w(1), qtf, and the direct definitions of tf/qtf/dl/avdl) are not independently supported. Additionally the discriminating grading pattern K\\s*=\\s*k1\\s*\\(\\(1-b\\)\\+b\\*dl/avdl\\) is overly narrow: it permits no whitespace inside the parentheses and requires a literal '*' for multiplication that the source formula does not use, so a faithful restatement such as 'K = k1((1 - b) + b·dl/avdl)' would fail to match, while the remaining patterns ('tf', 'qtf') are too generic to carry the claim."
+    }
+  ]
+}

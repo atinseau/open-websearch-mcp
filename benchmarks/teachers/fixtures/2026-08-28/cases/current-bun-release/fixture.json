@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "case_id": "current-bun-release",
+  "question": "What is the latest stable Bun release as of today, when was it published, and what are its most consequential changes according to official release sources?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "grounding",
+  "verification_status": "accepted",
+  "claims": [],
+  "rejected_claims": [
+    {
+      "text": "Bun 1.4.0 is explicitly labeled `stable` on the cited Bun 1.4 release pages.",
+      "reason": "Unsupported by the supplied evidence; the teacher-run answer says `stable` is inferred from the stable 1.x line and the GitHub `Latest` marker, not explicitly stated on the cited Bun 1.4 pages."
+    },
+    {
+      "text": "Bun 1.4 is unquestionably the latest stable release without any inference or ambiguity.",
+      "reason": "Overstated relative to the supplied evidence; the teacher-run answer notes a terminology uncertainty around `stable` even though `bun-v1.4.0` is marked `Latest`."
+    },
+    {
+      "text": "Bun 1.4 includes exactly 15 new built-in dependencies and this is among the most consequential changes.",
+      "reason": "Partly unsupported for this fixture as written: the `15 dependencies now built in` detail appears in the supplied summary, but ranking it as consequential is a judgment call and the exact dependency list is not provided in evidence passages."
+    },
+    {
+      "text": "The latest official Bun release identified in the supplied evidence is Bun v1.4.0, with the GitHub releases page marking `bun-v1.4.0` as `Latest`.",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "text": "The official Bun blog post for Bun v1.4 is dated August 20, 2026, and the supplied evidence says the GitHub release entry also shows August 20 at 14:07.",
+      "reason": "required concept is absent from teacher-run evidence: publish_date"
+    },
+    {
+      "text": "According to the supplied official-release summary, Bun 1.4 adds 1,517 Node.js test-suite passes and describes this as its biggest jump in Node.js compatibility since Bun 1.0.",
+      "reason": "required concept is absent from teacher-run evidence: 1517"
+    },
+    {
+      "text": "The supplied official-release summary says Bun 1.4 fixes over 2,900 issues, reduces idle CPU usage by 5x, reduces memory usage by up to 35%, and starts 50% faster on Linux.",
+      "reason": "required concept is absent from teacher-run evidence: issues_fixed"
+    },
+    {
+      "text": "The supplied official-release summary highlights a rewrite from Zig to Rust and a larger built-in standard library, including built-in features such as `Bun.Image`, `Bun.WebView`, `Bun.markdown`, `Bun.cron()`, `Bun.Terminal`, `bun run --parallel`, and `bun test --parallel`.",
+      "reason": "required concept is absent from teacher-run evidence: builtins"
+    }
+  ]
+}

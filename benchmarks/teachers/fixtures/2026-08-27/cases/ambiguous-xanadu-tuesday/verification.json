@@ -1,0 +1,16 @@
+{
+  "accepted_claim_ids": [
+    "claim_no_public_event_evidence",
+    "claim_other_xanadu_news_was_quantum_company"
+  ],
+  "rejected_claims": [
+    {
+      "id": "claim_archival_project_pages",
+      "reason": "Depends on page-level details (the 'crudcheck 01.05.23' marker, 'WE FIGHT ON' message, 'Last-modified: 2002/04/12' on aus.xanadu.com/xanadu/faq.html, and the 'Future of Text Conference, August 25, 2016' demo page) for which the supplied evidence contains no retrieved content. The Codex run's opened_urls is empty and every tool_result states the search payload was not exposed; its evidence_passages are just its own final_answer duplicated under five URLs, so they do not attest to what those pages say. The Claude run corroborates only xanadu.com/xuhome.html and never touches aus.xanadu.com/xanadu/faq.html or xanadu.com/xuDemoPage.html. The third acceptable_pattern ('web presence[\\s\\S]*historical rather than actively updated') also grades an interpretive characterization rather than a checkable fact."
+    },
+    {
+      "id": "claim_best_supported_conclusion",
+      "reason": "Explicitly the run's inference layer ('most defensible conclusion', 'likeliest explanation') rather than anything the cited sources state; the three listed sources are archival Project Xanadu pages that cannot support a conclusion about last Tuesday, and two of them (aus.xanadu.com/xanadu/faq.html, xanadu.com/xuDemoPage.html) have no verified content anywhere in the evidence. It also restates the supported negative finding already carried by claim_no_public_event_evidence, and its grading is brittle: both acceptable_patterns require long verbatim teacher wording, and required_concepts such as 'most_defensible_conclusion' and 'why' are too vague to grade deterministically."
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Community claims conflict: some stealth-tool pages make strong 'undetected' or 'passes all tests' claims, while other community sources warn stealth only beats simple detection methods.",
+      "required_concepts": ["community_conflict", "strong_claims", "limited_effectiveness"],
+      "acceptable_patterns": [
+        "(?:claims?|sources?).{0,80}(?:conflict|contradict)",
+        "(?:passes all public bot tests|does not trigger anti-bot services|considered undetectable)",
+        "(?:Don'?t expect this to bypass anything but the simplest of bot detection methods|only beats? simple detection)"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/ultrafunkamsterdam/undetected-chromedriver",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://pypi.org/project/playwright-stealth/",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/Kaliiiiiiiiii-Vinyzu/patchright",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "c2",
+      "text": "The supplied evidence says `puppeteer-extra-plugin-stealth` both claims it 'passes all public bot tests' and also acknowledges there are still ways to detect headless Chromium, making broad anti-detection claims internally qualified.",
+      "required_concepts": ["puppeteer_extra", "passes_public_tests", "qualified_claim"],
+      "acceptable_patterns": [
+        "puppeteer-extra-plugin-stealth",
+        "passes all public bot tests",
+        "(?:still ways to detect|probably impossible|qualified)"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "c3",
+      "text": "Publicly reproducible observations in the supplied evidence support a narrower claim: stealth patches can beat some public browser-surface tests such as SannySoft, fpscanner, areyouheadless, or Intoli-style checks.",
+      "required_concepts": ["public_tests", "narrower_claim", "surface_checks"],
+      "acceptable_patterns": [
+        "(?:publicly reproducible|public test|public tests)",
+        "(?:SannySoft|fpscanner|areyouheadless|Intoli)",
+        "(?:beat|bypass|pass).{0,40}(?:checks|tests)"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/berstend/puppeteer-extra/blob/master/packages/puppeteer-extra-plugin-stealth/readme.md",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://intoli.com/blog/making-chrome-headless-undetectable/",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://intoli.com/blog/not-possible-to-block-chrome-headless/",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "c4",
+      "text": "The supplied evidence also contradicts any general 'prevents bot detection' claim, because detector vendors describe broader signals beyond simple browser patches, including many browser attributes, network signals, behavior, HTTP metadata, or CDP-side effects.",
+      "required_concepts": [
+        "general_prevention_contradicted",
+        "broader_signals",
+        "vendor_detection"
+      ],
+      "acceptable_patterns": [
+        "(?:prevents? bot detection|undetectable in general).{0,60}(?:contradict|not supported)",
+        "(?:hundreds of browser attributes|network signals|behavior|HTTP metadata|CDP)",
+        "(?:Fingerprint|BrowserScan|DataDome)"
+      ],
+      "sources": [
+        {
+          "url": "https://docs.fingerprint.com/docs/bot-detection/overview",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.browserscan.net/bot-detection",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "c5",
+      "text": "A public May 21, 2026 comparison cited in the supplied evidence reported that none of the tested stealth stacks achieved a clean sweep, which directly undercuts universal 'passes every test' style marketing claims.",
+      "required_concepts": ["public_comparison", "no_clean_sweep", "undercuts_universal_claims"],
+      "acceptable_patterns": [
+        "(?:May 21, 2026|public .*test report)",
+        "(?:none of the tested stacks achieved a clean sweep|no tested stack achieved a clean sweep)",
+        "(?:undercuts|contradicts).{0,40}(?:passes every bot detection test|universal claims)"
+      ],
+      "sources": [
+        {
+          "url": "https://gist.github.com/uinstinct/eb6608a6f42ea797526cc9acc2c38649",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/CloakHQ/cloakbrowser",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "c6",
+      "text": "The supplied evidence treats some failure reports as weaker, environment-sensitive support for skepticism: user reports say undetected-chromedriver hit a nowsecure.nl checkbox loop, Camoufox was blocked by DataDome in one issue, and a Patchright report depended on incorrect installation/setup.",
+      "required_concepts": ["anecdotal_failures", "environment_sensitive", "skepticism"],
+      "acceptable_patterns": [
+        "(?:weaker evidence|anecdotal|environment-sensitive)",
+        "(?:undetected-chromedriver).{0,60}(?:nowsecure|checkbox loop)",
+        "(?:Camoufox).{0,60}(?:DataDome|blocked)",
+        "(?:Patchright).{0,80}(?:not actually installed|setup)"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/ultrafunkamsterdam/undetected-chromedriver/discussions/1519",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/daijro/camoufox/issues/277",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/Kaliiiiiiiiii-Vinyzu/patchright-python/issues/95",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Stealth patches prevent bot detection in general.",
+      "reason": "Contradicted by the supplied evidence, which says stronger support exists only for reducing easy detections and cites broader vendor detection methods."
+    },
+    {
+      "text": "undetected-chromedriver definitively bypasses DataDome and similar anti-bot services in all cases.",
+      "reason": "The supporting statement is a project claim, but the supplied evidence also includes contrary anecdotal failure reports and says absolute claims lack strong independent reproducible evidence."
+    },
+    {
+      "text": "All listed stealth tools pass every public and commercial bot-detection test.",
+      "reason": "Overly broad and contradicted by the cited May 21, 2026 public comparison where no tested stack achieved a clean sweep."
+    },
+    {
+      "text": "Camoufox cannot be detected by JavaScript or by any other means.",
+      "reason": "The supplied evidence says Camoufox claims JavaScript inspection cannot detect Playwright in its model, but also says fingerprint inconsistencies and sophisticated behavior analysis can still detect it."
+    }
+  ]
+}

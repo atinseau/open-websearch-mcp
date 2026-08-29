@@ -1,0 +1,114 @@
+{
+  "is_error": false,
+  "duration_api_ms": 30553,
+  "num_turns": 2,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.4927355,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 40687,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 2208,
+    "output_tokens_details": {
+      "thinking_tokens": 1174
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 40687,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 2208,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 40687,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 40687
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 30057,
+      "outputTokens": 28,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.030197,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 2208,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 40687,
+      "webSearchRequests": 0,
+      "costUSD": 0.4625385,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"claim_1\",\"claim_2\",\"claim_3\",\"claim_4\",\"claim_5\"],\"rejected_claims\":[{\"id\":\"claim_6\",\"reason\":\"Grading pattern trop étroit et citation inexacte : le pattern obligatoire « telle quelle » ne correspond pas au libellé attesté de la licence dans les preuves fournies (« telle que produite ou reçue » / « as produced or received »). Une réponse correcte reprenant le libellé réel échouerait au grading lexical, ce qui rend la claim non déterministe pour la notation, même si le fond (absence de garantie, réutilisateur seul responsable) est par ailleurs étayé.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": ["claim_1", "claim_2", "claim_3", "claim_4", "claim_5"],
+    "rejected_claims": [
+      {
+        "id": "claim_6",
+        "reason": "Grading pattern trop étroit et citation inexacte : le pattern obligatoire « telle quelle » ne correspond pas au libellé attesté de la licence dans les preuves fournies (« telle que produite ou reçue » / « as produced or received »). Une réponse correcte reprenant le libellé réel échouerait au grading lexical, ce qui rend la claim non déterministe pour la notation, même si le fond (absence de garantie, réutilisateur seul responsable) est par ailleurs étayé."
+      }
+    ]
+  },
+  "ttft_ms": 16869,
+  "ttft_stream_ms": 1956,
+  "time_to_request_ms": 410,
+  "type": "result",
+  "duration_ms": 29108,
+  "uuid": "[REDACTED]",
+  "queued_turn_count": 0
+}

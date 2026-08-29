@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "source": "SPK-003",
+  "measuredAt": "2026-08-28T21:33:00Z",
+  "controller": {
+    "startCapacity": 8,
+    "maximumCapacity": 40,
+    "lastSafeCapacity": 16,
+    "perHostCapacity": 2,
+    "googleSerpCapacity": 1,
+    "safeRssBudgetBytes": 201326592,
+    "warmP95BaselineMs": 456,
+    "memoryTelemetryAbsentMaximumCapacity": 16,
+    "growthStep": 2,
+    "healthyWindowsRequired": 2,
+    "windowCompletedNavigations": 20,
+    "minimumWindowMs": 10000,
+    "backpressure": {
+      "errorRate": 0.15,
+      "timeoutRate": 0.1,
+      "p95WarmBaselineMultiplier": 2,
+      "rssSafeBudgetFraction": 0.8,
+      "action": "halve_ceiling_minimum_1"
+    }
+  },
+  "evidence": {
+    "measurements": "measurements.json",
+    "warmP95AtStartCapacityMs": 455.5,
+    "warmP95AtLastSafeCapacityMs": 892.9,
+    "warmP95AtFirstUnsafeCapacityMs": 1768.9,
+    "peakObservedTotalRssBytes": 116686848,
+    "allMeasuredLevelsCompletedWithoutTimeoutOrError": true
+  }
+}

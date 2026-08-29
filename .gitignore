@@ -7,3 +7,4 @@ node_modules/
 coverage/
 dist/
 *.log
+benchmarks/teachers/.refresh-locks/

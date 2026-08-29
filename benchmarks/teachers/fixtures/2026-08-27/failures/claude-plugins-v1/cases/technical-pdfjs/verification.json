@@ -1,0 +1,13 @@
+{
+  "accepted_claim_ids": ["c2", "c3", "c4", "c5", "c7", "c8"],
+  "rejected_claims": [
+    {
+      "id": "c1",
+      "reason": "La citation attribuée à https://mozilla.github.io/pdf.js/getting_started/ (« includes the generic build of PDF.js and the viewer ») ne repose que sur la réponse finale de Codex recopiée comme evidence_passage ; cette URL n'a été ouverte par aucune run (opened_urls vide côté Codex). De plus, la seule lecture réelle de https://mozilla.github.io/pdf.js/examples/ indique explicitement « Generic/Legacy Build: No information is provided about this topic », ce qui contredit l'attribution du cadrage « in a web browser » à cette page. Le motif obligatoire « web browser » n'est donc pas vérifiable ; seule la partie examples/node est étayée."
+    },
+    {
+      "id": "c6",
+      "reason": "Le motif de notation exige la chaîne verbatim « Please use the legacy build in Node.js environments. », qui n'apparaît dans aucune preuve indépendante : elle provient uniquement de l'écho auto-référentiel de Codex (aucune URL ouverte). La lecture effective de src/display/node_utils.js par l'autre run décrit les classes Node, process.getBuiltinModule et @napi-rs/canvas sans rapporter cet avertissement. Citation verbatim non corroborée, donc risque de fabrication."
+    }
+  ]
+}

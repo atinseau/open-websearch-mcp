@@ -1,0 +1,15 @@
+# Step 0003 - SPK-001 implementation
+
+- Timestamp: `2026-08-27T14:58:19Z`
+- Attempt: `1`
+- Status: continue
+- Worktree / branch / base SHA / head SHA: `.worktree/spk-001-a1` / `agent/spk-001-a1` / `eb30c3a28554740a6512116d0b29521ed610c553` / `eb30c3a28554740a6512116d0b29521ed610c553` (uncommitted implementation)
+- OpenCode model / variant / session: `openai/gpt-5.6-sol` / default / `interactive-spk-001-a1`
+- Goal: capture the isolated 20-case two-provider teacher corpus and produce independently verified deterministic fixtures for `TEST-005` through `TEST-011`
+- Completed work: accepted native Web-only Codex and Claude probes; captured 20 Codex plus 20 Claude teacher runs; sanitized model identity/session/path data while preserving queries, tool observations, URLs, evidence, and answers; retained failed attempts; derived every fixture with Codex and independently classified every claim with Claude; retained 100 accepted and 106 rejected claims; added schemas, resumable capture/derivation, deterministic reassembly, corpus audit, and a 290-artifact SHA-256 manifest; wrote the measured spike report and refresh policy
+- Files changed: `benchmarks/teachers/**`, `docs/spikes/SPK-001/**`, `docs/orchestration/state.toml`, and `docs/orchestration/runs/SPK-001/**`
+- Commands and outcomes: direct Codex and Claude policy probes exited 0 with native Web calls and no forbidden tool calls; `bun capture-corpus.ts` produced 40 accepted runs; `bun derive-fixtures.ts 2026-08-27` produced 20 accepted fixtures; `bun audit-corpus.ts 2026-08-27 --preflight` and `--write-manifest` each reported 20 cases, 40 runs, 20 fixtures, and 290 artifacts; `bun x oxfmt --check --disable-nested-config benchmarks/teachers && bun x oxlint --disable-nested-config --deny-warnings benchmarks/teachers && bun test --parallel --isolate benchmarks/teachers && bun run check && bun pm pack --dry-run --ignore-scripts` exited 0, with 12 teacher tests / 31 assertions and 47 aggregate tests / 155 assertions
+- Decisions and reasons: selected Codex `gpt-5.4` because the retained `gpt-5.6` attempt was unavailable to the observed ChatGPT login; accepted Codex's documented result-payload observability gap rather than invent search results; retained only Claude-accepted draft claim IDs with both run IDs as `mutually_validated` provenance; normalized leading `(?i)` to the grader's ECMAScript `iu` representation while preserving source drafts and verdicts; sealed hashes only after formatting
+- Findings or blockers: no blocker; Claude managed policy remains an external tier that safe mode cannot disable, but complete captured streams contained no hook event and no forbidden call; package dry-run includes the teacher corpus because package publication boundaries are a later release task
+- Remaining work: run fresh standards and specification reviews, repair blocker/high findings, record the challenge/review result, then commit and integrate through a reviewed PR
+- Exact next action: invoke the repository code-review workflow against base `eb30c3a28554740a6512116d0b29521ed610c553` with `TEST-005` through `TEST-011` as the specification scope

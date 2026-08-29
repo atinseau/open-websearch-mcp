@@ -1,0 +1,126 @@
+{
+  "is_error": false,
+  "duration_api_ms": 42556,
+  "num_turns": 2,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.3461035,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 25227,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 3048,
+    "output_tokens_details": {
+      "thinking_tokens": 1313
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 25227,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 3048,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 25227,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 25227
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 17040,
+      "outputTokens": 25,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.017165,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 3048,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 25227,
+      "webSearchRequests": 0,
+      "costUSD": 0.3289385,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"c1\",\"c2\",\"c6\"],\"rejected_claims\":[{\"id\":\"c3\",\"reason\":\"Fait de contenu de page non vérifié. Le run Codex a opened_urls vide et tous les tool_results indiquent que le payload de recherche n'est pas exposé ; le passage cité pour https://www.xanadu.com/xuhome.html est la réponse finale du modèle recopiée, pas un extrait de la page. Les chaînes littérales `crudcheck 01.05.23` et « WE FIGHT ON » ne sont donc étayées par aucune source réellement consultée, et le run Claude ne les corrobore pas. Risque de citation fabriquée.\"},{\"id\":\"c4\",\"reason\":\"Même défaut circulaire : `Last-modified: 2002/04/12` n'apparaît que dans l'auto-assertion du modèle, republiée comme evidence_passage sous l'URL de la FAQ, qui n'a jamais été ouverte. Aucune corroboration indépendante. Le pattern impose une chaîne littérale précise qui n'est vérifiable dans aucune preuve fournie.\"},{\"id\":\"c5\",\"reason\":\"Les citations exactes « Future of Text Conference, August 25, 2016 » et « We do not have a product, but a preliminary capability » proviennent uniquement de la réponse finale du modèle ; xanadu.com/xuDemoPage.html n'est ni dans opened_urls ni assorti d'un extrait réel. De plus la coïncidence 25 août 2016 / 25 août 2026 est exactement le type de détail qu'il faudrait vérifier avant de le graduer lexicalement.\"},{\"id\":\"c7\",\"reason\":\"Revendication composée dont le second volet — « la présence web localisée de Project Xanadu apparaît largement historique plutôt qu'activement mise à jour » — dépend entièrement des inspections de pages non vérifiées de c3 à c5, et le pattern correspondant exige cette formulation. La source l'étiquette elle-même explicitement comme « Why it happened (inference) », soit une interprétation non établie. Le volet recevable (absence de « pourquoi » faute d'événement documenté) est déjà couvert de façon bornée par c2.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": ["c1", "c2", "c6"],
+    "rejected_claims": [
+      {
+        "id": "c3",
+        "reason": "Fait de contenu de page non vérifié. Le run Codex a opened_urls vide et tous les tool_results indiquent que le payload de recherche n'est pas exposé ; le passage cité pour https://www.xanadu.com/xuhome.html est la réponse finale du modèle recopiée, pas un extrait de la page. Les chaînes littérales `crudcheck 01.05.23` et « WE FIGHT ON » ne sont donc étayées par aucune source réellement consultée, et le run Claude ne les corrobore pas. Risque de citation fabriquée."
+      },
+      {
+        "id": "c4",
+        "reason": "Même défaut circulaire : `Last-modified: 2002/04/12` n'apparaît que dans l'auto-assertion du modèle, republiée comme evidence_passage sous l'URL de la FAQ, qui n'a jamais été ouverte. Aucune corroboration indépendante. Le pattern impose une chaîne littérale précise qui n'est vérifiable dans aucune preuve fournie."
+      },
+      {
+        "id": "c5",
+        "reason": "Les citations exactes « Future of Text Conference, August 25, 2016 » et « We do not have a product, but a preliminary capability » proviennent uniquement de la réponse finale du modèle ; xanadu.com/xuDemoPage.html n'est ni dans opened_urls ni assorti d'un extrait réel. De plus la coïncidence 25 août 2016 / 25 août 2026 est exactement le type de détail qu'il faudrait vérifier avant de le graduer lexicalement."
+      },
+      {
+        "id": "c7",
+        "reason": "Revendication composée dont le second volet — « la présence web localisée de Project Xanadu apparaît largement historique plutôt qu'activement mise à jour » — dépend entièrement des inspections de pages non vérifiées de c3 à c5, et le pattern correspondant exige cette formulation. La source l'étiquette elle-même explicitement comme « Why it happened (inference) », soit une interprétation non établie. Le volet recevable (absence de « pourquoi » faute d'événement documenté) est déjà couvert de façon bornée par c2."
+      }
+    ]
+  },
+  "ttft_ms": 18774,
+  "ttft_stream_ms": 1008,
+  "time_to_request_ms": 21,
+  "type": "result",
+  "duration_ms": 40797,
+  "uuid": "[REDACTED]",
+  "queued_turn_count": 0
+}

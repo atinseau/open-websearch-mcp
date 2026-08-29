@@ -1,0 +1,9 @@
+{
+  "accepted_claim_ids": ["claim_1", "claim_2", "claim_4", "claim_5", "claim_6"],
+  "rejected_claims": [
+    {
+      "id": "claim_3",
+      "reason": "Détail Midjourney non vérifiable : bun.com/ ne figure dans aucun opened_urls du run Codex et le run Claude ne mentionne pas cette adoption ; le contenu de page d'accueil marketing est en outre instable dans le temps. De plus, les trois acceptable_patterns sont des paraphrases longues d'une phrase reformulée par le modèle plutôt que des extraits de la source, ce qui les rend trop étroits pour une notation lexicale : une réponse correcte formulée autrement échouerait. Le claim agrège aussi trois affirmations d'adoption (Claude Code, Midjourney, Railway) de solidité inégale sous un poids unique."
+    }
+  ]
+}

@@ -1,0 +1,400 @@
+{
+  "schema_version": 1,
+  "case_id": "current-mcp-release",
+  "runs": [
+    {
+      "run_id": "2026-08-27_codex_current-mcp-release",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "site:modelcontextprotocol.io specification revision Model Context Protocol latest revision changelog 2026",
+        "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+        "https://github.com/modelcontextprotocol/modelcontextprotocol/releases",
+        "'ttlMs' in https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+        "site:modelcontextprotocol.io/specification/2026-07-28 Mcp-Method Mcp-Name protocol version header",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+        "site:modelcontextprotocol.io/specification 2026-08 MCP draft",
+        "https://modelcontextprotocol.io/"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [],
+      "cited_urls": [
+        "https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning",
+        "https://github.com/modelcontextprotocol/modelcontextprotocol/releases",
+        "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+        "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+        "https://modelcontextprotocol.io/specification/2026-07-28/server/discover",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+        "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+        "https://modelcontextprotocol.io/specification/2026-07-28/architecture",
+        "https://modelcontextprotocol.io/specification/2026-07-28/schema",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning",
+          "title": "https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning"
+        },
+        {
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/releases",
+          "title": "https://github.com/modelcontextprotocol/modelcontextprotocol/releases"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/changelog"
+        },
+        {
+          "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+          "title": "https://blog.modelcontextprotocol.io/posts/2026-07-28/"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/basic"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/discover",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/server/discover"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/architecture",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/architecture"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/schema",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/schema"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning",
+          "text": "**Answer**\n\n**Supported fact:** As of **2026-08-27**, the newest published MCP specification revision is **`2026-07-28`**. The official versioning page says “The current protocol version is 2026-07-28,” and the official GitHub releases page says `2026-07-28` is the **stable release** published on **July 28, 2026**.  \nSources: https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Supported fact:** The immediately preceding revision was **`2025-11-25`**. The `2026-07-28` changelog explicitly says it lists changes “since the previous revision, 2025-11-25,” and the releases page separately marks `2025-11-25` as a stable release.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Inference:** The changes that matter most to **local tool servers** are these, in roughly this order. This ordering is my judgment from the spec text; I did **not** find an official source that ranks changes specifically for local servers.  \nSources for the lack of an official ranking basis: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://blog.modelcontextprotocol.io/posts/2026-07-28/\n\n1. **The stateless core is the biggest change.** MCP is now explicitly stateless; `initialize` / `notifications/initialized` are removed, protocol-level sessions are removed, and servers must not infer context from prior requests on the same connection or stdio process. State that spans requests must be carried by explicit identifiers passed back on later requests. This matters to almost every local server because stdio processes are no longer session boundaries.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://modelcontextprotocol.io/specification/2026-07-28/basic , https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio , https://blog.mo"
+        },
+        {
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/releases",
+          "text": "**Answer**\n\n**Supported fact:** As of **2026-08-27**, the newest published MCP specification revision is **`2026-07-28`**. The official versioning page says “The current protocol version is 2026-07-28,” and the official GitHub releases page says `2026-07-28` is the **stable release** published on **July 28, 2026**.  \nSources: https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Supported fact:** The immediately preceding revision was **`2025-11-25`**. The `2026-07-28` changelog explicitly says it lists changes “since the previous revision, 2025-11-25,” and the releases page separately marks `2025-11-25` as a stable release.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Inference:** The changes that matter most to **local tool servers** are these, in roughly this order. This ordering is my judgment from the spec text; I did **not** find an official source that ranks changes specifically for local servers.  \nSources for the lack of an official ranking basis: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://blog.modelcontextprotocol.io/posts/2026-07-28/\n\n1. **The stateless core is the biggest change.** MCP is now explicitly stateless; `initialize` / `notifications/initialized` are removed, protocol-level sessions are removed, and servers must not infer context from prior requests on the same connection or stdio process. State that spans requests must be carried by explicit identifiers passed back on later requests. This matters to almost every local server because stdio processes are no longer session boundaries.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://modelcontextprotocol.io/specification/2026-07-28/basic , https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio , https://blog.mo"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "text": "**Answer**\n\n**Supported fact:** As of **2026-08-27**, the newest published MCP specification revision is **`2026-07-28`**. The official versioning page says “The current protocol version is 2026-07-28,” and the official GitHub releases page says `2026-07-28` is the **stable release** published on **July 28, 2026**.  \nSources: https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Supported fact:** The immediately preceding revision was **`2025-11-25`**. The `2026-07-28` changelog explicitly says it lists changes “since the previous revision, 2025-11-25,” and the releases page separately marks `2025-11-25` as a stable release.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Inference:** The changes that matter most to **local tool servers** are these, in roughly this order. This ordering is my judgment from the spec text; I did **not** find an official source that ranks changes specifically for local servers.  \nSources for the lack of an official ranking basis: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://blog.modelcontextprotocol.io/posts/2026-07-28/\n\n1. **The stateless core is the biggest change.** MCP is now explicitly stateless; `initialize` / `notifications/initialized` are removed, protocol-level sessions are removed, and servers must not infer context from prior requests on the same connection or stdio process. State that spans requests must be carried by explicit identifiers passed back on later requests. This matters to almost every local server because stdio processes are no longer session boundaries.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://modelcontextprotocol.io/specification/2026-07-28/basic , https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio , https://blog.mo"
+        },
+        {
+          "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+          "text": "**Answer**\n\n**Supported fact:** As of **2026-08-27**, the newest published MCP specification revision is **`2026-07-28`**. The official versioning page says “The current protocol version is 2026-07-28,” and the official GitHub releases page says `2026-07-28` is the **stable release** published on **July 28, 2026**.  \nSources: https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Supported fact:** The immediately preceding revision was **`2025-11-25`**. The `2026-07-28` changelog explicitly says it lists changes “since the previous revision, 2025-11-25,” and the releases page separately marks `2025-11-25` as a stable release.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Inference:** The changes that matter most to **local tool servers** are these, in roughly this order. This ordering is my judgment from the spec text; I did **not** find an official source that ranks changes specifically for local servers.  \nSources for the lack of an official ranking basis: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://blog.modelcontextprotocol.io/posts/2026-07-28/\n\n1. **The stateless core is the biggest change.** MCP is now explicitly stateless; `initialize` / `notifications/initialized` are removed, protocol-level sessions are removed, and servers must not infer context from prior requests on the same connection or stdio process. State that spans requests must be carried by explicit identifiers passed back on later requests. This matters to almost every local server because stdio processes are no longer session boundaries.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://modelcontextprotocol.io/specification/2026-07-28/basic , https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio , https://blog.mo"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic",
+          "text": "**Answer**\n\n**Supported fact:** As of **2026-08-27**, the newest published MCP specification revision is **`2026-07-28`**. The official versioning page says “The current protocol version is 2026-07-28,” and the official GitHub releases page says `2026-07-28` is the **stable release** published on **July 28, 2026**.  \nSources: https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Supported fact:** The immediately preceding revision was **`2025-11-25`**. The `2026-07-28` changelog explicitly says it lists changes “since the previous revision, 2025-11-25,” and the releases page separately marks `2025-11-25` as a stable release.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Inference:** The changes that matter most to **local tool servers** are these, in roughly this order. This ordering is my judgment from the spec text; I did **not** find an official source that ranks changes specifically for local servers.  \nSources for the lack of an official ranking basis: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://blog.modelcontextprotocol.io/posts/2026-07-28/\n\n1. **The stateless core is the biggest change.** MCP is now explicitly stateless; `initialize` / `notifications/initialized` are removed, protocol-level sessions are removed, and servers must not infer context from prior requests on the same connection or stdio process. State that spans requests must be carried by explicit identifiers passed back on later requests. This matters to almost every local server because stdio processes are no longer session boundaries.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://modelcontextprotocol.io/specification/2026-07-28/basic , https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio , https://blog.mo"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+          "text": "**Answer**\n\n**Supported fact:** As of **2026-08-27**, the newest published MCP specification revision is **`2026-07-28`**. The official versioning page says “The current protocol version is 2026-07-28,” and the official GitHub releases page says `2026-07-28` is the **stable release** published on **July 28, 2026**.  \nSources: https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Supported fact:** The immediately preceding revision was **`2025-11-25`**. The `2026-07-28` changelog explicitly says it lists changes “since the previous revision, 2025-11-25,” and the releases page separately marks `2025-11-25` as a stable release.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Inference:** The changes that matter most to **local tool servers** are these, in roughly this order. This ordering is my judgment from the spec text; I did **not** find an official source that ranks changes specifically for local servers.  \nSources for the lack of an official ranking basis: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://blog.modelcontextprotocol.io/posts/2026-07-28/\n\n1. **The stateless core is the biggest change.** MCP is now explicitly stateless; `initialize` / `notifications/initialized` are removed, protocol-level sessions are removed, and servers must not infer context from prior requests on the same connection or stdio process. State that spans requests must be carried by explicit identifiers passed back on later requests. This matters to almost every local server because stdio processes are no longer session boundaries.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://modelcontextprotocol.io/specification/2026-07-28/basic , https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio , https://blog.mo"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/discover",
+          "text": "**Answer**\n\n**Supported fact:** As of **2026-08-27**, the newest published MCP specification revision is **`2026-07-28`**. The official versioning page says “The current protocol version is 2026-07-28,” and the official GitHub releases page says `2026-07-28` is the **stable release** published on **July 28, 2026**.  \nSources: https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Supported fact:** The immediately preceding revision was **`2025-11-25`**. The `2026-07-28` changelog explicitly says it lists changes “since the previous revision, 2025-11-25,” and the releases page separately marks `2025-11-25` as a stable release.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Inference:** The changes that matter most to **local tool servers** are these, in roughly this order. This ordering is my judgment from the spec text; I did **not** find an official source that ranks changes specifically for local servers.  \nSources for the lack of an official ranking basis: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://blog.modelcontextprotocol.io/posts/2026-07-28/\n\n1. **The stateless core is the biggest change.** MCP is now explicitly stateless; `initialize` / `notifications/initialized` are removed, protocol-level sessions are removed, and servers must not infer context from prior requests on the same connection or stdio process. State that spans requests must be carried by explicit identifiers passed back on later requests. This matters to almost every local server because stdio processes are no longer session boundaries.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://modelcontextprotocol.io/specification/2026-07-28/basic , https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio , https://blog.mo"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+          "text": "**Answer**\n\n**Supported fact:** As of **2026-08-27**, the newest published MCP specification revision is **`2026-07-28`**. The official versioning page says “The current protocol version is 2026-07-28,” and the official GitHub releases page says `2026-07-28` is the **stable release** published on **July 28, 2026**.  \nSources: https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Supported fact:** The immediately preceding revision was **`2025-11-25`**. The `2026-07-28` changelog explicitly says it lists changes “since the previous revision, 2025-11-25,” and the releases page separately marks `2025-11-25` as a stable release.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Inference:** The changes that matter most to **local tool servers** are these, in roughly this order. This ordering is my judgment from the spec text; I did **not** find an official source that ranks changes specifically for local servers.  \nSources for the lack of an official ranking basis: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://blog.modelcontextprotocol.io/posts/2026-07-28/\n\n1. **The stateless core is the biggest change.** MCP is now explicitly stateless; `initialize` / `notifications/initialized` are removed, protocol-level sessions are removed, and servers must not infer context from prior requests on the same connection or stdio process. State that spans requests must be carried by explicit identifiers passed back on later requests. This matters to almost every local server because stdio processes are no longer session boundaries.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://modelcontextprotocol.io/specification/2026-07-28/basic , https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio , https://blog.mo"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+          "text": "**Answer**\n\n**Supported fact:** As of **2026-08-27**, the newest published MCP specification revision is **`2026-07-28`**. The official versioning page says “The current protocol version is 2026-07-28,” and the official GitHub releases page says `2026-07-28` is the **stable release** published on **July 28, 2026**.  \nSources: https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Supported fact:** The immediately preceding revision was **`2025-11-25`**. The `2026-07-28` changelog explicitly says it lists changes “since the previous revision, 2025-11-25,” and the releases page separately marks `2025-11-25` as a stable release.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Inference:** The changes that matter most to **local tool servers** are these, in roughly this order. This ordering is my judgment from the spec text; I did **not** find an official source that ranks changes specifically for local servers.  \nSources for the lack of an official ranking basis: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://blog.modelcontextprotocol.io/posts/2026-07-28/\n\n1. **The stateless core is the biggest change.** MCP is now explicitly stateless; `initialize` / `notifications/initialized` are removed, protocol-level sessions are removed, and servers must not infer context from prior requests on the same connection or stdio process. State that spans requests must be carried by explicit identifiers passed back on later requests. This matters to almost every local server because stdio processes are no longer session boundaries.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://modelcontextprotocol.io/specification/2026-07-28/basic , https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio , https://blog.mo"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/architecture",
+          "text": "**Answer**\n\n**Supported fact:** As of **2026-08-27**, the newest published MCP specification revision is **`2026-07-28`**. The official versioning page says “The current protocol version is 2026-07-28,” and the official GitHub releases page says `2026-07-28` is the **stable release** published on **July 28, 2026**.  \nSources: https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Supported fact:** The immediately preceding revision was **`2025-11-25`**. The `2026-07-28` changelog explicitly says it lists changes “since the previous revision, 2025-11-25,” and the releases page separately marks `2025-11-25` as a stable release.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Inference:** The changes that matter most to **local tool servers** are these, in roughly this order. This ordering is my judgment from the spec text; I did **not** find an official source that ranks changes specifically for local servers.  \nSources for the lack of an official ranking basis: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://blog.modelcontextprotocol.io/posts/2026-07-28/\n\n1. **The stateless core is the biggest change.** MCP is now explicitly stateless; `initialize` / `notifications/initialized` are removed, protocol-level sessions are removed, and servers must not infer context from prior requests on the same connection or stdio process. State that spans requests must be carried by explicit identifiers passed back on later requests. This matters to almost every local server because stdio processes are no longer session boundaries.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://modelcontextprotocol.io/specification/2026-07-28/basic , https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio , https://blog.mo"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/schema",
+          "text": "**Answer**\n\n**Supported fact:** As of **2026-08-27**, the newest published MCP specification revision is **`2026-07-28`**. The official versioning page says “The current protocol version is 2026-07-28,” and the official GitHub releases page says `2026-07-28` is the **stable release** published on **July 28, 2026**.  \nSources: https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Supported fact:** The immediately preceding revision was **`2025-11-25`**. The `2026-07-28` changelog explicitly says it lists changes “since the previous revision, 2025-11-25,” and the releases page separately marks `2025-11-25` as a stable release.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Inference:** The changes that matter most to **local tool servers** are these, in roughly this order. This ordering is my judgment from the spec text; I did **not** find an official source that ranks changes specifically for local servers.  \nSources for the lack of an official ranking basis: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://blog.modelcontextprotocol.io/posts/2026-07-28/\n\n1. **The stateless core is the biggest change.** MCP is now explicitly stateless; `initialize` / `notifications/initialized` are removed, protocol-level sessions are removed, and servers must not infer context from prior requests on the same connection or stdio process. State that spans requests must be carried by explicit identifiers passed back on later requests. This matters to almost every local server because stdio processes are no longer session boundaries.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://modelcontextprotocol.io/specification/2026-07-28/basic , https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio , https://blog.mo"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http",
+          "text": "**Answer**\n\n**Supported fact:** As of **2026-08-27**, the newest published MCP specification revision is **`2026-07-28`**. The official versioning page says “The current protocol version is 2026-07-28,” and the official GitHub releases page says `2026-07-28` is the **stable release** published on **July 28, 2026**.  \nSources: https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Supported fact:** The immediately preceding revision was **`2025-11-25`**. The `2026-07-28` changelog explicitly says it lists changes “since the previous revision, 2025-11-25,” and the releases page separately marks `2025-11-25` as a stable release.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Inference:** The changes that matter most to **local tool servers** are these, in roughly this order. This ordering is my judgment from the spec text; I did **not** find an official source that ranks changes specifically for local servers.  \nSources for the lack of an official ranking basis: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://blog.modelcontextprotocol.io/posts/2026-07-28/\n\n1. **The stateless core is the biggest change.** MCP is now explicitly stateless; `initialize` / `notifications/initialized` are removed, protocol-level sessions are removed, and servers must not infer context from prior requests on the same connection or stdio process. State that spans requests must be carried by explicit identifiers passed back on later requests. This matters to almost every local server because stdio processes are no longer session boundaries.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://modelcontextprotocol.io/specification/2026-07-28/basic , https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio , https://blog.mo"
+        }
+      ],
+      "final_answer": "**Answer**\n\n**Supported fact:** As of **2026-08-27**, the newest published MCP specification revision is **`2026-07-28`**. The official versioning page says “The current protocol version is 2026-07-28,” and the official GitHub releases page says `2026-07-28` is the **stable release** published on **July 28, 2026**.  \nSources: https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Supported fact:** The immediately preceding revision was **`2025-11-25`**. The `2026-07-28` changelog explicitly says it lists changes “since the previous revision, 2025-11-25,” and the releases page separately marks `2025-11-25` as a stable release.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://github.com/modelcontextprotocol/modelcontextprotocol/releases\n\n**Inference:** The changes that matter most to **local tool servers** are these, in roughly this order. This ordering is my judgment from the spec text; I did **not** find an official source that ranks changes specifically for local servers.  \nSources for the lack of an official ranking basis: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://blog.modelcontextprotocol.io/posts/2026-07-28/\n\n1. **The stateless core is the biggest change.** MCP is now explicitly stateless; `initialize` / `notifications/initialized` are removed, protocol-level sessions are removed, and servers must not infer context from prior requests on the same connection or stdio process. State that spans requests must be carried by explicit identifiers passed back on later requests. This matters to almost every local server because stdio processes are no longer session boundaries.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://modelcontextprotocol.io/specification/2026-07-28/basic , https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio , https://blog.modelcontextprotocol.io/posts/2026-07-28/\n\n2. **`server/discover` and per-request version negotiation are the next most important.** Servers **must** implement `server/discover`, and clients may use it before any other request. For **stdio**, the spec specifically says clients that support both modern and legacy servers should send `server/discover` first as a backward-compatibility probe. That makes this especially relevant to local subprocess-based servers.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/server/discover , https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning , https://modelcontextprotocol.io/specification/2026-07-28/changelog\n\n3. **MRTR changes tool-call flows when a server needs more input mid-call.** The revision replaces earlier server-initiated requests for elicitation, sampling, and roots with **Multi Round-Trip Requests**. In practice, a server now returns `resultType: \"input_required\"` and the client retries with `inputResponses` (and optionally `requestState`). This matters a lot for local tools that ask follow-up questions or need confirmation during execution.  \nSources: https://blog.modelcontextprotocol.io/posts/2026-07-28/ , https://modelcontextprotocol.io/specification/2026-07-28/server/tools , https://modelcontextprotocol.io/specification/2026-07-28/changelog\n\n4. **Notification and subscription behavior changed materially.** `resources/subscribe`, `resources/unsubscribe`, and the HTTP GET endpoint were replaced by `subscriptions/listen`; request-scoped notifications like progress and messages stay on the response stream of the related request. For stdio, the spec says all messages share one channel and clients must correlate subscription notifications via `io.modelcontextprotocol/subscriptionId`. This is important for local servers that emit updates or stream progress.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio , https://modelcontextprotocol.io/specification/2026-07-28/architecture\n\n5. **Logging semantics changed in a way that can break expectations.** The spec removed `logging/setLevel`; log level is now per-request in `_meta.io.modelcontextprotocol/logLevel`, and servers must not send `notifications/message` unless that field was provided for the request. That matters to local servers that previously treated logging as connection-level state.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://modelcontextprotocol.io/specification/2026-07-28/schema\n\n6. **Header-based routing matters mainly if the “local” server also speaks Streamable HTTP.** On Streamable HTTP, `MCP-Protocol-Version`, `Mcp-Method`, and `Mcp-Name` are required, and servers must reject header/body mismatches. But the stdio transport has **no header layer**, so this is probably less important for stdio-only local servers.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http , https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio , https://blog.modelcontextprotocol.io/posts/2026-07-28/\n\n7. **Cacheable list results are useful, but probably less disruptive than the lifecycle changes above.** `tools/list`, `prompts/list`, `resources/list`, `resources/read`, and related results now carry `ttlMs` and `cacheScope`, and list ordering is meant to support caching. That helps performance and stability, but it is usually less invasive than removing sessions and the handshake.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://modelcontextprotocol.io/specification/2026-07-28/server/tools , https://blog.modelcontextprotocol.io/posts/2026-07-28/\n\n**Disagreement:** I found **no clear disagreement** between the official spec site, official blog, and official release metadata about which revision is latest: they consistently point to `2026-07-28`.  \nSources: https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning , https://github.com/modelcontextprotocol/modelcontextprotocol/releases , https://blog.modelcontextprotocol.io/posts/2026-07-28/\n\n**Uncertainty / lack of good evidence:** I found **no official source** that specifically ranks “which changes matter most to local tool servers,” so the priority order above is **inference**, not a quoted maintainer ranking.  \nSources: https://modelcontextprotocol.io/specification/2026-07-28/changelog , https://blog.modelcontextprotocol.io/posts/2026-07-28/"
+    },
+    {
+      "run_id": "2026-08-27_claude_current-mcp-release",
+      "provider": "claude",
+      "model": "claude-opus-5[1m]",
+      "queries": ["Model Context Protocol specification revision 2025-11-25 changelog"],
+      "tool_results": [
+        {
+          "tool": "WebFetch",
+          "summary": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Versioning\n\nThe Model Context Protocol uses string-based version identifiers following the format\n`YYYY-MM-DD`, to indicate the last date backwards incompatible changes were made.\n\n<Info>\n  The protocol version will *not* be incremented when the\n  protocol is updated, as long as the changes maintain backwards c"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Releases · modelcontextprotocol/modelcontextprotocol: https://github.com/modelcontextprotocol/modelcontextprotocol/releases"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "modelcontextprotocol/docs/specification/2025-11-25/changelog.mdx at main · modelcontextprotocol/modelcontextprotocol: https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/docs/specification/2025-11-25/changelog.mdx"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The 2026-07-28 MCP Specification Release Candidate | Model Context Protocol Blog: https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Key Changes - Model Context Protocol: https://modelcontextprotocol.io/specification/2025-11-25/changelog"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "MCP 2025-11-25 is here: async Tasks, better OAuth, extensions, and a smoother agentic future — WorkOS: https://workos.com/blog/mcp-2025-11-25-spec-update"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Specification – Model Context Protocol （MCP）: https://modelcontextprotocol.info/specification/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Model Context Protocol Specification Version Timeline - Version-by-Version Changes and Adoption Milestones | hidekazu-konishi.com: https://hidekazu-konishi.com/entry/mcp_specification_version_timeline.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Revisions – Model Context Protocol （MCP）: https://modelcontextprotocol.info/specification/draft/revisions/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Key Changes – Model Context Protocol （MCP）: https://modelcontextprotocol.info/specification/2025-11-25/changelog/"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Key Changes\n\n<div id=\"enable-section-numbers\" />\n\nThis document lists changes made to the Model Context Protocol (MCP) specification since\nthe previous revision, [2025-11-25](/specification/2025-11-25).\n\n## Major changes\n\n1. Remove protocol-level sessions and the `Mcp-Session-Id` header from the Streamable HTTP"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# MCP 2026-07-28 Release Summary\n\n## Main Changes\n\nThe specification introduces several foundational improvements:\n\n1. **Stateless Protocol Core**: Removes the `initialize` handshake and `Mcp-Session-Id` header, enabling deployment behind standard load balancers without sticky routing or shared session stores.\n\n2. **Extensions Framework**: Formalizes how optional capabilities are developed independently, with two initial extensions—MCP Apps (server-rendered UIs) and Tasks (long-running work).\n\n3"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# stdio\n\n<div id=\"enable-section-numbers\" />\n\nIn the **stdio** transport, the client launches the MCP server as a subprocess.\nThe two ends communicate over the subprocess's standard streams:\n\n* The server reads JSON-RPC messages from `stdin` and writes JSON-RPC messages to\n  `stdout`.\n* Each message is a single J"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Recent MCP Blog Posts\n\nHere are the latest posts from the Model Context Protocol Blog:\n\n1. **The New MCP Roadmap** (August 22, 2026)\n   - Authors: David Soria Parra and Den Delimarsky\n   - \"an updated roadmap for the Model Context Protocol (MCP), covering the next specification release and beyond\"\n\n2. **The 2026-07-28 Specification** (July 28, 2026)\n   - Authors: David Soria Parra and Den Delimarsky\n   - This post announces the official release of the specification version 2026-07-28. The post"
+        }
+      ],
+      "opened_urls": [
+        "https://modelcontextprotocol.io/specification/versioning",
+        "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+        "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/",
+        "https://blog.modelcontextprotocol.io/",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio"
+      ],
+      "cited_urls": [
+        "https://modelcontextprotocol.io/specification/versioning",
+        "https://blog.modelcontextprotocol.io/",
+        "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/",
+        "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+        "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+        "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2575",
+        "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2322",
+        "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2577",
+        "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2549",
+        "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2106",
+        "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2663"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/versioning",
+          "title": "https://modelcontextprotocol.io/specification/versioning"
+        },
+        {
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/releases",
+          "title": "Releases · modelcontextprotocol/modelcontextprotocol"
+        },
+        {
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/docs/specification/2025-11-25/changelog.mdx",
+          "title": "modelcontextprotocol/docs/specification/2025-11-25/changelog.mdx at main · modelcontextprotocol/modelcontextprotocol"
+        },
+        {
+          "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/",
+          "title": "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2025-11-25/changelog",
+          "title": "Key Changes - Model Context Protocol"
+        },
+        {
+          "url": "https://workos.com/blog/mcp-2025-11-25-spec-update",
+          "title": "MCP 2025-11-25 is here: async Tasks, better OAuth, extensions, and a smoother agentic future — WorkOS"
+        },
+        {
+          "url": "https://modelcontextprotocol.info/specification/",
+          "title": "Specification – Model Context Protocol （MCP）"
+        },
+        {
+          "url": "https://hidekazu-konishi.com/entry/mcp_specification_version_timeline.html",
+          "title": "Model Context Protocol Specification Version Timeline - Version-by-Version Changes and Adoption Milestones | hidekazu-konishi.com"
+        },
+        {
+          "url": "https://modelcontextprotocol.info/specification/draft/revisions/",
+          "title": "Revisions – Model Context Protocol （MCP）"
+        },
+        {
+          "url": "https://modelcontextprotocol.info/specification/2025-11-25/changelog/",
+          "title": "Key Changes – Model Context Protocol （MCP）"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/changelog"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+          "title": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio"
+        },
+        {
+          "url": "https://blog.modelcontextprotocol.io/",
+          "title": "https://blog.modelcontextprotocol.io/"
+        },
+        {
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2575",
+          "title": "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2575"
+        },
+        {
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2322",
+          "title": "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2322"
+        },
+        {
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2577",
+          "title": "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2577"
+        },
+        {
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2549",
+          "title": "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2549"
+        },
+        {
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2106",
+          "title": "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2106"
+        },
+        {
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2663",
+          "title": "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2663"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/versioning",
+          "text": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Versioning\n\nThe Model Context Protocol uses string-based version identifiers following the format\n`YYYY-MM-DD`, to indicate the last date backwards incompatible changes were made.\n\n<Info>\n  The protocol version will *not* be incremented when the\n  protocol is updated, as long as the changes maintain backwards compatibility. This allows\n  for incremental improvements while preserving interoperability.\n</Info>\n\n## Revisions\n\nRevisions may be marked as:\n\n* **Draft**: in-progress specifications, not yet ready for consumption.\n* **Current**: the current protocol version, which is ready for use and may continue to\n  receive backwards compatible changes.\n* **Final**: past, complete specifications that will not be changed.\n\nThe **current** protocol version is [**2026-07-28**](/specification/2026-07-28/).\n\n## Feature States\n\nIndividual features of the specification may additionally be marked as\n**Deprecated** under the\n[feature lifecycle and deprecation policy](/community/feature-lifecycle):\nthe feature remains part of the specification, but is scheduled for removal.\nDeprecated features document a migration path (or state that none is required)\nand remain in the specification for at least twelve months, or at least\nninety days under the policy's\n[expedited-removal exception](/community/feature-lifecycle#expedited-removal),\nbefore they become eligible for removal, after which they may be **Removed**\nin a future revision.\n\nFeatures that are currently Deprecated are listed in the\n[deprecated features registry](/specification/2026-07-28/deprecated).\n\n## Negotiation\n\nEvery request declares the protocol version it is using via the\n`io.modelcontextprotocol/protocolVersion` key in its\n[`_meta`](/specification/2026-07-28/basic/index#meta) field, and the server accepts or\nrejects each request indepen"
+        },
+        {
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/releases",
+          "text": "Releases · modelcontextprotocol/modelcontextprotocol"
+        },
+        {
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/docs/specification/2025-11-25/changelog.mdx",
+          "text": "modelcontextprotocol/docs/specification/2025-11-25/changelog.mdx at main · modelcontextprotocol/modelcontextprotocol"
+        },
+        {
+          "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/",
+          "text": "The 2026-07-28 MCP Specification Release Candidate | Model Context Protocol Blog"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2025-11-25/changelog",
+          "text": "Key Changes - Model Context Protocol"
+        },
+        {
+          "url": "https://workos.com/blog/mcp-2025-11-25-spec-update",
+          "text": "MCP 2025-11-25 is here: async Tasks, better OAuth, extensions, and a smoother agentic future — WorkOS"
+        },
+        {
+          "url": "https://modelcontextprotocol.info/specification/",
+          "text": "Specification – Model Context Protocol （MCP）"
+        },
+        {
+          "url": "https://hidekazu-konishi.com/entry/mcp_specification_version_timeline.html",
+          "text": "Model Context Protocol Specification Version Timeline - Version-by-Version Changes and Adoption Milestones | hidekazu-konishi.com"
+        },
+        {
+          "url": "https://modelcontextprotocol.info/specification/draft/revisions/",
+          "text": "Revisions – Model Context Protocol （MCP）"
+        },
+        {
+          "url": "https://modelcontextprotocol.info/specification/2025-11-25/changelog/",
+          "text": "Key Changes – Model Context Protocol （MCP）"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "text": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Key Changes\n\n<div id=\"enable-section-numbers\" />\n\nThis document lists changes made to the Model Context Protocol (MCP) specification since\nthe previous revision, [2025-11-25](/specification/2025-11-25).\n\n## Major changes\n\n1. Remove protocol-level sessions and the `Mcp-Session-Id` header from the Streamable HTTP transport. List endpoints (`tools/list`, `resources/list`, `prompts/list`) no longer vary per-connection. Servers that need cross-call state use explicit, server-minted handles passed as ordinary tool arguments ([SEP-2567](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2567)).\n\n2. Make MCP stateless: remove the `initialize`/`notifications/initialized` handshake. Every request now carries its protocol version and client capabilities in `_meta` (`io.modelcontextprotocol/protocolVersion`, `io.modelcontextprotocol/clientCapabilities`). Clients SHOULD identify themselves on each request (`io.modelcontextprotocol/clientInfo`), and servers SHOULD identify themselves in each result's `_meta` (`io.modelcontextprotocol/serverInfo`). Version mismatches return `UnsupportedProtocolVersionError` ([SEP-2575](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2575)).\n\n3. Add `server/discover`: servers MUST implement this RPC to advertise their supported protocol versions, capabilities, and identity. Clients MAY call it before any other request for up-front version selection, or use it as a backward-compatibility probe on STDIO ([SEP-2575](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2575)).\n\n4. Replace the HTTP GET endpoint and `resources/subscribe`/`resources/unsubscribe` with `subscriptions/listen`: a single long-lived POST-response stream for opted-in server-to-client change notifications. Clients opt in to specific types (`toolsList"
+        },
+        {
+          "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/",
+          "text": "# MCP 2026-07-28 Release Summary\n\n## Main Changes\n\nThe specification introduces several foundational improvements:\n\n1. **Stateless Protocol Core**: Removes the `initialize` handshake and `Mcp-Session-Id` header, enabling deployment behind standard load balancers without sticky routing or shared session stores.\n\n2. **Extensions Framework**: Formalizes how optional capabilities are developed independently, with two initial extensions—MCP Apps (server-rendered UIs) and Tasks (long-running work).\n\n3. **Authorization Hardening**: Aligns with OAuth 2.0 and OpenID Connect standards through six improvements, including issuer validation and proper application type declaration.\n\n4. **Deprecation Policy**: Establishes a formal lifecycle for features with at least 12 months between deprecation and removal.\n\n5. **Enhanced Schema Support**: Expands tool definitions to full JSON Schema 2020-12 with composition and conditionals.\n\n## Status & Timeline\n\nThe **2026-07-28 is a release candidate**, not final. The document was published on **May 21, 2026**, with the final specification scheduled for **July 28, 2026**—a ten-week validation window for SDK maintainers.\n\nThis represents a breaking change from the prior 2025-11-25 version, marking the largest revision since the protocol's launch."
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+          "text": "> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# stdio\n\n<div id=\"enable-section-numbers\" />\n\nIn the **stdio** transport, the client launches the MCP server as a subprocess.\nThe two ends communicate over the subprocess's standard streams:\n\n* The server reads JSON-RPC messages from `stdin` and writes JSON-RPC messages to\n  `stdout`.\n* Each message is a single JSON-RPC request, notification, or response.\n* Messages are delimited by newlines, and **MUST NOT** contain embedded newlines.\n* The server **MAY** write UTF-8 strings to `stderr` for any logging purposes\n  including informational, debug, and error messages.\n* The client **MAY** capture, forward, or ignore the server's `stderr` output and\n  **SHOULD NOT** assume `stderr` output indicates error conditions.\n* The server **MUST NOT** write anything to its `stdout` that is not a valid MCP\n  message.\n* The client **MUST NOT** write anything to the server's `stdin` that is not a\n  valid MCP message.\n\nStandard streams are the canonical channel, but nothing in this binding\ndepends on them except the process lifecycle. The wire format (one\nnewline-delimited JSON-RPC message per line over a reliable bidirectional\nbyte stream) works unchanged over Unix domain sockets, TCP connections, or\nany similar channel.\n[Custom transports](/specification/2026-07-28/basic/transports#custom-transports)\nbuilt on such streams **SHOULD** reuse this framing and the message rules on\nthis page; only the subprocess-specific aspects (launch, `stderr`, shutdown\nby closing the stream, process restart) need channel-specific equivalents.\n\n## Sending Messages\n\nThe client sends messages by writing JSON-RPC *requests* and *notifications*\nto the server's `stdin`, one message per line. The client **MUST NOT** write\nJSON-RPC *responses*.\n\n## Receiving Messages\n\nThe client reads server messages from `stdout`, one messag"
+        },
+        {
+          "url": "https://blog.modelcontextprotocol.io/",
+          "text": "# Recent MCP Blog Posts\n\nHere are the latest posts from the Model Context Protocol Blog:\n\n1. **The New MCP Roadmap** (August 22, 2026)\n   - Authors: David Soria Parra and Den Delimarsky\n   - \"an updated roadmap for the Model Context Protocol (MCP), covering the next specification release and beyond\"\n\n2. **The 2026-07-28 Specification** (July 28, 2026)\n   - Authors: David Soria Parra and Den Delimarsky\n   - This post announces the official release of the specification version 2026-07-28. The post notes that \"the protocol continued to grow as the data and interactivity substrate for agentic workflows\" and indicates the release is now available along with updated SDKs.\n\n3. **The Official Ruby SDK for MCP Reaches 1.0** (July 27, 2026)\n   - Author: Koichi Ito\n   - Announces version 1.0.0 of the Ruby SDK, describing it as \"the first stable release of the mcp gem\""
+        }
+      ],
+      "final_answer": "## Réponse courte\n\nLa révision publiée la plus récente est **`2026-07-28`**, marquée « Current » sur la page de versioning officielle ([modelcontextprotocol.io/specification/versioning](https://modelcontextprotocol.io/specification/versioning)). Elle a été publiée en version finale le 28 juillet 2026, après une période de release candidate ouverte le 21 mai 2026 ([blog MCP](https://blog.modelcontextprotocol.io/), [post RC](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/)). La révision précédente était `2025-11-25`.\n\nUn post « The New MCP Roadmap » du 22 août 2026 évoque la prochaine révision, mais celle-ci n'est pas publiée : une révision « Draft » existe toujours en parallèle et n'est pas destinée à la consommation ([blog](https://blog.modelcontextprotocol.io/), [versioning](https://modelcontextprotocol.io/specification/versioning)).\n\nC'est une révision **cassante** — décrite dans le post RC comme la plus grosse depuis le lancement du protocole ([source](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/)).\n\n## Ce qui compte le plus pour un serveur d'outils local (stdio)\n\nTout ce qui suit vient du changelog officiel ([modelcontextprotocol.io/specification/2026-07-28/changelog](https://modelcontextprotocol.io/specification/2026-07-28/changelog)) et de la page de transport stdio ([lien](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)).\n\n**1. Fin du handshake `initialize` / `notifications/initialized`.** Le protocole devient sans état. Chaque requête porte sa version et les capacités client dans `_meta` (`io.modelcontextprotocol/protocolVersion`, `io.modelcontextprotocol/clientCapabilities`), et le serveur doit s'identifier dans le `_meta` de chaque résultat (`io.modelcontextprotocol/serverInfo`). En cas d'incompatibilité, on renvoie `UnsupportedProtocolVersionError` ([SEP-2575](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2575)). C'est le changement le plus structurant : la logique « je configure mon état au démarrage » disparaît.\n\n**2. `server/discover` est obligatoire (MUST) côté serveur.** Il expose versions supportées, capacités et identité. Sur stdio, il sert aussi de sonde de rétrocompatibilité : le client teste `server/discover`, et si la réponse est une erreur non reconnue ou aucune réponse, il retombe sur `initialize` en supposant un serveur legacy ([changelog](https://modelcontextprotocol.io/specification/2026-07-28/changelog), [stdio](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)). Conséquence pratique : si vous n'implémentez pas `server/discover`, vous serez traité comme un serveur ancienne génération.\n\n**3. Le serveur ne peut plus émettre de requêtes JSON-RPC sur `stdout`.** Le motif Multi Round-Trip Requests (MRTR) remplace `roots/list`, `sampling/createMessage` et `elicitation/create` : le serveur retourne un `InputRequiredResult` (`resultType: \"input_required\"`) contenant `inputRequests`, et le client rejoue la requête d'origine avec `inputResponses` ([SEP-2322](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2322)). Corollaire : **tout résultat porte désormais un champ obligatoire `resultType`** (`\"complete\"` ou `\"input_required\"`).\n\n**4. Roots, Sampling et Logging sont dépréciés** ([SEP-2577](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2577)). Ils restent fonctionnels pendant la fenêtre de dépréciation (minimum 12 mois selon la nouvelle politique de cycle de vie), mais les migrations suggérées sont : passer les répertoires/fichiers en paramètres d'outil ou URIs de ressources plutôt que Roots ; appeler directement l'API du fournisseur LLM plutôt que Sampling ; **logguer sur `stderr` (stdio) ou via OpenTelemetry** plutôt que le Logging MCP. Pour un serveur local, c'est une bonne nouvelle : `stderr` est confirmé comme canal de log légitime pour tous types de messages, et le client ne doit pas supposer que du `stderr` signifie une erreur.\n\n**5. Suppression de `ping`, `logging/setLevel` et `notifications/roots/list_changed`.** Le niveau de log se règle par requête via `io.modelcontextprotocol/logLevel` dans `_meta`, et le serveur **ne doit pas** émettre de `notifications/message` pour une requête qui n'a pas fourni ce champ.\n\n**6. Abonnements : `resources/subscribe`/`unsubscribe` remplacés par `subscriptions/listen`.** Un seul flux long-lived, avec opt-in explicite sur les types (`toolsListChanged`, `promptsListChanged`, `resourcesListChanged`, `resourceSubscriptions`) et étiquetage des notifications par `io.modelcontextprotocol/subscriptionId`. Sur stdio, ces notifications transitent sur le `stdout` partagé et doivent être corrélées via ce champ.\n\n**7. Cache obligatoire sur les listes.** `ttlMs` et `cacheScope` (`\"public\"`/`\"private\"`) deviennent requis sur les résultats de `tools/list`, `prompts/list`, `resources/list`, `resources/read` et `resources/templates/list` via la nouvelle interface `CacheableResult` ([SEP-2549](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2549)). À cela s'ajoute une recommandation (SHOULD) de renvoyer les outils dans un **ordre déterministe**, pour le cache client et les cache hits de prompt LLM.\n\n**8. Schémas d'outils assouplis.** `inputSchema`/`outputSchema` acceptent désormais n'importe quel mot-clé JSON Schema 2020-12, et `structuredContent` n'importe quelle valeur JSON, avec des exigences de résolution de `$ref` et des bornes de ressources sur les mots-clés de composition ([SEP-2106](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2106)).\n\n**9. Codes d'erreur renumérotés.** `-32000`→`-32019` reste implémentation-défini, `-32020`→`-32099` est réservé à la spec. `HeaderMismatch` passe de `-32001` à `-32020`, `MissingRequiredClientCapability` de `-32003` à `-32021`, `UnsupportedProtocolVersion` de `-32004` à `-32022`. Par ailleurs, l'erreur « ressource introuvable » passe de `-32002` à `-32602`.\n\n**10. Tasks sort du cœur du protocole** vers une extension officielle `io.modelcontextprotocol/tasks`, avec polling via `tasks/get`, `tasks/update` pour l'entrée client, suppression de `tasks/list` et de la méthode bloquante `tasks/result` ([SEP-2663](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2663)). Si vous aviez adopté les Tasks expérimentales de `2025-11-25`, c'est une réécriture.\n\n## Ce qui ne vous concerne pas (serveurs locaux)\n\nCes points sont majeurs dans le changelog mais **spécifiques à Streamable HTTP** : suppression du header `Mcp-Session-Id`, suppression de la résumabilité SSE (`Last-Event-ID`), headers `Mcp-Method`/`Mcp-Name` obligatoires, et l'ensemble du durcissement OAuth (validation `iss` RFC 9207, `application_type` en DCR, dépréciation de RFC 7591 au profit des Client ID Metadata Documents). Un serveur stdio n'a « pas de couche de headers » — toutes les métadonnées sont inline dans le corps JSON-RPC ([stdio](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio)).\n\n## Statut épistémique\n\n- **Fait établi et sourcé** : tout ce qui précède est tiré des pages officielles `modelcontextprotocol.io` et du blog officiel. Aucune contradiction entre les sources consultées.\n- **Inférence de ma part** (non affirmée par la spec) : le classement « ce qui compte le plus pour un serveur local ». La spec ne hiérarchise pas ses changements par type de déploiement ; j'ai trié en fonction de ce qui touche le transport stdio et le cycle de vie d'un process enfant.\n- **Incertitude** : je n'ai pas vérifié l'état d'implémentation réel dans les SDK officiels (Python, TypeScript, etc.). Le post du 28 juillet mentionne des « SDK mis à jour », mais la couverture et la maturité par langage restent à confirmer avant migration.\n- **Point non vérifié** : le contenu exact de la roadmap du 22 août 2026 et la date cible de la prochaine révision — je n'ai pas ouvert ce post."
+    }
+  ]
+}

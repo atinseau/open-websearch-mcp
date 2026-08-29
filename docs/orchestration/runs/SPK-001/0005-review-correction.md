@@ -1,0 +1,15 @@
+# Step 0005 - SPK-001 review correction
+
+- Timestamp: `2026-08-27T21:04:34Z`
+- Attempt: `1`
+- Status: continue
+- Worktree / branch / base SHA / head SHA: `.worktree/spk-001-a1` / `agent/spk-001-a1` / `eb30c3a28554740a6512116d0b29521ed610c553` / `d2c1ce0` plus uncommitted corrections
+- OpenCode model / variant / session: `openai/gpt-5.6-sol` / default / `interactive-spk-001-a1`
+- Goal: repair the standards and specification review findings for `TEST-005` through `TEST-011` without weakening teacher evidence or refresh immutability
+- Completed work: required a successful structured Claude `WebSearch` input and result; recaptured the SQLite case under an auditable native `WebSearch`-only policy; broadened nested sanitization to prefixed, camelCase, snake-case, and kebab-case credentials and session/account identifiers; added the missing manifest reason schema; explicitly disabled Codex discovered and bundled skill instructions; archived the pre-seal Codex series and independently recaptured all 20 Codex cases; rederived and reverified all 20 fixtures; removed utilities that moved or rewrote dated artifacts; made capture and derivation reject a sealed refresh; documented Codex event visibility limits; and sealed a 1,021-artifact manifest
+- Files changed: `benchmarks/teachers/**`, `docs/spikes/SPK-001/report.md`, `package.json`, `tsconfig.json`, `docs/orchestration/state.toml`, and this trace
+- Commands and outcomes: the accepted SQLite Claude run made 10 `WebSearch` calls with non-empty structured results; all 20 recaptured Codex runs used `skills.include_instructions=false` and `skills.bundled.enabled=false`; `bun audit-corpus.ts 2026-08-27 --preflight`, `--write-manifest`, and the sealed audit each reported 20 cases, 40 runs, 20 fixtures, and 1,021 artifacts; the full declared gate exited 0 with 14 teacher tests / 49 assertions, 49 aggregate tests / 173 assertions, valid orchestration, and a 1,143-file package dry run
+- Decisions and reasons: use native tool allowlisting rather than a case-specific prompt to obtain positive SQLite `WebSearch` evidence; preserve every rejected or superseded pre-seal attempt under failure paths; treat harmless `\\%` removal as representation normalization because `%` is not special in ECMAScript regex; prohibit post-manifest mutation instead of shipping archival correction helpers
+- Findings or blockers: the first fresh reviews reported immutable-refresh mutation helpers, incomplete secret spellings, partial Codex skill isolation, a manifest schema mismatch, understated Codex visibility limits, and stale orchestration state; all blocker/high/medium findings were addressed and require fresh review
+- Remaining work: run fresh standards and specification reviews on the corrected complete diff, address any blocker/high findings, then record the final review and prepare integration
+- Exact next action: run parallel Standards and Spec reviews against `eb30c3a28554740a6512116d0b29521ed610c553` using this trace as the current handoff

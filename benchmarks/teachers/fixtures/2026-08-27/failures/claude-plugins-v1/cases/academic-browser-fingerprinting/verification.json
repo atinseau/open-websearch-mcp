@@ -1,0 +1,17 @@
+{
+  "accepted_claim_ids": ["claim_1", "claim_2", "claim_5", "claim_7"],
+  "rejected_claims": [
+    {
+      "id": "claim_3",
+      "reason": "Le décompte « 590 of 784 » et le spoofing ciblé User-Agent/sec-ch-ua ne figurent que dans la final_answer auto-citée de Codex, dont la trace n'a ouvert aucune URL (opened_urls vide, tool_results sans payload). Le fetch indépendant de arxiv.org/pdf/2606.14525 côté Claude corrobore seulement le ~75 % de blocages headless imputables aux en-têtes HTTP, pas ces effectifs. Un des patterns acceptables valide directement des chiffres invérifiables."
+    },
+    {
+      "id": "claim_4",
+      "reason": "Les valeurs « 2,730 of 7,944 », 34 % et « Tier-1 automation honeypots ... 46% » proviennent uniquement du texte généré par Codex, sans page récupérée. Le seul élément corroboré indépendamment est qualitatif (le probing JS est plus fréquent que le blocage effectif), ce qui ne soutient pas ces chiffres précis."
+    },
+    {
+      "id": "claim_6",
+      "reason": "Aucune des limitations citées (datacenter européen unique, instant unique, Tranco Top 10K, seuls blocages explicites 403/429/503, absence de baseline de navigation humaine) n'apparaît dans les fetchs réels de 2606.14525 présents dans les traces ; elles ne reposent que sur l'auto-citation Codex. Détails de périmètre non vérifiables donc non fiables pour une notation lexicale."
+    }
+  ]
+}

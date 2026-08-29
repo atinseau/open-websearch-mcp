@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "case_id": "ambiguous-xanadu-tuesday",
+  "question": "What happened to Project Xanadu last Tuesday, and why did it happen?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim_1",
+      "text": "The supplied evidence says it found no good web evidence of a new public Project Xanadu event on August 25, 2026.",
+      "required_concepts": ["no_event_evidence", "project_xanadu", "aug_25_2026"],
+      "acceptable_patterns": [
+        "no good web evidence",
+        "new public Project Xanadu event",
+        "August 25, 2026"
+      ],
+      "sources": [
+        {
+          "url": "https://www.xanadu.com/xuhome.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.aus.xanadu.com/xanadu/faq.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://xanadu.com/xuDemoPage.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.xanadu.com/xuhome.html",
+          "text": "Supported fact: I found no good web evidence of a new public Project Xanadu event on that date."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_ambiguous-xanadu-tuesday",
+        "claude_run": "2026-08-27_claude_ambiguous-xanadu-tuesday"
+      }
+    },
+    {
+      "id": "claim_2",
+      "text": "The cited Project Xanadu pages are described as old or archival in character rather than as dated August 2026 announcements.",
+      "required_concepts": ["archival_pages", "project_xanadu"],
+      "acceptable_patterns": [
+        "old or archival in character",
+        "not a dated August 2026 announcement",
+        "historical rather than actively updated"
+      ],
+      "sources": [
+        {
+          "url": "https://www.xanadu.com/xuhome.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.aus.xanadu.com/xanadu/faq.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://xanadu.com/xuDemoPage.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.xanadu.com/xuhome.html",
+          "text": "The Project Xanadu pages I found are old or archival in character: the main homepage includes a `crudcheck 01.05.23` marker and a “WE FIGHT ON” message, not a dated August 2026 announcement."
+        },
+        {
+          "url": "https://www.aus.xanadu.com/xanadu/faq.html",
+          "text": "One of the main public FAQ pages for Xanadu says `Last-modified: 2002/04/12`."
+        },
+        {
+          "url": "https://xanadu.com/xuDemoPage.html",
+          "text": "A Xanadu demo page says it was created for the Future of Text Conference, August 25, 2016, and says, “We do not have a product, but a preliminary capability.”"
+        }
+      ],
+      "weight": 0.9,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_ambiguous-xanadu-tuesday",
+        "claude_run": "2026-08-27_claude_ambiguous-xanadu-tuesday"
+      }
+    },
+    {
+      "id": "claim_3",
+      "text": "The clearly dated August 25, 2026 Xanadu news in the supplied evidence concerns Xanadu Quantum Technologies and Mitsubishi Chemical, not Project Xanadu.",
+      "required_concepts": ["xanadu_quantum", "mitsubishi_chemical", "not_project_xanadu"],
+      "acceptable_patterns": [
+        "August 25, 2026",
+        "Xanadu Quantum Technologies",
+        "Mitsubishi Chemical",
+        "not about Project Xanadu"
+      ],
+      "sources": [
+        {
+          "url": "https://investors.xanadu.ai/news-releases/news-release-details/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://thequantuminsider.com/2026/08/25/xanadu-mitsubishi-quantum-semiconductor-manufacturing/",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://investors.xanadu.ai/news-releases/news-release-details/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical",
+          "text": "Supported fact: The clearly dated August 25, 2026 “Xanadu” news I did find was about Xanadu Quantum Technologies and Mitsubishi Chemical expanding a quantum-semiconductor collaboration, not about Project Xanadu."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_ambiguous-xanadu-tuesday",
+        "claude_run": "2026-08-27_claude_ambiguous-xanadu-tuesday"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Project Xanadu definitely had no activity last Tuesday.",
+      "reason": "Unsupported and overly strong; the evidence only reports no good public web evidence and notes uncertainty about private, off-web, or unindexed events."
+    },
+    {
+      "text": "Last Tuesday, Project Xanadu announced a collaboration with Mitsubishi Chemical.",
+      "reason": "Contradicted by the supplied evidence, which says that announcement was about Xanadu Quantum Technologies, not Project Xanadu."
+    },
+    {
+      "text": "Project Xanadu shut down last Tuesday because its website is old.",
+      "reason": "Unsupported; no shutdown event or causal explanation appears in the supplied evidence."
+    },
+    {
+      "text": "The reason nothing happened is that Project Xanadu is abandoned.",
+      "reason": "Unsupported and overly broad; the evidence only says the web presence looks historical rather than actively updated with current news."
+    },
+    {
+      "text": "The supplied evidence explains the lack of a Project Xanadu answer by saying there is no solid evidence of any public event to explain, and the cited Project Xanadu web presence looks largely historical rather than actively updated with current news.",
+      "reason": "Motifs de notation trop étroits : les deux acceptable_patterns sont des phrases quasi complètes exigeant une reprise verbatim (« no solid evidence of any public event to explain », « looks largely historical rather than actively updated with current news »), qu'aucune reformulation correcte ne satisferait lors d'une évaluation lexicale. Le fond (absence de « pourquoi » documenté) est par ailleurs déjà couvert de manière bornée et proprement attribuée par claim_1, donc le rejet n'entraîne aucune perte de couverture."
+    }
+  ]
+}

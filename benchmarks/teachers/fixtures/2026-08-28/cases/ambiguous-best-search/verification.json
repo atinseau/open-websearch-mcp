@@ -1,0 +1,29 @@
+{
+  "accepted_claim_ids": [],
+  "rejected_claims": [
+    {
+      "id": "claim_no_universal_best",
+      "reason": "required concept is absent from teacher-run evidence: no universal best"
+    },
+    {
+      "id": "claim_market_share_not_proof",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "claim_ddg_bing_sources",
+      "reason": "required concept is absent from teacher-run evidence: Bing sourcing"
+    },
+    {
+      "id": "claim_brave_vendor_independent",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "claim_specialized_systems",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "claim_studies_different_winners",
+      "reason": "required concept is absent from teacher-run evidence: Google vs Bing"
+    }
+  ]
+}

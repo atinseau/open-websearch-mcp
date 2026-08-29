@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "case_id": "technical-sqlite-fts5",
+  "question": "Using primary SQLite documentation, explain how to detect FTS5 support at runtime and what guarantees or limitations apply to external-content FTS5 tables.",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "c1_module_list_runtime",
+      "text": "`PRAGMA module_list` reports the virtual-table modules registered with a database connection; checking whether `fts5` is listed is a connection-level runtime way to detect FTS5 support.",
+      "required_concepts": ["module_list", "fts5", "connection"],
+      "acceptable_patterns": [
+        "[Pp][Rr][Aa][Gg][Mm][Aa]\\s+module_list",
+        "virtual table modules registered with the database connection",
+        "\\bfts5\\b"
+      ],
+      "sources": [
+        {
+          "url": "https://www.sqlite.org/pragma.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.sqlite.org/pragma.html",
+          "text": "**PRAGMA module_list;**\n\nThis pragma returns a list of virtual table modules registered with the database connection."
+        },
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "text": "CREATE VIRTUAL TABLE ft USING fts5(b, c, content='t1', content_rowid='a');"
+        }
+      ],
+      "weight": 0.93,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-sqlite-fts5",
+        "claude_run": "2026-08-27_claude_technical-sqlite-fts5"
+      }
+    },
+    {
+      "id": "c2_compile_options_enable_fts5",
+      "text": "`PRAGMA compile_options` lists SQLite compile-time options one per row and omits the `SQLITE_` prefix, so a built-in FTS5 build is indicated by `ENABLE_FTS5`.",
+      "required_concepts": ["compile_options", "ENABLE_FTS5"],
+      "acceptable_patterns": [
+        "[Pp][Rr][Aa][Gg][Mm][Aa]\\s+compile_options",
+        "omitted from the returned option names",
+        "ENABLE_FTS5"
+      ],
+      "sources": [
+        {
+          "url": "https://www.sqlite.org/pragma.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.sqlite.org/compile.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.sqlite.org/pragma.html",
+          "text": "PRAGMA compile_options;\n\nThis pragma returns the names of compile-time options used when building SQLite, one option per row. The \"SQLITE_\" prefix is omitted from the returned option names."
+        },
+        {
+          "url": "https://www.sqlite.org/compile.html",
+          "text": "When this option is defined in the amalgamation, version 5 of the full-text search engine (fts5) is added to the build automatically."
+        }
+      ],
+      "weight": 0.96,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-sqlite-fts5",
+        "claude_run": "2026-08-27_claude_technical-sqlite-fts5"
+      }
+    },
+    {
+      "id": "c3_compileoption_used_api",
+      "text": "`sqlite3_compileoption_used()` and the SQL wrapper `sqlite_compileoption_used()` report whether a named compile-time option was used; the C API allows omitting the `SQLITE_` prefix.",
+      "required_concepts": ["sqlite3_compileoption_used", "sqlite_compileoption_used"],
+      "acceptable_patterns": [
+        "sqlite3_compileoption_used",
+        "sqlite_compileoption_used",
+        "returns 0 or 1",
+        "prefix may be omitted"
+      ],
+      "sources": [
+        {
+          "url": "https://www.sqlite.org/c3ref/compileoption_get.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.sqlite.org/lang_corefunc.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.sqlite.org/c3ref/compileoption_get.html",
+          "text": "The sqlite3_compileoption_used() function returns 0 or 1 indicating whether the specified option was defined at compile time. The SQLITE_ prefix may be omitted from the option name passed to sqlite3_compileoption_used()."
+        },
+        {
+          "url": "https://www.sqlite.org/lang_corefunc.html",
+          "text": "The sqlite_compileoption_used() SQL function is a wrapper around the sqlite3_compileoption_used() C/C++ function. When the argument X to sqlite_compileoption_used(X) is a string which is the name of a compile-time option, this routine returns true (1) or false (0) depending on whether or not that option was used during the build."
+        }
+      ],
+      "weight": 0.98,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-sqlite-fts5",
+        "claude_run": "2026-08-27_claude_technical-sqlite-fts5"
+      }
+    },
+    {
+      "id": "c4_fts5_loadable_extension",
+      "text": "FTS5 may be built as a loadable extension, not only as part of the main SQLite build.",
+      "required_concepts": ["fts5", "loadable_extension"],
+      "acceptable_patterns": ["FTS5 may be built as a loadable extension", "loadable extension"],
+      "sources": [
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "text": "Alternatively, FTS5 may be built as a loadable extension."
+        }
+      ],
+      "weight": 0.95,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-sqlite-fts5",
+        "claude_run": "2026-08-27_claude_technical-sqlite-fts5"
+      }
+    },
+    {
+      "id": "c5_external_content_definition",
+      "text": "An external-content FTS5 table uses `content=` to name a table, virtual table, or view in the same database, and `content_rowid=` can override the default rowid column name.",
+      "required_concepts": ["external_content", "content", "content_rowid"],
+      "acceptable_patterns": [
+        "external content FTS5 table",
+        "content option",
+        "table, virtual table or view",
+        "content_rowid"
+      ],
+      "sources": [
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "text": "An external content FTS5 table is created by setting the content option to the name of a table, virtual table or view (hereafter the 'content table') within the same database.\n\nCREATE VIRTUAL TABLE ft USING fts5(b, c, content='t1', content_rowid='a');\n\nBy default, <content_rowid> is replaced by the literal text \"rowid\". Or, if the \"content_rowid\" option is set within the CREATE VIRTUAL TABLE statement, by the value of that option."
+        }
+      ],
+      "weight": 0.97,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-sqlite-fts5",
+        "claude_run": "2026-08-27_claude_technical-sqlite-fts5"
+      }
+    },
+    {
+      "id": "c6_external_content_consistency",
+      "text": "For external-content FTS5 tables, the user is responsible for keeping the FTS index consistent with the content table; if they become inconsistent, query results may be unintuitive or inconsistent.",
+      "required_concepts": ["consistency", "content_table", "query_results"],
+      "acceptable_patterns": [
+        "responsibility of the user",
+        "kept consistent",
+        "results of queries",
+        "unintuitive|inconsistent"
+      ],
+      "sources": [
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "text": "It is the responsibility of the user to ensure that an FTS5 external content table (one with a non-empty content= option) is kept consistent with the content table itself (the table named by the content= option). If these are allowed to become inconsistent, then the results of queries against the FTS5 table may become unintuitive and appear inconsistent."
+        }
+      ],
+      "weight": 0.99,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-sqlite-fts5",
+        "claude_run": "2026-08-27_claude_technical-sqlite-fts5"
+      }
+    },
+    {
+      "id": "c8_external_content_replace_abort",
+      "text": "External-content FTS5 tables do not support `REPLACE` conflict handling; operations that specify `REPLACE` are handled using `ABORT`.",
+      "required_concepts": ["REPLACE", "ABORT", "external_content"],
+      "acceptable_patterns": ["do not support REPLACE conflict handling", "handled using ABORT"],
+      "sources": [
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "text": "Like contentless tables, external content tables do not support REPLACE conflict handling. Any operations that specify REPLACE conflict handling are handled using ABORT."
+        }
+      ],
+      "weight": 0.99,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_technical-sqlite-fts5",
+        "claude_run": "2026-08-27_claude_technical-sqlite-fts5"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "`sqlite_compileoption_used('ENABLE_FTS5')` by itself proves that FTS5 is available on the current connection.",
+      "reason": "Unsupported by the supplied evidence because FTS5 may also be a loadable extension, and compile-option APIs describe build options rather than registered modules on a connection."
+    },
+    {
+      "text": "SQLite documents a dedicated single-purpose API specifically for detecting whether FTS5 is available on a connection.",
+      "reason": "Not supported by the supplied evidence; the evidence shows general introspection mechanisms such as `PRAGMA module_list`, compile-option APIs, and extension loading."
+    },
+    {
+      "text": "If an external-content FTS5 table becomes inconsistent with its content table, SQLite guarantees an immediate error on ordinary queries.",
+      "reason": "Contradicted by the supplied evidence, which says results may become unintuitive or inconsistent rather than guaranteeing an error."
+    },
+    {
+      "text": "Triggers are a documented way to synchronize an external-content FTS5 table, but triggers created after the content table already has rows do not backfill the index; if the index and content table become inconsistent, the `rebuild` command can rebuild the index from the current content table.",
+      "reason": "The evidence_passages attributed to https://www.sqlite.org/fts5.html are not documentation text; they are the Codex run's own paraphrased answer sentences (\"Triggers are one documented way to keep an external-content FTS5 table synchronized...\", \"the documented `rebuild` command can discard the existing FTS index...\") presented as source quotes. The supplied evidence contains different actual wording (\"creating the triggers does not copy existing rows from the content table into the FTS index\"; \"This command first deletes the entire full-text index, then rebuilds it based on the contents of the table or content table\"). The acceptable_patterns inherit this flaw: \"Triggers are one documented way\" and \"rebuilds? (it )?from the current content table\" are overly narrow patterns keyed to the paraphrase rather than the documented language, while the bare \"rebuild\" alternative is too broad to grade the claim. The underlying facts are supported and the claim could be re-drafted with the real fts5.html quotes."
+    }
+  ]
+}

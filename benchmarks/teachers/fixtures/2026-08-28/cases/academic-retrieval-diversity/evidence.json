@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "case_id": "academic-retrieval-diversity",
+  "runs": [
+    {
+      "run_id": "2026-08-28_codex_academic-retrieval-diversity",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "Carbonell Goldstein maximal marginal relevance PDF 1998 original paper",
+        "site:dl.acm.org MMR search result diversification experiment SIGIR pdf",
+        "\"comparison of novelty and diversity ranking methods\" pdf",
+        "TREC 2009 Web Track diversity task primary paper PDF Clarke Chapelle diversified search results pdf",
+        "site:trec.nist.gov \"Overview of the TREC 2009 Web Track\" pdf",
+        "Agrawal Gollapudi Halverson Ieong Diversifying Search Results PDF WSDM 2009",
+        "\"Novelty and diversity in information retrieval evaluation\" pdf"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [
+        "https://storage.ghost.io/c/97/88/97889716-a759-46f4-b63f-4f5c46a13333/content/files/~jgc/publication/the_use_mmr_diversity_based_ltmir_1998.pdf",
+        "https://aclanthology.org/X98-1025.pdf",
+        "https://trec.nist.gov/pubs/trec18/papers/WEB09.OVERVIEW.pdf",
+        "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf"
+      ],
+      "cited_urls": [
+        "https://storage.ghost.io/c/97/88/97889716-a759-46f4-b63f-4f5c46a13333/content/files/~jgc/publication/the_use_mmr_diversity_based_ltmir_1998.pdf",
+        "https://aclanthology.org/X98-1025.pdf",
+        "https://storage.ghost.io/c/97/88/97889716-a759-46f4-b63f-4f5c46a13333/content/files/~jgc/publication/the_use_mmr_diversity_based_ltmir_1998.pdf",
+        "https://aclanthology.org/X98-1025.pdf",
+        "https://storage.ghost.io/c/97/88/97889716-a759-46f4-b63f-4f5c46a13333/content/files/~jgc/publication/the_use_mmr_diversity_based_ltmir_1998.pdf",
+        "https://aclanthology.org/X98-1025.pdf",
+        "https://aclanthology.org/X98-1025.pdf",
+        "https://storage.ghost.io/c/97/88/97889716-a759-46f4-b63f-4f5c46a13333/content/files/~jgc/publication/the_use_mmr_diversity_based_ltmir_1998.pdf",
+        "https://aclanthology.org/X98-1025.pdf",
+        "https://aclanthology.org/X98-1025.pdf",
+        "https://trec.nist.gov/pubs/trec18/papers/WEB09.OVERVIEW.pdf",
+        "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf",
+        "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf",
+        "https://storage.ghost.io/c/97/88/97889716-a759-46f4-b63f-4f5c46a13333/content/files/~jgc/publication/the_use_mmr_diversity_based_ltmir_1998.pdf",
+        "https://aclanthology.org/X98-1025.pdf",
+        "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf",
+        "https://trec.nist.gov/pubs/trec18/papers/WEB09.OVERVIEW.pdf",
+        "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf",
+        "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf",
+        "https://storage.ghost.io/c/97/88/97889716-a759-46f4-b63f-4f5c46a13333/content/files/~jgc/publication/the_use_mmr_diversity_based_ltmir_1998.pdf",
+        "https://aclanthology.org/X98-1025.pdf",
+        "https://trec.nist.gov/pubs/trec18/papers/WEB09.OVERVIEW.pdf",
+        "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://storage.ghost.io/c/97/88/97889716-a759-46f4-b63f-4f5c46a13333/content/files/~jgc/publication/the_use_mmr_diversity_based_ltmir_1998.pdf",
+          "title": "https://storage.ghost.io/c/97/88/97889716-a759-46f4-b63f-4f5c46a13333/content/files/~jgc/publication/the_use_mmr_diversity_based_ltmir_1998.pdf"
+        },
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "title": "https://aclanthology.org/X98-1025.pdf"
+        },
+        {
+          "url": "https://trec.nist.gov/pubs/trec18/papers/WEB09.OVERVIEW.pdf",
+          "title": "https://trec.nist.gov/pubs/trec18/papers/WEB09.OVERVIEW.pdf"
+        },
+        {
+          "url": "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf",
+          "title": "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf"
+        }
+      ],
+      "evidence_passages": [],
+      "final_answer": "**Supported Facts**\n\nMaximal marginal relevance (MMR) reranks retrieved documents greedily: at each step it selects the unchosen document that maximizes `λ * Sim1(Di,Q) - (1-λ) * max_{Dj in S} Sim2(Di,Dj)`, where the first term rewards query relevance and the second penalizes similarity to already selected documents. (https://storage.ghost.io/c/97/88/97889716-a759-46f4-b63f-4f5c46a13333/content/files/~jgc/publication/the_use_mmr_diversity_based_ltmir_1998.pdf, https://aclanthology.org/X98-1025.pdf)\n\nIn the original formulation, `λ = 1` reduces MMR to ordinary relevance ranking, `λ = 0` yields a maximal-diversity ordering over the retrieved set, and intermediate values produce a linear tradeoff between relevance and novelty. (https://storage.ghost.io/c/97/88/97889716-a759-46f4-b63f-4f5c46a13333/content/files/~jgc/publication/the_use_mmr_diversity_based_ltmir_1998.pdf, https://aclanthology.org/X98-1025.pdf)\n\nCarbonell and Goldstein explicitly recommend smaller `λ` values for “sampling the information space” around a query and larger `λ` values for focusing on closely related relevant documents; they report a practical strategy of starting around `λ = 0.3` for exploration and then moving to about `λ = 0.7` after query reformulation or relevance feedback. (https://storage.ghost.io/c/97/88/97889716-a759-46f4-b63f-4f5c46a13333/content/files/~jgc/publication/the_use_mmr_diversity_based_ltmir_1998.pdf, https://aclanthology.org/X98-1025.pdf)\n\nThe original retrieval evidence for MMR was modest but real. In a Reuters example in the 1998 work, a duplicate article (`1403`) was pushed downward as `λ` decreased, while a “novel but still relevant” document (`69`) moved upward, which is exactly the intended relevance/novelty behavior. (https://aclanthology.org/X98-1025.pdf)\n\nThe same 1998 line of work also reported a five-user pilot study: most users preferred the method that surfaced broader and more interesting topics, `80%` (`4/5`) chose the MMR method for a final search task, and users reported preferring MMR for navigation and rapid location of relevant candidate documents. (https://storage.ghost.io/c/97/88/97889716-a759-46f4-b63f-4f5c46a13333/content/files/~jgc/publication/the_use_mmr_diversity_based_ltmir_1998.pdf, https://aclanthology.org/X98-1025.pdf)\n\nThat same workshop paper also states that the pilot was too small to yield statistically significant trends for retrieval speed or recall. (https://aclanthology.org/X98-1025.pdf)\n\nLater primary IR research shows why diversification matters for search results in general. The TREC 2009 Web Track introduced a dedicated diversity task whose goal was to return results that “together provide complete coverage for a query” while avoiding “excessive redundancy,” and it evaluated systems with novelty-aware metrics such as `α-nDCG` and intent-aware precision. (https://trec.nist.gov/pubs/trec18/papers/WEB09.OVERVIEW.pdf)\n\nA later primary diversification paper characterizes MMR as the “canonical example” of implicit diversification and says many greedy diversification approaches are inspired by it. (https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf)\n\nHowever, that same TREC 2009-based study does **not** show MMR as the strongest method. In its Table 2, the MMR baseline under BM25 reduced `α-nDCG@10` from `0.186` to `0.150`, under DPH changed `0.212` to `0.211`, and under LM changed `0.096` to `0.096`, while the paper’s explicit diversification method (`xQuAD`) improved all three baselines. (https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf)\n\n**Inference**\n\nThe strongest primary support for **MMR itself** is therefore early and limited: it shows the intended tradeoff behavior and a small favorable user pilot, but not a large, statistically strong win over standard ranking across broad web-search benchmarks. This is an inference from the original MMR papers’ own caveats and from the later TREC-based comparison in which MMR is mainly a baseline. (https://storage.ghost.io/c/97/88/97889716-a759-46f4-b63f-4f5c46a13333/content/files/~jgc/publication/the_use_mmr_diversity_based_ltmir_1998.pdf, https://aclanthology.org/X98-1025.pdf, https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf)\n\nThe stronger evidence supports **diversification as a retrieval objective** more than it supports **MMR as the best diversification algorithm**. This is an inference from TREC’s creation of a diversity task and from later methods outperforming MMR on those diversity metrics. (https://trec.nist.gov/pubs/trec18/papers/WEB09.OVERVIEW.pdf, https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf)\n\n**Uncertainty / Lack of Good Evidence**\n\nI did **not** find strong primary web-search evidence that MMR consistently beats a well-tuned relevance baseline on large shared-task benchmarks; the best primary paper I found instead treats MMR as a canonical but weaker baseline. (https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf)\n\nSo the defensible answer is: MMR trades relevance against novelty with a single interpolation parameter `λ`, and there is credible but limited direct evidence for MMR itself, while the broader case for diversified search results is much better supported than the claim that MMR is the best way to achieve them. (https://storage.ghost.io/c/97/88/97889716-a759-46f4-b63f-4f5c46a13333/content/files/~jgc/publication/the_use_mmr_diversity_based_ltmir_1998.pdf, https://aclanthology.org/X98-1025.pdf, https://trec.nist.gov/pubs/trec18/papers/WEB09.OVERVIEW.pdf, https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf)"
+    }
+  ]
+}

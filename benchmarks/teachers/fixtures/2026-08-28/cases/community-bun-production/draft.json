@@ -1,0 +1,161 @@
+{
+  "claims": [
+    {
+      "id": "claim_1",
+      "text": "Bun maintainers publicly said Bun 1.0 was \"stable and production-ready,\" so a production-readiness claim from maintainers is directly evidenced.",
+      "required_concepts": ["maintainer_claim", "production_ready", "bun_1_0"],
+      "acceptable_patterns": [
+        "Bun 1\\.0.*stable and production-ready",
+        "maintainers?.*production-ready",
+        "publicly said.*production-ready"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.sh/blog/bun-v1.0",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "claim_2",
+      "text": "Concrete compatibility evidence exists in Bun's published test results: Bun 1.4 said several Node modules passed 97% of Node's tests, `node:quic` passed 99%, and some modules passed 100%.",
+      "required_concepts": ["compatibility", "node_tests", "pass_rates"],
+      "acceptable_patterns": [
+        "97%.*Node",
+        "node:quic.*99%",
+        "100%.*node:(events|trace_events|sqlite)"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.sh/blog/bun-v1.4",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "claim_3",
+      "text": "Bun's own compatibility docs also document remaining gaps, including partial `node:async_hooks`, partial `node:child_process`, and `node:cluster` being implemented but not battle-tested.",
+      "required_concepts": ["documented_gaps", "async_hooks", "cluster"],
+      "acceptable_patterns": [
+        "async_hooks.*partial",
+        "child_process.*partial",
+        "cluster.*not battle-tested"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.sh/docs/runtime/nodejs-compat",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "claim_4",
+      "text": "For native addons, the evidence is mixed rather than absolute: Bun's tracker says all `napi_*` and `node_api_*` functions were implemented, but the reported combined Node-API status was 74 pass / 23 todo / 76.3% on Linux.",
+      "required_concepts": ["node_api", "native_addons", "partial_parity"],
+      "acceptable_patterns": [
+        "all `?napi_\\*`?.*implemented",
+        "74 pass \\/ 23 todo \\/ 76\\.3%",
+        "node-API.*76\\.3%"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/oven-sh/bun/issues/158",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://bun.sh/docs/runtime/node-api",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "claim_5",
+      "text": "Users and platform operators report some successful production use: one discussion participant said they had used Bun in production since April 2023 on Heroku, and Vercel launched Bun runtime support in public beta while recommending Node.js for maximum compatibility.",
+      "required_concepts": ["positive_reports", "heroku", "vercel_beta"],
+      "acceptable_patterns": [
+        "used it in production since April 2023",
+        "Heroku.*production",
+        "Vercel.*Public Beta",
+        "Use Node\\.js for maximum compatibility"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/oven-sh/bun/discussions/559",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://vercel.com/blog/bun-runtime-on-vercel-functions",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "claim_6",
+      "text": "Users also report concrete production problems, including memory growth or crashes, production-mode-only failures, and `bun install --production` problems; Bun later said one workspace `--production` devDependency bug was fixed.",
+      "required_concepts": ["negative_reports", "memory", "production_install"],
+      "acceptable_patterns": [
+        "crashing pods with 4gb of ram",
+        "memory.*never came down",
+        "worked in development mode but failed in production mode",
+        "lockfile had changes, but lockfile is frozen",
+        "this is no longer the case"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/oven-sh/bun/issues/19930",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/10893",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/11025",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/4945",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/8033",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://bun.sh/blog/bun-v1.1.14",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Bun is universally production-safe for Node.js workloads.",
+      "reason": "Overly broad; the supplied evidence shows documented gaps and multiple production bug reports."
+    },
+    {
+      "text": "Virtually any Node.js app works on Bun.",
+      "reason": "This is a maintainer marketing claim in the supplied evidence, but not independently established by the cited compatibility and issue evidence."
+    },
+    {
+      "text": "Bun is broadly unreliable in production.",
+      "reason": "Unsupported as a general statement; the evidence proves specific failures existed, not prevalence across all production users."
+    },
+    {
+      "text": "AsyncLocalStorage performance on Bun blocks production OpenTelemetry.",
+      "reason": "Time-unstable/contradictory in the supplied evidence because the cited issue was later updated to say the reported production problem did not exist in release builds."
+    }
+  ]
+}

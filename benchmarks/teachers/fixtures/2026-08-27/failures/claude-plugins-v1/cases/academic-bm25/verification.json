@@ -1,0 +1,17 @@
+{
+  "accepted_claim_ids": ["c1_problem_variables", "c5_k1_interpretation", "c6_b_interpretation"],
+  "rejected_claims": [
+    {
+      "id": "c2_core_matching_score",
+      "reason": "Repose uniquement sur UCAM-CL-TR-356.pdf, source jamais ouverte dans les runs fournis (opened_urls vide côté Codex, jamais consultée côté Claude) ; le passage d'evidence est une auto-citation de la réponse finale. Les motifs exigent en outre des formulations exactes non vérifiées (« request-document matching score », « ranked by descending score »)."
+    },
+    {
+      "id": "c3_core_factor_definitions",
+      "reason": "Formules exactes (CFW(i) = log N - log n, TF(i,j), NDL(j) = DL(j) / Average DL) attribuées à une source non ouverte et non corroborées par les PDF d'auteur effectivement récupérés. Motifs à correspondance littérale trop étroits, qui échouent dès toute variation d'espacement ou de notation."
+    },
+    {
+      "id": "c4_trec4_variant_factors",
+      "reason": "L'URL okapi_trec4.pdf n'a été ouverte par aucun run ; le contenu n'est étayé que par l'auto-citation Codex. Le motif K\\s*=\\s*k1\\s*\\(\\(1-b\\)\\+b\\*dl/avdl\\) est invalide pour une notation lexicale (échec sur espaces, signe moins typographique ou multiplication explicite), tandis que \\btf\\b est trivialement satisfait : notation non déterministe."
+    }
+  ]
+}

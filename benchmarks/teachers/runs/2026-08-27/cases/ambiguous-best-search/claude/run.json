@@ -1,0 +1,799 @@
+{
+  "schema_version": 1,
+  "run_id": "2026-08-27_claude_ambiguous-best-search",
+  "case_id": "ambiguous-best-search",
+  "provider": "claude",
+  "model": "claude-opus-5[1m]",
+  "queries": [
+    "study comparing search engines results overlap Google Bing coverage differences",
+    "search engine market share 2026 Google Bing DuckDuckGo",
+    "Google Scholar not sufficient alone systematic review searching multiple databases required study",
+    "Tow Center study AI search engines citations wrong incorrect attribution",
+    "Microsoft retires Bing Search API 2025 impact on independent search engines index",
+    "search engine results personalization localization not reproducible different results same query study",
+    "Baidu China Yandex Russia Naver Korea search engine dominance market share local language coverage"
+  ],
+  "tool_results": [
+    {
+      "tool": "WebSearch",
+      "summary": "2026 Search Market Share: 5 Hard Truths About Today’s Market - WebFX: https://www.webfx.com/blog/seo/2019-search-market-share/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Global Search Engine Market Share in the Top 15 GDP Nations (2026): https://alphametic.com/global-search-engine-market-share"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Search Engine Statistics 2026: Market Share, Volume & AI Shift • SQ Magazine: https://sqmagazine.co.uk/search-engine-statistics/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Search Engine Market Share Statistics 2026 | Google, Bing, AI Search & More: https://searchlab.nl/en/statistics/search-engine-market-share-statistics-2026"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Search Engine Market Share 2026: Global Data Report: https://www.digitalapplied.com/blog/search-engine-market-share-2026-global-data"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Search Engine Statistics by Country [2026 report] 🌍: https://serpsculpt.com/search-engine-statistics-by-country/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Google Search Market Share 2026: Updated Top 10: https://countly.net/google-search-market-share-2026-top-10-ranked"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Search Engine Market Share: 2026 Data by Region & Device | CO Consulting: https://christopholivierconsulting.com/search-engine-market-share/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Search Engine Market Share (2026): Google, Bing & More: https://resourcera.com/data/search/search-engine-market-share/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "[2207.07330] A Comparison of Source Distribution and Result Overlap in Web Search Engines: https://arxiv.org/abs/2207.07330"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "A Comparison of Source Distribution and Result Overlap in Web Search Engines: https://arxiv.org/pdf/2207.07330"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Overlap in the Web Search Results of Google and Bing: https://www.researchgate.net/publication/303908633_Overlap_in_the_Web_Search_Results_of_Google_and_Bing"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "On Low Overlap Among Search Results of Academic Search Engines: https://arxiv.org/pdf/1701.02617"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Google, bing and a new perspective on ranking similarity | Proceedings of the 20th ACM international conference on Information and knowledge management: https://dl.acm.org/doi/10.1145/2063576.2063858"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Overlap in the Web Search Results of Google and Bing: https://www.nowpublishers.com/article/OpenAccessDownload/JWS-0005"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Google, Bing and a new perspective on ranking similarity | Request PDF: https://www.researchgate.net/publication/220269868_Google_Bing_and_a_new_perspective_on_ranking_similarity"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "A Study of Distinctiveness in Web Results of Two Search: https://dl.acm.org/doi/pdf/10.1145/2740908.2743060"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Search Engine Similarity Analysis: A Combined Content and Rankings Approach: https://arxiv.org/pdf/2011.00650"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Google Scholar is not enough to be used alone for systematic reviews - University of the Highlands and Islands: https://pure.uhi.ac.uk/en/publications/google-scholar-is-not-enough-to-be-used-alone-for-systematic-revi/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Is the coverage of google scholar enough to be used alone for systematic reviews: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3544576/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Optimal database combinations for literature searches in systematic reviews: a prospective exploratory study - PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC5718002/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Google scholar for systematic reviews: what limit on search returns? | ResearchGate: https://www.researchgate.net/post/Google-scholar-for-systematic-reviews-what-limit-on-search-returns"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Optimal database combinations for literature searches in systematic reviews: a prospective exploratory study: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5718002/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Optimal database combinations for literature searches in systematic reviews: a prospective exploratory study | Systematic Reviews | Springer Nature Link: https://link.springer.com/article/10.1186/s13643-017-0644-y"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Literature search in systematic reviews: How much is good enough? - ScienceDirect: https://www.sciencedirect.com/science/article/pii/S2213398423002725"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "A Systematic Review on the Sufficiency of PubMed and ...: https://actascientific.com/ASMS/pdf/ASMS-04-0786.pdf"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "AI search engines fail to produce accurate citations in over 60% of tests, according to new Tow Center study | Nieman Journalism Lab: https://www.niemanlab.org/2025/03/ai-search-engines-fail-to-produce-accurate-citations-in-over-60-of-tests-according-to-new-tow-center-study/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "AI search has a news citation problem - Digital Content Next: https://digitalcontentnext.org/blog/2025/03/24/ai-search-has-a-news-citation-problem/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "How often do AI search engines cite incorrect sources?: https://www.govtech.com/question-of-the-day/how-often-do-ai-search-engines-cite-incorrect-sources"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Where Did You Get That? - Study Highlights AI Search Struggles With Citation Accuracy | Branding in Asia: https://www.brandinginasia.com/where-did-you-get-that-study-highlights-ai-search-struggles-with-citation-accuracy/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "AI Search Has a Citation Problem - Columbia Journalism Review: https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "AI search engines cite incorrect sources at an alarming 60% rate, study says: https://neuron.expert/news/ai-search-engines-cite-incorrect-sources-at-an-alarming-60-rate-study-says/11700/en/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Can You Trust AI Search? New Study Reveals The Shocking Truth: https://www.forbes.com/sites/torconstantino/2025/03/28/can-you-trust-ai-search-new-study-reveals-the-shocking-truth/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "AI's Citation Problem: https://pramodhmallipatna.substack.com/p/ais-citation-problem"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "New on Yahoo: https://tech.yahoo.com/ai/articles/study-finds-ai-search-engines-151517475.html"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "ai search engines confidently wrong citing sources columbia study: https://dc.fortune.com/2025/03/18/ai-search-engines-confidently-wrong-citing-sources-columbia-study"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Personalized search in SEO: how to boost your business visibility: https://ideadigital.agency/en/blog/how-personalized-search-works-and-why-you-should-consider%20it/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "A Better Understanding of Personalized Search - Briggsby: https://www.briggsby.com/better-understanding-personalized-search"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Evaluating Web Search Engines Results for Personalization and User Tracking: https://arxiv.org/pdf/2211.11518"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Personalized Search – Information, People, and Technology: https://psu.pb.unizin.org/ist110/chapter/2-3-personalized-search/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Domain-specific queries and Web search personalization: some investigations: https://arxiv.org/pdf/1508.03902"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Personalization search engine: https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8626753"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Personalization search engine: https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8260774"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "You can't see what you can't see: Experimental evidence for how much relevant information may be missed due to Google's Web search personalisation: https://arxiv.org/pdf/1904.13022"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "The Impact of Geolocation on Web Search Personalization: https://www.khoury.northeastern.edu/home/amislove/publications/Geolocation-IMC.pdf"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "[2502.04266] Digital Gatekeeping: An Audit of Search Engine Results shows tailoring of queries on the Israel-Palestine Conflict: https://ar5iv.labs.arxiv.org/html/2502.04266"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Bing Search APIs Retiring on August 11, 2025 - Microsoft Lifecycle | Microsoft Learn: https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Microsoft ends Bing Search APIs on August 11, alternative costs 40-483% more: https://ppc.land/microsoft-ends-bing-search-apis-on-august-11-alternative-costs-40-483-more/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Microsoft’s plan to retire Bing API and what it means for web search: https://www.computing.co.uk/news/2025/microsoft-s-plan-to-retire-bing-api-access-and-what-it-means-for-web-search"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "What will happen to search engines now that Microsoft is shutting down the Bing Search API - Softonic: https://en.softonic.com/articles/what-will-happen-to-search-engines-now-that-microsoft-is-shutting-down-the-bing-search-api"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Microsoft to Retire Bing Search API in August 2025, Urges Developers to Embrace Better AI-Powered Alternatives: https://msftnewsnow.com/microsoft-to-retire-bing-search-api-in-august-2025/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Microsoft Retirement of Bing Search APIs: Impact, Opportunities, and the Future of Web Search | Windows Forum: https://windowsforum.com/threads/microsoft-retirement-of-bing-search-apis-impact-opportunities-and-the-future-of-web-search.366351/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Microsoft Retires Bing Search APIs: What Developers Need to Know About the Transition to Azure AI Agents | Windows Forum: https://windowsforum.com/threads/microsoft-retires-bing-search-apis-what-developers-need-to-know-about-the-transition-to-azure-ai-agents.365785/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Microsoft Retires Bing Search APIs: What It Means for Developers and the Future of Search | Windows Forum: https://windowsforum.com/threads/microsoft-retires-bing-search-apis-what-it-means-for-developers-and-the-future-of-search.366271/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "learn.microsoft.com: https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/reference/endpoints"
+    },
+    {
+      "tool": "WebFetch",
+      "summary": "# Research Findings on Search Engine Result Overlap\n\n**Methodology:**\nThe study examined \"the top 10 results from Google, Bing, DuckDuckGo, and Metager, using 3,537 queries generated from Google Trends from Germany and the US.\"\n\n**Key Overlap Findings:**\n\n- **Google and Bing**: \"The overlap between Google and Bing is always under 32%\"\n\n- **Metager and Bing**: Metager demonstrated higher alignment with Bing's results, with overlap reaching as high as 78%\n\n- **Metager and DuckDuckGo**: The researc"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Most Popular Search Engines by Country in 2026: https://geotargetly.com/blog/most-popular-search-engines-by-country"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "SEO Around The World - Semetrical: https://www.semetrical.com/seo-around-the-world-v1/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "International Search Engines, SEO for Baidu, Naver, Yandex: https://amp.brightedge.com/blog/international-search-engines"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Search Engine Market Share 2026: Global Data Report: https://www.digitalapplied.com/blog/search-engine-market-share-2026-global-data"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Country-specific search engines | SEOTopSecret Academy: https://www.seotopsecret.com/seo/country-specific-search-engines"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Search Engine Statistics by Country [2026 report] 🌍: https://serpsculpt.com/search-engine-statistics-by-country/"
+    },
+    {
+      "tool": "WebSearch",
+      "summary": "Search Engine Market Share by Country | SearchEngines.Net: https://www.searchengines.net/guides/search-engine-market-share-by-country/"
+    }
+  ],
+  "opened_urls": ["https://arxiv.org/abs/2207.07330"],
+  "cited_urls": [
+    "https://arxiv.org/abs/2207.07330",
+    "https://www.nowpublishers.com/article/OpenAccessDownload/JWS-0005",
+    "https://dl.acm.org/doi/10.1145/2063576.2063858",
+    "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3544576/",
+    "https://link.springer.com/article/10.1186/s13643-017-0644-y",
+    "https://geotargetly.com/blog/most-popular-search-engines-by-country",
+    "https://www.searchengines.net/guides/search-engine-market-share-by-country/",
+    "https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php",
+    "https://www.niemanlab.org/2025/03/ai-search-engines-fail-to-produce-accurate-citations-in-over-60-of-tests-according-to-new-tow-center-study/",
+    "https://arxiv.org/pdf/2211.11518",
+    "https://www.khoury.northeastern.edu/home/amislove/publications/Geolocation-IMC.pdf",
+    "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
+    "https://www.computing.co.uk/news/2025/microsoft-s-plan-to-retire-bing-api-access-and-what-it-means-for-web-search",
+    "https://ppc.land/microsoft-ends-bing-search-apis-on-august-11-alternative-costs-40-483-more/",
+    "https://serpsculpt.com/search-engine-statistics-by-country/",
+    "https://arxiv.org/pdf/2011.00650",
+    "https://ar5iv.labs.arxiv.org/html/2502.04266"
+  ],
+  "selected_sources": [
+    {
+      "url": "https://www.webfx.com/blog/seo/2019-search-market-share/",
+      "title": "2026 Search Market Share: 5 Hard Truths About Today’s Market - WebFX"
+    },
+    {
+      "url": "https://alphametic.com/global-search-engine-market-share",
+      "title": "Global Search Engine Market Share in the Top 15 GDP Nations (2026)"
+    },
+    {
+      "url": "https://sqmagazine.co.uk/search-engine-statistics/",
+      "title": "Search Engine Statistics 2026: Market Share, Volume & AI Shift • SQ Magazine"
+    },
+    {
+      "url": "https://searchlab.nl/en/statistics/search-engine-market-share-statistics-2026",
+      "title": "Search Engine Market Share Statistics 2026 | Google, Bing, AI Search & More"
+    },
+    {
+      "url": "https://www.digitalapplied.com/blog/search-engine-market-share-2026-global-data",
+      "title": "Search Engine Market Share 2026: Global Data Report"
+    },
+    {
+      "url": "https://serpsculpt.com/search-engine-statistics-by-country/",
+      "title": "Search Engine Statistics by Country [2026 report] 🌍"
+    },
+    {
+      "url": "https://countly.net/google-search-market-share-2026-top-10-ranked",
+      "title": "Google Search Market Share 2026: Updated Top 10"
+    },
+    {
+      "url": "https://christopholivierconsulting.com/search-engine-market-share/",
+      "title": "Search Engine Market Share: 2026 Data by Region & Device | CO Consulting"
+    },
+    {
+      "url": "https://resourcera.com/data/search/search-engine-market-share/",
+      "title": "Search Engine Market Share (2026): Google, Bing & More"
+    },
+    {
+      "url": "https://arxiv.org/abs/2207.07330",
+      "title": "https://arxiv.org/abs/2207.07330"
+    },
+    {
+      "url": "https://arxiv.org/pdf/2207.07330",
+      "title": "A Comparison of Source Distribution and Result Overlap in Web Search Engines"
+    },
+    {
+      "url": "https://www.researchgate.net/publication/303908633_Overlap_in_the_Web_Search_Results_of_Google_and_Bing",
+      "title": "Overlap in the Web Search Results of Google and Bing"
+    },
+    {
+      "url": "https://arxiv.org/pdf/1701.02617",
+      "title": "On Low Overlap Among Search Results of Academic Search Engines"
+    },
+    {
+      "url": "https://dl.acm.org/doi/10.1145/2063576.2063858",
+      "title": "Google, bing and a new perspective on ranking similarity | Proceedings of the 20th ACM international conference on Information and knowledge management"
+    },
+    {
+      "url": "https://www.nowpublishers.com/article/OpenAccessDownload/JWS-0005",
+      "title": "Overlap in the Web Search Results of Google and Bing"
+    },
+    {
+      "url": "https://www.researchgate.net/publication/220269868_Google_Bing_and_a_new_perspective_on_ranking_similarity",
+      "title": "Google, Bing and a new perspective on ranking similarity | Request PDF"
+    },
+    {
+      "url": "https://dl.acm.org/doi/pdf/10.1145/2740908.2743060",
+      "title": "A Study of Distinctiveness in Web Results of Two Search"
+    },
+    {
+      "url": "https://arxiv.org/pdf/2011.00650",
+      "title": "Search Engine Similarity Analysis: A Combined Content and Rankings Approach"
+    },
+    {
+      "url": "https://pure.uhi.ac.uk/en/publications/google-scholar-is-not-enough-to-be-used-alone-for-systematic-revi/",
+      "title": "Google Scholar is not enough to be used alone for systematic reviews - University of the Highlands and Islands"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3544576/",
+      "title": "Is the coverage of google scholar enough to be used alone for systematic reviews"
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5718002/",
+      "title": "Optimal database combinations for literature searches in systematic reviews: a prospective exploratory study - PMC"
+    },
+    {
+      "url": "https://www.researchgate.net/post/Google-scholar-for-systematic-reviews-what-limit-on-search-returns",
+      "title": "Google scholar for systematic reviews: what limit on search returns? | ResearchGate"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5718002/",
+      "title": "Optimal database combinations for literature searches in systematic reviews: a prospective exploratory study"
+    },
+    {
+      "url": "https://link.springer.com/article/10.1186/s13643-017-0644-y",
+      "title": "Optimal database combinations for literature searches in systematic reviews: a prospective exploratory study | Systematic Reviews | Springer Nature Link"
+    },
+    {
+      "url": "https://www.sciencedirect.com/science/article/pii/S2213398423002725",
+      "title": "Literature search in systematic reviews: How much is good enough? - ScienceDirect"
+    },
+    {
+      "url": "https://actascientific.com/ASMS/pdf/ASMS-04-0786.pdf",
+      "title": "A Systematic Review on the Sufficiency of PubMed and ..."
+    },
+    {
+      "url": "https://www.niemanlab.org/2025/03/ai-search-engines-fail-to-produce-accurate-citations-in-over-60-of-tests-according-to-new-tow-center-study/",
+      "title": "AI search engines fail to produce accurate citations in over 60% of tests, according to new Tow Center study | Nieman Journalism Lab"
+    },
+    {
+      "url": "https://digitalcontentnext.org/blog/2025/03/24/ai-search-has-a-news-citation-problem/",
+      "title": "AI search has a news citation problem - Digital Content Next"
+    },
+    {
+      "url": "https://www.govtech.com/question-of-the-day/how-often-do-ai-search-engines-cite-incorrect-sources",
+      "title": "How often do AI search engines cite incorrect sources?"
+    },
+    {
+      "url": "https://www.brandinginasia.com/where-did-you-get-that-study-highlights-ai-search-struggles-with-citation-accuracy/",
+      "title": "Where Did You Get That? - Study Highlights AI Search Struggles With Citation Accuracy | Branding in Asia"
+    },
+    {
+      "url": "https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php",
+      "title": "AI Search Has a Citation Problem - Columbia Journalism Review"
+    },
+    {
+      "url": "https://neuron.expert/news/ai-search-engines-cite-incorrect-sources-at-an-alarming-60-rate-study-says/11700/en/",
+      "title": "AI search engines cite incorrect sources at an alarming 60% rate, study says"
+    },
+    {
+      "url": "https://www.forbes.com/sites/torconstantino/2025/03/28/can-you-trust-ai-search-new-study-reveals-the-shocking-truth/",
+      "title": "Can You Trust AI Search? New Study Reveals The Shocking Truth"
+    },
+    {
+      "url": "https://pramodhmallipatna.substack.com/p/ais-citation-problem",
+      "title": "AI's Citation Problem"
+    },
+    {
+      "url": "https://tech.yahoo.com/ai/articles/study-finds-ai-search-engines-151517475.html",
+      "title": "New on Yahoo"
+    },
+    {
+      "url": "https://dc.fortune.com/2025/03/18/ai-search-engines-confidently-wrong-citing-sources-columbia-study",
+      "title": "ai search engines confidently wrong citing sources columbia study"
+    },
+    {
+      "url": "https://ideadigital.agency/en/blog/how-personalized-search-works-and-why-you-should-consider%20it/",
+      "title": "Personalized search in SEO: how to boost your business visibility"
+    },
+    {
+      "url": "https://www.briggsby.com/better-understanding-personalized-search",
+      "title": "A Better Understanding of Personalized Search - Briggsby"
+    },
+    {
+      "url": "https://arxiv.org/pdf/2211.11518",
+      "title": "Evaluating Web Search Engines Results for Personalization and User Tracking"
+    },
+    {
+      "url": "https://psu.pb.unizin.org/ist110/chapter/2-3-personalized-search/",
+      "title": "Personalized Search – Information, People, and Technology"
+    },
+    {
+      "url": "https://arxiv.org/pdf/1508.03902",
+      "title": "Domain-specific queries and Web search personalization: some investigations"
+    },
+    {
+      "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8626753",
+      "title": "Personalization search engine"
+    },
+    {
+      "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8260774",
+      "title": "Personalization search engine"
+    },
+    {
+      "url": "https://arxiv.org/pdf/1904.13022",
+      "title": "You can't see what you can't see: Experimental evidence for how much relevant information may be missed due to Google's Web search personalisation"
+    },
+    {
+      "url": "https://www.khoury.northeastern.edu/home/amislove/publications/Geolocation-IMC.pdf",
+      "title": "The Impact of Geolocation on Web Search Personalization"
+    },
+    {
+      "url": "https://ar5iv.labs.arxiv.org/html/2502.04266",
+      "title": "[2502.04266] Digital Gatekeeping: An Audit of Search Engine Results shows tailoring of queries on the Israel-Palestine Conflict"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
+      "title": "Bing Search APIs Retiring on August 11, 2025 - Microsoft Lifecycle | Microsoft Learn"
+    },
+    {
+      "url": "https://ppc.land/microsoft-ends-bing-search-apis-on-august-11-alternative-costs-40-483-more/",
+      "title": "Microsoft ends Bing Search APIs on August 11, alternative costs 40-483% more"
+    },
+    {
+      "url": "https://www.computing.co.uk/news/2025/microsoft-s-plan-to-retire-bing-api-access-and-what-it-means-for-web-search",
+      "title": "Microsoft’s plan to retire Bing API and what it means for web search"
+    },
+    {
+      "url": "https://en.softonic.com/articles/what-will-happen-to-search-engines-now-that-microsoft-is-shutting-down-the-bing-search-api",
+      "title": "What will happen to search engines now that Microsoft is shutting down the Bing Search API - Softonic"
+    },
+    {
+      "url": "https://msftnewsnow.com/microsoft-to-retire-bing-search-api-in-august-2025/",
+      "title": "Microsoft to Retire Bing Search API in August 2025, Urges Developers to Embrace Better AI-Powered Alternatives"
+    },
+    {
+      "url": "https://windowsforum.com/threads/microsoft-retirement-of-bing-search-apis-impact-opportunities-and-the-future-of-web-search.366351/",
+      "title": "Microsoft Retirement of Bing Search APIs: Impact, Opportunities, and the Future of Web Search | Windows Forum"
+    },
+    {
+      "url": "https://windowsforum.com/threads/microsoft-retires-bing-search-apis-what-developers-need-to-know-about-the-transition-to-azure-ai-agents.365785/",
+      "title": "Microsoft Retires Bing Search APIs: What Developers Need to Know About the Transition to Azure AI Agents | Windows Forum"
+    },
+    {
+      "url": "https://windowsforum.com/threads/microsoft-retires-bing-search-apis-what-it-means-for-developers-and-the-future-of-search.366271/",
+      "title": "Microsoft Retires Bing Search APIs: What It Means for Developers and the Future of Search | Windows Forum"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/reference/endpoints",
+      "title": "learn.microsoft.com"
+    },
+    {
+      "url": "https://geotargetly.com/blog/most-popular-search-engines-by-country",
+      "title": "Most Popular Search Engines by Country in 2026"
+    },
+    {
+      "url": "https://www.semetrical.com/seo-around-the-world-v1/",
+      "title": "SEO Around The World - Semetrical"
+    },
+    {
+      "url": "https://amp.brightedge.com/blog/international-search-engines",
+      "title": "International Search Engines, SEO for Baidu, Naver, Yandex"
+    },
+    {
+      "url": "https://www.seotopsecret.com/seo/country-specific-search-engines",
+      "title": "Country-specific search engines | SEOTopSecret Academy"
+    },
+    {
+      "url": "https://www.searchengines.net/guides/search-engine-market-share-by-country/",
+      "title": "Search Engine Market Share by Country | SearchEngines.Net"
+    }
+  ],
+  "evidence_passages": [
+    {
+      "url": "https://www.webfx.com/blog/seo/2019-search-market-share/",
+      "text": "2026 Search Market Share: 5 Hard Truths About Today’s Market - WebFX"
+    },
+    {
+      "url": "https://alphametic.com/global-search-engine-market-share",
+      "text": "Global Search Engine Market Share in the Top 15 GDP Nations (2026)"
+    },
+    {
+      "url": "https://sqmagazine.co.uk/search-engine-statistics/",
+      "text": "Search Engine Statistics 2026: Market Share, Volume & AI Shift • SQ Magazine"
+    },
+    {
+      "url": "https://searchlab.nl/en/statistics/search-engine-market-share-statistics-2026",
+      "text": "Search Engine Market Share Statistics 2026 | Google, Bing, AI Search & More"
+    },
+    {
+      "url": "https://www.digitalapplied.com/blog/search-engine-market-share-2026-global-data",
+      "text": "Search Engine Market Share 2026: Global Data Report"
+    },
+    {
+      "url": "https://serpsculpt.com/search-engine-statistics-by-country/",
+      "text": "Search Engine Statistics by Country [2026 report] 🌍"
+    },
+    {
+      "url": "https://countly.net/google-search-market-share-2026-top-10-ranked",
+      "text": "Google Search Market Share 2026: Updated Top 10"
+    },
+    {
+      "url": "https://christopholivierconsulting.com/search-engine-market-share/",
+      "text": "Search Engine Market Share: 2026 Data by Region & Device | CO Consulting"
+    },
+    {
+      "url": "https://resourcera.com/data/search/search-engine-market-share/",
+      "text": "Search Engine Market Share (2026): Google, Bing & More"
+    },
+    {
+      "url": "https://arxiv.org/abs/2207.07330",
+      "text": "[2207.07330] A Comparison of Source Distribution and Result Overlap in Web Search Engines"
+    },
+    {
+      "url": "https://arxiv.org/pdf/2207.07330",
+      "text": "A Comparison of Source Distribution and Result Overlap in Web Search Engines"
+    },
+    {
+      "url": "https://www.researchgate.net/publication/303908633_Overlap_in_the_Web_Search_Results_of_Google_and_Bing",
+      "text": "Overlap in the Web Search Results of Google and Bing"
+    },
+    {
+      "url": "https://arxiv.org/pdf/1701.02617",
+      "text": "On Low Overlap Among Search Results of Academic Search Engines"
+    },
+    {
+      "url": "https://dl.acm.org/doi/10.1145/2063576.2063858",
+      "text": "Google, bing and a new perspective on ranking similarity | Proceedings of the 20th ACM international conference on Information and knowledge management"
+    },
+    {
+      "url": "https://www.nowpublishers.com/article/OpenAccessDownload/JWS-0005",
+      "text": "Overlap in the Web Search Results of Google and Bing"
+    },
+    {
+      "url": "https://www.researchgate.net/publication/220269868_Google_Bing_and_a_new_perspective_on_ranking_similarity",
+      "text": "Google, Bing and a new perspective on ranking similarity | Request PDF"
+    },
+    {
+      "url": "https://dl.acm.org/doi/pdf/10.1145/2740908.2743060",
+      "text": "A Study of Distinctiveness in Web Results of Two Search"
+    },
+    {
+      "url": "https://arxiv.org/pdf/2011.00650",
+      "text": "Search Engine Similarity Analysis: A Combined Content and Rankings Approach"
+    },
+    {
+      "url": "https://pure.uhi.ac.uk/en/publications/google-scholar-is-not-enough-to-be-used-alone-for-systematic-revi/",
+      "text": "Google Scholar is not enough to be used alone for systematic reviews - University of the Highlands and Islands"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3544576/",
+      "text": "Is the coverage of google scholar enough to be used alone for systematic reviews"
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5718002/",
+      "text": "Optimal database combinations for literature searches in systematic reviews: a prospective exploratory study - PMC"
+    },
+    {
+      "url": "https://www.researchgate.net/post/Google-scholar-for-systematic-reviews-what-limit-on-search-returns",
+      "text": "Google scholar for systematic reviews: what limit on search returns? | ResearchGate"
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5718002/",
+      "text": "Optimal database combinations for literature searches in systematic reviews: a prospective exploratory study"
+    },
+    {
+      "url": "https://link.springer.com/article/10.1186/s13643-017-0644-y",
+      "text": "Optimal database combinations for literature searches in systematic reviews: a prospective exploratory study | Systematic Reviews | Springer Nature Link"
+    },
+    {
+      "url": "https://www.sciencedirect.com/science/article/pii/S2213398423002725",
+      "text": "Literature search in systematic reviews: How much is good enough? - ScienceDirect"
+    },
+    {
+      "url": "https://actascientific.com/ASMS/pdf/ASMS-04-0786.pdf",
+      "text": "A Systematic Review on the Sufficiency of PubMed and ..."
+    },
+    {
+      "url": "https://www.niemanlab.org/2025/03/ai-search-engines-fail-to-produce-accurate-citations-in-over-60-of-tests-according-to-new-tow-center-study/",
+      "text": "AI search engines fail to produce accurate citations in over 60% of tests, according to new Tow Center study | Nieman Journalism Lab"
+    },
+    {
+      "url": "https://digitalcontentnext.org/blog/2025/03/24/ai-search-has-a-news-citation-problem/",
+      "text": "AI search has a news citation problem - Digital Content Next"
+    },
+    {
+      "url": "https://www.govtech.com/question-of-the-day/how-often-do-ai-search-engines-cite-incorrect-sources",
+      "text": "How often do AI search engines cite incorrect sources?"
+    },
+    {
+      "url": "https://www.brandinginasia.com/where-did-you-get-that-study-highlights-ai-search-struggles-with-citation-accuracy/",
+      "text": "Where Did You Get That? - Study Highlights AI Search Struggles With Citation Accuracy | Branding in Asia"
+    },
+    {
+      "url": "https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php",
+      "text": "AI Search Has a Citation Problem - Columbia Journalism Review"
+    },
+    {
+      "url": "https://neuron.expert/news/ai-search-engines-cite-incorrect-sources-at-an-alarming-60-rate-study-says/11700/en/",
+      "text": "AI search engines cite incorrect sources at an alarming 60% rate, study says"
+    },
+    {
+      "url": "https://www.forbes.com/sites/torconstantino/2025/03/28/can-you-trust-ai-search-new-study-reveals-the-shocking-truth/",
+      "text": "Can You Trust AI Search? New Study Reveals The Shocking Truth"
+    },
+    {
+      "url": "https://pramodhmallipatna.substack.com/p/ais-citation-problem",
+      "text": "AI's Citation Problem"
+    },
+    {
+      "url": "https://tech.yahoo.com/ai/articles/study-finds-ai-search-engines-151517475.html",
+      "text": "New on Yahoo"
+    },
+    {
+      "url": "https://dc.fortune.com/2025/03/18/ai-search-engines-confidently-wrong-citing-sources-columbia-study",
+      "text": "ai search engines confidently wrong citing sources columbia study"
+    },
+    {
+      "url": "https://ideadigital.agency/en/blog/how-personalized-search-works-and-why-you-should-consider%20it/",
+      "text": "Personalized search in SEO: how to boost your business visibility"
+    },
+    {
+      "url": "https://www.briggsby.com/better-understanding-personalized-search",
+      "text": "A Better Understanding of Personalized Search - Briggsby"
+    },
+    {
+      "url": "https://arxiv.org/pdf/2211.11518",
+      "text": "Evaluating Web Search Engines Results for Personalization and User Tracking"
+    },
+    {
+      "url": "https://psu.pb.unizin.org/ist110/chapter/2-3-personalized-search/",
+      "text": "Personalized Search – Information, People, and Technology"
+    },
+    {
+      "url": "https://arxiv.org/pdf/1508.03902",
+      "text": "Domain-specific queries and Web search personalization: some investigations"
+    },
+    {
+      "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8626753",
+      "text": "Personalization search engine"
+    },
+    {
+      "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8260774",
+      "text": "Personalization search engine"
+    },
+    {
+      "url": "https://arxiv.org/pdf/1904.13022",
+      "text": "You can't see what you can't see: Experimental evidence for how much relevant information may be missed due to Google's Web search personalisation"
+    },
+    {
+      "url": "https://www.khoury.northeastern.edu/home/amislove/publications/Geolocation-IMC.pdf",
+      "text": "The Impact of Geolocation on Web Search Personalization"
+    },
+    {
+      "url": "https://ar5iv.labs.arxiv.org/html/2502.04266",
+      "text": "[2502.04266] Digital Gatekeeping: An Audit of Search Engine Results shows tailoring of queries on the Israel-Palestine Conflict"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
+      "text": "Bing Search APIs Retiring on August 11, 2025 - Microsoft Lifecycle | Microsoft Learn"
+    },
+    {
+      "url": "https://ppc.land/microsoft-ends-bing-search-apis-on-august-11-alternative-costs-40-483-more/",
+      "text": "Microsoft ends Bing Search APIs on August 11, alternative costs 40-483% more"
+    },
+    {
+      "url": "https://www.computing.co.uk/news/2025/microsoft-s-plan-to-retire-bing-api-access-and-what-it-means-for-web-search",
+      "text": "Microsoft’s plan to retire Bing API and what it means for web search"
+    },
+    {
+      "url": "https://en.softonic.com/articles/what-will-happen-to-search-engines-now-that-microsoft-is-shutting-down-the-bing-search-api",
+      "text": "What will happen to search engines now that Microsoft is shutting down the Bing Search API - Softonic"
+    },
+    {
+      "url": "https://msftnewsnow.com/microsoft-to-retire-bing-search-api-in-august-2025/",
+      "text": "Microsoft to Retire Bing Search API in August 2025, Urges Developers to Embrace Better AI-Powered Alternatives"
+    },
+    {
+      "url": "https://windowsforum.com/threads/microsoft-retirement-of-bing-search-apis-impact-opportunities-and-the-future-of-web-search.366351/",
+      "text": "Microsoft Retirement of Bing Search APIs: Impact, Opportunities, and the Future of Web Search | Windows Forum"
+    },
+    {
+      "url": "https://windowsforum.com/threads/microsoft-retires-bing-search-apis-what-developers-need-to-know-about-the-transition-to-azure-ai-agents.365785/",
+      "text": "Microsoft Retires Bing Search APIs: What Developers Need to Know About the Transition to Azure AI Agents | Windows Forum"
+    },
+    {
+      "url": "https://windowsforum.com/threads/microsoft-retires-bing-search-apis-what-it-means-for-developers-and-the-future-of-search.366271/",
+      "text": "Microsoft Retires Bing Search APIs: What It Means for Developers and the Future of Search | Windows Forum"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/reference/endpoints",
+      "text": "learn.microsoft.com"
+    },
+    {
+      "url": "https://arxiv.org/abs/2207.07330",
+      "text": "# Research Findings on Search Engine Result Overlap\n\n**Methodology:**\nThe study examined \"the top 10 results from Google, Bing, DuckDuckGo, and Metager, using 3,537 queries generated from Google Trends from Germany and the US.\"\n\n**Key Overlap Findings:**\n\n- **Google and Bing**: \"The overlap between Google and Bing is always under 32%\"\n\n- **Metager and Bing**: Metager demonstrated higher alignment with Bing's results, with overlap reaching as high as 78%\n\n- **Metager and DuckDuckGo**: The research indicates Metager maintained greater result similarity with Bing than with DuckDuckGo\n\n**Additional Context:**\nThe researchers found that \"Google displays more unique domains in the top results than its competitors\" and that \"Wikipedia and news websites are the most popular sources overall.\" They concluded that using alternative search engines alongside Google \"provides a wider variety in sources and might lead the user to find new perspectives.\""
+    },
+    {
+      "url": "https://geotargetly.com/blog/most-popular-search-engines-by-country",
+      "text": "Most Popular Search Engines by Country in 2026"
+    },
+    {
+      "url": "https://www.semetrical.com/seo-around-the-world-v1/",
+      "text": "SEO Around The World - Semetrical"
+    },
+    {
+      "url": "https://amp.brightedge.com/blog/international-search-engines",
+      "text": "International Search Engines, SEO for Baidu, Naver, Yandex"
+    },
+    {
+      "url": "https://www.digitalapplied.com/blog/search-engine-market-share-2026-global-data",
+      "text": "Search Engine Market Share 2026: Global Data Report"
+    },
+    {
+      "url": "https://www.seotopsecret.com/seo/country-specific-search-engines",
+      "text": "Country-specific search engines | SEOTopSecret Academy"
+    },
+    {
+      "url": "https://serpsculpt.com/search-engine-statistics-by-country/",
+      "text": "Search Engine Statistics by Country [2026 report] 🌍"
+    },
+    {
+      "url": "https://www.searchengines.net/guides/search-engine-market-share-by-country/",
+      "text": "Search Engine Market Share by Country | SearchEngines.Net"
+    }
+  ],
+  "final_answer": "## Short answer\n\n**No such engine exists, and the question as posed can't be answered affirmatively.** \"Objectively best for *every* kind of research question\" requires a single tool that dominates all others on every task type, language, region, and content domain. The available evidence points the other way: engines differ substantially in what they return, they lead in different regions, and for several important research tasks general web engines are known to be insufficient on their own. I found no evidence supporting a universal winner — this is a case where the premise, not the ranking, is the problem.\n\nBelow I separate what's actually supported from what I'm inferring.\n\n---\n\n## Supported by evidence\n\n**1. Major engines return substantially different results, so no one index subsumes the others.**\nA study of the top 10 results from Google, Bing, DuckDuckGo, and MetaGer across 3,537 Google Trends queries from Germany and the US found the overlap between Google and Bing is *always under 32%*, and concluded that using alternative engines alongside Google \"provides a wider variety in sources\" ([arXiv:2207.07330](https://arxiv.org/abs/2207.07330)). Older work comparing Google, Bing, and Yahoo found overlap in the 22–40% range ([Overlap in the Web Search Results of Google and Bing](https://www.nowpublishers.com/article/OpenAccessDownload/JWS-0005)), and ranking-similarity work found Google and Bing \"differed considerably\" in how they interpret queries ([ACM CIKM](https://dl.acm.org/doi/10.1145/2063576.2063858)).\n\n**2. For systematic literature research, single-source searching is documented as inadequate.**\nConcordance between PubMed and Google Scholar has been measured at ~30%, with ~20% of articles unique to PubMed ([PMC3544576](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3544576/)). A prospective study of optimal database combinations found that Embase + MEDLINE + Web of Science Core Collection + Google Scholar achieved 98.3% overall recall, and recommended these four as a *minimum* ([Systematic Reviews, 2017](https://link.springer.com/article/10.1186/s13643-017-0644-y)). This is direct evidence that the best tool is task-dependent and often plural.\n\n**3. Regional leadership is split, and at least partly on relevance grounds.**\nBaidu leads mainland China (~60%), Yandex leads Russia (~71%), and Korean search is contested between Naver and Google ([geotargetly](https://geotargetly.com/blog/most-popular-search-engines-by-country), [SearchEngines.Net](https://www.searchengines.net/guides/search-engine-market-share-by-country/)). Google withdrew from China entirely. Note these numbers come from SEO-industry sources of mixed rigor — treat the precise figures as approximate.\n\n**4. AI-answer search has a measured accuracy problem.**\nThe Tow Center tested eight AI search tools (Perplexity, Google AI Overviews, Bing Chat, ChatGPT, Claude, Gemini, Meta AI, Grok) with 1,600 queries and found collectively >60% incorrect answers on source-identification tasks, with error rates ranging from ~37% (Perplexity) to ~94% (Grok 3), plus fabricated URLs on some platforms ([CJR](https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php), [Nieman Lab](https://www.niemanlab.org/2025/03/ai-search-engines-fail-to-produce-accurate-citations-in-over-60-of-tests-according-to-new-tow-center-study/)). So \"AI search\" is not a blanket upgrade for citation-critical work.\n\n**5. Results aren't fully reproducible across users.**\nPersonalization and geolocation measurably change results; one audit found ~11.7% of results differ due to personalization, varying sharply by query type — 82% identical for \"what is\" queries versus 43% for \"gadgets,\" with politics the most personalized category ([arXiv:2211.11518](https://arxiv.org/pdf/2211.11518), [Northeastern geolocation study](https://www.khoury.northeastern.edu/home/amislove/publications/Geolocation-IMC.pdf)). \"Best\" is therefore not even a stable property for a single engine.\n\n**6. The independent-index base is narrowing.**\nMicrosoft retired the Bing Search APIs on August 11, 2025 ([Microsoft Learn](https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement)), which trade press describes as raising barriers for smaller engines and developers that relied on it ([Computing](https://www.computing.co.uk/news/2025/microsoft-s-plan-to-retire-bing-api-access-and-what-it-means-for-web-search), [ppc.land](https://ppc.land/microsoft-ends-bing-search-apis-on-august-11-alternative-costs-40-483-more/)).\n\n---\n\n## Inference (mine, not directly from a source)\n\n- Because \"diversity of sources\" is itself a research value (point 1) and different engines lead in different regions (point 3), a *portfolio* strategy dominates any single-engine strategy for serious research. This follows from the evidence but isn't a finding any single study states.\n- The overlap findings (1) and the MetaGer↔Bing overlap of up to 78% reported in the same paper suggest many \"alternative\" engines are partly syndicating a major index, so switching engines buys less independence than it appears to. This is my reading, and it's supported for MetaGer specifically, not for every alternative engine.\n\n## Disagreement and uncertainty in the evidence\n\n- **Market-share figures disagree by source.** Global Google share is reported at ~89.8% by several 2026 SEO trackers, but US and per-country numbers vary meaningfully between them, and South Korea is a clear case: StatCounter puts Google first at ~49.5% while Korean domestic measurement puts Naver first at ~63.8% ([serpsculpt](https://serpsculpt.com/search-engine-statistics-by-country/), [searchengines.net](https://www.searchengines.net/guides/search-engine-market-share-by-country/)). These are commercial SEO blogs recycling StatCounter, not peer-reviewed measurement.\n- **Overlap studies disagree on trend direction.** Some recent work reports *increased* overlap between engines relative to older studies ([arXiv:2011.00650](https://arxiv.org/pdf/2011.00650)), which would weaken (but not eliminate) the diversity argument.\n- **Personalization magnitude is contested.** Older audits found \"mild\" personalization for general topics; a more recent audit reports significant customization ([arXiv:2502.04266](https://ar5iv.labs.arxiv.org/html/2502.04266)). I'd treat the size of this effect as unsettled.\n\n## Where the evidence is genuinely poor\n\n- I found **no rigorous, current, independent head-to-head benchmark of general web search engines on research-quality relevance** across task types. Most comparisons measure *overlap* (how different results are), not *quality* (which results are better). Overlap is not a quality metric.\n- Vendor and SEO-blog claims about which engine is \"best\" are marketing, not measurement, and I'd discount them.\n- Market share is a popularity measure and says nothing about research quality — Google's ~90% share is not evidence that it is best for any specific research task.\n\n---\n\n## What I'd actually recommend instead of a winner\n\nRoute by task, not by loyalty:\n\n| Task | Reasonable primary | Why |\n|---|---|---|\n| General web / broad recall | Google, cross-checked with one non-Google engine | <32% overlap means one engine misses a lot ([arXiv:2207.07330](https://arxiv.org/abs/2207.07330)) |\n| Academic / systematic review | Embase + MEDLINE + Web of Science + Google Scholar | Empirically 98.3% recall; Scholar alone is documented as insufficient ([Springer](https://link.springer.com/article/10.1186/s13643-017-0644-y)) |\n| Non-English / regional | The local leader (Baidu, Yandex, Naver) plus Google | Regional engines lead their markets ([geotargetly](https://geotargetly.com/blog/most-popular-search-engines-by-country)) |\n| Citation-critical fact-finding | Any engine, but verify against the primary source | AI answer layers misattribute >60% of the time ([CJR](https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php)) |\n\nOne caveat on my own process: this answer is built from web search and page fetches, so it inherits exactly the single-engine bias it describes. Treat the market-share numbers as the weakest links in the chain; the overlap, systematic-review, and Tow Center findings are the load-bearing evidence.",
+  "cli_version": "2.1.247 (Claude Code)",
+  "locale": "en-US",
+  "started_at": "2026-08-27T17:35:50.880Z",
+  "duration_ms": 96874,
+  "prompt_sha256": "9d86936210d2176c8a30e1567f3964ae8f1a0db1b67a43a5aa5627f10ca15f4a",
+  "raw_trace": "events.sanitized.jsonl",
+  "policy_evidence": "policy.json",
+  "isolation": {
+    "temporary_cwd": true,
+    "cwd_unchanged": true,
+    "forbidden_tool_calls": []
+  }
+}

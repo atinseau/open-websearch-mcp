@@ -1,0 +1,137 @@
+{
+  "is_error": false,
+  "duration_api_ms": 43787,
+  "num_turns": 2,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.35624949999999994,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 25603,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 3268,
+    "output_tokens_details": {
+      "thinking_tokens": 1424
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 25603,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 3268,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 25603,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 25603
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 17966,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.018050999999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 3268,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 25603,
+      "webSearchRequests": 0,
+      "costUSD": 0.33819849999999996,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"claim_unicode_host_idna\",\"claim_default_https_port\",\"claim_dot_segments\",\"claim_fragment_percent_encoding\",\"claim_path_percent20_preserved\",\"claim_scheme_lowercased\"],\"rejected_claims\":[{\"id\":\"rejected_path_percent_bytes_preserved\",\"reason\":\"La preuve fournie classe explicitement ce point en « Inference » et ajoute dans « Lack Of Good Evidence » qu'aucune phrase normative ne dit de préserver les octets percent-encodés déjà valides. Dépend d'une interprétation algorithmique non citée.\"},{\"id\":\"rejected_path_hex_uppercase_canonicalization\",\"reason\":\"Présenté uniquement comme inférence dans la preuve ; aucun passage normatif ne décrit une normalisation de la casse des chiffres hexadécimaux à l'analyse. De plus la formulation affirmative inverse le sens de l'inférence source (absence de canonicalisation).\"},{\"id\":\"rejected_fragment_percent_bytes_preserved\",\"reason\":\"Étiqueté « Inference from https://url.spec.whatwg.org/ » dans la preuve ; aucun extrait direct du fragment state n'établit la préservation des séquences %XX préexistantes.\"},{\"id\":\"rejected_host_nfc_normalization\",\"reason\":\"Aucun passage fourni ne cite NFC comme étape effectuée ; le run Claude reconnaît lui-même n'avoir pas ouvert le texte d'UTS 46 et qualifie ce point de connaissance générale corroborée seulement indirectement.\"},{\"id\":\"rejected_trailing_dot_removal\",\"reason\":\"Non soutenu : la preuve indique au contraire, en déduction, que le point final est conservé (`https://example.com./`), et aucune règle citée ne prévoit sa suppression.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": [
+      "claim_unicode_host_idna",
+      "claim_default_https_port",
+      "claim_dot_segments",
+      "claim_fragment_percent_encoding",
+      "claim_path_percent20_preserved",
+      "claim_scheme_lowercased"
+    ],
+    "rejected_claims": [
+      {
+        "id": "rejected_path_percent_bytes_preserved",
+        "reason": "La preuve fournie classe explicitement ce point en « Inference » et ajoute dans « Lack Of Good Evidence » qu'aucune phrase normative ne dit de préserver les octets percent-encodés déjà valides. Dépend d'une interprétation algorithmique non citée."
+      },
+      {
+        "id": "rejected_path_hex_uppercase_canonicalization",
+        "reason": "Présenté uniquement comme inférence dans la preuve ; aucun passage normatif ne décrit une normalisation de la casse des chiffres hexadécimaux à l'analyse. De plus la formulation affirmative inverse le sens de l'inférence source (absence de canonicalisation)."
+      },
+      {
+        "id": "rejected_fragment_percent_bytes_preserved",
+        "reason": "Étiqueté « Inference from https://url.spec.whatwg.org/ » dans la preuve ; aucun extrait direct du fragment state n'établit la préservation des séquences %XX préexistantes."
+      },
+      {
+        "id": "rejected_host_nfc_normalization",
+        "reason": "Aucun passage fourni ne cite NFC comme étape effectuée ; le run Claude reconnaît lui-même n'avoir pas ouvert le texte d'UTS 46 et qualifie ce point de connaissance générale corroborée seulement indirectement."
+      },
+      {
+        "id": "rejected_trailing_dot_removal",
+        "reason": "Non soutenu : la preuve indique au contraire, en déduction, que le point final est conservé (`https://example.com./`), et aucune règle citée ne prévoit sa suppression."
+      }
+    ]
+  },
+  "ttft_ms": 19637,
+  "ttft_stream_ms": 1363,
+  "time_to_request_ms": 18,
+  "type": "result",
+  "duration_ms": 42284,
+  "uuid": "[REDACTED]",
+  "queued_turn_count": 0
+}

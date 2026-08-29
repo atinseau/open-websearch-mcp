@@ -1,0 +1,142 @@
+{
+  "claims": [
+    {
+      "id": "claim_mmr_tradeoff",
+      "text": "Maximal marginal relevance trades relevance against novelty with a user-tunable linear score: at each step it selects a remaining document with high query similarity and low similarity to already selected documents, rewarding relevance and penalizing redundancy.",
+      "required_concepts": [
+        "mmr",
+        "linear_tradeoff",
+        "query_similarity",
+        "selected_docs",
+        "redundancy"
+      ],
+      "acceptable_patterns": [
+        "Maximal marginal relevance trades relevance against novelty with a user-tunable linear score",
+        "at each step,? it picks the remaining document with high query similarity and low similarity to already selected documents",
+        "relevance is rewarded and redundancy is penalized"
+      ],
+      "sources": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "text": "MMR trades relevance against novelty with a user-tunable linear score: at each step, it picks the remaining document with high query similarity and low similarity to already selected documents, i.e. relevance is rewarded and redundancy is penalized."
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "claim_lambda_extremes",
+      "text": "In the original MMR formulation, λ = 1 reduces to a standard relevance-ranked list, λ = 0 reduces to maximal diversity among the retrieved set, and intermediate λ values optimize a linear combination of the two criteria.",
+      "required_concepts": ["lambda", "relevance_ranked", "maximal_diversity", "intermediate"],
+      "acceptable_patterns": [
+        "λ = 1 reduces to the standard relevance-ranked list",
+        "λ = 0 reduces to maximal diversity among the retrieved set",
+        "intermediate λ values optimize a linear combination of the two criteria"
+      ],
+      "sources": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "text": "In that formulation, `λ = 1` reduces to the standard relevance-ranked list, `λ = 0` reduces to maximal diversity among the retrieved set, and intermediate `λ` values optimize a linear combination of the two criteria."
+        }
+      ],
+      "weight": 0.95
+    },
+    {
+      "id": "claim_lambda_usage",
+      "text": "The original paper describes smaller λ as suitable for sampling the information space and larger λ as suitable for focusing on overlapping or reinforcing relevant documents; for document retrieval it reports starting around λ = 0.3 and then moving to around λ = 0.7 after query reformulation or relevance feedback.",
+      "required_concepts": ["small_lambda", "large_lambda", "sampling", "focus", "0\\.3", "0\\.7"],
+      "acceptable_patterns": [
+        "smaller λ is for sampling the information space",
+        "larger λ is for focusing on overlapping/reinforcing relevant documents",
+        "starting around `?λ = 0\\.3`? and then moving to around `?λ = 0\\.7`?"
+      ],
+      "sources": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "text": "The same paper says smaller `λ` is for “sampling” the information space and larger `λ` is for focusing on overlapping/reinforcing relevant documents; for document retrieval, the authors report a strategy of starting around `λ = 0.3` and then moving to around `λ = 0.7` after query reformulation or relevance feedback."
+        }
+      ],
+      "weight": 0.75
+    },
+    {
+      "id": "claim_original_evidence",
+      "text": "The original paper's direct evidence for diversification is limited but supportive: a Reuters reranking example pushed a duplicate article down and moved a novel but still relevant document up, and a pilot user study with 5 undergraduate users over 9 search tasks found that 4 of 5 chose MMR reranking at λ = 0.5 for a final search task, while the authors noted the study was too small for statistically significant speed or recall trends.",
+      "required_concepts": [
+        "reuters_example",
+        "duplicate_down",
+        "novel_relevant_up",
+        "pilot_user_study",
+        "5_users",
+        "9_tasks",
+        "4_of_5",
+        "too_small"
+      ],
+      "acceptable_patterns": [
+        "duplicate article is pushed down",
+        "novel but still relevant",
+        "4 of 5 chose the MMR method",
+        "too small to yield statistically significant trends"
+      ],
+      "sources": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "text": "First, in a Reuters reranking example, the authors report that a duplicate article is pushed down, a “novel but still relevant” document moves up, and similar documents are demoted as `λ` decreases, which is exactly the intended relevance/novelty tradeoff."
+        },
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "text": "Second, the same paper reports a pilot user study with 5 undergraduate users over 9 search tasks; users compared standard SMART ranking with MMR reranking at `λ = 0.5`, and 4 of 5 chose the MMR method for a final search task. However, the authors also state that the study was too small to yield statistically significant trends for speed or recall."
+        }
+      ],
+      "weight": 0.9
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Primary research shows that MMR uniformly improves diversified search results over non-diversified ranking.",
+      "reason": "Overly broad and contradicted by supplied evidence describing only limited original evidence and mixed later evidence."
+    },
+    {
+      "text": "There is a universally best λ value for MMR.",
+      "reason": "Unsupported by the supplied evidence; the evidence describes λ as task-tunable and gives example strategies rather than a universal optimum."
+    },
+    {
+      "text": "Plain MMR consistently improves real user satisfaction in large-sample web search studies.",
+      "reason": "Unsupported by the supplied evidence; the only user study mentioned is a 5-user pilot explicitly described as too small for statistically significant speed or recall conclusions."
+    },
+    {
+      "text": "Zhu et al. (2014) definitively proved MMRlist beats all baselines on all diversification settings.",
+      "reason": "Too strong for the supplied evidence and not independently supported by quoted evidence passages in the record."
+    }
+  ]
+}

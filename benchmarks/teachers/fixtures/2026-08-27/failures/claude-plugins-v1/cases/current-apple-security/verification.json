@@ -1,0 +1,8 @@
+{
+  "accepted_claim_ids": [
+    "claim_latest_macos",
+    "claim_affected_systems",
+    "claim_no_active_exploitation_identified"
+  ],
+  "rejected_claims": []
+}

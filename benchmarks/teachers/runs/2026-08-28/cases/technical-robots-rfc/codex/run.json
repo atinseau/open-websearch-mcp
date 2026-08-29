@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "run_id": "2026-08-28_codex_technical-robots-rfc",
+  "case_id": "technical-robots-rfc",
+  "provider": "codex",
+  "model": "gpt-5.4",
+  "queries": [
+    "RFC 9309 robots.txt user-agent groups allow disallow percent encoding unavailable robots.txt"
+  ],
+  "tool_results": [
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    }
+  ],
+  "opened_urls": ["https://datatracker.ietf.org/doc/rfc9309/"],
+  "cited_urls": [
+    "https://datatracker.ietf.org/doc/rfc9309/",
+    "https://datatracker.ietf.org/doc/rfc9309/",
+    "https://datatracker.ietf.org/doc/rfc9309/",
+    "https://datatracker.ietf.org/doc/rfc9309/",
+    "https://datatracker.ietf.org/doc/rfc9309/",
+    "https://datatracker.ietf.org/doc/rfc9309/",
+    "https://datatracker.ietf.org/doc/rfc9309/",
+    "https://datatracker.ietf.org/doc/rfc9309/",
+    "https://datatracker.ietf.org/doc/rfc9309/"
+  ],
+  "selected_sources": [
+    {
+      "url": "https://datatracker.ietf.org/doc/rfc9309/",
+      "title": "https://datatracker.ietf.org/doc/rfc9309/"
+    }
+  ],
+  "evidence_passages": [],
+  "final_answer": "**Supported Fact**\n\nUnder RFC 9309, a `robots.txt` file is organized into groups: each group starts with one or more `user-agent` lines and is followed by zero or more `allow` / `disallow` rules; the group ends at the next `user-agent` line or end of file. If the last group has no rules, it implicitly allows everything. (https://datatracker.ietf.org/doc/rfc9309/)\n\nFor user-agent selection, crawlers must use case-insensitive matching against their product token. If more than one group matches the crawler’s user-agent, the crawler must combine those matching groups’ rules into one group before evaluating access. If no specific group matches, the crawler must use the `user-agent: *` group if it exists; if neither a specific group nor `*` exists, then no rules apply. (https://datatracker.ietf.org/doc/rfc9309/)\n\nFor `allow` / `disallow` precedence, the crawler must match rules against the URI path starting at the first octet of the path. The most specific match wins, and “most specific” means the matching rule with the greatest number of octets. If an `allow` rule and a `disallow` rule are equivalent, the RFC says the `allow` rule should be used. If no rule matches, or the applicable group has no rules, the URI is allowed; `/robots.txt` itself is implicitly allowed. (https://datatracker.ietf.org/doc/rfc9309/)\n\nFor percent encoding, RFC 9309 requires octets outside ASCII and octets in RFC 3986’s reserved range to be percent-encoded before comparison. If the URI contains a percent-encoded ASCII octet, the crawler must decode it before comparison, except when that octet is a reserved URI character or outside the unreserved range. The RFC also says the match is positive only if the rule-path ends before any octet difference is encountered. (https://datatracker.ietf.org/doc/rfc9309/)\n\nFor unavailable `robots.txt` responses, RFC 9309 defines “unavailable” as a fetch where the server indicates the resource is unavailable; in HTTP, the RFC gives 4xx as the example range. In that case, the crawler may access any resource on the server. If redirects exceed five consecutive hops, the crawler may also treat `robots.txt` as unavailable. (https://datatracker.ietf.org/doc/rfc9309/)\n\nRFC 9309 separately defines “unreachable” as server or network failure; in HTTP, it gives 5xx as the example range. In that case, the crawler must assume complete disallow, though after a reasonably long time, such as 30 days, the crawler may treat the file as unavailable or keep using a cached copy. (https://datatracker.ietf.org/doc/rfc9309/)\n\n**Inference**\n\nA practical consequence of the RFC text is that precedence is not “`allow` always beats `disallow`”; instead, longest-path specificity decides first, and `allow` only breaks ties when the competing rules are equivalent. This follows from the RFC’s “most specific match” rule plus its separate tie statement for equivalent `allow` and `disallow` rules. (Inference from: https://datatracker.ietf.org/doc/rfc9309/)\n\n**Uncertainty / Discretion Left By The RFC**\n\nThe RFC says path matching “SHOULD be case sensitive,” not “MUST be case sensitive,” so it recommends case-sensitive matching but does not make it an absolute requirement. (https://datatracker.ietf.org/doc/rfc9309/)\n\nThe RFC also uses `MAY` for some behaviors, so crawler handling is intentionally not fully uniform in those cases: examples include deduplicating duplicate rules, bridging encoding mismatches when a file is not UTF-8, treating over-five redirects as unavailable, and deciding after a long unreachable period to treat the file as unavailable or rely on cache. (https://datatracker.ietf.org/doc/rfc9309/)\n\n**Disagreement / Lack Of Good Evidence**\n\nI did not find a need for secondary sources here, because RFC 9309 directly specifies all four topics you asked about. I therefore have no source-backed disagreement to report beyond the RFC’s own built-in `SHOULD` / `MAY` discretion.",
+  "cli_version": "codex-cli 0.149.1",
+  "locale": "en-US",
+  "started_at": "2026-08-28T14:31:08.900Z",
+  "duration_ms": 40113,
+  "prompt_sha256": "111a1644ee535074ff47c8f1d0a8ef25f701198296f8520bd754e4d865a397da",
+  "raw_trace": "events.sanitized.jsonl",
+  "policy_evidence": "policy.json",
+  "isolation": {
+    "temporary_cwd": true,
+    "cwd_unchanged": true,
+    "forbidden_tool_calls": []
+  }
+}

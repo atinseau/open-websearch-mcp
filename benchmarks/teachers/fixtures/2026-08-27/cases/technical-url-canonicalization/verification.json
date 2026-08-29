@@ -1,0 +1,16 @@
+{
+  "accepted_claim_ids": [
+    "claim_scheme_lowercased",
+    "claim_default_https_port_dropped",
+    "claim_unicode_host_to_ascii_idna",
+    "claim_ascii_host_lowercased",
+    "claim_dot_segments_normalized",
+    "claim_fragment_percent_encoded"
+  ],
+  "rejected_claims": [
+    {
+      "id": "claim_path_bytes_not_decoded_explicitly",
+      "reason": "The claim is framed as a statement about the evidence corpus ('The supplied evidence supports... but it does not provide a direct normative rule') rather than about the WHATWG URL Standard, so it is not deterministic for lexical grading of an answer; its key pattern 'does not provide.{0,30}direct normative rule' demands meta-commentary that a correct topical answer would not produce. Its supporting apparatus is also weak: the listed source https://github.com/whatwg/url/issues/565 has no retrieved payload in either run (the Codex run's tool results expose no search results and opened_urls is empty, and the independent run surfaced issue #281 on this topic, never #565), and its second evidence passage attributed to https://url.spec.whatwg.org/ is the model's own first-person narration ('In the current parsing steps I reviewed, I found... I did not find...') rather than spec text. The underlying fact (path code points are percent-encoded with the path percent-encode set and existing %XX bytes are not decoded) is supported and could be re-drafted as a direct, non-meta claim citing only https://url.spec.whatwg.org/."
+    }
+  ]
+}

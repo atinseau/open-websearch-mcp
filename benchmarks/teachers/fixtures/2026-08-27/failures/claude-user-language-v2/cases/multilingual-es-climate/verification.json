@@ -1,0 +1,17 @@
+{
+  "accepted_claim_ids": ["c1", "c2", "c3", "c4", "c7"],
+  "rejected_claims": [
+    {
+      "id": "c5",
+      "reason": "Contradiction directe entre les deux exécutions enseignantes : le passage Codex donne 660,1 mm / 104 % pour 2024, tandis que l'exécution Claude, citant la page officielle AEMET IAC 2024, donne 669,1 mm / 105 % de la normale 1991-2020. Le passage Codex est en outre tronqué (« el extremo sureste peninsular fue m ») et provient d'un bloc de preuve auto-référentiel (copie de la réponse finale, aucune URL réellement ouverte). Le chiffre n'est donc pas assez déterministe pour une notation lexicale, et le brouillon rejette lui-même la variante concurrente, ce qui rendrait la notation incohérente."
+    },
+    {
+      "id": "c6",
+      "reason": "Le tableau acceptable_patterns contient un fragment JSON corrompu, \"sources\\\":[{\\\"\", qui n'est pas un motif de notation valide : il ne correspond à aucun contenu de réponse attendu et, les motifs étant évalués en OR, il peut produire des correspondances parasites sur du texte sérialisé. De plus, les required_concepts « 2023 muy seco » et « 2024-2025 húmedos » ne sont pas des chaînes littérales citables et dépendent d'une reformulation interprétative. Le fait sous-jacent (688,7 mm / 109 % en 2025) est corroboré, mais la revendication telle qu'écrite n'est pas notable de façon fiable."
+    },
+    {
+      "id": "c8",
+      "reason": "Attribution non vérifiable par les preuves fournies. L'URL https://www.aemet.es/es/idi/clima/evaluacion_modelos_climaticos n'a été ouverte dans aucune des deux exécutions (opened_urls de Codex est vide ; elle n'apparaît pas non plus chez Claude), et la citation « una parte importante de las incertidumbres asociadas a las proyecciones de los modelos climáticos » sur les paramétrisations et les interactions atmosphère-surface n'existe dans aucun contenu de page réellement récupéré. La taxonomie en trois sources (émissions, modèles globaux, régionalisation) n'est étayée que par le texte auto-généré de Codex ; la page AR6 récupérée par Claude ne mentionne que des « incertitudes importantes de sources diverses », scénarios et modèles, sans la triade ni le passage sur les paramétrisations. Motifs exigeant des citations textuelles non attestées."
+    }
+  ]
+}

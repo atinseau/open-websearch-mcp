@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "case_id": "current-apple-security",
+  "question": "What is Apple's most recent macOS security update as of today, which systems does it affect, and which actively exploited issues does Apple identify?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim_latest_macos_update",
+      "text": "Apple's security-releases index says the latest version of macOS is 26.6.2 and lists macOS Tahoe 26.6.2 with a release date of August 17, 2026.",
+      "required_concepts": [
+        "latest version of macOS",
+        "26.6.2",
+        "macOS Tahoe 26.6.2",
+        "August 17, 2026"
+      ],
+      "acceptable_patterns": [
+        "latest version of macOS is 26\\.6\\.2",
+        "macOS Tahoe 26\\.6\\.2",
+        "August 17, 2026"
+      ],
+      "sources": [
+        {
+          "url": "https://support.apple.com/en-us/100100",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://support.apple.com/en-us/100100",
+          "text": "As of August 27, 2026, Apple’s security-releases index says “The latest version of macOS is 26.6.2” and lists `macOS Tahoe 26.6.2` with a release date of August 17, 2026."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_current-apple-security",
+        "claude_run": "2026-08-27_claude_current-apple-security"
+      }
+    },
+    {
+      "id": "claim_affected_systems",
+      "text": "Apple's security-content page for macOS Tahoe 26.6.2 says the update was released August 17, 2026 and is available for macOS Tahoe.",
+      "required_concepts": [
+        "macOS Tahoe 26.6.2",
+        "Available for",
+        "macOS Tahoe",
+        "August 17, 2026"
+      ],
+      "acceptable_patterns": [
+        "macOS Tahoe 26\\.6\\.2",
+        "released August 17, 2026",
+        "Available for:? macOS Tahoe"
+      ],
+      "sources": [
+        {
+          "url": "https://support.apple.com/en-us/148281",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://support.apple.com/en-us/148281",
+          "text": "Apple’s security-content page for `macOS Tahoe 26.6.2` says the update was released August 17, 2026 and is “Available for: macOS Tahoe.”"
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_current-apple-security",
+        "claude_run": "2026-08-27_claude_current-apple-security"
+      }
+    },
+    {
+      "id": "claim_no_apple_identified_active_exploitation",
+      "text": "In the supplied Apple-page evidence for macOS Tahoe 26.6.2, Apple does not identify any actively exploited issues.",
+      "required_concepts": [
+        "Apple does not identify",
+        "actively exploited issues",
+        "macOS Tahoe 26.6.2"
+      ],
+      "acceptable_patterns": [
+        "no Apple statement.*actively exploited",
+        "does not identify any actively exploited issue",
+        "none reported"
+      ],
+      "sources": [
+        {
+          "url": "https://support.apple.com/en-us/148281",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://support.apple.com/en-us/100100",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://support.apple.com/en-us/148281",
+          "text": "I found no Apple statement on either page identifying any actively exploited issue in macOS Tahoe 26.6.2 or Safari 26.6.1. This is an inference from absence: on the two Apple security-content pages above, Apple lists the CVEs and impacts, but the pages do not include Apple’s usual exploitation wording such as “Apple is aware of a report that this issue may have been actively exploited.”"
+        },
+        {
+          "url": "https://support.apple.com/en-us/148281",
+          "text": "**Actively Exploited CVEs:** None reported\n\nThe security document does not include any CVEs marked with \"Apple is aware of a report that this issue may have been exploited.\""
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_current-apple-security",
+        "claude_run": "2026-08-27_claude_current-apple-security"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Safari 26.6.1 is Apple's most recent macOS security update.",
+      "reason": "The supplied evidence marks Safari 26.6.1 as a newer Mac-related security release, but the question asks for the most recent macOS security update and the same evidence says the latest version of macOS is 26.6.2."
+    },
+    {
+      "text": "Apple identifies CVE-2026-65400 as actively exploited in its most recent macOS security update.",
+      "reason": "Unsupported by the supplied Apple evidence. Active-exploitation reporting in the supplied material is tied to third-party reporting about macOS Tahoe 26.6.1, not to Apple identifying an actively exploited issue in macOS Tahoe 26.6.2."
+    },
+    {
+      "text": "Apple says there were no actively exploited Apple security issues affecting Macs at all.",
+      "reason": "Overly broad and time-unstable. The supplied evidence only supports that Apple does not identify actively exploited issues on the cited pages for macOS Tahoe 26.6.2 and Safari 26.6.1."
+    },
+    {
+      "text": "Apple's macOS Tahoe 26.6.2 security page lists fixes in Audio, ImageIO, IOGPUFamily, Kernel, WebKit, WebKit History, and WebKit Storage.",
+      "reason": "Non corroboré et motifs de notation invalides. La liste des composants (Audio, ImageIO, IOGPUFamily, Kernel, WebKit, WebKit History, WebKit Storage) ne provient que du résumé auto-rapporté du run Codex, dont les tool_results indiquent que la charge utile des recherches n'est pas exposée et dont opened_urls est vide ; le run Claude, qui a réellement récupéré https://support.apple.com/en-us/148281, ne rapporte que le nombre de CVE (30) sans aucun de ces composants. De plus, les acceptable_patterns 'Audio', 'Kernel' et 'WebKit' sont des sous-chaînes génériques non discriminantes ('WebKit' matche à l'intérieur de 'WebKit History'/'WebKit Storage'), tandis que l'exigence simultanée des sept composants est trop étroite pour une notation lexicale déterministe."
+    }
+  ]
+}

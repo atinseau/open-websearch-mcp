@@ -1,0 +1,25 @@
+{
+  "jsPlugins": ["eslint-plugin-boundaries"],
+  "settings": {
+    "boundaries/elements": [
+      { "type": "feature", "pattern": "src/features/*" }
+    ],
+    "boundaries/files": [
+      { "category": "public-feature-interface", "pattern": "src/features/*/index.ts" }
+    ]
+  },
+  "rules": {
+    "boundaries/dependencies": [
+      "error",
+      {
+        "default": "disallow",
+        "policies": [
+          {
+            "from": { "element": { "type": "feature" } },
+            "allow": { "to": { "file": { "categories": "public-feature-interface" } } }
+          }
+        ]
+      }
+    ]
+  }
+}

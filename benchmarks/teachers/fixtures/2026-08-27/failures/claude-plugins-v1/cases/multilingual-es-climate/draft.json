@@ -1,0 +1,225 @@
+{
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Según AEMET, 2023 tuvo una temperatura media anual de 15,2 °C en España, 1,2 °C por encima de 1991-2020, y el aumento acumulado de 1961 a 2023 fue de 1,57 °C con tendencia estadísticamente significativa.",
+      "required_concepts": ["aemet", "2023", "temperatura", "15,2", "1,57", "significativa"],
+      "acceptable_patterns": [
+        "15,2\\s*°?C",
+        "1,2\\s*°?C.*1991-2020",
+        "1961.{0,20}2023.{0,20}1,57\\s*°?C",
+        "estad[ií]sticamente significativa"
+      ],
+      "sources": [
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf",
+          "text": "La AEMET describe una señal de calentamiento muy sólida en España. En su resumen ejecutivo de 2023 indica que la temperatura media anual del conjunto de España fue de `15,2 °C`, `1,2 °C` por encima del promedio `1991-2020`, y que entre `1961` y `2023` la temperatura media anual aumentó `1,57 °C` con una tendencia “estadísticamente significativa”."
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "c2",
+      "text": "Según AEMET, en 2024 la temperatura media anual de España fue de 15,1 °C, 1,1 °C por encima de 1991-2020, y el ascenso acumulado desde 1961 pasó a 1,69 °C, también estadísticamente significativo.",
+      "required_concepts": ["aemet", "2024", "temperatura", "15,1", "1,69", "significativa"],
+      "acceptable_patterns": [
+        "15,1\\s*°?C",
+        "1,1\\s*°?C.*1991-2020",
+        "1961.{0,20}1,69\\s*°?C",
+        "estad[ií]sticamente significativo"
+      ],
+      "sources": [
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf",
+          "text": "La AEMET actualizó esa misma tendencia en 2024: la temperatura media anual del conjunto de España fue de `15,1 °C`, `1,1 °C` por encima de `1991-2020`, y el ascenso acumulado desde `1961` pasó a `1,69 °C`, también “estadísticamente significativo”."
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "c3",
+      "text": "Según AEMET, en 2025 España volvió a registrar 15,1 °C de temperatura media anual, 1,1 °C sobre lo normal, con un ascenso acumulado de 1,75 °C desde 1961; además, los 12 años más cálidos de la serie pertenecen al siglo XXI.",
+      "required_concepts": ["aemet", "2025", "temperatura", "15,1", "1,75", "siglo_xxi"],
+      "acceptable_patterns": [
+        "15,1\\s*°?C",
+        "1,1\\s*°?C.*normal",
+        "1,75\\s*°?C.*1961",
+        "12\\s*a[nñ]os m[aá]s c[aá]lidos.*siglo XXI"
+      ],
+      "sources": [
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf",
+          "text": "En 2025, la AEMET volvió a encontrar un año extremadamente cálido: `15,1 °C` de temperatura media en España, `1,1 °C` sobre lo normal, y un ascenso acumulado de `1,75 °C` entre `1961` y `2025`; además, señala que los `12` años más cálidos de la serie pertenecen al siglo XXI."
+        }
+      ],
+      "weight": 0.98
+    },
+    {
+      "id": "c4",
+      "text": "Las fuentes resumidas por AEMET muestran una precipitación reciente irregular: 2023 fue \"muy seco\" con 531 mm y el 84 % de lo normal; 2024 fue \"húmedo\" con 660,1 mm y el 104 % de lo normal; 2025 fue \"húmedo\" con 688,7 mm y el 109 % de lo normal.",
+      "required_concepts": ["precipitacion", "2023", "2024", "2025", "531", "660,1", "688,7"],
+      "acceptable_patterns": [
+        "2023.{0,40}muy seco.{0,40}531\\s*mm.{0,20}84\\s*%",
+        "2024.{0,40}h[úu]medo.{0,40}660,1\\s*mm.{0,20}104\\s*%",
+        "2025.{0,40}h[úu]medo.{0,40}688,7\\s*mm.{0,20}109\\s*%"
+      ],
+      "sources": [
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf",
+          "text": "La AEMET calificó 2023 como un año “muy seco”, con `531 mm` de precipitación media en España, el `84 %` del valor normal `1991-2020`, y lo situó como el sexto año más seco de la serie desde `1961`."
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf",
+          "text": "En 2024, la AEMET pasó a clasificar el año como “húmedo”, con `660,1 mm`, equivalentes al `104 %` de lo normal."
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf",
+          "text": "En 2025, la AEMET volvió a clasificar el año como “húmedo”, con `688,7 mm`, `109 %` del valor normal, y señaló que era la primera vez desde `2013-2014` que dos años consecutivos quedaban por encima del promedio normal."
+        }
+      ],
+      "weight": 0.97
+    },
+    {
+      "id": "c5",
+      "text": "AEMET repite en 2023, 2024 y 2025 que no encuentra una tendencia estadísticamente significativa en la precipitación media anual del conjunto de España desde 1961, aunque sí identifica descensos regionales significativos.",
+      "required_concepts": [
+        "aemet",
+        "precipitacion",
+        "1961",
+        "sin_tendencia_nacional",
+        "descensos_regionales"
+      ],
+      "acceptable_patterns": [
+        "no encuentra una tendencia estad[ií]sticamente significativa.*precipitaci[oó]n media anual.*Espa[nñ]a.*1961",
+        "descensos regionales significativos"
+      ],
+      "sources": [
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI_2023_resumen_ejecutivo_baja_res.pdf",
+          "text": "A escala de tendencia de largo plazo, la AEMET afirma repetidamente que **no** encuentra una tendencia estadísticamente significativa en la precipitación media anual para el conjunto de España desde `1961`."
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf",
+          "text": "La propia ausencia de tendencia estadísticamente significativa en la precipitación media anual nacional, repetida por AEMET en 2023, 2024 y 2025, es una declaración oficial de incertidumbre o, más precisamente, de **falta de evidencia robusta** para afirmar un cambio nacional monotónico en la lluvia anual total, aunque sí haya descensos regionales significativos."
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "c6",
+      "text": "Las fuentes oficiales citadas por AEMET declaran incertidumbres explícitas: la lluvia en España presenta grandes irregularidades espaciales y temporales, y para las proyecciones climáticas AEMET señala como fuentes principales de incertidumbre los escenarios de emisiones, los modelos globales de circulación, los métodos de regionalización y las parametrizaciones de procesos físicos, especialmente las interacciones atmósfera-superficie.",
+      "required_concepts": [
+        "incertidumbre",
+        "irregularidad",
+        "emisiones",
+        "modelos",
+        "regionalizacion",
+        "parametrizaciones"
+      ],
+      "acceptable_patterns": [
+        "grandes irregularidades tanto espacial como temporalmente",
+        "escenarios futuros de emisiones",
+        "modelos globales de circulaci[oó]n",
+        "m[eé]todos de regionalizaci[oó]n",
+        "interacciones atm[oó]sfera-superficie"
+      ],
+      "sources": [
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/Informes_estado_clima/IECLI2025_ResumenEjecutivo_baja_res.pdf",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.aemet.es/es/idi/clima/escenarios_CC",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.aemet.es/es/idi/clima/evaluacion_modelos_climaticos",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.aemet.es/documentos/es/conocermas/recursos_en_linea/publicaciones_y_estudios/publicaciones/IECLI2024_Resumen%20Ejecutivo_baja_res.pdf",
+          "text": "La AEMET declara explícitamente que el régimen de precipitaciones en España presenta “grandes irregularidades tanto espacial como temporalmente”, y por eso analiza la sequía a distintas escalas temporales."
+        },
+        {
+          "url": "https://www.aemet.es/es/idi/clima/escenarios_CC",
+          "text": "Para las estimaciones climáticas de AEMET sobre España, el organismo declara además tres fuentes principales de incertidumbre: los escenarios futuros de emisiones, los modelos globales de circulación y los métodos de regionalización."
+        },
+        {
+          "url": "https://www.aemet.es/es/idi/clima/evaluacion_modelos_climaticos",
+          "text": "AEMET añade que las parametrizaciones de los procesos físicos, en particular las interacciones atmósfera-superficie, constituyen “una parte importante de las incertidumbres asociadas a las proyecciones de los modelos climáticos”."
+        }
+      ],
+      "weight": 0.95
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "España muestra una tendencia nacional estadísticamente significativa de descenso de la precipitación anual desde 1961.",
+      "reason": "La evidencia suministrada dice lo contrario: AEMET repite que no encuentra una tendencia estadísticamente significativa en la precipitación media anual nacional."
+    },
+    {
+      "text": "Las fuentes oficiales aportan intervalos de confianza cuantitativos o barras de error para las tendencias nacionales observadas de temperatura y precipitación.",
+      "reason": "La evidencia suministrada afirma que en los resúmenes revisados no se encontraron esos intervalos cuantitativos; solo se menciona significación estadística, irregularidad y notas metodológicas."
+    },
+    {
+      "text": "La precipitación nacional de 2025 fue 696,1 mm para toda España.",
+      "reason": "En la evidencia aparece un valor distinto, 688,7 mm para España, y el valor 696,1 mm se presenta en otra pieza con alcance peninsular; tal formulación sería contradictoria o demasiado amplia."
+    },
+    {
+      "text": "Las fuentes oficiales muestran una disminución uniforme y lineal de la lluvia reciente en España.",
+      "reason": "La evidencia describe 2023 como muy seco pero 2024 y 2025 como húmedos, y además subraya una evolución más irregular que lineal."
+    }
+  ]
+}

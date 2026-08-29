@@ -1,0 +1,15 @@
+# Step 0004 - SPK-001 review correction
+
+- Timestamp: `2026-08-27T18:25:49Z`
+- Attempt: `1`
+- Status: continue
+- Worktree / branch / base SHA / head SHA: `.worktree/spk-001-a1` / `agent/spk-001-a1` / `eb30c3a28554740a6512116d0b29521ed610c553` / `f318954` plus uncommitted corrections
+- OpenCode model / variant / session: `openai/gpt-5.6-sol` / default / `interactive-spk-001-a1`
+- Goal: repair the first review's isolation, sanitization, typechecking, and immutable-refresh findings for `TEST-005` through `TEST-011`
+- Completed work: archived the plugin-contaminated Claude series; required empty init plugin metadata; narrowed sanitization to identity-bearing keys while preserving evidence UUIDs; added teacher TypeScript compilation and manifest teacher metadata; discovered and archived a second complete series that inherited the user French language preference; excluded Claude user/project/local setting sources; independently proved that no enterprise-managed source or managed hook applied; recaptured all 20 Claude runs in the requested languages; independently rederived all fixtures; sanitized 455 retained failure artifacts; broadened the audit to all accepted and failed JSON/JSONL artifacts; added the challenge record; and sealed a 740-artifact SHA-256 manifest
+- Files changed: `benchmarks/teachers/**`, `docs/spikes/SPK-001/**`, `docs/orchestration/state.toml`, and `docs/orchestration/runs/SPK-001/0004-correction.md`
+- Commands and outcomes: Claude `/status` reported only command-line setting sources and `/hooks` reported three suspended user hooks; `bun capture-probe.ts claude` and `bun capture-corpus.ts` produced one accepted probe and 20 accepted Claude runs with no forbidden calls; `bun derive-fixtures.ts 2026-08-27` produced 20 fixtures with 100 accepted and 105 rejected claims; `bun audit-corpus.ts 2026-08-27 --preflight` and `--write-manifest` each reported 20 cases, 40 runs, 20 fixtures, and 740 artifacts; the declared full gate exited 0 with 12 teacher tests / 33 assertions, 47 aggregate tests / 157 assertions, and an 852-file package dry run
+- Decisions and reasons: use `--safe-mode --setting-sources ""` because safe mode alone suspended hooks but retained a user language preference; accept the managed-hook boundary because the authoritative runtime status named no managed source, documented endpoint sources were absent, and the stream contained no hook event; retain both rejected complete series rather than overwrite evidence; audit retained failures under the same sanitization policy as accepted artifacts
+- Findings or blockers: no known blocker; the corrected diff still requires fresh standards and specification reviews
+- Remaining work: run fresh reviews, repair blocker/high findings, record the review result, then commit and integrate through a reviewed PR
+- Exact next action: invoke the repository code-review workflow against base `eb30c3a28554740a6512116d0b29521ed610c553` with `TEST-005` through `TEST-011` as the specification scope

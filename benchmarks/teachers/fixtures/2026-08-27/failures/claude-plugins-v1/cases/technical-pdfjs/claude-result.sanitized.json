@@ -1,0 +1,118 @@
+{
+  "is_error": false,
+  "duration_api_ms": 65252,
+  "num_turns": 2,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.6095765,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 45385,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 4980,
+    "output_tokens_details": {
+      "thinking_tokens": 2990
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 45385,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 4980,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 45385,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 45385
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 30638,
+      "outputTokens": 24,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.030757999999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 4980,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 45385,
+      "webSearchRequests": 0,
+      "costUSD": 0.5788185,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"c2\",\"c3\",\"c4\",\"c5\",\"c7\",\"c8\"],\"rejected_claims\":[{\"id\":\"c1\",\"reason\":\"La citation attribuée à https://mozilla.github.io/pdf.js/getting_started/ (« includes the generic build of PDF.js and the viewer ») ne repose que sur la réponse finale de Codex recopiée comme evidence_passage ; cette URL n'a été ouverte par aucune run (opened_urls vide côté Codex). De plus, la seule lecture réelle de https://mozilla.github.io/pdf.js/examples/ indique explicitement « Generic/Legacy Build: No information is provided about this topic », ce qui contredit l'attribution du cadrage « in a web browser » à cette page. Le motif obligatoire « web browser » n'est donc pas vérifiable ; seule la partie examples/node est étayée.\"},{\"id\":\"c6\",\"reason\":\"Le motif de notation exige la chaîne verbatim « Please use the legacy build in Node.js environments. », qui n'apparaît dans aucune preuve indépendante : elle provient uniquement de l'écho auto-référentiel de Codex (aucune URL ouverte). La lecture effective de src/display/node_utils.js par l'autre run décrit les classes Node, process.getBuiltinModule et @napi-rs/canvas sans rapporter cet avertissement. Citation verbatim non corroborée, donc risque de fabrication.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": ["c2", "c3", "c4", "c5", "c7", "c8"],
+    "rejected_claims": [
+      {
+        "id": "c1",
+        "reason": "La citation attribuée à https://mozilla.github.io/pdf.js/getting_started/ (« includes the generic build of PDF.js and the viewer ») ne repose que sur la réponse finale de Codex recopiée comme evidence_passage ; cette URL n'a été ouverte par aucune run (opened_urls vide côté Codex). De plus, la seule lecture réelle de https://mozilla.github.io/pdf.js/examples/ indique explicitement « Generic/Legacy Build: No information is provided about this topic », ce qui contredit l'attribution du cadrage « in a web browser » à cette page. Le motif obligatoire « web browser » n'est donc pas vérifiable ; seule la partie examples/node est étayée."
+      },
+      {
+        "id": "c6",
+        "reason": "Le motif de notation exige la chaîne verbatim « Please use the legacy build in Node.js environments. », qui n'apparaît dans aucune preuve indépendante : elle provient uniquement de l'écho auto-référentiel de Codex (aucune URL ouverte). La lecture effective de src/display/node_utils.js par l'autre run décrit les classes Node, process.getBuiltinModule et @napi-rs/canvas sans rapporter cet avertissement. Citation verbatim non corroborée, donc risque de fabrication."
+      }
+    ]
+  },
+  "ttft_ms": 39983,
+  "ttft_stream_ms": 1536,
+  "time_to_request_ms": 21,
+  "type": "result",
+  "duration_ms": 63451,
+  "uuid": "[REDACTED]",
+  "queued_turn_count": 0
+}

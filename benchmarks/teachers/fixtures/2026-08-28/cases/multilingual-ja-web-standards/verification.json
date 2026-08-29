@@ -1,0 +1,29 @@
+{
+  "accepted_claim_ids": ["c2", "c4"],
+  "rejected_claims": [
+    {
+      "id": "c1",
+      "reason": "required concept is absent from teacher-run evidence: application"
+    },
+    {
+      "id": "c3",
+      "reason": "grading pattern matches no teacher-run evidence: special URL[^。\\n]{0,40}domain parser"
+    },
+    {
+      "id": "c5",
+      "reason": "required concept is absent from teacher-run evidence: label separator"
+    },
+    {
+      "id": "c6",
+      "reason": "required concept is absent from teacher-run evidence: safety"
+    },
+    {
+      "id": "c7",
+      "reason": "grading pattern matches no teacher-run evidence: 禁止文字[^。\\n]{0,20}Punycode"
+    },
+    {
+      "id": "c8",
+      "reason": "required concept is absent from teacher-run evidence: uncertainty"
+    }
+  ]
+}

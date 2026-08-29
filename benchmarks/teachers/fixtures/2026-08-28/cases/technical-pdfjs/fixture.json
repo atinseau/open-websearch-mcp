@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "case_id": "technical-pdfjs",
+  "question": "What do current official PDF.js sources document about using the generic build outside a browser, extracting page text, and the runtime assumptions that affect Bun compatibility?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "grounding",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "c2",
+      "text": "The official examples page says its tutorial is for using PDF.js in a web browser and points separately to `examples/node/` for Node.js usage.",
+      "required_concepts": ["examples_page", "web_browser", "node_examples"],
+      "acceptable_patterns": ["tutorial[\\s\\S]*web browser", "examples/node/?[\\s\\S]*Node\\.js"],
+      "sources": [
+        {
+          "url": "https://mozilla.github.io/pdf.js/examples/",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1,
+      "provenance": {
+        "mode": "trace_grounded",
+        "codex_run": "2026-08-28_codex_technical-pdfjs"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "The generic modern build is officially documented as a recommended target for use outside the browser, including Bun.",
+      "reason": "Unsupported by the supplied evidence; the teacher evidence says the official material does not clearly document the generic modern build as a recommended outside-browser target and gives no explicit Bun support statement."
+    },
+    {
+      "text": "PDF.js officially supports Bun.",
+      "reason": "Unsupported; the supplied evidence explicitly says no explicit Bun compatibility statement was found in the reviewed official sources."
+    },
+    {
+      "text": "The generic build is incompatible with Bun.",
+      "reason": "Too strong and unsupported; the supplied evidence only supports inference from Node-related runtime assumptions, not a definitive incompatibility statement."
+    },
+    {
+      "text": "PDF.js text extraction requires canvas rendering.",
+      "reason": "Contradicted by the supplied evidence, which says the Node text example uses `getTextContent()` and does not render a canvas."
+    },
+    {
+      "text": "Node.js 22+ is supported for the generic build.",
+      "reason": "Contradicted by the supplied evidence, which says the FAQ lists Node.js 22+ only under the `legacy` build."
+    },
+    {
+      "text": "The official README says `npx gulp generic` builds the generic viewer and generates `pdf.js` and `pdf.worker.js` under `build/generic/build/`, and it says the modern-browsers version assumes native support for the latest JavaScript features.",
+      "reason": "required concept is absent from teacher-run evidence: output_files"
+    },
+    {
+      "text": "The official Node example uses the legacy build, importing `getDocument` from `pdfjs-dist/legacy/build/pdf.mjs`.",
+      "reason": "required concept is absent from teacher-run evidence: import_path"
+    },
+    {
+      "text": "The official Node example extracts page text by calling `await pdfPage.getTextContent()` and printing `items.map(item => item.str).join(\" \")`.",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "text": "The current FAQ support matrix lists Node.js 22+ only under the `legacy` build, marked \"Mostly\" supported with \"Limited\" automated testing.",
+      "reason": "required concept is absent from teacher-run evidence: nodejs_22_plus"
+    },
+    {
+      "text": "`node_utils.js` explicitly warns: \"Please use the `legacy` build in Node.js environments.\"",
+      "reason": "required concept is absent from teacher-run evidence: nodejs_warning"
+    },
+    {
+      "text": "The reviewed official sources do not provide an explicit Bun compatibility statement; any Bun conclusion must be inferred from the Node-detection and Node-runtime assumptions in source files.",
+      "reason": "required concept is absent from teacher-run evidence: no_explicit_support"
+    }
+  ]
+}

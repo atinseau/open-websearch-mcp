@@ -1,0 +1,15 @@
+# Step 0008 - SPK-001 fourth review correction
+
+- Timestamp: `2026-08-28T00:12:40Z`
+- Attempt: `1`
+- Status: continue
+- Worktree / branch / base SHA / head SHA: `.worktree/spk-001-a1` / `agent/spk-001-a1` / `eb30c3a28554740a6512116d0b29521ed610c553` / `d2c1ce0` plus uncommitted corrections
+- OpenCode model / variant / session: `openai/gpt-5.6-sol` / default / `interactive-spk-001-a1`
+- Goal: close the fourth review's fixture provenance, derivation isolation, projection reproducibility, capture race, sanitization precision, and refresh-lock findings for `TEST-007` through `TEST-011`
+- Completed work: disabled discovered and bundled Codex skills during fixture derivation; archived every malformed or invalid post-process result; rechecked capture collisions while holding the mutation lock and archived the losing attempt without moving accepted output; snapshotted corpus and prompt per refresh; recomputed run and fixture evidence projections during audit; constrained fixture URLs and passages to teacher evidence; allowed empty claim passages; deterministically removed unsupported equivalent URLs and passages before Claude verification; added token and process-start lock ownership; preserved non-secret metadata inside structured auth objects; regenerated and independently reverified all 20 fixtures; and sealed a 1,571-artifact manifest
+- Files changed: `benchmarks/teachers/**`, `docs/spikes/SPK-001/report.md`, `docs/orchestration/state.toml`, and this trace
+- Commands and outcomes: cwd `.worktree/spk-001-a1`, targeted tests exited `0` with `16` tests / `67` assertions before regeneration; same cwd, fixture derivation completed `20` cases after one archived transient Claude failure; same cwd, provenance audit reported `107` claims / `99` rejections / `0` unsupported URLs / `0` unsupported passages; same cwd, preflight and manifest writes exited `0` with `20` cases / `40` runs / `20` fixtures / `1,571` artifacts; same cwd, final teacher tests exited `0` with `17` tests / `68` assertions; same cwd, `bun run check` exited `0` with `52` tests / `192` assertions and valid orchestration; same cwd, sealed audit exited `0`; same cwd, package dry-run exited `0` with `1,699` files
+- Decisions and reasons: a fixture passage may be a bounded verbatim substring of a source-located run passage, but may not be synthesized from a citation, summary, or final answer; raw Codex JSONL preserves model output while the archived draft records deterministic evidence-only normalization; refresh inputs live under the dated manifested run tree so later root edits cannot reinterpret history
+- Findings or blockers: the fourth Standards review found five high and two medium issues; the fourth Spec review found one high and one medium issue. All are repaired, and no implementation blocker is currently known
+- Remaining work: run fresh Standards and Spec reviews on the complete corrected diff; if zero blocker/high findings remain, record final review and prepare integration
+- Exact next action: run parallel Standards and Spec reviews against `eb30c3a28554740a6512116d0b29521ed610c553` using this trace and the sealed manifest as evidence

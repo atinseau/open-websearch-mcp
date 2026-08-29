@@ -1,0 +1,739 @@
+{
+  "schema_version": 1,
+  "case_id": "academic-browser-fingerprinting",
+  "runs": [
+    {
+      "run_id": "2026-08-27_codex_academic-browser-fingerprinting",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "browser fingerprint detectability automated Chromium session paper PDF 2024",
+        "https://www.researchgate.net/publication/381373435_FP-Inconsistent_Detecting_Evasive_Bots_using_Browser_Fingerprint_Inconsistencies",
+        "https://scispace.com/pdf/fingerprint-surface-based-detection-of-web-bot-detectors-3zszz4i09d.pdf",
+        "\"Fingerprint Surface-Based Detection of Web Bot Detectors\" PDF",
+        "site:arxiv.org automated Chromium browser fingerprint detection paper 2024 headless",
+        "'limit' in https://arxiv.org/html/2606.14525v1",
+        "'Threats' in https://arxiv.org/html/2502.01608v1",
+        "'future work' in https://arxiv.org/html/2606.14525v1",
+        "'bug' in https://arxiv.org/html/2502.01608v1",
+        "'45%' in https://arxiv.org/html/2502.01608v1",
+        "'Chromium headless' in https://arxiv.org/html/2606.14525v1",
+        "'browser fingerprints provide limited' in https://arxiv.org/html/2605.01247v1",
+        "https://arxiv.org/abs/2406.07647",
+        "\"2406.07647\" pdf",
+        "https://arxiv.org/pdf/2406.07647",
+        "Annamalai 2024 browser fingerprinting bot detection crawlers headless Chromium arxiv",
+        "'Cloudflare detects only one' in https://arxiv.org/html/2605.01247v1",
+        "'could not conduct large-scale evaluation' in https://arxiv.org/pdf/2406.07647",
+        "'headless' in https://arxiv.org/html/2502.01608v1"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [],
+      "cited_urls": [
+        "https://arxiv.org/pdf/2406.07647",
+        "https://arxiv.org/html/2502.01608v1",
+        "https://arxiv.org/html/2606.14525v1",
+        "https://arxiv.org/html/2605.01247v1"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://arxiv.org/pdf/2406.07647",
+          "title": "https://arxiv.org/pdf/2406.07647"
+        },
+        {
+          "url": "https://arxiv.org/html/2502.01608v1",
+          "title": "https://arxiv.org/html/2502.01608v1"
+        },
+        {
+          "url": "https://arxiv.org/html/2606.14525v1",
+          "title": "https://arxiv.org/html/2606.14525v1"
+        },
+        {
+          "url": "https://arxiv.org/html/2605.01247v1",
+          "title": "https://arxiv.org/html/2605.01247v1"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://arxiv.org/pdf/2406.07647",
+          "text": "**Supported Facts**\n\nRecent primary papers do support the claim that automated Chromium sessions are often detectable from browser-side signals, but they do not support a claim that all Chromium automation is trivially detectable in all settings. This comes from a 2024 paper on evasive bot traffic, a 2025 paper comparing real-user browsing with automated Chrome/Puppeteer crawling, and two 2026 papers on bot-detection measurement and AI browsing agents. ([https://arxiv.org/pdf/2406.07647](https://arxiv.org/pdf/2406.07647), [https://arxiv.org/html/2502.01608v1](https://arxiv.org/html/2502.01608v1), [https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1), [https://arxiv.org/html/2605.01247v1](https://arxiv.org/html/2605.01247v1))\n\nFor ordinary headless Chromium automation, the strongest recent direct evidence is Gundelach et al. (2026): on 10,000 sites and four browser conditions, Chromium headless had a 15.2% soft-block rate, while Chromium headed, Firefox headless, and Firefox headed were all around 6.8% to 7.2%. ([https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1))\n\nThat same paper shows that much of current detectability for headless Chromium is still “cheap” fingerprinting rather than deep behavior modeling: when the authors spoofed only the `User-Agent` and `sec-ch-ua` headers on sites blocked exclusively in Chromium headless, 590 of 784 responding sites, or 75%, switched back to HTTP 2xx. ([https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1))\n\nThe same 2026 paper also shows that JavaScript-side automation probing is widespread even beyond current blocking: `navigator.webdriver` was probed on 2,730 of 7,944 successfully scanned sites, or 34%, and Tier-1 automation honeypots were checked on 46% of sites. ([https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1))\n\nVenugopalan et al. (2024) show that changing browser fingerprints can materially help bots evade commercial defenses, but "
+        },
+        {
+          "url": "https://arxiv.org/html/2502.01608v1",
+          "text": "**Supported Facts**\n\nRecent primary papers do support the claim that automated Chromium sessions are often detectable from browser-side signals, but they do not support a claim that all Chromium automation is trivially detectable in all settings. This comes from a 2024 paper on evasive bot traffic, a 2025 paper comparing real-user browsing with automated Chrome/Puppeteer crawling, and two 2026 papers on bot-detection measurement and AI browsing agents. ([https://arxiv.org/pdf/2406.07647](https://arxiv.org/pdf/2406.07647), [https://arxiv.org/html/2502.01608v1](https://arxiv.org/html/2502.01608v1), [https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1), [https://arxiv.org/html/2605.01247v1](https://arxiv.org/html/2605.01247v1))\n\nFor ordinary headless Chromium automation, the strongest recent direct evidence is Gundelach et al. (2026): on 10,000 sites and four browser conditions, Chromium headless had a 15.2% soft-block rate, while Chromium headed, Firefox headless, and Firefox headed were all around 6.8% to 7.2%. ([https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1))\n\nThat same paper shows that much of current detectability for headless Chromium is still “cheap” fingerprinting rather than deep behavior modeling: when the authors spoofed only the `User-Agent` and `sec-ch-ua` headers on sites blocked exclusively in Chromium headless, 590 of 784 responding sites, or 75%, switched back to HTTP 2xx. ([https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1))\n\nThe same 2026 paper also shows that JavaScript-side automation probing is widespread even beyond current blocking: `navigator.webdriver` was probed on 2,730 of 7,944 successfully scanned sites, or 34%, and Tier-1 automation honeypots were checked on 46% of sites. ([https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1))\n\nVenugopalan et al. (2024) show that changing browser fingerprints can materially help bots evade commercial defenses, but "
+        },
+        {
+          "url": "https://arxiv.org/html/2606.14525v1",
+          "text": "**Supported Facts**\n\nRecent primary papers do support the claim that automated Chromium sessions are often detectable from browser-side signals, but they do not support a claim that all Chromium automation is trivially detectable in all settings. This comes from a 2024 paper on evasive bot traffic, a 2025 paper comparing real-user browsing with automated Chrome/Puppeteer crawling, and two 2026 papers on bot-detection measurement and AI browsing agents. ([https://arxiv.org/pdf/2406.07647](https://arxiv.org/pdf/2406.07647), [https://arxiv.org/html/2502.01608v1](https://arxiv.org/html/2502.01608v1), [https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1), [https://arxiv.org/html/2605.01247v1](https://arxiv.org/html/2605.01247v1))\n\nFor ordinary headless Chromium automation, the strongest recent direct evidence is Gundelach et al. (2026): on 10,000 sites and four browser conditions, Chromium headless had a 15.2% soft-block rate, while Chromium headed, Firefox headless, and Firefox headed were all around 6.8% to 7.2%. ([https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1))\n\nThat same paper shows that much of current detectability for headless Chromium is still “cheap” fingerprinting rather than deep behavior modeling: when the authors spoofed only the `User-Agent` and `sec-ch-ua` headers on sites blocked exclusively in Chromium headless, 590 of 784 responding sites, or 75%, switched back to HTTP 2xx. ([https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1))\n\nThe same 2026 paper also shows that JavaScript-side automation probing is widespread even beyond current blocking: `navigator.webdriver` was probed on 2,730 of 7,944 successfully scanned sites, or 34%, and Tier-1 automation honeypots were checked on 46% of sites. ([https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1))\n\nVenugopalan et al. (2024) show that changing browser fingerprints can materially help bots evade commercial defenses, but "
+        },
+        {
+          "url": "https://arxiv.org/html/2605.01247v1",
+          "text": "**Supported Facts**\n\nRecent primary papers do support the claim that automated Chromium sessions are often detectable from browser-side signals, but they do not support a claim that all Chromium automation is trivially detectable in all settings. This comes from a 2024 paper on evasive bot traffic, a 2025 paper comparing real-user browsing with automated Chrome/Puppeteer crawling, and two 2026 papers on bot-detection measurement and AI browsing agents. ([https://arxiv.org/pdf/2406.07647](https://arxiv.org/pdf/2406.07647), [https://arxiv.org/html/2502.01608v1](https://arxiv.org/html/2502.01608v1), [https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1), [https://arxiv.org/html/2605.01247v1](https://arxiv.org/html/2605.01247v1))\n\nFor ordinary headless Chromium automation, the strongest recent direct evidence is Gundelach et al. (2026): on 10,000 sites and four browser conditions, Chromium headless had a 15.2% soft-block rate, while Chromium headed, Firefox headless, and Firefox headed were all around 6.8% to 7.2%. ([https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1))\n\nThat same paper shows that much of current detectability for headless Chromium is still “cheap” fingerprinting rather than deep behavior modeling: when the authors spoofed only the `User-Agent` and `sec-ch-ua` headers on sites blocked exclusively in Chromium headless, 590 of 784 responding sites, or 75%, switched back to HTTP 2xx. ([https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1))\n\nThe same 2026 paper also shows that JavaScript-side automation probing is widespread even beyond current blocking: `navigator.webdriver` was probed on 2,730 of 7,944 successfully scanned sites, or 34%, and Tier-1 automation honeypots were checked on 46% of sites. ([https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1))\n\nVenugopalan et al. (2024) show that changing browser fingerprints can materially help bots evade commercial defenses, but "
+        }
+      ],
+      "final_answer": "**Supported Facts**\n\nRecent primary papers do support the claim that automated Chromium sessions are often detectable from browser-side signals, but they do not support a claim that all Chromium automation is trivially detectable in all settings. This comes from a 2024 paper on evasive bot traffic, a 2025 paper comparing real-user browsing with automated Chrome/Puppeteer crawling, and two 2026 papers on bot-detection measurement and AI browsing agents. ([https://arxiv.org/pdf/2406.07647](https://arxiv.org/pdf/2406.07647), [https://arxiv.org/html/2502.01608v1](https://arxiv.org/html/2502.01608v1), [https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1), [https://arxiv.org/html/2605.01247v1](https://arxiv.org/html/2605.01247v1))\n\nFor ordinary headless Chromium automation, the strongest recent direct evidence is Gundelach et al. (2026): on 10,000 sites and four browser conditions, Chromium headless had a 15.2% soft-block rate, while Chromium headed, Firefox headless, and Firefox headed were all around 6.8% to 7.2%. ([https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1))\n\nThat same paper shows that much of current detectability for headless Chromium is still “cheap” fingerprinting rather than deep behavior modeling: when the authors spoofed only the `User-Agent` and `sec-ch-ua` headers on sites blocked exclusively in Chromium headless, 590 of 784 responding sites, or 75%, switched back to HTTP 2xx. ([https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1))\n\nThe same 2026 paper also shows that JavaScript-side automation probing is widespread even beyond current blocking: `navigator.webdriver` was probed on 2,730 of 7,944 successfully scanned sites, or 34%, and Tier-1 automation honeypots were checked on 46% of sites. ([https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1))\n\nVenugopalan et al. (2024) show that changing browser fingerprints can materially help bots evade commercial defenses, but that those altered fingerprints often become internally inconsistent and therefore newly detectable. In their honey-site study of 507,080 requests from 20 bot services, average evasion was 52.93% against DataDome and 44.56% against BotD; their inconsistency-based detector then reduced evasive traffic by 48.11% and 44.95% respectively, with a 96.84% true-negative rate on sampled real-user traffic. ([https://arxiv.org/pdf/2406.07647](https://arxiv.org/pdf/2406.07647))\n\nAnnamalai et al. (2025) show a different but related point: automated Chrome/Puppeteer crawling misses browser-fingerprinting deployments that real users do trigger. In their study, automated crawls missed 211 of 471 fingerprinting websites seen in real-user browsing, or 45%, and the paper attributes that gap mainly to authentication flows, bot detection, cookie-consent gating, and other interaction-dependent triggers. ([https://arxiv.org/html/2502.01608v1](https://arxiv.org/html/2502.01608v1))\n\nWang et al. (2026) show an important limit on browser-fingerprint-only detection for more human-like automation. In their controlled study of seven AI browsing agents and humans, browser fingerprints alone had weaker classification performance (`F1` about 0.80 to 0.82), while behavioral fingerprints were near-perfect (`F1` about 0.999), and several agents shared the same browser fingerprint. ([https://arxiv.org/html/2605.01247v1](https://arxiv.org/html/2605.01247v1))\n\n**Inference**\n\nMy synthesis is that recent primary evidence supports a two-part conclusion: standard headless Chromium sessions are still measurably fingerprint-detectable at scale, but once automation uses real Chromium in more human-like environments, browser fingerprints alone become a weaker discriminator and must often be combined with behavior or cross-attribute consistency checks. This is an inference from the combined results of Gundelach et al. (2026), Venugopalan et al. (2024), and Wang et al. (2026), not a single paper’s statement. ([https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1), [https://arxiv.org/pdf/2406.07647](https://arxiv.org/pdf/2406.07647), [https://arxiv.org/html/2605.01247v1](https://arxiv.org/html/2605.01247v1))\n\nThe apparent tension between “Chromium automation is detectable” and “browser fingerprints alone have limited power” is not a real contradiction in the papers I reviewed; it is mostly a scope difference between headless Playwright-style crawling, paid evasive bot traffic, and AI agents using real browsers. This is also an inference from the papers’ differing experimental setups. ([https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1), [https://arxiv.org/pdf/2406.07647](https://arxiv.org/pdf/2406.07647), [https://arxiv.org/html/2605.01247v1](https://arxiv.org/html/2605.01247v1))\n\n**Author-Reported Limitations**\n\nVenugopalan et al. (2024) explicitly say evasive bots could defeat their method if they learn to alter fingerprint attributes without introducing inconsistencies; they also note that stronger “unmodifiable” attributes would help detection but would raise privacy concerns. They further report that large-scale real-user evaluation was not feasible because reliable real-user ground truth is hard to obtain, and that temporal inconsistency checks can be bypassed by deleting cookies. ([https://arxiv.org/pdf/2406.07647](https://arxiv.org/pdf/2406.07647))\n\nAnnamalai et al. (2025) report several scope limitations: participants browsed a predefined website list rather than their natural browsing; the study had 30 participants; the authors did not verify that each participant visited at least ten subpages per site; the automated crawler assumed access to the same full URL list seen in human browsing; and a Chrome-extension bug prevented iframe instrumentation in the real-user collection. ([https://arxiv.org/html/2502.01608v1](https://arxiv.org/html/2502.01608v1))\n\nGundelach et al. (2026) say their scans came from one European datacenter at one point in time, covered only Tranco Top 10K homepages, and observed only explicit HTTP 403/429/503 blocks rather than degraded HTTP 200 responses. They also say they lacked a true human-browsing baseline, that their JavaScript proxies create detectable artifacts, and that observing an API probe does not prove the site blocked because of that probe. They add that the downstream effect on specific measurement outcomes remains future work. ([https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1))\n\nWang et al. (2026) say their findings are limited by the coverage of browsing agents, tasks, and system configurations, and that future agents may adopt more human-like behaviors. They also warn that the lack of shared browser fingerprints between humans and agents in their dataset should not be read as proof that such overlap would not occur in practice. ([https://arxiv.org/html/2605.01247v1](https://arxiv.org/html/2605.01247v1))\n\n**Uncertainty And Lack Of Good Evidence**\n\nThere is still uncertainty about what fraction of today’s automated Chromium sessions are detectable in the wild after stronger stealth measures, better behavior simulation, different IP reputation, and different geographies, because the recent primary papers do not test one common configuration space. That uncertainty follows from the papers’ different scopes and stated limitations. ([https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1), [https://arxiv.org/html/2605.01247v1](https://arxiv.org/html/2605.01247v1), [https://arxiv.org/html/2502.01608v1](https://arxiv.org/html/2502.01608v1), [https://arxiv.org/pdf/2406.07647](https://arxiv.org/pdf/2406.07647))\n\nI did not find recent primary evidence that justifies a broad claim like “modern stealth Chromium is indistinguishable from humans” or the opposite claim “browser fingerprinting alone reliably catches all Chromium automation.” The papers instead support a narrower picture: detectability is substantial for default headless Chromium, improved evasion is possible, inconsistency-based detection recovers some ground, and behavior becomes increasingly important as automation gets more human-like. ([https://arxiv.org/html/2606.14525v1](https://arxiv.org/html/2606.14525v1), [https://arxiv.org/pdf/2406.07647](https://arxiv.org/pdf/2406.07647), [https://arxiv.org/html/2605.01247v1](https://arxiv.org/html/2605.01247v1))"
+    },
+    {
+      "run_id": "2026-08-27_claude_academic-browser-fingerprinting",
+      "provider": "claude",
+      "model": "claude-opus-5[1m]",
+      "queries": [
+        "browser fingerprinting detection headless Chrome automated sessions research paper",
+        "detecting web bots browser fingerprint Puppeteer Selenium academic study 2024",
+        "arxiv 2025 headless browser detection Chrome DevTools Protocol fingerprint evaluation anti-detect browsers paper",
+        "Krumnow Jonker \"web bot detection\" crawler fingerprint surface OpenWPM detectability paper",
+        "2025 2026 paper evaluating stealth plugins undetected-chromedriver detectability measurement study bot detection Cloudflare",
+        "arxiv 2026 AI agent browser detection fingerprint agentic browsing traffic distinguishing humans measurement"
+      ],
+      "tool_results": [
+        {
+          "tool": "WebSearch",
+          "summary": "GitHub - HackingLZ/fingerprint_js: Browser fingerprinting and automation/bot detection analyzer — VexTrio a-series + extended b-series checks: https://github.com/HackingLZ/fingerprint_js"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Browser Fingerprint Strategy - Designing Identities, Not Just Rotating Them | ScrapingAnt: https://scrapingant.com/blog/browser-fingerprint-strategy-designing-identities-not-just"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How Headless Browsers Get Detected | Medium: https://medium.com/@proxiesthatwork/how-headless-browsers-get-detected-cc8445b2fcbf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Browser Fingerprinting Guide: Detection & Bypass Methods | Browserless: https://www.browserless.io/blog/device-fingerprinting"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How New Headless Chrome & the CDP Signal Are Impacting Bot Detection: https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Headless Browser Detection: Signals, Methods, and What Works in 2026: https://cside.com/blog/headless-browser-detection"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Headless Browser Detection: Techniques and Strategies to Outsmart Bots - Latenode Blog: https://latenode.com/blog/web-automation-scraping/avoiding-bot-detection/how-headless-browser-detection-works-and-how-to-bypass-it"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "When Handshakes Tell the Truth: Detecting Web Bad Bots via TLS Fingerprints: https://arxiv.org/html/2602.09606v1"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Browser Bot Detection Software | Fingerprint: https://fingerprint.com/products/bot-detection/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Detecting Bot Detection: Prevalence, Techniques, and Implications for Web Measurement Research: https://arxiv.org/pdf/2606.14525"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Fingerprint surface-based detection of web bot detectors⋆: https://cs.ou.nl/members/hugo/papers/ESORICS19.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Keep your Identity Small: Privacy-preserving Client-side Fingerprinting: https://arxiv.org/pdf/2309.07563"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Machine Learning and Browser Fingerprinting Based Approach for Web Bot Detection | IEEE Conference Publication | IEEE Xplore: https://ieeexplore.ieee.org/document/10850990/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "When Handshakes Tell the Truth: Detecting Web Bad Bots via TLS Fingerprints: https://arxiv.org/pdf/2602.09606"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Detecting Bot Detection: Prevalence, Techniques, and Implications for Web Measurement Research: https://arxiv.org/html/2606.14525v1"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Summary: TLS/JA4 Fingerprinting for Bot Detection\n\n**Authors & Date:**\nGhalia Jarad and Kemal Bıçakcı from Istanbul Technical University (February 10, 2026)\n\n**Methodology:**\nThe researchers extracted features from JA4 TLS fingerprints—which capture unencrypted handshake metadata like cipher lists and extension ordering—then trained two gradient-boosted machine learning classifiers (XGBoost and CatBoost) on 227,404 real-world fingerprints from the JA4DB repository to distinguish malicious bots"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Paper Summary: Detecting Bot Detection\n\n**Authors & Venue:** Ralf Gundelach, Michael Mühlhauser, and Dominik Herrmann from the University of Bamberg. Published on arXiv (2606.14525v1) in June 2026.\n\n**Publication Date:** June 12, 2026\n\n## Methodology\n\nThe researchers employed three complementary approaches:\n\n1. **Literature Survey:** Analyzed 81 papers from top-tier security/privacy venues (2020-2025) using 12 criteria assessing reproducibility and bot detection awareness.\n\n2. **Infrastructure"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Headless Browser Detection: How Sites Know You're a Bot - DEV Community: https://dev.to/agenthustler/headless-browser-detection-how-sites-know-youre-a-bot-47g"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Browser Fingerprint Detection and Anti-Tracking: https://arxiv.org/html/2502.14326v1"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How New Headless Chrome & the CDP Signal Are Impacting Bot Detection: https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Browser Fingerprint Detection and Anti-Tracking Kaitong Lin: https://arxiv.org/pdf/2502.14326"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Automation Detection Tool | Detect Headless Browsers & Web Scraping Bots: https://scrapfly.io/web-scraping-tools/automation-detector"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The WASM Cloak: Evaluating Browser Fingerprinting Defenses Under WebAssembly based Obfuscation: https://arxiv.org/html/2508.21219v1"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Headless Browser Detection: 6 Signals Sites Use (+ Fixes) | AlterLab: https://alterlab.io/blog/why-headless-browser-gets-detected-how-to-fix"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Headless Browsers & Anti-Fingerprint Technology: https://www.nstbrowser.io/en/wiki/headless-browsers-anti-fingerprint-guide"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Anti-Detect Browser for Web Scraping — Donut Browser: https://donutbrowser.com/use-cases/automation/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Detecting Bot Detection: Prevalence, Techniques,: https://arxiv.org/pdf/2606.14525"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Design and implementation of a stealthy OpenWPM web ...: http://cs.ru.nl/bachelors-theses/2020/Daniel_Go%C3%9Fen___4751051___Design_and_implementation_of_a_stealthy_OpenWPM_web_scraper.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Detecting Bot Detection: Prevalence, Techniques, and Implications for Web Measurement Research: https://arxiv.org/html/2606.14525v1"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Analysing and strengthening OpenWPM’s reliability Benjamin Krumnow TH Köln,: https://arxiv.org/pdf/2205.08890"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How gullible are web measurement tools? A case study ...: https://cs.ou.nl/members/hugo/papers/conext22.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Keep your Identity Small: Privacy-preserving Client-side Fingerprinting: https://arxiv.org/pdf/2309.07563"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Fingerprint Surface-Based Detection of Web Bot Detectors | Request PDF: https://www.researchgate.net/publication/335823401_Fingerprint_Surface-Based_Detection_of_Web_Bot_Detectors"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Fingerprint surface-based detection of web bot detectors: https://www.gm.th-koeln.de/~krumnow/fp_bot/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "[2205.08890] Analysing and strengthening OpenWPM's reliability: https://arxiv.org/abs/2205.08890"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Fingerprint surface-based detection of web bot detectors | Benjamin Krumnow: https://bkrumnow.github.io/fpbotdetection/"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Document Analysis\n\nI appreciate your request, but I must note that the content provided appears to be a corrupted or improperly rendered PDF file containing mostly binary/encoded data rather than readable text. The PDF objects are present but the actual document content is not legible in the format provided.\n\n**What I can determine:**\n- This is a PDF document (objects 567-576 visible)\n- It contains compressed streams and font information\n- The readable metadata suggests this relates to academi"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "I apologize, but I cannot provide a meaningful summary of this document. The content you've shared appears to be a PDF file encoded in binary/compressed format, which renders as unreadable character streams rather than plain text.\n\nTo help you effectively, I would need:\n\n1. **A text-based version** of the paper (plain text or properly formatted PDF)\n2. **The paper's title** or DOI/citation information\n3. **Direct access** to readable content\n\nIf you have access to the original paper, please shar"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Study Summary: Fingerprint Surface-Based Detection of Web Bot Detectors\n\n**Scope and Methodology:**\nThe researchers conducted a reverse analysis of commercial bot detection systems, evaluating \"a variety of setups\" to determine how automation libraries affect bot fingerprints. They developed a methodology combining browser fingerprinting with comparisons between standard browsers and web bot frameworks from the same browser family.\n\n**Key Findings:**\n\n- **Detection Prevalence:** The team scann"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How to Bypass Cloudflare When Web Scraping in 2026: https://scrapfly.io/blog/posts/how-to-bypass-cloudflare-anti-scraping"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "stealth-browser · GitHub Topics · GitHub: https://github.com/topics/stealth-browser"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Best Stealth Browsers for Web Scraping in 2026: https://scrapfly.io/blog/posts/best-stealth-browsers"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Anti-detect browser benchmark 2026: 7 stealth tools, 31 Cloudflare targets, 651 verdicts - DEV Community: https://dev.to/ianlpaterson/anti-detect-browser-benchmark-2026-7-stealth-tools-31-cloudflare-targets-651-verdicts-4361"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "5 Working Methods to Bypass Cloudflare (January 2026 Updated) | Scrape.do: https://scrape.do/blog/bypass-cloudflare/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How to Solve Cloudflare Turnstile Captchas With Selenium: https://www.capsolver.com/blog/Cloudflare/selenium-cloudflare"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Playwright Cloudflare Bypass 2026: 3 Methods That Still Work (9 Don't): https://humanbrowser.cloud/blog/bypass-cloudflare-playwright-2026"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "# Stealth Detection Test Results: https://glama.ai/mcp/servers/@vibheksoni/stealth-browser-mcp/blob/caf5c5702a5097e6dedf876fb1838d1ed2150ba8/STEALTH_TESTS.md"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "(PDF) FP-Agent: Fingerprinting AI Browsing Agents: https://www.researchgate.net/publication/404441375_FP-Agent_Fingerprinting_AI_Browsing_Agents"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "FP-Agent: Fingerprinting AI Browsing Agents: https://arxiv.org/html/2605.01247v1"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "[2605.01247] FP-Agent: Fingerprinting AI Browsing Agents: https://arxiv.org/abs/2605.01247"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Benchmarking Web Agent Safety under E-commerce Deceptive Interfaces: https://arxiv.org/pdf/2606.13686"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "On the Internet, Nobody Knows You're an LLM Bot: Unmasking Web Agents with Multi-Layer Fingerprinting: https://arxiv.org/pdf/2606.30119"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "FP-Agent: Fingerprinting AI Browsing Agents: https://arxiv.org/pdf/2605.01247"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "StressWeb: A Diagnostic Benchmark for Web Agent Robustness under Realistic Interaction Variability: https://arxiv.org/pdf/2604.16385"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "[2606.20910] Whose Agent Are You? Multi-Layer Fingerprinting and Attribution of Autonomous Web Agents: https://arxiv.org/abs/2606.20910"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Whose Agent Are You? Multi-Layer Fingerprinting and Attribution of Autonomous Web Agents: https://arxiv.org/html/2606.20910v1"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Report Summary: Unmasking Web Agents with Multi-Layer Fingerprinting\n\n## Title & Authors\n\"On the Internet, Nobody Knows You're an LLM Bot: Unmasking Web Agents with Multi-Layer Fingerprinting\" (arXiv:2606.30119v1, June 2026)\n\n**Authors:** Iliana Fayolle, Sihem Bouhenniche, Samuel Pélissier, Pierre Laperdrix, Clémentine Maurice, Walter Rudametkin\n\n---\n\n## Methodology Overview\n\nThe researchers deployed honeypot websites protected by various anti-bot mechanisms (robots.txt, CAPTCHAs, proof-of-wor"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# FP-Agent Research Summary\n\n## Authors & Affiliation\nEthan Wang, Zubair Shafiq, and Yash Vekaria from the University of California, Davis. Published May 2, 2026 on arXiv.\n\n## Methodology\n\n**Browsing Agents Tested (7 total):**\n- Proprietary: OpenAI's Atlas Browser & ChatGPT Agent, Anthropic's Claude for Chrome, Perplexity's Comet, Meta's Manus\n- Open-source: Browser Use (v0.9.2), Skyvern (v0.2.23)\n\n**Browser Engine:** All tested agents use Chromium-based browsers\n\n**Human Participants:** 56 unde"
+        }
+      ],
+      "opened_urls": [
+        "https://arxiv.org/html/2606.14525v1",
+        "https://arxiv.org/html/2602.09606v1",
+        "https://cs.ou.nl/members/hugo/papers/conext22.pdf",
+        "https://cs.ou.nl/members/hugo/papers/ESORICS19.pdf",
+        "https://bkrumnow.github.io/fpbotdetection/",
+        "https://arxiv.org/html/2605.01247v1",
+        "https://arxiv.org/html/2606.30119v1"
+      ],
+      "cited_urls": [
+        "https://arxiv.org/html/2606.14525v1",
+        "https://arxiv.org/html/2605.01247v1",
+        "https://arxiv.org/pdf/2606.30119",
+        "https://arxiv.org/html/2602.09606v1",
+        "https://bkrumnow.github.io/fpbotdetection/",
+        "https://cs.ou.nl/members/hugo/papers/conext22.pdf",
+        "https://arxiv.org/abs/2205.08890",
+        "https://arxiv.org/abs/2606.20910",
+        "https://dev.to/ianlpaterson/anti-detect-browser-benchmark-2026-7-stealth-tools-31-cloudflare-targets-651-verdicts-4361",
+        "https://scrapfly.io/blog/posts/best-stealth-browsers"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://github.com/HackingLZ/fingerprint_js",
+          "title": "GitHub - HackingLZ/fingerprint_js: Browser fingerprinting and automation/bot detection analyzer — VexTrio a-series + extended b-series checks"
+        },
+        {
+          "url": "https://scrapingant.com/blog/browser-fingerprint-strategy-designing-identities-not-just",
+          "title": "Browser Fingerprint Strategy - Designing Identities, Not Just Rotating Them | ScrapingAnt"
+        },
+        {
+          "url": "https://medium.com/@proxiesthatwork/how-headless-browsers-get-detected-cc8445b2fcbf",
+          "title": "How Headless Browsers Get Detected | Medium"
+        },
+        {
+          "url": "https://www.browserless.io/blog/device-fingerprinting",
+          "title": "Browser Fingerprinting Guide: Detection & Bypass Methods | Browserless"
+        },
+        {
+          "url": "https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/",
+          "title": "How New Headless Chrome & the CDP Signal Are Impacting Bot Detection"
+        },
+        {
+          "url": "https://cside.com/blog/headless-browser-detection",
+          "title": "Headless Browser Detection: Signals, Methods, and What Works in 2026"
+        },
+        {
+          "url": "https://latenode.com/blog/web-automation-scraping/avoiding-bot-detection/how-headless-browser-detection-works-and-how-to-bypass-it",
+          "title": "Headless Browser Detection: Techniques and Strategies to Outsmart Bots - Latenode Blog"
+        },
+        {
+          "url": "https://arxiv.org/html/2602.09606v1",
+          "title": "https://arxiv.org/html/2602.09606v1"
+        },
+        {
+          "url": "https://fingerprint.com/products/bot-detection/",
+          "title": "Browser Bot Detection Software | Fingerprint"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2606.14525",
+          "title": "Detecting Bot Detection: Prevalence, Techniques,"
+        },
+        {
+          "url": "https://cs.ou.nl/members/hugo/papers/ESORICS19.pdf",
+          "title": "https://cs.ou.nl/members/hugo/papers/ESORICS19.pdf"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2309.07563",
+          "title": "Keep your Identity Small: Privacy-preserving Client-side Fingerprinting"
+        },
+        {
+          "url": "https://ieeexplore.ieee.org/document/10850990/",
+          "title": "Machine Learning and Browser Fingerprinting Based Approach for Web Bot Detection | IEEE Conference Publication | IEEE Xplore"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2602.09606",
+          "title": "When Handshakes Tell the Truth: Detecting Web Bad Bots via TLS Fingerprints"
+        },
+        {
+          "url": "https://arxiv.org/html/2606.14525v1",
+          "title": "Detecting Bot Detection: Prevalence, Techniques, and Implications for Web Measurement Research"
+        },
+        {
+          "url": "https://dev.to/agenthustler/headless-browser-detection-how-sites-know-youre-a-bot-47g",
+          "title": "Headless Browser Detection: How Sites Know You're a Bot - DEV Community"
+        },
+        {
+          "url": "https://arxiv.org/html/2502.14326v1",
+          "title": "Browser Fingerprint Detection and Anti-Tracking"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2502.14326",
+          "title": "Browser Fingerprint Detection and Anti-Tracking Kaitong Lin"
+        },
+        {
+          "url": "https://scrapfly.io/web-scraping-tools/automation-detector",
+          "title": "Automation Detection Tool | Detect Headless Browsers & Web Scraping Bots"
+        },
+        {
+          "url": "https://arxiv.org/html/2508.21219v1",
+          "title": "The WASM Cloak: Evaluating Browser Fingerprinting Defenses Under WebAssembly based Obfuscation"
+        },
+        {
+          "url": "https://alterlab.io/blog/why-headless-browser-gets-detected-how-to-fix",
+          "title": "Headless Browser Detection: 6 Signals Sites Use (+ Fixes) | AlterLab"
+        },
+        {
+          "url": "https://www.nstbrowser.io/en/wiki/headless-browsers-anti-fingerprint-guide",
+          "title": "Headless Browsers & Anti-Fingerprint Technology"
+        },
+        {
+          "url": "https://donutbrowser.com/use-cases/automation/",
+          "title": "Anti-Detect Browser for Web Scraping — Donut Browser"
+        },
+        {
+          "url": "http://cs.ru.nl/bachelors-theses/2020/Daniel_Go%C3%9Fen___4751051___Design_and_implementation_of_a_stealthy_OpenWPM_web_scraper.pdf",
+          "title": "Design and implementation of a stealthy OpenWPM web ..."
+        },
+        {
+          "url": "https://arxiv.org/pdf/2205.08890",
+          "title": "Analysing and strengthening OpenWPM’s reliability Benjamin Krumnow TH Köln,"
+        },
+        {
+          "url": "https://cs.ou.nl/members/hugo/papers/conext22.pdf",
+          "title": "https://cs.ou.nl/members/hugo/papers/conext22.pdf"
+        },
+        {
+          "url": "https://www.researchgate.net/publication/335823401_Fingerprint_Surface-Based_Detection_of_Web_Bot_Detectors",
+          "title": "Fingerprint Surface-Based Detection of Web Bot Detectors | Request PDF"
+        },
+        {
+          "url": "https://www.gm.th-koeln.de/~krumnow/fp_bot/",
+          "title": "Fingerprint surface-based detection of web bot detectors"
+        },
+        {
+          "url": "https://arxiv.org/abs/2205.08890",
+          "title": "[2205.08890] Analysing and strengthening OpenWPM's reliability"
+        },
+        {
+          "url": "https://bkrumnow.github.io/fpbotdetection/",
+          "title": "https://bkrumnow.github.io/fpbotdetection/"
+        },
+        {
+          "url": "https://scrapfly.io/blog/posts/how-to-bypass-cloudflare-anti-scraping",
+          "title": "How to Bypass Cloudflare When Web Scraping in 2026"
+        },
+        {
+          "url": "https://github.com/topics/stealth-browser",
+          "title": "stealth-browser · GitHub Topics · GitHub"
+        },
+        {
+          "url": "https://scrapfly.io/blog/posts/best-stealth-browsers",
+          "title": "Best Stealth Browsers for Web Scraping in 2026"
+        },
+        {
+          "url": "https://dev.to/ianlpaterson/anti-detect-browser-benchmark-2026-7-stealth-tools-31-cloudflare-targets-651-verdicts-4361",
+          "title": "Anti-detect browser benchmark 2026: 7 stealth tools, 31 Cloudflare targets, 651 verdicts - DEV Community"
+        },
+        {
+          "url": "https://scrape.do/blog/bypass-cloudflare/",
+          "title": "5 Working Methods to Bypass Cloudflare (January 2026 Updated) | Scrape.do"
+        },
+        {
+          "url": "https://www.capsolver.com/blog/Cloudflare/selenium-cloudflare",
+          "title": "How to Solve Cloudflare Turnstile Captchas With Selenium"
+        },
+        {
+          "url": "https://humanbrowser.cloud/blog/bypass-cloudflare-playwright-2026",
+          "title": "Playwright Cloudflare Bypass 2026: 3 Methods That Still Work (9 Don't)"
+        },
+        {
+          "url": "https://glama.ai/mcp/servers/@vibheksoni/stealth-browser-mcp/blob/caf5c5702a5097e6dedf876fb1838d1ed2150ba8/STEALTH_TESTS.md",
+          "title": "# Stealth Detection Test Results"
+        },
+        {
+          "url": "https://www.researchgate.net/publication/404441375_FP-Agent_Fingerprinting_AI_Browsing_Agents",
+          "title": "(PDF) FP-Agent: Fingerprinting AI Browsing Agents"
+        },
+        {
+          "url": "https://arxiv.org/html/2605.01247v1",
+          "title": "https://arxiv.org/html/2605.01247v1"
+        },
+        {
+          "url": "https://arxiv.org/abs/2605.01247",
+          "title": "[2605.01247] FP-Agent: Fingerprinting AI Browsing Agents"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2606.13686",
+          "title": "Benchmarking Web Agent Safety under E-commerce Deceptive Interfaces"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2606.30119",
+          "title": "On the Internet, Nobody Knows You're an LLM Bot: Unmasking Web Agents with Multi-Layer Fingerprinting"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2605.01247",
+          "title": "FP-Agent: Fingerprinting AI Browsing Agents"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2604.16385",
+          "title": "StressWeb: A Diagnostic Benchmark for Web Agent Robustness under Realistic Interaction Variability"
+        },
+        {
+          "url": "https://arxiv.org/abs/2606.20910",
+          "title": "[2606.20910] Whose Agent Are You? Multi-Layer Fingerprinting and Attribution of Autonomous Web Agents"
+        },
+        {
+          "url": "https://arxiv.org/html/2606.20910v1",
+          "title": "Whose Agent Are You? Multi-Layer Fingerprinting and Attribution of Autonomous Web Agents"
+        },
+        {
+          "url": "https://arxiv.org/html/2606.30119v1",
+          "title": "https://arxiv.org/html/2606.30119v1"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://github.com/HackingLZ/fingerprint_js",
+          "text": "GitHub - HackingLZ/fingerprint_js: Browser fingerprinting and automation/bot detection analyzer — VexTrio a-series + extended b-series checks"
+        },
+        {
+          "url": "https://scrapingant.com/blog/browser-fingerprint-strategy-designing-identities-not-just",
+          "text": "Browser Fingerprint Strategy - Designing Identities, Not Just Rotating Them | ScrapingAnt"
+        },
+        {
+          "url": "https://medium.com/@proxiesthatwork/how-headless-browsers-get-detected-cc8445b2fcbf",
+          "text": "How Headless Browsers Get Detected | Medium"
+        },
+        {
+          "url": "https://www.browserless.io/blog/device-fingerprinting",
+          "text": "Browser Fingerprinting Guide: Detection & Bypass Methods | Browserless"
+        },
+        {
+          "url": "https://datadome.co/threat-research/how-new-headless-chrome-the-cdp-signal-are-impacting-bot-detection/",
+          "text": "How New Headless Chrome & the CDP Signal Are Impacting Bot Detection"
+        },
+        {
+          "url": "https://cside.com/blog/headless-browser-detection",
+          "text": "Headless Browser Detection: Signals, Methods, and What Works in 2026"
+        },
+        {
+          "url": "https://latenode.com/blog/web-automation-scraping/avoiding-bot-detection/how-headless-browser-detection-works-and-how-to-bypass-it",
+          "text": "Headless Browser Detection: Techniques and Strategies to Outsmart Bots - Latenode Blog"
+        },
+        {
+          "url": "https://arxiv.org/html/2602.09606v1",
+          "text": "When Handshakes Tell the Truth: Detecting Web Bad Bots via TLS Fingerprints"
+        },
+        {
+          "url": "https://fingerprint.com/products/bot-detection/",
+          "text": "Browser Bot Detection Software | Fingerprint"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2606.14525",
+          "text": "Detecting Bot Detection: Prevalence, Techniques, and Implications for Web Measurement Research"
+        },
+        {
+          "url": "https://cs.ou.nl/members/hugo/papers/ESORICS19.pdf",
+          "text": "Fingerprint surface-based detection of web bot detectors⋆"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2309.07563",
+          "text": "Keep your Identity Small: Privacy-preserving Client-side Fingerprinting"
+        },
+        {
+          "url": "https://ieeexplore.ieee.org/document/10850990/",
+          "text": "Machine Learning and Browser Fingerprinting Based Approach for Web Bot Detection | IEEE Conference Publication | IEEE Xplore"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2602.09606",
+          "text": "When Handshakes Tell the Truth: Detecting Web Bad Bots via TLS Fingerprints"
+        },
+        {
+          "url": "https://arxiv.org/html/2606.14525v1",
+          "text": "Detecting Bot Detection: Prevalence, Techniques, and Implications for Web Measurement Research"
+        },
+        {
+          "url": "https://arxiv.org/html/2602.09606v1",
+          "text": "# Summary: TLS/JA4 Fingerprinting for Bot Detection\n\n**Authors & Date:**\nGhalia Jarad and Kemal Bıçakcı from Istanbul Technical University (February 10, 2026)\n\n**Methodology:**\nThe researchers extracted features from JA4 TLS fingerprints—which capture unencrypted handshake metadata like cipher lists and extension ordering—then trained two gradient-boosted machine learning classifiers (XGBoost and CatBoost) on 227,404 real-world fingerprints from the JA4DB repository to distinguish malicious bots from legitimate users.\n\n**Key Quantitative Findings:**\n- CatBoost achieved superior performance with an AUC of 0.998, F1-score of 0.9734, and accuracy of 0.9863\n- XGBoost showed nearly identical results (AUC 0.998, F1 0.9732, accuracy 0.9862)\n- The most influential features were ja4_b (cipher suite hash), cipher_count, and ext_count\n- Dataset composition: 50,212 malicious bots (22.08%), 148,610 benign traffic (65.35%), with good bots excluded\n\n**Critical Limitation—Browser Automation:**\nThe authors acknowledge their method \"cannot distinguish a human from an automated actor\" when bots employ \"Full Stack Emulation: that uses a real browser engine (Puppeteer/Playwright/Selenium driving an actual Chrome binary).\" They explain that \"the bot is using the real browser's network stack, the JA4 fingerprint is identical to a legitimate user.\""
+        },
+        {
+          "url": "https://arxiv.org/html/2606.14525v1",
+          "text": "# Paper Summary: Detecting Bot Detection\n\n**Authors & Venue:** Ralf Gundelach, Michael Mühlhauser, and Dominik Herrmann from the University of Bamberg. Published on arXiv (2606.14525v1) in June 2026.\n\n**Publication Date:** June 12, 2026\n\n## Methodology\n\nThe researchers employed three complementary approaches:\n\n1. **Literature Survey:** Analyzed 81 papers from top-tier security/privacy venues (2020-2025) using 12 criteria assessing reproducibility and bot detection awareness.\n\n2. **Infrastructure Analysis:** Performed DNS resolution on Tranco Top 1M domains, mapping them to autonomous systems and CDN providers.\n\n3. **Measurement Study:** Scanned 10,000 websites across four browser configurations (Chromium/Firefox × headless/headed) using Playwright with custom JavaScript instrumentation to detect property access patterns.\n\n## Key Findings on Detection\n\n**Blocking Rates:**\n- Chromium headless: 15.2% soft block rate\n- Other configurations: 6.8-7.2%\n- 82% of blocks definitively attributable to bot detection (59% vendor-confirmed)\n\n**Detection Prevalence:**\n- 34% of sites probe `navigator.webdriver` property\n- 46% probe at least one Tier 1 automation artifact\n- Cloudflare and Akamai block at 37% and 26% respectively\n\n**Header-Level Signals:**\nA spoofing experiment revealed that \"75% of Chromium-headless-only blocks are caused by header-level signals alone,\" primarily the `sec-ch-ua` Client Hints header exposing \"HeadlessChrome.\"\n\n**Detection Infrastructure:**\nSites combine honeypot probing with browser fingerprinting across multiple categories (Canvas, Audio, WebGL, etc.).\n\n## Literature Survey Results\n\nThe authors found systematic underreporting:\n- 83% of papers omit any discussion of blocking\n- Only 5% explicitly quantify bot detection/blocking rates\n- 47% fail to document headless versus headed execution\n- 90% omit rate-limiting documentation\n\n## Explicitly Reported Limitations\n\n1. **Vantage Point:** Single European datacenter—geographic variation unknown\n2. **Sample "
+        },
+        {
+          "url": "https://dev.to/agenthustler/headless-browser-detection-how-sites-know-youre-a-bot-47g",
+          "text": "Headless Browser Detection: How Sites Know You're a Bot - DEV Community"
+        },
+        {
+          "url": "https://arxiv.org/html/2502.14326v1",
+          "text": "Browser Fingerprint Detection and Anti-Tracking"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2502.14326",
+          "text": "Browser Fingerprint Detection and Anti-Tracking Kaitong Lin"
+        },
+        {
+          "url": "https://scrapfly.io/web-scraping-tools/automation-detector",
+          "text": "Automation Detection Tool | Detect Headless Browsers & Web Scraping Bots"
+        },
+        {
+          "url": "https://arxiv.org/html/2508.21219v1",
+          "text": "The WASM Cloak: Evaluating Browser Fingerprinting Defenses Under WebAssembly based Obfuscation"
+        },
+        {
+          "url": "https://alterlab.io/blog/why-headless-browser-gets-detected-how-to-fix",
+          "text": "Headless Browser Detection: 6 Signals Sites Use (+ Fixes) | AlterLab"
+        },
+        {
+          "url": "https://www.nstbrowser.io/en/wiki/headless-browsers-anti-fingerprint-guide",
+          "text": "Headless Browsers & Anti-Fingerprint Technology"
+        },
+        {
+          "url": "https://donutbrowser.com/use-cases/automation/",
+          "text": "Anti-Detect Browser for Web Scraping — Donut Browser"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2606.14525",
+          "text": "Detecting Bot Detection: Prevalence, Techniques,"
+        },
+        {
+          "url": "http://cs.ru.nl/bachelors-theses/2020/Daniel_Go%C3%9Fen___4751051___Design_and_implementation_of_a_stealthy_OpenWPM_web_scraper.pdf",
+          "text": "Design and implementation of a stealthy OpenWPM web ..."
+        },
+        {
+          "url": "https://arxiv.org/pdf/2205.08890",
+          "text": "Analysing and strengthening OpenWPM’s reliability Benjamin Krumnow TH Köln,"
+        },
+        {
+          "url": "https://cs.ou.nl/members/hugo/papers/conext22.pdf",
+          "text": "How gullible are web measurement tools? A case study ..."
+        },
+        {
+          "url": "https://www.researchgate.net/publication/335823401_Fingerprint_Surface-Based_Detection_of_Web_Bot_Detectors",
+          "text": "Fingerprint Surface-Based Detection of Web Bot Detectors | Request PDF"
+        }
+      ],
+      "final_answer": "## Scope of what I found\n\nThere is a small but real body of **primary, peer-review-track research** on this question, concentrated in 2026. Below I separate what the papers actually measured from what I'm inferring, and I flag where I could only read a secondary summary.\n\n---\n\n## 1. Automation artifacts are still trivially detectable — and most real-world blocking uses the *shallowest* signals\n\n**Gundelach, Mühlhauser & Herrmann, \"Detecting Bot Detection\" (Univ. Bamberg, arXiv, June 2026)** ran 10,000 Tranco-top sites through four Playwright configurations (Chromium/Firefox × headless/headed) with JS instrumentation on property access. Supported findings:\n\n- Headless Chromium was soft-blocked on **15.2%** of sites vs. **6.8–7.2%** for the other three configurations — i.e., headless Chromium roughly doubles block rate. ([arXiv:2606.14525](https://arxiv.org/html/2606.14525v1))\n- **34%** of sites probe `navigator.webdriver`; **46%** probe at least one \"Tier 1\" automation artifact. Cloudflare-fronted sites blocked at 37%, Akamai at 26%. ([same](https://arxiv.org/html/2606.14525v1))\n- The most consequential result: a header-spoofing experiment showed **75% of the Chromium-headless-only blocks were caused by header-level signals alone**, chiefly the `sec-ch-ua` Client Hint leaking `HeadlessChrome`. ([same](https://arxiv.org/html/2606.14525v1))\n\n**Inference (mine, not the authors'):** that 75% figure implies most deployed detection of headless Chromium is not sophisticated fingerprinting at all — it is a string in a request header. That has a practical corollary the paper supports but doesn't frame this way: measurement studies reporting \"we were blocked\" may be measuring header hygiene, not fingerprint resistance.\n\n**Authors' stated limitations:** single European datacenter vantage point; only Tranco top-10K homepages; **only client-side JS detection is observable** — server-side IP reputation and TLS fingerprinting fall outside their instrumentation; their own instrumentation proxies are themselves detectable via `Function.prototype.toString()`; no human-browsing baseline, so they cannot establish the *direction* of bias; and HTTP 200 responses with silently degraded content are not counted as blocks. ([arXiv:2606.14525](https://arxiv.org/html/2606.14525v1))\n\n---\n\n## 2. For *AI browsing agents* on Chromium, browser fingerprints are surprisingly weak — behavior is what separates them\n\n**Wang, Shafiq & Vekaria, \"FP-Agent: Fingerprinting AI Browsing Agents\" (UC Davis, arXiv, May 2026)** — a controlled study of 7 Chromium-based agents (Atlas, ChatGPT Agent, Claude for Chrome, Comet, Manus, Browser Use, Skyvern), ~1,000 trials per agent, against 546 human sessions from 56 undergraduates. ([arXiv:2605.01247](https://arxiv.org/html/2605.01247v1))\n\n- **Browser fingerprints alone: ~0.80 F1.** Atlas, Browser Use, and Claude produced *identical* fingerprints on macOS — the fingerprint surface collapses because they all drive the same Chromium.\n- **Behavioral fingerprints: 0.9993–1.0000 F1**; combined, 1.0000. Agents showed 1–52 ms typing latencies, discrete scroll jumps, and mouse \"teleportation\" to click targets with no intermediate `mousemove` stream.\n- **Cloudflare case study:** FP-Agent flagged 7/7 agents; **Cloudflare's free bot management blocked only 1/7** (Manus, and the authors attribute that to self-identification as a verified bot, not detection).\n\n**Authors' stated limitations:** closed-world setting of 7 agents, not designed to classify unseen agents; only a subset of real-world system/browser configurations tested; human baseline is a narrow population (undergraduates); 3 tasks only, excluding drag-and-drop; **held-out-task generalization degraded substantially (F1 drop up to 0.369)**, so behavioral features are task-dependent; ChatGPT Agent's fingerprint drifted over time; and they explicitly caution that the gap exists only because agents \"do not yet\" mimic human fingerprints. ([arXiv:2605.01247](https://arxiv.org/html/2605.01247v1))\n\n---\n\n## 3. A partly conflicting result: browser layer as the *strongest* single layer\n\n**Fayolle, Bouhenniche, Pélissier, Laperdrix, Maurice & Rudametkin, \"On the Internet, Nobody Knows You're an LLM Bot\" (arXiv, June 2026)** deployed honeypots behind robots.txt, CAPTCHAs, proof-of-work, and Cloudflare, collecting 1,383 visits across IP, TLS (JA4), and browser layers, Jan–Feb 2026. Random Forest accuracy: IP alone **59.6%**, TLS alone **45.4%**, **browser fingerprinting alone 93.1%**, all layers **99.3%**. Strongest features: User Agent, screen resolution, CPU cores, permission states. They also report that **stealth modes increased detectability** rather than reducing it, and that two agents bypassed every defense tested. ([arXiv:2606.30119](https://arxiv.org/pdf/2606.30119))\n\n**Disagreement, and my reading of it:** FP-Agent says browser FP ≈ 0.80 F1; Fayolle et al. say 93.1% accuracy. This is *not* a contradiction about the same quantity — FP-Agent's hard task is separating agents *from each other and from humans* when they share one Chromium build, whereas Fayolle et al. separate agents/scrapers from a broader tool population across heterogeneous deployments. **Inference:** browser fingerprints discriminate *deployment environments* well and *automation-vs-human on identical hardware* poorly. I did not find a paper that tests this reconciliation directly, so treat it as my hypothesis.\n\n**Authors' stated limitations:** rapidly evolving tool ecosystem (snapshot of early 2026); only three layers — canvas, CPU/GPU, and behavioral fingerprinting untested; only two Linux machines with Chrome/Firefox, so results \"may not generalize\" to other OSes/hardware; identifiable ≠ blocked; and only two off-the-shelf CAPTCHA products at default settings. ([arXiv:2606.30119](https://arxiv.org/pdf/2606.30119))\n\n---\n\n## 4. Negative result: TLS fingerprinting fails against real-Chromium automation\n\n**Jarad & Bıçakcı (Istanbul Technical University, arXiv, Feb 2026)** trained XGBoost/CatBoost on 227,404 JA4 fingerprints from JA4DB (50,212 malicious-bot, 148,610 benign), reaching AUC 0.998 / F1 0.9734. But the authors state plainly that the method **cannot distinguish human from automated actor under \"full stack emulation\"** — Puppeteer/Playwright/Selenium driving an actual Chrome binary — because the JA4 fingerprint is then *identical* to a legitimate user's. ([arXiv:2602.09606](https://arxiv.org/html/2602.09606v1))\n\nThis corroborates Fayolle et al.'s low TLS-alone accuracy (45.4%). Two independent papers agreeing on a negative result is the strongest single conclusion in this review.\n\n---\n\n## 5. Historical baseline (read only via secondary summaries — lower confidence)\n\n- **Jonker, Krumnow & Vlot, ESORICS 2019**, reverse-engineered a commercial detector and derived a \"fingerprint surface\" for 14 bot frameworks by extending fingerprint2.js; their Alexa-1M scan identified **>127K sites with detectors**. I read the project page, not the paper; the page does not enumerate limitations. ([project page](https://bkrumnow.github.io/fpbotdetection/))\n- **Krumnow et al., CoNEXT 2022**, reportedly found OpenWPM detected on **~14%** of Tranco-100K front pages, rising to **19%** with sub-pages. ⚠️ **I could not open either PDF** (both returned unparsed binary), so this figure comes from a search-engine summary and I have not verified it against the paper. ([PDF](https://cs.ou.nl/members/hugo/papers/conext22.pdf), [arXiv:2205.08890](https://arxiv.org/abs/2205.08890))\n- **\"Whose Agent Are You?\" (arXiv:2606.20910, June 2026)** reportedly attributes six agent frameworks at 97% accuracy via HTTP/TLS/action-layer differences. ⚠️ Search-snippet only; I did not open it. ([arXiv:2606.20910](https://arxiv.org/abs/2606.20910))\n\n---\n\n## Where the evidence is genuinely weak\n\n- **No human-browsing ground truth at scale.** Gundelach et al. name this as their own limitation; FP-Agent's baseline is 56 undergraduates. No paper I found has a representative human control.\n- **Nothing peer-reviewed on stealth-tool effectiveness.** The 2026 comparisons of nodriver, undetected-chromedriver, patchright etc. that dominate search results are vendor blogs and a self-published benchmark ([dev.to benchmark](https://dev.to/ianlpaterson/anti-detect-browser-benchmark-2026-7-stealth-tools-31-cloudflare-targets-651-verdicts-4361), [Scrapfly](https://scrapfly.io/blog/posts/best-stealth-browsers)) — not primary research, no controlled methodology, and commercially interested. I would not cite them for factual claims. Fayolle et al.'s finding that stealth modes *raise* detectability is the only research-grade datapoint here, and it is a single study.\n- **Longitudinal stability is untested.** Every paper is a snapshot; three of four explicitly warn their results may not survive the next Chrome release.\n\n**Bottom line supported by ≥2 independent papers:** headless-mode and header/Client-Hint artifacts remain reliably detectable and are what production defenses actually use; TLS fingerprinting does not work against real-Chromium automation; and there is a large gap between what is *technically* detectable and what commercial anti-bot systems *actually block* (Cloudflare: 1/7 agents in FP-Agent; multiple full bypasses in Fayolle et al.).\n\n## Sources\n\n- [Detecting Bot Detection: Prevalence, Techniques, and Implications for Web Measurement Research — arXiv:2606.14525](https://arxiv.org/html/2606.14525v1)\n- [FP-Agent: Fingerprinting AI Browsing Agents — arXiv:2605.01247](https://arxiv.org/html/2605.01247v1)\n- [On the Internet, Nobody Knows You're an LLM Bot — arXiv:2606.30119](https://arxiv.org/pdf/2606.30119)\n- [When Handshakes Tell the Truth: Detecting Web Bad Bots via TLS Fingerprints — arXiv:2602.09606](https://arxiv.org/html/2602.09606v1)\n- [Whose Agent Are You? — arXiv:2606.20910](https://arxiv.org/abs/2606.20910) (unverified)\n- [Fingerprint Surface-Based Detection of Web Bot Detectors — project page](https://bkrumnow.github.io/fpbotdetection/)\n- [How gullible are web measurement tools? — CoNEXT 2022 PDF](https://cs.ou.nl/members/hugo/papers/conext22.pdf) (could not open)\n- [Analysing and strengthening OpenWPM's reliability — arXiv:2205.08890](https://arxiv.org/abs/2205.08890)\n- [Anti-detect browser benchmark 2026 (non-academic)](https://dev.to/ianlpaterson/anti-detect-browser-benchmark-2026-7-stealth-tools-31-cloudflare-targets-651-verdicts-4361)\n- [Best Stealth Browsers for Web Scraping 2026, Scrapfly (vendor)](https://scrapfly.io/blog/posts/best-stealth-browsers)"
+    }
+  ]
+}

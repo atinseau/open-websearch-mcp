@@ -1,0 +1,12 @@
+{
+  "accepted_claim_ids": [
+    "claim_current_revision",
+    "claim_previous_revision",
+    "claim_stateless_core",
+    "claim_server_discover_stdio",
+    "claim_mrtr",
+    "claim_subscriptions_listen",
+    "claim_caching"
+  ],
+  "rejected_claims": []
+}

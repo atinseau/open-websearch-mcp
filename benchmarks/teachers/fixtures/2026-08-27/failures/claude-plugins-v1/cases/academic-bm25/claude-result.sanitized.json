@@ -1,0 +1,122 @@
+{
+  "is_error": false,
+  "duration_api_ms": 61981,
+  "num_turns": 2,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.4605005,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 32157,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 4625,
+    "output_tokens_details": {
+      "thinking_tokens": 2780
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 32157,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 4625,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 32157,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 32157
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 22727,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.022837,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 4625,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 32157,
+      "webSearchRequests": 0,
+      "costUSD": 0.4376635,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"c1_problem_variables\",\"c5_k1_interpretation\",\"c6_b_interpretation\"],\"rejected_claims\":[{\"id\":\"c2_core_matching_score\",\"reason\":\"Repose uniquement sur UCAM-CL-TR-356.pdf, source jamais ouverte dans les runs fournis (opened_urls vide côté Codex, jamais consultée côté Claude) ; le passage d'evidence est une auto-citation de la réponse finale. Les motifs exigent en outre des formulations exactes non vérifiées (« request-document matching score », « ranked by descending score »).\"},{\"id\":\"c3_core_factor_definitions\",\"reason\":\"Formules exactes (CFW(i) = log N - log n, TF(i,j), NDL(j) = DL(j) / Average DL) attribuées à une source non ouverte et non corroborées par les PDF d'auteur effectivement récupérés. Motifs à correspondance littérale trop étroits, qui échouent dès toute variation d'espacement ou de notation.\"},{\"id\":\"c4_trec4_variant_factors\",\"reason\":\"L'URL okapi_trec4.pdf n'a été ouverte par aucun run ; le contenu n'est étayé que par l'auto-citation Codex. Le motif K\\\\s*=\\\\s*k1\\\\s*\\\\(\\\\(1-b\\\\)\\\\+b\\\\*dl/avdl\\\\) est invalide pour une notation lexicale (échec sur espaces, signe moins typographique ou multiplication explicite), tandis que \\\\btf\\\\b est trivialement satisfait : notation non déterministe.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": ["c1_problem_variables", "c5_k1_interpretation", "c6_b_interpretation"],
+    "rejected_claims": [
+      {
+        "id": "c2_core_matching_score",
+        "reason": "Repose uniquement sur UCAM-CL-TR-356.pdf, source jamais ouverte dans les runs fournis (opened_urls vide côté Codex, jamais consultée côté Claude) ; le passage d'evidence est une auto-citation de la réponse finale. Les motifs exigent en outre des formulations exactes non vérifiées (« request-document matching score », « ranked by descending score »)."
+      },
+      {
+        "id": "c3_core_factor_definitions",
+        "reason": "Formules exactes (CFW(i) = log N - log n, TF(i,j), NDL(j) = DL(j) / Average DL) attribuées à une source non ouverte et non corroborées par les PDF d'auteur effectivement récupérés. Motifs à correspondance littérale trop étroits, qui échouent dès toute variation d'espacement ou de notation."
+      },
+      {
+        "id": "c4_trec4_variant_factors",
+        "reason": "L'URL okapi_trec4.pdf n'a été ouverte par aucun run ; le contenu n'est étayé que par l'auto-citation Codex. Le motif K\\s*=\\s*k1\\s*\\(\\(1-b\\)\\+b\\*dl/avdl\\) est invalide pour une notation lexicale (échec sur espaces, signe moins typographique ou multiplication explicite), tandis que \\btf\\b est trivialement satisfait : notation non déterministe."
+      }
+    ]
+  },
+  "ttft_ms": 38802,
+  "ttft_stream_ms": 1624,
+  "time_to_request_ms": 17,
+  "type": "result",
+  "duration_ms": 60336,
+  "uuid": "[REDACTED]",
+  "queued_turn_count": 0
+}

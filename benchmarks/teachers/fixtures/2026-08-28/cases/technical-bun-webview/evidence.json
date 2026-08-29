@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "case_id": "technical-bun-webview",
+  "runs": [
+    {
+      "run_id": "2026-08-28_codex_technical-bun-webview",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "site:bun.sh/docs Bun.WebView CDP WebSocket connect already-running browser official docs",
+        "site:bun.sh/docs Bun.WebView bun docs"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [
+        "https://bun.sh/reference/bun",
+        "https://bun.sh/docs/runtime/bun-apis",
+        "https://bun.sh/docs/runtime/webview",
+        "https://bun.sh/reference/bun/WebView"
+      ],
+      "cited_urls": [
+        "https://bun.sh/docs/runtime/webview",
+        "https://bun.sh/docs/runtime/webview",
+        "https://bun.sh/docs/runtime/webview",
+        "https://bun.sh/docs/runtime/webview",
+        "https://bun.sh/docs/runtime/webview",
+        "https://bun.sh/docs/runtime/webview",
+        "https://bun.sh/docs/runtime/webview",
+        "https://bun.sh/docs/runtime/webview",
+        "https://bun.sh/docs/runtime/webview",
+        "https://bun.sh/docs/runtime/webview",
+        "https://bun.sh/docs/runtime/webview",
+        "https://bun.sh/docs/runtime/webview",
+        "https://bun.sh/docs/runtime/webview",
+        "https://bun.sh/reference/bun/WebView"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://bun.sh/reference/bun",
+          "title": "https://bun.sh/reference/bun"
+        },
+        {
+          "url": "https://bun.sh/docs/runtime/bun-apis",
+          "title": "https://bun.sh/docs/runtime/bun-apis"
+        },
+        {
+          "url": "https://bun.sh/docs/runtime/webview",
+          "title": "https://bun.sh/docs/runtime/webview"
+        },
+        {
+          "url": "https://bun.sh/reference/bun/WebView",
+          "title": "https://bun.sh/reference/bun/WebView"
+        }
+      ],
+      "evidence_passages": [],
+      "final_answer": "**Supported facts**\n\nTo make `Bun.WebView` connect to an already-running Chrome-family browser over CDP WebSocket, Bun’s docs show the `backend` object form with a Chrome `url`, for example:\n\n```ts\nnew Bun.WebView({\n  backend: {\n    type: \"chrome\",\n    url: \"ws://127.0.0.1:9222/devtools/browser/abc123...\",\n  },\n});\n```\n\nThis is documented in Bun’s WebView guide under “Connecting to an already-running Chrome.”  \nSource: https://bun.sh/docs/runtime/webview\n\nThe same page says the Chrome `backend.url` option is a Chrome-only `ws://` URL for an existing Chrome DevTools endpoint, and that `url: false` disables auto-detect and forces Bun to spawn its own browser instead.  \nSource: https://bun.sh/docs/runtime/webview\n\nThe docs also say Bun may auto-detect an already-running Chrome-family browser by reading `DevToolsActivePort` from standard profile directories; if found, Bun connects over WebSocket instead of spawning a new browser.  \nSource: https://bun.sh/docs/runtime/webview\n\nThe docs say an explicit `url: \"ws://...\"` does **not** fall back to spawning if the connection fails; in that case, the connection failure throws.  \nSource: https://bun.sh/docs/runtime/webview\n\nThe docs say `url: \"ws://...\"` cannot be combined with `path` or `argv`, and that passing `path` or `argv` implies spawn mode and skips auto-detect.  \nSource: https://bun.sh/docs/runtime/webview\n\nFor enabling remote debugging on a running Chrome, Bun’s docs say you can use `chrome://inspect/#remote-debugging` or launch Chrome with `--remote-debugging-port=9222`.  \nSource: https://bun.sh/docs/runtime/webview\n\n**Documented lifecycle operations**\n\nThe official Lifecycle section documents `view.close()` as a lifecycle operation. Bun says it is synchronous and idempotent, destroys the page’s renderer process, rejects pending promises with `Error(\"WebView closed\")`, and causes later method calls to throw `ERR_INVALID_STATE`.  \nSource: https://bun.sh/docs/runtime/webview\n\nThe docs also say `view[Symbol.dispose]` and `view[Symbol.asyncDispose]` both point to `close()`, so `using` and `await using` perform automatic cleanup.  \nSource: https://bun.sh/docs/runtime/webview\n\nThe official Lifecycle section also documents `Bun.WebView.closeAll()` as a lifecycle operation. Bun says it force-kills the Chrome subprocess and the WebKit host subprocess, rejects pending promises on the next event-loop tick, and allows later `new Bun.WebView()` calls to respawn browsers as needed.  \nSource: https://bun.sh/docs/runtime/webview\n\nThe API reference repeats these callable lifecycle methods as `close()` on instances and `WebView.closeAll()` on the class.  \nSource: https://bun.sh/docs/runtime/webview\n\n**Inference**\n\nIt is reasonable to treat the explicit lifecycle **operations** as only `close()` and `Bun.WebView.closeAll()`, because those are the callable actions documented in the Lifecycle section; “Event-loop behavior” and “Subprocess death” are documented lifecycle behaviors, not callable operations. This classification is my interpretation of the docs’ structure, not a sentence Bun states verbatim.  \nSource for underlying section structure: https://bun.sh/docs/runtime/webview\n\nThe example URL `ws://127.0.0.1:9222/devtools/browser/...` strongly indicates a browser-level CDP endpoint rather than a tab/session endpoint, and that fits the docs’ statement that Bun connects once to Chrome and then creates tabs with `Target.createTarget`. That browser-level wording is therefore supported by the example and surrounding behavior, but the exact phrase “browser-level CDP WebSocket URL” is my synthesis.  \nSource: https://bun.sh/docs/runtime/webview\n\n**Disagreement**\n\nNo conflicting statement was found in the official Bun WebView docs I reviewed.\n\n**Uncertainty / lack of good evidence**\n\nI did not find a separate official Bun page that adds more lifecycle operations beyond `close()` and `Bun.WebView.closeAll()`. The API reference page for `Bun.WebView` is consistent with the runtime WebView page but does not appear to expand the lifecycle list.  \nSources: https://bun.sh/docs/runtime/webview , https://bun.sh/reference/bun/WebView"
+    }
+  ]
+}

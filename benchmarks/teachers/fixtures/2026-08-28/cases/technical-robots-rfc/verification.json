@@ -1,0 +1,33 @@
+{
+  "accepted_claim_ids": ["c7"],
+  "rejected_claims": [
+    {
+      "id": "c1",
+      "reason": "required concept is absent from teacher-run evidence: group-structure"
+    },
+    {
+      "id": "c2",
+      "reason": "required concept is absent from teacher-run evidence: ua-match"
+    },
+    {
+      "id": "c3",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "c4",
+      "reason": "required concept is absent from teacher-run evidence: no-match-allowed"
+    },
+    {
+      "id": "c5",
+      "reason": "required concept is absent from teacher-run evidence: reserved-exception"
+    },
+    {
+      "id": "c6",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "c8",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    }
+  ]
+}

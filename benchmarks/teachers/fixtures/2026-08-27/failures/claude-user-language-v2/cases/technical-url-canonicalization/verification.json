@@ -1,0 +1,18 @@
+{
+  "accepted_claim_ids": [
+    "claim_scheme_lowercased",
+    "claim_default_https_port",
+    "claim_dot_segments",
+    "claim_fragment_percent_encoding"
+  ],
+  "rejected_claims": [
+    {
+      "id": "claim_unicode_host_idna",
+      "reason": "Le mécanisme général (percent-decoding, décodage UTF-8, domain parser / Unicode IDNA) est étayé par les extraits récupérés, mais la claim s'appuie sur des éléments non vérifiables dans les preuves : la source https://www.unicode.org/reports/tr46/tr46-35.html est une URL versionnée n'apparaissant que dans la réponse auto-citée de Codex (aucun payload d'outil, aucune page ouverte), et les exemples `xn--53h.example` / `xn--fa-hia.example` ne figurent dans aucun extrait réellement récupéré. De plus, l'un des acceptable_patterns exige littéralement ces exemples, ce qui constitue un motif de notation trop étroit : une réponse correcte à la question posée n'a pas à citer ces cas particuliers."
+    },
+    {
+      "id": "claim_path_percent20_preserved",
+      "reason": "L'exemple `file:///ada/Analytical%20Engine/README.md` et la « parsed-components table » ne sont corroborés par aucun extrait de page effectivement récupéré ; l'exemple porte en outre sur le schéma `file:` et non sur une URL HTTPS. L'extrait réellement récupéré du path state indique l'usage du fragment percent-encode set, ce qui entre en tension avec la formulation de la claim. Enfin, le volet « %20 reste encodé plutôt que décodé » relève de l'inférence explicitement signalée comme non explicitement normative dans les preuves, et recoupe une affirmation déjà présente dans rejected_claims. Le pattern requis dépend de l'exemple non vérifié, donc trop étroit."
+    }
+  ]
+}

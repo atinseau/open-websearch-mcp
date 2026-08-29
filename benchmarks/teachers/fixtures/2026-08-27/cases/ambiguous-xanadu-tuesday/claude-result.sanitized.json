@@ -1,0 +1,123 @@
+{
+  "duration_api_ms": 69368,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.42628550000000004,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 26563,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 5684,
+    "output_tokens_details": {
+      "thinking_tokens": 3995
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 26563,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 5684,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 26563,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 26563
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 18002,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.018087,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 5684,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 26563,
+      "webSearchRequests": 0,
+      "costUSD": 0.4081985,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 2,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"claim_no_public_event_evidence\",\"claim_other_xanadu_news_was_quantum_company\"],\"rejected_claims\":[{\"id\":\"claim_archival_project_pages\",\"reason\":\"Depends on page-level details (the 'crudcheck 01.05.23' marker, 'WE FIGHT ON' message, 'Last-modified: 2002/04/12' on aus.xanadu.com/xanadu/faq.html, and the 'Future of Text Conference, August 25, 2016' demo page) for which the supplied evidence contains no retrieved content. The Codex run's opened_urls is empty and every tool_result states the search payload was not exposed; its evidence_passages are just its own final_answer duplicated under five URLs, so they do not attest to what those pages say. The Claude run corroborates only xanadu.com/xuhome.html and never touches aus.xanadu.com/xanadu/faq.html or xanadu.com/xuDemoPage.html. The third acceptable_pattern ('web presence[\\\\s\\\\S]*historical rather than actively updated') also grades an interpretive characterization rather than a checkable fact.\"},{\"id\":\"claim_best_supported_conclusion\",\"reason\":\"Explicitly the run's inference layer ('most defensible conclusion', 'likeliest explanation') rather than anything the cited sources state; the three listed sources are archival Project Xanadu pages that cannot support a conclusion about last Tuesday, and two of them (aus.xanadu.com/xanadu/faq.html, xanadu.com/xuDemoPage.html) have no verified content anywhere in the evidence. It also restates the supported negative finding already carried by claim_no_public_event_evidence, and its grading is brittle: both acceptable_patterns require long verbatim teacher wording, and required_concepts such as 'most_defensible_conclusion' and 'why' are too vague to grade deterministically.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": [
+      "claim_no_public_event_evidence",
+      "claim_other_xanadu_news_was_quantum_company"
+    ],
+    "rejected_claims": [
+      {
+        "id": "claim_archival_project_pages",
+        "reason": "Depends on page-level details (the 'crudcheck 01.05.23' marker, 'WE FIGHT ON' message, 'Last-modified: 2002/04/12' on aus.xanadu.com/xanadu/faq.html, and the 'Future of Text Conference, August 25, 2016' demo page) for which the supplied evidence contains no retrieved content. The Codex run's opened_urls is empty and every tool_result states the search payload was not exposed; its evidence_passages are just its own final_answer duplicated under five URLs, so they do not attest to what those pages say. The Claude run corroborates only xanadu.com/xuhome.html and never touches aus.xanadu.com/xanadu/faq.html or xanadu.com/xuDemoPage.html. The third acceptable_pattern ('web presence[\\s\\S]*historical rather than actively updated') also grades an interpretive characterization rather than a checkable fact."
+      },
+      {
+        "id": "claim_best_supported_conclusion",
+        "reason": "Explicitly the run's inference layer ('most defensible conclusion', 'likeliest explanation') rather than anything the cited sources state; the three listed sources are archival Project Xanadu pages that cannot support a conclusion about last Tuesday, and two of them (aus.xanadu.com/xanadu/faq.html, xanadu.com/xuDemoPage.html) have no verified content anywhere in the evidence. It also restates the supported negative finding already carried by claim_no_public_event_evidence, and its grading is brittle: both acceptable_patterns require long verbatim teacher wording, and required_concepts such as 'most_defensible_conclusion' and 'why' are too vague to grade deterministically."
+      }
+    ]
+  },
+  "ttft_ms": 50241,
+  "type": "result",
+  "duration_ms": 67843,
+  "uuid": "[REDACTED]",
+  "ttft_stream_ms": 939,
+  "time_to_request_ms": 17,
+  "queued_turn_count": 0
+}

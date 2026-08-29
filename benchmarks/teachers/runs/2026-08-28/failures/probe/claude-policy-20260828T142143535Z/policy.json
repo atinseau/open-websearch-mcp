@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "provider": "claude",
+  "cli_version": "2.1.247 (Claude Code)",
+  "started_at": "2026-08-28T14:21:43.535Z",
+  "duration_ms": 528,
+  "command": [
+    "claude",
+    "-p",
+    "--safe-mode",
+    "--setting-sources",
+    "",
+    "--settings",
+    "{\"enabledPlugins\":{\"typescript-lsp@claude-plugins-official\":false,\"chrome-devtools-mcp@claude-plugins-official\":false,\"rust-analyzer-lsp@claude-plugins-official\":false,\"claude-hud@claude-hud\":false,\"claude-md-management@claude-plugins-official\":false,\"skill-creator@claude-plugins-official\":false,\"pennylane-api@pennylane-mcp\":false}}",
+    "--tools",
+    "WebSearch,WebFetch",
+    "--allowedTools",
+    "WebSearch,WebFetch",
+    "--disallowedTools",
+    "mcp__*",
+    "--permission-mode",
+    "dontAsk",
+    "--disable-slash-commands",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "{\"mcpServers\":{}}",
+    "--no-chrome",
+    "--no-session-persistence",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-partial-messages",
+    "--include-hook-events",
+    "--max-budget-usd",
+    "0.25",
+    "Use native WebSearch to find the official Claude Code CLI reference, use native WebFetch to inspect that official page, then answer with one verified CLI fact and cite its URL. Do not use any other tool."
+  ],
+  "controls": {
+    "isolated_temporary_cwd": true,
+    "cwd_unchanged": true,
+    "wrapper_shim_bypassed": true,
+    "session_persistence_disabled": true,
+    "user_project_settings_disabled": true,
+    "environment_keys": ["COLORTERM", "HOME", "LANG", "LOGNAME", "PATH", "TERM", "TMPDIR", "USER"],
+    "isolated_account_state": true,
+    "allowed_child_executables": []
+  },
+  "process": {
+    "exit_code": 1,
+    "stderr": ""
+  },
+  "inspection": {
+    "accepted": false,
+    "tool_calls": [],
+    "forbidden_tool_calls": [],
+    "authentication_failed": false
+  }
+}

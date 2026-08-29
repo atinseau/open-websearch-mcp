@@ -1,0 +1,114 @@
+{
+  "is_error": false,
+  "duration_api_ms": 63855,
+  "num_turns": 2,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.46361649999999993,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 32676,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 4529,
+    "output_tokens_details": {
+      "thinking_tokens": 3160
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 32676,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 4529,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 32676,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 32676
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 23078,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.023163000000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 4529,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 32676,
+      "webSearchRequests": 0,
+      "costUSD": 0.44045349999999994,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"claim_1\",\"claim_3\",\"claim_4\",\"claim_5\",\"claim_6\",\"claim_7\"],\"rejected_claims\":[{\"id\":\"claim_2\",\"reason\":\"Source jamais ouverte (opened_urls vide) et passage d'appui constitué uniquement du texte de la reponse finale du modele. Les formulations citees entre guillemets (\\\"researching a topic in depth\\\", \\\"diverse set\\\") sont attribuees a un PDF de guidelines mis a jour en continu, ce qui rend les patterns lexicaux instables dans le temps. De plus, la proposition \\\"search engines therefore need a diverse set of helpful results\\\" est une inference du modele (\\\"therefore\\\") plutot qu'un enonce de source verifiable : elle depend d'une interpretation non explicitee.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": ["claim_1", "claim_3", "claim_4", "claim_5", "claim_6", "claim_7"],
+    "rejected_claims": [
+      {
+        "id": "claim_2",
+        "reason": "Source jamais ouverte (opened_urls vide) et passage d'appui constitué uniquement du texte de la reponse finale du modele. Les formulations citees entre guillemets (\"researching a topic in depth\", \"diverse set\") sont attribuees a un PDF de guidelines mis a jour en continu, ce qui rend les patterns lexicaux instables dans le temps. De plus, la proposition \"search engines therefore need a diverse set of helpful results\" est une inference du modele (\"therefore\") plutot qu'un enonce de source verifiable : elle depend d'une interpretation non explicitee."
+      }
+    ]
+  },
+  "ttft_ms": 44190,
+  "ttft_stream_ms": 1311,
+  "time_to_request_ms": 21,
+  "type": "result",
+  "duration_ms": 62352,
+  "uuid": "[REDACTED]",
+  "queued_turn_count": 0
+}

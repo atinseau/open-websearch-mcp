@@ -1,0 +1,124 @@
+{
+  "duration_api_ms": 73938,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.7497745,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 56884,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 5653,
+    "output_tokens_details": {
+      "thinking_tokens": 3720
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 56884,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 5653,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 56884,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 56884
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 39056,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.039141,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 5653,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 56884,
+      "webSearchRequests": 0,
+      "costUSD": 0.7106335,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 2,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"c1\",\"c2\",\"c3\",\"c4\",\"c8\"],\"rejected_claims\":[{\"id\":\"c5\",\"reason\":\"Not supported by any supplied evidence passage. The Codex run opened zero URLs and its tool results carry no payloads; all 20 of its evidence_passages are identical copies of its own final_answer, truncated at 'playwright_stealth says: \\\"Don't expec\\\"' — i.e. before any contradiction bullet. The distinguishing specifics (issue #867, date 'January 10, 2024', and the quoted string 'Cloudflare detects puppeteer too') therefore rest solely on the drafting model's unretrieved assertion. The Claude run documents Cloudflare-failure issues at #811, #920 and #793, corroborating the theme but not this issue or quote. The pattern 'README example itself was detected on `?bot\\\\.sannysoft\\\\.com`?' is also overly narrow, requiring near-verbatim reproduction of one paraphrase's wording and clause order.\"},{\"id\":\"c6\",\"reason\":\"Same provenance defect: the issue #898 content falls past the truncation point of the Codex evidence passages, and the run retrieved no page text, so the highly specific date ('June 20, 2024') and version quadruple (Puppeteer 22.1.0 / Chrome-for-Testing 121.0.6167.85 vs Puppeteer 22.2.0 / 122.0.6261.57) are uncorroborated by anything in the supplied evidence. Nothing in the Claude run mentions Google Meet or these versions. Both acceptable_patterns are additionally too narrow for lexical grading, chaining four exact tokens in a fixed order that only one specific phrasing would satisfy.\"},{\"id\":\"c7\",\"reason\":\"The undetected-chromedriver issue #46 report also lies beyond the truncation point of every Codex evidence passage, and that run retrieved no content from the URL it cites, so the date 'November 4, 2020' and the reported Cloudflare 'Under Attack Mode' / 'Checking your browser' outcome are unverifiable against the supplied evidence. The Claude run covers Cloudflare failures for puppeteer-extra but says nothing about undetected-chromedriver issue #46, so there is no cross-run support either. Rejected for lack of evidentiary grounding rather than pattern validity.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": ["c1", "c2", "c3", "c4", "c8"],
+    "rejected_claims": [
+      {
+        "id": "c5",
+        "reason": "Not supported by any supplied evidence passage. The Codex run opened zero URLs and its tool results carry no payloads; all 20 of its evidence_passages are identical copies of its own final_answer, truncated at 'playwright_stealth says: \"Don't expec\"' — i.e. before any contradiction bullet. The distinguishing specifics (issue #867, date 'January 10, 2024', and the quoted string 'Cloudflare detects puppeteer too') therefore rest solely on the drafting model's unretrieved assertion. The Claude run documents Cloudflare-failure issues at #811, #920 and #793, corroborating the theme but not this issue or quote. The pattern 'README example itself was detected on `?bot\\.sannysoft\\.com`?' is also overly narrow, requiring near-verbatim reproduction of one paraphrase's wording and clause order."
+      },
+      {
+        "id": "c6",
+        "reason": "Same provenance defect: the issue #898 content falls past the truncation point of the Codex evidence passages, and the run retrieved no page text, so the highly specific date ('June 20, 2024') and version quadruple (Puppeteer 22.1.0 / Chrome-for-Testing 121.0.6167.85 vs Puppeteer 22.2.0 / 122.0.6261.57) are uncorroborated by anything in the supplied evidence. Nothing in the Claude run mentions Google Meet or these versions. Both acceptable_patterns are additionally too narrow for lexical grading, chaining four exact tokens in a fixed order that only one specific phrasing would satisfy."
+      },
+      {
+        "id": "c7",
+        "reason": "The undetected-chromedriver issue #46 report also lies beyond the truncation point of every Codex evidence passage, and that run retrieved no content from the URL it cites, so the date 'November 4, 2020' and the reported Cloudflare 'Under Attack Mode' / 'Checking your browser' outcome are unverifiable against the supplied evidence. The Claude run covers Cloudflare failures for puppeteer-extra but says nothing about undetected-chromedriver issue #46, so there is no cross-run support either. Rejected for lack of evidentiary grounding rather than pattern validity."
+      }
+    ]
+  },
+  "ttft_ms": 50043,
+  "type": "result",
+  "duration_ms": 72349,
+  "uuid": "[REDACTED]",
+  "ttft_stream_ms": 1448,
+  "time_to_request_ms": 11,
+  "queued_turn_count": 0
+}

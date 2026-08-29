@@ -1,0 +1,465 @@
+{
+  "schema_version": 1,
+  "case_id": "technical-url-canonicalization",
+  "runs": [
+    {
+      "run_id": "2026-08-27_codex_technical-url-canonicalization",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "WHATWG URL Standard unicode hostnames default ports dot segments fragments percent-encoded path bytes parsing HTTPS URL site:url.spec.whatwg.org",
+        "https://url.spec.whatwg.org/",
+        "'default port' in https://url.spec.whatwg.org/",
+        "'Host parsing' in https://url.spec.whatwg.org/",
+        "'lowercase' in https://url.spec.whatwg.org/",
+        "'lowercased and append' in https://url.spec.whatwg.org/",
+        "'URL serializer' in https://url.spec.whatwg.org/",
+        "'Shorten' in https://url.spec.whatwg.org/",
+        "https://github.com/whatwg/url/issues/565"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [],
+      "cited_urls": [
+        "https://url.spec.whatwg.org/",
+        "https://www.unicode.org/reports/tr46/tr46-35.html",
+        "https://github.com/whatwg/url/issues/565"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://url.spec.whatwg.org/",
+          "title": "https://url.spec.whatwg.org/"
+        },
+        {
+          "url": "https://www.unicode.org/reports/tr46/tr46-35.html",
+          "title": "https://www.unicode.org/reports/tr46/tr46-35.html"
+        },
+        {
+          "url": "https://github.com/whatwg/url/issues/565",
+          "title": "https://github.com/whatwg/url/issues/565"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://url.spec.whatwg.org/",
+          "text": "**Supported Fact**\n\n- Parsing lowercases the scheme: in `scheme start state` and `scheme state`, ASCII letters are appended to the buffer lowercased. For an HTTPS URL, that means `HTTPS:` becomes `https:`. (https://url.spec.whatwg.org/)\n- `https` is a special scheme whose default port is `443`. In `port state`, if the parsed port equals the scheme’s default port, the URL record’s `port` is set to `null`; in serialization, a port is emitted only if it is non-null. So `:443` is normalized away in the parsed URL record and disappears on serialization. (https://url.spec.whatwg.org/)\n- A non-opaque host is parsed by percent-decoding the host, UTF-8 decoding that result, and then running the domain parser. The domain parser uses Unicode IDNA Compatibility Processing, and the standard gives examples such as `☕.example` becoming `xn--53h.example`; its host round-trip table also shows `faß.example` becoming `xn--fa-hia.example`. This means a Unicode hostname in an HTTPS URL is normalized to an ASCII IDNA form, not kept as raw Unicode in the serialized URL. (https://url.spec.whatwg.org/, https://www.unicode.org/reports/tr46/tr46-35.html)\n- For ASCII domains, the domain parser lowercases them, and the host round-trip table shows `EXAMPLE.COM` becoming `example.com`. (https://url.spec.whatwg.org/)\n- Dot segments are normalized during path parsing. A single-dot path segment is `.` or an ASCII-case-insensitive match for `%2e`. A double-dot path segment is `..`, `.%2e`, `%2e.`, or `%2e%2e` with ASCII-case-insensitive matching. In `path state`, a double-dot segment triggers “shorten url’s path”, which removes the last path segment; the spec’s note says `/usr/..` becomes `/`. Single-dot segments are omitted from the path, except that the algorithm may append an empty segment when needed at the end. (https://url.spec.whatwg.org/)\n- The parser starts fragment parsing when it sees `#`. In `fragment state`, each fragment code point is UTF-8 percent-encoded with the fragment percent-enco"
+        },
+        {
+          "url": "https://www.unicode.org/reports/tr46/tr46-35.html",
+          "text": "**Supported Fact**\n\n- Parsing lowercases the scheme: in `scheme start state` and `scheme state`, ASCII letters are appended to the buffer lowercased. For an HTTPS URL, that means `HTTPS:` becomes `https:`. (https://url.spec.whatwg.org/)\n- `https` is a special scheme whose default port is `443`. In `port state`, if the parsed port equals the scheme’s default port, the URL record’s `port` is set to `null`; in serialization, a port is emitted only if it is non-null. So `:443` is normalized away in the parsed URL record and disappears on serialization. (https://url.spec.whatwg.org/)\n- A non-opaque host is parsed by percent-decoding the host, UTF-8 decoding that result, and then running the domain parser. The domain parser uses Unicode IDNA Compatibility Processing, and the standard gives examples such as `☕.example` becoming `xn--53h.example`; its host round-trip table also shows `faß.example` becoming `xn--fa-hia.example`. This means a Unicode hostname in an HTTPS URL is normalized to an ASCII IDNA form, not kept as raw Unicode in the serialized URL. (https://url.spec.whatwg.org/, https://www.unicode.org/reports/tr46/tr46-35.html)\n- For ASCII domains, the domain parser lowercases them, and the host round-trip table shows `EXAMPLE.COM` becoming `example.com`. (https://url.spec.whatwg.org/)\n- Dot segments are normalized during path parsing. A single-dot path segment is `.` or an ASCII-case-insensitive match for `%2e`. A double-dot path segment is `..`, `.%2e`, `%2e.`, or `%2e%2e` with ASCII-case-insensitive matching. In `path state`, a double-dot segment triggers “shorten url’s path”, which removes the last path segment; the spec’s note says `/usr/..` becomes `/`. Single-dot segments are omitted from the path, except that the algorithm may append an empty segment when needed at the end. (https://url.spec.whatwg.org/)\n- The parser starts fragment parsing when it sees `#`. In `fragment state`, each fragment code point is UTF-8 percent-encoded with the fragment percent-enco"
+        },
+        {
+          "url": "https://github.com/whatwg/url/issues/565",
+          "text": "**Supported Fact**\n\n- Parsing lowercases the scheme: in `scheme start state` and `scheme state`, ASCII letters are appended to the buffer lowercased. For an HTTPS URL, that means `HTTPS:` becomes `https:`. (https://url.spec.whatwg.org/)\n- `https` is a special scheme whose default port is `443`. In `port state`, if the parsed port equals the scheme’s default port, the URL record’s `port` is set to `null`; in serialization, a port is emitted only if it is non-null. So `:443` is normalized away in the parsed URL record and disappears on serialization. (https://url.spec.whatwg.org/)\n- A non-opaque host is parsed by percent-decoding the host, UTF-8 decoding that result, and then running the domain parser. The domain parser uses Unicode IDNA Compatibility Processing, and the standard gives examples such as `☕.example` becoming `xn--53h.example`; its host round-trip table also shows `faß.example` becoming `xn--fa-hia.example`. This means a Unicode hostname in an HTTPS URL is normalized to an ASCII IDNA form, not kept as raw Unicode in the serialized URL. (https://url.spec.whatwg.org/, https://www.unicode.org/reports/tr46/tr46-35.html)\n- For ASCII domains, the domain parser lowercases them, and the host round-trip table shows `EXAMPLE.COM` becoming `example.com`. (https://url.spec.whatwg.org/)\n- Dot segments are normalized during path parsing. A single-dot path segment is `.` or an ASCII-case-insensitive match for `%2e`. A double-dot path segment is `..`, `.%2e`, `%2e.`, or `%2e%2e` with ASCII-case-insensitive matching. In `path state`, a double-dot segment triggers “shorten url’s path”, which removes the last path segment; the spec’s note says `/usr/..` becomes `/`. Single-dot segments are omitted from the path, except that the algorithm may append an empty segment when needed at the end. (https://url.spec.whatwg.org/)\n- The parser starts fragment parsing when it sees `#`. In `fragment state`, each fragment code point is UTF-8 percent-encoded with the fragment percent-enco"
+        }
+      ],
+      "final_answer": "**Supported Fact**\n\n- Parsing lowercases the scheme: in `scheme start state` and `scheme state`, ASCII letters are appended to the buffer lowercased. For an HTTPS URL, that means `HTTPS:` becomes `https:`. (https://url.spec.whatwg.org/)\n- `https` is a special scheme whose default port is `443`. In `port state`, if the parsed port equals the scheme’s default port, the URL record’s `port` is set to `null`; in serialization, a port is emitted only if it is non-null. So `:443` is normalized away in the parsed URL record and disappears on serialization. (https://url.spec.whatwg.org/)\n- A non-opaque host is parsed by percent-decoding the host, UTF-8 decoding that result, and then running the domain parser. The domain parser uses Unicode IDNA Compatibility Processing, and the standard gives examples such as `☕.example` becoming `xn--53h.example`; its host round-trip table also shows `faß.example` becoming `xn--fa-hia.example`. This means a Unicode hostname in an HTTPS URL is normalized to an ASCII IDNA form, not kept as raw Unicode in the serialized URL. (https://url.spec.whatwg.org/, https://www.unicode.org/reports/tr46/tr46-35.html)\n- For ASCII domains, the domain parser lowercases them, and the host round-trip table shows `EXAMPLE.COM` becoming `example.com`. (https://url.spec.whatwg.org/)\n- Dot segments are normalized during path parsing. A single-dot path segment is `.` or an ASCII-case-insensitive match for `%2e`. A double-dot path segment is `..`, `.%2e`, `%2e.`, or `%2e%2e` with ASCII-case-insensitive matching. In `path state`, a double-dot segment triggers “shorten url’s path”, which removes the last path segment; the spec’s note says `/usr/..` becomes `/`. Single-dot segments are omitted from the path, except that the algorithm may append an empty segment when needed at the end. (https://url.spec.whatwg.org/)\n- The parser starts fragment parsing when it sees `#`. In `fragment state`, each fragment code point is UTF-8 percent-encoded with the fragment percent-encode set. That set includes the C0 control percent-encode set plus space, `\"`, `<`, `>`, and `` ` ``; the C0 control percent-encode set includes all code points above `U+007E`, so non-ASCII fragment characters are percent-encoded too. (https://url.spec.whatwg.org/)\n- In `path state`, non-separator path code points are UTF-8 percent-encoded with the path percent-encode set. The spec’s parsed-components table shows `file:///ada/Analytical%20Engine/README.md` producing a path segment `Analytical%20Engine`, which is direct evidence that `%20` remains percent-encoded in the stored path segment rather than being decoded to a space. (https://url.spec.whatwg.org/)\n\n**Inference**\n\n- For already-valid percent-encoded path bytes such as `%66`, the current algorithm appears to preserve them rather than decode them to literal characters. Reason: `%` followed by two ASCII hex digits is accepted as a valid percent-encoded byte; the path parser then calls UTF-8 percent-encode with the path percent-encode set; that set does not include `%`; and the generic percent-encoding algorithm says characters not in the set are appended unchanged. On that reading, `%66` stays `%66`, not `f`. (Inference from https://url.spec.whatwg.org/)\n- The same reasoning suggests there is no parsing-time normalization that uppercases the hex digits of an already-present path escape. For example, `%2f` appears to stay `%2f`, except that `%2e` and related spellings are specially recognized for dot-segment handling because the single-dot and double-dot definitions are ASCII-case-insensitive. (Inference from https://url.spec.whatwg.org/)\n- The same preservation inference also applies to valid percent-encoded bytes already present in the fragment: the parser validates `%` + two hex digits, then uses a percent-encode set that does not include `%`, so existing escapes appear to remain escapes rather than being decoded. (Inference from https://url.spec.whatwg.org/)\n\n**Uncertainty / Disagreement**\n\n- There is direct evidence that this exact point was considered unclear enough to raise formally: whatwg/url issue `#565` asks whether parsing `http://example.com/%66%6f%6f` should yield `%66%6f%6f` or `foo`. The issue is labeled `clarification` and `editorial`, which suggests wording clarity rather than an intended behavioral change, but the issue itself is not normative. (https://github.com/whatwg/url/issues/565)\n\n**Lack Of Good Evidence**\n\n- In the current parsing steps I reviewed, I found explicit rules for host IDNA conversion, default-port nulling, dot-segment removal, and fragment/path percent-encoding, but I did not find a separate explicit sentence that says “decode existing valid percent-encoded path bytes” or “uppercase their hex digits.” The strongest support for “preserve them” is the algorithmic inference above, not a single explicit prose rule. (https://url.spec.whatwg.org/, https://github.com/whatwg/url/issues/565)\n\nSo, under the current WHATWG URL Standard, the clear normalization steps are: lowercase the scheme, convert Unicode HTTPS hostnames to ASCII IDNA form, drop the default HTTPS port `443`, remove `.` and `..` path segments including `%2e` spellings, and percent-encode fragment/path characters according to their encode sets. For ordinary already-percent-encoded path bytes, the best reading of the current algorithm is preservation, not decoding or hex-case canonicalization, but that last point is inference rather than an explicit one-line rule."
+    },
+    {
+      "run_id": "2026-08-27_claude_technical-url-canonicalization",
+      "provider": "claude",
+      "model": "claude-opus-5[1m]",
+      "queries": [
+        "\"double-dot path segment\" \"shorten url's path\" \"path state\" URL Standard basic URL parser steps"
+      ],
+      "tool_results": [
+        {
+          "tool": "WebFetch",
+          "summary": "# URL Standard: Key Algorithms and Tables\n\n## Host Parser\nThe host parser takes \"a [scalar value string](https://infra.spec.whatwg.org/#scalar-value-string) input with an optional boolean isOpaque (default false)\" and returns \"failure or a [host](#concept-host).\"\n\nKey steps include:\n- If input starts with `[`, parse as IPv6\n- If `isOpaque` is true, parse as opaque host\n- Otherwise, \"Let asciiDomain be the result of running [domain parser](#concept-domain-to-ascii) with domain and false\"\n- If asc"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# URL Standard - Dot Segments and Fragment Encoding\n\n## Dot Segment Definitions\n\n**Single-dot path segment:** \"a URL path segment that is \"`.`\" or an ASCII case-insensitive match for \"`%2e`\"\"\n\n**Double-dot path segment:** \"a URL path segment that is \"`..`\" or an ASCII case-insensitive match for \"`.%2e`\", \"`%2e.`\", or \"`%2e%2e`\"\"\n\n## Shorten a URL's Path Algorithm\n\n\"Remove path's last item, if any\" — but with a critical exception: \"If url's scheme is \"`file`\", path's size is 1, and path[0] is a n"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# URL Standard Algorithm Excerpts\n\n## (a) Host Parser Algorithm\n\nThe host parser processes input with an optional `isOpaque` boolean (default false):\n\n1. \"If input starts with U+005B (\\[), then: If input does not end with U+005D (\\]), [IPv6-unclosed] validation error, return failure. Return the result of IPv6 parsing input with its leading U+005B (\\[) and trailing U+005D (\\]) removed.\"\n\n2. \"If isOpaque is true, then return the result of opaque-host parsing input.\"\n\n3. \"If input contains a percen"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# URL Standard Definitions and Notes\n\n## (a) Percent-Encode Definitions\n\n**Percent-encode:** \"return a string consisting of U+0025 (%), followed by two ASCII upper hex digits representing byte.\"\n\n**UTF-8 percent-encode:** \"return the result of running percent-encode after encoding with UTF-8, input, and percentEncodeSet.\"\n\nBoth produce **uppercase** hex digits.\n\n## (b) IPv4/IPv6 Normalization Notes\n\n**IPv4 serializer:** Converts a 32-bit integer into dotted-decimal notation by extracting octets "
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# URL Parsing: Path State and Percent-Encode Sets\n\n## Path State\n\nFrom the basic URL parser, the **path state** section includes:\n\n\"If c is U+002E (.), then: If url's path's size is 0 or url's path's last item is a double-dot URL path segment, then append a single-dot URL path segment to url's path and continue.\"\n\nThe state also handles double-dot segments: \"If url's path's last item is not a double-dot URL path segment, shorten url's path and then append a double-dot URL path segment to url's p"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# URL Standard: Key Parser Specifications\n\n## Host Parser Steps\n\nThe host parser takes a scalar value string input with optional boolean isOpaque (default false) and returns failure or a host:\n\n1. If input starts with U+005B ([), check for closing U+005D (]), then return IPv6 parsing result\n2. If isOpaque is true, return opaque-host parsing result\n3. Assert input is not empty\n4. If input contains percent-encoded byte, signal domain-percent-encoded validation error\n5. Decode input using UTF-8 dec"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "I cannot locate the \"path state\" or \"fragment state\" blocks in the provided web page content. The content appears to be truncated at a point during the \"authority state\" section of the basic URL parser, before reaching those subsequent state definitions.\n\nTo obtain the exact source text you're requesting, you would need to access the complete URL Standard specification document directly at https://url.spec.whatwg.org/ or provide content that includes those specific state blocks."
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "I cannot find the complete \"path state\" or \"fragment state\" sections in the provided content. The document appears to be truncated mid-way through the URL parser state machine description with the note \"[Content truncated due to length...]\"\n\nHowever, I can address your question about percent-encoded sequences:\n\n**On percent-encoding preservation:** The spec notes: \"The other values for the percentEncodeSet argument — which happen to be used by the [URL parser](#concept-url-parser) — leave U+0025"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "URL Standard: https://url.spec.whatwg.org/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Single and double dot segments in paths cannot be represented – Premature decoding of . character sequences. · Issue #281 · whatwg/url: https://github.com/whatwg/url/issues/281"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "urllib.parse — Parse URLs into components — Python 3.14.7 ...: https://docs.python.org/3/library/urllib.parse.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Why URLs are Hard: Path Parameters and urlparse - DEV Community: https://dev.to/sethmlarson/why-urls-are-hard-path-parameters-and-urlparse-c2n"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "URL | Node.js v26.7.0 Documentation: https://nodejs.org/api/url.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "PHP: parse_url - Manual: https://www.php.net/manual/en/function.parse-url.php"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "- From: Timothy Gu <notifications@github.com>: https://lists.w3.org/Archives/Public/public-webapps-github/2017Apr/1148.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "- From: Gordon P. Hemsley <notifications@github.com>: https://lists.w3.org/Archives/Public/public-webapps-github/2017Jun/0029.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "- From: Domenic Denicola <notifications@github.com>: https://lists.w3.org/Archives/Public/public-webapps-github/2020Apr/0964.html"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# ToASCII and Processing Steps Analysis\n\n## Processing Steps (Section 4)\n\nThe specification confirms that processing includes both mapping and normalization:\n\n**Mapping:** \"For each code point in the domain_name string, look up the Status value in Section 5\" and apply transformations including case-folding through mapped status values.\n\n**Normalization:** \"Normalize the domain_name string to Unicode Normalization Form C.\"\n\n## ToASCII Algorithm (Section 4.2)\n\nToASCII explicitly performs Punycode "
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# URL Standard: Path State and Host State Definitions\n\n## Path Start State\n\n\"If [c](#c) is U+002F (/), then set state to [path state](#path-state). Otherwise, if url [is special](#is-special), [c](#c) is U+005C (\\\\), set state to [path state](#path-state) and decrease pointer by 1. Otherwise, set url's [path](#concept-url-path) to the empty string and set state to [opaque path state](#cannot-be-a-base-url-path-state).\"\n\n## Host State / Hostname State\n\nThe specification describes this as a combin"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# URL Parser and Serializer Steps\n\n## URL Parser - Input Sanitization\n\nThe URL parser's initial steps handle whitespace and control characters:\n\n**Leading/trailing removal:** \"If input contains any leading or trailing C0 control or space, invalid-URL-unit validation error. Remove any leading and trailing C0 control or space from input.\"\n\n**Tab/newline removal:** \"If input contains any ASCII tab or newline, invalid-URL-unit validation error. Remove all ASCII tab or newline from input.\"\n\n## URL Se"
+        }
+      ],
+      "opened_urls": [
+        "https://url.spec.whatwg.org/",
+        "https://raw.githubusercontent.com/whatwg/url/main/url.bs",
+        "https://www.unicode.org/reports/tr46/"
+      ],
+      "cited_urls": [
+        "https://url.spec.whatwg.org/#concept-basic-url-parser",
+        "https://url.spec.whatwg.org/#scheme-state",
+        "https://url.spec.whatwg.org/#special-scheme",
+        "https://url.spec.whatwg.org/#concept-host-parser",
+        "https://0x7f.1",
+        "https://url.spec.whatwg.org/#concept-domain-to-ascii",
+        "https://www.unicode.org/reports/tr46/",
+        "https://例え.テスト",
+        "https://EXAMPLE.com",
+        "https://%E4%BE%8B.test",
+        "https://url.spec.whatwg.org/#port-state",
+        "https://url.spec.whatwg.org/#concept-url-serializer",
+        "https://example.com:443/",
+        "https://example.com/",
+        "https://url.spec.whatwg.org/#syntax-url-path-segment",
+        "https://url.spec.whatwg.org/#path-state",
+        "https://url.spec.whatwg.org/#shorten-a-urls-path",
+        "https://url.spec.whatwg.org/#path-start-state",
+        "https://url.spec.whatwg.org/#url-opaque-path",
+        "https://example.com",
+        "https://url.spec.whatwg.org/#percent-encoded-bytes",
+        "https://url.spec.whatwg.org/#percent-encode",
+        "https://url.spec.whatwg.org/#fragment-state",
+        "https://example.com/#",
+        "https://example.xn--0zwm56d/a/c/d%7Ee?q=1#Frag%2e",
+        "https://url.spec.whatwg.org/#goals",
+        "https://url.spec.whatwg.org/",
+        "https://github.com/whatwg/url/issues/281"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://url.spec.whatwg.org/",
+          "title": "https://url.spec.whatwg.org/"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/whatwg/url/main/url.bs",
+          "title": "https://raw.githubusercontent.com/whatwg/url/main/url.bs"
+        },
+        {
+          "url": "https://github.com/whatwg/url/issues/281",
+          "title": "Single and double dot segments in paths cannot be represented – Premature decoding of . character sequences. · Issue #281 · whatwg/url"
+        },
+        {
+          "url": "https://docs.python.org/3/library/urllib.parse.html",
+          "title": "urllib.parse — Parse URLs into components — Python 3.14.7 ..."
+        },
+        {
+          "url": "https://dev.to/sethmlarson/why-urls-are-hard-path-parameters-and-urlparse-c2n",
+          "title": "Why URLs are Hard: Path Parameters and urlparse - DEV Community"
+        },
+        {
+          "url": "https://nodejs.org/api/url.html",
+          "title": "URL | Node.js v26.7.0 Documentation"
+        },
+        {
+          "url": "https://www.php.net/manual/en/function.parse-url.php",
+          "title": "PHP: parse_url - Manual"
+        },
+        {
+          "url": "https://lists.w3.org/Archives/Public/public-webapps-github/2017Apr/1148.html",
+          "title": "- From: Timothy Gu <notifications@github.com>"
+        },
+        {
+          "url": "https://lists.w3.org/Archives/Public/public-webapps-github/2017Jun/0029.html",
+          "title": "- From: Gordon P. Hemsley <notifications@github.com>"
+        },
+        {
+          "url": "https://lists.w3.org/Archives/Public/public-webapps-github/2020Apr/0964.html",
+          "title": "- From: Domenic Denicola <notifications@github.com>"
+        },
+        {
+          "url": "https://www.unicode.org/reports/tr46/",
+          "title": "https://www.unicode.org/reports/tr46/"
+        },
+        {
+          "url": "https://url.spec.whatwg.org/#concept-basic-url-parser",
+          "title": "https://url.spec.whatwg.org/#concept-basic-url-parser"
+        },
+        {
+          "url": "https://url.spec.whatwg.org/#scheme-state",
+          "title": "https://url.spec.whatwg.org/#scheme-state"
+        },
+        {
+          "url": "https://url.spec.whatwg.org/#special-scheme",
+          "title": "https://url.spec.whatwg.org/#special-scheme"
+        },
+        {
+          "url": "https://url.spec.whatwg.org/#concept-host-parser",
+          "title": "https://url.spec.whatwg.org/#concept-host-parser"
+        },
+        {
+          "url": "https://0x7f.1",
+          "title": "https://0x7f.1"
+        },
+        {
+          "url": "https://url.spec.whatwg.org/#concept-domain-to-ascii",
+          "title": "https://url.spec.whatwg.org/#concept-domain-to-ascii"
+        },
+        {
+          "url": "https://例え.テスト",
+          "title": "https://例え.テスト"
+        },
+        {
+          "url": "https://EXAMPLE.com",
+          "title": "https://EXAMPLE.com"
+        },
+        {
+          "url": "https://%E4%BE%8B.test",
+          "title": "https://%E4%BE%8B.test"
+        },
+        {
+          "url": "https://url.spec.whatwg.org/#port-state",
+          "title": "https://url.spec.whatwg.org/#port-state"
+        },
+        {
+          "url": "https://url.spec.whatwg.org/#concept-url-serializer",
+          "title": "https://url.spec.whatwg.org/#concept-url-serializer"
+        },
+        {
+          "url": "https://example.com:443/",
+          "title": "https://example.com:443/"
+        },
+        {
+          "url": "https://example.com/",
+          "title": "https://example.com/"
+        },
+        {
+          "url": "https://url.spec.whatwg.org/#syntax-url-path-segment",
+          "title": "https://url.spec.whatwg.org/#syntax-url-path-segment"
+        },
+        {
+          "url": "https://url.spec.whatwg.org/#path-state",
+          "title": "https://url.spec.whatwg.org/#path-state"
+        },
+        {
+          "url": "https://url.spec.whatwg.org/#shorten-a-urls-path",
+          "title": "https://url.spec.whatwg.org/#shorten-a-urls-path"
+        },
+        {
+          "url": "https://url.spec.whatwg.org/#path-start-state",
+          "title": "https://url.spec.whatwg.org/#path-start-state"
+        },
+        {
+          "url": "https://url.spec.whatwg.org/#url-opaque-path",
+          "title": "https://url.spec.whatwg.org/#url-opaque-path"
+        },
+        {
+          "url": "https://example.com",
+          "title": "https://example.com"
+        },
+        {
+          "url": "https://url.spec.whatwg.org/#percent-encoded-bytes",
+          "title": "https://url.spec.whatwg.org/#percent-encoded-bytes"
+        },
+        {
+          "url": "https://url.spec.whatwg.org/#percent-encode",
+          "title": "https://url.spec.whatwg.org/#percent-encode"
+        },
+        {
+          "url": "https://url.spec.whatwg.org/#fragment-state",
+          "title": "https://url.spec.whatwg.org/#fragment-state"
+        },
+        {
+          "url": "https://example.com/#",
+          "title": "https://example.com/#"
+        },
+        {
+          "url": "https://example.xn--0zwm56d/a/c/d%7Ee?q=1#Frag%2e",
+          "title": "https://example.xn--0zwm56d/a/c/d%7Ee?q=1#Frag%2e"
+        },
+        {
+          "url": "https://url.spec.whatwg.org/#goals",
+          "title": "https://url.spec.whatwg.org/#goals"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://url.spec.whatwg.org/",
+          "text": "# URL Standard: Key Algorithms and Tables\n\n## Host Parser\nThe host parser takes \"a [scalar value string](https://infra.spec.whatwg.org/#scalar-value-string) input with an optional boolean isOpaque (default false)\" and returns \"failure or a [host](#concept-host).\"\n\nKey steps include:\n- If input starts with `[`, parse as IPv6\n- If `isOpaque` is true, parse as opaque host\n- Otherwise, \"Let asciiDomain be the result of running [domain parser](#concept-domain-to-ascii) with domain and false\"\n- If asciiDomain \"ends in a number,\" parse as IPv4\n\n## Domain Parser (ToASCII)\n\"The domain parser algorithm, given a [scalar value string](https://infra.spec.whatwg.org/#scalar-value-string) domain and a boolean beStrict, runs these steps.\"\n\nFor non-ASCII domains: \"Set result to the result of running [domain parser ToASCII](#domain-parser-toascii) with domain and false.\"\n\nThe algorithm \"returns the result of running [Unicode ToASCII](https://www.unicode.org/reports/tr46/#ToASCII)\" with specific parameters including \"IgnoreInvalidPunycode set to false.\"\n\nASCII domains receive special handling: \"When beStrict is false and domain is an [ASCII string](https://infra.spec.whatwg.org/#ascii-string), the algorithm returns domain [lowercased](https://infra.spec.whatwg.org/#ascii-lowercase) regardless of [Unicode ToASCII](https://www.unicode.org/reports/tr46/#ToASCII)'s outcome.\"\n\n## Special Schemes Table\n\n| Special scheme | Default port |\n|---|---|\n| `ftp` | 21 |\n| `file` | null |\n| `http` | 80 |\n| `https` | 443 |\n| `ws` | 80 |\n| `wss` | 443 |\n\n## Port State Logic\nIn the port state of the basic URL parser: \"Set url's [port](#concept-url-port) to null, if port is url's [scheme](#concept-url-scheme)'s [default port](#default-port); otherwise to port.\""
+        },
+        {
+          "url": "https://url.spec.whatwg.org/",
+          "text": "# URL Standard - Dot Segments and Fragment Encoding\n\n## Dot Segment Definitions\n\n**Single-dot path segment:** \"a URL path segment that is \"`.`\" or an ASCII case-insensitive match for \"`%2e`\"\"\n\n**Double-dot path segment:** \"a URL path segment that is \"`..`\" or an ASCII case-insensitive match for \"`.%2e`\", \"`%2e.`\", or \"`%2e%2e`\"\"\n\n## Shorten a URL's Path Algorithm\n\n\"Remove path's last item, if any\" — but with a critical exception: \"If url's scheme is \"`file`\", path's size is 1, and path[0] is a normalized Windows drive letter, then return\"\n\n## Path State Dot Handling\n\nThe path state contains logic to recognize dot segments: when the parser encounters a single or double-dot segment, it processes it accordingly. Single-dot segments are skipped; double-dot segments trigger path shortening.\n\n## Fragment State and Encoding\n\nThe fragment state sets \"url's fragment to the empty string\" when encountering `#`. The relevant encoding mechanism is: \"the fragment percent-encode set is a percent-encode set consisting of the C0 control percent-encode set and U+0020 SPACE, U+0022 (\"), U+003C (<), U+003E (>), and U+0060 (`)\"\n\n## Percent-Encoding During Parsing\n\nThe parser **does not decode existing percent-encoded sequences**. The standard states that the host parser accepts \"percent-encoded bytes\" but processes domains through \"percent-decoding\" only in specific contexts (domain parsing), not during general URL parsing path traversal."
+        },
+        {
+          "url": "https://url.spec.whatwg.org/",
+          "text": "# URL Standard Algorithm Excerpts\n\n## (a) Host Parser Algorithm\n\nThe host parser processes input with an optional `isOpaque` boolean (default false):\n\n1. \"If input starts with U+005B (\\[), then: If input does not end with U+005D (\\]), [IPv6-unclosed] validation error, return failure. Return the result of IPv6 parsing input with its leading U+005B (\\[) and trailing U+005D (\\]) removed.\"\n\n2. \"If isOpaque is true, then return the result of opaque-host parsing input.\"\n\n3. \"If input contains a percent-encoded byte, domain-percent-encoded validation error.\"\n\n4. \"Let domain be the result of running UTF-8 decode without BOM on the percent-decoding of input.\"\n\nForbidden domain code points include: \"a forbidden host code point, a C0 control, U+0025 (%), or U+007F DELETE.\"\n\n## (b) Scheme State Lowercasing\n\n\"If [c] is an ASCII alphanumeric, U+002B (+), U+002D (-), or U+002E (.), append [c], lowercased, to buffer.\"\n\n## (c) Path State Steps\n\nThe specification contains extensive path state logic: \"Let buffer be the empty string\" followed by operations handling \"..\", \".\", and UTF-8 percent-encoding using \"the path percent-encode set\" for special versus non-special URLs.\n\n## (d) Path Start State for Special URLs\n\n\"If url is special, then set state to authority state\" or \"path state\" depending on whether the character matches specific conditions."
+        },
+        {
+          "url": "https://url.spec.whatwg.org/",
+          "text": "# URL Standard Definitions and Notes\n\n## (a) Percent-Encode Definitions\n\n**Percent-encode:** \"return a string consisting of U+0025 (%), followed by two ASCII upper hex digits representing byte.\"\n\n**UTF-8 percent-encode:** \"return the result of running percent-encode after encoding with UTF-8, input, and percentEncodeSet.\"\n\nBoth produce **uppercase** hex digits.\n\n## (b) IPv4/IPv6 Normalization Notes\n\n**IPv4 serializer:** Converts a 32-bit integer into dotted-decimal notation by extracting octets and prepending them to output in reverse order.\n\n**IPv6 serializer:** Compresses consecutive zero pieces using `::` notation and represents pieces \"as the shortest possible lowercase hexadecimal number.\"\n\n## (c) Non-Normalization/Non-Decoding Goals\n\nThe standard states: \"The output of the URL serializer is not always a valid URL string\" and emphasizes that \"percent-encoding results in a string with more U+0025 (%) code points than the input.\"\n\nA key goal is ensuring \"parse-then-serialize operation will not change with any further parse-then-serialize operations.\"\n\n## (d) URL Serializer Steps\n\nThe document section 4.5 contains the full serializer algorithm but was truncated in the provided content.\n\n## (e) Opaque Path Definition\n\n\"A URL has an opaque path if its path is a URL path segment\" (a single ASCII string, not a list of segments)."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/whatwg/url/main/url.bs",
+          "text": "# URL Parsing: Path State and Percent-Encode Sets\n\n## Path State\n\nFrom the basic URL parser, the **path state** section includes:\n\n\"If c is U+002E (.), then: If url's path's size is 0 or url's path's last item is a double-dot URL path segment, then append a single-dot URL path segment to url's path and continue.\"\n\nThe state also handles double-dot segments: \"If url's path's last item is not a double-dot URL path segment, shorten url's path and then append a double-dot URL path segment to url's path and continue.\"\n\nFor other characters: \"Let encodedCodePoints be the result of running UTF-8 percent-encode c using the path percent-encode set. Append encodedCodePoints to url's path's last item.\"\n\n## Path Start State\n\n\"If url is special and c is U+005C (\\), invalid-reverse-solidus validation error, set state to path state and decrease pointer by 1.\"\n\n## Percent-Encode Set Definitions\n\n**Path percent-encode set**: Comprises the query percent-encode set plus U+003F (?), U+005E (^), U+0060 (`), U+007B ({), and U+007D (}).\n\n**Query percent-encode set**: Includes C0 control percent-encode set plus U+0020 SPACE, U+0022 (\"), U+0023 (#), U+003C (<), and U+003E (>).\n\n**Special-query percent-encode set**: The query percent-encode set with U+0027 (') added.\n\n**Fragment percent-encode set**: C0 control percent-encode set plus U+0020 SPACE, U+0022 (\"), U+003C (<), U+003E (>), and U+0060 (`)."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/whatwg/url/main/url.bs",
+          "text": "# URL Standard: Key Parser Specifications\n\n## Host Parser Steps\n\nThe host parser takes a scalar value string input with optional boolean isOpaque (default false) and returns failure or a host:\n\n1. If input starts with U+005B ([), check for closing U+005D (]), then return IPv6 parsing result\n2. If isOpaque is true, return opaque-host parsing result\n3. Assert input is not empty\n4. If input contains percent-encoded byte, signal domain-percent-encoded validation error\n5. Decode input using UTF-8 decode without BOM on percent-decoded input\n6. Run domain parser with result and false\n7. If failure, return failure\n8. If domain ends in number, check for non-ASCII input and return IPv4 parsing result\n9. Return ASCII domain\n\n## Domain Parser (Domain to ASCII) Steps\n\nThe domain parser takes a scalar value string domain and boolean beStrict, returning failure or a domain:\n\n1. Run domain parser ToASCII with domain and true\n2. If failure, signal domain-to-ASCII validation error\n3. If beStrict is true and result is failure, return failure\n4. If beStrict is true, return strict result\n5. If domain is ASCII string, return lowercased version\n6. Otherwise run domain parser ToASCII with domain and false\n7. If failure, return failure\n8. If empty string, return failure\n9. If contains forbidden domain code point, return failure\n10. Return result\n\n## Key Parser Notes\n\n**Host Percent-Decoding:** \"Hosts are percent-decoded before being processed when the URL is special, which would result in the following host portion becoming 'exa#mple.org' and thus triggering this error\" for URLs like `https://exa%23mple.org`.\n\n**Path/Query/Fragment Encoding:** The parser preserves percent signs in paths, queries, and fragments without decoding them during parsing—only encoding occurs.\n\n## Fragment State Steps\n\nIn the basic URL parser's fragment state:\n\n1. Append character to URL's fragment using C0 control percent-encode set\n2. Continue until EOF code point\n\n## Special Authority Ignore Slashes State\n\n1. If "
+        },
+        {
+          "url": "https://raw.githubusercontent.com/whatwg/url/main/url.bs",
+          "text": "I cannot locate the \"path state\" or \"fragment state\" blocks in the provided web page content. The content appears to be truncated at a point during the \"authority state\" section of the basic URL parser, before reaching those subsequent state definitions.\n\nTo obtain the exact source text you're requesting, you would need to access the complete URL Standard specification document directly at https://url.spec.whatwg.org/ or provide content that includes those specific state blocks."
+        },
+        {
+          "url": "https://url.spec.whatwg.org/",
+          "text": "I cannot find the complete \"path state\" or \"fragment state\" sections in the provided content. The document appears to be truncated mid-way through the URL parser state machine description with the note \"[Content truncated due to length...]\"\n\nHowever, I can address your question about percent-encoded sequences:\n\n**On percent-encoding preservation:** The spec notes: \"The other values for the percentEncodeSet argument — which happen to be used by the [URL parser](#concept-url-parser) — leave U+0025 (%) untouched and as such it needs to be [percent-encoded](#utf-8-percent-encode) first in order to be properly represented.\"\n\n**On idempotence:** The goals section states the standard aims to \"Ensure the combination of parser, serializer, and API guarantee idempotence. For example, a non-failure result of a parse-then-serialize operation will not change with any further parse-then-serialize operations applied to it.\"\n\n**On \"%2e\":** Single-dot and double-dot segments are defined as matching \"%2e\" (case-insensitive), but the complete path state logic needed to answer your first question isn't fully visible in this excerpt."
+        },
+        {
+          "url": "https://url.spec.whatwg.org/",
+          "text": "URL Standard"
+        },
+        {
+          "url": "https://github.com/whatwg/url/issues/281",
+          "text": "Single and double dot segments in paths cannot be represented – Premature decoding of . character sequences. · Issue #281 · whatwg/url"
+        },
+        {
+          "url": "https://docs.python.org/3/library/urllib.parse.html",
+          "text": "urllib.parse — Parse URLs into components — Python 3.14.7 ..."
+        },
+        {
+          "url": "https://dev.to/sethmlarson/why-urls-are-hard-path-parameters-and-urlparse-c2n",
+          "text": "Why URLs are Hard: Path Parameters and urlparse - DEV Community"
+        },
+        {
+          "url": "https://nodejs.org/api/url.html",
+          "text": "URL | Node.js v26.7.0 Documentation"
+        },
+        {
+          "url": "https://www.php.net/manual/en/function.parse-url.php",
+          "text": "PHP: parse_url - Manual"
+        },
+        {
+          "url": "https://lists.w3.org/Archives/Public/public-webapps-github/2017Apr/1148.html",
+          "text": "- From: Timothy Gu <notifications@github.com>"
+        },
+        {
+          "url": "https://lists.w3.org/Archives/Public/public-webapps-github/2017Jun/0029.html",
+          "text": "- From: Gordon P. Hemsley <notifications@github.com>"
+        },
+        {
+          "url": "https://lists.w3.org/Archives/Public/public-webapps-github/2020Apr/0964.html",
+          "text": "- From: Domenic Denicola <notifications@github.com>"
+        },
+        {
+          "url": "https://www.unicode.org/reports/tr46/",
+          "text": "# ToASCII and Processing Steps Analysis\n\n## Processing Steps (Section 4)\n\nThe specification confirms that processing includes both mapping and normalization:\n\n**Mapping:** \"For each code point in the domain_name string, look up the Status value in Section 5\" and apply transformations including case-folding through mapped status values.\n\n**Normalization:** \"Normalize the domain_name string to Unicode Normalization Form C.\"\n\n## ToASCII Algorithm (Section 4.2)\n\nToASCII explicitly performs Punycode conversion with the \"xn--\" prefix:\n\n\"Convert each label with non-ASCII characters into Punycode, and prefix by 'xn--'.\"\n\n## Summary\n\nYes, the processing steps case-fold/map code points and apply NFC normalization. Yes, ToASCII converts labels containing non-ASCII characters to Punycode and prefixes them with \"xn--\". Labels containing only ASCII characters bypass Punycode conversion."
+        },
+        {
+          "url": "https://url.spec.whatwg.org/",
+          "text": "# URL Standard: Path State and Host State Definitions\n\n## Path Start State\n\n\"If [c](#c) is U+002F (/), then set state to [path state](#path-state). Otherwise, if url [is special](#is-special), [c](#c) is U+005C (\\\\), set state to [path state](#path-state) and decrease pointer by 1. Otherwise, set url's [path](#concept-url-path) to the empty string and set state to [opaque path state](#cannot-be-a-base-url-path-state).\"\n\n## Host State / Hostname State\n\nThe specification describes this as a combined state with two entry points. Key provisions include: \"If [c](#c) is U+003A (:) and insideBrackets is false: If buffer is the empty string, [host-missing](#host-missing) validation error, return failure.\"\n\n## URL Path Definition\n\n\"A URL path is either a [URL path segment](#url-path-segment) or a [list](https://infra.spec.whatwg.org/#list) of zero or more [URL path segments](#url-path-segment).\"\n\n## Special URL Path Requirements\n\n\"A [special](#is-special) [URL](#concept-url)'s [path](#concept-url-path) is always a [list](https://infra.spec.whatwg.org/#list), i.e., it is never [opaque](#url-opaque-path).\" This means special URLs cannot have opaque paths but permits empty path lists.\n\n## Credentials/Port Restrictions\n\n\"A [URL](#concept-url) cannot have a username/password/port if its [host](#concept-url-host) is null or the empty string, or its [scheme](#concept-url-scheme) is \"`file`\".\""
+        },
+        {
+          "url": "https://url.spec.whatwg.org/",
+          "text": "# URL Parser and Serializer Steps\n\n## URL Parser - Input Sanitization\n\nThe URL parser's initial steps handle whitespace and control characters:\n\n**Leading/trailing removal:** \"If input contains any leading or trailing C0 control or space, invalid-URL-unit validation error. Remove any leading and trailing C0 control or space from input.\"\n\n**Tab/newline removal:** \"If input contains any ASCII tab or newline, invalid-URL-unit validation error. Remove all ASCII tab or newline from input.\"\n\n## URL Serializer - Port and Fragment Handling\n\nThe serializer constructs the output string with these conditional components:\n\n**Port serialization:** \"If url's port is non-null, append U+003A (:), followed by url's port, serialized, to output.\"\n\n**Fragment serialization:** \"If url's fragment is non-null, append U+0023 (#), followed by url's fragment, to output.\"\n\nThese steps ensure the serialized URL properly represents the internal URL record's structure."
+        }
+      ],
+      "final_answer": "## Short answer\n\nParsing an `https://` URL under the WHATWG URL Standard applies a fixed set of normalizations, and — importantly — **percent-encoded bytes are *not* among the things it normalizes**, except when a percent-encoded sequence spells a dot segment. Below, each claim is tied to the spec text I actually retrieved; a \"Confidence & gaps\" section at the end separates verified quotes from inference.\n\n---\n\n## 1. Input cleanup (before any component is parsed)\n\nThe basic URL parser first sanitizes the input string:\n\n- \"If input contains any leading or trailing C0 control or space … Remove any leading and trailing C0 control or space from input.\" ([url.spec.whatwg.org](https://url.spec.whatwg.org/#concept-basic-url-parser))\n- \"If input contains any ASCII tab or newline … Remove all ASCII tab or newline from input.\" ([url.spec.whatwg.org](https://url.spec.whatwg.org/#concept-basic-url-parser))\n\nSo tabs/newlines are deleted *anywhere* in the URL, including in the middle of a hostname or a percent-triplet.\n\n## 2. Scheme: ASCII-lowercased\n\nIn scheme state the parser appends each character \"lowercased, to buffer\" ([url.spec.whatwg.org](https://url.spec.whatwg.org/#scheme-state)). `HTTPS` → `https`. `https` is in the special-scheme table, which drives most of the remaining behavior ([url.spec.whatwg.org](https://url.spec.whatwg.org/#special-scheme)).\n\n## 3. Host: percent-decoded, then IDNA/UTS-46 ToASCII, then lowercased\n\nFor a special scheme the host parser runs, in order ([url.spec.whatwg.org](https://url.spec.whatwg.org/#concept-host-parser)):\n\n1. If input starts with `[`, IPv6-parse it (bracketed literal).\n2. \"If input contains a percent-encoded byte, domain-percent-encoded validation error.\" — a *validation error*, not failure.\n3. \"Let domain be the result of running UTF-8 decode without BOM on the **percent-decoding** of input.\" → **the host is percent-decoded** (this is the one place the parser decodes `%XX`). The spec's own note illustrates this: `https://exa%23mple.org` yields the host portion \"`exa#mple.org`\" and thus triggers the error ([url.spec.whatwg.org](https://url.spec.whatwg.org/#concept-host-parser)).\n4. Run the domain parser (domain-to-ASCII) with `beStrict` false.\n5. If the resulting ASCII domain \"ends in a number\", run the IPv4 parser (so `https://0x7f.1` and similar are canonicalized to dotted-decimal) ([url.spec.whatwg.org](https://url.spec.whatwg.org/#concept-host-parser)).\n\nThe domain parser: for non-ASCII input it \"returns the result of running **Unicode ToASCII**\" (UTS #46) with, among others, `IgnoreInvalidPunycode` false; and \"When beStrict is false and domain is an ASCII string, the algorithm returns domain **lowercased** regardless of Unicode ToASCII's outcome\"; failure is returned for an empty result or a result containing a forbidden domain code point (which include \"a forbidden host code point, a C0 control, U+0025 (%), or U+007F DELETE\") ([url.spec.whatwg.org](https://url.spec.whatwg.org/#concept-domain-to-ascii)).\n\nWhat UTS #46 contributes for a Unicode hostname ([unicode.org/reports/tr46](https://www.unicode.org/reports/tr46/)):\n\n- **Mapping** — \"For each code point in the domain_name string, look up the Status value in Section 5\" and apply the mapping (this is where case-folding and compatibility mappings happen).\n- **Normalization** — \"Normalize the domain_name string to Unicode Normalization Form C.\"\n- **Punycode** — \"Convert each label with non-ASCII characters into Punycode, and prefix by '`xn--`'.\" Pure-ASCII labels are left alone.\n\nNet effect: `https://例え.テスト` and `https://EXAMPLE.com` both come out as a lowercase, NFC-mapped, `xn--`-encoded ASCII domain. Note the *ordering* consequence: because percent-decoding happens **before** ToASCII, `https://%E4%BE%8B.test` is decoded and then IDNA-processed rather than being kept as literal percent-escapes.\n\n## 4. Default port: dropped\n\nPort state: \"Set url's port to null, **if port is url's scheme's default port**; otherwise to port.\" ([url.spec.whatwg.org](https://url.spec.whatwg.org/#port-state)) The special-scheme table gives `https` → 443 (also `http`/`ws` → 80, `wss` → 443, `ftp` → 21, `file` → null) ([url.spec.whatwg.org](https://url.spec.whatwg.org/#special-scheme)).\n\nSerialization then omits it: \"If url's port is non-null, append U+003A (:), followed by url's port, serialized, to output.\" ([url.spec.whatwg.org](https://url.spec.whatwg.org/#concept-url-serializer)) So `https://example.com:443/` → `https://example.com/`, while `:8443` is preserved.\n\n## 5. Dot segments: removed at parse time, including percent-encoded spellings\n\nThe definitions are explicit and case-insensitive over the escaped form ([url.spec.whatwg.org](https://url.spec.whatwg.org/#syntax-url-path-segment)):\n\n- **single-dot path segment**: \"a URL path segment that is \"`.`\" or an ASCII case-insensitive match for \"`%2e`\"\"\n- **double-dot path segment**: \"a URL path segment that is \"`..`\" or an ASCII case-insensitive match for \"`.%2e`\", \"`%2e.`\", or \"`%2e%2e`\"\"\n\nIn path state, when a segment is terminated, \"When the buffer is a double-dot path segment, the parser shortens url's path, and then if neither the character is U+002F (/), nor the url is special and the character is U+005C (\\), it appends the empty string to url's path\"; single-dot segments are dropped (with the same trailing-empty-segment rule), and other buffers are appended as a segment ([url.spec.whatwg.org](https://url.spec.whatwg.org/#path-state)). \"Shorten a URL's path\" is \"Remove path's last item, if any\", with a `file`-scheme Windows-drive-letter exception ([url.spec.whatwg.org](https://url.spec.whatwg.org/#shorten-a-urls-path)).\n\nThree consequences worth stating plainly:\n\n- `/a/b/../c` → `/a/c`; `/a/b/..` → `/a/` (trailing empty segment is appended because the terminator is EOF, not `/`).\n- `/a/%2E%2E/b` → `/b`. **This is a real divergence from RFC 3986**, whose `remove_dot_segments` only matches literal `.`/`..`.\n- For special URLs, `\\` is treated as a path separator and raises an `invalid-reverse-solidus` validation error ([url.spec.whatwg.org](https://url.spec.whatwg.org/#path-start-state)).\n\nAlso: an `https` URL's path \"is always a list, i.e., it is never opaque\" ([url.spec.whatwg.org](https://url.spec.whatwg.org/#url-opaque-path)), and path start state routes into path state for special URLs, decreasing the pointer when the character is neither `/` nor `\\` ([url.spec.whatwg.org](https://url.spec.whatwg.org/#path-start-state)) — which is why `https://example.com` serializes with a `/` path.\n\n## 6. Percent-encoding of path and fragment: *added*, never *removed or re-cased*\n\n- Path state: characters not in the allowed set are run through \"UTF-8 percent-encode c using the **path percent-encode set**\" and appended to the buffer ([url.spec.whatwg.org](https://url.spec.whatwg.org/#path-state)).\n- **path percent-encode set** = query percent-encode set + `?`, `^`, `` ` ``, `{`, `}`; **query percent-encode set** = C0 control set + space, `\"`, `#`, `<`, `>`; **fragment percent-encode set** = C0 control set + space, `\"`, `<`, `>`, `` ` `` ([url.spec.whatwg.org](https://url.spec.whatwg.org/#percent-encoded-bytes)).\n- **percent-encode**: \"return a string consisting of U+0025 (%), followed by two ASCII **upper** hex digits representing byte\" — so newly produced escapes are uppercase ([url.spec.whatwg.org](https://url.spec.whatwg.org/#percent-encode)).\n- Crucially, the sets used by the URL parser \"**leave U+0025 (%) untouched** and as such it needs to be percent-encoded first in order to be properly represented\" ([url.spec.whatwg.org](https://url.spec.whatwg.org/#percent-encoded-bytes)).\n\nTherefore an input like `/%7euser/%2Fa%20b` keeps `%7e` lowercase, keeps `%2F` uppercase, and does **not** decode `%7e` to `~` or `%20` to a space. The URL Standard performs **no** case normalization of percent-triplets and **no** decoding of unreserved characters — both of which RFC 3986 §6.2.2 recommends. A stray `%` not followed by two hex digits produces an `invalid-URL-unit` validation error but is left as a literal `%` (i.e., parsing still succeeds).\n\n## 7. Fragment: preserved, percent-encoded, never resolved\n\n`#` ends the path/query and sets url's fragment to the empty string, then fragment state percent-encodes each remaining code point using the fragment percent-encode set ([url.spec.whatwg.org](https://url.spec.whatwg.org/#fragment-state)). The serializer emits it whenever it is non-null: \"If url's fragment is non-null, append U+0023 (#), followed by url's fragment, to output.\" ([url.spec.whatwg.org](https://url.spec.whatwg.org/#concept-url-serializer)) So `https://example.com/#` round-trips with the empty fragment intact and is *not* the same record as `https://example.com/`. Dot segments and `%2e` inside a fragment are **not** touched — dot-segment logic lives only in path state.\n\n## 8. Worked example (composite of the above)\n\n`HTTPS://ExAmple.测试:443/a/b/%2e%2e/c/./d%7Ee?q=1#Frag%2e`\n\n→ scheme lowercased (§2); host percent-decoded, UTS-46-mapped/NFC'd, Punycoded, lowercased (§3); port 443 dropped (§4); `%2e%2e` and `.` segments removed (§5); `%7E` left byte-for-byte, `%2e` in the fragment left alone (§6–7):\n\n`https://example.xn--0zwm56d/a/c/d%7Ee?q=1#Frag%2e`\n\nThe idempotence goal in the spec's Goals section backs this being stable: \"a non-failure result of a parse-then-serialize operation will not change with any further parse-then-serialize operations applied to it\" ([url.spec.whatwg.org](https://url.spec.whatwg.org/#goals)).\n\n---\n\n## Confidence, gaps, and disagreements\n\n**Directly quoted / high confidence:** scheme lowercasing, special-scheme + default-port table, port-nulling step, host parser percent-decoding step and its `exa%23mple.org` note, domain parser's ToASCII call and ASCII-lowercasing shortcut, forbidden domain code points, single-/double-dot segment definitions, shorten-a-URL's-path, all four percent-encode-set definitions, uppercase-hex percent-encode, the \"leave U+0025 untouched\" note, the tab/newline and C0-strip steps, the serializer's port and fragment steps, UTS #46 mapping/NFC/Punycode steps.\n\n**Partially verified — flag this:** I could not retrieve the **verbatim numbered sub-steps of path state and fragment state**. The live spec page and the `url.bs` source both truncated in my fetching tool before those blocks. The path-state wording I quote in §5 comes from the search engine's index of the same spec page, and it matches the surrounding normative definitions I *did* retrieve verbatim. Treat the exact sub-step numbering as unverified; the substance (double-dot → shorten + conditional trailing empty segment; percent-encode with the path set) is corroborated from two independent retrievals.\n\n**Inference, not quoted text:** the statement that the parser *never* uppercases or decodes pre-existing `%XX` in path/query/fragment is an argument from absence — no retrieved step does so, and the \"leave U+0025 untouched\" note implies it — rather than an explicit prohibition I found in the spec. It is nonetheless the observable behavior of conforming implementations. Likewise, the `https://example.com` → `/` path claim is inferred from path start state plus \"a special URL's path is always a list\"; note that one of my fetches editorializes that this \"permits empty path lists,\" which I believe is an artifact of summarization rather than spec text — I would not rely on that clause.\n\n**Terminology caution:** \"normalization\" in RFC 3986 §6 and \"normalization\" in the WHATWG model are not the same set. WHATWG normalizes *more* on hosts (IDNA is mandatory, hosts are percent-decoded) and on dot segments (`%2e` counts), and *less* on percent-encoding (no triplet case normalization, no unreserved decoding). If your requirement is RFC 3986 syntax-based normalization, the WHATWG parser will not deliver it.\n\n**Version note:** all citations are to the Living Standard as fetched on 2026-08-27; the URL Standard changes without version numbers, so re-check `#path-state` and `#concept-domain-to-ascii` before relying on the exact wording.\n\nSources:\n- [WHATWG URL Standard](https://url.spec.whatwg.org/)\n- [Unicode Technical Standard #46 (UTS-46, IDNA Compatibility Processing)](https://www.unicode.org/reports/tr46/)\n- [whatwg/url issue #281 — \"Single and double dot segments in paths cannot be represented\"](https://github.com/whatwg/url/issues/281) (background on the `%2e` decoding decision)"
+    }
+  ]
+}

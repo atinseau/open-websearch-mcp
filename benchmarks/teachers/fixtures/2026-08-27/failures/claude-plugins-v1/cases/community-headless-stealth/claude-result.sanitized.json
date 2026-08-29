@@ -1,0 +1,114 @@
+{
+  "is_error": false,
+  "duration_api_ms": 58784,
+  "num_turns": 2,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.6939725000000001,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 55249,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 4119,
+    "output_tokens_details": {
+      "thinking_tokens": 2475
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 55249,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 4119,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 55249,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 55249
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 37914,
+      "outputTokens": 25,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.038039,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 4119,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 55249,
+      "webSearchRequests": 0,
+      "costUSD": 0.6559335000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"claim_1\",\"claim_2\",\"claim_3\",\"claim_5\",\"claim_6\",\"claim_7\"],\"rejected_claims\":[{\"id\":\"claim_4\",\"reason\":\"Étayage insuffisant et patterns trop étroits. Le run Codex n'a ouvert aucune URL (opened_urls vide, payloads de recherche absents) et les evidence_passages ne sont que des copies de la réponse finale ré-étiquetées ; l'article Vastel 2023 n'est corroboré par aucune autre source du dossier (absent du run Claude), alors que la claim avance des détails de dump très spécifiques (empty plugins, hasChrome: false, webDriver: true). De plus, les acceptable_patterns ('new headless Chrome removed several older tells', 'older public fingerprint tests became less discriminating') notent la paraphrase éditoriale de Codex plutôt qu'un texte source vérifiable, ce qui constitue un ancrage de notation invalide/trop étroit.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": ["claim_1", "claim_2", "claim_3", "claim_5", "claim_6", "claim_7"],
+    "rejected_claims": [
+      {
+        "id": "claim_4",
+        "reason": "Étayage insuffisant et patterns trop étroits. Le run Codex n'a ouvert aucune URL (opened_urls vide, payloads de recherche absents) et les evidence_passages ne sont que des copies de la réponse finale ré-étiquetées ; l'article Vastel 2023 n'est corroboré par aucune autre source du dossier (absent du run Claude), alors que la claim avance des détails de dump très spécifiques (empty plugins, hasChrome: false, webDriver: true). De plus, les acceptable_patterns ('new headless Chrome removed several older tells', 'older public fingerprint tests became less discriminating') notent la paraphrase éditoriale de Codex plutôt qu'un texte source vérifiable, ce qui constitue un ancrage de notation invalide/trop étroit."
+      }
+    ]
+  },
+  "ttft_ms": 36167,
+  "ttft_stream_ms": 1555,
+  "time_to_request_ms": 19,
+  "type": "result",
+  "duration_ms": 56693,
+  "uuid": "[REDACTED]",
+  "queued_turn_count": 0
+}

@@ -1,0 +1,9 @@
+{
+  "accepted_claim_ids": ["c1", "c2", "c3", "c4", "c5"],
+  "rejected_claims": [
+    {
+      "id": "c6",
+      "reason": "Motifs de grading invalides / trop étroits : les deux acceptable_patterns exigent des paraphrases inventées absentes de toute évidence fournie (« single-region », « homepage-only », « scope limits », « better spoofing »), alors que les passages disent « one European datacenter », « covered only Tranco Top 10K homepages » et « alter fingerprint attributes without introducing inconsistencies ». Une réponse correcte reprenant la formulation réelle des sources échouerait aux deux motifs. La claim agrège de plus les limitations de trois papiers distincts (Gundelach, Venugopalan, Wang) en imposant un ordre lexical unique, ce qui n'est pas déterministe pour un grading lexical."
+    }
+  ]
+}

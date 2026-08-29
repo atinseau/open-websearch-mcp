@@ -1,0 +1,17 @@
+{
+  "accepted_claim_ids": ["c1", "c2", "c5"],
+  "rejected_claims": [
+    {
+      "id": "c3",
+      "reason": "Contains a figure contradicted by directly fetched evidence. The claim asserts that \"los 12 años más cálidos de la serie pertenecen al siglo XXI\" and encodes this in both required_concepts and the pattern \"12\\s+a[nñ]os m[aá]s c[aá]lidos\". The Claude run's WebFetch of the AEMET 2025 annual summary states \"Los 11 años más cálidos de la serie son todos del siglo XXI\", and the fetched 2024 report likewise says \"Los 11 años más cálidos en España se han registrado en el siglo XXI\". The only support for \"12\" is the Codex run's own final answer, and that run opened no URLs (opened_urls is empty; tool payloads were never exposed), so it provides no independent corroboration. Grading on \"12 años\" would penalize a correct answer stating 11."
+    },
+    {
+      "id": "c4",
+      "reason": "The 2024 precipitation figures are contradicted by fetched source content. The claim states 660,1 mm and 104 % of normal, and grades on the patterns \"660,?1\\s*mm\" and \"104\\s*%\". The Claude run's WebFetch of the AEMET 2024 climate-state page reports \"Acumulado anual 2024: 669.1 mm\" and \"105 %\" of the 1991-2020 normal. These are load-bearing numeric values, not incidental, so the digit transposition makes the grading patterns actively wrong. The 2023 half (531 mm, 84 %, \"muy seco\") is uncorroborated by any opened source, resting only on the Codex final answer echoed back as its own evidence passage."
+    },
+    {
+      "id": "c6",
+      "reason": "Rests on verbatim quotations from sources that neither run actually opened, and grades on overly narrow exact-string patterns. The quoted phrase \"grandes irregularidades tanto espacial como temporalmente\" is attributed to the IECLI 2024/2025 executive summaries, and the three-part uncertainty taxonomy (escenarios futuros de emisiones / modelos globales de circulación / métodos de regionalización) is attributed to aemet.es/es/idi/clima/escenarios_CC. The Codex run opened no URLs at all, and escenarios_CC does not appear in the Claude run's opened_urls, so no fetched passage in the bundle contains either quote. The acceptable_patterns are long literal quotations that would only match a near-verbatim reproduction of the unverified wording. The claim also blends observational-record uncertainty with projection uncertainty and adds a comparative framing (\"incertidumbre mayor para la precipitación que para la temperatura\") that is interpretation rather than a stated source assertion."
+    }
+  ]
+}

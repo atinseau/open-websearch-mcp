@@ -1,0 +1,114 @@
+{
+  "is_error": false,
+  "duration_api_ms": 46438,
+  "num_turns": 2,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.3644165,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 25811,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 3507,
+    "output_tokens_details": {
+      "thinking_tokens": 1547
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 25811,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 3507,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 25811,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 25811
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 18063,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.018163,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 3507,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 25811,
+      "webSearchRequests": 0,
+      "costUSD": 0.3462535,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"c1\",\"c2\",\"c3\",\"c5\",\"c6\",\"c7\",\"c8\"],\"rejected_claims\":[{\"id\":\"c4\",\"reason\":\"Provenance non vérifiable et inférence non étayée. PRAGMA module_list n'apparaît que dans le run Codex, dont opened_urls est vide et dont les tool_results indiquent que les payloads de recherche ne sont pas exposés : ses evidence_passages sont une recopie de sa propre réponse finale, pas du texte source. Le run Claude, qui a effectivement fetché pragma.html, fts5.html, compile.html et c3ref/compileoption_get.html, ne mentionne jamais module_list. De plus, l'assertion « PRAGMA module_list est le contrôle documenté le plus fort au niveau connexion » est explicitement étiquetée [Inference] par Codex lui-même, donc dépendante d'une interprétation non affirmée par la source primaire. Enfin, les acceptable_patterns sont trop étroits et verbatim (« registered virtual-table modules », « FTS5 is an SQLite virtual-table module ») : une réponse correcte fondée sur compile_options plus un test fonctionnel, comme celle du run Claude, échouerait intégralement à la notation lexicale. La partie étayée (FTS5 peut être fourni comme extension chargeable, donc un contrôle de compile-option ne prouve pas la disponibilité sur une connexion donnée) est corroborée par les deux runs, mais elle est indissociable, telle que la claim est rédigée, de l'inférence sur module_list.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": ["c1", "c2", "c3", "c5", "c6", "c7", "c8"],
+    "rejected_claims": [
+      {
+        "id": "c4",
+        "reason": "Provenance non vérifiable et inférence non étayée. PRAGMA module_list n'apparaît que dans le run Codex, dont opened_urls est vide et dont les tool_results indiquent que les payloads de recherche ne sont pas exposés : ses evidence_passages sont une recopie de sa propre réponse finale, pas du texte source. Le run Claude, qui a effectivement fetché pragma.html, fts5.html, compile.html et c3ref/compileoption_get.html, ne mentionne jamais module_list. De plus, l'assertion « PRAGMA module_list est le contrôle documenté le plus fort au niveau connexion » est explicitement étiquetée [Inference] par Codex lui-même, donc dépendante d'une interprétation non affirmée par la source primaire. Enfin, les acceptable_patterns sont trop étroits et verbatim (« registered virtual-table modules », « FTS5 is an SQLite virtual-table module ») : une réponse correcte fondée sur compile_options plus un test fonctionnel, comme celle du run Claude, échouerait intégralement à la notation lexicale. La partie étayée (FTS5 peut être fourni comme extension chargeable, donc un contrôle de compile-option ne prouve pas la disponibilité sur une connexion donnée) est corroborée par les deux runs, mais elle est indissociable, telle que la claim est rédigée, de l'inférence sur module_list."
+      }
+    ]
+  },
+  "ttft_ms": 22208,
+  "ttft_stream_ms": 2030,
+  "time_to_request_ms": 17,
+  "type": "result",
+  "duration_ms": 44854,
+  "uuid": "[REDACTED]",
+  "queued_turn_count": 0
+}

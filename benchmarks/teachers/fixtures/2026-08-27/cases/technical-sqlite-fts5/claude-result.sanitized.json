@@ -1,0 +1,124 @@
+{
+  "duration_api_ms": 43201,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.38474949999999997,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 27794,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 3471,
+    "output_tokens_details": {
+      "thinking_tokens": 1941
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 27794,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 3471,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 27794,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 27794
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 19476,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.019566,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 3471,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 27794,
+      "webSearchRequests": 0,
+      "costUSD": 0.3651835,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "is_error": false,
+  "num_turns": 2,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"c1_module_list_runtime\",\"c2_compile_options_enable_fts5\",\"c3_compileoption_used_api\",\"c4_fts5_loadable_extension\",\"c5_external_content_definition\",\"c6_external_content_consistency\",\"c8_external_content_replace_abort\"],\"rejected_claims\":[{\"id\":\"c7_external_content_sync_and_rebuild\",\"reason\":\"The evidence_passages attributed to https://www.sqlite.org/fts5.html are not documentation text; they are the Codex run's own paraphrased answer sentences (\\\"Triggers are one documented way to keep an external-content FTS5 table synchronized...\\\", \\\"the documented `rebuild` command can discard the existing FTS index...\\\") presented as source quotes. The supplied evidence contains different actual wording (\\\"creating the triggers does not copy existing rows from the content table into the FTS index\\\"; \\\"This command first deletes the entire full-text index, then rebuilds it based on the contents of the table or content table\\\"). The acceptable_patterns inherit this flaw: \\\"Triggers are one documented way\\\" and \\\"rebuilds? (it )?from the current content table\\\" are overly narrow patterns keyed to the paraphrase rather than the documented language, while the bare \\\"rebuild\\\" alternative is too broad to grade the claim. The underlying facts are supported and the claim could be re-drafted with the real fts5.html quotes.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": [
+      "c1_module_list_runtime",
+      "c2_compile_options_enable_fts5",
+      "c3_compileoption_used_api",
+      "c4_fts5_loadable_extension",
+      "c5_external_content_definition",
+      "c6_external_content_consistency",
+      "c8_external_content_replace_abort"
+    ],
+    "rejected_claims": [
+      {
+        "id": "c7_external_content_sync_and_rebuild",
+        "reason": "The evidence_passages attributed to https://www.sqlite.org/fts5.html are not documentation text; they are the Codex run's own paraphrased answer sentences (\"Triggers are one documented way to keep an external-content FTS5 table synchronized...\", \"the documented `rebuild` command can discard the existing FTS index...\") presented as source quotes. The supplied evidence contains different actual wording (\"creating the triggers does not copy existing rows from the content table into the FTS index\"; \"This command first deletes the entire full-text index, then rebuilds it based on the contents of the table or content table\"). The acceptable_patterns inherit this flaw: \"Triggers are one documented way\" and \"rebuilds? (it )?from the current content table\" are overly narrow patterns keyed to the paraphrase rather than the documented language, while the bare \"rebuild\" alternative is too broad to grade the claim. The underlying facts are supported and the claim could be re-drafted with the real fts5.html quotes."
+      }
+    ]
+  },
+  "ttft_ms": 25120,
+  "type": "result",
+  "duration_ms": 41594,
+  "uuid": "[REDACTED]",
+  "ttft_stream_ms": 1296,
+  "time_to_request_ms": 9,
+  "queued_turn_count": 0
+}

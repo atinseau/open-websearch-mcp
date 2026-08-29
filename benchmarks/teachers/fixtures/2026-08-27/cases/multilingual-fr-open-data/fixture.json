@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "case_id": "multilingual-fr-open-data",
+  "question": "Quelles obligations et limites les sources officielles françaises décrivent-elles pour la réutilisation des données publiques sous Licence Ouverte 2.0 ?",
+  "locale": "fr-FR",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim_1",
+      "text": "La Licence Ouverte 2.0 accorde un droit de réutilisation gratuit, non exclusif, mondial, pour une durée illimitée, y compris à des fins commerciales.",
+      "required_concepts": [
+        "licence_ouverte_2_0",
+        "gratuit",
+        "non_exclusif",
+        "mondial",
+        "illimite",
+        "commercial"
+      ],
+      "acceptable_patterns": [
+        "Licence Ouverte 2\\.0",
+        "gratuit",
+        "non exclusif",
+        "dans le monde entier|mondial",
+        "durée illimitée|illimitée",
+        "fins commerciales|commerciales"
+      ],
+      "sources": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.cnil.fr/fr/comment-reutiliser-les-donnees-diffusees",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.cada.fr/sites/default/files/guide_pratique.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "text": "La `Licence Ouverte 2.0` accorde au réutilisateur un droit de réutilisation `gratuit`, `non exclusif`, valable `dans le monde entier`, `pour une durée illimitée`, y compris à des `fins commerciales`."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_multilingual-fr-open-data",
+        "claude_run": "2026-08-27_claude_multilingual-fr-open-data"
+      }
+    },
+    {
+      "id": "claim_2",
+      "text": "L’obligation centrale de la licence est de mentionner la paternité de l’information, au minimum la source et la date de dernière mise à jour ; une URL peut suffire si elle assure cette mention effective.",
+      "required_concepts": ["attribution", "source", "date_mise_a_jour", "url"],
+      "acceptable_patterns": [
+        "mentionner la paternité|paternité",
+        "source",
+        "date de (la )?dernière mise à jour",
+        "URL"
+      ],
+      "sources": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "text": "L’obligation centrale prévue par la licence est de `mentionner la paternité` de l’information, c’est-à-dire au minimum `la source` (au moins le nom du concédant) et `la date de la dernière mise à jour` de l’information réutilisée. La licence précise qu’on peut notamment satisfaire cette obligation en donnant l’`URL` qui renvoie vers l’information si cette URL assure une mention effective de paternité."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_multilingual-fr-open-data",
+        "claude_run": "2026-08-27_claude_multilingual-fr-open-data"
+      }
+    },
+    {
+      "id": "claim_3",
+      "text": "La mention de paternité ne doit pas faire croire à un caractère officiel ou à une caution publique, et la réutilisation ne doit pas induire les tiers en erreur sur le contenu, la source ou la date de mise à jour.",
+      "required_concepts": ["pas_endossement", "pas_tiers_en_erreur"],
+      "acceptable_patterns": [
+        "caractère officiel|reconnaissance|caution",
+        "induire en erreur des tiers|induire en erreur"
+      ],
+      "sources": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "text": "La mention de paternité ne doit ni donner un `caractère officiel` à la réutilisation, ni laisser croire à une `reconnaissance` ou une `caution` du concédant ou d’une autre entité publique."
+        },
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "text": "La licence prévoit aussi que la réutilisation ne doit pas `induire en erreur des tiers` sur le contenu de l’information, sa source ou sa date de mise à jour."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_multilingual-fr-open-data",
+        "claude_run": "2026-08-27_claude_multilingual-fr-open-data"
+      }
+    },
+    {
+      "id": "claim_4",
+      "text": "Si les informations contiennent des données à caractère personnel, leur réutilisation reste possible sous réserve du respect du cadre légal de protection des données, notamment du RGPD et de la loi Informatique et Libertés.",
+      "required_concepts": ["donnees_personnelles", "rgpd", "informatique_et_libertes"],
+      "acceptable_patterns": [
+        "données à caractère personnel|données personnelles",
+        "cadre légal applicable à la protection des données personnelles|respecter le RGPD",
+        "Informatique et Libertés"
+      ],
+      "sources": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.cnil.fr/fr/comment-reutiliser-les-donnees-diffusees",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.cada.fr/sites/default/files/guide_pratique.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "text": "S’agissant des `données à caractère personnel`, la licence indique que l’information peut en contenir, que le concédant doit en informer le réutilisateur, et que la réutilisation reste possible à condition de respecter le `cadre légal` applicable à la protection des données personnelles."
+        },
+        {
+          "url": "https://www.cnil.fr/fr/comment-reutiliser-les-donnees-diffusees",
+          "text": "La CNIL résume ce point en indiquant que, si des données personnelles sont présentes, les réutilisateurs doivent respecter le `RGPD` et la loi `Informatique et Libertés`."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_multilingual-fr-open-data",
+        "claude_run": "2026-08-27_claude_multilingual-fr-open-data"
+      }
+    },
+    {
+      "id": "claim_5",
+      "text": "La licence prévoit une absence de garantie supplémentaire et met le réutilisateur seul responsable de sa réutilisation.",
+      "required_concepts": ["absence_garantie", "responsabilite_reutilisateur"],
+      "acceptable_patterns": [
+        "fournie `telle quelle`|telle que produite ou reçue|sans garantie",
+        "réutilisateur est `seul responsable`|seul responsable"
+      ],
+      "sources": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+          "text": "La licence indique que l’information est fournie `telle quelle`, sans garantie expresse ou tacite supplémentaire, que l’absence d’erreurs et la fourniture continue ne sont pas garanties, et que le réutilisateur est `seul responsable` de sa réutilisation."
+        }
+      ],
+      "weight": 0.9,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_multilingual-fr-open-data",
+        "claude_run": "2026-08-27_claude_multilingual-fr-open-data"
+      }
+    },
+    {
+      "id": "claim_6",
+      "text": "Le CRPA prévoit, sauf accord de l’administration, que la réutilisation ne doit pas altérer les informations, ne pas en dénaturer le sens, et doit mentionner la source et la date de dernière mise à jour.",
+      "required_concepts": [
+        "crpa_l322_1",
+        "pas_alteration",
+        "pas_denaturation",
+        "source",
+        "date_mise_a_jour"
+      ],
+      "acceptable_patterns": [
+        "L322-1|Article L322-1",
+        "Sauf accord de l'administration",
+        "ne soient pas altérées|pas altérer",
+        "sens ne soit pas dénaturé|pas dénaturer",
+        "sources?",
+        "date de (leur )?dernière mise à jour"
+      ],
+      "sources": [
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032255220",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000032255218",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032255220",
+          "text": "Au niveau du droit commun de la réutilisation, l’article `L322-1` du CRPA pose, `sauf accord de l’administration`, trois limites générales : les informations ne doivent pas être `altérées`, leur `sens` ne doit pas être `dénaturé`, et la `source` ainsi que la `date de dernière mise à jour` doivent être mentionnées."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_multilingual-fr-open-data",
+        "claude_run": "2026-08-27_claude_multilingual-fr-open-data"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "La Licence Ouverte 2.0 n’impose qu’une seule obligation dans tous les cas.",
+      "reason": "Trop absolu et partiellement contredit par le passage sur l’article L322-1 du CRPA, qui ajoute des conditions générales sauf accord de l’administration."
+    },
+    {
+      "text": "La Licence Ouverte 2.0 constitue explicitement l’accord de l’administration mentionné à l’article L322-1 du CRPA.",
+      "reason": "Le teacher-run evidence présente cela comme une inférence plausible, pas comme une formulation explicitement établie par les sources."
+    },
+    {
+      "text": "Les réutilisateurs de données personnelles deviennent toujours responsables de traitement.",
+      "reason": "Cette précision n’apparaît pas dans les evidence_passages fournis de façon autonome et explicite ; elle est donc insuffisamment étayée ici."
+    },
+    {
+      "text": "La réutilisation sous Licence Ouverte 2.0 expose à des amendes pouvant aller jusqu’à 1 ou 2 millions d’euros.",
+      "reason": "Les montants apparaissent dans un autre run, mais l’évidence fournie est hétérogène et ce point dépasse le noyau commun solidement étayé pour cette fixture."
+    },
+    {
+      "text": "Le CRPA exclut du régime des informations publiques librement réutilisables celles figurant dans des documents dont la communication n’est pas un droit pour toute personne et celles sur lesquelles des tiers détiennent des droits de propriété intellectuelle.",
+      "reason": "Grading patterns are invalid/overly narrow and the support is single-run and unverified. The alternatives 'ne sont pas librement réutilisables' and 'ne sont pas considérées publiques' are Codex paraphrases, not statutory wording: the CRPA text reads 'Ne sont pas considérées comme des informations publiques...', which fails both alternatives, so a correct answer would be graded wrong. Support is also weak: the Codex run never opened https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000032255212/2022-06-10 (opened_urls is empty) and its evidence_passages for that URL contain the duplicated final-answer text rather than section content; the Claude run only retrieved a partial, truncated L321-2 summary. The claim additionally bundles two distinct exclusion limbs (non-communicable documents and third-party IP rights) whose exact scope depends on unstated interpretation of the CRPA title, making it insufficiently deterministic for lexical grading."
+    }
+  ]
+}

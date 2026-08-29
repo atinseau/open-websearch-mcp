@@ -1,0 +1,29 @@
+{
+  "accepted_claim_ids": ["claim1"],
+  "rejected_claims": [
+    {
+      "id": "claim2",
+      "reason": "La source Google (developers.google.com/search/docs/crawling-indexing/robots/intro) n'a jamais été ouverte : opened_urls est vide dans l'exécution Codex et l'unique evidence_passage attaché à cette URL est une copie du final_answer, pas un extrait de la page. De plus, deux des trois acceptable_patterns (« not a way to keep pages out of Google by itself », « disallowed URLs can still appear in search results ») sont des paraphrases du modèle et non des citations vérifiées, ce qui rend le motif de notation à la fois invérifiable et trop étroit."
+    },
+    {
+      "id": "claim3",
+      "reason": "Les citations « capable of expressing the reservation of rights » et « not a W3C Standard » ne reposent que sur l'auto-citation du final_answer Codex ; le rapport CG-FINAL-tdmrep-20240510 ne figure ni dans opened_urls ni dans un résultat d'outil exposé, et l'exécution Claude n'en dit rien. Impossible de confirmer le libellé exact ni l'attribution."
+    },
+    {
+      "id": "claim4",
+      "reason": "Même défaut de sourçage (w3.org/community/tdmrep/ jamais ouvert, evidence_passage = final_answer). En outre, le pattern « more explicit signal could be more secure » est une reformulation interprétative et non une citation littérale, et l'affirmation dépend d'une lecture non explicitée du texte du groupe ; motif de notation non déterministe."
+    },
+    {
+      "id": "claim5",
+      "reason": "Revendication la plus risquée : elle repose sur draft-ietf-aipref-attach/05 et sur des notes EDRLab datées d'avril 2026, aucune des deux n'ayant été ouverte ni exposée par un résultat d'outil. La citation distinctive « logically sufficient to express a reservation of rights » sous l'article 4 de la directive CDSM est invérifiable et transforme une note de réunion en position juridique tranchée — surinterprétation d'une source non confirmée."
+    },
+    {
+      "id": "claim6",
+      "reason": "Les deux sources (docs Google common crawlers et l'article d'aide OpenAI 20001243) ne sont ni ouvertes ni corroborées ; l'identifiant de l'article OpenAI ne peut être validé à partir de l'évidence fournie. La revendication fusionne par ailleurs deux affirmations distinctes en un seul énoncé, ce qui rend la notation lexicale ambiguë (un seul pattern satisfait suffirait à valider un contenu partiel)."
+    },
+    {
+      "id": "claim7",
+      "reason": "Les citations Medium (« isn’t a legally binding arrangement », « voluntary technical standard ») ne proviennent que du final_answer Codex ; l'URL du billet apparaît dans les requêtes mais n'a jamais été ouverte, et aucun résultat d'outil n'en expose le contenu. Le pattern comportant l'apostrophe typographique « isn’t » est de surcroît fragile pour une notation lexicale déterministe."
+    }
+  ]
+}

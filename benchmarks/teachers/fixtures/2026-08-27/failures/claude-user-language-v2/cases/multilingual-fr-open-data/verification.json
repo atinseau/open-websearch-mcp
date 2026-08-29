@@ -1,0 +1,9 @@
+{
+  "accepted_claim_ids": ["claim_1", "claim_2", "claim_3", "claim_4", "claim_5"],
+  "rejected_claims": [
+    {
+      "id": "claim_6",
+      "reason": "Grading pattern trop étroit et citation inexacte : le pattern obligatoire « telle quelle » ne correspond pas au libellé attesté de la licence dans les preuves fournies (« telle que produite ou reçue » / « as produced or received »). Une réponse correcte reprenant le libellé réel échouerait au grading lexical, ce qui rend la claim non déterministe pour la notation, même si le fond (absence de garantie, réutilisateur seul responsable) est par ailleurs étayé."
+    }
+  ]
+}

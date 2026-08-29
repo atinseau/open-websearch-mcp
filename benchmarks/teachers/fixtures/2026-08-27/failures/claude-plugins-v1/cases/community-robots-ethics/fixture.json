@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "case_id": "community-robots-ethics",
+  "question": "How do Web publishers, crawler operators, and standards participants disagree about whether robots.txt grants permission, merely states preferences, or has legal significance?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim_rfc9309_advisory_not_authorization",
+      "text": "RFC 9309 describes robots.txt as rules crawlers are requested to honor and says those rules are not a form of access authorization.",
+      "required_concepts": ["rfc9309", "requested_to_honor", "not_access_authorization"],
+      "acceptable_patterns": [
+        "RFC 9309.*requested to honor.*not a form of access authorization",
+        "robots\\.txt.*requested to honor.*not a form of access authorization"
+      ],
+      "sources": [
+        {
+          "url": "https://www.rfc-editor.org/info/rfc9309",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.rfc-editor.org/info/rfc9309",
+          "text": "RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization."
+        },
+        {
+          "url": "https://www.rfc-editor.org/info/rfc9309",
+          "text": "The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_community-robots-ethics",
+        "claude_run": "2026-08-27_claude_community-robots-ethics"
+      }
+    },
+    {
+      "id": "claim_operators_and_publishers_permission_vs_voluntary",
+      "text": "Some operator and publisher documents use permission language for robots.txt, while other publisher language treats it as voluntary and non-binding.",
+      "required_concepts": ["permission_language", "voluntary", "non_binding"],
+      "acceptable_patterns": [
+        "permitted to access parts of a site",
+        "isn’t a legally binding arrangement",
+        "voluntary technical standard"
+      ],
+      "sources": [
+        {
+          "url": "https://help.openai.com/en/articles/20001243-advertiser-guidance-for-allowing-openai-web-crawlers",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://medium.com/blog/how-and-when-does-your-writing-show-up-inside-ai-chatbots-1d2dec42f26d",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://help.openai.com/en/articles/20001243-advertiser-guidance-for-allowing-openai-web-crawlers",
+          "text": "OpenAI’s advertiser guidance is even stronger permission language: it says robots.txt tells crawlers whether they are “permitted” to access parts of a site and that crawling stops if access is disallowed."
+        },
+        {
+          "url": "https://medium.com/blog/how-and-when-does-your-writing-show-up-inside-ai-chatbots-1d2dec42f26d",
+          "text": "Medium’s official blog says bots crawl public-web content by default, describes robots.txt as the place where Medium tells bots what they are and are not allowed to crawl."
+        },
+        {
+          "url": "https://medium.com/blog/how-and-when-does-your-writing-show-up-inside-ai-chatbots-1d2dec42f26d",
+          "text": "But the same Medium post also says robots.txt “isn’t a legally binding arrangement,” is a “voluntary technical standard,” and depends on actors respecting it."
+        }
+      ],
+      "weight": 0.9,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_community-robots-ethics",
+        "claude_run": "2026-08-27_claude_community-robots-ethics"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Robots.txt universally grants legal permission to crawl when it allows access.",
+      "reason": "Contradicted by the supplied evidence that RFC 9309 says robots.txt is not access authorization and that legal status remains fragmented."
+    },
+    {
+      "text": "Robots.txt is merely a preference signal with no legal significance anywhere.",
+      "reason": "Overly broad and contradicted by supplied evidence about rights-reservation efforts, EU-related reservation language, and split case-law summaries."
+    },
+    {
+      "text": "All standards participants agree that robots.txt should be treated as a binding legal rights-reservation mechanism.",
+      "reason": "Contradicted by supplied evidence showing RFC 9309 rejects authorization, W3C says complementarity remains subject to interpretation, and the IETF work is still a draft."
+    },
+    {
+      "text": "All crawler operators consistently describe robots.txt only as voluntary guidance.",
+      "reason": "Contradicted by supplied evidence that OpenAI advertiser guidance uses 'permitted' access language."
+    },
+    {
+      "text": "Medium treats robots.txt only as a legally binding permission system.",
+      "reason": "Contradicted by supplied evidence that the same Medium post says robots.txt 'isn’t a legally binding arrangement' and is a 'voluntary technical standard'."
+    },
+    {
+      "text": "The European Commission has definitively settled a universal legal rule for robots.txt.",
+      "reason": "Unsupported and time-unstable; supplied evidence says consultation was still ongoing and legal status remained uncertain."
+    },
+    {
+      "text": "Google documentation presents robots.txt as traffic-management guidance rather than enforceable control, saying it cannot enforce crawler behavior and that disallowed URLs can still appear in search results.",
+      "reason": "La citation « cannot enforce crawler behavior » n'apparaît que dans la prose de la réponse finale Codex, dupliquée comme faux evidence_passage ; la page Google n'a jamais été ouverte (opened_urls vide, tool_results sans charge utile) et le run Claude ne la corrobore pas. Les patterns imposent en outre un ordre rigide de deux fragments verbatim invérifiés, ce qui les rend excessivement étroits pour une notation lexicale."
+    },
+    {
+      "text": "W3C Community Group materials distinguish robots.txt from a separate rights-reservation approach: TDMRep is described as a protocol for expressing reservation of rights, while the group also says robots.txt is only a complementary solution and remains subject to interpretation.",
+      "reason": "Les citations décisives (« complementary solution », « remains subject to interpretation ») proviennent d'URL W3C jamais récupérées et ne sont corroborées par aucun des deux runs. Le required_concept « complementary » impose cette partie interprétative non étayée, si bien que la claim dépend d'une lecture non vérifiable des pages sources."
+    },
+    {
+      "text": "An active IETF draft proposes using robots.txt to carry usage preferences, and EDRLab meeting notes say an AI-Pref signal in robots.txt is logically sufficient to express a reservation of rights under EU CDSM Article 4.",
+      "reason": "La citation EDRLab « logically sufficient to express a reservation of rights » est une affirmation juridique forte issue d'un billet jamais ouvert. Elle entre de plus en tension avec la seule source AIPREF réellement récupérée (draft-ietf-aipref-vocab-05, run Claude) : les préférences « do not themselves create rights or prohibitions » et le document « does not provide any enforcement mechanism ». Retenir la claim surestimerait la portée juridique attribuée aux participants IETF."
+    },
+    {
+      "text": "The supplied case-law summaries point in different directions: the eBay summary says public accessibility did not make crawling authorized without express permission, while the hiQ summary says CFAA access without authorization does not apply to public websites.",
+      "reason": "Le volet hiQ est corroboré, mais le volet eBay v. Bidder's Edge repose entièrement sur internetlibrary.com, page jamais ouverte et absente du run Claude. L'appariement des deux décisions comme se contredisant écrase une différence de fondement juridique (injonction pour trespass to chattels vs. interprétation étroite du CFAA) : contradiction surestimée reposant sur une interprétation non énoncée, avec des patterns calqués sur des paraphrases invérifiées."
+    }
+  ]
+}

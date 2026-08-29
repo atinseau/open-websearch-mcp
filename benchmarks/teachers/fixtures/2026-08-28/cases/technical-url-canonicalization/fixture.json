@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "case_id": "technical-url-canonicalization",
+  "question": "Using the current WHATWG URL Standard, which normalization steps are performed when parsing an HTTPS URL containing Unicode hostnames, default ports, dot segments, fragments, and percent-encoded path bytes?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "grounding",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "c5",
+      "text": "When a URL is serialized, the port is emitted only if the stored port is non-null.",
+      "required_concepts": ["url_serializing", "port_serialization"],
+      "acceptable_patterns": ["port is emitted only if", "stored port is non-null"],
+      "sources": [
+        {
+          "url": "https://url.spec.whatwg.org/#url-serializing",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1,
+      "provenance": {
+        "mode": "trace_grounded",
+        "codex_run": "2026-08-28_codex_technical-url-canonicalization"
+      }
+    },
+    {
+      "id": "c6",
+      "text": "A single-dot path segment is `\".\"` or an ASCII-case-insensitive match for `\"%2e\"`, and a double-dot path segment is `\"..\"`, `\".%2e\"`, `\"%2e.\"`, or `\"%2e%2e\"` with ASCII-case-insensitive matching.",
+      "required_concepts": ["single_dot", "double_dot", "path_segment"],
+      "acceptable_patterns": [
+        "single-dot path segment",
+        "%2e",
+        "double-dot path segment",
+        "ASCII-case-insensitive"
+      ],
+      "sources": [
+        {
+          "url": "https://url.spec.whatwg.org/#url-miscellaneous",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1,
+      "provenance": {
+        "mode": "trace_grounded",
+        "codex_run": "2026-08-28_codex_technical-url-canonicalization"
+      }
+    },
+    {
+      "id": "c8",
+      "text": "In path state, non-URL code points other than `%` cause a validation error, malformed `%` escapes cause a validation error, and otherwise each code point is UTF-8-percent-encoded using the path percent-encode set and appended to the path buffer.",
+      "required_concepts": ["path_state", "validation_error", "path_percent_encode"],
+      "acceptable_patterns": [
+        "path state",
+        "validation error",
+        "malformed `%` escapes",
+        "path percent-encode set",
+        "path buffer"
+      ],
+      "sources": [
+        {
+          "url": "https://url.spec.whatwg.org/#url-parsing",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://url.spec.whatwg.org/#percent-encoded-bytes",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1,
+      "provenance": {
+        "mode": "trace_grounded",
+        "codex_run": "2026-08-28_codex_technical-url-canonicalization"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Valid percent-encoded path bytes are preserved rather than percent-decoded during parsing.",
+      "reason": "The supplied evidence labels this as `Inference`, not a directly supported fact."
+    },
+    {
+      "text": "An explicit `:443` disappears from the serialized URL.",
+      "reason": "The supplied evidence presents this as an inference from default-port parsing and serialization rules, not as a directly quoted rule."
+    },
+    {
+      "text": "Dot segments in `%2e` forms are normalized away during parsing rather than preserved literally as ordinary path segments.",
+      "reason": "The supplied evidence marks this as an inference, even though it is motivated by direct rules."
+    },
+    {
+      "text": "Already-valid percent-encoded path bytes are hex-case-normalized during parsing.",
+      "reason": "The supplied evidence explicitly says it found no direct statement supporting hex-case normalization."
+    },
+    {
+      "text": "For a Unicode hostname in an `https:` URL, the WHATWG host parser percent-decodes the host input, UTF-8-decodes that result, and then runs the domain parser with `beStrict = false`.",
+      "reason": "required concept is absent from teacher-run evidence: utf8_decode"
+    },
+    {
+      "text": "The domain parser lowercases an all-ASCII domain, and for a non-ASCII domain it runs Unicode ToASCII with UTS #46 settings; the result must be non-empty and contain no forbidden domain code points.",
+      "reason": "required concept is absent from teacher-run evidence: ascii_lowercase"
+    },
+    {
+      "text": "A host serializer returns an ASCII string, and the spec's parse-serialize example shows `faß.example` becoming `xn--fa-hia.example`.",
+      "reason": "required concept is absent from teacher-run evidence: punycode_example"
+    },
+    {
+      "text": "`https` is a special scheme whose default port is `443`, and when the parser reads a port equal to the scheme's default port it stores `null` instead of that numeric port.",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "text": "When the parser encounters `#`, it creates an empty fragment and switches to fragment state; in fragment state, code points are UTF-8-percent-encoded using the fragment percent-encode set and appended to the fragment.",
+      "reason": "required concept is absent from teacher-run evidence: hash"
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "claims": [
+    {
+      "id": "c1",
+      "text": "In the current MCP specification, modern servers do not use an `initialize` negotiation handshake; `initialize` is described as legacy behavior rather than part of normal modern operation.",
+      "required_concepts": ["current-spec", "no-initialize", "legacy"],
+      "acceptable_patterns": [
+        "(?:no|does not have an?)\\s+`?initialize`?\\s+(?:phase|handshake)",
+        "legacy\\s+(?:versions?|behavior).+`?initialize`?",
+        "modern\\s+(?:servers?|versions?).+(?:no negotiation handshake|stateless)"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "c2",
+      "text": "For current-version requests, protocol version negotiation is carried per request in `params._meta[\"io.modelcontextprotocol/protocolVersion\"]`; if the server does not support the requested version, it returns `UnsupportedProtocolVersionError` with supported versions.",
+      "required_concepts": ["protocolVersion", "per-request", "unsupported-error"],
+      "acceptable_patterns": [
+        "params\\._meta\\[\"io\\.modelcontextprotocol/protocolVersion\"\\]",
+        "UnsupportedProtocolVersionError",
+        "per-request\\s+(?:metadata|version)"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/schema",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "c3",
+      "text": "On stdio, the server speaks JSON-RPC 2.0 using newline-delimited framing: it reads from `stdin`, writes to `stdout`, sends one JSON-RPC message per line, must not include embedded newlines in a message, must not write non-MCP data to `stdout`, and may write UTF-8 logs to `stderr`.",
+      "required_concepts": ["stdio", "json-rpc", "newline-framing"],
+      "acceptable_patterns": [
+        "JSON-RPC\\s+2\\.0",
+        "one\\s+JSON-RPC\\s+message\\s+per\\s+line",
+        "must not\\s+(?:put|include)\\s+embedded\\s+newlines",
+        "must not\\s+write\\s+anything\\s+non-MCP\\s+to\\s+`?stdout`?"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "c4",
+      "text": "A server that supports tools must declare the `tools` capability and answer `tools/list` with the tools currently available to the requesting client.",
+      "required_concepts": ["tools-capability", "tools/list", "available-tools"],
+      "acceptable_patterns": [
+        "declare\\s+the\\s+`?tools`?\\s+capability",
+        "answer\\s+`?tools/list`?",
+        "currently\\s+available\\s+to\\s+the\\s+requesting\\s+client"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "c5",
+      "text": "For `tools/list`, the tool set may be empty and may vary by authorization, but it should be returned in a deterministic order and must not vary per connection or as a side effect of other requests on that connection.",
+      "required_concepts": ["tools-list", "deterministic-order", "connection-stability"],
+      "acceptable_patterns": [
+        "deterministic\\s+order",
+        "must not\\s+vary\\s+per\\s+connection",
+        "side effect\\s+of\\s+other\\s+requests",
+        "may\\s+vary\\s+by\\s+authorization"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "c6",
+      "text": "`tools/list` is a client-to-server JSON-RPC request using method `tools/list`; it supports an optional cursor in `params`, and a successful result includes a `tools` array.",
+      "required_concepts": ["tools-list-method", "cursor", "tools-array"],
+      "acceptable_patterns": [
+        "method\\s+is\\s+`?tools/list`?",
+        "optional\\s+cursor\\s+in\\s+`?params`?",
+        "result\\s+includes\\s+a\\s+`?tools`?\\s+array"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/schema",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    },
+    {
+      "id": "c7",
+      "text": "In the current schema, a successful `tools/list` result requires `resultType`, `ttlMs`, `cacheScope`, and `tools`; `nextCursor` is optional.",
+      "required_concepts": ["tools-list-result", "required-fields", "nextCursor"],
+      "acceptable_patterns": [
+        "requires?\\s+`?resultType`?,\\s*`?ttlMs`?,\\s*`?cacheScope`?,\\s*and\\s+`?tools`?",
+        "`?nextCursor`?\\s+is\\s+optional"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/schema",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 1
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "A current stdio server is required to implement the legacy `initialize` request and `notifications/initialized` sequence.",
+      "reason": "Contradicted by the supplied evidence, which says current modern MCP removed the initialize handshake and treats it as legacy behavior."
+    },
+    {
+      "text": "`tools/list` results are required to be identical for every client and may not vary based on authorization.",
+      "reason": "Contradicted by the supplied evidence, which says the set may vary by authorization presented on the request."
+    },
+    {
+      "text": "The current specification requires `tools/list` over stdio to use HTTP-style headers for version negotiation.",
+      "reason": "Unsupported and contradicted by the supplied evidence, which says stdio has no header layer and carries metadata inside the JSON-RPC body."
+    },
+    {
+      "text": "A current stdio server must always support both modern MCP and legacy `initialize` behavior.",
+      "reason": "Unsupported by the supplied evidence; it says a server may implement both, not that it must."
+    }
+  ]
+}

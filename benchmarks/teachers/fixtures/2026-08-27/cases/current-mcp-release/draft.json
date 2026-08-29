@@ -1,0 +1,193 @@
+{
+  "claims": [
+    {
+      "id": "claim_newest_revision",
+      "text": "As of 2026-08-27, the newest published Model Context Protocol specification revision is 2026-07-28.",
+      "required_concepts": ["2026-07-28", "newest published revision"],
+      "acceptable_patterns": [
+        "2026-07-28",
+        "newest published .*2026-07-28",
+        "current protocol version is 2026-07-28"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/releases",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/versioning",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning",
+          "text": "As of 2026-08-27, the newest published MCP specification revision is `2026-07-28`. The official versioning page says “The current protocol version is 2026-07-28,” and the official GitHub releases page says `2026-07-28` is the stable release published on July 28, 2026."
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/versioning",
+          "text": "The **current** protocol version is [**2026-07-28**](/specification/2026-07-28/)."
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "claim_previous_revision",
+      "text": "The revision immediately preceding 2026-07-28 was 2025-11-25.",
+      "required_concepts": ["2025-11-25", "previous revision"],
+      "acceptable_patterns": [
+        "2025-11-25",
+        "previous revision,? 2025-11-25",
+        "preceding revision .*2025-11-25"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/releases",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "text": "This document lists changes made to the Model Context Protocol (MCP) specification since the previous revision, [2025-11-25](/specification/2025-11-25)."
+        },
+        {
+          "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/releases",
+          "text": "The immediately preceding revision was `2025-11-25`. The `2026-07-28` changelog explicitly says it lists changes “since the previous revision, 2025-11-25,” and the releases page separately marks `2025-11-25` as a stable release."
+        }
+      ],
+      "weight": 0.95
+    },
+    {
+      "id": "claim_stateless_core",
+      "text": "Revision 2026-07-28 made MCP stateless by removing the initialize/notifications/initialized handshake and requiring each request to carry protocol version and client capabilities in _meta.",
+      "required_concepts": ["stateless", "initialize removed", "_meta"],
+      "acceptable_patterns": [
+        "stateless",
+        "remove the `initialize`/`notifications/initialized` handshake",
+        "Every request now carries its protocol version and client capabilities in `_meta`"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/lifecycle",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "text": "Make MCP stateless: remove the `initialize`/`notifications/initialized` handshake. Every request now carries its protocol version and client capabilities in `_meta` (`io.modelcontextprotocol/protocolVersion`, `io.modelcontextprotocol/clientCapabilities`)."
+        },
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/lifecycle",
+          "text": "There is no negotiation handshake. Every request carries its protocol version, and the server accepts or rejects each request independently:"
+        }
+      ],
+      "weight": 0.9
+    },
+    {
+      "id": "claim_server_discover_stdio",
+      "text": "Revision 2026-07-28 added server/discover, which servers must implement and which clients may use as a backward-compatibility probe on STDIO.",
+      "required_concepts": ["server/discover", "MUST implement", "STDIO"],
+      "acceptable_patterns": [
+        "server/discover",
+        "servers MUST implement this RPC",
+        "backward-compatibility probe on STDIO"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+          "text": "Add `server/discover`: servers MUST implement this RPC to advertise their supported protocol versions, capabilities, and identity. Clients MAY call it before any other request for up-front version selection, or use it as a backward-compatibility probe on STDIO."
+        }
+      ],
+      "weight": 0.88
+    },
+    {
+      "id": "claim_mrtr_breaking_change",
+      "text": "Revision 2026-07-28 introduced Multi Round-Trip Requests (MRTR), replacing prior server-initiated requests; this is a breaking change.",
+      "required_concepts": ["MRTR", "server-initiated requests", "breaking change"],
+      "acceptable_patterns": [
+        "Multi Round-Trip Requests",
+        "replaces the previous approach of sending server-initiated requests",
+        "breaking change"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/mrtr",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/mrtr",
+          "text": "Multi Round-Trip Requests (MRTR) was introduced in this version of the MCP specification. This replaces the previous approach of sending server-initiated requests... The previous pattern of server-initiated requests is no longer supported. This is a breaking change."
+        },
+        {
+          "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+          "text": "**Multi Round-Trip Requests (MRTR)**: Replaces server-initiated requests that required held-open streams, enabling mid-call user confirmations or parameter collection without persistent connections."
+        }
+      ],
+      "weight": 0.86
+    },
+    {
+      "id": "claim_stdio_local_server_context",
+      "text": "For local stdio servers, the server runs as a subprocess and communicates by reading JSON-RPC messages from stdin and writing JSON-RPC messages to stdout.",
+      "required_concepts": ["stdio", "subprocess", "stdin", "stdout"],
+      "acceptable_patterns": [
+        "stdio",
+        "subprocess",
+        "reads JSON-RPC messages from `stdin`",
+        "writes JSON-RPC messages to `stdout`"
+      ],
+      "sources": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+          "text": "In the **stdio** transport, the client launches the MCP server as a subprocess. The two ends communicate over the subprocess's standard streams: The server reads JSON-RPC messages from `stdin` and writes JSON-RPC messages to `stdout`."
+        }
+      ],
+      "weight": 0.6
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "The changes that matter most to local tool servers are ranked in a specific order, with the stateless core as the biggest change.",
+      "reason": "The supplied evidence explicitly labels that ordering as inference and says no official source ranks changes specifically for local servers."
+    },
+    {
+      "text": "No published revision after 2026-07-28 exists anywhere.",
+      "reason": "The evidence supports that 2026-07-28 is the current published revision in the cited MCP sources, but this broader universal claim is overly broad."
+    },
+    {
+      "text": "Header-based routing is one of the most important changes for local tool servers.",
+      "reason": "The supplied evidence ties header-based routing to HTTP headers and does not support ranking it as especially important for local tool servers."
+    }
+  ]
+}

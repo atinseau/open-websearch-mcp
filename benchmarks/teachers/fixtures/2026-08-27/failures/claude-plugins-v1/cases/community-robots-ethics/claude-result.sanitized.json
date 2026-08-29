@@ -1,0 +1,129 @@
+{
+  "is_error": false,
+  "duration_api_ms": 74871,
+  "num_turns": 2,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.7706084999999999,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 59119,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 5488,
+    "output_tokens_details": {
+      "thinking_tokens": 2989
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 59119,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 5488,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 59119,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 59119
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 41640,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.04175,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 5488,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 59119,
+      "webSearchRequests": 0,
+      "costUSD": 0.7288585,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"claim_rfc9309_advisory_not_authorization\",\"claim_operators_and_publishers_permission_vs_voluntary\"],\"rejected_claims\":[{\"id\":\"claim_google_robots_not_enforcement\",\"reason\":\"La citation « cannot enforce crawler behavior » n'apparaît que dans la prose de la réponse finale Codex, dupliquée comme faux evidence_passage ; la page Google n'a jamais été ouverte (opened_urls vide, tool_results sans charge utile) et le run Claude ne la corrobore pas. Les patterns imposent en outre un ordre rigide de deux fragments verbatim invérifiés, ce qui les rend excessivement étroits pour une notation lexicale.\"},{\"id\":\"claim_w3c_separate_rights_reservation_signal\",\"reason\":\"Les citations décisives (« complementary solution », « remains subject to interpretation ») proviennent d'URL W3C jamais récupérées et ne sont corroborées par aucun des deux runs. Le required_concept « complementary » impose cette partie interprétative non étayée, si bien que la claim dépend d'une lecture non vérifiable des pages sources.\"},{\"id\":\"claim_ietf_aipref_usage_preferences_and_rights_reservation\",\"reason\":\"La citation EDRLab « logically sufficient to express a reservation of rights » est une affirmation juridique forte issue d'un billet jamais ouvert. Elle entre de plus en tension avec la seule source AIPREF réellement récupérée (draft-ietf-aipref-vocab-05, run Claude) : les préférences « do not themselves create rights or prohibitions » et le document « does not provide any enforcement mechanism ». Retenir la claim surestimerait la portée juridique attribuée aux participants IETF.\"},{\"id\":\"claim_case_law_split_on_legal_significance\",\"reason\":\"Le volet hiQ est corroboré, mais le volet eBay v. Bidder's Edge repose entièrement sur internetlibrary.com, page jamais ouverte et absente du run Claude. L'appariement des deux décisions comme se contredisant écrase une différence de fondement juridique (injonction pour trespass to chattels vs. interprétation étroite du CFAA) : contradiction surestimée reposant sur une interprétation non énoncée, avec des patterns calqués sur des paraphrases invérifiées.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": [
+      "claim_rfc9309_advisory_not_authorization",
+      "claim_operators_and_publishers_permission_vs_voluntary"
+    ],
+    "rejected_claims": [
+      {
+        "id": "claim_google_robots_not_enforcement",
+        "reason": "La citation « cannot enforce crawler behavior » n'apparaît que dans la prose de la réponse finale Codex, dupliquée comme faux evidence_passage ; la page Google n'a jamais été ouverte (opened_urls vide, tool_results sans charge utile) et le run Claude ne la corrobore pas. Les patterns imposent en outre un ordre rigide de deux fragments verbatim invérifiés, ce qui les rend excessivement étroits pour une notation lexicale."
+      },
+      {
+        "id": "claim_w3c_separate_rights_reservation_signal",
+        "reason": "Les citations décisives (« complementary solution », « remains subject to interpretation ») proviennent d'URL W3C jamais récupérées et ne sont corroborées par aucun des deux runs. Le required_concept « complementary » impose cette partie interprétative non étayée, si bien que la claim dépend d'une lecture non vérifiable des pages sources."
+      },
+      {
+        "id": "claim_ietf_aipref_usage_preferences_and_rights_reservation",
+        "reason": "La citation EDRLab « logically sufficient to express a reservation of rights » est une affirmation juridique forte issue d'un billet jamais ouvert. Elle entre de plus en tension avec la seule source AIPREF réellement récupérée (draft-ietf-aipref-vocab-05, run Claude) : les préférences « do not themselves create rights or prohibitions » et le document « does not provide any enforcement mechanism ». Retenir la claim surestimerait la portée juridique attribuée aux participants IETF."
+      },
+      {
+        "id": "claim_case_law_split_on_legal_significance",
+        "reason": "Le volet hiQ est corroboré, mais le volet eBay v. Bidder's Edge repose entièrement sur internetlibrary.com, page jamais ouverte et absente du run Claude. L'appariement des deux décisions comme se contredisant écrase une différence de fondement juridique (injonction pour trespass to chattels vs. interprétation étroite du CFAA) : contradiction surestimée reposant sur une interprétation non énoncée, avec des patterns calqués sur des paraphrases invérifiées."
+      }
+    ]
+  },
+  "ttft_ms": 42272,
+  "ttft_stream_ms": 1542,
+  "time_to_request_ms": 19,
+  "type": "result",
+  "duration_ms": 72952,
+  "uuid": "[REDACTED]",
+  "queued_turn_count": 0
+}

@@ -1,0 +1,927 @@
+{
+  "schema_version": 1,
+  "case_id": "technical-pdfjs",
+  "runs": [
+    {
+      "run_id": "2026-08-27_codex_technical-pdfjs",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "site:mozilla.github.io/pdf.js generic build outside browser PDF.js getting started FAQ Node.js text extraction Bun compatibility",
+        "site:github.com/mozilla/pdf.js examples/node official pdf.js getTextContent bun node_utils browser build",
+        "https://mozilla.github.io/pdf.js/examples/",
+        "site:github.com/mozilla/pdf.js/blob/master Bun pdf.js node_utils official",
+        "site:github.com/mozilla/pdf.js/blob/master/src/display/node_utils.js \"@napi-rs/canvas\"",
+        "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js",
+        "https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs",
+        "site:github.com/mozilla/pdf.js/blob/master/src/shared/util.js isNodeJS pdf.js official",
+        "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/shared/util.js",
+        "'workerSrc' in https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js",
+        "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/canvas_factory.js",
+        "https://mozilla.github.io/pdf.js/getting_started/",
+        "site:github.com/mozilla/pdf.js/wiki/supported-browsers PDF.js latest JavaScript features official",
+        "https://github.com/mozilla/pdf.js/wiki/frequently-asked-questions",
+        "https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/pdf2png.mjs",
+        "site:github.com/mozilla/pdf.js Bun mozilla/pdf.js official issue discussion"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [],
+      "cited_urls": [
+        "https://mozilla.github.io/pdf.js/getting_started/",
+        "https://mozilla.github.io/pdf.js/examples/",
+        "https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs",
+        "https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html",
+        "https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html",
+        "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js",
+        "https://github.com/mozilla/pdf.js/wiki/frequently-asked-questions",
+        "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js",
+        "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/worker_options.js",
+        "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/shared/util.js"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://mozilla.github.io/pdf.js/getting_started/",
+          "title": "https://mozilla.github.io/pdf.js/getting_started/"
+        },
+        {
+          "url": "https://mozilla.github.io/pdf.js/examples/",
+          "title": "https://mozilla.github.io/pdf.js/examples/"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs",
+          "title": "https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs"
+        },
+        {
+          "url": "https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html",
+          "title": "https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html"
+        },
+        {
+          "url": "https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html",
+          "title": "https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js",
+          "title": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js"
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/wiki/frequently-asked-questions",
+          "title": "https://github.com/mozilla/pdf.js/wiki/frequently-asked-questions"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js",
+          "title": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/worker_options.js",
+          "title": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/worker_options.js"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/shared/util.js",
+          "title": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/shared/util.js"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://mozilla.github.io/pdf.js/getting_started/",
+          "text": "**Supported fact**\n\nCurrent official PDF.js docs present the **generic build as a browser-oriented prebuilt package**: the getting-started page says the prebuilt package “includes the generic build of PDF.js and the viewer,” and its examples page says its main tutorial shows use “in a web browser.” https://mozilla.github.io/pdf.js/getting_started/ https://mozilla.github.io/pdf.js/examples/\n\nThe same official examples page says there are separate `examples/node/` examples for Node.js usage. https://mozilla.github.io/pdf.js/examples/\n\nThe current official Node text-extraction example does **not** import the generic build; it imports `pdfjs-dist/legacy/build/pdf.mjs`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThat example loads a document with `getDocument({ url: pdfPath })`, gets each page with `getPage(i)`, calls `await pdfPage.getTextContent()`, and prints `items.map(item => item.str).join(\" \")`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThe public API docs say `PDFPageProxy.getTextContent()` returns a promise for a `TextContent` object, and that all whitespace is normalized to standard spaces (`0x20`). https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html\n\nThe `TextContent` docs say it contains an `items` array plus `styles`; `TextItem.str` is the text string, and `TextItem` also carries direction, transform, width, height, font name, and `hasEOL`. https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html\n\nFor Node-like environments, the current source explicitly warns: `Please use the legacy build in Node.js environments.` https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js\n\nThe current FAQ says PDF.js ships a default non-polyfilled build for the latest browsers and a separate `legacy` build for older environments; in its support table, `Node.js 22+` appears under the `legacy` build as “Mostly” supported with “Limited” automa"
+        },
+        {
+          "url": "https://mozilla.github.io/pdf.js/examples/",
+          "text": "**Supported fact**\n\nCurrent official PDF.js docs present the **generic build as a browser-oriented prebuilt package**: the getting-started page says the prebuilt package “includes the generic build of PDF.js and the viewer,” and its examples page says its main tutorial shows use “in a web browser.” https://mozilla.github.io/pdf.js/getting_started/ https://mozilla.github.io/pdf.js/examples/\n\nThe same official examples page says there are separate `examples/node/` examples for Node.js usage. https://mozilla.github.io/pdf.js/examples/\n\nThe current official Node text-extraction example does **not** import the generic build; it imports `pdfjs-dist/legacy/build/pdf.mjs`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThat example loads a document with `getDocument({ url: pdfPath })`, gets each page with `getPage(i)`, calls `await pdfPage.getTextContent()`, and prints `items.map(item => item.str).join(\" \")`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThe public API docs say `PDFPageProxy.getTextContent()` returns a promise for a `TextContent` object, and that all whitespace is normalized to standard spaces (`0x20`). https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html\n\nThe `TextContent` docs say it contains an `items` array plus `styles`; `TextItem.str` is the text string, and `TextItem` also carries direction, transform, width, height, font name, and `hasEOL`. https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html\n\nFor Node-like environments, the current source explicitly warns: `Please use the legacy build in Node.js environments.` https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js\n\nThe current FAQ says PDF.js ships a default non-polyfilled build for the latest browsers and a separate `legacy` build for older environments; in its support table, `Node.js 22+` appears under the `legacy` build as “Mostly” supported with “Limited” automa"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs",
+          "text": "**Supported fact**\n\nCurrent official PDF.js docs present the **generic build as a browser-oriented prebuilt package**: the getting-started page says the prebuilt package “includes the generic build of PDF.js and the viewer,” and its examples page says its main tutorial shows use “in a web browser.” https://mozilla.github.io/pdf.js/getting_started/ https://mozilla.github.io/pdf.js/examples/\n\nThe same official examples page says there are separate `examples/node/` examples for Node.js usage. https://mozilla.github.io/pdf.js/examples/\n\nThe current official Node text-extraction example does **not** import the generic build; it imports `pdfjs-dist/legacy/build/pdf.mjs`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThat example loads a document with `getDocument({ url: pdfPath })`, gets each page with `getPage(i)`, calls `await pdfPage.getTextContent()`, and prints `items.map(item => item.str).join(\" \")`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThe public API docs say `PDFPageProxy.getTextContent()` returns a promise for a `TextContent` object, and that all whitespace is normalized to standard spaces (`0x20`). https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html\n\nThe `TextContent` docs say it contains an `items` array plus `styles`; `TextItem.str` is the text string, and `TextItem` also carries direction, transform, width, height, font name, and `hasEOL`. https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html\n\nFor Node-like environments, the current source explicitly warns: `Please use the legacy build in Node.js environments.` https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js\n\nThe current FAQ says PDF.js ships a default non-polyfilled build for the latest browsers and a separate `legacy` build for older environments; in its support table, `Node.js 22+` appears under the `legacy` build as “Mostly” supported with “Limited” automa"
+        },
+        {
+          "url": "https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html",
+          "text": "**Supported fact**\n\nCurrent official PDF.js docs present the **generic build as a browser-oriented prebuilt package**: the getting-started page says the prebuilt package “includes the generic build of PDF.js and the viewer,” and its examples page says its main tutorial shows use “in a web browser.” https://mozilla.github.io/pdf.js/getting_started/ https://mozilla.github.io/pdf.js/examples/\n\nThe same official examples page says there are separate `examples/node/` examples for Node.js usage. https://mozilla.github.io/pdf.js/examples/\n\nThe current official Node text-extraction example does **not** import the generic build; it imports `pdfjs-dist/legacy/build/pdf.mjs`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThat example loads a document with `getDocument({ url: pdfPath })`, gets each page with `getPage(i)`, calls `await pdfPage.getTextContent()`, and prints `items.map(item => item.str).join(\" \")`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThe public API docs say `PDFPageProxy.getTextContent()` returns a promise for a `TextContent` object, and that all whitespace is normalized to standard spaces (`0x20`). https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html\n\nThe `TextContent` docs say it contains an `items` array plus `styles`; `TextItem.str` is the text string, and `TextItem` also carries direction, transform, width, height, font name, and `hasEOL`. https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html\n\nFor Node-like environments, the current source explicitly warns: `Please use the legacy build in Node.js environments.` https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js\n\nThe current FAQ says PDF.js ships a default non-polyfilled build for the latest browsers and a separate `legacy` build for older environments; in its support table, `Node.js 22+` appears under the `legacy` build as “Mostly” supported with “Limited” automa"
+        },
+        {
+          "url": "https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html",
+          "text": "**Supported fact**\n\nCurrent official PDF.js docs present the **generic build as a browser-oriented prebuilt package**: the getting-started page says the prebuilt package “includes the generic build of PDF.js and the viewer,” and its examples page says its main tutorial shows use “in a web browser.” https://mozilla.github.io/pdf.js/getting_started/ https://mozilla.github.io/pdf.js/examples/\n\nThe same official examples page says there are separate `examples/node/` examples for Node.js usage. https://mozilla.github.io/pdf.js/examples/\n\nThe current official Node text-extraction example does **not** import the generic build; it imports `pdfjs-dist/legacy/build/pdf.mjs`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThat example loads a document with `getDocument({ url: pdfPath })`, gets each page with `getPage(i)`, calls `await pdfPage.getTextContent()`, and prints `items.map(item => item.str).join(\" \")`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThe public API docs say `PDFPageProxy.getTextContent()` returns a promise for a `TextContent` object, and that all whitespace is normalized to standard spaces (`0x20`). https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html\n\nThe `TextContent` docs say it contains an `items` array plus `styles`; `TextItem.str` is the text string, and `TextItem` also carries direction, transform, width, height, font name, and `hasEOL`. https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html\n\nFor Node-like environments, the current source explicitly warns: `Please use the legacy build in Node.js environments.` https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js\n\nThe current FAQ says PDF.js ships a default non-polyfilled build for the latest browsers and a separate `legacy` build for older environments; in its support table, `Node.js 22+` appears under the `legacy` build as “Mostly” supported with “Limited” automa"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js",
+          "text": "**Supported fact**\n\nCurrent official PDF.js docs present the **generic build as a browser-oriented prebuilt package**: the getting-started page says the prebuilt package “includes the generic build of PDF.js and the viewer,” and its examples page says its main tutorial shows use “in a web browser.” https://mozilla.github.io/pdf.js/getting_started/ https://mozilla.github.io/pdf.js/examples/\n\nThe same official examples page says there are separate `examples/node/` examples for Node.js usage. https://mozilla.github.io/pdf.js/examples/\n\nThe current official Node text-extraction example does **not** import the generic build; it imports `pdfjs-dist/legacy/build/pdf.mjs`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThat example loads a document with `getDocument({ url: pdfPath })`, gets each page with `getPage(i)`, calls `await pdfPage.getTextContent()`, and prints `items.map(item => item.str).join(\" \")`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThe public API docs say `PDFPageProxy.getTextContent()` returns a promise for a `TextContent` object, and that all whitespace is normalized to standard spaces (`0x20`). https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html\n\nThe `TextContent` docs say it contains an `items` array plus `styles`; `TextItem.str` is the text string, and `TextItem` also carries direction, transform, width, height, font name, and `hasEOL`. https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html\n\nFor Node-like environments, the current source explicitly warns: `Please use the legacy build in Node.js environments.` https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js\n\nThe current FAQ says PDF.js ships a default non-polyfilled build for the latest browsers and a separate `legacy` build for older environments; in its support table, `Node.js 22+` appears under the `legacy` build as “Mostly” supported with “Limited” automa"
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/wiki/frequently-asked-questions",
+          "text": "**Supported fact**\n\nCurrent official PDF.js docs present the **generic build as a browser-oriented prebuilt package**: the getting-started page says the prebuilt package “includes the generic build of PDF.js and the viewer,” and its examples page says its main tutorial shows use “in a web browser.” https://mozilla.github.io/pdf.js/getting_started/ https://mozilla.github.io/pdf.js/examples/\n\nThe same official examples page says there are separate `examples/node/` examples for Node.js usage. https://mozilla.github.io/pdf.js/examples/\n\nThe current official Node text-extraction example does **not** import the generic build; it imports `pdfjs-dist/legacy/build/pdf.mjs`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThat example loads a document with `getDocument({ url: pdfPath })`, gets each page with `getPage(i)`, calls `await pdfPage.getTextContent()`, and prints `items.map(item => item.str).join(\" \")`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThe public API docs say `PDFPageProxy.getTextContent()` returns a promise for a `TextContent` object, and that all whitespace is normalized to standard spaces (`0x20`). https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html\n\nThe `TextContent` docs say it contains an `items` array plus `styles`; `TextItem.str` is the text string, and `TextItem` also carries direction, transform, width, height, font name, and `hasEOL`. https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html\n\nFor Node-like environments, the current source explicitly warns: `Please use the legacy build in Node.js environments.` https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js\n\nThe current FAQ says PDF.js ships a default non-polyfilled build for the latest browsers and a separate `legacy` build for older environments; in its support table, `Node.js 22+` appears under the `legacy` build as “Mostly” supported with “Limited” automa"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js",
+          "text": "**Supported fact**\n\nCurrent official PDF.js docs present the **generic build as a browser-oriented prebuilt package**: the getting-started page says the prebuilt package “includes the generic build of PDF.js and the viewer,” and its examples page says its main tutorial shows use “in a web browser.” https://mozilla.github.io/pdf.js/getting_started/ https://mozilla.github.io/pdf.js/examples/\n\nThe same official examples page says there are separate `examples/node/` examples for Node.js usage. https://mozilla.github.io/pdf.js/examples/\n\nThe current official Node text-extraction example does **not** import the generic build; it imports `pdfjs-dist/legacy/build/pdf.mjs`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThat example loads a document with `getDocument({ url: pdfPath })`, gets each page with `getPage(i)`, calls `await pdfPage.getTextContent()`, and prints `items.map(item => item.str).join(\" \")`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThe public API docs say `PDFPageProxy.getTextContent()` returns a promise for a `TextContent` object, and that all whitespace is normalized to standard spaces (`0x20`). https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html\n\nThe `TextContent` docs say it contains an `items` array plus `styles`; `TextItem.str` is the text string, and `TextItem` also carries direction, transform, width, height, font name, and `hasEOL`. https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html\n\nFor Node-like environments, the current source explicitly warns: `Please use the legacy build in Node.js environments.` https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js\n\nThe current FAQ says PDF.js ships a default non-polyfilled build for the latest browsers and a separate `legacy` build for older environments; in its support table, `Node.js 22+` appears under the `legacy` build as “Mostly” supported with “Limited” automa"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/worker_options.js",
+          "text": "**Supported fact**\n\nCurrent official PDF.js docs present the **generic build as a browser-oriented prebuilt package**: the getting-started page says the prebuilt package “includes the generic build of PDF.js and the viewer,” and its examples page says its main tutorial shows use “in a web browser.” https://mozilla.github.io/pdf.js/getting_started/ https://mozilla.github.io/pdf.js/examples/\n\nThe same official examples page says there are separate `examples/node/` examples for Node.js usage. https://mozilla.github.io/pdf.js/examples/\n\nThe current official Node text-extraction example does **not** import the generic build; it imports `pdfjs-dist/legacy/build/pdf.mjs`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThat example loads a document with `getDocument({ url: pdfPath })`, gets each page with `getPage(i)`, calls `await pdfPage.getTextContent()`, and prints `items.map(item => item.str).join(\" \")`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThe public API docs say `PDFPageProxy.getTextContent()` returns a promise for a `TextContent` object, and that all whitespace is normalized to standard spaces (`0x20`). https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html\n\nThe `TextContent` docs say it contains an `items` array plus `styles`; `TextItem.str` is the text string, and `TextItem` also carries direction, transform, width, height, font name, and `hasEOL`. https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html\n\nFor Node-like environments, the current source explicitly warns: `Please use the legacy build in Node.js environments.` https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js\n\nThe current FAQ says PDF.js ships a default non-polyfilled build for the latest browsers and a separate `legacy` build for older environments; in its support table, `Node.js 22+` appears under the `legacy` build as “Mostly” supported with “Limited” automa"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/shared/util.js",
+          "text": "**Supported fact**\n\nCurrent official PDF.js docs present the **generic build as a browser-oriented prebuilt package**: the getting-started page says the prebuilt package “includes the generic build of PDF.js and the viewer,” and its examples page says its main tutorial shows use “in a web browser.” https://mozilla.github.io/pdf.js/getting_started/ https://mozilla.github.io/pdf.js/examples/\n\nThe same official examples page says there are separate `examples/node/` examples for Node.js usage. https://mozilla.github.io/pdf.js/examples/\n\nThe current official Node text-extraction example does **not** import the generic build; it imports `pdfjs-dist/legacy/build/pdf.mjs`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThat example loads a document with `getDocument({ url: pdfPath })`, gets each page with `getPage(i)`, calls `await pdfPage.getTextContent()`, and prints `items.map(item => item.str).join(\" \")`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThe public API docs say `PDFPageProxy.getTextContent()` returns a promise for a `TextContent` object, and that all whitespace is normalized to standard spaces (`0x20`). https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html\n\nThe `TextContent` docs say it contains an `items` array plus `styles`; `TextItem.str` is the text string, and `TextItem` also carries direction, transform, width, height, font name, and `hasEOL`. https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html\n\nFor Node-like environments, the current source explicitly warns: `Please use the legacy build in Node.js environments.` https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js\n\nThe current FAQ says PDF.js ships a default non-polyfilled build for the latest browsers and a separate `legacy` build for older environments; in its support table, `Node.js 22+` appears under the `legacy` build as “Mostly” supported with “Limited” automa"
+        }
+      ],
+      "final_answer": "**Supported fact**\n\nCurrent official PDF.js docs present the **generic build as a browser-oriented prebuilt package**: the getting-started page says the prebuilt package “includes the generic build of PDF.js and the viewer,” and its examples page says its main tutorial shows use “in a web browser.” https://mozilla.github.io/pdf.js/getting_started/ https://mozilla.github.io/pdf.js/examples/\n\nThe same official examples page says there are separate `examples/node/` examples for Node.js usage. https://mozilla.github.io/pdf.js/examples/\n\nThe current official Node text-extraction example does **not** import the generic build; it imports `pdfjs-dist/legacy/build/pdf.mjs`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThat example loads a document with `getDocument({ url: pdfPath })`, gets each page with `getPage(i)`, calls `await pdfPage.getTextContent()`, and prints `items.map(item => item.str).join(\" \")`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs\n\nThe public API docs say `PDFPageProxy.getTextContent()` returns a promise for a `TextContent` object, and that all whitespace is normalized to standard spaces (`0x20`). https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html\n\nThe `TextContent` docs say it contains an `items` array plus `styles`; `TextItem.str` is the text string, and `TextItem` also carries direction, transform, width, height, font name, and `hasEOL`. https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html\n\nFor Node-like environments, the current source explicitly warns: `Please use the legacy build in Node.js environments.` https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js\n\nThe current FAQ says PDF.js ships a default non-polyfilled build for the latest browsers and a separate `legacy` build for older environments; in its support table, `Node.js 22+` appears under the `legacy` build as “Mostly” supported with “Limited” automated testing. Bun is not listed in that table. https://github.com/mozilla/pdf.js/wiki/frequently-asked-questions\n\nThe runtime defaults in `src/display/api.js` are environment-sensitive. In Node.js, `useWorkerFetch` defaults to `false`, `isOffscreenCanvasSupported` defaults to `false`, `isImageDecoderSupported` defaults to `false`, `disableFontFace` defaults to `true`, and `useSystemFonts` defaults to `false` unless overridden. https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js\n\nThe same file defaults `ownerDocument` to `globalThis.document`. https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js\n\nIn a generic build detected as Node.js, PDF.js switches its default factories to `NodeCanvasFactory`, `NodeFilterFactory`, and `NodeBinaryDataFactory`. https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js\n\n`node_utils.js` shows what those Node defaults assume at runtime: it uses `process.getBuiltinModule(\"module\").createRequire(...)`, tries to load `@napi-rs/canvas`, polyfills `DOMMatrix` and `Path2D` from that package when possible, synthesizes a minimal `navigator` if `navigator.language` is missing, and reads local files through `fs/promises.readFile`. https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js\n\nFor worker setup, the API source says `GlobalWorkerOptions.workerSrc` “should always be set,” and `PDFWorker` creates a module worker with `new Worker(workerSrc, { type: \"module\" })`; in generic builds it also uses `window.location` for same-origin handling. https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/worker_options.js https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js\n\nThe current API source also uses modern globals/features such as `Promise.withResolvers()` and `structuredClone(...)`. https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js\n\n**Inference**\n\nFrom those official sources, the **documented path outside the browser is “use the legacy build,” not “use the generic build.”** That inference follows from the Node example importing `legacy/build/pdf.mjs`, the explicit Node warning in `node_utils.js`, and the FAQ support table listing Node.js only under `legacy`. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js https://github.com/mozilla/pdf.js/wiki/frequently-asked-questions\n\nFor **text extraction only**, PDF.js appears less dependent on canvas rendering than for image rendering, because the official example extracts text with `getTextContent()` and only reads `item.str`; however, that is still an inference about practical portability, not an explicit Bun guarantee. https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib-PDFPageProxy.html\n\nFor **Bun compatibility**, the most relevant runtime assumptions documented by current official sources are: a Node-style `process` object, `process.getBuiltinModule`, `createRequire`, file-system access, optional `@napi-rs/canvas` integration, browser-ish globals such as `document`, `navigator`, `Worker`, and `window.location`, plus modern JS globals like `Promise.withResolvers` and `structuredClone`. If Bun diverges on any of those behaviors, the generic build could fail or fall back in ways the docs do not promise to support. https://raw.githubusercontent.com/mozilla/pdf.js/master/src/shared/util.js https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/worker_options.js\n\n**Uncertainty / lack of good evidence**\n\nI found **no official PDF.js documentation in the sources above that explicitly says Bun is supported, unsupported, or tested**. The closest official support statement I found names `Node.js 22+` under the `legacy` build and does not mention Bun. https://github.com/mozilla/pdf.js/wiki/frequently-asked-questions\n\nI also found **no official source here that recommends the generic build for Bun specifically**. The available official material points to browser use for the generic build and to the legacy build for Node-style environments. https://mozilla.github.io/pdf.js/examples/ https://mozilla.github.io/pdf.js/getting_started/ https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js\n\n**Disagreement**\n\nI do not see a hard contradiction in the official sources, but there is a practical tension: the project distributes a generic prebuilt package, yet its current official Node guidance and runtime warning both steer non-browser usage toward the `legacy` build. https://mozilla.github.io/pdf.js/getting_started/ https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js"
+    },
+    {
+      "run_id": "2026-08-27_claude_technical-pdfjs",
+      "provider": "claude",
+      "model": "claude-opus-5[1m]",
+      "queries": [
+        "PDF.js generic build Node.js legacy build documentation",
+        "pdf.js getTextContent API documentation TextItem",
+        "pdf.js Bun compatibility issue mozilla/pdf.js github",
+        "Bun \"[object process]\" process toString Symbol.toStringTag pdf.js isNodeJS",
+        "oven-sh/bun issue pdfjs-dist \"pdf.js\" 2025 not working Bun runtime",
+        "Bun \"process.getBuiltinModule\" support release notes"
+      ],
+      "tool_results": [
+        {
+          "tool": "WebSearch",
+          "summary": "pdf-text-reader - npm: https://www.npmjs.com/package/pdf-text-reader/v/3.0.1"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "PDF GetTextContent Result: https://codepen.io/dunso/pen/PJXvgE"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "PDF.js tutorial: A complete guide with examples - Nutrient: https://www.nutrient.io/blog/complete-guide-to-pdfjs/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "pdf-text-reader - v5.1.1: https://electrovir.github.io/pdf-text-reader/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "JSDoc: Source: api.js: https://mozilla.github.io/pdf.js/api/draft/api.js.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "PDF Transaction — How to use PDF.js: https://medium.otranslator.com/pdf-transaction-how-to-use-pdf-js-b669f092fc1d"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "JSDoc: Module: pdfjsLib: https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Module: pdfjsLib - JSDoc: https://www.marlin-schaefer.me/assets/js/pdf_view/api/draft/module-pdfjsLib.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "huggingface.co: https://huggingface.co/Amiel/deep-researcher/blob/main/src/utils/parser/pdfParser.ts"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "# API Reference: https://glama.ai/mcp/servers/@jpwebb/pdftotext-mcp/blob/06d792e7dac8e7959b8708653275d471eef255b2/docs/api.md"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "GitHub - mozilla/pdfjs-dist: Generic build of PDF.js library. · GitHub: https://github.com/mozilla/pdfjs-dist"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "pdfjs-dist - npm: https://www.npmjs.com/package/pdfjs-dist"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "GitHub - mozilla/pdf.js: PDF Reader in JavaScript · GitHub: https://github.com/mozilla/pdf.js/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "pdf.js/README.md at master · mozilla/pdf.js: https://github.com/mozilla/pdf.js/blob/master/README.md"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "unpdf · Packages · UnJS: https://unjs.io/packages/unpdf/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "pdfjs-dist 6.1.200 on npm - Libraries.io - security & maintenance data for open source software: https://libraries.io/npm/pdfjs-dist"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "PDF.js - Getting Started: https://mozilla.github.io/pdf.js/getting_started/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "how to install legacy build of pdfjs-dist by npm in react project? · mozilla/pdf.js · Discussion #18300: https://github.com/mozilla/pdf.js/discussions/18300"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Index of /pdfjs/node_modules/pdfjs-dist/legacy/build: http://hp.zapto.org/pdfjs/node_modules/pdfjs-dist/legacy/build/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "pdfjs dist min: https://github.com/to-na/pdfjs-dist-min"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "Based on the provided content, here's what the examples page discusses:\n\n**Node.js Usage:** The page mentions that \"examples/ provides more examples, including usage in Node.js (at examples/node/)\" but doesn't elaborate on specific Node.js implementation details.\n\n**Legacy Build:** The page contains no information about a legacy build.\n\n**getDocument:** The documentation explains that `pdfjsLib.getDocument({ url: \"helloworld.pdf\" })` returns a `PDFDocumentLoadingTask` instance with a promise pro"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# PDF.js Build Information\n\n## Generic and Legacy Builds\n\nThe README explains that running `npx gulp generic` bundles source files into production scripts for the generic viewer. For older browser support, developers should run `npx gulp generic-legacy` instead. Both commands generate `pdf.js` and `pdf.worker.js` in their respective build directories, with only `pdf.js` needing explicit inclusion since it loads the worker file automatically.\n\n## Node.js Requirement\n\nThe documentation states: \"Ne"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Node.js Examples in pdf.js\n\nBased on the GitHub directory listing, the Node.js examples include:\n\n1. **pdf2png** - A subdirectory containing code that demonstrates converting PDF files to PNG image format.\n\n2. **getinfo.mjs** - A module file that showcases extracting information from PDF documents.\n\nHowever, the page content provided doesn't include detailed descriptions of what each example specifically demonstrates beyond their names. The actual implementation details and use cases would req"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# PDF.js Documentation Summary\n\nBased on the provided content, here's what the page addresses:\n\n**Installation & NPM:** The page mentions that \"releases are pushed directly to **NPM**\" as of February 2023, indicating this is the primary distribution method.\n\n**Node.js Usage:** The content doesn't discuss Node.js usage specifically.\n\n**Legacy Build:** For environments lacking modern JavaScript features, users should \"see the `legacy/` folder\" for a version without optional chaining, nullish coale"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "The server returned HTTP 403 Forbidden.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# PDF Document Extraction with pdf.js\n\nHere's the complete source code from the example:\n\n```javascript\n/* Any copyright is dedicated to the Public Domain.\n * http://creativecommons.org/publicdomain/zero/1.0/ */\n\nimport { getDocument } from \"pdfjs-dist/legacy/build/pdf.mjs\";\n\nconst pdfPath =\n  process.argv[2] || \"../../web/compressed.tracemonkey-pldi-09.pdf\";\n\nconst loadingTask = getDocument({ url: pdfPath });\ntry {\n  const pdfDoc = await loadingTask.promise;\n\n  const { numPages } = pdfDoc;\n  co"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# pdfjs-dist Package Information\n\n**Version:** 3.2.146\n\n**Engines:** Not specified in the package configuration.\n\n**Exports Map:** Not defined in the provided content.\n\n**Browser Field:** The package specifies module exclusions for browser environments:\n- \"canvas\": false\n- \"fs\": false\n- \"http\": false\n- \"https\": false\n- \"url\": false\n- \"zlib\": false\n\n**Dependencies:**\n- web-streams-polyfill (^3.2.1)\n\n**Optional Dependencies:**\n- canvas (^2.11.0)\n\nThe package is licensed under Apache-2.0 and serves"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Browser compatibility test page · Issue #2291 · mozilla/pdf.js: https://github.com/mozilla/pdf.js/issues/2291"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Prebuilt version missing compatibility.js · Issue #8818 · mozilla/pdf.js: https://github.com/mozilla/pdf.js/issues/8818"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "compatibility runHandlers RUN_TIMEOUT setting and performance · Issue #8427 · mozilla/pdf.js: https://github.com/mozilla/pdf.js/issues/8427"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How do I include compatibility.js? · Issue #7476 · mozilla/pdf.js: https://github.com/mozilla/pdf.js/issues/7476"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "[Bug]: Compatibility issue with older JS APIs · Issue #20899 · mozilla/pdf.js: https://github.com/mozilla/pdf.js/issues/20899"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Issues · mozilla/pdf.js: https://github.com/mozilla/pdf.js/issues"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Error with `pdf-text-reader` and NODE_ENV=production · Issue #9637 · oven-sh/bun: https://github.com/oven-sh/bun/issues/9637"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Frequently Asked Questions · mozilla/pdf.js Wiki · GitHub: https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "GitHub - mozilla/pdf.js: PDF Reader in JavaScript · GitHub: https://github.com/mozilla/pdf.js/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "github.com: https://github.com/Andy-Kl/pdf.js"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# pdfjs-dist Package Information\n\n**Version:** 6.2.108\n\n**Engines:** Node.js \">=22.13.0 || >=24\"\n\n**Main Export:** \"build/pdf.mjs\"\n\n**Type Definitions:** \"types/src/pdf.d.ts\"\n\n**Browser Field:** Disables canvas, fs, http, https, and url modules in browser environments\n\n**Dependencies:** None listed\n\n**Optional Dependencies:** \"@napi-rs/canvas\": \"^1.0.0\"\n\nThis distribution is Mozilla's generic PDF.js build, licensed under Apache-2.0, requiring a recent Node.js version and optionally supporting ca"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Recent Release Notes: Node.js, Canvas, and Legacy Build Changes\n\nBased on the release notes provided, here are the key updates:\n\n## Node.js Version Requirements\n\nThe v5.7.284 release notes indicate: \"[api-minor] Update the minimum supported Node.js version to 22\" in PR #21018. This represents a significant increase from prior versions.\n\nAdditionally, the v5.5.207 notes mention: \"[api-minor] Update the supported Node.js 'patch' versions\" in PR #20635, showing ongoing maintenance of version comp"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Node.js Environment Detection\n\nThe `isNodeJS` constant is defined as follows:\n\n```javascript\nconst isNodeJS =\n  (typeof PDFJSDev === \"undefined\" || PDFJSDev.test(\"GENERIC\")) &&\n  typeof process === \"object\" &&\n  process + \"\" === \"[object process]\" &&\n  !process.versions.nw &&\n  !(process.versions.electron && process.type && process.type !== \"browser\");\n```\n\nThis detection logic checks multiple conditions:\n\n1. **PDFJSDev context**: Ensures PDFJSDev is undefined or testing \"GENERIC\" mode\n2. **Pr"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# PDF.js Support for Non-Browser Environments\n\nAccording to the FAQ, Node.js support is **limited and mostly functional**. The documentation states:\n\n> \"Node.js 22+ [is] Mostly [supported with] Limited [automated testing]\"\n\nThe FAQ notes that while \"some missing features\" exist in Node.js environments, there are generally \"no problems in general.\"\n\nThe documentation emphasizes that PDF.js is fundamentally designed as \"a general-purpose library to parse and render PDFs,\" with its primary focus on"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Node-Specific APIs and Components in node_utils.js\n\n## Node APIs Used:\n- **`process.getBuiltinModule()`**: Accesses built-in Node modules like `\"module\"` and `\"fs/promises\"`\n- **`module.createRequire()`**: Creates a require function from ES module context\n- **`fs/promises.readFile()`**: Asynchronously reads files as buffers\n\n## External Package:\n- **`@napi-rs/canvas`**: Native canvas implementation providing `DOMMatrix`, `Path2D`, and `createCanvas()` functionality\n\n## Imported Base Classes:\nT"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "property [toStringTag] | Node.js child_process module | Bun: https://bun.com/reference/node/child_process/PromiseWithChild/%5BtoStringTag%5D"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Why does the global process object have its prototype replaced? · Issue #14699 · nodejs/node: https://github.com/nodejs/node/issues/14699"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Object.prototype.toString() - JavaScript | MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString."
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Object.prototype.toString() - JavaScript - MDN Web Docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "JavaScript — What Is `Symbol.toStringTag` and How to Use It: https://futurestud.io/tutorials/javascript-what-is-symbol-tostringtag-and-how-to-use-it"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "esm: fixup process Proxy to handle toString correctly by guybedford · Pull Request #25963 · nodejs/node: https://github.com/nodejs/node/pull/25963"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "DEV Community: https://dev.to/omriluz1/advanced-use-of-symboltostringtag-for-custom-objects-5gja"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "developer.mozilla.org: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Worker Setup in Node.js\n\nIn Node.js environments, PDF.js disables web workers and falls back to a fake worker implementation.\n\n## Worker Disabling\n\nThe code explicitly disables workers in Node.js:\n\n> \"if (isNodeJS) { // Workers aren't supported in Node.js, force-disabling them there. this.#isWorkerDisabled = true\"\n\n## Default Worker Source\n\nFor Node.js, the library sets a default worker path:\n\n> \"GlobalWorkerOptions.workerSrc ||= PDFJSDev.test(\"LIB\") ? \"../pdf.worker.js\" : \"./pdf.worker.mjs\"\"\n"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Bun's Node.js Compatibility Documentation\n\nBased on the provided documentation, here's what Bun states about these topics:\n\n## process.getBuiltinModule\nThe documentation does not mention `process.getBuiltinModule()` specifically.\n\n## node:worker_threads Support\nBun provides partial support for worker threads. The documentation indicates: \"Worker ignores the `resourceLimits` and `trackUnmanagedFds` options, and `execArgv` only sets `process.execArgv` in the worker.\" Additionally, the implementa"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "The server returned HTTP 404 Not Found.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "pdfjs-dist bug dyld[33775]: missing symbol called zsh: killed bun index.ts · Issue #9711 · oven-sh/bun: https://github.com/oven-sh/bun/issues/9711"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "bun: symbol lookup error (undefined symbol: node_module_register) · Issue #8862 · oven-sh/bun: https://github.com/oven-sh/bun/issues/8862"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Segmentation fault · Issue #20252 · oven-sh/bun: https://github.com/oven-sh/bun/issues/20252"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Error with `pdf-text-reader` and NODE_ENV=production · Issue #9637 · oven-sh/bun: https://github.com/oven-sh/bun/issues/9637"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun (software): https://en.wikipedia.org/wiki/Bun_(software)"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Issues · oven-sh/bun: https://github.com/oven-sh/bun/issues"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "GitHub - oven-sh/bun: Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one: https://github.com/oven-sh/bun"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun install fails where pnpm works · Issue #7683 · oven-sh/bun: https://github.com/oven-sh/bun/issues/7683"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun — A fast all-in-one JavaScript runtime: https://bun.sh/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "GitHub - unjs/unpdf: 📄 PDF extraction and rendering across all JavaScript runtimes: https://github.com/unjs/unpdf"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# PDF.js Download and Support Information\n\n**Prebuilt Generic Build:**\nThe page offers a \"Stable (v6.2.108)\" prebuilt version \"for modern browsers\" that \"includes the generic build of PDF.js and the viewer.\"\n\n**npm pdfjs-dist:**\nRather than detailed guidance on this package, the documentation directs users to \"several free CDNs\" where pdfjs-dist is available, listing jsDelivr, cdnjs, and unpkg as hosting options.\n\n**Legacy Build:**\nA separate \"Stable (v6.2.108)\" package is provided specifically "
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "List of breaking changes for 1.4 · Issue #28792 · oven-sh/bun: https://github.com/oven-sh/bun/issues/28792"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Support Node's process.getBuiltinModule · Issue #12161 · oven-sh/bun: https://github.com/oven-sh/bun/issues/12161"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Node.js process module | API Reference | Bun: https://bun.com/reference/node/process"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Bun (software): https://en.wikipedia.org/wiki/Bun_(software)"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Node.js compatibility - Bun: https://mintlify.wiki/oven-sh/bun/runtime/nodejs-compat"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "chore(deps): update dependency node to v20.16.0: https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/merge_requests/1153/pipelines"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "github.com: https://github.com/nodejs/node/commit/67333a5796"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Notebookcheck Logo: https://www.notebookcheck.net/JavaScript-toolkit-Bun-1-1-delivers-improved-performance-and-debuts-on-Windows.824192.0.html"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Status of process.getBuiltinModule in Bun\n\nBased on the GitHub issue, this feature request is **closed**. The page shows a reference to pull request #18266, indicating the issue has been resolved.\n\nThe original issue, opened on June 25, 2024, requested that Bun support Node's `process.getBuiltinModule()` function. This API was introduced in Node 22.3.0 to enable libraries to access built-in modules without using top-level await, particularly useful for supporting ESM modules that need to requi"
+        }
+      ],
+      "opened_urls": [
+        "https://github.com/mozilla/pdf.js/blob/master/README.md",
+        "https://mozilla.github.io/pdf.js/examples/",
+        "https://raw.githubusercontent.com/mozilla/pdfjs-dist/master/README.md",
+        "https://github.com/mozilla/pdf.js/tree/master/examples/node",
+        "https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs",
+        "https://www.npmjs.com/package/pdfjs-dist",
+        "https://raw.githubusercontent.com/mozilla/pdfjs-dist/master/package.json",
+        "https://cdn.jsdelivr.net/npm/pdfjs-dist@latest/package.json",
+        "https://github.com/mozilla/pdf.js/releases",
+        "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/shared/util.js",
+        "https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions",
+        "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js",
+        "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js",
+        "https://bun.com/docs/runtime/nodejs-apis",
+        "https://bun.com/reference/node/process/getBuiltinModule",
+        "https://mozilla.github.io/pdf.js/getting_started/",
+        "https://github.com/oven-sh/bun/issues/12161"
+      ],
+      "cited_urls": [
+        "https://github.com/mozilla/pdf.js/blob/master/README.md",
+        "https://github.com/mozilla/pdfjs-dist",
+        "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/shared/util.js",
+        "https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions",
+        "https://mozilla.github.io/pdf.js/getting_started/",
+        "https://cdn.jsdelivr.net/npm/pdfjs-dist@latest/package.json",
+        "https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs",
+        "https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html",
+        "https://mozilla.github.io/pdf.js/api/draft/api.js.html",
+        "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js",
+        "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString",
+        "https://github.com/nodejs/node/issues/14699",
+        "https://bun.com/docs/runtime/nodejs-apis",
+        "https://github.com/oven-sh/bun/issues/12161",
+        "https://github.com/oven-sh/bun/issues/28792",
+        "https://github.com/oven-sh/bun/issues/9711",
+        "https://github.com/oven-sh/bun/issues/8862",
+        "https://github.com/oven-sh/bun/issues/9637",
+        "https://github.com/unjs/unpdf",
+        "https://github.com/mozilla/pdf.js/releases"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://www.npmjs.com/package/pdf-text-reader/v/3.0.1",
+          "title": "pdf-text-reader - npm"
+        },
+        {
+          "url": "https://codepen.io/dunso/pen/PJXvgE",
+          "title": "PDF GetTextContent Result"
+        },
+        {
+          "url": "https://www.nutrient.io/blog/complete-guide-to-pdfjs/",
+          "title": "PDF.js tutorial: A complete guide with examples - Nutrient"
+        },
+        {
+          "url": "https://electrovir.github.io/pdf-text-reader/",
+          "title": "pdf-text-reader - v5.1.1"
+        },
+        {
+          "url": "https://mozilla.github.io/pdf.js/api/draft/api.js.html",
+          "title": "JSDoc: Source: api.js"
+        },
+        {
+          "url": "https://medium.otranslator.com/pdf-transaction-how-to-use-pdf-js-b669f092fc1d",
+          "title": "PDF Transaction — How to use PDF.js"
+        },
+        {
+          "url": "https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html",
+          "title": "JSDoc: Module: pdfjsLib"
+        },
+        {
+          "url": "https://www.marlin-schaefer.me/assets/js/pdf_view/api/draft/module-pdfjsLib.html",
+          "title": "Module: pdfjsLib - JSDoc"
+        },
+        {
+          "url": "https://huggingface.co/Amiel/deep-researcher/blob/main/src/utils/parser/pdfParser.ts",
+          "title": "huggingface.co"
+        },
+        {
+          "url": "https://glama.ai/mcp/servers/@jpwebb/pdftotext-mcp/blob/06d792e7dac8e7959b8708653275d471eef255b2/docs/api.md",
+          "title": "# API Reference"
+        },
+        {
+          "url": "https://github.com/mozilla/pdfjs-dist",
+          "title": "GitHub - mozilla/pdfjs-dist: Generic build of PDF.js library. · GitHub"
+        },
+        {
+          "url": "https://www.npmjs.com/package/pdfjs-dist",
+          "title": "https://www.npmjs.com/package/pdfjs-dist"
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/",
+          "title": "GitHub - mozilla/pdf.js: PDF Reader in JavaScript · GitHub"
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/blob/master/README.md",
+          "title": "https://github.com/mozilla/pdf.js/blob/master/README.md"
+        },
+        {
+          "url": "https://unjs.io/packages/unpdf/",
+          "title": "unpdf · Packages · UnJS"
+        },
+        {
+          "url": "https://libraries.io/npm/pdfjs-dist",
+          "title": "pdfjs-dist 6.1.200 on npm - Libraries.io - security & maintenance data for open source software"
+        },
+        {
+          "url": "https://mozilla.github.io/pdf.js/getting_started/",
+          "title": "https://mozilla.github.io/pdf.js/getting_started/"
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/discussions/18300",
+          "title": "how to install legacy build of pdfjs-dist by npm in react project? · mozilla/pdf.js · Discussion #18300"
+        },
+        {
+          "url": "http://hp.zapto.org/pdfjs/node_modules/pdfjs-dist/legacy/build/",
+          "title": "Index of /pdfjs/node_modules/pdfjs-dist/legacy/build"
+        },
+        {
+          "url": "https://github.com/to-na/pdfjs-dist-min",
+          "title": "pdfjs dist min"
+        },
+        {
+          "url": "https://mozilla.github.io/pdf.js/examples/",
+          "title": "https://mozilla.github.io/pdf.js/examples/"
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/tree/master/examples/node",
+          "title": "https://github.com/mozilla/pdf.js/tree/master/examples/node"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdfjs-dist/master/README.md",
+          "title": "https://raw.githubusercontent.com/mozilla/pdfjs-dist/master/README.md"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs",
+          "title": "https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdfjs-dist/master/package.json",
+          "title": "https://raw.githubusercontent.com/mozilla/pdfjs-dist/master/package.json"
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/issues/2291",
+          "title": "Browser compatibility test page · Issue #2291 · mozilla/pdf.js"
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/issues/8818",
+          "title": "Prebuilt version missing compatibility.js · Issue #8818 · mozilla/pdf.js"
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/issues/8427",
+          "title": "compatibility runHandlers RUN_TIMEOUT setting and performance · Issue #8427 · mozilla/pdf.js"
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/issues/7476",
+          "title": "How do I include compatibility.js? · Issue #7476 · mozilla/pdf.js"
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/issues/20899",
+          "title": "[Bug]: Compatibility issue with older JS APIs · Issue #20899 · mozilla/pdf.js"
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/issues",
+          "title": "Issues · mozilla/pdf.js"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/9637",
+          "title": "Error with `pdf-text-reader` and NODE_ENV=production · Issue #9637 · oven-sh/bun"
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions",
+          "title": "https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions"
+        },
+        {
+          "url": "https://github.com/Andy-Kl/pdf.js",
+          "title": "github.com"
+        },
+        {
+          "url": "https://cdn.jsdelivr.net/npm/pdfjs-dist@latest/package.json",
+          "title": "https://cdn.jsdelivr.net/npm/pdfjs-dist@latest/package.json"
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/releases",
+          "title": "https://github.com/mozilla/pdf.js/releases"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/shared/util.js",
+          "title": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/shared/util.js"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js",
+          "title": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js"
+        },
+        {
+          "url": "https://bun.com/reference/node/child_process/PromiseWithChild/%5BtoStringTag%5D",
+          "title": "property [toStringTag] | Node.js child_process module | Bun"
+        },
+        {
+          "url": "https://github.com/nodejs/node/issues/14699",
+          "title": "Why does the global process object have its prototype replaced? · Issue #14699 · nodejs/node"
+        },
+        {
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString.",
+          "title": "Object.prototype.toString() - JavaScript | MDN"
+        },
+        {
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString",
+          "title": "Object.prototype.toString() - JavaScript - MDN Web Docs"
+        },
+        {
+          "url": "https://futurestud.io/tutorials/javascript-what-is-symbol-tostringtag-and-how-to-use-it",
+          "title": "JavaScript — What Is `Symbol.toStringTag` and How to Use It"
+        },
+        {
+          "url": "https://github.com/nodejs/node/pull/25963",
+          "title": "esm: fixup process Proxy to handle toString correctly by guybedford · Pull Request #25963 · nodejs/node"
+        },
+        {
+          "url": "https://dev.to/omriluz1/advanced-use-of-symboltostringtag-for-custom-objects-5gja",
+          "title": "DEV Community"
+        },
+        {
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag",
+          "title": "developer.mozilla.org"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js",
+          "title": "https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js"
+        },
+        {
+          "url": "https://bun.com/docs/runtime/nodejs-apis",
+          "title": "https://bun.com/docs/runtime/nodejs-apis"
+        },
+        {
+          "url": "https://bun.com/reference/node/process/getBuiltinModule",
+          "title": "https://bun.com/reference/node/process/getBuiltinModule"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/9711",
+          "title": "pdfjs-dist bug dyld[33775]: missing symbol called zsh: killed bun index.ts · Issue #9711 · oven-sh/bun"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/8862",
+          "title": "bun: symbol lookup error (undefined symbol: node_module_register) · Issue #8862 · oven-sh/bun"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/20252",
+          "title": "Segmentation fault · Issue #20252 · oven-sh/bun"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Bun_(software)",
+          "title": "Bun (software)"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues",
+          "title": "Issues · oven-sh/bun"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun",
+          "title": "GitHub - oven-sh/bun: Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/7683",
+          "title": "Bun install fails where pnpm works · Issue #7683 · oven-sh/bun"
+        },
+        {
+          "url": "https://bun.sh/",
+          "title": "Bun — A fast all-in-one JavaScript runtime"
+        },
+        {
+          "url": "https://github.com/unjs/unpdf",
+          "title": "GitHub - unjs/unpdf: 📄 PDF extraction and rendering across all JavaScript runtimes"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/28792",
+          "title": "List of breaking changes for 1.4 · Issue #28792 · oven-sh/bun"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/12161",
+          "title": "https://github.com/oven-sh/bun/issues/12161"
+        },
+        {
+          "url": "https://bun.com/reference/node/process",
+          "title": "Node.js process module | API Reference | Bun"
+        },
+        {
+          "url": "https://mintlify.wiki/oven-sh/bun/runtime/nodejs-compat",
+          "title": "Node.js compatibility - Bun"
+        },
+        {
+          "url": "https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/merge_requests/1153/pipelines",
+          "title": "chore(deps): update dependency node to v20.16.0"
+        },
+        {
+          "url": "https://github.com/nodejs/node/commit/67333a5796",
+          "title": "github.com"
+        },
+        {
+          "url": "https://www.notebookcheck.net/JavaScript-toolkit-Bun-1-1-delivers-improved-performance-and-debuts-on-Windows.824192.0.html",
+          "title": "Notebookcheck Logo"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.npmjs.com/package/pdf-text-reader/v/3.0.1",
+          "text": "pdf-text-reader - npm"
+        },
+        {
+          "url": "https://codepen.io/dunso/pen/PJXvgE",
+          "text": "PDF GetTextContent Result"
+        },
+        {
+          "url": "https://www.nutrient.io/blog/complete-guide-to-pdfjs/",
+          "text": "PDF.js tutorial: A complete guide with examples - Nutrient"
+        },
+        {
+          "url": "https://electrovir.github.io/pdf-text-reader/",
+          "text": "pdf-text-reader - v5.1.1"
+        },
+        {
+          "url": "https://mozilla.github.io/pdf.js/api/draft/api.js.html",
+          "text": "JSDoc: Source: api.js"
+        },
+        {
+          "url": "https://medium.otranslator.com/pdf-transaction-how-to-use-pdf-js-b669f092fc1d",
+          "text": "PDF Transaction — How to use PDF.js"
+        },
+        {
+          "url": "https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html",
+          "text": "JSDoc: Module: pdfjsLib"
+        },
+        {
+          "url": "https://www.marlin-schaefer.me/assets/js/pdf_view/api/draft/module-pdfjsLib.html",
+          "text": "Module: pdfjsLib - JSDoc"
+        },
+        {
+          "url": "https://huggingface.co/Amiel/deep-researcher/blob/main/src/utils/parser/pdfParser.ts",
+          "text": "huggingface.co"
+        },
+        {
+          "url": "https://glama.ai/mcp/servers/@jpwebb/pdftotext-mcp/blob/06d792e7dac8e7959b8708653275d471eef255b2/docs/api.md",
+          "text": "# API Reference"
+        },
+        {
+          "url": "https://github.com/mozilla/pdfjs-dist",
+          "text": "GitHub - mozilla/pdfjs-dist: Generic build of PDF.js library. · GitHub"
+        },
+        {
+          "url": "https://www.npmjs.com/package/pdfjs-dist",
+          "text": "pdfjs-dist - npm"
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/",
+          "text": "GitHub - mozilla/pdf.js: PDF Reader in JavaScript · GitHub"
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/blob/master/README.md",
+          "text": "pdf.js/README.md at master · mozilla/pdf.js"
+        },
+        {
+          "url": "https://unjs.io/packages/unpdf/",
+          "text": "unpdf · Packages · UnJS"
+        },
+        {
+          "url": "https://libraries.io/npm/pdfjs-dist",
+          "text": "pdfjs-dist 6.1.200 on npm - Libraries.io - security & maintenance data for open source software"
+        },
+        {
+          "url": "https://mozilla.github.io/pdf.js/getting_started/",
+          "text": "PDF.js - Getting Started"
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/discussions/18300",
+          "text": "how to install legacy build of pdfjs-dist by npm in react project? · mozilla/pdf.js · Discussion #18300"
+        },
+        {
+          "url": "http://hp.zapto.org/pdfjs/node_modules/pdfjs-dist/legacy/build/",
+          "text": "Index of /pdfjs/node_modules/pdfjs-dist/legacy/build"
+        },
+        {
+          "url": "https://github.com/to-na/pdfjs-dist-min",
+          "text": "pdfjs dist min"
+        },
+        {
+          "url": "https://mozilla.github.io/pdf.js/examples/",
+          "text": "Based on the provided content, here's what the examples page discusses:\n\n**Node.js Usage:** The page mentions that \"examples/ provides more examples, including usage in Node.js (at examples/node/)\" but doesn't elaborate on specific Node.js implementation details.\n\n**Legacy Build:** The page contains no information about a legacy build.\n\n**getDocument:** The documentation explains that `pdfjsLib.getDocument({ url: \"helloworld.pdf\" })` returns a `PDFDocumentLoadingTask` instance with a promise property that resolves to the document object, enabling asynchronous document loading.\n\n**Limitations Outside a Browser:** The page does not discuss any limitations for usage outside browser environments. It focuses on browser-based implementation and only briefly references that Node.js examples exist elsewhere in the repository."
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/blob/master/README.md",
+          "text": "# PDF.js Build Information\n\n## Generic and Legacy Builds\n\nThe README explains that running `npx gulp generic` bundles source files into production scripts for the generic viewer. For older browser support, developers should run `npx gulp generic-legacy` instead. Both commands generate `pdf.js` and `pdf.worker.js` in their respective build directories, with only `pdf.js` needing explicit inclusion since it loads the worker file automatically.\n\n## Node.js Requirement\n\nThe documentation states: \"Next, install Node.js via the official package or via nvm.\" This is essential for local development, as Node must be installed before running any build commands.\n\n## Browser Compatibility Notes\n\nThe README indicates that \"the 'Modern browsers' version assumes native support for the latest JavaScript features\" and directs users to consult a wiki page for detailed browser support information. An older browsers version is maintained separately for legacy environment support.\n\n## Development vs. Production\n\nThe guide emphasizes that the setup instructions \"assumes the latest version of Mozilla Firefox\" for development purposes, distinguishing this from production usage of the library where \"The PDF.js files are large and should be minified for production.\""
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/tree/master/examples/node",
+          "text": "# Node.js Examples in pdf.js\n\nBased on the GitHub directory listing, the Node.js examples include:\n\n1. **pdf2png** - A subdirectory containing code that demonstrates converting PDF files to PNG image format.\n\n2. **getinfo.mjs** - A module file that showcases extracting information from PDF documents.\n\nHowever, the page content provided doesn't include detailed descriptions of what each example specifically demonstrates beyond their names. The actual implementation details and use cases would require viewing the individual files within these directories."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdfjs-dist/master/README.md",
+          "text": "# PDF.js Documentation Summary\n\nBased on the provided content, here's what the page addresses:\n\n**Installation & NPM:** The page mentions that \"releases are pushed directly to **NPM**\" as of February 2023, indicating this is the primary distribution method.\n\n**Node.js Usage:** The content doesn't discuss Node.js usage specifically.\n\n**Legacy Build:** For environments lacking modern JavaScript features, users should \"see the `legacy/` folder\" for a version without optional chaining, nullish coalescing, and private class fields/methods.\n\n**Worker:** Not addressed in this content.\n\n**Canvas:** Not mentioned in the provided text.\n\n**Imports:** The page doesn't detail import mechanisms or syntax.\n\nThe document primarily describes PDF.js as \"a Portable Document Format library that is built with HTML5,\" emphasizing its role as a standards-based parsing and rendering platform. For detailed guidance on these other topics, the GitHub repository (https://github.com/mozilla/pdf.js) is recommended as a resource."
+        },
+        {
+          "url": "https://www.npmjs.com/package/pdfjs-dist",
+          "text": "The server returned HTTP 403 Forbidden.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs",
+          "text": "# PDF Document Extraction with pdf.js\n\nHere's the complete source code from the example:\n\n```javascript\n/* Any copyright is dedicated to the Public Domain.\n * http://creativecommons.org/publicdomain/zero/1.0/ */\n\nimport { getDocument } from \"pdfjs-dist/legacy/build/pdf.mjs\";\n\nconst pdfPath =\n  process.argv[2] || \"../../web/compressed.tracemonkey-pldi-09.pdf\";\n\nconst loadingTask = getDocument({ url: pdfPath });\ntry {\n  const pdfDoc = await loadingTask.promise;\n\n  const { numPages } = pdfDoc;\n  console.log(\"# Document Loaded\");\n  console.log(`Number of Pages: ${numPages}`);\n  console.log();\n\n  const { info, metadata } = await pdfDoc.getMetadata();\n  console.log(\"# Metadata is Loaded\");\n  console.log(\"## Info\");\n  console.log(JSON.stringify(info, null, 2));\n  console.log();\n  if (metadata) {\n    console.log(\"## Metadata\");\n    console.log(JSON.stringify(Object.fromEntries(metadata), null, 2));\n    console.log();\n  }\n\n  for (let i = 1; i <= numPages; i++) {\n    const pdfPage = await pdfDoc.getPage(i);\n    console.log(`# Page ${i}`);\n    const viewport = pdfPage.getViewport({ scale: 1.0 });\n    console.log(`Size: ${viewport.width}x${viewport.height}`);\n    console.log();\n\n    const { items } = await pdfPage.getTextContent();\n    console.log(\"## Text Content\");\n    console.log(items.map(item => item.str).join(\" \"));\n    console.log();\n    pdfPage.cleanup();\n  }\n\n  await loadingTask.destroy();\n  console.log(\"# End of Document\");\n} catch (ex) {\n  console.error(`Error: ${ex}`);\n}\n```\n\n**Key aspects:** This Node.js script uses the legacy build distribution, employs async/await for promise handling, extracts text via `getTextContent()`, and properly releases resources."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mozilla/pdfjs-dist/master/package.json",
+          "text": "# pdfjs-dist Package Information\n\n**Version:** 3.2.146\n\n**Engines:** Not specified in the package configuration.\n\n**Exports Map:** Not defined in the provided content.\n\n**Browser Field:** The package specifies module exclusions for browser environments:\n- \"canvas\": false\n- \"fs\": false\n- \"http\": false\n- \"https\": false\n- \"url\": false\n- \"zlib\": false\n\n**Dependencies:**\n- web-streams-polyfill (^3.2.1)\n\n**Optional Dependencies:**\n- canvas (^2.11.0)\n\nThe package is licensed under Apache-2.0 and serves as \"Generic build of Mozilla's PDF.js library.\""
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/issues/2291",
+          "text": "Browser compatibility test page · Issue #2291 · mozilla/pdf.js"
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/issues/8818",
+          "text": "Prebuilt version missing compatibility.js · Issue #8818 · mozilla/pdf.js"
+        },
+        {
+          "url": "https://github.com/mozilla/pdf.js/issues/8427",
+          "text": "compatibility runHandlers RUN_TIMEOUT setting and performance · Issue #8427 · mozilla/pdf.js"
+        }
+      ],
+      "final_answer": "## Résumé de la recherche\n\nToutes les affirmations ci-dessous proviennent des sources officielles PDF.js (mozilla/pdf.js, pdfjs-dist, wiki, site) ou de la documentation Bun. Je distingue explicitement les faits sourcés des inférences.\n\n---\n\n## 1. Le build « generic » hors navigateur\n\n### Faits documentés\n\n- Le build generic se produit avec `npx gulp generic`, qui génère `pdf.js` et `pdf.worker.js` dans `build/generic/build/` ; une variante `npx gulp generic-legacy` produit `build/generic-legacy/build/` pour les environnements dépourvus des fonctionnalités JS modernes (optional chaining, nullish coalescing, champs/méthodes privés de classe). ([README pdf.js](https://github.com/mozilla/pdf.js/blob/master/README.md), [README pdfjs-dist](https://github.com/mozilla/pdfjs-dist))\n- Le paquet npm `pdfjs-dist` **est** le build generic pré-compilé, généré automatiquement par les scripts de build. ([pdfjs-dist](https://github.com/mozilla/pdfjs-dist))\n- La détection d'environnement est faite dans `src/shared/util.js` par une constante `isNodeJS` qui **n'est active que dans le build GENERIC** :\n\n```javascript\nconst isNodeJS =\n  (typeof PDFJSDev === \"undefined\" || PDFJSDev.test(\"GENERIC\")) &&\n  typeof process === \"object\" &&\n  process + \"\" === \"[object process]\" &&\n  !process.versions.nw &&\n  !(process.versions.electron && process.type && process.type !== \"browser\");\n```\n([src/shared/util.js](https://raw.githubusercontent.com/mozilla/pdf.js/master/src/shared/util.js))\n\nC'est le point le plus important de toute cette question : **seul le build generic contient le code Node.js**. Un build « viewer Firefox » ou une compilation où `PDFJSDev.test(\"GENERIC\")` est faux court-circuite tout le chemin hors navigateur.\n\n- Le wiki officiel classe Node.js 22+ comme « Mostly » supporté avec une couverture de tests automatisés « Limited », et mentionne « some missing features » mais « no problems in general ». ([FAQ wiki](https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions))\n- Le site officiel propose deux paquets distincts en v6.2.108 : un « for modern browsers » et un « for older browsers », tous deux contenant le build generic et le viewer. ([Getting Started](https://mozilla.github.io/pdf.js/getting_started/))\n\n### Version courante et contraintes du paquet\n\nLe `package.json` de `pdfjs-dist@latest` (v6.2.108) déclare ([jsDelivr](https://cdn.jsdelivr.net/npm/pdfjs-dist@latest/package.json)) :\n\n| Champ | Valeur |\n|---|---|\n| `engines` | `>=22.13.0 \\|\\| >=24` |\n| entrée principale | `build/pdf.mjs` (ESM) |\n| `dependencies` | *aucune* |\n| `optionalDependencies` | `@napi-rs/canvas: ^1.0.0` |\n| `browser` | désactive `canvas`, `fs`, `http`, `https`, `url` |\n\nPoint d'attention : le `package.json` de la branche master du dépôt `pdfjs-dist` que j'ai récupéré affichait la v3.2.146 (avec `web-streams-polyfill` et l'ancien `canvas@^2`) — cette lecture est probablement obsolète ou mise en cache. **Je me fie au paquet publié v6.2.108**, pas à cette lecture-là.\n\n---\n\n## 2. Extraction du texte d'une page\n\n### Fait : l'exemple officiel Node\n\nLe seul exemple Node officiel d'extraction de texte est `examples/node/getinfo.mjs` ([source](https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs)) :\n\n```javascript\nimport { getDocument } from \"pdfjs-dist/legacy/build/pdf.mjs\";\n\nconst loadingTask = getDocument({ url: pdfPath });\nconst pdfDoc = await loadingTask.promise;\nconst { numPages } = pdfDoc;\nconst { info, metadata } = await pdfDoc.getMetadata();\n\nfor (let i = 1; i <= numPages; i++) {\n  const pdfPage = await pdfDoc.getPage(i);\n  const viewport = pdfPage.getViewport({ scale: 1.0 });\n  const { items } = await pdfPage.getTextContent();\n  console.log(items.map(item => item.str).join(\" \"));\n  pdfPage.cleanup();\n}\nawait loadingTask.destroy();\n```\n\nTrois choses méritent d'être relevées, car elles ne sont pas évidentes :\n\n1. **L'exemple officiel importe le chemin `legacy/`**, pas le build moderne — alors même que la doc présente `legacy/` comme destiné aux *vieux navigateurs*. C'est une divergence réelle entre le README et l'exemple exécutable.\n2. L'exemple accepte un **chemin de fichier local** passé à `url:`, ce qui n'est possible que grâce au chemin Node.\n3. Le nettoyage explicite (`pdfPage.cleanup()`, `loadingTask.destroy()`) fait partie de l'exemple canonique — pertinent pour un usage batch côté serveur.\n\n### API `getTextContent`\n\n`getTextContent()` accepte `includeMarkedContent` (défaut `false`) et `disableNormalization` (défaut `false`), et retourne un `TextContent` avec un tableau `items` de `TextItem`/`TextMarkedContent`, un objet `styles` indexé par nom de police, et `lang`. ([JSDoc pdfjsLib](https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html), [api.js JSDoc](https://mozilla.github.io/pdf.js/api/draft/api.js.html))\n\n**Inférence (bien étayée, non citée telle quelle) :** l'extraction de texte seule n'exige **pas** `@napi-rs/canvas`, puisque celui-ci n'est qu'une `optionalDependency` et n'est sollicité que par `NodeCanvasFactory`, c'est-à-dire au rendu. Je n'ai pas trouvé de phrase officielle l'énonçant explicitement.\n\n---\n\n## 3. Hypothèses d'exécution — ce qui conditionne la compatibilité Bun\n\n### Fait : pas de worker en Node\n\n`src/display/api.js` force la désactivation des workers hors navigateur :\n\n> « if (isNodeJS) { // Workers aren't supported in Node.js, force-disabling them there. this.#isWorkerDisabled = true »\n\nLe remplacement est un « fake worker » utilisant un `LoopbackPort` et un `MessageHandler`, c'est-à-dire un thread unique qui se parle à lui-même. ([src/display/api.js](https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js))\n\n### Fait : des valeurs par défaut différentes hors navigateur\n\nToujours dans `api.js` : `disableFontFace` passe à `true` (vs `false` en navigateur), `useSystemFonts` à `false`, `isOffscreenCanvasSupported` et `isImageDecoderSupported` à `false`, `useWorkerFetch` à `false`.\n\n### Fait : les API Node utilisées\n\n`src/display/node_utils.js` s'appuie sur ([source](https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js)) :\n\n- `process.getBuiltinModule()` pour charger `\"module\"` et `\"fs/promises\"`\n- `module.createRequire()`\n- `fs/promises.readFile()`\n- `@napi-rs/canvas` pour `DOMMatrix`, `Path2D`, `createCanvas()`\n- un **polyfill conditionnel des globales** `DOMMatrix`, `Path2D` et `navigator` lorsqu'elles sont absentes\n\n### Ce que cela implique pour Bun\n\nVoici, explicitement, la part d'**inférence** — je n'ai trouvé **aucune documentation officielle PDF.js mentionnant Bun**, ni aucun test officiel PDF.js sur Bun. Le wiki ne liste que navigateurs et Node.js.\n\nLes trois points de contact critiques déductibles du code sont :\n\n1. **`process + \"\" === \"[object process]\"`.** Si Bun ne reproduit pas exactement ce `Symbol.toStringTag`, `isNodeJS` vaut `false` et PDF.js prend le chemin *navigateur* — donc pas de lecture `fs`, pas de polyfills. Je **n'ai pas pu vérifier** le comportement de Bun sur ce point précis : mes recherches n'ont donné que de la documentation générale sur `Symbol.toStringTag` ([MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString), [nodejs/node#14699](https://github.com/nodejs/node/issues/14699)). **Preuve insuffisante — à tester empiriquement.**\n2. **`process.getBuiltinModule()`.** Absent de la page de compatibilité Bun que j'ai consultée ([Bun Node.js APIs](https://bun.com/docs/runtime/nodejs-apis)), mais l'issue de demande [oven-sh/bun#12161](https://github.com/oven-sh/bun/issues/12161) est **close** via une PR, et les notes de Bun 1.4 (2026-08-19) mentionnent que `require()`, `import()` et `process.getBuiltinModule()` retournent le même objet pour les modules natifs ([breaking changes 1.4](https://github.com/oven-sh/bun/issues/28792)). Considérez-le donc comme supporté sur Bun récent, mais c'est un blocage probable sur Bun ancien.\n3. **`@napi-rs/canvas`.** Les échecs pdfjs-dist + Bun rapportés historiquement sont des erreurs de symboles natifs (`missing symbol called`, `undefined symbol: node_module_register`) ([bun#9711](https://github.com/oven-sh/bun/issues/9711), [bun#8862](https://github.com/oven-sh/bun/issues/8862)) — c'est-à-dire l'ABI des addons natifs, pas PDF.js lui-même. Ces tickets datent de Bun 1.0.26–1.0.36 (début 2024) et **leur statut actuel n'est pas établi** par ma recherche.\n\nBun énonce par ailleurs une politique explicite : « If a package works in Node.js but doesn't work in Bun, we consider it a bug in Bun » ([Bun](https://bun.com/docs/runtime/nodejs-apis)). C'est une intention, pas une garantie.\n\nUn autre incident rapporté concerne `bun build` avec `NODE_ENV=production`, où les `require` ne se résolvaient plus ([bun#9637](https://github.com/oven-sh/bun/issues/9637)) — problème de **bundler**, distinct du runtime.\n\n---\n\n## Recommandation opérationnelle\n\nComme l'absence de worker est actée en Node, l'extraction de texte sous Bun est du travail **mono-thread bloquant** : sur un lot de PDF volumineux, parallélisez au niveau processus, pas en comptant sur le worker PDF.js.\n\nConcrètement : importez `pdfjs-dist/legacy/build/pdf.mjs` comme le fait l'exemple officiel, n'installez pas `@napi-rs/canvas` si vous ne faites que du texte, et **vérifiez en premier** par un simple `Object.prototype.toString.call(process)` sous votre version de Bun que `isNodeJS` sera bien vrai — c'est le point de bascule dont tout le reste dépend et le seul que je n'ai pas pu confirmer par une source.\n\nSi cette vérification échoue ou si vous voulez éviter le sujet, [unpdf](https://github.com/unjs/unpdf) est un wrapper tiers (non officiel Mozilla) qui se présente explicitement comme fonctionnant « across all JavaScript runtimes », Bun inclus.\n\n**Sources :**\n- [README pdf.js](https://github.com/mozilla/pdf.js/blob/master/README.md)\n- [README pdfjs-dist](https://github.com/mozilla/pdfjs-dist)\n- [examples/node/getinfo.mjs](https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/node/getinfo.mjs)\n- [src/shared/util.js](https://raw.githubusercontent.com/mozilla/pdf.js/master/src/shared/util.js)\n- [src/display/api.js](https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/api.js)\n- [src/display/node_utils.js](https://raw.githubusercontent.com/mozilla/pdf.js/master/src/display/node_utils.js)\n- [pdfjs-dist@latest package.json](https://cdn.jsdelivr.net/npm/pdfjs-dist@latest/package.json)\n- [FAQ wiki pdf.js](https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions)\n- [PDF.js Getting Started](https://mozilla.github.io/pdf.js/getting_started/)\n- [JSDoc pdfjsLib](https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html)\n- [Releases pdf.js](https://github.com/mozilla/pdf.js/releases)\n- [Bun — Node.js APIs](https://bun.com/docs/runtime/nodejs-apis)\n- [oven-sh/bun#12161](https://github.com/oven-sh/bun/issues/12161)\n- [oven-sh/bun#28792](https://github.com/oven-sh/bun/issues/28792)\n- [oven-sh/bun#9711](https://github.com/oven-sh/bun/issues/9711)\n- [oven-sh/bun#8862](https://github.com/oven-sh/bun/issues/8862)\n- [oven-sh/bun#9637](https://github.com/oven-sh/bun/issues/9637)\n- [unjs/unpdf](https://github.com/unjs/unpdf)"
+    }
+  ]
+}

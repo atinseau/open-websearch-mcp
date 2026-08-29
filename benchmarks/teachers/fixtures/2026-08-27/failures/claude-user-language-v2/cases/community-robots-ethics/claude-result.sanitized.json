@@ -1,0 +1,134 @@
+{
+  "is_error": false,
+  "duration_api_ms": 48668,
+  "num_turns": 2,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.6674135000000001,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 54621,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 3281,
+    "output_tokens_details": {
+      "thinking_tokens": 1669
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 54621,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 3281,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 54621,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 54621
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 38610,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.03871,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 3281,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 54621,
+      "webSearchRequests": 0,
+      "costUSD": 0.6287035000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"claim1\"],\"rejected_claims\":[{\"id\":\"claim2\",\"reason\":\"La source Google (developers.google.com/search/docs/crawling-indexing/robots/intro) n'a jamais été ouverte : opened_urls est vide dans l'exécution Codex et l'unique evidence_passage attaché à cette URL est une copie du final_answer, pas un extrait de la page. De plus, deux des trois acceptable_patterns (« not a way to keep pages out of Google by itself », « disallowed URLs can still appear in search results ») sont des paraphrases du modèle et non des citations vérifiées, ce qui rend le motif de notation à la fois invérifiable et trop étroit.\"},{\"id\":\"claim3\",\"reason\":\"Les citations « capable of expressing the reservation of rights » et « not a W3C Standard » ne reposent que sur l'auto-citation du final_answer Codex ; le rapport CG-FINAL-tdmrep-20240510 ne figure ni dans opened_urls ni dans un résultat d'outil exposé, et l'exécution Claude n'en dit rien. Impossible de confirmer le libellé exact ni l'attribution.\"},{\"id\":\"claim4\",\"reason\":\"Même défaut de sourçage (w3.org/community/tdmrep/ jamais ouvert, evidence_passage = final_answer). En outre, le pattern « more explicit signal could be more secure » est une reformulation interprétative et non une citation littérale, et l'affirmation dépend d'une lecture non explicitée du texte du groupe ; motif de notation non déterministe.\"},{\"id\":\"claim5\",\"reason\":\"Revendication la plus risquée : elle repose sur draft-ietf-aipref-attach/05 et sur des notes EDRLab datées d'avril 2026, aucune des deux n'ayant été ouverte ni exposée par un résultat d'outil. La citation distinctive « logically sufficient to express a reservation of rights » sous l'article 4 de la directive CDSM est invérifiable et transforme une note de réunion en position juridique tranchée — surinterprétation d'une source non confirmée.\"},{\"id\":\"claim6\",\"reason\":\"Les deux sources (docs Google common crawlers et l'article d'aide OpenAI 20001243) ne sont ni ouvertes ni corroborées ; l'identifiant de l'article OpenAI ne peut être validé à partir de l'évidence fournie. La revendication fusionne par ailleurs deux affirmations distinctes en un seul énoncé, ce qui rend la notation lexicale ambiguë (un seul pattern satisfait suffirait à valider un contenu partiel).\"},{\"id\":\"claim7\",\"reason\":\"Les citations Medium (« isn’t a legally binding arrangement », « voluntary technical standard ») ne proviennent que du final_answer Codex ; l'URL du billet apparaît dans les requêtes mais n'a jamais été ouverte, et aucun résultat d'outil n'en expose le contenu. Le pattern comportant l'apostrophe typographique « isn’t » est de surcroît fragile pour une notation lexicale déterministe.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": ["claim1"],
+    "rejected_claims": [
+      {
+        "id": "claim2",
+        "reason": "La source Google (developers.google.com/search/docs/crawling-indexing/robots/intro) n'a jamais été ouverte : opened_urls est vide dans l'exécution Codex et l'unique evidence_passage attaché à cette URL est une copie du final_answer, pas un extrait de la page. De plus, deux des trois acceptable_patterns (« not a way to keep pages out of Google by itself », « disallowed URLs can still appear in search results ») sont des paraphrases du modèle et non des citations vérifiées, ce qui rend le motif de notation à la fois invérifiable et trop étroit."
+      },
+      {
+        "id": "claim3",
+        "reason": "Les citations « capable of expressing the reservation of rights » et « not a W3C Standard » ne reposent que sur l'auto-citation du final_answer Codex ; le rapport CG-FINAL-tdmrep-20240510 ne figure ni dans opened_urls ni dans un résultat d'outil exposé, et l'exécution Claude n'en dit rien. Impossible de confirmer le libellé exact ni l'attribution."
+      },
+      {
+        "id": "claim4",
+        "reason": "Même défaut de sourçage (w3.org/community/tdmrep/ jamais ouvert, evidence_passage = final_answer). En outre, le pattern « more explicit signal could be more secure » est une reformulation interprétative et non une citation littérale, et l'affirmation dépend d'une lecture non explicitée du texte du groupe ; motif de notation non déterministe."
+      },
+      {
+        "id": "claim5",
+        "reason": "Revendication la plus risquée : elle repose sur draft-ietf-aipref-attach/05 et sur des notes EDRLab datées d'avril 2026, aucune des deux n'ayant été ouverte ni exposée par un résultat d'outil. La citation distinctive « logically sufficient to express a reservation of rights » sous l'article 4 de la directive CDSM est invérifiable et transforme une note de réunion en position juridique tranchée — surinterprétation d'une source non confirmée."
+      },
+      {
+        "id": "claim6",
+        "reason": "Les deux sources (docs Google common crawlers et l'article d'aide OpenAI 20001243) ne sont ni ouvertes ni corroborées ; l'identifiant de l'article OpenAI ne peut être validé à partir de l'évidence fournie. La revendication fusionne par ailleurs deux affirmations distinctes en un seul énoncé, ce qui rend la notation lexicale ambiguë (un seul pattern satisfait suffirait à valider un contenu partiel)."
+      },
+      {
+        "id": "claim7",
+        "reason": "Les citations Medium (« isn’t a legally binding arrangement », « voluntary technical standard ») ne proviennent que du final_answer Codex ; l'URL du billet apparaît dans les requêtes mais n'a jamais été ouverte, et aucun résultat d'outil n'en expose le contenu. Le pattern comportant l'apostrophe typographique « isn’t » est de surcroît fragile pour une notation lexicale déterministe."
+      }
+    ]
+  },
+  "ttft_ms": 25399,
+  "ttft_stream_ms": 1305,
+  "time_to_request_ms": 21,
+  "type": "result",
+  "duration_ms": 46926,
+  "uuid": "[REDACTED]",
+  "queued_turn_count": 0
+}

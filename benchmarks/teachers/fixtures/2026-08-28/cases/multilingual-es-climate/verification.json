@@ -1,0 +1,33 @@
+{
+  "accepted_claim_ids": [],
+  "rejected_claims": [
+    {
+      "id": "c1",
+      "reason": "required concept is absent from teacher-run evidence: segundo_mas_calido"
+    },
+    {
+      "id": "c2",
+      "reason": "required concept is absent from teacher-run evidence: tercer_mas_calido"
+    },
+    {
+      "id": "c3",
+      "reason": "required concept is absent from teacher-run evidence: empate_2024"
+    },
+    {
+      "id": "c4",
+      "reason": "required concept is absent from teacher-run evidence: precipitacion"
+    },
+    {
+      "id": "c5",
+      "reason": "required concept is absent from teacher-run evidence: precipitacion"
+    },
+    {
+      "id": "c6",
+      "reason": "required concept is absent from teacher-run evidence: precipitacion"
+    },
+    {
+      "id": "c7",
+      "reason": "required concept is absent from teacher-run evidence: periodo_instrumental"
+    }
+  ]
+}

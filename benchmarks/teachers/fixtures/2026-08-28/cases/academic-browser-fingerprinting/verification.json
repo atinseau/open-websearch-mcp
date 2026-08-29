@@ -1,0 +1,29 @@
+{
+  "accepted_claim_ids": ["claim_5"],
+  "rejected_claims": [
+    {
+      "id": "claim_1",
+      "reason": "required concept is absent from teacher-run evidence: comparison"
+    },
+    {
+      "id": "claim_2",
+      "reason": "required concept is absent from teacher-run evidence: 75_percent"
+    },
+    {
+      "id": "claim_3",
+      "reason": "required concept is absent from teacher-run evidence: 46_percent"
+    },
+    {
+      "id": "claim_4",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "claim_6",
+      "reason": "required concept is absent from teacher-run evidence: http_errors"
+    },
+    {
+      "id": "claim_7",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    }
+  ]
+}

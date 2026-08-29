@@ -1,0 +1,17 @@
+{
+  "accepted_claim_ids": ["c1", "c2", "c3", "c4", "c8"],
+  "rejected_claims": [
+    {
+      "id": "c5",
+      "reason": "Not supported by any supplied evidence passage. The Codex run opened zero URLs and its tool results carry no payloads; all 20 of its evidence_passages are identical copies of its own final_answer, truncated at 'playwright_stealth says: \"Don't expec\"' — i.e. before any contradiction bullet. The distinguishing specifics (issue #867, date 'January 10, 2024', and the quoted string 'Cloudflare detects puppeteer too') therefore rest solely on the drafting model's unretrieved assertion. The Claude run documents Cloudflare-failure issues at #811, #920 and #793, corroborating the theme but not this issue or quote. The pattern 'README example itself was detected on `?bot\\.sannysoft\\.com`?' is also overly narrow, requiring near-verbatim reproduction of one paraphrase's wording and clause order."
+    },
+    {
+      "id": "c6",
+      "reason": "Same provenance defect: the issue #898 content falls past the truncation point of the Codex evidence passages, and the run retrieved no page text, so the highly specific date ('June 20, 2024') and version quadruple (Puppeteer 22.1.0 / Chrome-for-Testing 121.0.6167.85 vs Puppeteer 22.2.0 / 122.0.6261.57) are uncorroborated by anything in the supplied evidence. Nothing in the Claude run mentions Google Meet or these versions. Both acceptable_patterns are additionally too narrow for lexical grading, chaining four exact tokens in a fixed order that only one specific phrasing would satisfy."
+    },
+    {
+      "id": "c7",
+      "reason": "The undetected-chromedriver issue #46 report also lies beyond the truncation point of every Codex evidence passage, and that run retrieved no content from the URL it cites, so the date 'November 4, 2020' and the reported Cloudflare 'Under Attack Mode' / 'Checking your browser' outcome are unverifiable against the supplied evidence. The Claude run covers Cloudflare failures for puppeteer-extra but says nothing about undetected-chromedriver issue #46, so there is no cross-run support either. Rejected for lack of evidentiary grounding rather than pattern validity."
+    }
+  ]
+}

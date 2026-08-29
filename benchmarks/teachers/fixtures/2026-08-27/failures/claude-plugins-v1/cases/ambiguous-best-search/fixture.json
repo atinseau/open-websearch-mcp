@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "case_id": "ambiguous-best-search",
+  "question": "Which Web search engine is objectively best for every kind of research question today?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim_1",
+      "text": "The supplied evidence does not support any web search engine as objectively best for every kind of research question.",
+      "required_concepts": ["no universal best", "mixed evidence"],
+      "acceptable_patterns": [
+        "(?:no|none)\\s+web\\s+search\\s+engine.*objectively\\s+best.*every\\s+kind\\s+of\\s+research\\s+question",
+        "best\\s+for\\s+some\\s+tasks.*not.*best\\s+for\\s+every\\s+kind\\s+of\\s+research\\s+question"
+      ],
+      "sources": [
+        {
+          "url": "https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://journals.sagepub.com/doi/abs/10.1177/09610006221138579",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.emerald.com/dta/article-abstract/54/2/133/509916/Retrieval-performance-of-Google-Yahoo-and-Bing-for?redirectedFrom=fulltext",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.researchgate.net/publication/410481017_How_effective_are_web_search_engines_A_metric-based_comparative_study_of_Google_Bing_and_Yandex_for_informational_queries_in_business_studies",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.nature.com/articles/s41746-025-01546-w",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf",
+          "text": "No Web search engine can be supported as the objectively best for every kind of research question based on the evidence I found. That conclusion is an inference from mixed, task-specific evidence, not a directly stated result of any one source."
+        },
+        {
+          "url": "https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf",
+          "text": "The evidence supports \"best for some tasks in some studies\", not \"best for every kind of research question.\" That inference follows because the available studies use different engines, different domains, and different query types, and they do not agree on a single winner across contexts."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_ambiguous-best-search",
+        "claude_run": "2026-08-27_claude_ambiguous-best-search"
+      }
+    },
+    {
+      "id": "claim_3",
+      "text": "A 2024 study across 40 search terms in 10 general categories reported Google first and Bing second on its combined indicator.",
+      "required_concepts": ["2024 study", "Google first", "Bing second"],
+      "acceptable_patterns": [
+        "2024\\s+study.*Google\\s+ranked\\s+first\\s+and\\s+Bing\\s+second",
+        "40\\s+search\\s+terms.*10\\s+general\\s+categories"
+      ],
+      "sources": [
+        {
+          "url": "https://journals.sagepub.com/doi/abs/10.1177/09610006221138579",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://journals.sagepub.com/doi/abs/10.1177/09610006221138579",
+          "text": "A 2024 study evaluating Google, Bing, Yahoo, and DuckDuckGo on 40 search terms across 10 general categories reported that, on its combined indicator, Google ranked first and Bing second."
+        }
+      ],
+      "weight": 0.8,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_ambiguous-best-search",
+        "claude_run": "2026-08-27_claude_ambiguous-best-search"
+      }
+    },
+    {
+      "id": "claim_4",
+      "text": "A 2020 study of navigational queries in life science and biomedicine reported the highest mean precision and mean relative recall for Google, ahead of Yahoo and Bing.",
+      "required_concepts": ["2020 study", "navigational queries", "Google ahead"],
+      "acceptable_patterns": [
+        "2020\\s+study.*navigational\\s+queries.*highest\\s+mean\\s+precision.*Google",
+        "ahead\\s+of\\s+Yahoo\\s+and\\s+Bing"
+      ],
+      "sources": [
+        {
+          "url": "https://www.emerald.com/dta/article-abstract/54/2/133/509916/Retrieval-performance-of-Google-Yahoo-and-Bing-for?redirectedFrom=fulltext",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.emerald.com/dta/article-abstract/54/2/133/509916/Retrieval-performance-of-Google-Yahoo-and-Bing-for?redirectedFrom=fulltext",
+          "text": "A 2020 study of navigational queries in life science and biomedicine reported the highest mean precision and mean relative recall for Google, ahead of Yahoo and Bing."
+        }
+      ],
+      "weight": 0.8,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_ambiguous-best-search",
+        "claude_run": "2026-08-27_claude_ambiguous-best-search"
+      }
+    },
+    {
+      "id": "claim_6",
+      "text": "A 2025 health-question study said Bing seemed the most solid choice in that evaluation, but it was not significantly better than the other engines tested.",
+      "required_concepts": ["2025 health study", "Bing solid choice", "not significantly better"],
+      "acceptable_patterns": [
+        "Bing\\s+seems\\s+to\\s+be\\s+the\\s+most\\s+solid\\s+choice",
+        "not\\s+significantly\\s+better\\s+than\\s+the\\s+others"
+      ],
+      "sources": [
+        {
+          "url": "https://www.nature.com/articles/s41746-025-01546-w",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.nature.com/articles/s41746-025-01546-w",
+          "text": "A 2025 health-question study comparing Google, Bing, Yahoo, and DuckDuckGo said “Bing seems to be the most solid choice” in that evaluation, but also said it was not significantly better than the others."
+        }
+      ],
+      "weight": 0.8,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_ambiguous-best-search",
+        "claude_run": "2026-08-27_claude_ambiguous-best-search"
+      }
+    },
+    {
+      "id": "claim_7",
+      "text": "For systematic evidence synthesis, a 2020 study of 28 academic search systems concluded that Google Scholar is inappropriate as the principal search system for that use case.",
+      "required_concepts": [
+        "systematic evidence synthesis",
+        "28 academic search systems",
+        "Google Scholar inappropriate"
+      ],
+      "acceptable_patterns": [
+        "2020.*28\\s+academic\\s+search\\s+systems",
+        "Google\\s+Scholar\\s+is\\s+inappropriate\\s+as\\s+the\\s+principal\\s+search\\s+system"
+      ],
+      "sources": [
+        {
+          "url": "https://onlinelibrary.wiley.com/doi/10.1002/jrsm.1378",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://onlinelibrary.wiley.com/doi/10.1002/jrsm.1378",
+          "text": "For systematic evidence synthesis, a 2020 open-access study of 28 academic search systems found substantial differences in suitability, said only about half could be recommended without major caveats, and concluded that Google Scholar is inappropriate as the principal search system for that use case."
+        }
+      ],
+      "weight": 0.7,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_ambiguous-best-search",
+        "claude_run": "2026-08-27_claude_ambiguous-best-search"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Google is objectively the best web search engine for every kind of research question today.",
+      "reason": "Contradicted by the supplied evidence, which explicitly says no engine can be supported as objectively best for every kind of research question."
+    },
+    {
+      "text": "Bing is the best overall web search engine today.",
+      "reason": "Overly broad and unsupported. The supplied evidence only says Bing seemed the most solid choice in one 2025 health-question evaluation and was not significantly better than the others."
+    },
+    {
+      "text": "Google has the highest market share, so it is the best search engine.",
+      "reason": "Unsupported inference. The supplied evidence includes a market-share datapoint, but usage share is not the same as objective best quality."
+    },
+    {
+      "text": "All major search engines perform equally well across research tasks.",
+      "reason": "Contradicted by the supplied evidence, which reports task-specific differences and mixed results across studies."
+    },
+    {
+      "text": "Google's search-quality guidelines describe diverse search intents, including researching a topic in depth, and say search engines need a diverse set of helpful results.",
+      "reason": "Les evidence_passages attribuent au PDF des Search Quality Evaluator Guidelines un texte qui est en réalité la réponse finale de Codex ; le PDF n'a jamais été ouvert (opened_urls vide, aucune charge utile de résultat). De plus, les acceptable_patterns exigent la formulation exacte d'une paraphrase ('very different intents.*researching a topic in depth', 'need a diverse set of helpful results') mêlant citations partielles et reformulation : trop étroits pour une notation lexicale robuste, une réponse correcte paraphrasée échouerait."
+    },
+    {
+      "text": "A 2026 study of informational queries in business studies found no statistically significant differences among Google, Bing, and Yandex on several retrieval metrics, though descriptive statistics favored Google on some measures.",
+      "reason": "Source non vérifiable et à fort risque de fabrication : la publication ResearchGate 410481017 décrivant une étude « 2026 » n'a jamais été ouverte, et la requête ciblée de Codex sur un DOI Emerald apparemment construit (10.1108/PMM-01-2026-0010) n'a produit aucun résultat exploitable. Aucune corroboration dans l'autre run. Les détails métriques (précision, rappel relatif, F-measure, fall-out) reposent uniquement sur l'auto-citation du modèle."
+    }
+  ]
+}

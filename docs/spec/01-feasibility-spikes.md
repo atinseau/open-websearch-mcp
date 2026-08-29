@@ -14,17 +14,20 @@ frontier after bootstrap.
 
 ## Spike S1 — Teacher reference capture
 
-Run the same 20 research cases with `codex exec --json` and
-`claude -p --output-format stream-json` in isolated temporary directories.
-Before the corpus, probe and archive each CLI's actual tool-policy flags and
-event visibility. Use native allow/deny policy to allow only native Web tools
-and disable project context, custom MCPs, skills, plugins, hooks, shell, curl,
-and scripts. Preserve native system behavior. Eligibility requires invocation
-and config evidence, an event stream with no forbidden tool call, and an
-unchanged isolated working directory. If a CLI cannot enforce or expose enough
-evidence, retain the failed probe and open a challenged ADR for another locally
-observable restriction; never claim isolation from prompt text alone and never
-silently drop either teacher.
+Run the 20 research cases with `codex exec --json` in isolated temporary
+directories. Before the corpus, probe and archive the CLI's actual tool-policy
+flags and event visibility. Use native allow/deny policy to allow only native
+Web tools and disable project context, custom MCPs, skills, plugins, hooks,
+shell, curl, and scripts. Preserve native system behavior. Eligibility requires
+invocation and config evidence, an event stream with no forbidden tool call, and
+an unchanged isolated working directory. If the CLI cannot enforce or expose
+enough evidence, retain the failed probe and open a challenged ADR for another
+locally observable restriction; never claim isolation from prompt text alone and
+never silently drop the teacher.
+
+Codex is the single teacher. A second CLI teacher was removed by ADR-0006 after
+the Claude provider became unusable mid-refresh; the failed probes are retained
+as evidence. Adding any future second teacher requires a new challenged ADR.
 
 Corpus composition: six technical/docs, three current/news, three
 academic/primary, three community/contradictory, three general multilingual,
@@ -35,10 +38,11 @@ source, evidence passage, final answer, model, CLI version, locale, date, and
 duration. Sanitize only credentials, session/account IDs, absolute machine
 paths, and unrelated local metadata; commit the remaining raw traces.
 
-Codex derives a structured fixture from both traces; Claude independently
-verifies it. Only trace-supported or mutually validated claims survive. The
-result is the baseline for extractor and search quality decisions, never an
-oracle of truth.
+Codex derives a structured fixture from its traces; a deterministic, LLM-free
+grounding verifier independently confirms that every derived claim is literally
+supported by the captured trace. Only trace-grounded claims survive, and every
+rejection is archived with its reason. The result is the baseline for extractor
+and search quality decisions, never an oracle of truth.
 
 ## Spike S2 — Bun.WebView to Obscura
 

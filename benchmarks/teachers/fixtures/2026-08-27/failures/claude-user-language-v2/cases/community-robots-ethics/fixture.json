@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "case_id": "community-robots-ethics",
+  "question": "How do Web publishers, crawler operators, and standards participants disagree about whether robots.txt grants permission, merely states preferences, or has legal significance?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim1",
+      "text": "RFC 9309 frames robots.txt as rules crawlers are requested to honor, and says those rules are not a form of access authorization.",
+      "required_concepts": ["RFC9309", "requested_to_honor", "not_access_authorization"],
+      "acceptable_patterns": [
+        "RFC 9309",
+        "requested to honor",
+        "not a form of access authorization"
+      ],
+      "sources": [
+        {
+          "url": "https://www.rfc-editor.org/info/rfc9309",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.rfc-editor.org/rfc/rfc9309.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.rfc-editor.org/info/rfc9309",
+          "text": "RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization."
+        },
+        {
+          "url": "https://www.rfc-editor.org/rfc/rfc9309.html",
+          "text": "\"These rules are not a form of access authorization.\" (Section 1.3) ... \"crawlers are requested to honor when accessing URIs\" (Section 1.3), framing the rules as guidance rather than mandatory enforcement."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_community-robots-ethics",
+        "claude_run": "2026-08-27_claude_community-robots-ethics"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "robots.txt universally grants permission to crawl.",
+      "reason": "Contradicted by the supplied RFC 9309 evidence saying robots.txt rules are not a form of access authorization."
+    },
+    {
+      "text": "Standards participants agree that robots.txt is only a preference signal with no claimed legal significance.",
+      "reason": "Contradicted by supplied evidence about TDM reservation protocols, the AI-Pref draft, and EDRLab notes about reservation of rights."
+    },
+    {
+      "text": "robots.txt alone creates binding legal duties everywhere.",
+      "reason": "Overly broad and unsupported; the supplied evidence explicitly says there is not good evidence of a universal rule."
+    },
+    {
+      "text": "All crawler operators describe robots.txt the same way.",
+      "reason": "Contradicted by supplied evidence showing both advisory language and stronger permission language."
+    },
+    {
+      "text": "Publishers uniformly treat robots.txt as legally binding.",
+      "reason": "Contradicted by the supplied Medium evidence calling it a voluntary technical standard and not a legally binding arrangement."
+    },
+    {
+      "text": "Google documentation similarly treats robots.txt as traffic management rather than enforcement: it says robots.txt cannot enforce crawler behavior, is not by itself a way to keep pages out of Google, and disallowed URLs can still appear in search results.",
+      "reason": "La source Google (developers.google.com/search/docs/crawling-indexing/robots/intro) n'a jamais été ouverte : opened_urls est vide dans l'exécution Codex et l'unique evidence_passage attaché à cette URL est une copie du final_answer, pas un extrait de la page. De plus, deux des trois acceptable_patterns (« not a way to keep pages out of Google by itself », « disallowed URLs can still appear in search results ») sont des paraphrases du modèle et non des citations vérifiées, ce qui rend le motif de notation à la fois invérifiable et trop étroit."
+    },
+    {
+      "text": "Within standards work, one W3C Community Group document defines a separate TDM Reservation Protocol capable of expressing reservation of rights under EU copyright law and says it is not a W3C Standard.",
+      "reason": "Les citations « capable of expressing the reservation of rights » et « not a W3C Standard » ne reposent que sur l'auto-citation du final_answer Codex ; le rapport CG-FINAL-tdmrep-20240510 ne figure ni dans opened_urls ni dans un résultat d'outil exposé, et l'exécution Claude n'en dit rien. Impossible de confirmer le libellé exact ni l'attribution."
+    },
+    {
+      "text": "The same W3C Community Group later said using robots.txt as a search opt-in is only a complementary solution, that this complementarity remains subject to interpretation, and that a more explicit signal could be more secure.",
+      "reason": "Même défaut de sourçage (w3.org/community/tdmrep/ jamais ouvert, evidence_passage = final_answer). En outre, le pattern « more explicit signal could be more secure » est une reformulation interprétative et non une citation littérale, et l'affirmation dépend d'une lecture non explicitée du texte du groupe ; motif de notation non déterministe."
+    },
+    {
+      "text": "Standards participants also disagree about legal significance for AI uses: an IETF draft proposes robots.txt carry usage preferences, while EDRLab meeting notes say an AI-Pref signal in robots.txt is logically sufficient to express a reservation of rights under EU CDSM Article 4.",
+      "reason": "Revendication la plus risquée : elle repose sur draft-ietf-aipref-attach/05 et sur des notes EDRLab datées d'avril 2026, aucune des deux n'ayant été ouverte ni exposée par un résultat d'outil. La citation distinctive « logically sufficient to express a reservation of rights » sous l'article 4 de la directive CDSM est invérifiable et transforme une note de réunion en position juridique tranchée — surinterprétation d'une source non confirmée."
+    },
+    {
+      "text": "Crawler operators use mixed language too: Google says its common crawlers always obey robots.txt rules, while OpenAI advertiser guidance says robots.txt tells crawlers whether they are permitted to access parts of a site.",
+      "reason": "Les deux sources (docs Google common crawlers et l'article d'aide OpenAI 20001243) ne sont ni ouvertes ni corroborées ; l'identifiant de l'article OpenAI ne peut être validé à partir de l'évidence fournie. La revendication fusionne par ailleurs deux affirmations distinctes en un seul énoncé, ce qui rend la notation lexicale ambiguë (un seul pattern satisfait suffirait à valider un contenu partiel)."
+    },
+    {
+      "text": "Publishers are split as well: Medium describes robots.txt as where it tells bots what they are and are not allowed to crawl, but the same post also says robots.txt is not a legally binding arrangement and is a voluntary technical standard.",
+      "reason": "Les citations Medium (« isn’t a legally binding arrangement », « voluntary technical standard ») ne proviennent que du final_answer Codex ; l'URL du billet apparaît dans les requêtes mais n'a jamais été ouverte, et aucun résultat d'outil n'en expose le contenu. Le pattern comportant l'apostrophe typographique « isn’t » est de surcroît fragile pour une notation lexicale déterministe."
+    }
+  ]
+}

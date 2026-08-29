@@ -1,0 +1,119 @@
+{
+  "is_error": false,
+  "duration_api_ms": 53199,
+  "num_turns": 2,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.6910325,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 55529,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 3875,
+    "output_tokens_details": {
+      "thinking_tokens": 2469
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 55529,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 3875,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 55529,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 55529
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 38279,
+      "outputTokens": 24,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.038399,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 3875,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 55529,
+      "webSearchRequests": 0,
+      "costUSD": 0.6526335000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"claim_conflicting_marketing\",\"claim_qualified_counterclaims\",\"claim_public_tests_scope\",\"claim_reproducible_failures\"],\"rejected_claims\":[{\"id\":\"claim_best_supported_conclusion\",\"reason\":\"Conclusion interprétative dont les trois acceptable_patterns reprennent des formulations rédactionnelles propres à la réponse Codex (« narrower claim much better than the broad one », « older or narrower fingerprint checks ») plutôt que des chaînes citables depuis une source ; le pattern « contradicts the claim that they broadly prevent bot detection » ne peut pas correspondre au texte de l'évidence, qui contient des guillemets typographiques autour de « prevent bot detection ». Deux des passages d'appui sont en outre explicitement étiquetés « Inference » dans l'évidence fournie, ce qui rend la revendication insuffisamment déterministe pour une notation lexicale.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": [
+      "claim_conflicting_marketing",
+      "claim_qualified_counterclaims",
+      "claim_public_tests_scope",
+      "claim_reproducible_failures"
+    ],
+    "rejected_claims": [
+      {
+        "id": "claim_best_supported_conclusion",
+        "reason": "Conclusion interprétative dont les trois acceptable_patterns reprennent des formulations rédactionnelles propres à la réponse Codex (« narrower claim much better than the broad one », « older or narrower fingerprint checks ») plutôt que des chaînes citables depuis une source ; le pattern « contradicts the claim that they broadly prevent bot detection » ne peut pas correspondre au texte de l'évidence, qui contient des guillemets typographiques autour de « prevent bot detection ». Deux des passages d'appui sont en outre explicitement étiquetés « Inference » dans l'évidence fournie, ce qui rend la revendication insuffisamment déterministe pour une notation lexicale."
+      }
+    ]
+  },
+  "ttft_ms": 33278,
+  "ttft_stream_ms": 1701,
+  "time_to_request_ms": 20,
+  "type": "result",
+  "duration_ms": 51271,
+  "uuid": "[REDACTED]",
+  "queued_turn_count": 0
+}

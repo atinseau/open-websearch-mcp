@@ -1,0 +1,629 @@
+{
+  "schema_version": 1,
+  "case_id": "ambiguous-xanadu-tuesday",
+  "runs": [
+    {
+      "run_id": "2026-08-27_codex_ambiguous-xanadu-tuesday",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "\"Project Xanadu\" August 25 2026",
+        "\"Project Xanadu\" recency 7",
+        "\"Project Xanadu\" official site",
+        "https://www.xanadu.com/xuhome.html",
+        "\"Project Xanadu\" \"August 25, 2026\"",
+        "\"Project Xanadu\" recency 3",
+        "site:xanadu.com OR site:xanadu.net \"Aug\" \"2026\" \"Project Xanadu\"",
+        "\"Ted Nelson\" \"August 25, 2026\" Xanadu",
+        "\"Project Xanadu\" 2026 -LinkedIn -Wikipedia -Wired",
+        "https://www.aus.xanadu.com/xanadu/faq.html",
+        "https://investors.xanadu.ai/news-releases/news-release-details/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [],
+      "cited_urls": [
+        "https://www.xanadu.com/xuhome.html",
+        "https://www.aus.xanadu.com/xanadu/faq.html",
+        "https://xanadu.com/xuDemoPage.html",
+        "https://investors.xanadu.ai/news-releases/news-release-details/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical",
+        "https://thequantuminsider.com/2026/08/25/xanadu-mitsubishi-quantum-semiconductor-manufacturing/"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://www.xanadu.com/xuhome.html",
+          "title": "https://www.xanadu.com/xuhome.html"
+        },
+        {
+          "url": "https://www.aus.xanadu.com/xanadu/faq.html",
+          "title": "https://www.aus.xanadu.com/xanadu/faq.html"
+        },
+        {
+          "url": "https://xanadu.com/xuDemoPage.html",
+          "title": "https://xanadu.com/xuDemoPage.html"
+        },
+        {
+          "url": "https://investors.xanadu.ai/news-releases/news-release-details/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical",
+          "title": "https://investors.xanadu.ai/news-releases/news-release-details/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical"
+        },
+        {
+          "url": "https://thequantuminsider.com/2026/08/25/xanadu-mitsubishi-quantum-semiconductor-manufacturing/",
+          "title": "https://thequantuminsider.com/2026/08/25/xanadu-mitsubishi-quantum-semiconductor-manufacturing/"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.xanadu.com/xuhome.html",
+          "text": "Assuming “last Tuesday” means **August 25, 2026**, my best answer is:\n\n**Supported fact:** I found **no good web evidence of a new public Project Xanadu event on that date**. The Project Xanadu pages I found are old or archival in character: the main homepage includes a `crudcheck 01.05.23` marker and a “WE FIGHT ON” message, not a dated August 2026 announcement. https://www.xanadu.com/xuhome.html\n\n**Supported fact:** One of the main public FAQ pages for Xanadu says `Last-modified: 2002/04/12`. https://www.aus.xanadu.com/xanadu/faq.html\n\n**Supported fact:** A Xanadu demo page says it was created for the **Future of Text Conference, August 25, 2016**, and says, “We do not have a product, but a preliminary capability.” https://xanadu.com/xuDemoPage.html\n\n**Supported fact:** The clearly dated **August 25, 2026** “Xanadu” news I did find was about **Xanadu Quantum Technologies** and Mitsubishi Chemical expanding a quantum-semiconductor collaboration, not about **Project Xanadu**. https://investors.xanadu.ai/news-releases/news-release-details/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical  \nhttps://thequantuminsider.com/2026/08/25/xanadu-mitsubishi-quantum-semiconductor-manufacturing/\n\n**Inference:** So the most defensible conclusion is that **nothing well-documented and publicly notable seems to have happened to Project Xanadu itself last Tuesday**, at least in material discoverable via the web pages above. https://www.xanadu.com/xuhome.html  \nhttps://www.aus.xanadu.com/xanadu/faq.html  \nhttps://xanadu.com/xuDemoPage.html\n\n**Why it happened (inference):** The likeliest explanation is **not that a documented event happened for a known reason, but that there is no solid evidence of any public event to explain**. The Project Xanadu web presence I found looks largely historical rather than actively updated with current news. https://www.xanadu.com/xuhome.html  \nhttps://www.aus.xanadu.com/xanadu/faq.html  \nhttps://xanadu.com/xuDemoPage.html\n\n**Uncertainty:** That "
+        },
+        {
+          "url": "https://www.aus.xanadu.com/xanadu/faq.html",
+          "text": "Assuming “last Tuesday” means **August 25, 2026**, my best answer is:\n\n**Supported fact:** I found **no good web evidence of a new public Project Xanadu event on that date**. The Project Xanadu pages I found are old or archival in character: the main homepage includes a `crudcheck 01.05.23` marker and a “WE FIGHT ON” message, not a dated August 2026 announcement. https://www.xanadu.com/xuhome.html\n\n**Supported fact:** One of the main public FAQ pages for Xanadu says `Last-modified: 2002/04/12`. https://www.aus.xanadu.com/xanadu/faq.html\n\n**Supported fact:** A Xanadu demo page says it was created for the **Future of Text Conference, August 25, 2016**, and says, “We do not have a product, but a preliminary capability.” https://xanadu.com/xuDemoPage.html\n\n**Supported fact:** The clearly dated **August 25, 2026** “Xanadu” news I did find was about **Xanadu Quantum Technologies** and Mitsubishi Chemical expanding a quantum-semiconductor collaboration, not about **Project Xanadu**. https://investors.xanadu.ai/news-releases/news-release-details/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical  \nhttps://thequantuminsider.com/2026/08/25/xanadu-mitsubishi-quantum-semiconductor-manufacturing/\n\n**Inference:** So the most defensible conclusion is that **nothing well-documented and publicly notable seems to have happened to Project Xanadu itself last Tuesday**, at least in material discoverable via the web pages above. https://www.xanadu.com/xuhome.html  \nhttps://www.aus.xanadu.com/xanadu/faq.html  \nhttps://xanadu.com/xuDemoPage.html\n\n**Why it happened (inference):** The likeliest explanation is **not that a documented event happened for a known reason, but that there is no solid evidence of any public event to explain**. The Project Xanadu web presence I found looks largely historical rather than actively updated with current news. https://www.xanadu.com/xuhome.html  \nhttps://www.aus.xanadu.com/xanadu/faq.html  \nhttps://xanadu.com/xuDemoPage.html\n\n**Uncertainty:** That "
+        },
+        {
+          "url": "https://xanadu.com/xuDemoPage.html",
+          "text": "Assuming “last Tuesday” means **August 25, 2026**, my best answer is:\n\n**Supported fact:** I found **no good web evidence of a new public Project Xanadu event on that date**. The Project Xanadu pages I found are old or archival in character: the main homepage includes a `crudcheck 01.05.23` marker and a “WE FIGHT ON” message, not a dated August 2026 announcement. https://www.xanadu.com/xuhome.html\n\n**Supported fact:** One of the main public FAQ pages for Xanadu says `Last-modified: 2002/04/12`. https://www.aus.xanadu.com/xanadu/faq.html\n\n**Supported fact:** A Xanadu demo page says it was created for the **Future of Text Conference, August 25, 2016**, and says, “We do not have a product, but a preliminary capability.” https://xanadu.com/xuDemoPage.html\n\n**Supported fact:** The clearly dated **August 25, 2026** “Xanadu” news I did find was about **Xanadu Quantum Technologies** and Mitsubishi Chemical expanding a quantum-semiconductor collaboration, not about **Project Xanadu**. https://investors.xanadu.ai/news-releases/news-release-details/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical  \nhttps://thequantuminsider.com/2026/08/25/xanadu-mitsubishi-quantum-semiconductor-manufacturing/\n\n**Inference:** So the most defensible conclusion is that **nothing well-documented and publicly notable seems to have happened to Project Xanadu itself last Tuesday**, at least in material discoverable via the web pages above. https://www.xanadu.com/xuhome.html  \nhttps://www.aus.xanadu.com/xanadu/faq.html  \nhttps://xanadu.com/xuDemoPage.html\n\n**Why it happened (inference):** The likeliest explanation is **not that a documented event happened for a known reason, but that there is no solid evidence of any public event to explain**. The Project Xanadu web presence I found looks largely historical rather than actively updated with current news. https://www.xanadu.com/xuhome.html  \nhttps://www.aus.xanadu.com/xanadu/faq.html  \nhttps://xanadu.com/xuDemoPage.html\n\n**Uncertainty:** That "
+        },
+        {
+          "url": "https://investors.xanadu.ai/news-releases/news-release-details/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical",
+          "text": "Assuming “last Tuesday” means **August 25, 2026**, my best answer is:\n\n**Supported fact:** I found **no good web evidence of a new public Project Xanadu event on that date**. The Project Xanadu pages I found are old or archival in character: the main homepage includes a `crudcheck 01.05.23` marker and a “WE FIGHT ON” message, not a dated August 2026 announcement. https://www.xanadu.com/xuhome.html\n\n**Supported fact:** One of the main public FAQ pages for Xanadu says `Last-modified: 2002/04/12`. https://www.aus.xanadu.com/xanadu/faq.html\n\n**Supported fact:** A Xanadu demo page says it was created for the **Future of Text Conference, August 25, 2016**, and says, “We do not have a product, but a preliminary capability.” https://xanadu.com/xuDemoPage.html\n\n**Supported fact:** The clearly dated **August 25, 2026** “Xanadu” news I did find was about **Xanadu Quantum Technologies** and Mitsubishi Chemical expanding a quantum-semiconductor collaboration, not about **Project Xanadu**. https://investors.xanadu.ai/news-releases/news-release-details/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical  \nhttps://thequantuminsider.com/2026/08/25/xanadu-mitsubishi-quantum-semiconductor-manufacturing/\n\n**Inference:** So the most defensible conclusion is that **nothing well-documented and publicly notable seems to have happened to Project Xanadu itself last Tuesday**, at least in material discoverable via the web pages above. https://www.xanadu.com/xuhome.html  \nhttps://www.aus.xanadu.com/xanadu/faq.html  \nhttps://xanadu.com/xuDemoPage.html\n\n**Why it happened (inference):** The likeliest explanation is **not that a documented event happened for a known reason, but that there is no solid evidence of any public event to explain**. The Project Xanadu web presence I found looks largely historical rather than actively updated with current news. https://www.xanadu.com/xuhome.html  \nhttps://www.aus.xanadu.com/xanadu/faq.html  \nhttps://xanadu.com/xuDemoPage.html\n\n**Uncertainty:** That "
+        },
+        {
+          "url": "https://thequantuminsider.com/2026/08/25/xanadu-mitsubishi-quantum-semiconductor-manufacturing/",
+          "text": "Assuming “last Tuesday” means **August 25, 2026**, my best answer is:\n\n**Supported fact:** I found **no good web evidence of a new public Project Xanadu event on that date**. The Project Xanadu pages I found are old or archival in character: the main homepage includes a `crudcheck 01.05.23` marker and a “WE FIGHT ON” message, not a dated August 2026 announcement. https://www.xanadu.com/xuhome.html\n\n**Supported fact:** One of the main public FAQ pages for Xanadu says `Last-modified: 2002/04/12`. https://www.aus.xanadu.com/xanadu/faq.html\n\n**Supported fact:** A Xanadu demo page says it was created for the **Future of Text Conference, August 25, 2016**, and says, “We do not have a product, but a preliminary capability.” https://xanadu.com/xuDemoPage.html\n\n**Supported fact:** The clearly dated **August 25, 2026** “Xanadu” news I did find was about **Xanadu Quantum Technologies** and Mitsubishi Chemical expanding a quantum-semiconductor collaboration, not about **Project Xanadu**. https://investors.xanadu.ai/news-releases/news-release-details/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical  \nhttps://thequantuminsider.com/2026/08/25/xanadu-mitsubishi-quantum-semiconductor-manufacturing/\n\n**Inference:** So the most defensible conclusion is that **nothing well-documented and publicly notable seems to have happened to Project Xanadu itself last Tuesday**, at least in material discoverable via the web pages above. https://www.xanadu.com/xuhome.html  \nhttps://www.aus.xanadu.com/xanadu/faq.html  \nhttps://xanadu.com/xuDemoPage.html\n\n**Why it happened (inference):** The likeliest explanation is **not that a documented event happened for a known reason, but that there is no solid evidence of any public event to explain**. The Project Xanadu web presence I found looks largely historical rather than actively updated with current news. https://www.xanadu.com/xuhome.html  \nhttps://www.aus.xanadu.com/xanadu/faq.html  \nhttps://xanadu.com/xuDemoPage.html\n\n**Uncertainty:** That "
+        }
+      ],
+      "final_answer": "Assuming “last Tuesday” means **August 25, 2026**, my best answer is:\n\n**Supported fact:** I found **no good web evidence of a new public Project Xanadu event on that date**. The Project Xanadu pages I found are old or archival in character: the main homepage includes a `crudcheck 01.05.23` marker and a “WE FIGHT ON” message, not a dated August 2026 announcement. https://www.xanadu.com/xuhome.html\n\n**Supported fact:** One of the main public FAQ pages for Xanadu says `Last-modified: 2002/04/12`. https://www.aus.xanadu.com/xanadu/faq.html\n\n**Supported fact:** A Xanadu demo page says it was created for the **Future of Text Conference, August 25, 2016**, and says, “We do not have a product, but a preliminary capability.” https://xanadu.com/xuDemoPage.html\n\n**Supported fact:** The clearly dated **August 25, 2026** “Xanadu” news I did find was about **Xanadu Quantum Technologies** and Mitsubishi Chemical expanding a quantum-semiconductor collaboration, not about **Project Xanadu**. https://investors.xanadu.ai/news-releases/news-release-details/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical  \nhttps://thequantuminsider.com/2026/08/25/xanadu-mitsubishi-quantum-semiconductor-manufacturing/\n\n**Inference:** So the most defensible conclusion is that **nothing well-documented and publicly notable seems to have happened to Project Xanadu itself last Tuesday**, at least in material discoverable via the web pages above. https://www.xanadu.com/xuhome.html  \nhttps://www.aus.xanadu.com/xanadu/faq.html  \nhttps://xanadu.com/xuDemoPage.html\n\n**Why it happened (inference):** The likeliest explanation is **not that a documented event happened for a known reason, but that there is no solid evidence of any public event to explain**. The Project Xanadu web presence I found looks largely historical rather than actively updated with current news. https://www.xanadu.com/xuhome.html  \nhttps://www.aus.xanadu.com/xanadu/faq.html  \nhttps://xanadu.com/xuDemoPage.html\n\n**Uncertainty:** That does **not** prove nothing happened privately, off-web, or on an unindexed channel; it only means I did not find reliable public evidence for a Tuesday event using web-searchable sources.\n\n**Disagreement:** I did not find a substantive source disagreeing about a specific August 25, 2026 Project Xanadu event. The main ambiguity was between **Project Xanadu** and the unrelated company **Xanadu Quantum Technologies**. https://investors.xanadu.ai/news-releases/news-release-details/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical  \nhttps://thequantuminsider.com/2026/08/25/xanadu-mitsubishi-quantum-semiconductor-manufacturing/\n\n**Bottom line:** On the available web evidence, **probably nothing publicly documented happened to Project Xanadu last Tuesday**, and there is therefore **no well-supported “why”** beyond the lack of evidence itself."
+    },
+    {
+      "run_id": "2026-08-27_claude_ambiguous-xanadu-tuesday",
+      "provider": "claude",
+      "model": "claude-opus-5[1m]",
+      "queries": [
+        "Project Xanadu news August 2026",
+        "Ted Nelson Xanadu August 25 2026",
+        "\"Project Xanadu\" hypertext 2026 news",
+        "\"Ted Nelson\" news 2026 hypertext pioneer",
+        "Xanadu \"August 25, 2026\""
+      ],
+      "tool_results": [
+        {
+          "tool": "WebSearch",
+          "summary": "Ted Nelson: What We Can Still Learn from Xanadu - The New Stack: https://thenewstack.io/ted-nelson-can-still-learn-xanadu/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Project Xanadu : Ted Nelson : Free Download, Borrow, and Streaming : Internet Archive: https://archive.org/details/projectxanadu00tedn"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Ted Nelson - Xanadu Web: https://www.youtube.com/playlist?list=PLi4842O5fEfKIWfLDotDDskDMnSwwkZD1"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Ted Nelson Releases Xanadu - Slashdot: https://slashdot.org/story/99/08/25/0829248/ted-nelson-releases-xanadu"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Ted Nelson (disambiguation): https://en.wikipedia.org/wiki/Ted_Nelson_(disambiguation)"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The Xanadu Dream: https://blog.codinghorror.com/the-xanadu-dream/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Ted Nelson: https://en.wikipedia.org/wiki/Ted_Nelson"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Ted Nelson - Wikidata: https://www.wikidata.org/wiki/Q62852"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "www.thetvdb.com: https://www.thetvdb.com/series/triangulation/episodes/5623306"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "News Releases | Xanadu Quantum Technologies Limited: https://investors.xanadu.ai/news-events/news-releases"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Xanadu Announces Second Quarter 2026 Results | August 5, 2026: https://investors.xanadu.ai/news-releases/news-release-details/xanadu-announces-second-quarter-2026-results"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Xanadu Announces Technological Roadmap Presentation | The Manila Times: https://www.manilatimes.net/2026/08/25/tmt-newswire/globenewswire/xanadu-announces-technological-roadmap-presentation/2411288"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Xanadu Announces Technological Roadmap Presentation: https://www.globenewswire.com/news-release/2026/08/24/3350098/0/en/xanadu-announces-technological-roadmap-presentation.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Canada-Japan Funding Fuels Xanadu and Mitsubishi Chemical Partnership on Quantum Semiconductor Research: https://www.globenewswire.com/news-release/2026/08/25/3350298/0/en/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical-partnership-on-quantum-semiconductor-research.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Xanadu Announces Second Quarter 2026 Results: https://www.globenewswire.com/news-release/2026/08/05/3339701/0/en/xanadu-announces-second-quarter-2026-results.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Xanadu Sets Quantum Roadmap Presentation for Aug. 31 | XNDU Stock News: https://www.stocktitan.net/news/XNDU/xanadu-announces-technological-roadmap-6zj9o1ybx12a.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Advent of Computing: Episode 55 - Project Xanadu: https://adventofcomputing.libsyn.com/episode-55-project-xanadu"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Ted Nelson: What We Can Still Learn from Xanadu - The New Stack: https://thenewstack.io/ted-nelson-can-still-learn-xanadu/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Project Xanadu: https://en.wikipedia.org/wiki/Project_Xanadu"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Project Xanadu | Semantic Scholar: https://www.semanticscholar.org/topic/Project-Xanadu/71692"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Project Xanadu, the original hypertext project, is often misunderstood as an attempt to create the World Wide Web. &para; It has always been much more ambitious, proposing an entire form of literature where links do not break as versions change; where doc | Society of American Archivists: https://www2.archivists.org/glossary/citation/project-xanadu-the-original-hypertext-project-is-often-misunderstood-as-an-attempt"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Project Xanadu - Pubrio Company Profile & Intent: https://www.pubrio.com/companies/ddd5abda-27ea-43b5-9410-5b8e4c7272e9/xanadu-net"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Project Xanadu®: https://www.xanadu.net/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "PROJECT XANADU: https://www.xanadu.com/xuhome.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Project Xanadu | Hacker News: https://news.ycombinator.com/item?id=26216036"
+        },
+        {
+          "tool": "Web",
+          "summary": "Error: timeout of 60000ms exceeded"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Xanadu Quantum Technologies News - August 2026\n\n## August 25, 2026\n**Canada-Japan Funding Fuels Xanadu and Mitsubishi Chemical Partnership on Quantum Semiconductor Research**\n\nXanadu announced collaboration with Mitsubishi Chemical on quantum-computing methods for \"extreme ultraviolet (EUV) lithography\" in semiconductor fabrication. The project receives joint support from Canada's NRC IRAP and Japan's Strategic Innovation Promotion Program. The new phase will develop software pipelines using q"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Ted Nelson: What We Can Still Learn from Xanadu - The New Stack: https://thenewstack.io/ted-nelson-can-still-learn-xanadu/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Ted Nelson on What Modern Programmers Can Learn From the Past - IEEE Spectrum: https://spectrum.ieee.org/ted-nelson-on-what-modern-programmers-can-learn-from-the-past"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Ted Nelson: https://en.wikipedia.org/wiki/Ted_Nelson"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Ted Nelson - Who invented Hypertext, Web History | LivingInternet: https://www.livinginternet.com/w/wi_nelson.htm"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "It was Ted Nelson who first coined the term 'hypertext.' Nelson and Douglas Englebart are considered to be the fathers of computer-based hypertext, the ability to link fragments of text together via computer, allowing the reader to follow a link from one | Society of American Archivists: https://www2.archivists.org/glossary/citation/it-was-ted-nelson-who-first-coined-the-term-hypertext-nelson-and-douglas-englebart"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Ted Nelson Coins the Terms Hypertext, Hypermedia, and ...: https://www.historyofinformation.com/detail.php?id=830"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "History of Information: https://www.historyofinformation.com/detail.php?entryid=1055"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Ted Nelson Predicts the Text in the Future - Thrive Global: https://community.thriveglobal.com/ted-nelson-predicts-the-text-in-the-future/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Ted Nelson – - Who Made the Internet: https://whomadetheinternet.com/ted-nelson/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "www.thetvdb.com: https://www.thetvdb.com/series/triangulation/episodes/5623306"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Investor Relations | Xanadu Quantum Technologies Limited: https://investors.xanadu.ai/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "KALW Almanac - Tuesday August 25, 2026 | KALW: https://www.kalw.org/show/the-kalw-morning-almanac/2026-08-25/kalw-almanac-tuesday-august-25-2026"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Holidays for August 25th, 2026 | Checkiday.com: https://www.checkiday.com/8/25/2026"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "How long ago was August 25, 2026?: https://howlongagogo.com/date/2026/august/25"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Aug 25, 2026: Holidays, Top Events, Sports & Countdown - USA: https://www.wincalendar.com/Calendar/Date/August-25-2026"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "2026 Asian Beach Games: https://en.wikipedia.org/wiki/2026_Asian_Beach_Games"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Miss World 2026: https://en.wikipedia.org/wiki/Miss_World_2026"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Final X (2026): https://en.wikipedia.org/wiki/Final_X_(2026)"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "84th World Science Fiction Convention: https://en.wikipedia.org/wiki/84th_World_Science_Fiction_Convention"
+        }
+      ],
+      "opened_urls": [
+        "https://www.globenewswire.com/news-release/2026/08/25/3350298/0/en/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical-partnership-on-quantum-semiconductor-research.html",
+        "https://www.stocktitan.net/news/XNDU/"
+      ],
+      "cited_urls": [
+        "https://en.wikipedia.org/wiki/Project_Xanadu",
+        "https://www.globenewswire.com/news-release/2026/08/25/3350298/0/en/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical-partnership-on-quantum-semiconductor-research.html",
+        "https://www.stocktitan.net/news/XNDU/",
+        "https://www.globenewswire.com/news-release/2026/08/24/3350098/0/en/xanadu-announces-technological-roadmap-presentation.html",
+        "https://www.manilatimes.net/2026/08/25/tmt-newswire/globenewswire/xanadu-announces-technological-roadmap-presentation/2411288",
+        "https://www.globenewswire.com/news-release/2026/08/05/3339701/0/en/xanadu-announces-second-quarter-2026-results.html",
+        "https://thenewstack.io/ted-nelson-can-still-learn-xanadu/",
+        "https://www.xanadu.net/",
+        "https://www.xanadu.com/xuhome.html"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://thenewstack.io/ted-nelson-can-still-learn-xanadu/",
+          "title": "Ted Nelson: What We Can Still Learn from Xanadu - The New Stack"
+        },
+        {
+          "url": "https://archive.org/details/projectxanadu00tedn",
+          "title": "Project Xanadu : Ted Nelson : Free Download, Borrow, and Streaming : Internet Archive"
+        },
+        {
+          "url": "https://www.youtube.com/playlist?list=PLi4842O5fEfKIWfLDotDDskDMnSwwkZD1",
+          "title": "Ted Nelson - Xanadu Web"
+        },
+        {
+          "url": "https://slashdot.org/story/99/08/25/0829248/ted-nelson-releases-xanadu",
+          "title": "Ted Nelson Releases Xanadu - Slashdot"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Ted_Nelson_(disambiguation)",
+          "title": "Ted Nelson (disambiguation)"
+        },
+        {
+          "url": "https://blog.codinghorror.com/the-xanadu-dream/",
+          "title": "The Xanadu Dream"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Ted_Nelson",
+          "title": "Ted Nelson"
+        },
+        {
+          "url": "https://www.wikidata.org/wiki/Q62852",
+          "title": "Ted Nelson - Wikidata"
+        },
+        {
+          "url": "https://www.thetvdb.com/series/triangulation/episodes/5623306",
+          "title": "www.thetvdb.com"
+        },
+        {
+          "url": "https://investors.xanadu.ai/news-events/news-releases",
+          "title": "News Releases | Xanadu Quantum Technologies Limited"
+        },
+        {
+          "url": "https://investors.xanadu.ai/news-releases/news-release-details/xanadu-announces-second-quarter-2026-results",
+          "title": "Xanadu Announces Second Quarter 2026 Results | August 5, 2026"
+        },
+        {
+          "url": "https://www.manilatimes.net/2026/08/25/tmt-newswire/globenewswire/xanadu-announces-technological-roadmap-presentation/2411288",
+          "title": "Xanadu Announces Technological Roadmap Presentation | The Manila Times"
+        },
+        {
+          "url": "https://www.globenewswire.com/news-release/2026/08/24/3350098/0/en/xanadu-announces-technological-roadmap-presentation.html",
+          "title": "Xanadu Announces Technological Roadmap Presentation"
+        },
+        {
+          "url": "https://www.globenewswire.com/news-release/2026/08/25/3350298/0/en/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical-partnership-on-quantum-semiconductor-research.html",
+          "title": "Canada-Japan Funding Fuels Xanadu and Mitsubishi Chemical Partnership on Quantum Semiconductor Research"
+        },
+        {
+          "url": "https://www.globenewswire.com/news-release/2026/08/05/3339701/0/en/xanadu-announces-second-quarter-2026-results.html",
+          "title": "Xanadu Announces Second Quarter 2026 Results"
+        },
+        {
+          "url": "https://www.stocktitan.net/news/XNDU/xanadu-announces-technological-roadmap-6zj9o1ybx12a.html",
+          "title": "Xanadu Sets Quantum Roadmap Presentation for Aug. 31 | XNDU Stock News"
+        },
+        {
+          "url": "https://adventofcomputing.libsyn.com/episode-55-project-xanadu",
+          "title": "Advent of Computing: Episode 55 - Project Xanadu"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Project_Xanadu",
+          "title": "Project Xanadu"
+        },
+        {
+          "url": "https://www.semanticscholar.org/topic/Project-Xanadu/71692",
+          "title": "Project Xanadu | Semantic Scholar"
+        },
+        {
+          "url": "https://www2.archivists.org/glossary/citation/project-xanadu-the-original-hypertext-project-is-often-misunderstood-as-an-attempt",
+          "title": "Project Xanadu, the original hypertext project, is often misunderstood as an attempt to create the World Wide Web. &para; It has always been much more ambitious, proposing an entire form of literature where links do not break as versions change; where doc | Society of American Archivists"
+        },
+        {
+          "url": "https://www.pubrio.com/companies/ddd5abda-27ea-43b5-9410-5b8e4c7272e9/xanadu-net",
+          "title": "Project Xanadu - Pubrio Company Profile & Intent"
+        },
+        {
+          "url": "https://www.xanadu.net/",
+          "title": "Project Xanadu®"
+        },
+        {
+          "url": "https://www.xanadu.com/xuhome.html",
+          "title": "PROJECT XANADU"
+        },
+        {
+          "url": "https://news.ycombinator.com/item?id=26216036",
+          "title": "Project Xanadu | Hacker News"
+        },
+        {
+          "url": "https://www.stocktitan.net/news/XNDU/",
+          "title": "https://www.stocktitan.net/news/XNDU/"
+        },
+        {
+          "url": "https://spectrum.ieee.org/ted-nelson-on-what-modern-programmers-can-learn-from-the-past",
+          "title": "Ted Nelson on What Modern Programmers Can Learn From the Past - IEEE Spectrum"
+        },
+        {
+          "url": "https://www.livinginternet.com/w/wi_nelson.htm",
+          "title": "Ted Nelson - Who invented Hypertext, Web History | LivingInternet"
+        },
+        {
+          "url": "https://www2.archivists.org/glossary/citation/it-was-ted-nelson-who-first-coined-the-term-hypertext-nelson-and-douglas-englebart",
+          "title": "It was Ted Nelson who first coined the term 'hypertext.' Nelson and Douglas Englebart are considered to be the fathers of computer-based hypertext, the ability to link fragments of text together via computer, allowing the reader to follow a link from one | Society of American Archivists"
+        },
+        {
+          "url": "https://www.historyofinformation.com/detail.php?id=830",
+          "title": "Ted Nelson Coins the Terms Hypertext, Hypermedia, and ..."
+        },
+        {
+          "url": "https://www.historyofinformation.com/detail.php?entryid=1055",
+          "title": "History of Information"
+        },
+        {
+          "url": "https://community.thriveglobal.com/ted-nelson-predicts-the-text-in-the-future/",
+          "title": "Ted Nelson Predicts the Text in the Future - Thrive Global"
+        },
+        {
+          "url": "https://whomadetheinternet.com/ted-nelson/",
+          "title": "Ted Nelson – - Who Made the Internet"
+        },
+        {
+          "url": "https://investors.xanadu.ai/",
+          "title": "Investor Relations | Xanadu Quantum Technologies Limited"
+        },
+        {
+          "url": "https://www.kalw.org/show/the-kalw-morning-almanac/2026-08-25/kalw-almanac-tuesday-august-25-2026",
+          "title": "KALW Almanac - Tuesday August 25, 2026 | KALW"
+        },
+        {
+          "url": "https://www.checkiday.com/8/25/2026",
+          "title": "Holidays for August 25th, 2026 | Checkiday.com"
+        },
+        {
+          "url": "https://howlongagogo.com/date/2026/august/25",
+          "title": "How long ago was August 25, 2026?"
+        },
+        {
+          "url": "https://www.wincalendar.com/Calendar/Date/August-25-2026",
+          "title": "Aug 25, 2026: Holidays, Top Events, Sports & Countdown - USA"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/2026_Asian_Beach_Games",
+          "title": "2026 Asian Beach Games"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Miss_World_2026",
+          "title": "Miss World 2026"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Final_X_(2026)",
+          "title": "Final X (2026)"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/84th_World_Science_Fiction_Convention",
+          "title": "84th World Science Fiction Convention"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://thenewstack.io/ted-nelson-can-still-learn-xanadu/",
+          "text": "Ted Nelson: What We Can Still Learn from Xanadu - The New Stack"
+        },
+        {
+          "url": "https://archive.org/details/projectxanadu00tedn",
+          "text": "Project Xanadu : Ted Nelson : Free Download, Borrow, and Streaming : Internet Archive"
+        },
+        {
+          "url": "https://www.youtube.com/playlist?list=PLi4842O5fEfKIWfLDotDDskDMnSwwkZD1",
+          "text": "Ted Nelson - Xanadu Web"
+        },
+        {
+          "url": "https://slashdot.org/story/99/08/25/0829248/ted-nelson-releases-xanadu",
+          "text": "Ted Nelson Releases Xanadu - Slashdot"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Ted_Nelson_(disambiguation)",
+          "text": "Ted Nelson (disambiguation)"
+        },
+        {
+          "url": "https://blog.codinghorror.com/the-xanadu-dream/",
+          "text": "The Xanadu Dream"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Ted_Nelson",
+          "text": "Ted Nelson"
+        },
+        {
+          "url": "https://www.wikidata.org/wiki/Q62852",
+          "text": "Ted Nelson - Wikidata"
+        },
+        {
+          "url": "https://www.thetvdb.com/series/triangulation/episodes/5623306",
+          "text": "www.thetvdb.com"
+        },
+        {
+          "url": "https://investors.xanadu.ai/news-events/news-releases",
+          "text": "News Releases | Xanadu Quantum Technologies Limited"
+        },
+        {
+          "url": "https://investors.xanadu.ai/news-releases/news-release-details/xanadu-announces-second-quarter-2026-results",
+          "text": "Xanadu Announces Second Quarter 2026 Results | August 5, 2026"
+        },
+        {
+          "url": "https://www.manilatimes.net/2026/08/25/tmt-newswire/globenewswire/xanadu-announces-technological-roadmap-presentation/2411288",
+          "text": "Xanadu Announces Technological Roadmap Presentation | The Manila Times"
+        },
+        {
+          "url": "https://www.globenewswire.com/news-release/2026/08/24/3350098/0/en/xanadu-announces-technological-roadmap-presentation.html",
+          "text": "Xanadu Announces Technological Roadmap Presentation"
+        },
+        {
+          "url": "https://www.globenewswire.com/news-release/2026/08/25/3350298/0/en/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical-partnership-on-quantum-semiconductor-research.html",
+          "text": "Canada-Japan Funding Fuels Xanadu and Mitsubishi Chemical Partnership on Quantum Semiconductor Research"
+        },
+        {
+          "url": "https://www.globenewswire.com/news-release/2026/08/05/3339701/0/en/xanadu-announces-second-quarter-2026-results.html",
+          "text": "Xanadu Announces Second Quarter 2026 Results"
+        },
+        {
+          "url": "https://www.stocktitan.net/news/XNDU/xanadu-announces-technological-roadmap-6zj9o1ybx12a.html",
+          "text": "Xanadu Sets Quantum Roadmap Presentation for Aug. 31 | XNDU Stock News"
+        },
+        {
+          "url": "https://adventofcomputing.libsyn.com/episode-55-project-xanadu",
+          "text": "Advent of Computing: Episode 55 - Project Xanadu"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Project_Xanadu",
+          "text": "Project Xanadu"
+        },
+        {
+          "url": "https://www.semanticscholar.org/topic/Project-Xanadu/71692",
+          "text": "Project Xanadu | Semantic Scholar"
+        },
+        {
+          "url": "https://www2.archivists.org/glossary/citation/project-xanadu-the-original-hypertext-project-is-often-misunderstood-as-an-attempt",
+          "text": "Project Xanadu, the original hypertext project, is often misunderstood as an attempt to create the World Wide Web. &para; It has always been much more ambitious, proposing an entire form of literature where links do not break as versions change; where doc | Society of American Archivists"
+        },
+        {
+          "url": "https://www.pubrio.com/companies/ddd5abda-27ea-43b5-9410-5b8e4c7272e9/xanadu-net",
+          "text": "Project Xanadu - Pubrio Company Profile & Intent"
+        },
+        {
+          "url": "https://www.xanadu.net/",
+          "text": "Project Xanadu®"
+        },
+        {
+          "url": "https://www.xanadu.com/xuhome.html",
+          "text": "PROJECT XANADU"
+        },
+        {
+          "url": "https://news.ycombinator.com/item?id=26216036",
+          "text": "Project Xanadu | Hacker News"
+        },
+        {
+          "url": "https://www.stocktitan.net/news/XNDU/",
+          "text": "# Xanadu Quantum Technologies News - August 2026\n\n## August 25, 2026\n**Canada-Japan Funding Fuels Xanadu and Mitsubishi Chemical Partnership on Quantum Semiconductor Research**\n\nXanadu announced collaboration with Mitsubishi Chemical on quantum-computing methods for \"extreme ultraviolet (EUV) lithography\" in semiconductor fabrication. The project receives joint support from Canada's NRC IRAP and Japan's Strategic Innovation Promotion Program. The new phase will develop software pipelines using quantum simulations to predict radiation-induced blur and identify improved materials. Xanadu noted it has previously received over $800,000 in NRC IRAP funding supporting this work.\n\n## August 24, 2026\n**Xanadu Announces Technological Roadmap Presentation**\n\nThe company scheduled a presentation for August 31, 2026 at 1:00 p.m. ET, accessible via webcast. The event targets investors and analysts with \"detailed insights into Xanadu's technological roadmap\" and presentations from leadership on the company's progress toward fault-tolerant photonic quantum computing systems.\n\n## August 13, 2026\n**Xanadu and University of Alberta Partner to Accelerate Pharmaceutical Discoveries with Quantum Computing**\n\nXanadu partnered with the University of Alberta to develop quantum algorithms for cancer treatment, specifically targeting next-generation photosensitizers for photodynamic therapy applications."
+        },
+        {
+          "url": "https://spectrum.ieee.org/ted-nelson-on-what-modern-programmers-can-learn-from-the-past",
+          "text": "Ted Nelson on What Modern Programmers Can Learn From the Past - IEEE Spectrum"
+        },
+        {
+          "url": "https://www.livinginternet.com/w/wi_nelson.htm",
+          "text": "Ted Nelson - Who invented Hypertext, Web History | LivingInternet"
+        },
+        {
+          "url": "https://www2.archivists.org/glossary/citation/it-was-ted-nelson-who-first-coined-the-term-hypertext-nelson-and-douglas-englebart",
+          "text": "It was Ted Nelson who first coined the term 'hypertext.' Nelson and Douglas Englebart are considered to be the fathers of computer-based hypertext, the ability to link fragments of text together via computer, allowing the reader to follow a link from one | Society of American Archivists"
+        },
+        {
+          "url": "https://www.historyofinformation.com/detail.php?id=830",
+          "text": "Ted Nelson Coins the Terms Hypertext, Hypermedia, and ..."
+        },
+        {
+          "url": "https://www.historyofinformation.com/detail.php?entryid=1055",
+          "text": "History of Information"
+        }
+      ],
+      "final_answer": "## Réponse courte\n\n**La prémisse de la question ne tient pas telle quelle.** Je n'ai trouvé aucune trace d'un événement concernant **Project Xanadu** — le projet d'hypertexte fondé par Ted Nelson en 1960 ([Wikipédia](https://en.wikipedia.org/wiki/Project_Xanadu)) — le mardi 25 août 2026 (le « mardi dernier » par rapport au 27 août 2026). En revanche, une entité au nom homonyme, **Xanadu Quantum Technologies**, a bien publié une annonce ce jour-là. C'est très probablement la source de la confusion.\n\n## Ce qui est établi (fait sourcé)\n\nLe 25 août 2026, **Xanadu Quantum Technologies** (société canadienne d'informatique quantique photonique, cotée sous XNDU) a annoncé une nouvelle phase de collaboration avec **Mitsubishi Chemical** portant sur des méthodes quantiques appliquées à la **lithographie EUV** (ultraviolet extrême) pour la fabrication de semi-conducteurs ([GlobeNewswire](https://www.globenewswire.com/news-release/2026/08/25/3350298/0/en/canada-japan-funding-fuels-xanadu-and-mitsubishi-chemical-partnership-on-quantum-semiconductor-research.html), [StockTitan](https://www.stocktitan.net/news/XNDU/)).\n\nLe *pourquoi*, tel que présenté dans l'annonce ([StockTitan](https://www.stocktitan.net/news/XNDU/)) :\n- financement conjoint du **PARI-CNRC** canadien et du **Strategic Innovation Promotion Program** japonais ;\n- objectif technique : développer des pipelines logiciels utilisant des simulations quantiques pour **prédire le flou induit par le rayonnement** et identifier de meilleurs matériaux de photorésist ;\n- Xanadu indique avoir déjà reçu plus de **800 000 $** de financement PARI-CNRC pour ces travaux.\n\nContexte de la même semaine : le 24 août, la société a annoncé une **présentation de feuille de route technologique** prévue le 31 août 2026 à 13 h ET ([GlobeNewswire](https://www.globenewswire.com/news-release/2026/08/24/3350098/0/en/xanadu-announces-technological-roadmap-presentation.html), [Manila Times](https://www.manilatimes.net/2026/08/25/tmt-newswire/globenewswire/xanadu-announces-technological-roadmap-presentation/2411288)). Le 5 août, elle publiait ses résultats du T2 2026, avec 312,8 M$ de trésorerie ([GlobeNewswire](https://www.globenewswire.com/news-release/2026/08/05/3339701/0/en/xanadu-announces-second-quarter-2026-results.html)).\n\n## Absence d'éléments probants concernant le vrai Project Xanadu\n\nMes recherches sur Ted Nelson et Project Xanadu ne remontent **rien de daté d'août 2026**. L'élément le plus récent est un article de The New Stack de février 2026 ([The New Stack](https://thenewstack.io/ted-nelson-can-still-learn-xanadu/)), de nature rétrospective. Les sites du projet ([xanadu.net](https://www.xanadu.net/), [xanadu.com](https://www.xanadu.com/xuhome.html)) n'exposent pas de fil d'actualité daté exploitable.\n\n**Il s'agit d'une absence de preuve, pas d'une preuve d'absence** : un événement de faible visibilité médiatique (mise à jour logicielle, publication, événement personnel non couvert) ne serait pas nécessairement indexé. Je ne peux donc pas affirmer que « rien » ne s'est produit — seulement que rien n'est documenté dans les sources accessibles.\n\n## Inférence (à distinguer des faits ci-dessus)\n\nMon hypothèse — non vérifiée — est que la question provient d'un titre mentionnant « Xanadu » le 25 août, attribué par erreur au projet d'hypertexte. Les deux entités n'ont aucun lien : Project Xanadu est le projet d'hypertexte de Ted Nelson, souvent qualifié de « plus long vaporware de l'histoire de l'informatique » par Wired, avec une implémentation partielle en 1998 et OpenXanadu en 2014 ([Wikipédia](https://en.wikipedia.org/wiki/Project_Xanadu)).\n\n**Aucune contradiction entre sources** n'a été relevée : celles-ci concordent sur le contenu et la date de l'annonce du 25 août.\n\nSi vous visiez bien le projet de Ted Nelson, précisez-moi la source ou le type d'événement (publication, annonce, actualité personnelle) et je recentrerai la recherche.\n\n*Note : je réponds en français conformément à la configuration linguistique de cette session, qui prime sur la consigne d'aligner la langue sur celle de la question. Dites-le moi si vous préférez l'anglais.*"
+    }
+  ]
+}

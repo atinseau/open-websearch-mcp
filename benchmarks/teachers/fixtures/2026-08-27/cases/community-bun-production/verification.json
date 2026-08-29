@@ -1,0 +1,18 @@
+{
+  "accepted_claim_ids": [
+    "claim_prod_ready_unix_not_windows",
+    "claim_compat_incomplete",
+    "claim_concrete_compat_limits",
+    "claim_no_support_for_extremes"
+  ],
+  "rejected_claims": [
+    {
+      "id": "claim_named_production_use",
+      "reason": "The specific homepage adopter claims (Claude Code as a Bun executable, Midjourney routing every image notification through Bun's WebSocket server, Railway Functions built on Bun) trace only to the Codex run's own answer text; that run opened no URLs, so bun.com/ content was never retrieved. The second teacher run independently flags the Midjourney assertion as coming 'only from a search summary without a citable first-party statement — treat as unverified.' Beyond the sourcing gap, all three acceptable_patterns are full verbatim marketing sentences with no compositional wildcards, so a correct independent answer citing the same adopters in different words would fail grading. Unverified vendor-marketing specifics plus verbatim-only patterns."
+    },
+    {
+      "id": "claim_user_reports_crashes_leaks_fallback",
+      "reason": "The substance is well corroborated (the Claude run confirms memory-leak reports in issues #24216 and #25948, a production segfault in #31159, press coverage of developer leak complaints, and the maintainers' own Rust-rewrite post conceding use-after-free/double-free defects), but the grading patterns are unusable: both are verbatim sentences of the drafting model's editorial prose ('users report crashes, memory leaks, missing compatibility, and cases where they still keep Node in production or as a fallback' / 'production workloads still surface bugs serious enough to require Node fallback'), not source language a correct answer would reproduce. Compounding this, the claim's per-source attributions rest on issues 19930/20912 and discussions 3955/17485, none of which were retrieved in either run. Rejected for overly narrow lexical patterns over unretrieved per-source attributions, not for the underlying idea, which is preserved in claim_no_support_for_extremes."
+    }
+  ]
+}

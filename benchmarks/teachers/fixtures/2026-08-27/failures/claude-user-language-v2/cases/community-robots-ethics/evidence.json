@@ -1,0 +1,1179 @@
+{
+  "schema_version": 1,
+  "case_id": "community-robots-ethics",
+  "runs": [
+    {
+      "run_id": "2026-08-27_codex_community-robots-ethics",
+      "provider": "codex",
+      "model": "gpt-5.4",
+      "queries": [
+        "RFC 9309 robots.txt standard permission preference legal significance publishers crawler operators standards participants",
+        "site:rfc-editor.org RFC 9309 access authorization robots.txt",
+        "IETF robots.txt legal significance not authorization standard participant statements",
+        "hiQ Labs v LinkedIn opinion robots.txt official PDF",
+        "https://files.passle.net/Passle/65737bea961a63814fd9b845/MediaLibrary/Images/2025-06-27-13-55-16-799-685ea2c49e19c98bad0f4ebf.pdf",
+        "site:medium.com AI crawlers robots.txt Medium announced",
+        "Medium AI companies leached value robots.txt original medium announcement",
+        "https://medium.com/blog/how-and-when-does-your-writing-show-up-inside-ai-chatbots-1d2dec42f26d",
+        "site:openai.com GPTBot robots.txt openai",
+        "W3C TDM reservation protocol robots.txt reservation of rights",
+        "https://help.openai.com/en/articles/12627856-publishers-and-developers-faq",
+        "'without authorization' in https://files.passle.net/Passle/65737bea961a63814fd9b845/MediaLibrary/Images/2025-06-27-13-55-16-799-685ea2c49e19c98bad0f4ebf.pdf",
+        "https://www.internetlibrary.com/cases/lib_case249.cfm",
+        "CourtListener Ziff Davis OpenAI robots.txt complaint",
+        "https://www.courtlistener.com/docket/70338311/ziff-davis-inc-v-openai-inc/",
+        "https://www.condenast.com/news/conde-nast-mc-clatchy-and-other-publishers-accuse-ai-firm-cohere-of-copyright-violations",
+        "robotstxt.org voluntary compliance robots.txt consensus",
+        "https://www.robotstxt.org/faq/nosecurity.html"
+      ],
+      "tool_results": [
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        },
+        {
+          "tool": "web_search",
+          "summary": "Codex exec JSONL exposes the search action but not its result payload."
+        }
+      ],
+      "opened_urls": [],
+      "cited_urls": [
+        "https://www.rfc-editor.org/info/rfc9309",
+        "https://developers.google.com/search/docs/crawling-indexing/robots/intro",
+        "https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/",
+        "https://www.w3.org/community/tdmrep/",
+        "https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/",
+        "https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/",
+        "https://digital-strategy.ec.europa.eu/en/consultations/commission-launches-consultation-protocols-reserving-rights-text-and-data-mining-under-ai-act-and",
+        "https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers",
+        "https://help.openai.com/en/articles/12627856-publishers-and-developers-faq",
+        "https://developers.openai.com/api/docs/bots",
+        "https://help.openai.com/en/articles/20001243-advertiser-guidance-for-allowing-openai-web-crawlers",
+        "https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler",
+        "https://commoncrawl.org/faq",
+        "https://commoncrawl.org/ccbot",
+        "https://commoncrawl.org/blog/common-crawl-foundation-opt-out-registry",
+        "https://medium.com/blog/how-and-when-does-your-writing-show-up-inside-ai-chatbots-1d2dec42f26d",
+        "https://rslstandard.org/guide/ai-preferences",
+        "https://www.internetlibrary.com/cases/lib_case249.cfm",
+        "https://files.passle.net/Passle/65737bea961a63814fd9b845/MediaLibrary/Images/2025-06-27-13-55-16-799-685ea2c49e19c98bad0f4ebf.pdf"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://www.rfc-editor.org/info/rfc9309",
+          "title": "https://www.rfc-editor.org/info/rfc9309"
+        },
+        {
+          "url": "https://developers.google.com/search/docs/crawling-indexing/robots/intro",
+          "title": "https://developers.google.com/search/docs/crawling-indexing/robots/intro"
+        },
+        {
+          "url": "https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/",
+          "title": "https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/"
+        },
+        {
+          "url": "https://www.w3.org/community/tdmrep/",
+          "title": "https://www.w3.org/community/tdmrep/"
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/",
+          "title": "https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/"
+        },
+        {
+          "url": "https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/",
+          "title": "https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/"
+        },
+        {
+          "url": "https://digital-strategy.ec.europa.eu/en/consultations/commission-launches-consultation-protocols-reserving-rights-text-and-data-mining-under-ai-act-and",
+          "title": "https://digital-strategy.ec.europa.eu/en/consultations/commission-launches-consultation-protocols-reserving-rights-text-and-data-mining-under-ai-act-and"
+        },
+        {
+          "url": "https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers",
+          "title": "https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers"
+        },
+        {
+          "url": "https://help.openai.com/en/articles/12627856-publishers-and-developers-faq",
+          "title": "https://help.openai.com/en/articles/12627856-publishers-and-developers-faq"
+        },
+        {
+          "url": "https://developers.openai.com/api/docs/bots",
+          "title": "https://developers.openai.com/api/docs/bots"
+        },
+        {
+          "url": "https://help.openai.com/en/articles/20001243-advertiser-guidance-for-allowing-openai-web-crawlers",
+          "title": "https://help.openai.com/en/articles/20001243-advertiser-guidance-for-allowing-openai-web-crawlers"
+        },
+        {
+          "url": "https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler",
+          "title": "https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler"
+        },
+        {
+          "url": "https://commoncrawl.org/faq",
+          "title": "https://commoncrawl.org/faq"
+        },
+        {
+          "url": "https://commoncrawl.org/ccbot",
+          "title": "https://commoncrawl.org/ccbot"
+        },
+        {
+          "url": "https://commoncrawl.org/blog/common-crawl-foundation-opt-out-registry",
+          "title": "https://commoncrawl.org/blog/common-crawl-foundation-opt-out-registry"
+        },
+        {
+          "url": "https://medium.com/blog/how-and-when-does-your-writing-show-up-inside-ai-chatbots-1d2dec42f26d",
+          "title": "https://medium.com/blog/how-and-when-does-your-writing-show-up-inside-ai-chatbots-1d2dec42f26d"
+        },
+        {
+          "url": "https://rslstandard.org/guide/ai-preferences",
+          "title": "https://rslstandard.org/guide/ai-preferences"
+        },
+        {
+          "url": "https://www.internetlibrary.com/cases/lib_case249.cfm",
+          "title": "https://www.internetlibrary.com/cases/lib_case249.cfm"
+        },
+        {
+          "url": "https://files.passle.net/Passle/65737bea961a63814fd9b845/MediaLibrary/Images/2025-06-27-13-55-16-799-685ea2c49e19c98bad0f4ebf.pdf",
+          "title": "https://files.passle.net/Passle/65737bea961a63814fd9b845/MediaLibrary/Images/2025-06-27-13-55-16-799-685ea2c49e19c98bad0f4ebf.pdf"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.rfc-editor.org/info/rfc9309",
+          "text": "Short answer: they disagree on all three levels. The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view. (https://www.rfc-editor.org/info/rfc9309)\n\n**Supported fact**\n\nStandards participants do not speak with one voice. RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization. (https://www.rfc-editor.org/info/rfc9309) Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results. (https://developers.google.com/search/docs/crawling-indexing/robots/intro) The W3C Community Group’s TDM Reservation Protocol instead defines a separate protocol “capable of expressing the reservation of rights” for text and data mining under EU copyright law, and its status page says it is not a W3C Standard. (https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/) The same W3C Community Group later wrote that using robots.txt as a search opt-in is only a “complementary solution,” that this complementarity “remains subject to interpretation,” and that a more explicit signal could be more secure. (https://www.w3.org/community/tdmrep/) Meanwhile, an active IETF draft proposes updating RFC 9309 so robots.txt can carry “usage preferences,” and EDRLab’s notes from the IETF AI-Pref meeting say the presence of an AI-Pref signal in robots.txt is “logically sufficient to express a reservation of rights” under EU CDSM Article 4. (https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/) The European Commission’s 1 December 2025 consultation page says the GPAI Code of Practice"
+        },
+        {
+          "url": "https://developers.google.com/search/docs/crawling-indexing/robots/intro",
+          "text": "Short answer: they disagree on all three levels. The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view. (https://www.rfc-editor.org/info/rfc9309)\n\n**Supported fact**\n\nStandards participants do not speak with one voice. RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization. (https://www.rfc-editor.org/info/rfc9309) Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results. (https://developers.google.com/search/docs/crawling-indexing/robots/intro) The W3C Community Group’s TDM Reservation Protocol instead defines a separate protocol “capable of expressing the reservation of rights” for text and data mining under EU copyright law, and its status page says it is not a W3C Standard. (https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/) The same W3C Community Group later wrote that using robots.txt as a search opt-in is only a “complementary solution,” that this complementarity “remains subject to interpretation,” and that a more explicit signal could be more secure. (https://www.w3.org/community/tdmrep/) Meanwhile, an active IETF draft proposes updating RFC 9309 so robots.txt can carry “usage preferences,” and EDRLab’s notes from the IETF AI-Pref meeting say the presence of an AI-Pref signal in robots.txt is “logically sufficient to express a reservation of rights” under EU CDSM Article 4. (https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/) The European Commission’s 1 December 2025 consultation page says the GPAI Code of Practice"
+        },
+        {
+          "url": "https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/",
+          "text": "Short answer: they disagree on all three levels. The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view. (https://www.rfc-editor.org/info/rfc9309)\n\n**Supported fact**\n\nStandards participants do not speak with one voice. RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization. (https://www.rfc-editor.org/info/rfc9309) Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results. (https://developers.google.com/search/docs/crawling-indexing/robots/intro) The W3C Community Group’s TDM Reservation Protocol instead defines a separate protocol “capable of expressing the reservation of rights” for text and data mining under EU copyright law, and its status page says it is not a W3C Standard. (https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/) The same W3C Community Group later wrote that using robots.txt as a search opt-in is only a “complementary solution,” that this complementarity “remains subject to interpretation,” and that a more explicit signal could be more secure. (https://www.w3.org/community/tdmrep/) Meanwhile, an active IETF draft proposes updating RFC 9309 so robots.txt can carry “usage preferences,” and EDRLab’s notes from the IETF AI-Pref meeting say the presence of an AI-Pref signal in robots.txt is “logically sufficient to express a reservation of rights” under EU CDSM Article 4. (https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/) The European Commission’s 1 December 2025 consultation page says the GPAI Code of Practice"
+        },
+        {
+          "url": "https://www.w3.org/community/tdmrep/",
+          "text": "Short answer: they disagree on all three levels. The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view. (https://www.rfc-editor.org/info/rfc9309)\n\n**Supported fact**\n\nStandards participants do not speak with one voice. RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization. (https://www.rfc-editor.org/info/rfc9309) Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results. (https://developers.google.com/search/docs/crawling-indexing/robots/intro) The W3C Community Group’s TDM Reservation Protocol instead defines a separate protocol “capable of expressing the reservation of rights” for text and data mining under EU copyright law, and its status page says it is not a W3C Standard. (https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/) The same W3C Community Group later wrote that using robots.txt as a search opt-in is only a “complementary solution,” that this complementarity “remains subject to interpretation,” and that a more explicit signal could be more secure. (https://www.w3.org/community/tdmrep/) Meanwhile, an active IETF draft proposes updating RFC 9309 so robots.txt can carry “usage preferences,” and EDRLab’s notes from the IETF AI-Pref meeting say the presence of an AI-Pref signal in robots.txt is “logically sufficient to express a reservation of rights” under EU CDSM Article 4. (https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/) The European Commission’s 1 December 2025 consultation page says the GPAI Code of Practice"
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/",
+          "text": "Short answer: they disagree on all three levels. The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view. (https://www.rfc-editor.org/info/rfc9309)\n\n**Supported fact**\n\nStandards participants do not speak with one voice. RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization. (https://www.rfc-editor.org/info/rfc9309) Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results. (https://developers.google.com/search/docs/crawling-indexing/robots/intro) The W3C Community Group’s TDM Reservation Protocol instead defines a separate protocol “capable of expressing the reservation of rights” for text and data mining under EU copyright law, and its status page says it is not a W3C Standard. (https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/) The same W3C Community Group later wrote that using robots.txt as a search opt-in is only a “complementary solution,” that this complementarity “remains subject to interpretation,” and that a more explicit signal could be more secure. (https://www.w3.org/community/tdmrep/) Meanwhile, an active IETF draft proposes updating RFC 9309 so robots.txt can carry “usage preferences,” and EDRLab’s notes from the IETF AI-Pref meeting say the presence of an AI-Pref signal in robots.txt is “logically sufficient to express a reservation of rights” under EU CDSM Article 4. (https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/) The European Commission’s 1 December 2025 consultation page says the GPAI Code of Practice"
+        },
+        {
+          "url": "https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/",
+          "text": "Short answer: they disagree on all three levels. The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view. (https://www.rfc-editor.org/info/rfc9309)\n\n**Supported fact**\n\nStandards participants do not speak with one voice. RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization. (https://www.rfc-editor.org/info/rfc9309) Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results. (https://developers.google.com/search/docs/crawling-indexing/robots/intro) The W3C Community Group’s TDM Reservation Protocol instead defines a separate protocol “capable of expressing the reservation of rights” for text and data mining under EU copyright law, and its status page says it is not a W3C Standard. (https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/) The same W3C Community Group later wrote that using robots.txt as a search opt-in is only a “complementary solution,” that this complementarity “remains subject to interpretation,” and that a more explicit signal could be more secure. (https://www.w3.org/community/tdmrep/) Meanwhile, an active IETF draft proposes updating RFC 9309 so robots.txt can carry “usage preferences,” and EDRLab’s notes from the IETF AI-Pref meeting say the presence of an AI-Pref signal in robots.txt is “logically sufficient to express a reservation of rights” under EU CDSM Article 4. (https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/) The European Commission’s 1 December 2025 consultation page says the GPAI Code of Practice"
+        },
+        {
+          "url": "https://digital-strategy.ec.europa.eu/en/consultations/commission-launches-consultation-protocols-reserving-rights-text-and-data-mining-under-ai-act-and",
+          "text": "Short answer: they disagree on all three levels. The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view. (https://www.rfc-editor.org/info/rfc9309)\n\n**Supported fact**\n\nStandards participants do not speak with one voice. RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization. (https://www.rfc-editor.org/info/rfc9309) Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results. (https://developers.google.com/search/docs/crawling-indexing/robots/intro) The W3C Community Group’s TDM Reservation Protocol instead defines a separate protocol “capable of expressing the reservation of rights” for text and data mining under EU copyright law, and its status page says it is not a W3C Standard. (https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/) The same W3C Community Group later wrote that using robots.txt as a search opt-in is only a “complementary solution,” that this complementarity “remains subject to interpretation,” and that a more explicit signal could be more secure. (https://www.w3.org/community/tdmrep/) Meanwhile, an active IETF draft proposes updating RFC 9309 so robots.txt can carry “usage preferences,” and EDRLab’s notes from the IETF AI-Pref meeting say the presence of an AI-Pref signal in robots.txt is “logically sufficient to express a reservation of rights” under EU CDSM Article 4. (https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/) The European Commission’s 1 December 2025 consultation page says the GPAI Code of Practice"
+        },
+        {
+          "url": "https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers",
+          "text": "Short answer: they disagree on all three levels. The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view. (https://www.rfc-editor.org/info/rfc9309)\n\n**Supported fact**\n\nStandards participants do not speak with one voice. RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization. (https://www.rfc-editor.org/info/rfc9309) Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results. (https://developers.google.com/search/docs/crawling-indexing/robots/intro) The W3C Community Group’s TDM Reservation Protocol instead defines a separate protocol “capable of expressing the reservation of rights” for text and data mining under EU copyright law, and its status page says it is not a W3C Standard. (https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/) The same W3C Community Group later wrote that using robots.txt as a search opt-in is only a “complementary solution,” that this complementarity “remains subject to interpretation,” and that a more explicit signal could be more secure. (https://www.w3.org/community/tdmrep/) Meanwhile, an active IETF draft proposes updating RFC 9309 so robots.txt can carry “usage preferences,” and EDRLab’s notes from the IETF AI-Pref meeting say the presence of an AI-Pref signal in robots.txt is “logically sufficient to express a reservation of rights” under EU CDSM Article 4. (https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/) The European Commission’s 1 December 2025 consultation page says the GPAI Code of Practice"
+        },
+        {
+          "url": "https://help.openai.com/en/articles/12627856-publishers-and-developers-faq",
+          "text": "Short answer: they disagree on all three levels. The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view. (https://www.rfc-editor.org/info/rfc9309)\n\n**Supported fact**\n\nStandards participants do not speak with one voice. RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization. (https://www.rfc-editor.org/info/rfc9309) Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results. (https://developers.google.com/search/docs/crawling-indexing/robots/intro) The W3C Community Group’s TDM Reservation Protocol instead defines a separate protocol “capable of expressing the reservation of rights” for text and data mining under EU copyright law, and its status page says it is not a W3C Standard. (https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/) The same W3C Community Group later wrote that using robots.txt as a search opt-in is only a “complementary solution,” that this complementarity “remains subject to interpretation,” and that a more explicit signal could be more secure. (https://www.w3.org/community/tdmrep/) Meanwhile, an active IETF draft proposes updating RFC 9309 so robots.txt can carry “usage preferences,” and EDRLab’s notes from the IETF AI-Pref meeting say the presence of an AI-Pref signal in robots.txt is “logically sufficient to express a reservation of rights” under EU CDSM Article 4. (https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/) The European Commission’s 1 December 2025 consultation page says the GPAI Code of Practice"
+        },
+        {
+          "url": "https://developers.openai.com/api/docs/bots",
+          "text": "Short answer: they disagree on all three levels. The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view. (https://www.rfc-editor.org/info/rfc9309)\n\n**Supported fact**\n\nStandards participants do not speak with one voice. RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization. (https://www.rfc-editor.org/info/rfc9309) Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results. (https://developers.google.com/search/docs/crawling-indexing/robots/intro) The W3C Community Group’s TDM Reservation Protocol instead defines a separate protocol “capable of expressing the reservation of rights” for text and data mining under EU copyright law, and its status page says it is not a W3C Standard. (https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/) The same W3C Community Group later wrote that using robots.txt as a search opt-in is only a “complementary solution,” that this complementarity “remains subject to interpretation,” and that a more explicit signal could be more secure. (https://www.w3.org/community/tdmrep/) Meanwhile, an active IETF draft proposes updating RFC 9309 so robots.txt can carry “usage preferences,” and EDRLab’s notes from the IETF AI-Pref meeting say the presence of an AI-Pref signal in robots.txt is “logically sufficient to express a reservation of rights” under EU CDSM Article 4. (https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/) The European Commission’s 1 December 2025 consultation page says the GPAI Code of Practice"
+        },
+        {
+          "url": "https://help.openai.com/en/articles/20001243-advertiser-guidance-for-allowing-openai-web-crawlers",
+          "text": "Short answer: they disagree on all three levels. The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view. (https://www.rfc-editor.org/info/rfc9309)\n\n**Supported fact**\n\nStandards participants do not speak with one voice. RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization. (https://www.rfc-editor.org/info/rfc9309) Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results. (https://developers.google.com/search/docs/crawling-indexing/robots/intro) The W3C Community Group’s TDM Reservation Protocol instead defines a separate protocol “capable of expressing the reservation of rights” for text and data mining under EU copyright law, and its status page says it is not a W3C Standard. (https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/) The same W3C Community Group later wrote that using robots.txt as a search opt-in is only a “complementary solution,” that this complementarity “remains subject to interpretation,” and that a more explicit signal could be more secure. (https://www.w3.org/community/tdmrep/) Meanwhile, an active IETF draft proposes updating RFC 9309 so robots.txt can carry “usage preferences,” and EDRLab’s notes from the IETF AI-Pref meeting say the presence of an AI-Pref signal in robots.txt is “logically sufficient to express a reservation of rights” under EU CDSM Article 4. (https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/) The European Commission’s 1 December 2025 consultation page says the GPAI Code of Practice"
+        },
+        {
+          "url": "https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler",
+          "text": "Short answer: they disagree on all three levels. The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view. (https://www.rfc-editor.org/info/rfc9309)\n\n**Supported fact**\n\nStandards participants do not speak with one voice. RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization. (https://www.rfc-editor.org/info/rfc9309) Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results. (https://developers.google.com/search/docs/crawling-indexing/robots/intro) The W3C Community Group’s TDM Reservation Protocol instead defines a separate protocol “capable of expressing the reservation of rights” for text and data mining under EU copyright law, and its status page says it is not a W3C Standard. (https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/) The same W3C Community Group later wrote that using robots.txt as a search opt-in is only a “complementary solution,” that this complementarity “remains subject to interpretation,” and that a more explicit signal could be more secure. (https://www.w3.org/community/tdmrep/) Meanwhile, an active IETF draft proposes updating RFC 9309 so robots.txt can carry “usage preferences,” and EDRLab’s notes from the IETF AI-Pref meeting say the presence of an AI-Pref signal in robots.txt is “logically sufficient to express a reservation of rights” under EU CDSM Article 4. (https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/) The European Commission’s 1 December 2025 consultation page says the GPAI Code of Practice"
+        },
+        {
+          "url": "https://commoncrawl.org/faq",
+          "text": "Short answer: they disagree on all three levels. The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view. (https://www.rfc-editor.org/info/rfc9309)\n\n**Supported fact**\n\nStandards participants do not speak with one voice. RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization. (https://www.rfc-editor.org/info/rfc9309) Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results. (https://developers.google.com/search/docs/crawling-indexing/robots/intro) The W3C Community Group’s TDM Reservation Protocol instead defines a separate protocol “capable of expressing the reservation of rights” for text and data mining under EU copyright law, and its status page says it is not a W3C Standard. (https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/) The same W3C Community Group later wrote that using robots.txt as a search opt-in is only a “complementary solution,” that this complementarity “remains subject to interpretation,” and that a more explicit signal could be more secure. (https://www.w3.org/community/tdmrep/) Meanwhile, an active IETF draft proposes updating RFC 9309 so robots.txt can carry “usage preferences,” and EDRLab’s notes from the IETF AI-Pref meeting say the presence of an AI-Pref signal in robots.txt is “logically sufficient to express a reservation of rights” under EU CDSM Article 4. (https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/) The European Commission’s 1 December 2025 consultation page says the GPAI Code of Practice"
+        },
+        {
+          "url": "https://commoncrawl.org/ccbot",
+          "text": "Short answer: they disagree on all three levels. The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view. (https://www.rfc-editor.org/info/rfc9309)\n\n**Supported fact**\n\nStandards participants do not speak with one voice. RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization. (https://www.rfc-editor.org/info/rfc9309) Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results. (https://developers.google.com/search/docs/crawling-indexing/robots/intro) The W3C Community Group’s TDM Reservation Protocol instead defines a separate protocol “capable of expressing the reservation of rights” for text and data mining under EU copyright law, and its status page says it is not a W3C Standard. (https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/) The same W3C Community Group later wrote that using robots.txt as a search opt-in is only a “complementary solution,” that this complementarity “remains subject to interpretation,” and that a more explicit signal could be more secure. (https://www.w3.org/community/tdmrep/) Meanwhile, an active IETF draft proposes updating RFC 9309 so robots.txt can carry “usage preferences,” and EDRLab’s notes from the IETF AI-Pref meeting say the presence of an AI-Pref signal in robots.txt is “logically sufficient to express a reservation of rights” under EU CDSM Article 4. (https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/) The European Commission’s 1 December 2025 consultation page says the GPAI Code of Practice"
+        },
+        {
+          "url": "https://commoncrawl.org/blog/common-crawl-foundation-opt-out-registry",
+          "text": "Short answer: they disagree on all three levels. The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view. (https://www.rfc-editor.org/info/rfc9309)\n\n**Supported fact**\n\nStandards participants do not speak with one voice. RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization. (https://www.rfc-editor.org/info/rfc9309) Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results. (https://developers.google.com/search/docs/crawling-indexing/robots/intro) The W3C Community Group’s TDM Reservation Protocol instead defines a separate protocol “capable of expressing the reservation of rights” for text and data mining under EU copyright law, and its status page says it is not a W3C Standard. (https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/) The same W3C Community Group later wrote that using robots.txt as a search opt-in is only a “complementary solution,” that this complementarity “remains subject to interpretation,” and that a more explicit signal could be more secure. (https://www.w3.org/community/tdmrep/) Meanwhile, an active IETF draft proposes updating RFC 9309 so robots.txt can carry “usage preferences,” and EDRLab’s notes from the IETF AI-Pref meeting say the presence of an AI-Pref signal in robots.txt is “logically sufficient to express a reservation of rights” under EU CDSM Article 4. (https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/) The European Commission’s 1 December 2025 consultation page says the GPAI Code of Practice"
+        },
+        {
+          "url": "https://medium.com/blog/how-and-when-does-your-writing-show-up-inside-ai-chatbots-1d2dec42f26d",
+          "text": "Short answer: they disagree on all three levels. The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view. (https://www.rfc-editor.org/info/rfc9309)\n\n**Supported fact**\n\nStandards participants do not speak with one voice. RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization. (https://www.rfc-editor.org/info/rfc9309) Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results. (https://developers.google.com/search/docs/crawling-indexing/robots/intro) The W3C Community Group’s TDM Reservation Protocol instead defines a separate protocol “capable of expressing the reservation of rights” for text and data mining under EU copyright law, and its status page says it is not a W3C Standard. (https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/) The same W3C Community Group later wrote that using robots.txt as a search opt-in is only a “complementary solution,” that this complementarity “remains subject to interpretation,” and that a more explicit signal could be more secure. (https://www.w3.org/community/tdmrep/) Meanwhile, an active IETF draft proposes updating RFC 9309 so robots.txt can carry “usage preferences,” and EDRLab’s notes from the IETF AI-Pref meeting say the presence of an AI-Pref signal in robots.txt is “logically sufficient to express a reservation of rights” under EU CDSM Article 4. (https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/) The European Commission’s 1 December 2025 consultation page says the GPAI Code of Practice"
+        },
+        {
+          "url": "https://rslstandard.org/guide/ai-preferences",
+          "text": "Short answer: they disagree on all three levels. The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view. (https://www.rfc-editor.org/info/rfc9309)\n\n**Supported fact**\n\nStandards participants do not speak with one voice. RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization. (https://www.rfc-editor.org/info/rfc9309) Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results. (https://developers.google.com/search/docs/crawling-indexing/robots/intro) The W3C Community Group’s TDM Reservation Protocol instead defines a separate protocol “capable of expressing the reservation of rights” for text and data mining under EU copyright law, and its status page says it is not a W3C Standard. (https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/) The same W3C Community Group later wrote that using robots.txt as a search opt-in is only a “complementary solution,” that this complementarity “remains subject to interpretation,” and that a more explicit signal could be more secure. (https://www.w3.org/community/tdmrep/) Meanwhile, an active IETF draft proposes updating RFC 9309 so robots.txt can carry “usage preferences,” and EDRLab’s notes from the IETF AI-Pref meeting say the presence of an AI-Pref signal in robots.txt is “logically sufficient to express a reservation of rights” under EU CDSM Article 4. (https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/) The European Commission’s 1 December 2025 consultation page says the GPAI Code of Practice"
+        },
+        {
+          "url": "https://www.internetlibrary.com/cases/lib_case249.cfm",
+          "text": "Short answer: they disagree on all three levels. The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view. (https://www.rfc-editor.org/info/rfc9309)\n\n**Supported fact**\n\nStandards participants do not speak with one voice. RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization. (https://www.rfc-editor.org/info/rfc9309) Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results. (https://developers.google.com/search/docs/crawling-indexing/robots/intro) The W3C Community Group’s TDM Reservation Protocol instead defines a separate protocol “capable of expressing the reservation of rights” for text and data mining under EU copyright law, and its status page says it is not a W3C Standard. (https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/) The same W3C Community Group later wrote that using robots.txt as a search opt-in is only a “complementary solution,” that this complementarity “remains subject to interpretation,” and that a more explicit signal could be more secure. (https://www.w3.org/community/tdmrep/) Meanwhile, an active IETF draft proposes updating RFC 9309 so robots.txt can carry “usage preferences,” and EDRLab’s notes from the IETF AI-Pref meeting say the presence of an AI-Pref signal in robots.txt is “logically sufficient to express a reservation of rights” under EU CDSM Article 4. (https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/) The European Commission’s 1 December 2025 consultation page says the GPAI Code of Practice"
+        },
+        {
+          "url": "https://files.passle.net/Passle/65737bea961a63814fd9b845/MediaLibrary/Images/2025-06-27-13-55-16-799-685ea2c49e19c98bad0f4ebf.pdf",
+          "text": "Short answer: they disagree on all three levels. The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view. (https://www.rfc-editor.org/info/rfc9309)\n\n**Supported fact**\n\nStandards participants do not speak with one voice. RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization. (https://www.rfc-editor.org/info/rfc9309) Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results. (https://developers.google.com/search/docs/crawling-indexing/robots/intro) The W3C Community Group’s TDM Reservation Protocol instead defines a separate protocol “capable of expressing the reservation of rights” for text and data mining under EU copyright law, and its status page says it is not a W3C Standard. (https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/) The same W3C Community Group later wrote that using robots.txt as a search opt-in is only a “complementary solution,” that this complementarity “remains subject to interpretation,” and that a more explicit signal could be more secure. (https://www.w3.org/community/tdmrep/) Meanwhile, an active IETF draft proposes updating RFC 9309 so robots.txt can carry “usage preferences,” and EDRLab’s notes from the IETF AI-Pref meeting say the presence of an AI-Pref signal in robots.txt is “logically sufficient to express a reservation of rights” under EU CDSM Article 4. (https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/) The European Commission’s 1 December 2025 consultation page says the GPAI Code of Practice"
+        }
+      ],
+      "final_answer": "Short answer: they disagree on all three levels. The clearest standards text, RFC 9309, says robots.txt contains rules crawlers are “requested to honor” and that those rules “are not a form of access authorization,” which supports the “preference/advisory” view rather than the “permission” view. (https://www.rfc-editor.org/info/rfc9309)\n\n**Supported fact**\n\nStandards participants do not speak with one voice. RFC 9309 defines robots.txt as a protocol for crawler behavior and expressly says it is not access authorization. (https://www.rfc-editor.org/info/rfc9309) Google’s documentation is similar: it says robots.txt is mainly for managing crawler traffic, “cannot enforce crawler behavior,” is not a way to keep pages out of Google by itself, and disallowed URLs can still appear in search results. (https://developers.google.com/search/docs/crawling-indexing/robots/intro) The W3C Community Group’s TDM Reservation Protocol instead defines a separate protocol “capable of expressing the reservation of rights” for text and data mining under EU copyright law, and its status page says it is not a W3C Standard. (https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/) The same W3C Community Group later wrote that using robots.txt as a search opt-in is only a “complementary solution,” that this complementarity “remains subject to interpretation,” and that a more explicit signal could be more secure. (https://www.w3.org/community/tdmrep/) Meanwhile, an active IETF draft proposes updating RFC 9309 so robots.txt can carry “usage preferences,” and EDRLab’s notes from the IETF AI-Pref meeting say the presence of an AI-Pref signal in robots.txt is “logically sufficient to express a reservation of rights” under EU CDSM Article 4. (https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/) The European Commission’s 1 December 2025 consultation page says the GPAI Code of Practice includes both a commitment to respect robots.txt and a commitment to identify and comply with additional machine-readable rights-reservation protocols. (https://digital-strategy.ec.europa.eu/en/consultations/commission-launches-consultation-protocols-reserving-rights-text-and-data-mining-under-ai-act-and)\n\nCrawler operators also use mixed language. Google says its common crawlers “always obey robots.txt rules when crawling automatically,” and its `Google-Extended` token lets publishers manage whether crawled content may be used for Gemini training and grounding. (https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers) OpenAI says publishers may need to update robots.txt so `OAI-SearchBot` has access, says `GPTBot` disallowance indicates content should not be used for training, and says some user-initiated `ChatGPT-User` fetches may fall outside normal robots.txt application. (https://help.openai.com/en/articles/12627856-publishers-and-developers-faq ; https://developers.openai.com/api/docs/bots) OpenAI’s advertiser guidance is even stronger permission language: it says robots.txt tells crawlers whether they are “permitted” to access parts of a site and that crawling stops if access is disallowed. (https://help.openai.com/en/articles/20001243-advertiser-guidance-for-allowing-openai-web-crawlers) Anthropic says its bots honor robots.txt, respect anti-circumvention measures, support `Crawl-delay`, and require robots.txt changes for opt-out because IP blocking can interfere with the bot’s ability to read robots.txt. (https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler) Common Crawl says `CCBot` obeys `Crawl-delay`, can be blocked with robots.txt, encourages publishers to use robots.txt to control crawling, and separately says it will continue to process legal requests. (https://commoncrawl.org/faq ; https://commoncrawl.org/ccbot ; https://commoncrawl.org/blog/common-crawl-foundation-opt-out-registry)\n\nPublishers are split too. Medium’s official blog says bots crawl public-web content by default, describes robots.txt as the place where Medium tells bots what they are and are not allowed to crawl, and frames search crawling as a trade of consent, credit, and compensation. (https://medium.com/blog/how-and-when-does-your-writing-show-up-inside-ai-chatbots-1d2dec42f26d) But the same Medium post also says robots.txt “isn’t a legally binding arrangement,” is a “voluntary technical standard,” and depends on actors respecting it. (https://medium.com/blog/how-and-when-does-your-writing-show-up-inside-ai-chatbots-1d2dec42f26d) On the other hand, the RSL guidance shows a publisher-oriented attempt to use robots.txt as a pointer to enforceable licensing terms: one example robots.txt file links to a `license.xml` and says AI training is prohibited unless permission is obtained through licensing and compensation terms. (https://rslstandard.org/guide/ai-preferences)\n\nCourts have also not reduced robots.txt to one stable legal meaning. In `eBay v. Bidder’s Edge`, the court issued a preliminary injunction against automated crawling, and the summary says the site’s being publicly accessible did not make the crawling authorized because eBay did not permit that type of automated access without express permission. (https://www.internetlibrary.com/cases/lib_case249.cfm) In `hiQ v. LinkedIn`, by contrast, the Ninth Circuit said public websites have no relevant “gates” in their publicly available sections and concluded that the CFAA concept of access “without authorization” does not apply to public websites. (https://files.passle.net/Passle/65737bea961a63814fd9b845/MediaLibrary/Images/2025-06-27-13-55-16-799-685ea2c49e19c98bad0f4ebf.pdf)\n\n**Inference from those sources**\n\nThe disagreement is not just semantic. One camp treats robots.txt as a machine-readable statement of crawler-specific permission: that is how many publisher and crawler-operator docs describe `Allow`, `Disallow`, and bot-specific opt-outs or opt-ins. (Inference from: https://help.openai.com/en/articles/20001243-advertiser-guidance-for-allowing-openai-web-crawlers ; https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers ; https://medium.com/blog/how-and-when-does-your-writing-show-up-inside-ai-chatbots-1d2dec42f26d) A second camp treats it as only an advisory preference signal, because the core RFC denies that it is authorization and major search guidance denies that it enforces behavior or securely controls indexing. (Inference from: https://www.rfc-editor.org/info/rfc9309 ; https://developers.google.com/search/docs/crawling-indexing/robots/intro) A third camp tries to give robots.txt legal significance, especially for AI and copyright, by combining it with rights-reservation vocabularies, linked licenses, or EU opt-out frameworks. (Inference from: https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.edrlab.org/2026/04/17/notes-from-the-ietf-ai-pref-toronto-meeting-april-2026/ ; https://rslstandard.org/guide/ai-preferences ; https://digital-strategy.ec.europa.eu/en/consultations/commission-launches-consultation-protocols-reserving-rights-text-and-data-mining-under-ai-act-and)\n\n**Uncertainty and lack of good evidence**\n\nThere is good evidence of disagreement, but not good evidence of a universal rule that robots.txt alone either grants permission or creates binding legal duties everywhere. RFC 9309 rejects the authorization reading; the W3C TDMRep group says complementarity with search remains subject to interpretation; the IETF AI-Pref work is still a draft; TDMRep is not on the W3C standards track; and the Commission was still consulting stakeholders in December 2025 on which machine-readable protocols should count. (https://www.rfc-editor.org/info/rfc9309 ; https://www.w3.org/community/tdmrep/ ; https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/05/ ; https://www.w3.org/community/reports/tdmrep/CG-FINAL-tdmrep-20240510/ ; https://digital-strategy.ec.europa.eu/en/consultations/commission-launches-consultation-protocols-reserving-rights-text-and-data-mining-under-ai-act-and) The case law in the sources also cuts both ways: `eBay` supports legal consequences for unwanted scraping on one theory, while `hiQ` rejects turning access to a public website into CFAA “authorization” in the first place. (https://www.internetlibrary.com/cases/lib_case249.cfm ; https://files.passle.net/Passle/65737bea961a63814fd9b845/MediaLibrary/Images/2025-06-27-13-55-16-799-685ea2c49e19c98bad0f4ebf.pdf)\n\nNet result: standards documents mostly anchor robots.txt in the “preferences for compliant crawlers” model, crawler operators often market it as a practical permission-control interface, and some publishers and standards participants are trying to push it toward copyright reservation and licensing, but the legal status remains fragmented and jurisdiction-specific. (Inference from all sources above.)"
+    },
+    {
+      "run_id": "2026-08-27_claude_community-robots-ethics",
+      "provider": "claude",
+      "model": "claude-opus-5[1m]",
+      "queries": [
+        "RFC 9309 robots.txt \"not legally binding\" permission vs preference debate",
+        "IETF AI preferences working group robots.txt legal significance disagreement publishers crawlers",
+        "Cloudflare Content Signals Policy robots.txt \"expressing preferences\" license legal blog",
+        "Perplexity Cloudflare stealth crawling robots.txt dispute response \"not a legal framework\"",
+        "robots.txt court case Field v. Google implied license hiQ v LinkedIn CFAA robots.txt legal weight",
+        "RSL \"Really Simple Licensing\" robots.txt license terms publishers 2025 legally binding",
+        "Kneschke LAION Hamburg court machine-readable reservation of rights robots.txt Article 4 DSM TDM opt-out",
+        "Reddit lawsuit Perplexity robots.txt complaint \"robots.txt\" breach of contract scraping publishers 2025"
+      ],
+      "tool_results": [
+        {
+          "tool": "WebSearch",
+          "summary": "RFC 9309: Robots.txt Is Now an Official IETF Internet Standard (Robots Exclusion Protocol): https://www.searchengineworld.com/rfc9309-robots-txt-quietly-became-an-official-internet-standard"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "RFC 9309: Robots Exclusion Protocol | Guide books: https://dl.acm.org/doi/10.17487/RFC9309"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The Liabilities of Robots.txt: https://arxiv.org/pdf/2503.06035"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "RFC 9309 Robots Exclusion Protocol Abstract: https://www.ietf.org/rfc/rfc9309.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Robots.txt: https://en.wikipedia.org/wiki/Robots.txt"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "ai.txt: A Domain-Specific Language for Guiding AI Interactions with the Internet: https://arxiv.org/pdf/2505.07834"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Respecting Robots Exclusion Protocol or robots.txt at Scale | by Rashad Moarref | GumGum Tech Blog | Medium: https://medium.com/gumgum-tech/respecting-robots-exclusion-protocol-or-robots-txt-at-scale-60ee57dc1295"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "RFC 9309: Robots Exclusion Protocol | RFC Editor: https://www.rfc-editor.org/info/rfc9309/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "RFC 9309 - Robots Exclusion Protocol: https://datatracker.ietf.org/doc/html/rfc9309"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Robots.txt Is Having a Moment: Here's Why We Should Care | TechPolicy.Press: https://www.techpolicy.press/robotstxt-is-having-a-moment-heres-why-we-should-care/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "IETF building tech to tell AI scrapers what authors want • The Register: https://www.theregister.com/2025/04/09/ietf_ai_preferences_working_group/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The Liabilities of Robots.txt: https://arxiv.org/pdf/2503.06035"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "AI.TXT: A Declaration File for AI Usage Preferences, Licensing, and Policy: https://www.ietf.org/archive/id/draft-car-ai-txt-wellknown-00.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "New web standards could redefine how AI models use your content: https://searchengineland.com/robots-exclusions-new-rules-definitions-ietf-464990"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "draft-car-ai-txt-wellknown-00 - AI.TXT: A Declaration File for AI Usage Preferences, Licensing, and Policy: https://datatracker.ietf.org/doc/draft-car-ai-txt-wellknown/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "RFC 9309: Robots.txt Is Now an Official IETF Internet Standard (Robots Exclusion Protocol): https://www.searchengineworld.com/rfc9309-robots-txt-quietly-became-an-official-internet-standard"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Nature of Robots Exclusion Protocol Rules\n\nAccording to RFC 9309, the rules have the following characteristics:\n\n**Not Access Authorization:**\n\"These rules are not a form of access authorization.\" (Section 1.3)\n\n**Not a Security Substitute:**\n\"The Robots Exclusion Protocol is not a substitute for valid content security measures.\" (Section 3)\n\n**Requests for Voluntary Compliance:**\nThe specification describes that \"crawlers are requested to honor when accessing URIs\" (Section 1.3), framing the "
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# robots.txt Legal Significance: A Summary\n\nI cannot provide a meaningful summary of this paper's arguments because the provided content is a PDF file in binary/compressed format that cannot be properly read as text.\n\nThe material you've shared appears to be PDF metadata, cross-reference tables, and encoded font/content streams rather than readable article text. To help you effectively, I would need:\n\n1. **Plain text extraction** of the paper's content\n2. **A downloadable PDF link** I could refe"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "The server returned HTTP 404 Not Found.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Paper Summary: \"The Liabilities of Robots.txt\"\n\n**Authors:** Chien-yi Chang and Xin He\n\n**Core Argument:**\n\nThe paper challenges the traditional view of robots.txt as merely a voluntary guideline. With the surge in AI-driven web scraping, the authors contend that violating robots.txt directives should carry legal consequences through civil law frameworks rather than criminal or copyright approaches.\n\n**Key Legal Claims:**\n\nThe researchers propose that robots.txt violations can establish liabil"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "AI company Perplexity is sneaking to get around blocks on crawlers, Cloudflare alleges | CyberScoop: https://cyberscoop.com/perplexity-blocks-on-crawlers-cloudflare/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Cloudflare Delists And Blocks Perplexity From Crawling Websites: https://www.searchenginejournal.com/cloudflare-delists-and-blocks-perplexity-from-crawling-websites/552899/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Perplexity accused of 'stealth crawling' websites: https://ia.acs.org.au/article/2025/perplexity-accused-of--stealth-crawling--websites.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Perplexity denies training AI models as Cloudflare documents stealth crawlers: https://ppc.land/perplexity-denies-training-ai-models-as-cloudflare-documents-stealth-crawlers/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Perplexity Says an Agent isn’t a Bot and Not Required to Honor Robots.txt: https://www.searchengineworld.com/perplexity-responds-to-cloudflare"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Perplexity, Cloudflare, and the AI Web Crawler Controversy: Are AI Bots Breaking the Rules? | TWiT.TV: https://twit.tv/posts/tech/perplexity-cloudflare-and-ai-web-crawler-controversy-are-ai-bots-breaking-rules"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Data Acquisition dispute: Cloudflare vs Perplexity - AI CERTs News: https://www.aicerts.ai/news/data-acquisition-dispute-cloudflare-vs-perplexity/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Cloudflare accuses Perplexity of evading AI crawler blocks on sites using stealth tactics: https://alternativeto.net/news/2025/8/cloudflare-accuses-perplexity-of-evading-ai-crawler-blocks-on-sites-using-stealth-tactics"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "New on Yahoo: https://tech.yahoo.com/ai/articles/cloudflare-calls-perplexity-hiding-crawling-133315807.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Searching Under the Covers: https://rightstech.substack.com/p/searching-under-the-covers"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Content Signals Policy by Cloudflare lets websites signal data use preferences | Digital Watch Observatory: https://dig.watch/updates/content-signals-policy-by-cloudflare-lets-websites-signal-data-use-preferences"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Cloudflare Overhauls Web’s AI Rulebook with New Robots.txt ‘Content Signals’: https://winbuzzer.com/2025/10/06/cloudflare-overhauls-webs-ai-rulebook-with-new-robots-txt-content-signals-xcxwbn/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Cloudflare: https://developers.cloudflare.com/bots/additional-configurations/managed-robots-txt/index.md"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Cloudflare Content Signals Policy for robots.txt – Pontara.ai: https://www.pontara.ai/blog/cloudflare-content-signals-policy-robots-txt/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Giving users choice with Cloudflare’s new Content Signals Policy: https://blog.cloudflare.com/content-signals-policy/?amp=&amp=/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "What Cloudflare's Content Signals Policy Means for Your Site in 2026 | Pravin Kumar: https://www.pravinkumar.co/blog/cloudflare-content-signals-policy-ai-crawlers-2026"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Cloudflare Gives Creators New Tool to Control Use of Their Content: https://www.businesswire.com/news/home/20250924718008/en/Cloudflare-Gives-Creators-New-Tool-to-Control-Use-of-Their-Content"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "cloudflare gives creators new tool to control use of their content: https://www.barchart.com/story/news/35006450/cloudflare-gives-creators-new-tool-to-control-use-of-their-content"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Cloudflare Gives Creators New Tool to Control Use of Their Content: https://www.cloudflare.com/press/press-releases/2025/cloudflare-gives-creators-new-tool-to-control-use-of-their-content/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "managed robots txt: https://developers.cloudflare.com/bots/additional-configurations/managed-robots-txt"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "The server returned HTTP 403 Forbidden.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Cloudflare on robots.txt and Content Signals\n\n**Permission vs. Preferences:**\nCloudflare emphasizes that content signals \"express preferences; they are not technical countermeasures against scraping.\" The policy clarifies that signals indicate what creators want, not binding permissions.\n\n**Legal Effect and Reservation of Rights:**\nThe policy includes this statement: \"ANY RESTRICTIONS EXPRESSED VIA CONTENT SIGNALS ARE EXPRESS RESERVATIONS OF RIGHTS UNDER ARTICLE 4 OF THE EUROPEAN UNION DIRECTI"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Key Takeaways on Robots.txt and AI Scraping\n\n**Permission vs. Preference:**\nThe article clarifies that robots.txt functions as a voluntary signal rather than binding enforcement. It was designed as \"a way for site owners to express how they wanted search engines, researchers, and archiving projects to handle\" content, based on \"good manners\" rather than legal obligation.\n\n**Legal Status:**\nRobots.txt was \"never intended to be a security tool or a legal framework.\" Currently, technical standard"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The Liabilities of Robots.txt: https://arxiv.org/pdf/2503.06035"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Ninth Circuit Provides Path Forward for Web Scraping of Public Data | Loeb & Loeb LLP: https://www.loeb.com/en/insights/publications/2022/05/ninth-circuit-provides-path-forward-for-web-scraping-of-public-data"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Web scraping case law: HiQ v. LinkedIn: https://blog.apify.com/hiq-v-linkedin/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "HiQ Labs v. LinkedIn: https://cdn.ca9.uscourts.gov/datastore/opinions/2019/09/09/17-16783.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "hiQ Labs, Inc. v. LinkedIn Corp: https://cdn.ca9.uscourts.gov/datastore/opinions/2022/04/18/17-16783.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "What Recent Rulings in 'hiQ v. LinkedIn' and Other Cases ...: https://www.fbm.com/publications/what-recent-rulings-in-hiq-v-linkedin-and-other-cases-say-about-the-legality-of-data-scraping/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Web Scraping Legality: Every Court Case You Need to Know (Public vs. Private Data) | SociaVault Blog | SociaVault: https://sociavault.com/blog/web-scraping-legality-court-cases-public-vs-private-data"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The hiQ Labs v. LinkedIn Case Explained | Lection Blog: https://www.lection.app/blogs/hiq-labs-vs-linkedin-case-explained"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The Google Library Project: Both Sides of the Story: https://quod.lib.umich.edu/p/plag/5240451.0001.002/--google-library-project-both-sides-of-the-story?id=N22;note=ptr;rgn=main;view=trgt"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Field v. Google Inc. (Field v. Google Inc., 412 F.Supp.2d 1106 (D. Nev. 2006)) - vLex United States - vLex: https://case-law.vlex.com/vid/field-v-google-inc-886529914"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Field v. Google, Inc. - Wikisource, the free online library: https://en.wikisource.org/wiki/Field_v._Google,_Inc."
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Field v. Google | The IT Law Wiki | Fandom: https://itlaw.fandom.com/wiki/Field_v._Google"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Implied License Doctrine and News Aggregators: https://yalelawjournal.org/pdf/1125_kyi388dx.pdf"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Will the Pinterest \"nopin\" tag put online image owners on the defensive on implied copyright licenses? Should we look to robots.txt as precedent? - Lexology: https://www.lexology.com/library/detail.aspx?g=bbfeb8ef-8dd5-4d61-bf5d-71ea37d77486"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "ChatGPT, Robots.TXT Update by Berk Borazan: https://www.linkedin.com/pulse/legal-implications-openais-latest-update-robot-protocol-berk-borazan"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Field v. Google, Inc.: https://en.wikipedia.org/wiki/Field_v._Google,_Inc."
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "field v google inc: https://fairuse.stanford.edu/case/field-v-google-inc"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Article Analysis: IETF's AI Preferences Working Group\n\nBased on the provided content, I cannot fulfill your request as written. The article does not contain:\n\n1. **Quotes from participants about robots.txt** - While the article mentions that \"non-standard signals\" in robots.txt files aren't working, no direct participant quotes on this topic are included.\n\n2. **Discussion of whether standard signals should have legal force** - This topic isn't addressed in the article.\n\n3. **Disagreements with"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Really Simple Licensing: https://en.wikipedia.org/wiki/Really_Simple_Licensing"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "AI Web-Scraping Gets an \"Official\" Standard | Shelly Palmer: https://shellypalmer.com/2025/12/ai-web-scraping-gets-an-official-standard/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "RSL AI Licensing 1.0 Now an Official Industry Standard with New Capabilities as Momentum Accelerates | RSL: Really Simple Licensing: https://rslstandard.org/press/rsl-1-specification-2025"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "RSL: Really Simple Licensing: https://rslstandard.org/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "New RSL Web Standard and Collective Rights Organization Automate Content Licensing for the AI-First Internet and enable Fair Compensation for Millions of Publishers and Creators | RSL: Really Simple Licensing: https://rslstandard.org/press/rsl-standard"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "New Really Simple Licensing standard could make AI pay: https://searchengineland.com/really-simple-licensing-461834"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Really Simple Licensing spec makes AI orgs pay to scrape • The Register: https://www.theregister.com/2025/12/10/really_simple_licensing_spec_takes/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Really Simple Licensing (RSL) 1.0 Specification | RSL: Really Simple Licensing: https://rslstandard.org/rsl"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "What is RSL (Really Simple Licensing)? - ZDS: https://zds.es/en/what-is-rsl"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Really Simple Licensing (RSL) 1.0: A New Licensing Foundation for the AI-First Web | doing the math for you: https://gpt.gekko.de/really-simple-licensing-rsl-ai-content-economy/"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# AI Preferences (aipref) Working Group Charter Analysis\n\n## Scope Statement\nThe charter states the working group will \"standardize building blocks that allow for the expression of preferences about how content is collected and processed for Artificial Intelligence (AI) model development, deployment, and use.\"\n\n## Legal Enforcement Exclusion\nRegarding enforcement, the charter explicitly clarifies: \"Technical enforcement of preferences\" is **out of scope** for this working group. The group focuse"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Internet Archive's Position on Robots.txt\n\n## Why They Changed Course\n\nThe Internet Archive stopped honoring robots.txt files on U.S. government and military websites because such files created a fundamental conflict with their archival mission.\n\n**Their core argument:** \"We see the future of web archiving relying less on robots.txt file declarations geared toward search engines, and more on representing the web as it really was, and is, from a user's perspective.\"\n\n## Key Problems Identified\n"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Perplexity's Position on Robots.txt and Agent Classification\n\nAccording to the article, Perplexity distinguishes between \"agents\" and traditional \"bots,\" arguing that their system performs \"AI browsing\" rather than conventional web crawling. The piece notes that Perplexity frames this as \"fetching a page on behalf of a human user\" — functionally equivalent to a person opening content in their browser.\n\n**On robots.txt specifically:** The article states Perplexity \"did not say they will honor r"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "[Guest post] German court finds LAION’s copying of images non-infringing - The IPKat: https://ipkitten.blogspot.com/2024/09/guest-post-german-court-finds-laions.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Higher Regional Court Hamburg Confirms AI Training was Permitted (Kneschke v. LAION) - Bird & Bird: https://www.twobirds.com/en/insights/2025/germany/higher-regional-court-hamburg-confirms-ai-training-was-permitted-(kneschke-v,-d-,-laion)"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "LAION Round 2: Machine-Readable but Still Not Actionable — The Lack of Progress on TDM Opt-Outs - Part 1 | Kluwer Copyright Blog: https://legalblogs.wolterskluwer.com/copyright-blog/laion-round-2-machine-readable-but-still-not-actionable-the-lack-of-progress-on-tdm-opt-outs-part-1/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Machine-Readable opt-outs and AI training: Hamburg Court clarifies copyright exceptions - Lexology: https://www.lexology.com/library/detail.aspx?g=edc6650b-98ff-4e25-81a8-1a02965717a6"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "robots.txt and AI: EU Legal Situation and TDM Opt-out: https://blckalpaca.at/en/knowledge-base/seo-geo/technical-seo/robotstxt-and-ai-eu-legal-situation-and-tdm-opt-out"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "LAION Round 2: Machine-Readable but Still Not Actionable – Open Future: https://openfuture.eu/blog/laion-round-2-machine-readable-but-still-not-actionable/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Machine-Readable opt-outs and AI training: Hamburg Court clarifies copyright exceptions | Inside Tech Law | Global law firm | Norton Rose Fulbright: https://www.insidetechlaw.com/blog/2025/12/machine-readable-opt-outs-and-ai-training-hamburg-court-clarifies-copyright-exceptions"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "The server returned HTTP 402 Payment Required.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Perplexity vs. Reddit: Everything You Need To Know About A Landmark Case: https://marketingeconomics.substack.com/p/perplexity-vs-reddit-everything-you"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Anti-Circumvention: Reddit’s Case Against Perplexity - Lexology: https://www.lexology.com/library/detail.aspx?g=bd5431bd-5f54-49a6-b87f-ceb0337f407a"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Reddit Sues Perplexity AI Over DMCA §1201 Circumvention and Data: https://natlawreview.com/article/anti-circumvention-reddits-case-against-perplexity"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "The Future Of Gen AI Training Amid Reddit Data Scraping Suit - Troutman Pepper Locke: https://www.troutman.com/insights/the-future-of-gen-ai-training-amid-reddit-data-scraping-suit/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Anti-Circumvention: Reddit’s Case Against Perplexity | Sheppard: https://www.sheppard.com/insights/blogs/anti-circumvention-reddits-case-against-perplexity"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "Reddit v. Perplexity: Terms of Access as the Next Front in AI Data Litigation - Caldwell | Global Law Firm: https://caldwelllaw.com/news/reddit-perplexity-ai-lawsuit-contract-data-rights/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "‘Would-Be Bank Robbers’: Reddit Escalates AI Data Wars With Perplexity Lawsuit: https://www.forbes.com/sites/anishasircar/2025/10/23/would-be-bank-robbers-reddit-escalates-ai-data-wars-with-perplexity-lawsuit/"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "reuters.com,2025:newsml L6N3W30TM:0 reddit sues perplexity for scraping data to train ai system: https://de.tradingview.com/news/reuters.com,2025:newsml_L6N3W30TM:0-reddit-sues-perplexity-for-scraping-data-to-train-ai-system"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "New on Yahoo: https://www.yahoo.com/news/articles/reddit-sues-perplexity-ai-alleging-085817426.html"
+        },
+        {
+          "tool": "WebSearch",
+          "summary": "New on Yahoo: https://www.yahoo.com/news/articles/reddit-sues-perplexity-scraping-data-164631180.html"
+        },
+        {
+          "tool": "WebFetch",
+          "summary": "# Analysis of Machine-Readable Opt-Outs: LG Hamburg vs. OLG Hamburg\n\n## First-Instance Court (LG Hamburg 2024)\n\nThe lower court suggested that plain-language rights reservations in platform terms and conditions could qualify as machine-readable. It reasoned that large language models could process unstructured text, implying that human-readable legal language might suffice for automated systems.\n\n## Appeal Court (OLG Hamburg)\n\nThe appellate court rejected this approach, establishing a stricter s"
+        }
+      ],
+      "opened_urls": [
+        "https://www.rfc-editor.org/rfc/rfc9309.html",
+        "https://arxiv.org/pdf/2503.06035",
+        "https://arxiv.org/abs/2503.06035",
+        "https://blog.cloudflare.com/introducing-content-signals-policy/",
+        "https://blog.cloudflare.com/content-signals-policy/",
+        "https://www.perplexity.ai/hub/blog/agents-or-bots-making-sense-of-ai-on-the-open-web",
+        "https://www.techpolicy.press/robotstxt-is-having-a-moment-heres-why-we-should-care/",
+        "https://www.theregister.com/2025/04/09/ietf_ai_preferences_working_group/",
+        "https://datatracker.ietf.org/wg/aipref/about/",
+        "https://blog.archive.org/2017/04/17/robots-txt-meant-for-search-engines-dont-work-well-for-web-archives/",
+        "https://www.searchengineworld.com/perplexity-responds-to-cloudflare",
+        "https://www.twobirds.com/en/insights/2025/germany/higher-regional-court-hamburg-confirms-ai-training-was-permitted-(kneschke-v,-d-,-laion)",
+        "https://openfuture.eu/blog/laion-round-2-machine-readable-but-still-not-actionable/"
+      ],
+      "cited_urls": [
+        "https://www.rfc-editor.org/rfc/rfc9309.html",
+        "https://datatracker.ietf.org/doc/html/rfc9309",
+        "https://datatracker.ietf.org/wg/aipref/about/",
+        "https://www.theregister.com/2025/04/09/ietf_ai_preferences_working_group/",
+        "https://www.techpolicy.press/robotstxt-is-having-a-moment-heres-why-we-should-care/",
+        "https://openfuture.eu/blog/laion-round-2-machine-readable-but-still-not-actionable/",
+        "https://blog.cloudflare.com/content-signals-policy/",
+        "https://www.cloudflare.com/press/press-releases/2025/cloudflare-gives-creators-new-tool-to-control-use-of-their-content/",
+        "https://rslstandard.org/",
+        "https://searchengineland.com/really-simple-licensing-461834",
+        "https://en.wikipedia.org/wiki/Really_Simple_Licensing",
+        "https://arxiv.org/abs/2503.06035",
+        "https://www.searchengineworld.com/perplexity-responds-to-cloudflare",
+        "https://cyberscoop.com/perplexity-blocks-on-crawlers-cloudflare/",
+        "https://ppc.land/perplexity-denies-training-ai-models-as-cloudflare-documents-stealth-crawlers/",
+        "https://blog.archive.org/2017/04/17/robots-txt-meant-for-search-engines-dont-work-well-for-web-archives/",
+        "https://en.wikipedia.org/wiki/Field_v._Google",
+        "https://fairuse.stanford.edu/case/field-v-google-inc",
+        "https://cdn.ca9.uscourts.gov/datastore/opinions/2022/04/18/17-16783.pdf",
+        "https://www.loeb.com/en/insights/publications/2022/05/ninth-circuit-provides-path-forward-for-web-scraping-of-public-data",
+        "https://natlawreview.com/article/anti-circumvention-reddits-case-against-perplexity",
+        "https://www.forbes.com/sites/anishasircar/2025/10/23/would-be-bank-robbers-reddit-escalates-ai-data-wars-with-perplexity-lawsuit/",
+        "https://ipkitten.blogspot.com/2024/09/guest-post-german-court-finds-laions.html",
+        "https://www.insidetechlaw.com/blog/2025/12/machine-readable-opt-outs-and-ai-training-hamburg-court-clarifies-copyright-exceptions"
+      ],
+      "selected_sources": [
+        {
+          "url": "https://www.searchengineworld.com/rfc9309-robots-txt-quietly-became-an-official-internet-standard",
+          "title": "RFC 9309: Robots.txt Is Now an Official IETF Internet Standard (Robots Exclusion Protocol)"
+        },
+        {
+          "url": "https://dl.acm.org/doi/10.17487/RFC9309",
+          "title": "RFC 9309: Robots Exclusion Protocol | Guide books"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2503.06035",
+          "title": "The Liabilities of Robots.txt"
+        },
+        {
+          "url": "https://www.ietf.org/rfc/rfc9309.pdf",
+          "title": "RFC 9309 Robots Exclusion Protocol Abstract"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Robots.txt",
+          "title": "Robots.txt"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2505.07834",
+          "title": "ai.txt: A Domain-Specific Language for Guiding AI Interactions with the Internet"
+        },
+        {
+          "url": "https://medium.com/gumgum-tech/respecting-robots-exclusion-protocol-or-robots-txt-at-scale-60ee57dc1295",
+          "title": "Respecting Robots Exclusion Protocol or robots.txt at Scale | by Rashad Moarref | GumGum Tech Blog | Medium"
+        },
+        {
+          "url": "https://www.rfc-editor.org/info/rfc9309/",
+          "title": "RFC 9309: Robots Exclusion Protocol | RFC Editor"
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+          "title": "RFC 9309 - Robots Exclusion Protocol"
+        },
+        {
+          "url": "https://www.techpolicy.press/robotstxt-is-having-a-moment-heres-why-we-should-care/",
+          "title": "https://www.techpolicy.press/robotstxt-is-having-a-moment-heres-why-we-should-care/"
+        },
+        {
+          "url": "https://www.theregister.com/2025/04/09/ietf_ai_preferences_working_group/",
+          "title": "https://www.theregister.com/2025/04/09/ietf_ai_preferences_working_group/"
+        },
+        {
+          "url": "https://www.ietf.org/archive/id/draft-car-ai-txt-wellknown-00.html",
+          "title": "AI.TXT: A Declaration File for AI Usage Preferences, Licensing, and Policy"
+        },
+        {
+          "url": "https://searchengineland.com/robots-exclusions-new-rules-definitions-ietf-464990",
+          "title": "New web standards could redefine how AI models use your content"
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/draft-car-ai-txt-wellknown/",
+          "title": "draft-car-ai-txt-wellknown-00 - AI.TXT: A Declaration File for AI Usage Preferences, Licensing, and Policy"
+        },
+        {
+          "url": "https://www.rfc-editor.org/rfc/rfc9309.html",
+          "title": "https://www.rfc-editor.org/rfc/rfc9309.html"
+        },
+        {
+          "url": "https://blog.cloudflare.com/introducing-content-signals-policy/",
+          "title": "https://blog.cloudflare.com/introducing-content-signals-policy/"
+        },
+        {
+          "url": "https://arxiv.org/abs/2503.06035",
+          "title": "https://arxiv.org/abs/2503.06035"
+        },
+        {
+          "url": "https://cyberscoop.com/perplexity-blocks-on-crawlers-cloudflare/",
+          "title": "AI company Perplexity is sneaking to get around blocks on crawlers, Cloudflare alleges | CyberScoop"
+        },
+        {
+          "url": "https://www.searchenginejournal.com/cloudflare-delists-and-blocks-perplexity-from-crawling-websites/552899/",
+          "title": "Cloudflare Delists And Blocks Perplexity From Crawling Websites"
+        },
+        {
+          "url": "https://ia.acs.org.au/article/2025/perplexity-accused-of--stealth-crawling--websites.html",
+          "title": "Perplexity accused of 'stealth crawling' websites"
+        },
+        {
+          "url": "https://ppc.land/perplexity-denies-training-ai-models-as-cloudflare-documents-stealth-crawlers/",
+          "title": "Perplexity denies training AI models as Cloudflare documents stealth crawlers"
+        },
+        {
+          "url": "https://www.searchengineworld.com/perplexity-responds-to-cloudflare",
+          "title": "https://www.searchengineworld.com/perplexity-responds-to-cloudflare"
+        },
+        {
+          "url": "https://twit.tv/posts/tech/perplexity-cloudflare-and-ai-web-crawler-controversy-are-ai-bots-breaking-rules",
+          "title": "Perplexity, Cloudflare, and the AI Web Crawler Controversy: Are AI Bots Breaking the Rules? | TWiT.TV"
+        },
+        {
+          "url": "https://www.aicerts.ai/news/data-acquisition-dispute-cloudflare-vs-perplexity/",
+          "title": "Data Acquisition dispute: Cloudflare vs Perplexity - AI CERTs News"
+        },
+        {
+          "url": "https://alternativeto.net/news/2025/8/cloudflare-accuses-perplexity-of-evading-ai-crawler-blocks-on-sites-using-stealth-tactics",
+          "title": "Cloudflare accuses Perplexity of evading AI crawler blocks on sites using stealth tactics"
+        },
+        {
+          "url": "https://tech.yahoo.com/ai/articles/cloudflare-calls-perplexity-hiding-crawling-133315807.html",
+          "title": "New on Yahoo"
+        },
+        {
+          "url": "https://rightstech.substack.com/p/searching-under-the-covers",
+          "title": "Searching Under the Covers"
+        },
+        {
+          "url": "https://dig.watch/updates/content-signals-policy-by-cloudflare-lets-websites-signal-data-use-preferences",
+          "title": "Content Signals Policy by Cloudflare lets websites signal data use preferences | Digital Watch Observatory"
+        },
+        {
+          "url": "https://winbuzzer.com/2025/10/06/cloudflare-overhauls-webs-ai-rulebook-with-new-robots-txt-content-signals-xcxwbn/",
+          "title": "Cloudflare Overhauls Web’s AI Rulebook with New Robots.txt ‘Content Signals’"
+        },
+        {
+          "url": "https://developers.cloudflare.com/bots/additional-configurations/managed-robots-txt/index.md",
+          "title": "Cloudflare"
+        },
+        {
+          "url": "https://www.pontara.ai/blog/cloudflare-content-signals-policy-robots-txt/",
+          "title": "Cloudflare Content Signals Policy for robots.txt – Pontara.ai"
+        },
+        {
+          "url": "https://blog.cloudflare.com/content-signals-policy/?amp=&amp=/",
+          "title": "Giving users choice with Cloudflare’s new Content Signals Policy"
+        },
+        {
+          "url": "https://www.pravinkumar.co/blog/cloudflare-content-signals-policy-ai-crawlers-2026",
+          "title": "What Cloudflare's Content Signals Policy Means for Your Site in 2026 | Pravin Kumar"
+        },
+        {
+          "url": "https://www.businesswire.com/news/home/20250924718008/en/Cloudflare-Gives-Creators-New-Tool-to-Control-Use-of-Their-Content",
+          "title": "Cloudflare Gives Creators New Tool to Control Use of Their Content"
+        },
+        {
+          "url": "https://www.barchart.com/story/news/35006450/cloudflare-gives-creators-new-tool-to-control-use-of-their-content",
+          "title": "cloudflare gives creators new tool to control use of their content"
+        },
+        {
+          "url": "https://www.cloudflare.com/press/press-releases/2025/cloudflare-gives-creators-new-tool-to-control-use-of-their-content/",
+          "title": "Cloudflare Gives Creators New Tool to Control Use of Their Content"
+        },
+        {
+          "url": "https://developers.cloudflare.com/bots/additional-configurations/managed-robots-txt",
+          "title": "managed robots txt"
+        },
+        {
+          "url": "https://www.perplexity.ai/hub/blog/agents-or-bots-making-sense-of-ai-on-the-open-web",
+          "title": "https://www.perplexity.ai/hub/blog/agents-or-bots-making-sense-of-ai-on-the-open-web"
+        },
+        {
+          "url": "https://blog.cloudflare.com/content-signals-policy/",
+          "title": "https://blog.cloudflare.com/content-signals-policy/"
+        },
+        {
+          "url": "https://www.loeb.com/en/insights/publications/2022/05/ninth-circuit-provides-path-forward-for-web-scraping-of-public-data",
+          "title": "Ninth Circuit Provides Path Forward for Web Scraping of Public Data | Loeb & Loeb LLP"
+        },
+        {
+          "url": "https://blog.apify.com/hiq-v-linkedin/",
+          "title": "Web scraping case law: HiQ v. LinkedIn"
+        },
+        {
+          "url": "https://cdn.ca9.uscourts.gov/datastore/opinions/2019/09/09/17-16783.pdf",
+          "title": "HiQ Labs v. LinkedIn"
+        },
+        {
+          "url": "https://cdn.ca9.uscourts.gov/datastore/opinions/2022/04/18/17-16783.pdf",
+          "title": "hiQ Labs, Inc. v. LinkedIn Corp"
+        },
+        {
+          "url": "https://www.fbm.com/publications/what-recent-rulings-in-hiq-v-linkedin-and-other-cases-say-about-the-legality-of-data-scraping/",
+          "title": "What Recent Rulings in 'hiQ v. LinkedIn' and Other Cases ..."
+        },
+        {
+          "url": "https://sociavault.com/blog/web-scraping-legality-court-cases-public-vs-private-data",
+          "title": "Web Scraping Legality: Every Court Case You Need to Know (Public vs. Private Data) | SociaVault Blog | SociaVault"
+        },
+        {
+          "url": "https://www.lection.app/blogs/hiq-labs-vs-linkedin-case-explained",
+          "title": "The hiQ Labs v. LinkedIn Case Explained | Lection Blog"
+        },
+        {
+          "url": "https://quod.lib.umich.edu/p/plag/5240451.0001.002/--google-library-project-both-sides-of-the-story?id=N22;note=ptr;rgn=main;view=trgt",
+          "title": "The Google Library Project: Both Sides of the Story"
+        },
+        {
+          "url": "https://case-law.vlex.com/vid/field-v-google-inc-886529914",
+          "title": "Field v. Google Inc. (Field v. Google Inc., 412 F.Supp.2d 1106 (D. Nev. 2006)) - vLex United States - vLex"
+        },
+        {
+          "url": "https://en.wikisource.org/wiki/Field_v._Google,_Inc.",
+          "title": "Field v. Google, Inc. - Wikisource, the free online library"
+        },
+        {
+          "url": "https://itlaw.fandom.com/wiki/Field_v._Google",
+          "title": "Field v. Google | The IT Law Wiki | Fandom"
+        },
+        {
+          "url": "https://yalelawjournal.org/pdf/1125_kyi388dx.pdf",
+          "title": "Implied License Doctrine and News Aggregators"
+        },
+        {
+          "url": "https://www.lexology.com/library/detail.aspx?g=bbfeb8ef-8dd5-4d61-bf5d-71ea37d77486",
+          "title": "Will the Pinterest \"nopin\" tag put online image owners on the defensive on implied copyright licenses? Should we look to robots.txt as precedent? - Lexology"
+        },
+        {
+          "url": "https://www.linkedin.com/pulse/legal-implications-openais-latest-update-robot-protocol-berk-borazan",
+          "title": "ChatGPT, Robots.TXT Update by Berk Borazan"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Field_v._Google,_Inc.",
+          "title": "Field v. Google, Inc."
+        },
+        {
+          "url": "https://fairuse.stanford.edu/case/field-v-google-inc",
+          "title": "field v google inc"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Really_Simple_Licensing",
+          "title": "Really Simple Licensing"
+        },
+        {
+          "url": "https://shellypalmer.com/2025/12/ai-web-scraping-gets-an-official-standard/",
+          "title": "AI Web-Scraping Gets an \"Official\" Standard | Shelly Palmer"
+        },
+        {
+          "url": "https://rslstandard.org/press/rsl-1-specification-2025",
+          "title": "RSL AI Licensing 1.0 Now an Official Industry Standard with New Capabilities as Momentum Accelerates | RSL: Really Simple Licensing"
+        },
+        {
+          "url": "https://rslstandard.org/",
+          "title": "RSL: Really Simple Licensing"
+        },
+        {
+          "url": "https://rslstandard.org/press/rsl-standard",
+          "title": "New RSL Web Standard and Collective Rights Organization Automate Content Licensing for the AI-First Internet and enable Fair Compensation for Millions of Publishers and Creators | RSL: Really Simple Licensing"
+        },
+        {
+          "url": "https://searchengineland.com/really-simple-licensing-461834",
+          "title": "New Really Simple Licensing standard could make AI pay"
+        },
+        {
+          "url": "https://www.theregister.com/2025/12/10/really_simple_licensing_spec_takes/",
+          "title": "Really Simple Licensing spec makes AI orgs pay to scrape • The Register"
+        },
+        {
+          "url": "https://rslstandard.org/rsl",
+          "title": "Really Simple Licensing (RSL) 1.0 Specification | RSL: Really Simple Licensing"
+        },
+        {
+          "url": "https://zds.es/en/what-is-rsl",
+          "title": "What is RSL (Really Simple Licensing)? - ZDS"
+        },
+        {
+          "url": "https://gpt.gekko.de/really-simple-licensing-rsl-ai-content-economy/",
+          "title": "Really Simple Licensing (RSL) 1.0: A New Licensing Foundation for the AI-First Web | doing the math for you"
+        },
+        {
+          "url": "https://datatracker.ietf.org/wg/aipref/about/",
+          "title": "https://datatracker.ietf.org/wg/aipref/about/"
+        },
+        {
+          "url": "https://blog.archive.org/2017/04/17/robots-txt-meant-for-search-engines-dont-work-well-for-web-archives/",
+          "title": "https://blog.archive.org/2017/04/17/robots-txt-meant-for-search-engines-dont-work-well-for-web-archives/"
+        },
+        {
+          "url": "https://ipkitten.blogspot.com/2024/09/guest-post-german-court-finds-laions.html",
+          "title": "[Guest post] German court finds LAION’s copying of images non-infringing - The IPKat"
+        },
+        {
+          "url": "https://www.twobirds.com/en/insights/2025/germany/higher-regional-court-hamburg-confirms-ai-training-was-permitted-(kneschke-v,-d-,-laion)",
+          "title": "https://www.twobirds.com/en/insights/2025/germany/higher-regional-court-hamburg-confirms-ai-training-was-permitted-(kneschke-v,-d-,-laion)"
+        },
+        {
+          "url": "https://legalblogs.wolterskluwer.com/copyright-blog/laion-round-2-machine-readable-but-still-not-actionable-the-lack-of-progress-on-tdm-opt-outs-part-1/",
+          "title": "LAION Round 2: Machine-Readable but Still Not Actionable — The Lack of Progress on TDM Opt-Outs - Part 1 | Kluwer Copyright Blog"
+        },
+        {
+          "url": "https://www.lexology.com/library/detail.aspx?g=edc6650b-98ff-4e25-81a8-1a02965717a6",
+          "title": "Machine-Readable opt-outs and AI training: Hamburg Court clarifies copyright exceptions - Lexology"
+        },
+        {
+          "url": "https://blckalpaca.at/en/knowledge-base/seo-geo/technical-seo/robotstxt-and-ai-eu-legal-situation-and-tdm-opt-out",
+          "title": "robots.txt and AI: EU Legal Situation and TDM Opt-out"
+        },
+        {
+          "url": "https://openfuture.eu/blog/laion-round-2-machine-readable-but-still-not-actionable/",
+          "title": "https://openfuture.eu/blog/laion-round-2-machine-readable-but-still-not-actionable/"
+        },
+        {
+          "url": "https://www.insidetechlaw.com/blog/2025/12/machine-readable-opt-outs-and-ai-training-hamburg-court-clarifies-copyright-exceptions",
+          "title": "Machine-Readable opt-outs and AI training: Hamburg Court clarifies copyright exceptions | Inside Tech Law | Global law firm | Norton Rose Fulbright"
+        },
+        {
+          "url": "https://marketingeconomics.substack.com/p/perplexity-vs-reddit-everything-you",
+          "title": "Perplexity vs. Reddit: Everything You Need To Know About A Landmark Case"
+        },
+        {
+          "url": "https://www.lexology.com/library/detail.aspx?g=bd5431bd-5f54-49a6-b87f-ceb0337f407a",
+          "title": "Anti-Circumvention: Reddit’s Case Against Perplexity - Lexology"
+        },
+        {
+          "url": "https://natlawreview.com/article/anti-circumvention-reddits-case-against-perplexity",
+          "title": "Reddit Sues Perplexity AI Over DMCA §1201 Circumvention and Data"
+        },
+        {
+          "url": "https://www.troutman.com/insights/the-future-of-gen-ai-training-amid-reddit-data-scraping-suit/",
+          "title": "The Future Of Gen AI Training Amid Reddit Data Scraping Suit - Troutman Pepper Locke"
+        },
+        {
+          "url": "https://www.sheppard.com/insights/blogs/anti-circumvention-reddits-case-against-perplexity",
+          "title": "Anti-Circumvention: Reddit’s Case Against Perplexity | Sheppard"
+        },
+        {
+          "url": "https://caldwelllaw.com/news/reddit-perplexity-ai-lawsuit-contract-data-rights/",
+          "title": "Reddit v. Perplexity: Terms of Access as the Next Front in AI Data Litigation - Caldwell | Global Law Firm"
+        },
+        {
+          "url": "https://www.forbes.com/sites/anishasircar/2025/10/23/would-be-bank-robbers-reddit-escalates-ai-data-wars-with-perplexity-lawsuit/",
+          "title": "‘Would-Be Bank Robbers’: Reddit Escalates AI Data Wars With Perplexity Lawsuit"
+        },
+        {
+          "url": "https://de.tradingview.com/news/reuters.com,2025:newsml_L6N3W30TM:0-reddit-sues-perplexity-for-scraping-data-to-train-ai-system",
+          "title": "reuters.com,2025:newsml L6N3W30TM:0 reddit sues perplexity for scraping data to train ai system"
+        },
+        {
+          "url": "https://www.yahoo.com/news/articles/reddit-sues-perplexity-ai-alleging-085817426.html",
+          "title": "New on Yahoo"
+        },
+        {
+          "url": "https://www.yahoo.com/news/articles/reddit-sues-perplexity-scraping-data-164631180.html",
+          "title": "New on Yahoo"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Field_v._Google",
+          "title": "https://en.wikipedia.org/wiki/Field_v._Google"
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.searchengineworld.com/rfc9309-robots-txt-quietly-became-an-official-internet-standard",
+          "text": "RFC 9309: Robots.txt Is Now an Official IETF Internet Standard (Robots Exclusion Protocol)"
+        },
+        {
+          "url": "https://dl.acm.org/doi/10.17487/RFC9309",
+          "text": "RFC 9309: Robots Exclusion Protocol | Guide books"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2503.06035",
+          "text": "The Liabilities of Robots.txt"
+        },
+        {
+          "url": "https://www.ietf.org/rfc/rfc9309.pdf",
+          "text": "RFC 9309 Robots Exclusion Protocol Abstract"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Robots.txt",
+          "text": "Robots.txt"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2505.07834",
+          "text": "ai.txt: A Domain-Specific Language for Guiding AI Interactions with the Internet"
+        },
+        {
+          "url": "https://medium.com/gumgum-tech/respecting-robots-exclusion-protocol-or-robots-txt-at-scale-60ee57dc1295",
+          "text": "Respecting Robots Exclusion Protocol or robots.txt at Scale | by Rashad Moarref | GumGum Tech Blog | Medium"
+        },
+        {
+          "url": "https://www.rfc-editor.org/info/rfc9309/",
+          "text": "RFC 9309: Robots Exclusion Protocol | RFC Editor"
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+          "text": "RFC 9309 - Robots Exclusion Protocol"
+        },
+        {
+          "url": "https://www.techpolicy.press/robotstxt-is-having-a-moment-heres-why-we-should-care/",
+          "text": "Robots.txt Is Having a Moment: Here's Why We Should Care | TechPolicy.Press"
+        },
+        {
+          "url": "https://www.theregister.com/2025/04/09/ietf_ai_preferences_working_group/",
+          "text": "IETF building tech to tell AI scrapers what authors want • The Register"
+        },
+        {
+          "url": "https://www.ietf.org/archive/id/draft-car-ai-txt-wellknown-00.html",
+          "text": "AI.TXT: A Declaration File for AI Usage Preferences, Licensing, and Policy"
+        },
+        {
+          "url": "https://searchengineland.com/robots-exclusions-new-rules-definitions-ietf-464990",
+          "text": "New web standards could redefine how AI models use your content"
+        },
+        {
+          "url": "https://datatracker.ietf.org/doc/draft-car-ai-txt-wellknown/",
+          "text": "draft-car-ai-txt-wellknown-00 - AI.TXT: A Declaration File for AI Usage Preferences, Licensing, and Policy"
+        },
+        {
+          "url": "https://www.rfc-editor.org/rfc/rfc9309.html",
+          "text": "# Nature of Robots Exclusion Protocol Rules\n\nAccording to RFC 9309, the rules have the following characteristics:\n\n**Not Access Authorization:**\n\"These rules are not a form of access authorization.\" (Section 1.3)\n\n**Not a Security Substitute:**\n\"The Robots Exclusion Protocol is not a substitute for valid content security measures.\" (Section 3)\n\n**Requests for Voluntary Compliance:**\nThe specification describes that \"crawlers are requested to honor when accessing URIs\" (Section 1.3), framing the rules as guidance rather than mandatory enforcement.\n\n**Security Concern - Path Disclosure:**\n\"Listing paths in the robots.txt file exposes them publicly and thus makes the paths discoverable.\" (Section 3)\n\nThe RFC characterizes these rules as **requests that crawlers should follow voluntarily**, not legally binding directives or technical barriers. Service owners must implement separate security measures to actually protect content, as the protocol itself provides no enforcement mechanism."
+        },
+        {
+          "url": "https://arxiv.org/pdf/2503.06035",
+          "text": "# robots.txt Legal Significance: A Summary\n\nI cannot provide a meaningful summary of this paper's arguments because the provided content is a PDF file in binary/compressed format that cannot be properly read as text.\n\nThe material you've shared appears to be PDF metadata, cross-reference tables, and encoded font/content streams rather than readable article text. To help you effectively, I would need:\n\n1. **Plain text extraction** of the paper's content\n2. **A downloadable PDF link** I could reference\n3. **The paper's title and author information** so I could help you locate accessible versions\n\nIf you can provide the paper's text in readable format, I'd be happy to summarize its arguments regarding:\n- robots.txt as contract vs. implied license\n- Computer Fraud and Abuse Act (CFAA) applications\n- Trespass to chattels doctrine\n- Relevant case law cited\n- Stakeholder disagreements\n\nWould you be able to share the article text directly?\n\n[Binary content (application/pdf, 695.2KB) also saved to [REDACTED_PATH]"
+        },
+        {
+          "url": "https://blog.cloudflare.com/introducing-content-signals-policy/",
+          "text": "The server returned HTTP 404 Not Found.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+        },
+        {
+          "url": "https://arxiv.org/abs/2503.06035",
+          "text": "# Paper Summary: \"The Liabilities of Robots.txt\"\n\n**Authors:** Chien-yi Chang and Xin He\n\n**Core Argument:**\n\nThe paper challenges the traditional view of robots.txt as merely a voluntary guideline. With the surge in AI-driven web scraping, the authors contend that violating robots.txt directives should carry legal consequences through civil law frameworks rather than criminal or copyright approaches.\n\n**Key Legal Claims:**\n\nThe researchers propose that robots.txt violations can establish liability under two civil doctrines in common law jurisdictions:\n\n1. **Contract theory** — robots.txt could constitute a unilateral contract binding those who access a website\n2. **Tort law** — violations might trigger liability for trespass to chattels or negligence, particularly when \"notice\" of restrictions exists\n\n**Central Thesis:**\n\nThe authors argue that clarifying robots.txt liability is essential to address internet fragmentation. They contend that a balanced civil framework can preserve the internet's cooperative character while maintaining accountability in the AI era, positioning robots.txt as a viable governance tool rather than an ignored convention.\n\nThe paper was accepted by *Computer Law and Security Review* and represents an effort to bridge the gap between technical standards and legal enforceability."
+        },
+        {
+          "url": "https://cyberscoop.com/perplexity-blocks-on-crawlers-cloudflare/",
+          "text": "AI company Perplexity is sneaking to get around blocks on crawlers, Cloudflare alleges | CyberScoop"
+        },
+        {
+          "url": "https://www.searchenginejournal.com/cloudflare-delists-and-blocks-perplexity-from-crawling-websites/552899/",
+          "text": "Cloudflare Delists And Blocks Perplexity From Crawling Websites"
+        },
+        {
+          "url": "https://ia.acs.org.au/article/2025/perplexity-accused-of--stealth-crawling--websites.html",
+          "text": "Perplexity accused of 'stealth crawling' websites"
+        },
+        {
+          "url": "https://ppc.land/perplexity-denies-training-ai-models-as-cloudflare-documents-stealth-crawlers/",
+          "text": "Perplexity denies training AI models as Cloudflare documents stealth crawlers"
+        },
+        {
+          "url": "https://www.searchengineworld.com/perplexity-responds-to-cloudflare",
+          "text": "Perplexity Says an Agent isn’t a Bot and Not Required to Honor Robots.txt"
+        },
+        {
+          "url": "https://twit.tv/posts/tech/perplexity-cloudflare-and-ai-web-crawler-controversy-are-ai-bots-breaking-rules",
+          "text": "Perplexity, Cloudflare, and the AI Web Crawler Controversy: Are AI Bots Breaking the Rules? | TWiT.TV"
+        },
+        {
+          "url": "https://www.aicerts.ai/news/data-acquisition-dispute-cloudflare-vs-perplexity/",
+          "text": "Data Acquisition dispute: Cloudflare vs Perplexity - AI CERTs News"
+        },
+        {
+          "url": "https://alternativeto.net/news/2025/8/cloudflare-accuses-perplexity-of-evading-ai-crawler-blocks-on-sites-using-stealth-tactics",
+          "text": "Cloudflare accuses Perplexity of evading AI crawler blocks on sites using stealth tactics"
+        },
+        {
+          "url": "https://tech.yahoo.com/ai/articles/cloudflare-calls-perplexity-hiding-crawling-133315807.html",
+          "text": "New on Yahoo"
+        },
+        {
+          "url": "https://rightstech.substack.com/p/searching-under-the-covers",
+          "text": "Searching Under the Covers"
+        },
+        {
+          "url": "https://dig.watch/updates/content-signals-policy-by-cloudflare-lets-websites-signal-data-use-preferences",
+          "text": "Content Signals Policy by Cloudflare lets websites signal data use preferences | Digital Watch Observatory"
+        },
+        {
+          "url": "https://winbuzzer.com/2025/10/06/cloudflare-overhauls-webs-ai-rulebook-with-new-robots-txt-content-signals-xcxwbn/",
+          "text": "Cloudflare Overhauls Web’s AI Rulebook with New Robots.txt ‘Content Signals’"
+        }
+      ],
+      "final_answer": "## Réponse courte\n\nIl n'existe **aucun consensus** : la norme technique elle‑même dit explicitement que robots.txt n'est *pas* une autorisation d'accès, plusieurs éditeurs et juristes tentent de lui faire produire des effets juridiques (contrat, réserve de droits, licence), certains opérateurs de crawlers le traitent comme un simple usage de politesse non contraignant, et les participants aux standards ont délibérément exclu l'exécution/la contrainte de leur mandat. Les tribunaux, eux, ont surtout donné du poids juridique à **l'absence** de robots.txt (licence implicite) plutôt qu'à sa présence.\n\n---\n\n## 1. Ce que dit la norme elle‑même (fait établi, source primaire)\n\nLe RFC 9309 (2022) est net sur les trois points de la question :\n\n- « These rules are not a form of access authorization » (§1.3) — les règles ne sont **pas** une forme d'autorisation d'accès ; le texte parle de règles que les crawlers « are requested to honor ».\n- « The Robots Exclusion Protocol is not a substitute for valid content security measures » (§3).\n- Le RFC ne dit rien d'une quelconque portée juridique.\n\nAutrement dit, la position officielle du standard est celle de la **préférence exprimée**, pas de la permission opposable. ([rfc-editor.org](https://www.rfc-editor.org/rfc/rfc9309.html), [datatracker.ietf.org](https://datatracker.ietf.org/doc/html/rfc9309))\n\nPoint de vocabulaire souvent confondu dans le débat public : « ne pas être une autorisation d'accès » ne signifie pas « ne produire aucun effet juridique ». Le RFC tranche la première question, pas la seconde — *c'est une lecture de ma part*, mais elle explique une grande partie du dialogue de sourds décrit ci‑dessous.\n\n## 2. Les participants aux standards : préférence oui, contrainte hors périmètre\n\nLe groupe de travail **AIPREF** de l'IETF a été créé pour normaliser l'expression de « preferences about how content is collected and processed » pour l'IA, en s'appuyant notamment sur le Robots Exclusion Protocol comme point d'accroche. Sa charte place explicitement « technical enforcement of preferences » **hors périmètre**. ([datatracker.ietf.org](https://datatracker.ietf.org/wg/aipref/about/))\n\nLe constat de départ des participants est que les signaux actuels « aren't working » (Mark Nottingham, cité par The Register), et que le pari est celui de l'adhésion volontaire des opérateurs. ([theregister.com](https://www.theregister.com/2025/04/09/ietf_ai_preferences_working_group/))\n\nLes désaccords internes portent moins sur « permission vs préférence » que sur des questions non résolues : comment interpréter **l'absence de signal**, comment combiner des signaux contradictoires. ([techpolicy.press](https://www.techpolicy.press/robotstxt-is-having-a-moment-heres-why-we-should-care/)) Une analyse d'Open Future indique que les travaux « largely stalled since the summer », le brouillon de vocabulaire ne comportant que deux termes définis, dont aucun ne fait l'objet d'un accord. ([openfuture.eu](https://openfuture.eu/blog/laion-round-2-machine-readable-but-still-not-actionable/)) — *à noter : source militante/partie prenante, à lire comme un point de vue étayé plutôt que comme un compte rendu neutre.*\n\n## 3. Les éditeurs et intermédiaires : tenter de transformer la préférence en effet juridique\n\nC'est ici que se situe le désaccord le plus vif. Trois stratégies documentées :\n\n**a) La réserve de droits (UE).** La *Content Signals Policy* de Cloudflare (sept. 2025) ajoute à robots.txt des signaux `search`, `ai-input`, `ai-train`, accompagnés d'une mention en majuscules : « ANY RESTRICTIONS EXPRESSED VIA CONTENT SIGNALS ARE EXPRESS RESERVATIONS OF RIGHTS UNDER ARTICLE 4 OF THE EUROPEAN UNION DIRECTIVE 2019/790… ». Mais Cloudflare maintient simultanément que ces signaux « express preferences; they are not technical countermeasures against scraping » et reconnaît que certaines entreprises les ignoreront. ([blog.cloudflare.com](https://blog.cloudflare.com/content-signals-policy/), [cloudflare.com](https://www.cloudflare.com/press/press-releases/2025/cloudflare-gives-creators-new-tool-to-control-use-of-their-content/)) La position est donc hybride assumée : préférence sur le plan technique, acte juridique sur le plan du droit d'auteur européen.\n\n**b) La licence.** Le standard **RSL (Really Simple Licensing)**, lancé le 10 septembre 2025, dépasse le oui/non de robots.txt en y attachant des termes de licence et de redevance lisibles par machine (pay‑per‑crawl, pay‑per‑inference). ([rslstandard.org](https://rslstandard.org/), [searchengineland.com](https://searchengineland.com/really-simple-licensing-461834), [en.wikipedia.org](https://en.wikipedia.org/wiki/Really_Simple_Licensing)) *Incertitude* : je n'ai pas trouvé de décision judiciaire testant l'opposabilité de termes RSL ; l'efficacité repose pour l'instant sur la coopération.\n\n**c) La doctrine juridique.** L'article « The Liabilities of Robots.txt » (Chang & He, accepté au *Computer Law and Security Review*) conteste frontalement la vision « simple ligne directrice volontaire » et soutient qu'une violation peut engager la responsabilité civile, soit par contrat unilatéral, soit par *trespass to chattels* / négligence, la publication de robots.txt valant **notice**. ([arxiv.org](https://arxiv.org/abs/2503.06035)) C'est une thèse académique, non un état du droit positif.\n\n## 4. Les opérateurs de crawlers : de la déférence à la requalification\n\n- **Perplexity**, après l'accusation de « stealth crawling » par Cloudflare (août 2025), a répondu en distinguant *agents* et *bots* : une récupération de page effectuée à la demande d'un utilisateur humain relèverait de la navigation, pas du crawl, et n'aurait donc pas à honorer robots.txt. Selon la couverture disponible, Perplexity n'a pas déclaré traiter robots.txt comme contraignant pour ce type d'accès. ([searchengineworld.com](https://www.searchengineworld.com/perplexity-responds-to-cloudflare), [cyberscoop.com](https://cyberscoop.com/perplexity-blocks-on-crawlers-cloudflare/), [ppc.land](https://ppc.land/perplexity-denies-training-ai-models-as-cloudflare-documents-stealth-crawlers/)) — *je n'ai pas pu accéder au billet de blog de Perplexity lui‑même (403), donc ces formulations sont rapportées par des tiers ; à traiter comme fiable sur la substance, prudent sur les citations exactes.*\n- **Internet Archive** conteste depuis 2017 la pertinence même de l'outil pour un archiveur : robots.txt est « geared toward search engines » et ses effets rétroactifs (rachat de domaine effaçant l'historique) contredisent la mission d'archivage. L'Archive a cessé de l'honorer dans certains cas, en offrant un canal de retrait alternatif. ([blog.archive.org](https://blog.archive.org/2017/04/17/robots-txt-meant-for-search-engines-dont-work-well-for-web-archives/))\n\nUn désaccord de fond apparaît ici : pour les éditeurs, robots.txt exprime une volonté qui devrait suivre le contenu ; pour ces opérateurs, il exprime une préférence **contextuelle** (destinée aux moteurs de recherche) qu'on peut légitimement ne pas transposer à d'autres usages.\n\n## 5. Ce que les tribunaux ont réellement dit\n\n*C'est le point où le débat public est le plus imprécis.* Éléments soutenus :\n\n- **Field v. Google** (D. Nev. 2006) : le fait de **ne pas** avoir utilisé les mécanismes d'exclusion, alors que l'auteur les connaissait, a été retenu comme fondant une **licence implicite** au profit de Google. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Field_v._Google,_Inc.), [fairuse.stanford.edu](https://fairuse.stanford.edu/case/field-v-google-inc)) La portée juridique reconnue est donc celle du **silence**, pas celle de l'interdiction.\n- **hiQ v. LinkedIn** : le Ninth Circuit a jugé que le CFAA ne s'appliquait pas au scraping de données publiquement accessibles ; l'affaire s'est ensuite soldée par un règlement défavorable à hiQ (dommages, destruction des données). ([cdn.ca9.uscourts.gov](https://cdn.ca9.uscourts.gov/datastore/opinions/2022/04/18/17-16783.pdf), [loeb.com](https://www.loeb.com/en/insights/publications/2022/05/ninth-circuit-provides-path-forward-for-web-scraping-of-public-data)) *Réserve* : plusieurs sources secondaires présentent cette affaire comme « robots.txt n'est pas illégal à ignorer » ; le litige portait en réalité sur des blocages techniques et une mise en demeure. Je considère l'extrapolation directe à robots.txt comme **non établie**.\n- **Reddit v. Perplexity** (SDNY, oct. 2025) : Reddit avait mis en demeure Perplexity de respecter robots.txt dès mai 2024, mais les demandes en justice reposent sur le §1201 DMCA (contournement), l'enrichissement sans cause et la concurrence déloyale — **pas** sur la violation de robots.txt comme telle. ([natlawreview.com](https://natlawreview.com/article/anti-circumvention-reddits-case-against-perplexity), [forbes.com](https://www.forbes.com/sites/anishasircar/2025/10/23/would-be-bank-robbers-reddit-escalates-ai-data-wars-with-perplexity-lawsuit/)) *Inférence* : les plaignants contournent le terrain de robots.txt précisément parce que son statut juridique est incertain.\n- **Kneschke v. LAION (Allemagne)** : le tribunal de première instance (LG Hamburg, 2024) avait suggéré qu'une réserve en langue naturelle pouvait être « lisible par machine » ; en appel (OLG Hamburg, déc. 2025), cette approche a été rejetée — la lisibilité par machine suppose que la réserve puisse être exploitée automatiquement, ce qui renvoie vers des mécanismes comme robots.txt, X‑Robots‑Tag ou le TDM Reservation Protocol. ([openfuture.eu](https://openfuture.eu/blog/laion-round-2-machine-readable-but-still-not-actionable/), [ipkitten.blogspot.com](https://ipkitten.blogspot.com/2024/09/guest-post-german-court-finds-laions.html), [insidetechlaw.com](https://www.insidetechlaw.com/blog/2025/12/machine-readable-opt-outs-and-ai-training-hamburg-court-clarifies-copyright-exceptions)) C'est, en l'état, **le rattachement juridique le plus solide** de robots.txt : en droit européen, il devient un véhicule privilégié de la réserve de l'article 4(3) de la directive 2019/790. *Réserve* : je n'ai pas pu ouvrir l'analyse Bird & Bird (402) et je n'ai pas lu la décision elle‑même ; la description repose sur des commentaires de cabinets et de think tanks concordants.\n\n## 6. Cartographie du désaccord\n\n| Acteur | Robots.txt est… |\n|---|---|\n| RFC 9309 / IETF | une **requête** volontaire, explicitement **pas** une autorisation d'accès ([rfc-editor.org](https://www.rfc-editor.org/rfc/rfc9309.html)) |\n| AIPREF | un point d'attache pour des **préférences** ; contrainte hors périmètre ([datatracker.ietf.org](https://datatracker.ietf.org/wg/aipref/about/)) |\n| Cloudflare | préférence technique **+** réserve expresse de droits (UE) ([blog.cloudflare.com](https://blog.cloudflare.com/content-signals-policy/)) |\n| RSL / éditeurs | support d'une **licence** avec conditions de rémunération ([rslstandard.org](https://rslstandard.org/)) |\n| Doctrine (Chang & He) | source possible de **responsabilité civile** ([arxiv.org](https://arxiv.org/abs/2503.06035)) |\n| Perplexity | non contraignant pour les agents pilotés par un utilisateur ([searchengineworld.com](https://www.searchengineworld.com/perplexity-responds-to-cloudflare)) |\n| Internet Archive | outil conçu pour les moteurs, inadapté à l'archivage ([blog.archive.org](https://blog.archive.org/2017/04/17/robots-txt-meant-for-search-engines-dont-work-well-for-web-archives/)) |\n| Tribunaux US | pertinent surtout par son **absence** (licence implicite) ([fairuse.stanford.edu](https://fairuse.stanford.edu/case/field-v-google-inc)) |\n| Tribunaux DE/UE | véhicule d'une réserve TDM lisible par machine ([openfuture.eu](https://openfuture.eu/blog/laion-round-2-machine-readable-but-still-not-actionable/)) |\n\n## Limites de cette recherche\n\n- Je n'ai pas pu lire la source primaire de Perplexity (403) ni le texte des décisions Kneschke/LAION ; ces points reposent sur des sources secondaires.\n- Je n'ai pas trouvé de **prise de position officielle récente de Google ou d'OpenAI** sur la question « permission vs préférence » lors de cette recherche — l'absence de citation ne vaut pas absence de position.\n- Aucune décision de justice que j'ai identifiée ne statue directement sur la question « violer robots.txt engage‑t‑il la responsabilité ? » aux États‑Unis. La thèse contractuelle/délictuelle reste **doctrinale et non testée**."
+    }
+  ]
+}

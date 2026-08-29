@@ -1,0 +1,9 @@
+{
+  "accepted_claim_ids": ["c1", "c3", "c4", "c5", "c6"],
+  "rejected_claims": [
+    {
+      "id": "c2",
+      "reason": "Le fond de la revendication (auto-détection via DevToolsActivePort, connexion WebSocket au lieu du spawn) est bien étayé par les deux exécutions, mais les motifs de notation sont invalides/trop étroits : le premier exige la séquence littérale « already running », absente à la fois du texte de la revendication et du passage source (qui dit « if it finds a running browser »), et le second impose de mentionner « chrome://inspect/#remote-debugging » ou « --remote-debugging-port=9222 », éléments que la revendication n'affirme pas. Aucun des deux motifs ne s'apparie au texte de la revendication elle-même, ce qui rend la notation lexicale non déterministe et susceptible de rejeter des réponses correctes."
+    }
+  ]
+}

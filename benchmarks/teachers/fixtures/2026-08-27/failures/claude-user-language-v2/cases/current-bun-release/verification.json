@@ -1,0 +1,16 @@
+{
+  "accepted_claim_ids": [
+    "claim_latest_release",
+    "claim_publish_date",
+    "claim_rust_rewrite",
+    "claim_node_compat",
+    "claim_new_builtins",
+    "claim_parallel_and_pkg"
+  ],
+  "rejected_claims": [
+    {
+      "id": "claim_perf",
+      "reason": "Le chiffre mémoire est contredit à l'intérieur de la même source : un extrait de https://bun.com/blog/bun-v1.4 indique « up to 35% memory reduction » tandis qu'un autre extrait de la même page indique « 13% - 48% memory usage reduction » (Fastify −48 %, Express −46 %, node:http −40 %). Affirmer « up to 35% » exige un arbitrage non explicité entre deux passages concurrents. De plus, le pattern de notation `\\b5x\\b.*\\bidle CPU\\b` impose un ordre lexical que la formulation attestée du billet (« idle CPU usage drops by 5x ») ne satisfait pas, ce qui le rend invalide/trop étroit."
+    }
+  ]
+}

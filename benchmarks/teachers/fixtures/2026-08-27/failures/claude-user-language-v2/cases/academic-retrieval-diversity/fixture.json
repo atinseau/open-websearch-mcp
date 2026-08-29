@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "case_id": "academic-retrieval-diversity",
+  "question": "According to primary information-retrieval research, how does maximal marginal relevance trade relevance against novelty, and what evidence supports its use for diversifying search results?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim_mmr_tradeoff",
+      "text": "Maximal marginal relevance trades relevance against novelty with a user-tunable linear score: at each step it selects a remaining document with high query similarity and low similarity to already selected documents, rewarding relevance and penalizing redundancy.",
+      "required_concepts": [
+        "mmr",
+        "linear_tradeoff",
+        "query_similarity",
+        "selected_docs",
+        "redundancy"
+      ],
+      "acceptable_patterns": [
+        "Maximal marginal relevance trades relevance against novelty with a user-tunable linear score",
+        "at each step,? it picks the remaining document with high query similarity and low similarity to already selected documents",
+        "relevance is rewarded and redundancy is penalized"
+      ],
+      "sources": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "text": "MMR trades relevance against novelty with a user-tunable linear score: at each step, it picks the remaining document with high query similarity and low similarity to already selected documents, i.e. relevance is rewarded and redundancy is penalized."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_academic-retrieval-diversity",
+        "claude_run": "2026-08-27_claude_academic-retrieval-diversity"
+      }
+    },
+    {
+      "id": "claim_lambda_extremes",
+      "text": "In the original MMR formulation, λ = 1 reduces to a standard relevance-ranked list, λ = 0 reduces to maximal diversity among the retrieved set, and intermediate λ values optimize a linear combination of the two criteria.",
+      "required_concepts": ["lambda", "relevance_ranked", "maximal_diversity", "intermediate"],
+      "acceptable_patterns": [
+        "λ = 1 reduces to the standard relevance-ranked list",
+        "λ = 0 reduces to maximal diversity among the retrieved set",
+        "intermediate λ values optimize a linear combination of the two criteria"
+      ],
+      "sources": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "text": "In that formulation, `λ = 1` reduces to the standard relevance-ranked list, `λ = 0` reduces to maximal diversity among the retrieved set, and intermediate `λ` values optimize a linear combination of the two criteria."
+        }
+      ],
+      "weight": 0.95,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_academic-retrieval-diversity",
+        "claude_run": "2026-08-27_claude_academic-retrieval-diversity"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Primary research shows that MMR uniformly improves diversified search results over non-diversified ranking.",
+      "reason": "Overly broad and contradicted by supplied evidence describing only limited original evidence and mixed later evidence."
+    },
+    {
+      "text": "There is a universally best λ value for MMR.",
+      "reason": "Unsupported by the supplied evidence; the evidence describes λ as task-tunable and gives example strategies rather than a universal optimum."
+    },
+    {
+      "text": "Plain MMR consistently improves real user satisfaction in large-sample web search studies.",
+      "reason": "Unsupported by the supplied evidence; the only user study mentioned is a 5-user pilot explicitly described as too small for statistically significant speed or recall conclusions."
+    },
+    {
+      "text": "Zhu et al. (2014) definitively proved MMRlist beats all baselines on all diversification settings.",
+      "reason": "Too strong for the supplied evidence and not independently supported by quoted evidence passages in the record."
+    },
+    {
+      "text": "The original paper describes smaller λ as suitable for sampling the information space and larger λ as suitable for focusing on overlapping or reinforcing relevant documents; for document retrieval it reports starting around λ = 0.3 and then moving to around λ = 0.7 after query reformulation or relevance feedback.",
+      "reason": "Les valeurs specifiques lambda = 0.3 puis lambda = 0.7 et la distinction sampling/focus ne proviennent que de la prose finale de Codex : opened_urls est vide, aucun payload de recherche n'est expose, et les evidence_passages sont des copies du final_answer plutot que du texte de page recupere. Le run Claude indique explicitement n'avoir pu extraire ni la formule ni les valeurs de lambda du papier primaire, donc aucune corroboration croisee. De plus le pattern de grading est invalide en pratique : 'smaller lambda is for sampling the information space' ne correspond pas au passage de reference, qui ecrit \"sampling\" avec des guillemets typographiques, et les motifs contenant des backticks optionnels autour de lambda = 0.3 / 0.7 sont trop etroits pour une notation lexicale fiable."
+    },
+    {
+      "text": "The original paper's direct evidence for diversification is limited but supportive: a Reuters reranking example pushed a duplicate article down and moved a novel but still relevant document up, and a pilot user study with 5 undergraduate users over 9 search tasks found that 4 of 5 chose MMR reranking at λ = 0.5 for a final search task, while the authors noted the study was too small for statistically significant speed or recall trends.",
+      "reason": "La claim agrege des details quantitatifs tres precis (exemple Reuters, etude pilote de 5 etudiants, 9 taches de recherche, 4 sur 5, lambda = 0.5) attribues a un PDF dont aucun contenu n'a ete effectivement ouvert dans le dossier de preuves. Le seul examen reel de materiel primaire de 1998 present dans le dossier (run Claude sur l'abstract SIGIR'98) ne rapporte que des 'preliminary results' sans metrique, jeu de donnees ni comparaison chiffree, ce qui ne soutient pas ces chiffres. La composante limitation ('trop petit pour des tendances statistiquement significatives') serait defendable isolement, mais elle est indissociable des chiffres non verifies au sein de la meme claim, et les required_concepts (5_users, 9_tasks, 4_of_5) imposent de noter ces elements non etayes."
+    }
+  ]
+}

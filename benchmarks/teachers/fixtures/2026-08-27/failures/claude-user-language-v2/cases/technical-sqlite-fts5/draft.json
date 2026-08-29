@@ -1,0 +1,285 @@
+{
+  "claims": [
+    {
+      "id": "c1",
+      "text": "`PRAGMA module_list` can be used as a connection-level runtime check for FTS5 availability, because it returns registered virtual-table modules and FTS5 is a virtual-table module; if `fts5` appears there, FTS5 is available on that connection at that moment.",
+      "required_concepts": ["module_list", "registered_modules", "fts5_module", "connection_level"],
+      "acceptable_patterns": [
+        "PRAGMA\\s+module_list",
+        "registered virtual-?table modules",
+        "FTS5 is an SQLite virtual-?table module",
+        "if\\s+`?fts5`?\\s+appears.*available on that connection"
+      ],
+      "sources": [
+        {
+          "url": "https://sqlite.org/pragma.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://sqlite.org/pragma.html",
+          "text": "`PRAGMA module_list;` returns the list of virtual-table modules registered with the current database connection. FTS5 is an SQLite virtual-table module."
+        },
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "text": "`[Inference]` If `fts5` appears in `PRAGMA module_list`, FTS5 is available on that connection at that moment; this follows from “module_list returns registered virtual-table modules” plus “FTS5 is a virtual-table module.”"
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "c2",
+      "text": "Compile-option introspection can detect a built-in FTS5 build: `PRAGMA compile_options` returns compile-time options without the `SQLITE_` prefix, so the relevant row is `ENABLE_FTS5`, and `sqlite3_compileoption_used()` or SQL `sqlite_compileoption_used()` report whether a named compile-time option was used.",
+      "required_concepts": ["compile_options", "enable_fts5", "compileoption_used", "sql_wrapper"],
+      "acceptable_patterns": [
+        "PRAGMA\\s+compile_options",
+        "SQLITE_ prefix is omitted|omits the `SQLITE_` prefix",
+        "ENABLE_FTS5",
+        "sqlite3_compileoption_used\\(\\)|sqlite_compileoption_used\\(\\)",
+        "returns (0|1|true \\(1\\)|false \\(0\\))"
+      ],
+      "sources": [
+        {
+          "url": "https://sqlite.org/pragma.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://sqlite.org/compile.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://sqlite.org/c3ref/compileoption_get.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://sqlite.org/lang_corefunc.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://sqlite.org/pragma.html",
+          "text": "`PRAGMA compile_options;` returns the compile-time options used to build SQLite, one per row, and omits the `SQLITE_` prefix."
+        },
+        {
+          "url": "https://sqlite.org/compile.html",
+          "text": "`SQLITE_ENABLE_FTS5` adds FTS5 to the build automatically when that option is defined for the amalgamation build."
+        },
+        {
+          "url": "https://sqlite.org/c3ref/compileoption_get.html",
+          "text": "In C, `sqlite3_compileoption_used()` returns `0` or `1` depending on whether a named compile-time option was defined, and the `SQLITE_` prefix may be omitted when calling that C API."
+        },
+        {
+          "url": "https://sqlite.org/lang_corefunc.html",
+          "text": "In SQL, `sqlite_compileoption_used()` is a wrapper around `sqlite3_compileoption_used()`."
+        }
+      ],
+      "weight": 0.95
+    },
+    {
+      "id": "c3",
+      "text": "Compile-option checks do not by themselves prove that FTS5 is currently registered on a specific connection, because FTS5 may be built as a loadable extension and extension loading is disabled by default until enabled with `sqlite3_enable_load_extension()`.",
+      "required_concepts": ["loadable_extension", "disabled_by_default", "not_connection_proof"],
+      "acceptable_patterns": [
+        "FTS5 may also be built as a loadable extension",
+        "extension loading is disabled by default",
+        "sqlite3_enable_load_extension\\(\\)",
+        "do not by themselves prove|not sufficient"
+      ],
+      "sources": [
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://sqlite.org/lang_corefunc.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://sqlite.org/compile.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://sqlite.org/pragma.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "text": "`[Supported fact]` FTS5 may also be built as a loadable extension, not only as part of the main SQLite build."
+        },
+        {
+          "url": "https://sqlite.org/lang_corefunc.html",
+          "text": "`[Supported fact]` The SQL function `load_extension()` loads an SQLite extension, but extension loading is disabled by default and must first be enabled with `sqlite3_enable_load_extension()`."
+        },
+        {
+          "url": "https://sqlite.org/pragma.html",
+          "text": "`[Inference]` Because FTS5 can be either compiled in or provided as a loadable extension, compile-option checks tell you whether the current SQLite library was built with `SQLITE_ENABLE_FTS5`, but they do not by themselves prove that FTS5 is currently registered on a specific connection. `PRAGMA module_list` is the stronger documented connection-level check."
+        }
+      ],
+      "weight": 0.98
+    },
+    {
+      "id": "c4",
+      "text": "An external-content FTS5 table uses `content=` to name a table, virtual table, or view in the same database, and `content_rowid=` can override the default rowid column name used by FTS5.",
+      "required_concepts": ["external_content", "content_option", "content_rowid"],
+      "acceptable_patterns": [
+        "content\\s*=",
+        "content_rowid\\s*=",
+        "same database",
+        "override the default rowid"
+      ],
+      "sources": [
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "text": "`[Supported fact]` An external-content FTS5 table is created by setting `content=` to the name of a table, virtual table, or view in the same database; `content_rowid=` can override the default rowid column name used by FTS5."
+        }
+      ],
+      "weight": 0.7
+    },
+    {
+      "id": "c5",
+      "text": "For external-content tables, SQLite documents full FTS5 functionality, but the user is responsible for keeping the full-text index consistent with the content object; otherwise query results may be unpredictable.",
+      "required_concepts": [
+        "all_functionality",
+        "user_responsibility",
+        "consistency",
+        "unpredictable"
+      ],
+      "acceptable_patterns": [
+        "all FTS5 functionality may be used",
+        "responsible for keeping .* consistent",
+        "results may be unpredictable"
+      ],
+      "sources": [
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "text": "`[Supported fact]` With external content, “all FTS5 functionality may be used,” but the user is responsible for keeping the full-text index consistent with the content object; if not, query results may be unpredictable."
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "id": "c6",
+      "text": "External-content query behavior depends on whether the full-text index is used: without `MATCH` or equivalent table-valued-function syntax, SQLite effectively passes the query through to the content table; with the full-text index, FTS5 first gets matching rowids from the index and then looks up the corresponding column values in the content table.",
+      "required_concepts": ["match_behavior", "pass_through", "rowid_lookup"],
+      "acceptable_patterns": [
+        "without `?MATCH`?",
+        "passes? .* through to the content table",
+        "first gets matching rowids from the index",
+        "looks up .* in the content table"
+      ],
+      "sources": [
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "text": "`[Supported fact]` If a query against the external-content FTS5 table does not use the full-text index, such as one without `MATCH` or equivalent table-valued-function syntax, SQLite effectively passes that query through to the content table, so the FTS index does not affect the result."
+        },
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "text": "`[Supported fact]` If a query does use the full-text index, FTS5 first gets matching rowids from the index and then looks up the corresponding column values in the content table."
+        }
+      ],
+      "weight": 0.9
+    },
+    {
+      "id": "c7",
+      "text": "Triggers are a documented synchronization method for external-content FTS5 tables, but creating them after the content table already has rows does not backfill the index; if the index and content table become inconsistent, the documented `rebuild` command can discard and rebuild the FTS index from the current content table.",
+      "required_concepts": ["triggers", "no_backfill", "rebuild"],
+      "acceptable_patterns": [
+        "Triggers are .* keep .* synchronized",
+        "does not backfill|does not backfill the FTS index",
+        "`?rebuild`? command",
+        "discard .* rebuild"
+      ],
+      "sources": [
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "text": "`[Supported fact]` Triggers are one documented way to keep an external-content FTS5 table synchronized with its content table."
+        },
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "text": "`[Supported fact]` Creating those triggers after the content table already contains rows does not backfill the FTS index; the triggers only keep later inserts, updates, and deletes synchronized."
+        },
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "text": "`[Supported fact]` If the FTS index and content table become inconsistent, the documented `rebuild` command can discard the existing FTS index and rebuild it from the current content table."
+        }
+      ],
+      "weight": 0.88
+    },
+    {
+      "id": "c8",
+      "text": "External-content FTS5 tables do not support `REPLACE` conflict handling; operations that specify `REPLACE` are handled using `ABORT`.",
+      "required_concepts": ["replace", "abort", "external_content_limit"],
+      "acceptable_patterns": [
+        "do not support `?REPLACE`? conflict handling",
+        "handled using `?ABORT`?"
+      ],
+      "sources": [
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "text": "`[Supported fact]` External-content FTS5 tables do not support `REPLACE` conflict handling; operations that specify `REPLACE` are handled using `ABORT`."
+        }
+      ],
+      "weight": 0.8
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "`sqlite3_compileoption_used(\"SQLITE_ENABLE_FTS5\")` alone proves that FTS5 is available on the current connection.",
+      "reason": "Contradicted by supplied evidence that FTS5 may be a loadable extension and that compile-option checks do not by themselves prove current connection-level registration."
+    },
+    {
+      "text": "SQLite automatically keeps an external-content FTS5 index synchronized with its content table.",
+      "reason": "Contradicted by supplied evidence stating the user is responsible for consistency and that triggers are only one documented synchronization method."
+    },
+    {
+      "text": "Creating synchronization triggers after populating the content table backfills existing rows into the FTS index.",
+      "reason": "Contradicted by supplied evidence stating trigger creation does not backfill the FTS index."
+    },
+    {
+      "text": "External-content FTS5 tables support `REPLACE` conflict handling normally.",
+      "reason": "Contradicted by supplied evidence stating `REPLACE` is handled using `ABORT`."
+    },
+    {
+      "text": "SQLite primary documentation provides a dedicated single-purpose API specifically documented as 'detect whether FTS5 is available now on this connection'.",
+      "reason": "Supplied evidence explicitly says no dedicated single-purpose API was found beyond module introspection, compile-option introspection, and extension loading."
+    }
+  ]
+}

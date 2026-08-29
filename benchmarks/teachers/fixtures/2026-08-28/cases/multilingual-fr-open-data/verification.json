@@ -1,0 +1,33 @@
+{
+  "accepted_claim_ids": [],
+  "rejected_claims": [
+    {
+      "id": "claim_1",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "claim_2",
+      "reason": "required concept is absent from teacher-run evidence: date_maj"
+    },
+    {
+      "id": "claim_3",
+      "reason": "required concept is absent from teacher-run evidence: pas_caution"
+    },
+    {
+      "id": "claim_4",
+      "reason": "required concept is absent from teacher-run evidence: pas_trompeur"
+    },
+    {
+      "id": "claim_5",
+      "reason": "required concept is absent from teacher-run evidence: donnees_personnelles"
+    },
+    {
+      "id": "claim_6",
+      "reason": "required concept is absent from teacher-run evidence: responsabilite_reutilisateur"
+    },
+    {
+      "id": "claim_7",
+      "reason": "required concept is absent from teacher-run evidence: pas_alteration"
+    }
+  ]
+}

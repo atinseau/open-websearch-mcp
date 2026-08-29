@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "provider": "claude",
+  "cli_version": "2.1.243 (Claude Code)",
+  "started_at": "2026-08-27T13:37:05.113Z",
+  "duration_ms": 159084,
+  "command": [
+    "claude",
+    "-p",
+    "--safe-mode",
+    "--tools",
+    "WebSearch,WebFetch",
+    "--allowedTools",
+    "WebSearch,WebFetch",
+    "--disallowedTools",
+    "mcp__*",
+    "--permission-mode",
+    "dontAsk",
+    "--disable-slash-commands",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "{\"mcpServers\":{}}",
+    "--no-chrome",
+    "--no-session-persistence",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-partial-messages",
+    "--include-hook-events",
+    "--max-budget-usd",
+    "1.00",
+    "Research this question using only your native Web search and page-opening tools:\n\nAccording to primary information-retrieval research, how does maximal marginal relevance trade relevance against novelty, and what evidence supports its use for diversifying search results?\n\nCite every factual claim with its source URL. Distinguish supported fact from\ninference, disagreement, uncertainty, and lack of good evidence. Answer in the\nquestion's language. Do not use local files or any non-Web tool.\n"
+  ],
+  "controls": {
+    "isolated_temporary_cwd": true,
+    "cwd_unchanged": true,
+    "wrapper_shim_bypassed": true,
+    "session_persistence_disabled": true
+  },
+  "process": {
+    "exit_code": 0,
+    "stderr": ""
+  },
+  "inspection": {
+    "accepted": true,
+    "tool_calls": [
+      "WebSearch",
+      "WebSearch",
+      "WebFetch",
+      "WebSearch",
+      "WebFetch",
+      "WebSearch",
+      "WebFetch",
+      "WebSearch",
+      "WebFetch",
+      "WebFetch",
+      "WebFetch",
+      "WebFetch",
+      "WebSearch",
+      "WebSearch",
+      "WebSearch"
+    ],
+    "forbidden_tool_calls": [],
+    "authentication_failed": false
+  }
+}

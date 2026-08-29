@@ -1,0 +1,13 @@
+{
+  "accepted_claim_ids": ["c1", "c2", "c3", "c5"],
+  "rejected_claims": [
+    {
+      "id": "c4",
+      "reason": "required concept is absent from teacher-run evidence: no_fallback"
+    },
+    {
+      "id": "c6",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    }
+  ]
+}

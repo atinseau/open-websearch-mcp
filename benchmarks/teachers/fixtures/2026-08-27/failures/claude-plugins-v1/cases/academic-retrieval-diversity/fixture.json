@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "case_id": "academic-retrieval-diversity",
+  "question": "According to primary information-retrieval research, how does maximal marginal relevance trade relevance against novelty, and what evidence supports its use for diversifying search results?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim_1",
+      "text": "Maximal marginal relevance trades relevance against novelty with a user-tunable linear score that rewards query similarity and penalizes similarity to already selected documents.",
+      "required_concepts": ["mmr", "relevance", "novelty", "selected_docs"],
+      "acceptable_patterns": [
+        "Maximal marginal relevance.*user-?tunable linear score",
+        "relevance.*rewarded.*redundancy.*penalized",
+        "high query similarity.*low similarity to already selected documents"
+      ],
+      "sources": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://dmice.ohsu.edu/bedricks/courses/cs606-ir/papers/zhu_2014.pdf",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.ambuehler.ethz.ch/CDstore/www2010/www/p881.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "text": "MMR trades relevance against novelty with a user-tunable linear score: at each step, it picks the remaining document with high query similarity and low similarity to already selected documents, i.e. relevance is rewarded and redundancy is penalized."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_academic-retrieval-diversity",
+        "claude_run": "2026-08-27_claude_academic-retrieval-diversity"
+      }
+    },
+    {
+      "id": "claim_2",
+      "text": "In the original formulation, λ = 1 gives the standard relevance-ranked list, λ = 0 gives maximal diversity among the retrieved set, and intermediate λ values linearly combine the two criteria.",
+      "required_concepts": ["lambda", "relevance_only", "diversity_only"],
+      "acceptable_patterns": [
+        "λ\\s*=\\s*1.*standard relevance-ranked list",
+        "λ\\s*=\\s*0.*maximal diversity",
+        "intermediate.*linear combination"
+      ],
+      "sources": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "text": "In that formulation, `λ = 1` reduces to the standard relevance-ranked list, `λ = 0` reduces to maximal diversity among the retrieved set, and intermediate `λ` values optimize a linear combination of the two criteria."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_academic-retrieval-diversity",
+        "claude_run": "2026-08-27_claude_academic-retrieval-diversity"
+      }
+    },
+    {
+      "id": "claim_3",
+      "text": "Carbonell and Goldstein's paper gives qualitative diversification evidence from a Reuters reranking example: a duplicate is pushed down, a novel but still relevant document moves up, and similar documents are demoted as λ decreases.",
+      "required_concepts": ["reuters_example", "duplicate_down", "novel_relevant_up"],
+      "acceptable_patterns": [
+        "Reuters reranking example",
+        "duplicate article is pushed down",
+        "novel but still relevant.*moves up",
+        "similar documents are demoted"
+      ],
+      "sources": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "text": "First, in a Reuters reranking example, the authors report that a duplicate article is pushed down, a “novel but still relevant” document moves up, and similar documents are demoted as `λ` decreases, which is exactly the intended relevance/novelty tradeoff."
+        }
+      ],
+      "weight": 0.9,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_academic-retrieval-diversity",
+        "claude_run": "2026-08-27_claude_academic-retrieval-diversity"
+      }
+    },
+    {
+      "id": "claim_4",
+      "text": "The original paper also reports a small pilot user study: 5 undergraduate users over 9 search tasks, with 4 of 5 choosing MMR reranking at λ = 0.5 for a final search task, but the study was too small for statistically significant speed or recall trends.",
+      "required_concepts": ["pilot_study", "5_users", "4_of_5", "not_significant"],
+      "acceptable_patterns": [
+        "5 undergraduate users.*9 search tasks",
+        "4 of 5 chose the MMR method",
+        "too small.*statistically significant"
+      ],
+      "sources": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://aclanthology.org/X98-1025.pdf",
+          "text": "Second, the same paper reports a pilot user study with 5 undergraduate users over 9 search tasks; users compared standard SMART ranking with MMR reranking at `λ = 0.5`, and 4 of 5 chose the MMR method for a final search task. However, the authors also state that the study was too small to yield statistically significant trends for speed or recall."
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_academic-retrieval-diversity",
+        "claude_run": "2026-08-27_claude_academic-retrieval-diversity"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "MMR's original SIGIR 1998 paper provides strong, large-sample user-study evidence that it improves web-search user satisfaction.",
+      "reason": "Unsupported by the supplied evidence; the evidence says the pilot had 5 users and was too small for statistically significant speed or recall trends."
+    },
+    {
+      "text": "There is one universally best λ value for MMR.",
+      "reason": "Unsupported and overly broad; the supplied evidence says λ is user-tunable, gives endpoint interpretations, and mentions tuning or task-dependent use rather than a universal optimum."
+    },
+    {
+      "text": "MMR uniformly improves diversified search results over pure relevance ranking.",
+      "reason": "Contradicted by the supplied evidence; Santos, Macdonald, and Ounis report cases where MMR hurt baseline rankings."
+    },
+    {
+      "text": "xQuAD is always better than MMR in every search setting.",
+      "reason": "Overly broad; the supplied evidence only says xQuAD consistently improved all three baseline rankers in the cited WWW 2010 study."
+    },
+    {
+      "text": "The strongest original evidence for MMR comes from multi-document summarization results at SUMMAC.",
+      "reason": "Not supported by the codex teacher-run evidence set used here; that detail appears only in the other run and is outside the selected evidence for these claims."
+    },
+    {
+      "text": "Later primary IR evidence is mixed: Zhu et al. report that an MMR-style learned reranker can improve diversity metrics over ListMLE on TREC Web Track data, while Santos, Macdonald, and Ounis report cases on TREC 2009 Web Track where MMR reranking hurt baseline rankings and xQuAD was the only approach that consistently improved all three baselines.",
+      "reason": "Attribution non vérifiée et probablement erronée : « Zhu et al. (SIGIR 2014) » ne repose que sur le nom de fichier zhu_2014.pdf d'une page de cours, alors que les preuves disponibles rattachent le modèle MMR appris (MMRlist) à un autre article/auteurs/année. Aucune URL n'a été ouverte dans le run Codex, donc les chiffres ERR-IA cités ne sont pas vérifiables. De plus, le pattern « MMRlist.*improved over `ListMLE` » exige des backticks littéraux et est donc invalide pour un grading lexical. Enfin la claim est composite (résultat Zhu + résultat Santos/xQuAD) et durcit la preuve contradictoire en affirmant que xQuAD est « the only approach » à améliorer les trois baselines, ce qui dépasse le périmètre de l'étude citée."
+    }
+  ]
+}

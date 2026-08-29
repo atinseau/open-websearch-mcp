@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "case_id": "community-bun-production",
+  "question": "What conflicting experiences do maintainers and users report about running Bun in production, and which concrete compatibility or reliability claims can be traced to evidence rather than opinion?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "claude",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim_1",
+      "text": "Bun maintainers said Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental.\"",
+      "required_concepts": ["production-ready", "macos-linux", "windows-experimental"],
+      "acceptable_patterns": [
+        "stable and production-ready",
+        "macOS and Linux",
+        "highly experimental"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.sh/blog/bun-v1.0",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://bun.sh/blog/bun-v1.0",
+          "text": "Maintainers explicitly said on September 8, 2023 that Bun 1.0 was \"stable and production-ready\" for macOS and Linux, while Windows was still \"highly experimental\" and had the package manager, test runner, and bundler disabled. https://bun.sh/blog/bun-v1.0"
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_community-bun-production",
+        "claude_run": "2026-08-27_claude_community-bun-production"
+      }
+    },
+    {
+      "id": "claim_2",
+      "text": "Bun's own documentation and release notes say Node.js compatibility is still incomplete.",
+      "required_concepts": ["node-compat", "incomplete"],
+      "acceptable_patterns": [
+        "ongoing effort",
+        "not 100% compatible with Node\\.js yet",
+        "compatibility is incomplete"
+      ],
+      "sources": [
+        {
+          "url": "https://bun.sh/docs",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://bun.sh/blog/bun-v1.4",
+          "equivalent_urls": ["https://bun.com/blog/bun-v1.4"]
+        },
+        {
+          "url": "https://bun.com/docs/runtime/nodejs-compat",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://bun.sh/docs",
+          "text": "Maintainers also still say compatibility is incomplete: the docs call Node.js compatibility an \"ongoing effort,\" and the Bun 1.4 release notes say Bun is \"not 100% compatible with Node.js yet.\" https://bun.sh/docs, https://bun.sh/blog/bun-v1.4, https://bun.com/docs/runtime/nodejs-compat"
+        }
+      ],
+      "weight": 1,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_community-bun-production",
+        "claude_run": "2026-08-27_claude_community-bun-production"
+      }
+    },
+    {
+      "id": "claim_4",
+      "text": "Anthropic independently said Bun had been \"key\" to scaling Claude Code's infrastructure.",
+      "required_concepts": ["anthropic", "claude-code", "scaling"],
+      "acceptable_patterns": [
+        "Bun had been \"key\" to scaling Claude Code’s infrastructure",
+        "Anthropic was acquiring Bun"
+      ],
+      "sources": [
+        {
+          "url": "https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone",
+          "text": "Anthropic independently said on December 3, 2025 that Bun had been \"key\" to scaling Claude Code’s infrastructure and that Anthropic was acquiring Bun. https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone"
+        }
+      ],
+      "weight": 0.9,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_community-bun-production",
+        "claude_run": "2026-08-27_claude_community-bun-production"
+      }
+    },
+    {
+      "id": "claim_5",
+      "text": "Bun's own issue tracker includes production-like reports of memory growth and crashes under Bun workloads.",
+      "required_concepts": ["issue-tracker", "memory-growth", "crash"],
+      "acceptable_patterns": [
+        "memory growth in production",
+        "RSS at 2\\.46 GB followed by a segmentation fault",
+        "growing from about 50 MB to 170 MB"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/oven-sh/bun/issues/19930",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/20912",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/25948",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://github.com/oven-sh/bun/issues/19930",
+          "text": "User reports with concrete symptoms exist in Bun’s own tracker: An Express app in Docker was reported as crashing 4 GB pods from memory growth in production on Bun 1.2.14. https://github.com/oven-sh/bun/issues/19930"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/20912",
+          "text": "A large `fetch` workload on Bun 1.2.18 was reported with RSS at 2.46 GB followed by a segmentation fault, and Bun’s own crash message said this indicated a bug in Bun. https://github.com/oven-sh/bun/issues/20912"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/issues/25948",
+          "text": "A Mongoose production build on Bun was reported as growing from about 50 MB to 170 MB in 12 hours, and another container from 300 MB to 1.5 GB in a day, even while idle, leading to container death. https://github.com/oven-sh/bun/issues/25948"
+        }
+      ],
+      "weight": 0.95,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_community-bun-production",
+        "claude_run": "2026-08-27_claude_community-bun-production"
+      }
+    },
+    {
+      "id": "claim_6",
+      "text": "Some users reported mixed migration outcomes and said they still kept Node in production or as a fallback because of Bun bugs.",
+      "required_concepts": ["migration", "node-fallback", "user-report"],
+      "acceptable_patterns": [
+        "still used Node \"in production\"",
+        "need to use Node \"because of a bug\"",
+        "mixed migration outcomes"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/oven-sh/bun/discussions/3955",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/discussions/17485",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://github.com/oven-sh/bun/discussions/3955",
+          "text": "There are also user reports of mixed migration outcomes: one user said they migrated a monorepo with 300+ packages and about 100,000 lines of code, but hit missing APIs, memory-corruption suspicions, packaging problems, and ended up saying they still used Node \"in production.\" https://github.com/oven-sh/bun/discussions/3955"
+        },
+        {
+          "url": "https://github.com/oven-sh/bun/discussions/17485",
+          "text": "Another user said they keep a wrapper because there are still occasions where they need to use Node \"because of a bug.\" https://github.com/oven-sh/bun/discussions/17485"
+        }
+      ],
+      "weight": 0.95,
+      "provenance": {
+        "mode": "mutually_validated",
+        "codex_run": "2026-08-27_codex_community-bun-production",
+        "claude_run": "2026-08-27_claude_community-bun-production"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Bun is broadly proven everywhere in production.",
+      "reason": "Overly broad; the supplied evidence shows some successful production use, not universal readiness."
+    },
+    {
+      "text": "Bun is unusable in production.",
+      "reason": "Contradicted by supplied evidence about named production users and Anthropic's statement."
+    },
+    {
+      "text": "GitHub issues show how common Bun production failures are.",
+      "reason": "Unsupported; the supplied evidence explicitly says issue reports do not establish prevalence."
+    },
+    {
+      "text": "Bun is 100% compatible with Node.js.",
+      "reason": "Contradicted by Bun's own docs and release notes saying compatibility is ongoing and not 100% yet."
+    },
+    {
+      "text": "Bun 1.4 fixed all reliability and memory problems.",
+      "reason": "Unsupported and time-unstable; the evidence mentions remediation work and improvements, not complete resolution."
+    },
+    {
+      "text": "Bun maintainers publicly point to named production use cases, including Claude Code, Midjourney image notifications, and Railway Functions.",
+      "reason": "Détail Midjourney non vérifiable : bun.com/ ne figure dans aucun opened_urls du run Codex et le run Claude ne mentionne pas cette adoption ; le contenu de page d'accueil marketing est en outre instable dans le temps. De plus, les trois acceptable_patterns sont des paraphrases longues d'une phrase reformulée par le modèle plutôt que des extraits de la source, ce qui les rend trop étroits pour une notation lexicale : une réponse correcte formulée autrement échouerait. Le claim agrège aussi trois affirmations d'adoption (Claude Code, Midjourney, Railway) de solidité inégale sous un poids unique."
+    }
+  ]
+}

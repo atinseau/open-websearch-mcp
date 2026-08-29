@@ -1,0 +1,9 @@
+{
+  "accepted_claim_ids": ["c1", "c2", "c3", "c5", "c6", "c7", "c8"],
+  "rejected_claims": [
+    {
+      "id": "c4",
+      "reason": "Provenance non vérifiable et inférence non étayée. PRAGMA module_list n'apparaît que dans le run Codex, dont opened_urls est vide et dont les tool_results indiquent que les payloads de recherche ne sont pas exposés : ses evidence_passages sont une recopie de sa propre réponse finale, pas du texte source. Le run Claude, qui a effectivement fetché pragma.html, fts5.html, compile.html et c3ref/compileoption_get.html, ne mentionne jamais module_list. De plus, l'assertion « PRAGMA module_list est le contrôle documenté le plus fort au niveau connexion » est explicitement étiquetée [Inference] par Codex lui-même, donc dépendante d'une interprétation non affirmée par la source primaire. Enfin, les acceptable_patterns sont trop étroits et verbatim (« registered virtual-table modules », « FTS5 is an SQLite virtual-table module ») : une réponse correcte fondée sur compile_options plus un test fonctionnel, comme celle du run Claude, échouerait intégralement à la notation lexicale. La partie étayée (FTS5 peut être fourni comme extension chargeable, donc un contrôle de compile-option ne prouve pas la disponibilité sur une connexion donnée) est corroborée par les deux runs, mais elle est indissociable, telle que la claim est rédigée, de l'inférence sur module_list."
+    }
+  ]
+}

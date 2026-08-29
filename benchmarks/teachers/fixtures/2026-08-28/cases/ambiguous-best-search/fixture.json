@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "case_id": "ambiguous-best-search",
+  "question": "Which Web search engine is objectively best for every kind of research question today?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "grounding",
+  "verification_status": "accepted",
+  "claims": [],
+  "rejected_claims": [
+    {
+      "text": "Google is objectively the best Web search engine for every research question today.",
+      "reason": "Contradicted by the supplied final answer, which explicitly says there is no objectively best Web search engine for every kind of research question today."
+    },
+    {
+      "text": "Brave Search is proven by independent benchmarks to be the best broad research engine.",
+      "reason": "The supplied evidence only presents Brave's own vendor claim about an independent index and explicitly says this is not an independent benchmark."
+    },
+    {
+      "text": "DuckDuckGo has a fully independent general Web index for its traditional links and images.",
+      "reason": "The supplied evidence says DuckDuckGo's traditional links and images are largely sourced from Bing."
+    },
+    {
+      "text": "Market-share dominance proves universal research superiority.",
+      "reason": "The supplied evidence explicitly says the market-share figures show dominance in use, not universal superiority in all research tasks."
+    },
+    {
+      "text": "One benchmark covers every query type, language, geography, domain, and success metric across today's major search engines.",
+      "reason": "The supplied evidence explicitly says it did not find a credible benchmark covering every query type, language, geography, domain, and success metric."
+    },
+    {
+      "text": "The supplied evidence supports that there is no objectively best Web search engine for every kind of research question today.",
+      "reason": "required concept is absent from teacher-run evidence: no universal best"
+    },
+    {
+      "text": "The supplied evidence says StatCounter reported worldwide search-engine market share for July 2026 as Google 91.31%, Bing 4.47%, and DuckDuckGo 0.65%, and that this shows dominance in use rather than universal superiority for all research tasks.",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "text": "The supplied evidence says DuckDuckGo states that its traditional links and images are largely sourced from Bing, while DuckDuckGo also maintains DuckDuckBot and many indexes.",
+      "reason": "required concept is absent from teacher-run evidence: Bing sourcing"
+    },
+    {
+      "text": "The supplied evidence says Brave claims Brave Search is powered by a completely independent index of the Web and fetches millions of webpages every day, while noting this is a vendor claim rather than an independent benchmark.",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "text": "The supplied evidence says some research tasks use specialized search systems instead of a general Web engine, including Google Scholar for scholarly literature and PubMed for biomedical and life-sciences literature.",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "text": "The supplied evidence says different studies identify different winners under different metrics, including Google outperforming Bing overall in one representative-query study and Bing performing best for coding-advice search in a 2025 Python-query study.",
+      "reason": "required concept is absent from teacher-run evidence: Google vs Bing"
+    }
+  ]
+}

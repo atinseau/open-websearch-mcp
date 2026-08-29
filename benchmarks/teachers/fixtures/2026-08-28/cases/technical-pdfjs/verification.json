@@ -1,0 +1,29 @@
+{
+  "accepted_claim_ids": ["c2"],
+  "rejected_claims": [
+    {
+      "id": "c1",
+      "reason": "required concept is absent from teacher-run evidence: output_files"
+    },
+    {
+      "id": "c3",
+      "reason": "required concept is absent from teacher-run evidence: import_path"
+    },
+    {
+      "id": "c4",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "id": "c5",
+      "reason": "required concept is absent from teacher-run evidence: nodejs_22_plus"
+    },
+    {
+      "id": "c6",
+      "reason": "required concept is absent from teacher-run evidence: nodejs_warning"
+    },
+    {
+      "id": "c7",
+      "reason": "required concept is absent from teacher-run evidence: no_explicit_support"
+    }
+  ]
+}

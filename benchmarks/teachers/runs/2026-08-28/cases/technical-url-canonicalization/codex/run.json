@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "run_id": "2026-08-28_codex_technical-url-canonicalization",
+  "case_id": "technical-url-canonicalization",
+  "provider": "codex",
+  "model": "gpt-5.4",
+  "queries": [
+    "site:url.spec.whatwg.org WHATWG URL Standard host parsing unicode default port dot segments fragment percent-encoded path bytes"
+  ],
+  "tool_results": [
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    }
+  ],
+  "opened_urls": ["https://url.spec.whatwg.org/"],
+  "cited_urls": [
+    "https://url.spec.whatwg.org/#host-parsing",
+    "https://url.spec.whatwg.org/#idna",
+    "https://url.spec.whatwg.org/#url-miscellaneous",
+    "https://url.spec.whatwg.org/#url-parsing",
+    "https://url.spec.whatwg.org/#percent-encoded-bytes",
+    "https://url.spec.whatwg.org/#url-serializing",
+    "https://url.spec.whatwg.org/#host-parsing",
+    "https://url.spec.whatwg.org/#idna",
+    "https://url.spec.whatwg.org/#host-serializing",
+    "https://url.spec.whatwg.org/#url-miscellaneous",
+    "https://url.spec.whatwg.org/#url-parsing",
+    "https://url.spec.whatwg.org/#url-serializing",
+    "https://url.spec.whatwg.org/#url-miscellaneous",
+    "https://url.spec.whatwg.org/#url-parsing",
+    "https://url.spec.whatwg.org/#url-parsing",
+    "https://url.spec.whatwg.org/#percent-encoded-bytes",
+    "https://url.spec.whatwg.org/#url-serializing",
+    "https://url.spec.whatwg.org/#url-parsing",
+    "https://url.spec.whatwg.org/#percent-encoded-bytes",
+    "https://url.spec.whatwg.org/#url-miscellaneous",
+    "https://url.spec.whatwg.org/#url-parsing",
+    "https://url.spec.whatwg.org/#percent-encoded-bytes",
+    "https://url.spec.whatwg.org/#url-miscellaneous",
+    "https://url.spec.whatwg.org/#url-parsing",
+    "https://url.spec.whatwg.org/#url-serializing",
+    "https://url.spec.whatwg.org/#url-miscellaneous",
+    "https://url.spec.whatwg.org/#url-parsing",
+    "https://url.spec.whatwg.org/#url-parsing",
+    "https://url.spec.whatwg.org/#percent-encoded-bytes",
+    "https://url.spec.whatwg.org/#url-serializing",
+    "https://url.spec.whatwg.org/#host-parsing",
+    "https://url.spec.whatwg.org/#idna",
+    "https://url.spec.whatwg.org/#url-miscellaneous",
+    "https://url.spec.whatwg.org/#url-parsing",
+    "https://url.spec.whatwg.org/#percent-encoded-bytes",
+    "https://url.spec.whatwg.org/#url-serializing"
+  ],
+  "selected_sources": [
+    {
+      "url": "https://url.spec.whatwg.org/",
+      "title": "https://url.spec.whatwg.org/"
+    },
+    {
+      "url": "https://url.spec.whatwg.org/#host-parsing",
+      "title": "https://url.spec.whatwg.org/#host-parsing"
+    },
+    {
+      "url": "https://url.spec.whatwg.org/#idna",
+      "title": "https://url.spec.whatwg.org/#idna"
+    },
+    {
+      "url": "https://url.spec.whatwg.org/#url-miscellaneous",
+      "title": "https://url.spec.whatwg.org/#url-miscellaneous"
+    },
+    {
+      "url": "https://url.spec.whatwg.org/#url-parsing",
+      "title": "https://url.spec.whatwg.org/#url-parsing"
+    },
+    {
+      "url": "https://url.spec.whatwg.org/#percent-encoded-bytes",
+      "title": "https://url.spec.whatwg.org/#percent-encoded-bytes"
+    },
+    {
+      "url": "https://url.spec.whatwg.org/#url-serializing",
+      "title": "https://url.spec.whatwg.org/#url-serializing"
+    },
+    {
+      "url": "https://url.spec.whatwg.org/#host-serializing",
+      "title": "https://url.spec.whatwg.org/#host-serializing"
+    }
+  ],
+  "evidence_passages": [],
+  "final_answer": "Using the current WHATWG URL Standard, an `https:` URL is normalized in these ways during parse/serialize. All claims below are supported directly by the standard unless labeled `Inference`. Sources: <https://url.spec.whatwg.org/#host-parsing>, <https://url.spec.whatwg.org/#idna>, <https://url.spec.whatwg.org/#url-miscellaneous>, <https://url.spec.whatwg.org/#url-parsing>, <https://url.spec.whatwg.org/#percent-encoded-bytes>, <https://url.spec.whatwg.org/#url-serializing>.\n\n**Supported fact**\n\nFor a Unicode hostname in an `https:` URL, the host parser first percent-decodes the host input, UTF-8-decodes that result, and then runs the domain parser with `beStrict = false`. <https://url.spec.whatwg.org/#host-parsing>\n\nThe domain parser lowercases an all-ASCII domain, and for a non-ASCII domain it runs Unicode ToASCII with UTS #46 settings; the result must be non-empty and contain no forbidden domain code points. <https://url.spec.whatwg.org/#idna>\n\nA host serializer returns an ASCII string, and the spec’s own parse-serialize example shows `faß.example` becoming `xn--fa-hia.example`. <https://url.spec.whatwg.org/#host-serializing>\n\n`https` is a special scheme whose default port is `443`. <https://url.spec.whatwg.org/#url-miscellaneous>\n\nWhen the parser reads a port, it stores `null` instead of the numeric port if the parsed port equals the scheme’s default port. <https://url.spec.whatwg.org/#url-parsing>\n\nWhen a URL is serialized, the port is emitted only if the stored port is non-null. <https://url.spec.whatwg.org/#url-serializing>\n\nA single-dot path segment is `\".\"` or an ASCII-case-insensitive match for `\"%2e\"`. A double-dot path segment is `\"..\"`, `\".%2e\"`, `\"%2e.\"`, or `\"%2e%2e\"` with ASCII-case-insensitive matching. <https://url.spec.whatwg.org/#url-miscellaneous>\n\nIn path state, a double-dot segment causes the parser to shorten the URL’s path, and a single-dot segment is not appended as a normal segment. <https://url.spec.whatwg.org/#url-parsing>\n\nWhen the parser encounters `#`, it creates an empty fragment and switches to fragment state. In fragment state, code points are UTF-8-percent-encoded using the fragment percent-encode set and appended to the fragment. <https://url.spec.whatwg.org/#url-parsing> <https://url.spec.whatwg.org/#percent-encoded-bytes>\n\nOn serialization, `#` is added back only if the URL’s fragment is non-null. <https://url.spec.whatwg.org/#url-serializing>\n\nIn path state, non-URL code points other than `%` cause a validation error, malformed `%` escapes cause a validation error, and otherwise each code point is UTF-8-percent-encoded using the path percent-encode set and appended to the path buffer. <https://url.spec.whatwg.org/#url-parsing> <https://url.spec.whatwg.org/#percent-encoded-bytes>\n\nThe standard also says that code points above U+007F are converted to percent-encoded bytes by the URL parser. <https://url.spec.whatwg.org/#url-miscellaneous>\n\n**Inference**\n\nBecause the path parser appends valid `%` escapes through the normal path-state logic, and because the percent-encode sets used by the URL parser do not encode `%`, valid percent-encoded path bytes are preserved rather than percent-decoded during parsing. <https://url.spec.whatwg.org/#url-parsing> <https://url.spec.whatwg.org/#percent-encoded-bytes>\n\nBecause default `https` port `443` is converted to stored `null`, and serialization omits null ports, an explicit `:443` disappears from the serialized URL. <https://url.spec.whatwg.org/#url-miscellaneous> <https://url.spec.whatwg.org/#url-parsing> <https://url.spec.whatwg.org/#url-serializing>\n\nBecause single-dot and double-dot segments are recognized even in `%2e` forms, those dot segments are normalized away during parsing rather than preserved literally as ordinary path segments. <https://url.spec.whatwg.org/#url-miscellaneous> <https://url.spec.whatwg.org/#url-parsing>\n\n**Uncertainty / lack of good evidence**\n\nI found no direct statement in the standard that valid percent-encoded path bytes are hex-case-normalized during parsing, and the cited parsing/serialization rules do not show such a rewrite. That makes “no hex-case normalization of already-valid path escapes” a cautious inference, not a directly stated rule. <https://url.spec.whatwg.org/#url-parsing> <https://url.spec.whatwg.org/#percent-encoded-bytes> <https://url.spec.whatwg.org/#url-serializing>\n\n**Bottom line**\n\nFor an `https:` URL, the standard normalizes the host to an ASCII domain form via IDNA processing, drops an explicit default port `:443`, resolves dot segments in the path, stores the fragment separately from `#` while percent-encoding fragment code points as needed, and percent-encodes path code points as needed without directly stating that already-valid percent-encoded path bytes are decoded or hex-case-normalized. <https://url.spec.whatwg.org/#host-parsing> <https://url.spec.whatwg.org/#idna> <https://url.spec.whatwg.org/#url-miscellaneous> <https://url.spec.whatwg.org/#url-parsing> <https://url.spec.whatwg.org/#percent-encoded-bytes> <https://url.spec.whatwg.org/#url-serializing>",
+  "cli_version": "codex-cli 0.149.1",
+  "locale": "en-US",
+  "started_at": "2026-08-28T14:36:47.063Z",
+  "duration_ms": 82064,
+  "prompt_sha256": "23d6eed087ff03696617d4934517b870ceedc9cd7dd52a8cce0a5fc2517682b1",
+  "raw_trace": "events.sanitized.jsonl",
+  "policy_evidence": "policy.json",
+  "isolation": {
+    "temporary_cwd": true,
+    "cwd_unchanged": true,
+    "forbidden_tool_calls": []
+  }
+}

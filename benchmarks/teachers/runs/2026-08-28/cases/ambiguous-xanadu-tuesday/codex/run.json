@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "run_id": "2026-08-28_codex_ambiguous-xanadu-tuesday",
+  "case_id": "ambiguous-xanadu-tuesday",
+  "provider": "codex",
+  "model": "gpt-5.4",
+  "queries": [
+    "\"Project Xanadu\" August 25 2026",
+    "site:xanadu.com.au OR site:xanadu.net OR site:xanarama.net \"Project Xanadu\"",
+    "\"Project Xanadu\" outage August 25 2026",
+    "site:xanadu.com August 2026 \"Project Xanadu\"",
+    "site:xanadu.net \"08.25.26\" Xanadu",
+    "\"Project Xanadu\"",
+    "\"xanarama.net\" sale 2026",
+    "site:xanadu.net 2023 Xanadu",
+    "Ted Nelson August 2026 Xanadu"
+  ],
+  "tool_results": [
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    },
+    {
+      "tool": "web_search",
+      "summary": "Codex exec JSONL exposes the search action but not its result payload."
+    }
+  ],
+  "opened_urls": [
+    "https://en.wikipedia.org/wiki/Project_Xanadu",
+    "https://xanadu.com/",
+    "https://xanadu.com.au/ted/XU/XuPageKeio.html",
+    "https://web.archive.org/web/20151026021059/https%3A//www.wired.com/1995/06/xanadu/"
+  ],
+  "cited_urls": [
+    "https://en.wikipedia.org/wiki/Project_Xanadu",
+    "https://xanadu.com/",
+    "https://www.xanadu.net/",
+    "https://xanadu.com/xuDemoPage.html",
+    "https://www.xanadu.net/xuWeb.html",
+    "https://xanadu.com/xuspViewer.html",
+    "https://en.wikipedia.org/wiki/Project_Xanadu",
+    "https://xanadu.com/",
+    "https://xanadu.com/xuDemoPage.html",
+    "https://www.xanadu.net/xuWeb.html",
+    "https://en.wikipedia.org/wiki/Project_Xanadu",
+    "https://en.wikipedia.org/wiki/Project_Xanadu",
+    "https://web.archive.org/web/20151026021059/https://www.wired.com/1995/06/xanadu/",
+    "https://en.wikipedia.org/wiki/Project_Xanadu",
+    "https://xanadu.com/xuspViewer.html",
+    "https://www.xanadu.net/xuWeb.html",
+    "https://web.archive.org/web/20151026021059/https://www.wired.com/1995/06/xanadu/",
+    "https://xanadu.com/",
+    "https://web.archive.org/web/20151026021059/https://www.wired.com/1995/06/xanadu/",
+    "https://xanarama.net/"
+  ],
+  "selected_sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Project_Xanadu",
+      "title": "https://en.wikipedia.org/wiki/Project_Xanadu"
+    },
+    {
+      "url": "https://xanadu.com/",
+      "title": "https://xanadu.com/"
+    },
+    {
+      "url": "https://xanadu.com.au/ted/XU/XuPageKeio.html",
+      "title": "https://xanadu.com.au/ted/XU/XuPageKeio.html"
+    },
+    {
+      "url": "https://web.archive.org/web/20151026021059/https%3A//www.wired.com/1995/06/xanadu/",
+      "title": "https://web.archive.org/web/20151026021059/https%3A//www.wired.com/1995/06/xanadu/"
+    },
+    {
+      "url": "https://www.xanadu.net/",
+      "title": "https://www.xanadu.net/"
+    },
+    {
+      "url": "https://xanadu.com/xuDemoPage.html",
+      "title": "https://xanadu.com/xuDemoPage.html"
+    },
+    {
+      "url": "https://www.xanadu.net/xuWeb.html",
+      "title": "https://www.xanadu.net/xuWeb.html"
+    },
+    {
+      "url": "https://xanadu.com/xuspViewer.html",
+      "title": "https://xanadu.com/xuspViewer.html"
+    },
+    {
+      "url": "https://web.archive.org/web/20151026021059/https://www.wired.com/1995/06/xanadu/",
+      "title": "https://web.archive.org/web/20151026021059/https://www.wired.com/1995/06/xanadu/"
+    },
+    {
+      "url": "https://xanarama.net/",
+      "title": "https://xanarama.net/"
+    }
+  ],
+  "evidence_passages": [],
+  "final_answer": "Assuming your “last Tuesday” means **August 25, 2026** from the date context you supplied:\n\n**Short answer:** I could **not verify any specific public event affecting Project Xanadu on August 25, 2026**. The best-supported reading is that **nothing clearly documented happened that day**, at least in the official Xanadu web presence and readily findable web coverage I could verify.\n\n**Supported fact**\nProject Xanadu is an old hypertext project founded in 1960; an incomplete implementation was released in 1998, and OpenXanadu was made available in 2014.  \nSource: https://en.wikipedia.org/wiki/Project_Xanadu\n\n**Supported fact**\nThe current official Project Xanadu homepage is online and shows the page stamp `17.05.07`, which indicates very old front-page material rather than a fresh August 2026 update.  \nSource: https://xanadu.com/  \nAlso: https://www.xanadu.net/\n\n**Supported fact**\nA current official demo/instructions page is stamped `16.11.22` and says, “We do not have a product, but a preliminary capability.”  \nSource: https://xanadu.com/xuDemoPage.html\n\n**Supported fact**\nAnother current official page, “The NEW XANADU MODEL FOR THE WEB,” is dated `Jan 1, 2021` and says the new design “is now being written up.”  \nSource: https://www.xanadu.net/xuWeb.html\n\n**Supported fact**\nThe XanaduSpace page says that demo is a “stuck demo,” became “too tangled to improve further,” and that later attempts to refactor it were “beyond fixing.”  \nSource: https://xanadu.com/xuspViewer.html\n\n**Supported fact**\nWikipedia’s Project Xanadu page was last edited on **August 13, 2026**, not August 25, 2026.  \nSource: https://en.wikipedia.org/wiki/Project_Xanadu\n\n**Inference**\nGiven those currently available dated pages, I found **no good evidence of a distinct, publicly documented event on August 25, 2026**. What seems to have “happened” to Project Xanadu is not a Tuesday-specific incident, but continued **public stagnation / very low visible activity**.  \nSources informing this inference: https://xanadu.com/ , https://xanadu.com/xuDemoPage.html , https://www.xanadu.net/xuWeb.html , https://en.wikipedia.org/wiki/Project_Xanadu\n\n**Supported fact**\nHistorically, major reasons for Xanadu’s long failure to ship were a rewrite from C into Smalltalk, a missed Autodesk deadline, Autodesk’s 1992 divestment, and later internal conflict and lack of investment.  \nSource: https://en.wikipedia.org/wiki/Project_Xanadu  \nCorroborating historical framing: https://web.archive.org/web/20151026021059/https://www.wired.com/1995/06/xanadu/\n\n**Inference**\nSo if you are asking **why** Project Xanadu appears to be in its present state, the strongest evidence points to **long-term execution problems, rewrites, organizational turmoil, underinvestment, and demos that proved hard to evolve**, not to a single event last Tuesday.  \nSources informing this inference: https://en.wikipedia.org/wiki/Project_Xanadu , https://xanadu.com/xuspViewer.html , https://www.xanadu.net/xuWeb.html , https://web.archive.org/web/20151026021059/https://www.wired.com/1995/06/xanadu/\n\n**Disagreement**\nThe official site presents Project Xanadu as still alive and fighting on (“WE FIGHT ON”).  \nSource: https://xanadu.com/\n\n**Disagreement**\nWired historically described Xanadu as “the longest-running vaporware project in the history of computing.”  \nSource: https://web.archive.org/web/20151026021059/https://www.wired.com/1995/06/xanadu/\n\n**Uncertainty**\nA Xanadu-related site, `xanarama.net`, currently redirects to a GoDaddy for-sale page, but I could not verify **when** that happened or whether it is relevant to August 25, 2026 specifically.  \nSource URL opened: https://xanarama.net/\n\n**Bottom line**\nThere is **no solid web evidence I could verify that Project Xanadu had a specific, reportable event on Tuesday, August 25, 2026**. The evidence supports a narrower answer: **Project Xanadu is still online, but its public web presence looks mostly old, sparse, and partially stalled, for long-running structural reasons rather than a clearly documented event last Tuesday.**",
+  "cli_version": "codex-cli 0.149.1",
+  "locale": "en-US",
+  "started_at": "2026-08-28T15:12:31.801Z",
+  "duration_ms": 129116,
+  "prompt_sha256": "e2907a7ed545cd06f3a3a1a8da19afbd5a21cd002bd1ce2962b2b33eacf3c195",
+  "raw_trace": "events.sanitized.jsonl",
+  "policy_evidence": "policy.json",
+  "isolation": {
+    "temporary_cwd": true,
+    "cwd_unchanged": true,
+    "forbidden_tool_calls": []
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "is_error": false,
+  "duration_api_ms": 61670,
+  "num_turns": 2,
+  "stop_reason": "tool_use",
+  "session_id": "[REDACTED]",
+  "total_cost_usd": 0.45689850000000004,
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 32479,
+    "cache_read_input_tokens": 917,
+    "output_tokens": 4365,
+    "output_tokens_details": {
+      "thinking_tokens": 2503
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 32479,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 4365,
+        "cache_read_input_tokens": 917,
+        "cache_creation_input_tokens": 32479,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 32479
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 22420,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.022515,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 4365,
+      "cacheReadInputTokens": 917,
+      "cacheCreationInputTokens": 32479,
+      "webSearchRequests": 0,
+      "costUSD": 0.43438350000000003,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"accepted_claim_ids\":[\"claim_1\",\"claim_2\",\"claim_5\",\"claim_7\"],\"rejected_claims\":[{\"id\":\"claim_3\",\"reason\":\"Le décompte « 590 of 784 » et le spoofing ciblé User-Agent/sec-ch-ua ne figurent que dans la final_answer auto-citée de Codex, dont la trace n'a ouvert aucune URL (opened_urls vide, tool_results sans payload). Le fetch indépendant de arxiv.org/pdf/2606.14525 côté Claude corrobore seulement le ~75 % de blocages headless imputables aux en-têtes HTTP, pas ces effectifs. Un des patterns acceptables valide directement des chiffres invérifiables.\"},{\"id\":\"claim_4\",\"reason\":\"Les valeurs « 2,730 of 7,944 », 34 % et « Tier-1 automation honeypots ... 46% » proviennent uniquement du texte généré par Codex, sans page récupérée. Le seul élément corroboré indépendamment est qualitatif (le probing JS est plus fréquent que le blocage effectif), ce qui ne soutient pas ces chiffres précis.\"},{\"id\":\"claim_6\",\"reason\":\"Aucune des limitations citées (datacenter européen unique, instant unique, Tranco Top 10K, seuls blocages explicites 403/429/503, absence de baseline de navigation humaine) n'apparaît dans les fetchs réels de 2606.14525 présents dans les traces ; elles ne reposent que sur l'auto-citation Codex. Détails de périmètre non vérifiables donc non fiables pour une notation lexicale.\"}]}",
+  "structured_output": {
+    "accepted_claim_ids": ["claim_1", "claim_2", "claim_5", "claim_7"],
+    "rejected_claims": [
+      {
+        "id": "claim_3",
+        "reason": "Le décompte « 590 of 784 » et le spoofing ciblé User-Agent/sec-ch-ua ne figurent que dans la final_answer auto-citée de Codex, dont la trace n'a ouvert aucune URL (opened_urls vide, tool_results sans payload). Le fetch indépendant de arxiv.org/pdf/2606.14525 côté Claude corrobore seulement le ~75 % de blocages headless imputables aux en-têtes HTTP, pas ces effectifs. Un des patterns acceptables valide directement des chiffres invérifiables."
+      },
+      {
+        "id": "claim_4",
+        "reason": "Les valeurs « 2,730 of 7,944 », 34 % et « Tier-1 automation honeypots ... 46% » proviennent uniquement du texte généré par Codex, sans page récupérée. Le seul élément corroboré indépendamment est qualitatif (le probing JS est plus fréquent que le blocage effectif), ce qui ne soutient pas ces chiffres précis."
+      },
+      {
+        "id": "claim_6",
+        "reason": "Aucune des limitations citées (datacenter européen unique, instant unique, Tranco Top 10K, seuls blocages explicites 403/429/503, absence de baseline de navigation humaine) n'apparaît dans les fetchs réels de 2606.14525 présents dans les traces ; elles ne reposent que sur l'auto-citation Codex. Détails de périmètre non vérifiables donc non fiables pour une notation lexicale."
+      }
+    ]
+  },
+  "ttft_ms": 35666,
+  "ttft_stream_ms": 1575,
+  "time_to_request_ms": 17,
+  "type": "result",
+  "duration_ms": 59994,
+  "uuid": "[REDACTED]",
+  "queued_turn_count": 0
+}
