@@ -11,11 +11,11 @@ test("CACHE-002 enables WAL and persists versioned migrations idempotently", asy
   const first = await openStorage({ workspace: path });
   expect(first.journalMode()).toBe("wal");
   expect(first.advancedLocalSearch.advancedLocalSearch).toBe("enabled");
-  expect(first.migrationVersions()).toEqual([1]);
+  expect(first.migrationVersions()).toEqual([1, 2]);
   first.close();
 
   const second = await openStorage({ workspace: path });
-  expect(second.migrationVersions()).toEqual([1]);
+  expect(second.migrationVersions()).toEqual([1, 2]);
   second.close();
 });
 
@@ -26,7 +26,7 @@ test("CACHE-002 recovers after an interrupted forward-only migration", async () 
   );
 
   const storage = await openStorage({ workspace: path });
-  expect(storage.migrationVersions()).toEqual([1]);
+  expect(storage.migrationVersions()).toEqual([1, 2]);
   storage.close();
 });
 

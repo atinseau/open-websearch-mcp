@@ -104,4 +104,15 @@ const migrations = [
       CREATE TABLE consumed_pages (investigation_id TEXT NOT NULL REFERENCES investigations(id), canonical_url TEXT NOT NULL, consumed_at TEXT NOT NULL, PRIMARY KEY(investigation_id, canonical_url));
     `,
   },
+  {
+    version: 2,
+    sql: `
+      ALTER TABLE cache_entries ADD COLUMN content_class TEXT NOT NULL DEFAULT 'general';
+      ALTER TABLE cache_entries ADD COLUMN body_kind TEXT NOT NULL DEFAULT 'rendered';
+      ALTER TABLE cache_entries ADD COLUMN byte_length INTEGER NOT NULL DEFAULT 0;
+      ALTER TABLE cache_entries ADD COLUMN last_accessed_at TEXT NOT NULL DEFAULT '';
+      ALTER TABLE cache_entries ADD COLUMN pinned INTEGER NOT NULL DEFAULT 0;
+      CREATE INDEX cache_entries_lru ON cache_entries(pinned, body_kind, last_accessed_at);
+    `,
+  },
 ] as const;
