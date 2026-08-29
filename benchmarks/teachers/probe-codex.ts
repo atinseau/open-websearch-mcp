@@ -1,91 +1,129 @@
-import { array, extractedWebUrls, record } from "./contract-json.ts";
+import { extractedWebUrls, record } from "./contract-json.ts";
 import {
-  claudeAllowedTools,
-  claudeAssistantContentTypes,
-  claudeEventTypes,
-  claudeForbiddenInvocationTypes,
-  claudeSystemSubtypes,
   codexEventTypes,
   codexForbiddenTypes,
   codexItemTypes,
-  type ClaudeInspection,
-  type ClaudeToolCall,
   type CodexInspection,
 } from "./probe-shared.ts";
 
-export function inspectCodexProbe(events: unknown[]): CodexInspection {
-  const forbidden = new Set<string>();
-  const cited = new Set<string>();
-  let searches = 0;
-  let completed = 0;
-  let policyError = false;
+type CodexProbeState = {
+  forbidden: Set<string>;
+  cited: Set<string>;
+  searches: number;
+  completed: number;
+  policyError: boolean;
+};
 
-  for (const candidate of events) {
-    try {
-      const event = record(candidate, "Codex event");
-      inspectNestedCodexItems(event, forbidden);
-      const eventType = typeof event.type === "string" ? event.type : "unknown";
-      if (!codexEventTypes.has(eventType)) forbidden.add(`event:${eventType}`);
-      if (eventType === "error" && /hook|bypass/i.test(String(event.message))) policyError = true;
-      if (eventType === "turn.completed") completed += 1;
-      if (eventType !== "item.completed" && eventType !== "item.started") continue;
-      const result = inspectCodexItem(
-        record(event.item, "Codex item"),
-        forbidden,
-        cited,
-        eventType === "item.completed",
-      );
-      searches += result.searches;
-      policyError ||= result.policyError;
-    } catch {
-      forbidden.add("event:malformed");
-    }
-  }
-
+function createCodexProbeState(): CodexProbeState {
   return {
-    accepted:
-      completed === 1 && searches > 0 && cited.size > 0 && forbidden.size === 0 && !policyError,
-    searches,
-    forbidden_tool_calls: [...forbidden],
-    cited_urls: [...cited],
+    forbidden: new Set<string>(),
+    cited: new Set<string>(),
+    searches: 0,
+    completed: 0,
+    policyError: false,
   };
 }
 
-export function inspectLegacyCodexProbe(events: unknown[]): CodexInspection {
-  const forbiddenTypes = new Set([
-    "command_execution",
-    "file_change",
-    "mcp_tool_call",
-    "collab_tool_call",
-  ]);
-  const forbidden = new Set<string>();
-  const cited = new Set<string>();
-  let searches = 0;
-  let completed = false;
-  let policyError = false;
+function collectCodexEvent(event: Record<string, unknown>, state: CodexProbeState): void {
+  inspectNestedCodexItems(event, state.forbidden);
+  const eventType = typeof event.type === "string" ? event.type : "unknown";
+  if (!codexEventTypes.has(eventType)) state.forbidden.add(`event:${eventType}`);
+  if (eventType === "error") state.policyError ||= /hook|bypass/i.test(String(event.message));
+  if (eventType === "turn.completed") state.completed += 1;
+  if (eventType === "item.completed" || eventType === "item.started")
+    collectCodexItemEvent(event, eventType, state);
+}
+
+function collectCodexItemEvent(
+  event: Record<string, unknown>,
+  eventType: string,
+  state: CodexProbeState,
+): void {
+  const result = inspectCodexItem(
+    record(event.item, "Codex item"),
+    state.forbidden,
+    state.cited,
+    eventType === "item.completed",
+  );
+  state.searches += result.searches;
+  state.policyError ||= result.policyError;
+}
+
+export function inspectCodexProbe(events: unknown[]): CodexInspection {
+  const state = createCodexProbeState();
   for (const candidate of events) {
-    const event = record(candidate, "legacy Codex event");
-    if (event.type === "turn.completed") completed = true;
-    if (event.type !== "item.completed") continue;
-    const item = record(event.item, "legacy Codex item");
-    const type = typeof item.type === "string" ? item.type : "unknown";
-    if (forbiddenTypes.has(type)) forbidden.add(type);
-    if (type === "error" && /hook|bypass/i.test(String(item.message))) policyError = true;
-    if (type === "web_search") {
-      const action = record(item.action, "legacy Codex Web Search action");
-      if (action.type === "search" && typeof item.query === "string" && item.query.length > 0) {
-        searches += 1;
-      }
-    }
-    if (type === "agent_message" && typeof item.text === "string") {
-      for (const url of extractedWebUrls(item.text)) cited.add(url);
+    try {
+      const event = record(candidate, "Codex event");
+      collectCodexEvent(event, state);
+    } catch {
+      state.forbidden.add("event:malformed");
     }
   }
   return {
-    accepted: completed && searches > 0 && cited.size > 0 && forbidden.size === 0 && !policyError,
-    searches,
-    forbidden_tool_calls: [...forbidden],
-    cited_urls: [...cited],
+    accepted:
+      state.completed === 1 &&
+      state.searches > 0 &&
+      state.cited.size > 0 &&
+      state.forbidden.size === 0 &&
+      !state.policyError,
+    searches: state.searches,
+    forbidden_tool_calls: [...state.forbidden],
+    cited_urls: [...state.cited],
+  };
+}
+
+type LegacyCodexProbeState = Omit<CodexProbeState, "completed"> & { completed: boolean };
+
+function createLegacyCodexProbeState(): LegacyCodexProbeState {
+  return {
+    forbidden: new Set<string>(),
+    cited: new Set<string>(),
+    searches: 0,
+    completed: false,
+    policyError: false,
+  };
+}
+
+const legacyForbiddenTypes = new Set([
+  "command_execution",
+  "file_change",
+  "mcp_tool_call",
+  "collab_tool_call",
+]);
+
+function collectLegacyCodexEvent(
+  event: Record<string, unknown>,
+  state: LegacyCodexProbeState,
+): void {
+  if (event.type === "turn.completed") state.completed = true;
+  if (event.type === "item.completed")
+    collectLegacyCodexItem(record(event.item, "legacy Codex item"), state);
+}
+
+function collectLegacyCodexItem(item: Record<string, unknown>, state: LegacyCodexProbeState): void {
+  const type = typeof item.type === "string" ? item.type : "unknown";
+  if (legacyForbiddenTypes.has(type)) state.forbidden.add(type);
+  if (type === "error") state.policyError ||= /hook|bypass/i.test(String(item.message));
+  if (type === "web_search") state.searches += codexSearchCount(item);
+  if (type === "agent_message") collectCodexCitations(item, state.cited);
+}
+
+export function inspectLegacyCodexProbe(events: unknown[]): CodexInspection {
+  const state = createLegacyCodexProbeState();
+  for (const candidate of events) {
+    const event = record(candidate, "legacy Codex event");
+    collectLegacyCodexEvent(event, state);
+  }
+  return {
+    accepted:
+      state.completed &&
+      state.searches > 0 &&
+      state.cited.size > 0 &&
+      state.forbidden.size === 0 &&
+      !state.policyError,
+    searches: state.searches,
+    forbidden_tool_calls: [...state.forbidden],
+    cited_urls: [...state.cited],
   };
 }
 

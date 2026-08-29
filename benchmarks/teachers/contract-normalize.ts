@@ -130,27 +130,33 @@ function collectClaudeToolResult(value: unknown, state: NormalizationState): voi
 
 function collectSources(value: unknown, state: NormalizationState): void {
   if (Array.isArray(value)) {
-    for (const item of value) {
-      if (typeof item === "string") {
-        if (item.length > 0)
-          state.toolResults.push({ tool: "WebSearch", summary: item.slice(0, 500) });
-      } else {
-        collectSources(item, state);
-      }
-    }
+    for (const item of value) collectSourceItem(item, state);
     return;
   }
   if (typeof value !== "object" || value === null) return;
   const candidate = record(value, "Claude source result");
-  if (typeof candidate.url === "string") {
-    const title = typeof candidate.title === "string" ? candidate.title : candidate.url;
-    state.sourceTitles.set(candidate.url, title);
-    state.toolResults.push({ tool: "WebSearch", summary: `${title}: ${candidate.url}` });
+  if (collectSourceRecord(candidate, state)) return;
+  for (const child of Object.values(candidate)) collectNestedSource(child, state);
+}
+
+function collectSourceItem(item: unknown, state: NormalizationState): void {
+  if (typeof item === "string") {
+    if (item.length > 0) state.toolResults.push({ tool: "WebSearch", summary: item.slice(0, 500) });
     return;
   }
-  for (const child of Object.values(candidate)) {
-    if (typeof child === "object" && child !== null) collectSources(child, state);
-  }
+  collectSources(item, state);
+}
+
+function collectSourceRecord(candidate: JsonRecord, state: NormalizationState): boolean {
+  if (typeof candidate.url !== "string") return false;
+  const title = typeof candidate.title === "string" ? candidate.title : candidate.url;
+  state.sourceTitles.set(candidate.url, title);
+  state.toolResults.push({ tool: "WebSearch", summary: `${title}: ${candidate.url}` });
+  return true;
+}
+
+function collectNestedSource(value: unknown, state: NormalizationState): void {
+  if (typeof value === "object" && value !== null) collectSources(value, state);
 }
 
 function finishNormalization(state: NormalizationState): NormalizedRun {
