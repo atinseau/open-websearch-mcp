@@ -174,16 +174,12 @@ test("audits the immutable 20-case teacher corpus", async () => {
   });
 });
 
-test(
-  "audits the historical corpus created before input snapshots",
-  async () => {
-    expect(await auditTeacherCorpus(import.meta.dir, "2026-08-27")).toMatchObject({
-      eligibility: "historical",
-      cases: 20,
-      runs: 40,
-      fixtures: 20,
-      artifacts: 740,
-    });
-  },
-  30_000,
-);
+test("audits the historical corpus created before input snapshots", async () => {
+  expect(await auditTeacherCorpus(import.meta.dir, "2026-08-27")).toMatchObject({
+    eligibility: "historical",
+    cases: 20,
+    runs: 40,
+    fixtures: 20,
+    artifacts: 740,
+  });
+}, 30_000);

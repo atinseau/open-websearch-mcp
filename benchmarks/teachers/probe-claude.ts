@@ -130,11 +130,18 @@ type LegacyClaudeState = Pick<
 >;
 
 function createLegacyClaudeState(): LegacyClaudeState {
-  return { calls: [], forbidden: new Set<string>(), initAccepted: false, successfulResult: false, authenticationFailed: false };
+  return {
+    calls: [],
+    forbidden: new Set<string>(),
+    initAccepted: false,
+    successfulResult: false,
+    authenticationFailed: false,
+  };
 }
 
 function collectLegacyClaudeEvent(event: Record<string, unknown>, state: LegacyClaudeState): void {
-  if (event.type === "system" && event.subtype === "init") state.initAccepted = legacyInitAccepted(event);
+  if (event.type === "system" && event.subtype === "init")
+    state.initAccepted = legacyInitAccepted(event);
   if (event.type === "assistant") collectLegacyCalls(event, state.calls, state.forbidden);
   collectClaudeHook(event, state.forbidden);
   if (event.type === "result") collectLegacyClaudeResult(event, state);
@@ -146,7 +153,12 @@ function collectLegacyClaudeResult(event: Record<string, unknown>, state: Legacy
 }
 
 function legacyClaudeAccepted(state: LegacyClaudeState): boolean {
-  return state.initAccepted && state.successfulResult && state.calls.length > 0 && state.forbidden.size === 0;
+  return (
+    state.initAccepted &&
+    state.successfulResult &&
+    state.calls.length > 0 &&
+    state.forbidden.size === 0
+  );
 }
 
 /** The sealed refresh proved isolation through its init event alone. */
@@ -243,7 +255,10 @@ function collectClaudeCalls(
 }
 
 function collectClaudeContent(
-  content: Record<string, unknown>, calls: string[], forbidden: Set<string>, toolIds: Map<string, ClaudeToolCall>,
+  content: Record<string, unknown>,
+  calls: string[],
+  forbidden: Set<string>,
+  toolIds: Map<string, ClaudeToolCall>,
 ): number {
   if (typeof content.type !== "string" || !claudeAssistantContentTypes.has(content.type)) {
     forbidden.add(`assistant-content:${String(content.type)}`);
@@ -254,7 +269,10 @@ function collectClaudeContent(
 }
 
 function collectClaudeToolUse(
-  content: Record<string, unknown>, calls: string[], forbidden: Set<string>, toolIds: Map<string, ClaudeToolCall>,
+  content: Record<string, unknown>,
+  calls: string[],
+  forbidden: Set<string>,
+  toolIds: Map<string, ClaudeToolCall>,
 ): number {
   if (typeof content.name !== "string") {
     forbidden.add("tool_use:missing-name");
@@ -266,13 +284,20 @@ function collectClaudeToolUse(
   return validClaudeSearch(content);
 }
 
-function collectClaudeToolId(content: Record<string, unknown>, toolIds: Map<string, ClaudeToolCall>, forbidden: Set<string>): void {
+function collectClaudeToolId(
+  content: Record<string, unknown>,
+  toolIds: Map<string, ClaudeToolCall>,
+  forbidden: Set<string>,
+): void {
   if (typeof content.id !== "string" || content.id.length === 0) {
     forbidden.add(`${content.name}:missing-id`);
     return;
   }
   if (toolIds.has(content.id)) forbidden.add(`tool_use:duplicate-id:${content.id}`);
-  toolIds.set(content.id, { name: content.name as string, input: record(content.input, `Claude ${content.name} input`) });
+  toolIds.set(content.id, {
+    name: content.name as string,
+    input: record(content.input, `Claude ${content.name} input`),
+  });
 }
 
 function validClaudeSearch(content: Record<string, unknown>): number {
@@ -374,10 +399,7 @@ function inspectNestedToolUses(value: unknown, forbidden: Set<string>): void {
 }
 
 /** Flags any nested invocation the teacher policy did not permit. */
-function recordForbiddenInvocation(
-  object: Record<string, unknown>,
-  forbidden: Set<string>,
-): void {
+function recordForbiddenInvocation(object: Record<string, unknown>, forbidden: Set<string>): void {
   recordForbiddenType(object, forbidden);
   recordForbiddenProgress(object, forbidden);
   recordForbiddenToolUse(object, forbidden);

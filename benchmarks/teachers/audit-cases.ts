@@ -263,17 +263,34 @@ function assertPolicyMetadata(
   assertPolicyIsolation(context, teacherCase.id, provider, policy);
 }
 
-function assertPolicyIdentity(policy: JsonRecord, run: JsonRecord, caseId: string, provider: "codex" | "claude"): void {
-  if (policy.provider !== provider || policy.cli_version !== run.cli_version) throw new Error(`${caseId}/${provider} has mismatched policy metadata`);
-  if (policy.started_at !== run.started_at || policy.duration_ms !== run.duration_ms) throw new Error(`${caseId}/${provider} has mismatched policy timing`);
+function assertPolicyIdentity(
+  policy: JsonRecord,
+  run: JsonRecord,
+  caseId: string,
+  provider: "codex" | "claude",
+): void {
+  if (policy.provider !== provider || policy.cli_version !== run.cli_version)
+    throw new Error(`${caseId}/${provider} has mismatched policy metadata`);
+  if (policy.started_at !== run.started_at || policy.duration_ms !== run.duration_ms)
+    throw new Error(`${caseId}/${provider} has mismatched policy timing`);
 }
 
-function assertPolicyProcess(policy: JsonRecord, caseId: string, provider: "codex" | "claude"): void {
+function assertPolicyProcess(
+  policy: JsonRecord,
+  caseId: string,
+  provider: "codex" | "claude",
+): void {
   const process = record(policy.process, "teacher policy process");
-  if (process.exit_code !== 0 || process.failure !== undefined) throw new Error(`${caseId}/${provider} teacher process did not exit successfully`);
+  if (process.exit_code !== 0 || process.failure !== undefined)
+    throw new Error(`${caseId}/${provider} teacher process did not exit successfully`);
 }
 
-function assertPolicyIsolation(context: AuditContext, caseId: string, provider: "codex" | "claude", policy: JsonRecord): void {
+function assertPolicyIsolation(
+  context: AuditContext,
+  caseId: string,
+  provider: "codex" | "claude",
+  policy: JsonRecord,
+): void {
   const controls = record(policy.controls, "teacher policy controls");
   const isolated = controls.isolated_temporary_cwd === true && controls.cwd_unchanged === true;
   const disabled =
@@ -284,9 +301,7 @@ function assertPolicyIsolation(context: AuditContext, caseId: string, provider: 
     throw new Error(`${caseId} has a non-Codex teacher run in a current refresh`);
   }
   if (!isolated || !disabled || !settingsDisabled) {
-    throw new Error(
-      `${caseId}/${provider} has incomplete isolation evidence in ${context.date}`,
-    );
+    throw new Error(`${caseId}/${provider} has incomplete isolation evidence in ${context.date}`);
   }
 }
 

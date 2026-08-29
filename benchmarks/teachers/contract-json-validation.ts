@@ -22,7 +22,8 @@ export function exactRecord(value: unknown, label: string, keys: readonly string
 }
 
 export function requiredString(value: unknown, label: string): string {
-  if (typeof value !== "string" || value.length === 0) throw new Error(`${label} must not be empty`);
+  if (typeof value !== "string" || value.length === 0)
+    throw new Error(`${label} must not be empty`);
   return value;
 }
 
@@ -35,9 +36,13 @@ export function array(value: unknown, label: string, allowEmpty = false): unknow
 
 export function requiredDate(value: unknown, label: string, includeTime = false): string {
   const candidate = requiredString(value, label);
-  const pattern = includeTime ? /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$/ : /^\d{4}-\d{2}-\d{2}$/;
+  const pattern = includeTime
+    ? /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$/
+    : /^\d{4}-\d{2}-\d{2}$/;
   const parsed = Date.parse(candidate);
-  const roundTrip = Number.isNaN(parsed) ? "" : new Date(parsed).toISOString().slice(0, includeTime ? 19 : 10);
+  const roundTrip = Number.isNaN(parsed)
+    ? ""
+    : new Date(parsed).toISOString().slice(0, includeTime ? 19 : 10);
   if (!pattern.test(candidate) || roundTrip !== candidate.slice(0, includeTime ? 19 : 10)) {
     throw new Error(`${label} must be a valid ${includeTime ? "date-time" : "date"}`);
   }

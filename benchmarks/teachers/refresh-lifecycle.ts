@@ -117,18 +117,28 @@ async function clearRecoveryLock(recovery: string, lock: string): Promise<void> 
 }
 
 async function readContendedOwner(lock: string): Promise<LockOwner> {
-  try { return lockOwner(await Bun.file(lock).json()); }
-  catch { throw new Error(`refresh is busy: unreadable lock ${lock}`); }
+  try {
+    return lockOwner(await Bun.file(lock).json());
+  } catch {
+    throw new Error(`refresh is busy: unreadable lock ${lock}`);
+  }
 }
 
-async function recoverAbandonedLock(lock: string, recovery: string, owner: LockOwner, currentOwner: LockOwner): Promise<boolean> {
+async function recoverAbandonedLock(
+  lock: string,
+  recovery: string,
+  owner: LockOwner,
+  currentOwner: LockOwner,
+): Promise<boolean> {
   if (!(await linkOwner(owner, recovery))) return false;
   try {
     const latestOwner = lockOwner(await Bun.file(lock).json());
     if (latestOwner.token !== currentOwner.token) return false;
     await remove(lock);
     return linkOwner(owner, lock);
-  } finally { await remove(recovery); }
+  } finally {
+    await remove(recovery);
+  }
 }
 
 async function releaseLock(lock: string, owner: LockOwner): Promise<void> {

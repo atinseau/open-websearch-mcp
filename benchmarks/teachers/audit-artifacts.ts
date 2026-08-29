@@ -61,11 +61,19 @@ export function assertSanitized(
   assertSanitizedObject(value, label, sensitiveContainer, sensitiveKey);
 }
 
-function assertRedactedScalar(value: unknown, label: string, key: string | undefined, sensitiveContainer: boolean, sensitiveKey: boolean): void {
+function assertRedactedScalar(
+  value: unknown,
+  label: string,
+  key: string | undefined,
+  sensitiveContainer: boolean,
+  sensitiveKey: boolean,
+): void {
   if (typeof value === "object" && value !== null && !Array.isArray(value)) return;
   if (value === "[REDACTED]") return;
-  if (sensitiveKey) throw new Error(`${label}.${key} contains unsanitized identity or credential data`);
-  if (sensitiveContainer && key !== undefined && !isSafeSensitiveMetadataKey(key)) throw new Error(`${label}.${key} contains data inside a sensitive object`);
+  if (sensitiveKey)
+    throw new Error(`${label}.${key} contains unsanitized identity or credential data`);
+  if (sensitiveContainer && key !== undefined && !isSafeSensitiveMetadataKey(key))
+    throw new Error(`${label}.${key} contains data inside a sensitive object`);
 }
 
 function assertSanitizedString(value: string, label: string): void {
@@ -73,10 +81,17 @@ function assertSanitizedString(value: string, label: string): void {
 }
 
 function assertSanitizedArray(value: unknown[], label: string, sensitiveContainer: boolean): void {
-  value.forEach((item, index) => assertSanitized(item, `${label}[${index}]`, undefined, sensitiveContainer));
+  value.forEach((item, index) =>
+    assertSanitized(item, `${label}[${index}]`, undefined, sensitiveContainer),
+  );
 }
 
-function assertSanitizedObject(value: object, label: string, sensitiveContainer: boolean, sensitiveKey: boolean): void {
+function assertSanitizedObject(
+  value: object,
+  label: string,
+  sensitiveContainer: boolean,
+  sensitiveKey: boolean,
+): void {
   for (const [entryKey, entryValue] of Object.entries(value)) {
     if (hasUnsanitizedString(entryKey)) throw new Error(`${label} contains an unsanitized key`);
     assertSanitized(
@@ -203,15 +218,25 @@ function priorRefreshDates(datedMetadata: Map<string, JsonRecord>, date: string)
   return priorDates;
 }
 
-function assertInitialRefresh(metadata: RefreshMetadata, datedMetadata: Map<string, JsonRecord>, priorDates: string[]): void {
-  const initialDates = [...datedMetadata].filter(([date, other]) => date !== metadata.date && other.trigger === "initial").map(([date]) => date).sort();
-  if (metadata.trigger === "initial" && initialDates.length > 0) throw new Error(`initial refresh trigger already used by ${initialDates[0]}`);
+function assertInitialRefresh(
+  metadata: RefreshMetadata,
+  datedMetadata: Map<string, JsonRecord>,
+  priorDates: string[],
+): void {
+  const initialDates = [...datedMetadata]
+    .filter(([date, other]) => date !== metadata.date && other.trigger === "initial")
+    .map(([date]) => date)
+    .sort();
+  if (metadata.trigger === "initial" && initialDates.length > 0)
+    throw new Error(`initial refresh trigger already used by ${initialDates[0]}`);
   const priorDate = priorDates.at(-1);
   if (priorDate === undefined) {
-    if (metadata.trigger !== "initial") throw new Error("the first teacher refresh must use the initial trigger");
+    if (metadata.trigger !== "initial")
+      throw new Error("the first teacher refresh must use the initial trigger");
     return;
   }
-  if (metadata.trigger === "initial") throw new Error(`initial refresh trigger cannot follow ${priorDate}`);
+  if (metadata.trigger === "initial")
+    throw new Error(`initial refresh trigger cannot follow ${priorDate}`);
 }
 
 function assertMonthlyCadence(metadata: RefreshMetadata, priorDates: string[]): void {
