@@ -150,26 +150,37 @@ async function executeCheck(
   };
 }
 
+type ControllerStepContext = {
+  repository: string;
+  rootState: OrchestrationState;
+  state: OrchestrationState;
+};
+
+async function establishRootContext(options: ControllerOptions): Promise<ControllerStepContext> {
+  const repository = options.repository.replace(/\/$/u, "");
+  const branch = await run(["git", "branch", "--show-current"], repository);
+  if (branch !== "main") throw new Error(`Controller root must be factual main, found ${branch}`);
+  if (await run(["git", "status", "--porcelain"], repository)) {
+    throw new Error("Controller root main must be clean");
+  }
+  const rootState = await validateRepository(repository);
+  const model = rootState.environment.controller_model;
+  if (model !== "selected-at-runtime" && model !== options.model) {
+    throw new Error(`Controller model is fixed to ${String(model)}`);
+  }
+  const variant = rootState.environment.controller_variant ?? "default";
+  if (typeof variant !== "string") throw new Error("Controller variant must be a string");
+  if (model !== "selected-at-runtime" && variant !== (options.variant ?? "default")) {
+    throw new Error(`Controller variant is fixed to ${variant}`);
+  }
+  return { repository, rootState, state: rootState };
+}
+
 async function runControllerStep(
   options: ControllerOptions,
   forceFreshSession = false,
 ): Promise<OpenCodeStepResult> {
-  const repository = options.repository.replace(/\/$/u, "");
-  const rootBranch = await run(["git", "branch", "--show-current"], repository);
-  if (rootBranch !== "main")
-    throw new Error(`Controller root must be factual main, found ${rootBranch}`);
-  const rootDirty = await run(["git", "status", "--porcelain"], repository);
-  if (rootDirty) throw new Error("Controller root main must be clean");
-  const rootState = await validateRepository(repository);
-  const rootModel = rootState.environment.controller_model;
-  if (rootModel !== "selected-at-runtime" && rootModel !== options.model) {
-    throw new Error(`Controller model is fixed to ${String(rootModel)}`);
-  }
-  const rootVariant = rootState.environment.controller_variant ?? "default";
-  if (typeof rootVariant !== "string") throw new Error("Controller variant must be a string");
-  if (rootModel !== "selected-at-runtime" && rootVariant !== (options.variant ?? "default")) {
-    throw new Error(`Controller variant is fixed to ${rootVariant}`);
-  }
+  const { repository, rootState } = await establishRootContext(options);
   const records = (await run(["git", "worktree", "list", "--porcelain"], repository))
     .split("\n\n")
     .map((record) =>
