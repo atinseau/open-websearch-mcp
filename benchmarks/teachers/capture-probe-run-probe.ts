@@ -1,12 +1,10 @@
-import { inspectCodexProbe, sanitizeJsonl } from "./contract.ts";
+import { inspectCodexProbe } from "./contract.ts";
 import { probePolicyDocument } from "./capture-probe-policy.ts";
 import { executeProbe } from "./capture-probe-execute.ts";
 import { scheduleRejectedArchive } from "./capture-probe-rejected.ts";
 import { decodeProbeOutput } from "./capture-probe-decode.ts";
-import { buildTeacherRun } from "./capture-probe-run.ts";
+import { assembleAcceptedRun } from "./capture-probe-assemble.ts";
 import type { ProbePlan } from "./capture-probe-plan.ts";
-import { withRefreshMutation } from "./refresh-lifecycle.ts";
-import { failureOutput, writeCaptureArtifacts } from "./capture-probe-publication.ts";
 
 type CaptureInspection = ReturnType<typeof inspectCodexProbe>;
 
@@ -34,7 +32,7 @@ export async function runPlannedProbe(input: {
   const { plan, provider, date, schedulePublication } = input;
   const { root, target, teacherCase, cliVersion } = plan;
   const { stdout, prompt: commonPrompt, observation } = await executeProbe({ plan, provider });
-  const { startedAt, durationMs, cwdContents, exitCode, paths, processFailure } = observation;
+  const { startedAt, exitCode, processFailure } = observation;
   const { sanitizedEvents, events, inspection } = decodeProbeOutput({
     stdout,
     observation,
@@ -45,39 +43,22 @@ export async function runPlannedProbe(input: {
   });
   const accepted = inspection.accepted && exitCode === 0 && processFailure === undefined;
   const policy = probePolicyDocument(observation, { inspection });
-  let run: unknown;
-  try {
-    if (teacherCase !== undefined && accepted) {
-      run = buildTeacherRun({
-        teacherCase,
-        provider,
-        events,
-        date,
-        cliVersion,
-        startedAt,
-        durationMs,
-        prompt: commonPrompt,
-        cwdUnchanged: cwdContents.length === 0,
-        forbiddenToolCalls: inspection.forbidden_tool_calls,
-      });
-    }
-  } catch (error) {
-    const failure = JSON.parse(
-      sanitizeJsonl(
-        JSON.stringify({
-          failure: error instanceof Error ? error.message : String(error),
-        }),
-        paths,
-      ),
-    ).failure;
-    const archivedOutput = failureOutput(target, startedAt);
-    schedulePublication(async () => {
-      await withRefreshMutation(root, date, async () => {
-        await writeCaptureArtifacts(archivedOutput, sanitizedEvents, { ...policy, failure });
-      });
-    });
-    throw error;
-  }
+  const run = assembleAcceptedRun({
+    teacherCase,
+    accepted,
+    provider,
+    events,
+    date,
+    observation,
+    cliVersion,
+    prompt: commonPrompt,
+    inspection,
+    policy,
+    sanitizedEvents,
+    target,
+    root,
+    schedulePublication,
+  });
 
   if (!accepted) {
     scheduleRejectedArchive({
