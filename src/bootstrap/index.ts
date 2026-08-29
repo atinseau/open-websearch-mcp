@@ -15,6 +15,7 @@ import {
 } from "@/features/rendering";
 import {
   assessPublicUrl,
+  createDnsResolver,
   createRobotsPolicy,
   type PublicUrlPolicy,
   type RobotsPolicy,
@@ -79,7 +80,10 @@ export async function createProductionRoot(
     options.application,
     storage,
     web?.renderer,
-    options.robots ?? createRobotsPolicy(),
+    // A resolver is supplied so the robots lookup proves its host is public
+    // before connecting. Without it the static URL check passes any public
+    // hostname, including one that resolves to a private address.
+    options.robots ?? createRobotsPolicy({ resolver: createDnsResolver() }),
   );
   bindWebRuntime(application, web.renderer, web.policy);
   const tools = makeTools(application, configuration, logger, installer);

@@ -206,7 +206,12 @@ async function fetchValidated(
   if (!sameAddresses(first, second)) throw new Error("dns_rebinding");
   return options.transport.fetch({ url, addresses: second, signal });
 }
-async function validateAnswers(
+/**
+ * Rejects a hostname whose DNS answers include a private or reserved address.
+ * Exported so every outbound path can apply it, not only the fetch client: a
+ * request that skips it can be pointed at the local network by DNS alone.
+ */
+export async function validateAnswers(
   resolver: DnsResolver,
   hostname: string,
 ): Promise<readonly string[]> {

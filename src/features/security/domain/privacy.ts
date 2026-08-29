@@ -1,4 +1,5 @@
-const credential = /(?:Bearer\s+|password[=:]\s*|token[=:]\s*)[^\s,;]+/gi;
+const credential =
+  /(?:Bearer\s+|(?:password|token|secret|api[_-]?key|access[_-]?key|auth)\s*[=:]\s*)[^\s,;]+/gi;
 const cookie = /(?:cookie|set-cookie)[^\n]*/gi;
 
 /** Removes values that must never enter public diagnostics or traces. */

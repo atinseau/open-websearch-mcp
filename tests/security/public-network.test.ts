@@ -1,7 +1,5 @@
 import { expect, test } from "bun:test";
 
-import { createExtractorRegistry } from "@/features/extraction";
-
 import {
   assessPublicUrl,
   createRobotsPolicy,
@@ -251,48 +249,29 @@ test("PROD-006 navigation authority never treats extracted links as requests", a
   expect(seen).toEqual(["https://public.example/explicit"]);
 });
 
-test("EXTRACT-004 removes concealed content whatever form the concealment takes", () => {
-  // Each vector reached evidence at some point: unquoted style values, the
-  // `noscript` element, and `hidden` as a bare attribute. `aria-hidden=false`
-  // is the inverse mistake — content that must survive.
-  const concealed = [
-    "<div style=display:none>LEAKED</div>",
-    '<div style="display:none">LEAKED</div>',
-    "<div style=visibility:hidden>LEAKED</div>",
-    '<div aria-hidden="true">LEAKED</div>',
-    "<div hidden>LEAKED</div>",
-    "<noscript>LEAKED</noscript>",
-    "<script>LEAKED</script>",
-    "<style>.a{content:'LEAKED'}</style>",
-  ];
-  for (const vector of concealed) {
-    expect(sanitizeExternalHtml(`<p>visible</p>${vector}`)).not.toContain("LEAKED");
-  }
-  expect(sanitizeExternalHtml("<p>visible</p><div aria-hidden=false>KEPT</div>")).toContain("KEPT");
-});
-
-test("EXTRACT-004 resists entity-encoded concealment and a lying content type", async () => {
-  // A rule spelled with entities renders exactly like the plain form, so the
-  // concealment test must decode before it compares.
-  for (const vector of [
-    '<div style="display&#58;none">LEAKED</div>',
-    '<div style="display&#x3a;none">LEAKED</div>',
-    '<div style="display&colon;none">LEAKED</div>',
-  ]) {
-    expect(sanitizeExternalHtml(`<p>visible</p>${vector}`)).not.toContain("LEAKED");
-  }
-
-  // An origin may declare any type it likes. Declaring JSON and serving markup
-  // must not become a way around sanitization: unparseable bodies are returned
-  // as text, so that text still has to be sanitized.
-  const hostile = "<script>ACTIVE()</script><div hidden>LEAKED</div><p>VISIBLE</p>";
-  const lied = await createExtractorRegistry().extract({
-    documentUrl: new URL("https://docs.example.test/data"),
-    renderedText: hostile,
-    body: hostile,
-    headers: new Headers({ "content-type": "application/json" }),
+test("SECURITY-004 refuses a robots lookup whose host resolves privately", async () => {
+  // The static URL check only sees the hostname. A public name that resolves to
+  // a private address would otherwise have its robots file fetched from the
+  // local network before any navigation policy applied.
+  let fetched = 0;
+  const policy = createRobotsPolicy({
+    resolver: { resolve: async () => ["127.0.0.1"] },
+    fetch: async () => {
+      fetched += 1;
+      return new Response("User-agent: *\nAllow: /", { status: 200 });
+    },
   });
-  expect(lied.passages.map((passage) => passage.text).join(" ")).not.toContain("LEAKED");
-  expect(lied.passages.map((passage) => passage.text).join(" ")).not.toContain("<script");
-  expect(lied.passages.map((passage) => passage.text).join(" ")).toContain("VISIBLE");
+  expect(
+    await policy.canCrawl(new URL("https://rebound.example/page"), "OpenWebSearchMCP"),
+  ).toBeFalse();
+  expect(fetched).toBe(0);
+
+  // A genuinely public answer still reaches the site.
+  const allowed = createRobotsPolicy({
+    resolver: { resolve: async () => ["93.184.216.34"] },
+    fetch: async () => new Response("User-agent: *\nAllow: /", { status: 200 }),
+  });
+  expect(
+    await allowed.canCrawl(new URL("https://public.example/page"), "OpenWebSearchMCP"),
+  ).toBeTrue();
 });

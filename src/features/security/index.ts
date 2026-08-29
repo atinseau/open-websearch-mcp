@@ -18,4 +18,5 @@ export {
   type RobotsPolicy,
 } from "@/features/security/domain/robots";
 export { createRobotsPolicy } from "@/features/security/application/robots-policy";
+export { createDnsResolver } from "@/features/security/adapters/dns-resolver";
 export { redactDiagnostic, safeArchiveEntry } from "@/features/security/domain/privacy";

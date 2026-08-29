@@ -1,5 +1,6 @@
 import { ensureWorkspace } from "@/features/configuration/adapters/workspace";
 import type { Workspace } from "@/features/configuration";
+import { redactDiagnostic } from "@/features/security";
 
 const eventFields = new Set([
   "query",
@@ -91,7 +92,11 @@ function sanitizeUrlField(key: string, value: unknown): { handled: boolean; valu
 }
 
 function sanitizeScalar(value: unknown): unknown {
-  if (typeof value === "string") return value.length > 1024 ? "[omitted: too_large]" : value;
+  // A search query is caller-supplied text and can carry a credential. URL
+  // fields are already sanitized; every other string still needs the same
+  // treatment before it reaches the session log.
+  if (typeof value === "string")
+    return value.length > 1024 ? "[omitted: too_large]" : redactDiagnostic(value);
   if (typeof value === "number" || typeof value === "boolean" || value === null) return value;
   if (Array.isArray(value) && value.every((item) => typeof item === "number")) return value;
   return "[omitted]";
