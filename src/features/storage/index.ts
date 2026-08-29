@@ -22,15 +22,24 @@ export {
   type DownloadTransport,
 } from "./application/download.ts";
 export { DEFAULT_CACHE_LIMIT_BYTES } from "./application/cache.ts";
+export { canonicalizeUrl } from "./domain/canonical-url.ts";
+export {
+  findNearDuplicate,
+  nearDuplicateSignature,
+  similarity as nearDuplicateSimilarity,
+  type NearDuplicateMatch,
+} from "./domain/near-duplicate.ts";
 export type {
   AdvancedLocalSearchCapability,
   BlobReference,
   CachedDocument,
   CachedDocumentResult,
+  CachedLocalSearchResult,
   CacheBodyKind,
   CacheContentClass,
   CacheTtls,
   StorageDiagnostic,
+  LocalSearchResult,
 } from "./domain/types.ts";
 
 /** Persists investigation identity and consumed-page reservations. */

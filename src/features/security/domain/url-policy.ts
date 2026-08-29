@@ -1,4 +1,4 @@
-const tracker = /^(utm_.+|gclid|fbclid|msclkid|mc_[a-z]+)$/i;
+const tracker = /^(utm_.+|gclid|dclid|fbclid|igshid|msclkid|ttclid|yclid|mc_[a-z]+)$/i;
 const metadataHosts = new Set(["metadata.google.internal", "metadata", "instance-data"]);
 
 export interface PublicUrlAssessment {
