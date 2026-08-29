@@ -89,10 +89,17 @@ export function reasonForExtraction(value: ExtractionResult): ToolReason {
     : "unsupported_format";
 }
 export function reasonForDiscovery(reason: string | undefined): ToolReason {
+  if (reason?.includes("renderer_unavailable")) return "renderer_unavailable";
   if (reason?.includes("captcha")) return "captcha";
   if (reason?.includes("waf")) return "waf";
   if (reason?.includes("timeout")) return "timeout";
   return "network_error";
+}
+export function reasonForRuntimeFailure(error: unknown): ToolReason {
+  if (error instanceof ExpectedFailure) return error.reason;
+  return error instanceof Error && error.message.includes("renderer_unavailable")
+    ? "renderer_unavailable"
+    : "network_error";
 }
 export function discoveryFailure(
   status: string,

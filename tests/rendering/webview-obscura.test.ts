@@ -125,6 +125,33 @@ if (!obscura) {
     await scheduler.shutdown();
   }, 20_000);
 
+  test("VER-003 reports an owned renderer as unavailable after it is killed mid-navigation", async () => {
+    const fixture = startFixture();
+    const supervisor = createObscuraSupervisor({
+      executable: obscuraPath,
+      configuration,
+      allowPrivateNetworkForTest: true,
+    });
+    supervisors.push(supervisor);
+    const endpoint = await supervisor.install(new AbortController().signal);
+    const renderer = createWebViewRenderer({
+      endpoint,
+      configuration,
+      scheduler: createNavigationScheduler({ configuration: schedulerConfiguration }),
+      policy: localFixturePolicy,
+    });
+    const pid = supervisor.status().ownedProcessId;
+    if (pid === undefined) throw new Error("owned_obscura_pid_missing");
+    const pending = rejection(render(renderer, `${fixture.url}slow`));
+    await Bun.sleep(25);
+    Bun.spawnSync(["/bin/kill", "-KILL", `${pid}`], { stdout: "ignore", stderr: "ignore" });
+    expect(await pending).not.toBe("resolved");
+    await waitUntilUnavailable(supervisor);
+    expect(supervisor.status().available).toBeFalse();
+    await supervisor.shutdown();
+    expect(processesInGroup(pid)).toBe("");
+  }, 20_000);
+
   test("SECURITY-004 Obscura 0.2.1 blocks private addresses before any fixture request", async () => {
     const fixture = startSecurityFixture();
     const supervisor = createObscuraSupervisor({ executable: obscuraPath, configuration });
@@ -239,4 +266,11 @@ function processesInGroup(pid: number): string {
   return Bun.spawnSync(["/bin/ps", "-o", "pid=", "-g", `${pid}`])
     .stdout.toString()
     .trim();
+}
+
+async function waitUntilUnavailable(
+  supervisor: ReturnType<typeof createObscuraSupervisor>,
+): Promise<void> {
+  for (let attempt = 0; attempt < 50 && supervisor.status().available; attempt += 1)
+    await Bun.sleep(10);
 }

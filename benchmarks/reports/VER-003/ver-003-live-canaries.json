@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "informational": true,
+  "serialized": true,
+  "results": [
+    {
+      "query": "Bun WebView documentation",
+      "status": "blocked",
+      "detail": "bytes=903909"
+    },
+    {
+      "query": "Model Context Protocol specification",
+      "status": "blocked",
+      "detail": "bytes=904041"
+    }
+  ]
+}
