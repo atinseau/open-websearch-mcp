@@ -1,13 +1,14 @@
-import type { Candidate } from "@/features/discovery";
-import type { EvidencePassage } from "@/features/extraction";
-
-/** Orders candidates deterministically for an investigation. */
-export interface Ranker {
-  rank(input: RankingInput): readonly Candidate[];
-}
-
-export interface RankingInput {
-  readonly candidates: readonly Candidate[];
-  readonly evidence: readonly EvidencePassage[];
-  readonly query: string;
-}
+export {
+  analyzeQuery,
+  createRanker,
+  selectPreRenderCandidates,
+  type CandidateRankingInput,
+  type QueryAnalysis,
+  type RankedCandidate,
+  type RankedPage,
+  type Ranker,
+  type RankingDiagnostics,
+  type RankingInput,
+  type RankingProfile,
+  type RankingResult,
+} from "./application/ranker";
