@@ -1,0 +1,71 @@
+# Release-readiness report — 2026-08-29
+
+## Verdict
+
+**Not releasable.** The local code/package gate and clean-checkout reproduction
+pass, but the product definition of done is not satisfied. Do not publish,
+create a tag, or create a GitHub Release.
+
+## Evidence that passed
+
+- The required local gate passed: format, lint, limits lint, type-aware lint,
+  typecheck, isolated tests, and `bun run check`. The suite reported **232
+  passed, 1 informational live-canary skip, 0 failed**.
+- `tests/package/packed-artifact.test.ts` passed: the packed `0.1.1` artifact
+  launched through Bunx and completed MCP `initialize`, `tools/list`, and the
+  fixture-backed `web_search` call.
+- A fresh `git clone --no-local .` at
+  `4c5344f0cc9eece4339b787d998376a54fdaf11f` installed 27 packages with
+  `bun install --frozen-lockfile --ignore-scripts` and repeated the complete
+  gate with the same 232 pass / 1 skip / 0 fail result. The temporary clone was
+  removed after the run.
+
+## Definition of done
+
+| Condition | Verdict | Evidence |
+| --- | --- | --- |
+| 1. Atomic requirement traceability | **No** | `docs/orchestration/traceability.md` now lists all 160 IDs, but it records explicit uncovered/blocking requirements below. |
+| 2. All release gates pass | **No** | Deterministic local gates pass, but teacher thresholds, complete harness coverage, and full 30–50 live-canary/BEIR evidence do not. |
+| 3. Pinned WebView/Obscura probe | **Yes, version-dependent** | `tests/rendering/webview-obscura.test.ts` passed against Obscura 0.2.1. ADR-0009 requires rerunning it for any pin change. |
+| 4. Teacher benchmark thresholds | **No** | ADR-0010: all totals are unmeasurable because the corpus has zero URL-located expected passages. |
+| 5. No critical/high operational finding | **No** | Unresolved release-critical evidence gaps remain; this cannot be certified as clean. |
+| 6. Exact packed Bunx smoke | **Yes** | `tests/package/packed-artifact.test.ts` passed. |
+| 7. Traceability, docs, clean checkout | **No** | Clean checkout passes, but traceability has blockers and docs contain pre-publication commands presented as immediately usable. |
+| 8. Final immutable release trace | **No** | No release commit, authorization, immutable CI artifact, or REL-004 external release ledger exists. |
+
+## Remaining blockers
+
+1. Refresh the immutable teacher corpus with URL-located evidence passages and
+   enough accepted claims to calculate TEST-015–017; then meet their fixed
+   thresholds. This is the direct ADR-0010 remedy.
+2. Probe Claude Code, Gemini CLI, and OpenCode, or obtain and record the exact
+   external-authority blocker for each. VER-002 only proved Codex.
+3. Restore full ARCH-002/ARCH-007 enforcement: mechanical feature boundaries,
+   dependency/import limits, and numeric limits outside `src/` remain debt
+   (ADRs 0007/0008).
+4. Add the required external ranking/canary evidence for TEST-018. The present
+   two opt-in Google canaries are not the specified 30–50.
+5. Complete REL-004 only after explicit human release authorization: exact
+   commit/version/package/dist-tag/identity, idempotent ledger, npm publish,
+   tag, and GitHub Release. REL-003 deliberately does none of these.
+
+## Documentation audit
+
+- README and integration instructions correctly describe stdio, two public
+  tools, exact persistent pins, Bun, and the separately pinned Obscura sidecar.
+- They overclaim present availability: `bunx --bun open-websearch-mcp@latest`
+  and the `0.1.1` exact package commands are written as usable now, although no
+  npm publication exists. Treat them as post-publication instructions until
+  REL-004 completes.
+- ADR-0006, ADR-0007, ADR-0008, ADR-0009, and ADR-0010 accurately describe the
+  current limitations. The new changelog also states that `0.1.1` is an
+  unreleased candidate.
+
+## REL-003 decision
+
+`.github/workflows/release.yml` is a manual, main-only release-candidate gate.
+It verifies SemVer/exact pins, runs the full deterministic gate, grades the
+benchmark, packs and inspects the tarball, smoke-tests it through Bunx, and
+uploads the digest, notes, tarball, and logs. It contains no publication,
+tagging, or GitHub Release operation; those require the human authorization and
+external idempotency process specified for REL-004.

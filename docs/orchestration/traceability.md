@@ -1,9 +1,8 @@
-# Initial requirement traceability
+# Atomic requirement traceability audit
 
-This is the pre-implementation ownership map. The controller expands every
-range into one row per atomic ID and adds code, test, evidence, PR, commit, and
-step-trace links as tasks complete. No range may remain as a substitute for atomic
-release traceability.
+The following range-level map is retained only as historical ownership context.
+The VER-004 matrix below is the authoritative one-row-per-ID audit; no range is
+treated as a substitute for atomic release traceability.
 
 | Requirement IDs | Normative owner | Primary DAG tasks |
 | --- | --- | --- |
@@ -31,3 +30,181 @@ release traceability.
 one normative owner and at least one passing verification artifact. Shared work
 may satisfy multiple IDs; one ID may have multiple tests. Ownership itself is
 single and explicit in the expanded matrix.
+
+
+## VER-004 atomic audit — 2026-08-29
+
+The table above is preserved as historical pre-implementation context only. This is the authoritative atomic audit for the exact 160 IDs in the registry. Each row identifies the implementation/test location and records whether a release-grade verification artifact exists. Located means the full 232-pass/1-skip suite on 2026-08-29 exercised the named suite; it is not a waiver for the explicit blocked rows.
+
+| ID | Implementation and automated-test location | Verification result |
+| --- | --- | --- |
+| ARCH-001 | src/; tests/architecture/ | Located; linked task traces are the artifact |
+| ARCH-002 | src/; tests/architecture/ | BLOCKED — detailed below |
+| ARCH-003 | src/; tests/architecture/ | Located; linked task traces are the artifact |
+| ARCH-004 | src/; tests/architecture/ | Located; linked task traces are the artifact |
+| ARCH-005 | src/; tests/architecture/ | Located; linked task traces are the artifact |
+| ARCH-006 | src/; tests/architecture/ | Located; linked task traces are the artifact |
+| ARCH-007 | src/; tests/architecture/ | BLOCKED — detailed below |
+| ARCH-008 | src/; tests/architecture/ | Located; linked task traces are the artifact |
+| ARCH-009 | src/; tests/architecture/ | Located; linked task traces are the artifact |
+| ARCH-010 | src/; tests/architecture/ | Located; linked task traces are the artifact |
+| CACHE-001 | src/features/storage/; tests/storage/ | Located; linked task traces are the artifact |
+| CACHE-002 | src/features/storage/; tests/storage/ | Located; linked task traces are the artifact |
+| CACHE-003 | src/features/storage/; tests/storage/ | Located; linked task traces are the artifact |
+| CACHE-004 | src/features/storage/; tests/storage/ | Located; linked task traces are the artifact |
+| CACHE-005 | src/features/storage/; tests/storage/ | Located; linked task traces are the artifact |
+| CACHE-006 | src/features/storage/; tests/storage/ | Located; linked task traces are the artifact |
+| CACHE-007 | src/features/storage/; tests/storage/ | Located; linked task traces are the artifact |
+| CACHE-008 | src/features/storage/; tests/storage/ | Located; linked task traces are the artifact |
+| CACHE-009 | src/features/storage/; tests/storage/ | Located; linked task traces are the artifact |
+| CACHE-010 | src/features/storage/; tests/storage/ | Located; linked task traces are the artifact |
+| CACHE-011 | src/features/storage/; tests/storage/ | Located; linked task traces are the artifact |
+| CONFIG-001 | src/features/configuration/; tests/architecture/configuration.test.ts | Located; linked task traces are the artifact |
+| CONFIG-002 | src/features/configuration/; tests/architecture/configuration.test.ts | Located; linked task traces are the artifact |
+| CONFIG-003 | src/features/configuration/; tests/architecture/configuration.test.ts | Located; linked task traces are the artifact |
+| CONFIG-004 | src/features/configuration/; tests/architecture/configuration.test.ts | Located; linked task traces are the artifact |
+| CONFIG-005 | src/features/configuration/; tests/architecture/configuration.test.ts | Located; linked task traces are the artifact |
+| CONFIG-006 | src/features/configuration/; tests/architecture/configuration.test.ts | Located; linked task traces are the artifact |
+| EXTRACT-001 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
+| EXTRACT-002 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
+| EXTRACT-003 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
+| EXTRACT-004 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
+| EXTRACT-005 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
+| EXTRACT-006 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
+| EXTRACT-007 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
+| EXTRACT-008 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
+| EXTRACT-009 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
+| EXTRACT-010 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
+| EXTRACT-011 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
+| EXTRACT-012 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
+| EXTRACT-013 | src/features/extraction/; tests/extraction/extractor-registry.test.ts | Located; linked task traces are the artifact |
+| INSTALL-001 | src/features/rendering/install/; tests/rendering/installer.test.ts | Located; linked task traces are the artifact |
+| INSTALL-002 | src/features/rendering/install/; tests/rendering/installer.test.ts | Located; linked task traces are the artifact |
+| INSTALL-003 | src/features/rendering/install/; tests/rendering/installer.test.ts | Located; linked task traces are the artifact |
+| LOG-001 | src/features/configuration/; tests/architecture/configuration.test.ts | Located; linked task traces are the artifact |
+| LOG-002 | src/features/configuration/; tests/architecture/configuration.test.ts | Located; linked task traces are the artifact |
+| LOG-003 | src/features/configuration/; tests/architecture/configuration.test.ts | Located; linked task traces are the artifact |
+| MCP-001 | src/mcp/; tests/mcp/stdio-contract.test.ts | Located; linked task traces are the artifact |
+| MCP-002 | src/mcp/; tests/mcp/stdio-contract.test.ts | Located; linked task traces are the artifact |
+| MCP-003 | src/mcp/; tests/mcp/stdio-contract.test.ts | Located; linked task traces are the artifact |
+| MCP-004 | src/mcp/; tests/mcp/stdio-contract.test.ts | Located; linked task traces are the artifact |
+| MCP-005 | src/mcp/; tests/mcp/stdio-contract.test.ts | Located; linked task traces are the artifact |
+| MCP-006 | src/mcp/; tests/mcp/stdio-contract.test.ts | Located; linked task traces are the artifact |
+| MCP-007 | src/mcp/; tests/mcp/stdio-contract.test.ts | Located; linked task traces are the artifact |
+| MCP-008 | src/mcp/; tests/mcp/stdio-contract.test.ts | BLOCKED — detailed below |
+| MCP-009 | src/mcp/; tests/mcp/stdio-contract.test.ts | Located; linked task traces are the artifact |
+| MCP-010 | src/mcp/; tests/mcp/stdio-contract.test.ts | Located; linked task traces are the artifact |
+| MCP-011 | src/mcp/; tests/mcp/stdio-contract.test.ts | Located; linked task traces are the artifact |
+| MCP-012 | src/mcp/; tests/mcp/stdio-contract.test.ts | Located; linked task traces are the artifact |
+| MCP-013 | src/mcp/; tests/mcp/stdio-contract.test.ts | Located; linked task traces are the artifact |
+| ORCH-001 | src/features/rendering/ and scripts/orchestration/; relevant test suite | Located; linked task traces are the artifact |
+| ORCH-002 | src/features/rendering/ and scripts/orchestration/; relevant test suite | Located; linked task traces are the artifact |
+| ORCH-003 | src/features/rendering/ and scripts/orchestration/; relevant test suite | Located; linked task traces are the artifact |
+| ORCH-004 | src/features/rendering/ and scripts/orchestration/; relevant test suite | Located; linked task traces are the artifact |
+| ORCH-005 | src/features/rendering/ and scripts/orchestration/; relevant test suite | Located; linked task traces are the artifact |
+| ORCH-006 | src/features/rendering/ and scripts/orchestration/; relevant test suite | Located; linked task traces are the artifact |
+| ORCH-007 | src/features/rendering/ and scripts/orchestration/; relevant test suite | Located; linked task traces are the artifact |
+| ORCH-008 | src/features/rendering/ and scripts/orchestration/; relevant test suite | Located; linked task traces are the artifact |
+| ORCH-009 | src/features/rendering/ and scripts/orchestration/; relevant test suite | Located; linked task traces are the artifact |
+| ORCH-010 | src/features/rendering/ and scripts/orchestration/; relevant test suite | Located; linked task traces are the artifact |
+| ORCH-011 | src/features/rendering/ and scripts/orchestration/; relevant test suite | Located; linked task traces are the artifact |
+| ORCH-012 | src/features/rendering/ and scripts/orchestration/; relevant test suite | Located; linked task traces are the artifact |
+| ORCH-013 | src/features/rendering/ and scripts/orchestration/; relevant test suite | Located; linked task traces are the artifact |
+| PROD-001 | src/ cross-cutting; e2e/security/MCP suites | Located; linked task traces are the artifact |
+| PROD-002 | src/ cross-cutting; e2e/security/MCP suites | Located; linked task traces are the artifact |
+| PROD-003 | src/ cross-cutting; e2e/security/MCP suites | Located; linked task traces are the artifact |
+| PROD-004 | src/ cross-cutting; e2e/security/MCP suites | Located; linked task traces are the artifact |
+| PROD-005 | src/ cross-cutting; e2e/security/MCP suites | BLOCKED — detailed below |
+| PROD-006 | src/ cross-cutting; e2e/security/MCP suites | Located; linked task traces are the artifact |
+| PROD-007 | src/ cross-cutting; e2e/security/MCP suites | Located; linked task traces are the artifact |
+| PROD-008 | src/ cross-cutting; e2e/security/MCP suites | Located; linked task traces are the artifact |
+| PROD-009 | src/ cross-cutting; e2e/security/MCP suites | Located; linked task traces are the artifact |
+| PROD-010 | src/ cross-cutting; e2e/security/MCP suites | Located; linked task traces are the artifact |
+| RANK-001 | src/features/ranking/; tests/ranking/ranker.test.ts | Located; linked task traces are the artifact |
+| RANK-002 | src/features/ranking/; tests/ranking/ranker.test.ts | Located; linked task traces are the artifact |
+| RANK-003 | src/features/ranking/; tests/ranking/ranker.test.ts | Located; linked task traces are the artifact |
+| RANK-004 | src/features/ranking/; tests/ranking/ranker.test.ts | Located; linked task traces are the artifact |
+| RANK-005 | src/features/ranking/; tests/ranking/ranker.test.ts | Located; linked task traces are the artifact |
+| RANK-006 | src/features/ranking/; tests/ranking/ranker.test.ts | Located; linked task traces are the artifact |
+| RANK-007 | src/features/ranking/; tests/ranking/ranker.test.ts | Located; linked task traces are the artifact |
+| RANK-008 | src/features/ranking/; tests/ranking/ranker.test.ts | Located; linked task traces are the artifact |
+| RANK-009 | src/features/ranking/; tests/ranking/ranker.test.ts | Located; linked task traces are the artifact |
+| RANK-010 | src/features/ranking/; tests/ranking/ranker.test.ts | Located; linked task traces are the artifact |
+| RANK-011 | src/features/ranking/; tests/ranking/ranker.test.ts | Located; linked task traces are the artifact |
+| RANK-012 | src/features/ranking/; tests/ranking/ranker.test.ts | Located; linked task traces are the artifact |
+| RELEASE-001 | package/docs/workflows; package test or workflow inspection | Located; linked task traces are the artifact |
+| RELEASE-002 | package/docs/workflows; package test or workflow inspection | Located; linked task traces are the artifact |
+| RELEASE-003 | package/docs/workflows; package test or workflow inspection | Located; linked task traces are the artifact |
+| RELEASE-004 | package/docs/workflows; package test or workflow inspection | Located; linked task traces are the artifact |
+| RELEASE-005 | package/docs/workflows; package test or workflow inspection | Located; linked task traces are the artifact |
+| RELEASE-006 | package/docs/workflows; package test or workflow inspection | BLOCKED — detailed below |
+| RELEASE-007 | package/docs/workflows; package test or workflow inspection | Located; linked task traces are the artifact |
+| RENDER-001 | src/features/rendering/; rendering/download tests | Located; linked task traces are the artifact |
+| RENDER-002 | src/features/rendering/; rendering/download tests | Located; linked task traces are the artifact |
+| RENDER-003 | src/features/rendering/; rendering/download tests | Located; linked task traces are the artifact |
+| RENDER-004 | src/features/rendering/; rendering/download tests | Located; linked task traces are the artifact |
+| RENDER-005 | src/features/rendering/; rendering/download tests | Located; linked task traces are the artifact |
+| RENDER-006 | src/features/rendering/; rendering/download tests | Located; linked task traces are the artifact |
+| RENDER-007 | src/features/rendering/; rendering/download tests | Located; linked task traces are the artifact |
+| RENDER-008 | src/features/rendering/; rendering/download tests | Located; linked task traces are the artifact |
+| RENDER-009 | src/features/rendering/; rendering/download tests | Located; linked task traces are the artifact |
+| RENDER-010 | src/features/rendering/; rendering/download tests | Located; linked task traces are the artifact |
+| RENDER-011 | src/features/rendering/; rendering/download tests | Located; linked task traces are the artifact |
+| SEARCH-001 | src/features/discovery/; tests/discovery/google-discovery.test.ts | Located; linked task traces are the artifact |
+| SEARCH-002 | src/features/discovery/; tests/discovery/google-discovery.test.ts | Located; linked task traces are the artifact |
+| SEARCH-003 | src/features/discovery/; tests/discovery/google-discovery.test.ts | Located; linked task traces are the artifact |
+| SEARCH-004 | src/features/discovery/; tests/discovery/google-discovery.test.ts | Located; linked task traces are the artifact |
+| SEARCH-005 | src/features/discovery/; tests/discovery/google-discovery.test.ts | Located; linked task traces are the artifact |
+| SEARCH-006 | src/features/discovery/; tests/discovery/google-discovery.test.ts | Located; linked task traces are the artifact |
+| SEARCH-007 | src/features/discovery/; tests/discovery/google-discovery.test.ts | Located; linked task traces are the artifact |
+| SEARCH-008 | src/features/discovery/; tests/discovery/google-discovery.test.ts | Located; linked task traces are the artifact |
+| SEARCH-009 | src/features/discovery/; tests/discovery/google-discovery.test.ts | Located; linked task traces are the artifact |
+| SEARCH-010 | src/features/discovery/; tests/discovery/google-discovery.test.ts | Located; linked task traces are the artifact |
+| SEARCH-011 | src/features/discovery/; tests/discovery/google-discovery.test.ts | Located; linked task traces are the artifact |
+| SEARCH-012 | src/features/discovery/; tests/discovery/google-discovery.test.ts | Located; linked task traces are the artifact |
+| SECURITY-001 | src/features/security/; tests/security/ | Located; linked task traces are the artifact |
+| SECURITY-002 | src/features/security/; tests/security/ | Located; linked task traces are the artifact |
+| SECURITY-003 | src/features/security/; tests/security/ | Located; linked task traces are the artifact |
+| SECURITY-004 | src/features/security/; tests/security/ | Located; linked task traces are the artifact |
+| SECURITY-005 | src/features/security/; tests/security/ | Located; linked task traces are the artifact |
+| SECURITY-006 | src/features/security/; tests/security/ | Located; linked task traces are the artifact |
+| SECURITY-007 | src/features/security/; tests/security/ | Located; linked task traces are the artifact |
+| SECURITY-008 | src/features/security/; tests/security/ | Located; linked task traces are the artifact |
+| SECURITY-009 | src/features/security/; tests/security/ | Located; linked task traces are the artifact |
+| SECURITY-010 | src/features/security/; tests/security/ | Located; linked task traces are the artifact |
+| SECURITY-011 | src/features/security/; tests/security/ | Located; linked task traces are the artifact |
+| TEST-001 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
+| TEST-002 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
+| TEST-003 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
+| TEST-004 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
+| TEST-005 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
+| TEST-006 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
+| TEST-007 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
+| TEST-008 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
+| TEST-009 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
+| TEST-010 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
+| TEST-011 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
+| TEST-012 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
+| TEST-013 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
+| TEST-014 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
+| TEST-015 | benchmarks/ or tests/; verification suite | BLOCKED — detailed below |
+| TEST-016 | benchmarks/ or tests/; verification suite | BLOCKED — detailed below |
+| TEST-017 | benchmarks/ or tests/; verification suite | BLOCKED — detailed below |
+| TEST-018 | benchmarks/ or tests/; verification suite | BLOCKED — detailed below |
+| TEST-019 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
+| TEST-020 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
+| TEST-021 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
+| TEST-022 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
+| TEST-023 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
+| TEST-024 | benchmarks/ or tests/; verification suite | BLOCKED — detailed below |
+| TEST-025 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
+
+### Explicit gaps
+
+- **ARCH-002:** ADR-0007: the dependency-graph test is structural, not mechanical enforcement of internal feature imports, direction, or >12 imports.
+- **ARCH-007:** ADR-0008: scripts/ and benchmarks/ are outside numeric limits and the >12-import rule is not enforced.
+- **MCP-008 / PROD-005:** VER-002 performed only a Codex probe; Claude is revoked and Gemini CLI/OpenCode are unavailable.
+- **RELEASE-006:** REL-004 remains planned; no release authorization, idempotent publish ledger, npm publish, tag, or GitHub Release proof exists.
+- **TEST-015–017:** ADR-0010: deterministic scorer is intentionally unmeasurable without URL-located passages; its release thresholds cannot pass.
+- **TEST-018:** no evidence for required BEIR/TREC/BRIGHT cases and 30–50 live canaries; only the small teacher corpus and two opt-in canaries exist.
+- **TEST-024:** the workflow gates code and packaging but cannot claim benchmark threshold compliance while TEST-015–017 are unmeasurable.
