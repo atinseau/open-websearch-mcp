@@ -285,6 +285,67 @@ async function reconcileTraceIntoState(input: {
   await atomicWrite(`${activePath}/docs/orchestration/state.toml`, stateText, activePath);
 }
 
+/**
+ * Rebuilds the ledger for a worktree whose recorded task identity disagrees with
+ * its branch, so an interrupted prepare step can resume. Returns true when it
+ * rewrote state and the caller must revalidate.
+ */
+async function recoverWorktreeState(input: {
+  activePath: string;
+  active: WorktreeRecord;
+  rootState: OrchestrationState;
+  state: OrchestrationState;
+  options: ControllerOptions;
+  repository: string;
+}): Promise<boolean> {
+  const { activePath, active, rootState, state, options, repository } = input;
+  const branchMatch = active.branch?.match(/^refs\/heads\/agent\/(.+)-a(\d+)$/u);
+  const actualBranch = branchMatch ? `agent/${branchMatch[1]}-a${branchMatch[2]}` : undefined;
+  const actualRelative = branchMatch
+    ? `${rootState.policy.worktree_root}/${branchMatch[1]}-a${branchMatch[2]}`
+    : undefined;
+  if (
+    state.current_task &&
+    state.current_branch === actualBranch &&
+    state.current_worktree === actualRelative
+  ) {
+    return false;
+  }
+  const recoveredTaskId = branchMatch
+    ? Object.keys(rootState.tasks).find((id) => id.toLowerCase() === branchMatch[1])
+    : undefined;
+  const recoveredTask = recoveredTaskId ? rootState.tasks[recoveredTaskId] : undefined;
+  if (
+    !branchMatch ||
+    !recoveredTaskId ||
+    !recoveredTask ||
+    (recoveredTask.state !== "ready" && recoveredTask.state !== "planned") ||
+    !recoveredTask.depends_on.every(
+      (dependency) => rootState.tasks[dependency]?.state === "verified",
+    )
+  ) {
+    throw new Error("Active worktree has no recoverable task state");
+  }
+  const recoveredAttempt = Number(branchMatch[2]);
+  await persistPrepare({
+    repository,
+    worktree: activePath,
+    taskId: recoveredTaskId,
+    attempt: recoveredAttempt,
+    relativeWorktree: actualRelative!,
+    branch: actualBranch!,
+    baseSha: await run(
+      ["git", "merge-base", "main", `agent/${branchMatch[1]}-a${recoveredAttempt}`],
+      repository,
+    ),
+    model: options.model,
+    variant: options.variant,
+    timeoutMs: rootState.policy.agent_timeout_minutes * 60_000,
+    markReady: recoveredTask.state === "planned",
+  });
+  return true;
+}
+
 async function runControllerStep(
   options: ControllerOptions,
   forceFreshSession = false,
@@ -319,50 +380,7 @@ async function runControllerStep(
       throw new Error(`Worktree is outside ${rootState.policy.worktree_root}: ${activePath}`);
     }
     state = await validateRepository(activePath);
-    const branchMatch = active.branch?.match(/^refs\/heads\/agent\/(.+)-a(\d+)$/u);
-    const actualBranch = branchMatch ? `agent/${branchMatch[1]}-a${branchMatch[2]}` : undefined;
-    const actualRelative = branchMatch
-      ? `${rootState.policy.worktree_root}/${branchMatch[1]}-a${branchMatch[2]}`
-      : undefined;
-    if (
-      !state.current_task ||
-      state.current_branch !== actualBranch ||
-      state.current_worktree !== actualRelative
-    ) {
-      const recoveredTaskId = branchMatch
-        ? Object.keys(rootState.tasks).find((id) => id.toLowerCase() === branchMatch[1])
-        : undefined;
-      const recoveredTask = recoveredTaskId ? rootState.tasks[recoveredTaskId] : undefined;
-      if (
-        !branchMatch ||
-        !recoveredTaskId ||
-        !recoveredTask ||
-        (recoveredTask.state !== "ready" && recoveredTask.state !== "planned") ||
-        !recoveredTask.depends_on.every(
-          (dependency) => rootState.tasks[dependency]?.state === "verified",
-        )
-      ) {
-        throw new Error("Active worktree has no recoverable task state");
-      }
-      const recoveredAttempt = Number(branchMatch[2]);
-      const recoveredRelative = actualRelative!;
-      const recoveredBase = await run(
-        ["git", "merge-base", "main", `agent/${branchMatch[1]}-a${recoveredAttempt}`],
-        repository,
-      );
-      await persistPrepare({
-        repository,
-        worktree: activePath,
-        taskId: recoveredTaskId,
-        attempt: recoveredAttempt,
-        relativeWorktree: recoveredRelative,
-        branch: actualBranch!,
-        baseSha: recoveredBase,
-        model: options.model,
-        variant: options.variant,
-        timeoutMs: rootState.policy.agent_timeout_minutes * 60_000,
-        markReady: recoveredTask.state === "planned",
-      });
+    if (await recoverWorktreeState({ activePath, active, rootState, state, options, repository })) {
       state = await validateRepository(activePath);
     }
     if (
