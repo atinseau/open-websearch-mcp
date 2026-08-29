@@ -69,7 +69,9 @@ console.log(JSON.stringify({
   return repository;
 }
 
-async function invokeCli(repository: string): Promise<{ stdout: string; stderr: string; exitCode: number }> {
+async function invokeCli(
+  repository: string,
+): Promise<{ stdout: string; stderr: string; exitCode: number }> {
   const capture = `${repository}/opencode-args.json`;
   const child = Bun.spawn(
     [

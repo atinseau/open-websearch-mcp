@@ -18,7 +18,12 @@ import { assertCurrentTask, assertReferencedFiles } from "./state-current.ts";
 import { setRootFields, setTaskEvidence, setTaskState } from "./state-edits.ts";
 import { atomicWrite, nextStepNumber, persistPrepare } from "./step-trace.ts";
 import { run } from "./process-utils.ts";
-import { changedPaths, fullContentDigest, persistControllerStep, reviewedContentDigest } from "./controller-step-persistence.ts";
+import {
+  changedPaths,
+  fullContentDigest,
+  persistControllerStep,
+  reviewedContentDigest,
+} from "./controller-step-persistence.ts";
 
 export type {
   ControllerOptions,
@@ -68,7 +73,6 @@ ${latestTrace}
 Finish with exactly CONTROLLER_RESULT: followed by one JSON object with this shape:
 {"status":"continue|review|verified|paused|blocked_external|failed","step":"plan|implementation|verification|review|integration|failure|blocker","summary":"...","changed_paths":["..."],"checks":[{"command":"...","cwd":"...","exit_code":0,"output":"..."}],"decisions":["..."],"findings":[{"severity":"blocker|high|medium|low","summary":"..."}],"blocker":{"authority":"...","error":"...","human_action":"..."},"next_action":"..."}`;
 }
-
 
 async function executeCheck(
   check: OpenCodeStepResult["checks"][number],
@@ -599,7 +603,6 @@ function enforceClaimEvidence(
   return received;
 }
 
-
 /**
  * Runs one OpenCode step, reruns the declared checks when it claims
  * verification, records what actually changed, and downgrades any claim the
@@ -913,10 +916,7 @@ async function resolveControllerWorktree(input: {
     : startControllerWorktree(input.rootState, input.options, input.repository);
 }
 
-function createStepRequest(
-  step: ResumedWorktree,
-  options: ControllerOptions,
-): OpenCodeRequest {
+function createStepRequest(step: ResumedWorktree, options: ControllerOptions): OpenCodeRequest {
   return {
     task: step.taskId,
     cwd: step.worktree,
@@ -927,7 +927,6 @@ function createStepRequest(
     timeout_ms: step.state.policy.agent_timeout_minutes * 60_000,
   };
 }
-
 
 export async function runControllerStep(
   options: ControllerOptions,
