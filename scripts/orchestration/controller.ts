@@ -355,6 +355,125 @@ async function recoverWorktreeState(input: {
   return true;
 }
 
+/**
+ * Confirms main already holds the exact reviewed content, then retires the
+ * worktree. Returns "merged" when the task was integrated upstream.
+ */
+async function reconcileVerifiedTask(input: {
+  activePath: string;
+  repository: string;
+  taskId: string;
+  state: OrchestrationState;
+  rootState: OrchestrationState;
+}): Promise<"merged" | "awaiting-integration"> {
+  const { activePath, repository, taskId, state, rootState } = input;
+  if (rootState.tasks[taskId]?.state !== "verified") return "awaiting-integration";
+  if (await run(["git", "status", "--porcelain"], activePath)) {
+    throw new Error(`Merged task ${taskId} still has uncommitted work`);
+  }
+  const baseSha = state.current_base_sha!;
+  const reviewed = state.current_reviewed_diff;
+  const identical =
+    reviewed &&
+    rootState.current_reviewed_diff === reviewed &&
+    (await reviewedContentDigest(activePath, baseSha, taskId)) === reviewed &&
+    (await reviewedContentDigest(repository, baseSha, taskId)) === reviewed &&
+    (await fullContentDigest(activePath, baseSha)) ===
+      (await fullContentDigest(repository, baseSha));
+  if (!identical) {
+    throw new Error(`Main does not contain the exact reviewed ${taskId} content`);
+  }
+  await run(["git", "worktree", "remove", activePath], repository);
+  return "merged";
+}
+
+function pausedForIntegration(taskId: string, state: OrchestrationState): OpenCodeStepResult {
+  return {
+    status: "paused",
+    step: "integration",
+    session_id: state.current_session ?? "not-recorded",
+    summary: `${taskId} is locally verified and awaits PR integration`,
+    changed_paths: [],
+    checks: [],
+    decisions: [],
+    findings: [],
+    next_action: "Integrate the exact reviewed task head through PR/CI, then resume from main",
+  };
+}
+
+/** The worktree ledger may not silently disagree with the running controller. */
+function assertWorktreeModelMatches(state: OrchestrationState, options: ControllerOptions): void {
+  const model = state.environment.controller_model;
+  if (model !== "selected-at-runtime" && model !== options.model) {
+    throw new Error(`Controller model is fixed to ${String(model)}`);
+  }
+  const variant = state.environment.controller_variant ?? "default";
+  if (typeof variant !== "string") throw new Error("Controller variant must be a string");
+  if (variant !== (options.variant ?? "default")) {
+    throw new Error(`Controller variant is fixed to ${variant}`);
+  }
+}
+
+/** The next attempt number for a task, derived from its existing branches. */
+async function nextAttemptNumber(taskId: string, repository: string): Promise<number> {
+  const branchPrefix = `agent/${taskId.toLowerCase()}-a`;
+  const priorAttempts = (
+    await run(
+      ["git", "branch", "--format=%(refname:short)", "--list", `${branchPrefix}*`],
+      repository,
+    )
+  )
+    .split("\n")
+    .filter(Boolean)
+    .map((name) => Number(name.slice(branchPrefix.length)))
+    .filter(Number.isInteger);
+  return Math.max(0, ...priorAttempts) + 1;
+}
+
+/** Selects the first dependency-complete task and prepares its isolated worktree. */
+async function startNextReadyTask(
+  state: OrchestrationState,
+  options: ControllerOptions,
+  repository: string,
+): Promise<{
+  taskId: string;
+  attempt: number;
+  relativeWorktree: string;
+  worktree: string;
+  branch: string;
+  baseSha: string;
+  latestTrace: string;
+}> {
+  const readyTask = Object.entries(state.tasks).find(
+    ([, candidate]) =>
+      (candidate.state === "ready" || candidate.state === "planned") &&
+      candidate.depends_on.every((dependency) => state.tasks[dependency]?.state === "verified"),
+  );
+  if (!readyTask) throw new Error("No dependency-ready task");
+  const [taskId, task] = readyTask;
+  const attempt = await nextAttemptNumber(taskId, repository);
+  const relativeWorktree = `${state.policy.worktree_root}/${taskId.toLowerCase()}-a${attempt}`;
+  const worktree = `${repository}/${relativeWorktree}`;
+  const branch = `agent/${taskId.toLowerCase()}-a${attempt}`;
+  const baseSha = await run(["git", "rev-parse", "HEAD"], repository);
+  await run(["mkdir", "-p", `${repository}/${state.policy.worktree_root}`], repository);
+  await run(["git", "worktree", "add", "-b", branch, worktree, baseSha], repository);
+  const latestTrace = await persistPrepare({
+    repository,
+    worktree,
+    taskId,
+    attempt,
+    relativeWorktree,
+    branch,
+    baseSha,
+    model: options.model,
+    variant: options.variant,
+    timeoutMs: state.policy.agent_timeout_minutes * 60_000,
+    markReady: task.state === "planned",
+  });
+  return { taskId, attempt, relativeWorktree, worktree, branch, baseSha, latestTrace };
+}
+
 async function runControllerStep(
   options: ControllerOptions,
   forceFreshSession = false,
@@ -454,89 +573,24 @@ async function runControllerStep(
       task = state.tasks[taskId]!;
     }
     if (task.state === "verified") {
-      if (rootState.tasks[taskId]?.state === "verified") {
-        const dirty = await run(["git", "status", "--porcelain"], activePath);
-        if (dirty) throw new Error(`Merged task ${taskId} still has uncommitted work`);
-        if (
-          !state.current_reviewed_diff ||
-          rootState.current_reviewed_diff !== state.current_reviewed_diff ||
-          (await reviewedContentDigest(activePath, state.current_base_sha!, taskId)) !==
-            state.current_reviewed_diff ||
-          (await reviewedContentDigest(repository, state.current_base_sha!, taskId)) !==
-            state.current_reviewed_diff ||
-          (await fullContentDigest(activePath, state.current_base_sha!)) !==
-            (await fullContentDigest(repository, state.current_base_sha!))
-        ) {
-          throw new Error(`Main does not contain the exact reviewed ${taskId} content`);
-        }
-        await run(["git", "worktree", "remove", activePath], repository);
-        return runControllerStep(options);
-      }
-      return {
-        status: "paused",
-        step: "integration",
-        session_id: state.current_session ?? "not-recorded",
-        summary: `${taskId} is locally verified and awaits PR integration`,
-        changed_paths: [],
-        checks: [],
-        decisions: [],
-        findings: [],
-        next_action: "Integrate the exact reviewed task head through PR/CI, then resume from main",
-      };
+      const reconciled = await reconcileVerifiedTask({
+        activePath,
+        repository,
+        taskId,
+        state,
+        rootState,
+      });
+      if (reconciled === "merged") return runControllerStep(options);
+      return pausedForIntegration(taskId, state);
     }
-    const selectedModel = state.environment.controller_model;
-    if (selectedModel !== "selected-at-runtime" && selectedModel !== options.model) {
-      throw new Error(`Controller model is fixed to ${String(selectedModel)}`);
-    }
-    const selectedVariant = state.environment.controller_variant ?? "default";
-    if (typeof selectedVariant !== "string") throw new Error("Controller variant must be a string");
-    if (selectedVariant !== (options.variant ?? "default")) {
-      throw new Error(`Controller variant is fixed to ${selectedVariant}`);
-    }
+    assertWorktreeModelMatches(state, options);
     stepNumber = await nextStepNumber(worktree, taskId);
     previousTaskState = task.state;
     previousSessionId = state.current_session;
     sessionId = task.state === "review" || forceFreshSession ? undefined : state.current_session;
   } else {
-    const readyTask = Object.entries(state.tasks).find(
-      ([, candidate]) =>
-        (candidate.state === "ready" || candidate.state === "planned") &&
-        candidate.depends_on.every((dependency) => state.tasks[dependency]?.state === "verified"),
-    );
-    if (!readyTask) throw new Error("No dependency-ready task");
-    [taskId, task] = readyTask;
-    const branchPrefix = `agent/${taskId.toLowerCase()}-a`;
-    const priorAttempts = (
-      await run(
-        ["git", "branch", "--format=%(refname:short)", "--list", `${branchPrefix}*`],
-        repository,
-      )
-    )
-      .split("\n")
-      .filter(Boolean)
-      .map((name) => Number(name.slice(branchPrefix.length)))
-      .filter(Number.isInteger);
-    attempt = Math.max(0, ...priorAttempts) + 1;
-    relativeWorktree = `${state.policy.worktree_root}/${taskId.toLowerCase()}-a${attempt}`;
-    worktree = `${repository}/${relativeWorktree}`;
-    branch = `agent/${taskId.toLowerCase()}-a${attempt}`;
-    baseSha = await run(["git", "rev-parse", "HEAD"], repository);
-    await run(["mkdir", "-p", `${repository}/${state.policy.worktree_root}`], repository);
-    await run(["git", "worktree", "add", "-b", branch, worktree, baseSha], repository);
-
-    latestTrace = await persistPrepare({
-      repository,
-      worktree,
-      taskId,
-      attempt,
-      relativeWorktree,
-      branch,
-      baseSha,
-      model: options.model,
-      variant: options.variant,
-      timeoutMs: state.policy.agent_timeout_minutes * 60_000,
-      markReady: task.state === "planned",
-    });
+    const started = await startNextReadyTask(state, options, repository);
+    ({ taskId, attempt, relativeWorktree, worktree, branch, baseSha, latestTrace } = started);
     state = await validateRepository(worktree);
     task = state.tasks[taskId]!;
     previousTaskState = task.state;
