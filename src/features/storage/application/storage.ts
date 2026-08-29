@@ -21,7 +21,7 @@ export interface StorageDatabaseConnection {
   prepare(sql: string): {
     run(...values: unknown[]): unknown;
     get(...values: unknown[]): unknown;
-    all(): unknown[];
+    all(...values: unknown[]): unknown[];
   };
 }
 export interface StorageBlobs {
@@ -73,7 +73,7 @@ class WorkspaceStorage implements Storage {
       get: (reference) => this.blobStore.get(reference),
       putStream: (body, limit, observe) => this.blobStore.putStream(body, limit, observe),
     };
-    this.cache = new SqliteCache(sqlite.database);
+    this.cache = new SqliteCache(sqlite.database, this.advancedLocalSearch);
   }
 
   async reserveConsumedPage(

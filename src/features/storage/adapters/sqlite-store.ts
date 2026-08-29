@@ -115,4 +115,16 @@ const migrations = [
       CREATE INDEX cache_entries_lru ON cache_entries(pinned, body_kind, last_accessed_at);
     `,
   },
+  {
+    version: 3,
+    sql: `
+      ALTER TABLE cache_entries ADD COLUMN main_content TEXT;
+      ALTER TABLE cache_entries ADD COLUMN duplicate_signature_json TEXT;
+      CREATE TABLE cache_aliases (
+        alias_url TEXT PRIMARY KEY,
+        canonical_url TEXT NOT NULL REFERENCES cache_entries(canonical_url)
+      );
+      CREATE INDEX cache_aliases_canonical ON cache_aliases(canonical_url);
+    `,
+  },
 ] as const;

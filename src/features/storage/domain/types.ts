@@ -37,6 +37,8 @@ export interface CachedDocument {
   readonly fetchedAt: Date;
   readonly headers?: Headers;
   readonly pinned?: boolean;
+  /** Extracted main content. Only this bounded text participates in FTS and deduplication. */
+  readonly mainContent?: string;
 }
 
 export interface CachedDocumentResult {
@@ -44,4 +46,14 @@ export interface CachedDocumentResult {
   readonly document: CachedDocument;
   readonly fresh: boolean;
   readonly revalidate: boolean;
+}
+
+export interface CachedLocalSearchResult {
+  readonly provenance: "local_cache";
+  readonly document: CachedDocument;
+}
+
+export interface LocalSearchResult {
+  readonly results: readonly CachedLocalSearchResult[];
+  readonly diagnostic?: "sqlite_fts5_unavailable";
 }
