@@ -545,6 +545,88 @@ function writeSetFindings(
   ];
 }
 
+/** A verified claim requires a fresh review session and passing declared gates. */
+function verificationClaimIsInvalid(
+  received: OpenCodeStepResult,
+  context: {
+    previousTaskState: TaskState;
+    previousSessionId: string | undefined;
+    task: Task;
+    unresolvedGates: string[];
+  },
+): boolean {
+  if (received.status !== "verified") return false;
+  return (
+    context.previousTaskState !== "review" ||
+    received.step !== "review" ||
+    !received.session_id ||
+    received.session_id === context.previousSessionId ||
+    !context.task.acceptance_gates?.length ||
+    context.unresolvedGates.length > 0 ||
+    received.checks.length === 0 ||
+    received.checks.some((check) => check.exit_code !== 0) ||
+    received.findings.some(
+      (finding) => finding.severity === "blocker" || finding.severity === "high",
+    )
+  );
+}
+
+/** An external block requires an exact authority, error, and human action. */
+function blockerClaimIsInvalid(received: OpenCodeStepResult): boolean {
+  if (received.status !== "blocked_external") return false;
+  return (
+    received.step !== "blocker" ||
+    !received.findings.some(
+      (finding) => finding.severity === "blocker" && finding.summary.trim(),
+    ) ||
+    !received.blocker?.authority.trim() ||
+    !received.blocker.error.trim() ||
+    !received.blocker.human_action.trim()
+  );
+}
+
+/**
+ * Downgrades a claim the evidence does not support. A step may not declare
+ * itself verified or externally blocked without the proof each status requires.
+ */
+function enforceClaimEvidence(
+  received: OpenCodeStepResult,
+  context: {
+    writeSetViolations: OpenCodeStepResult["findings"];
+    previousTaskState: TaskState;
+    previousSessionId: string | undefined;
+    task: Task;
+    unresolvedGates: string[];
+  },
+): OpenCodeStepResult {
+  const failure = (summary: string, nextAction: string): OpenCodeStepResult => ({
+    ...received,
+    status: "failed",
+    step: "failure",
+    summary,
+    next_action: nextAction,
+  });
+  if (context.writeSetViolations.length > 0) {
+    return failure(
+      `Rejected changes outside the task write set: ${received.summary}`,
+      "Move or remove undeclared changes before continuing",
+    );
+  }
+  if (verificationClaimIsInvalid(received, context)) {
+    return failure(
+      `Rejected verification claim: ${received.summary}`,
+      "Repair failed checks or blocker/high review findings, then verify again",
+    );
+  }
+  if (blockerClaimIsInvalid(received)) {
+    return failure(
+      `Rejected external block without exact blocker evidence: ${received.summary}`,
+      "Continue implementation or record the exact unavailable external authority",
+    );
+  }
+  return received;
+}
+
 async function runControllerStep(
   options: ControllerOptions,
   forceFreshSession = false,
@@ -703,55 +785,13 @@ async function runControllerStep(
     checks: actualChecks,
     findings: [...received.findings, ...writeSetViolations],
   };
-  const invalidVerification =
-    received.status === "verified" &&
-    (previousTaskState !== "review" ||
-      received.step !== "review" ||
-      !received.session_id ||
-      received.session_id === previousSessionId ||
-      !task.acceptance_gates?.length ||
-      unresolvedGates.length > 0 ||
-      received.checks.length === 0 ||
-      received.checks.some((check) => check.exit_code !== 0) ||
-      received.findings.some(
-        (finding) => finding.severity === "blocker" || finding.severity === "high",
-      ));
-  const invalidBlocker =
-    received.status === "blocked_external" &&
-    (received.step !== "blocker" ||
-      !received.findings.some(
-        (finding) => finding.severity === "blocker" && finding.summary.trim(),
-      ) ||
-      !received.blocker?.authority.trim() ||
-      !received.blocker.error.trim() ||
-      !received.blocker.human_action.trim());
-  const result: OpenCodeStepResult =
-    writeSetViolations.length > 0
-      ? {
-          ...received,
-          status: "failed",
-          step: "failure",
-          summary: `Rejected changes outside the task write set: ${received.summary}`,
-          next_action: "Move or remove undeclared changes before continuing",
-        }
-      : invalidVerification
-        ? {
-            ...received,
-            status: "failed",
-            step: "failure",
-            summary: `Rejected verification claim: ${received.summary}`,
-            next_action: "Repair failed checks or blocker/high review findings, then verify again",
-          }
-        : invalidBlocker
-          ? {
-              ...received,
-              status: "failed",
-              step: "failure",
-              summary: `Rejected external block without exact blocker evidence: ${received.summary}`,
-              next_action:
-                "Continue implementation or record the exact unavailable external authority",
-            }
-          : received;
+  const result = enforceClaimEvidence(received, {
+    writeSetViolations,
+    previousTaskState,
+    previousSessionId,
+    task,
+    unresolvedGates,
+  });
   const taskState: TaskState =
     result.status === "review"
       ? "review"
