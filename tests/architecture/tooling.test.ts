@@ -33,6 +33,7 @@ test("ARCH-010 exactly pins the Bun-native toolchain", async () => {
   expect(packageManifest.packageManager).toBe("bun@1.4.0");
   expect(packageManifest.engines).toEqual({ bun: "1.4.0" });
   expect(packageManifest.devDependencies).toEqual({
+    "@modelcontextprotocol/client": "2.0.0",
     "@types/bun": "1.4.0",
     oxfmt: "0.65.0",
     oxlint: "1.80.0",
