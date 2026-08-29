@@ -22,69 +22,53 @@ test("serializes refresh writers and rejects post-seal mutation", async () => {
   ]);
   const date = "2026-08-27";
   try {
-    await withRefreshMutation(root, date, async () => {
-      await expectRejection(
-        withRefreshMutation(root, date, async () => {}),
-        "refresh is busy",
-      );
-    });
-    const exitedProcess = Bun.spawn(["/usr/bin/true"]);
-    await exitedProcess.exited;
-    const staleCandidate = `${root}/.refresh-locks/${date}.lock.${crypto.randomUUID()}.candidate`;
-    const malformedCandidate = `${root}/.refresh-locks/${date}.lock.${crypto.randomUUID()}.candidate`;
-    const staleOwner = {
-      pid: exitedProcess.pid,
-      token: crypto.randomUUID(),
-      process_start: "stale process",
-      acquired_at: new Date().toISOString(),
-    };
-    await Bun.write(staleCandidate, `${JSON.stringify(staleOwner)}\n`);
-    await Bun.write(malformedCandidate, "{\n");
-    await Bun.write(
-      `${root}/.refresh-locks/${date}.lock`,
-      `${JSON.stringify({
-        pid: exitedProcess.pid,
-        token: crypto.randomUUID(),
-        process_start: "stale process",
-        acquired_at: new Date().toISOString(),
-      })}\n`,
-    );
-    let entered = 0;
-    let release: (() => void) | undefined;
-    const held = new Promise<void>((resolve) => {
-      release = resolve;
-    });
-    const recoveries = Promise.allSettled([
-      withRefreshMutation(root, date, async () => {
-        entered += 1;
-        await held;
-      }),
-      withRefreshMutation(root, date, async () => {
-        entered += 1;
-        await held;
-      }),
-    ]);
-    for (let attempt = 0; attempt < 200; attempt += 1) {
-      if (entered > 0) break;
-      await Bun.sleep(10);
-    }
-    expect(entered).toBe(1);
-    release?.();
-    const recoveryResults = await recoveries;
-    expect(await Bun.file(staleCandidate).exists()).toBe(false);
-    expect(await Bun.file(malformedCandidate).exists()).toBe(false);
-    expect(recoveryResults.filter((result) => result.status === "fulfilled")).toHaveLength(1);
-    expect(recoveryResults.filter((result) => result.status === "rejected")).toHaveLength(1);
-    await Bun.write(`${root}/runs/${date}/manifest.json`, "{}\n");
-    await expectRejection(assertRefreshWritable(root, date), "already sealed");
-    await expectRejection(
-      withRefreshMutation(root, date, async () => {}),
-      "already sealed",
-    );
+    await expectContendedRefreshRejected(root, date);
+    await expectStaleLocksRecovered(root, date);
+    await expectSealedRefreshRejected(root, date);
   } finally {
     await command(["/bin/rm", "-rf", root]);
   }
 });
+
+async function expectContendedRefreshRejected(root: string, date: string): Promise<void> {
+  await withRefreshMutation(root, date, async () => {
+    await expectRejection(withRefreshMutation(root, date, async () => {}), "refresh is busy");
+  });
+}
+
+async function expectStaleLocksRecovered(root: string, date: string): Promise<void> {
+  const exitedProcess = Bun.spawn(["/usr/bin/true"]); await exitedProcess.exited;
+  const staleCandidate = `${root}/.refresh-locks/${date}.lock.${crypto.randomUUID()}.candidate`;
+  const malformedCandidate = `${root}/.refresh-locks/${date}.lock.${crypto.randomUUID()}.candidate`;
+  const staleOwner = { pid: exitedProcess.pid, token: crypto.randomUUID(), process_start: "stale process", acquired_at: new Date().toISOString() };
+  await Bun.write(staleCandidate, `${JSON.stringify(staleOwner)}\n`); await Bun.write(malformedCandidate, "{\n");
+  await Bun.write(`${root}/.refresh-locks/${date}.lock`, `${JSON.stringify({ ...staleOwner, token: crypto.randomUUID() })}\n`);
+  const results = await competingRefreshMutations(root, date);
+  expect(await Bun.file(staleCandidate).exists()).toBe(false); expect(await Bun.file(malformedCandidate).exists()).toBe(false);
+  expect(results.filter((result) => result.status === "fulfilled")).toHaveLength(1);
+  expect(results.filter((result) => result.status === "rejected")).toHaveLength(1);
+}
+
+async function competingRefreshMutations(root: string, date: string): Promise<PromiseSettledResult<void>[]> {
+  let entered = 0; let release: (() => void) | undefined;
+  const held = new Promise<void>((resolve) => { release = resolve; });
+  const recoveries = Promise.allSettled([withRefreshMutation(root, date, async () => { entered += 1; await held; }), withRefreshMutation(root, date, async () => { entered += 1; await held; })]);
+  await waitForRefreshEntry(() => entered);
+  expect(entered).toBe(1); release?.(); return recoveries;
+}
+
+async function waitForRefreshEntry(entered: () => number): Promise<void> {
+  for (let attempt = 0; attempt < 200; attempt += 1) {
+    if (entered() > 0) return;
+    await Bun.sleep(10);
+  }
+}
+
+async function expectSealedRefreshRejected(root: string, date: string): Promise<void> {
+  await Bun.write(`${root}/runs/${date}/manifest.json`, "{}\n");
+  await expectRejection(assertRefreshWritable(root, date), "already sealed");
+  await expectRejection(withRefreshMutation(root, date, async () => {}), "already sealed");
+}
 
 test("snapshots refresh inputs once", async () => {
   const root = await command([
