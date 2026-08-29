@@ -90,3 +90,6 @@ export type ControllerOptions = {
   isInterrupted?: () => boolean;
   invokeOpenCode: (request: OpenCodeRequest) => Promise<OpenCodeStepResult>;
 };
+
+/** One parsed entry of "git worktree list --porcelain". */
+export type WorktreeRecord = Record<string, string>;
