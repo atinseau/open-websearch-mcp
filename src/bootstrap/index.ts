@@ -1,10 +1,10 @@
 import {
   createConfigurationService,
-  createObscuraInstaller,
   createSessionLogger,
   resolveWorkspace,
   type Workspace,
 } from "@/features/configuration";
+import { createObscuraInstaller } from "@/features/rendering";
 import { BlobStore, createStorage, SqliteStore, type Storage } from "@/features/storage";
 import type { CallContext, InvestigationApplication } from "@/features/investigation";
 import type { McpToolAdapter, McpToolDependencies } from "@/mcp";

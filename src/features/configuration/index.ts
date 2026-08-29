@@ -59,9 +59,4 @@ export {
   type DoctorReport,
   type MachineProfile,
 } from "@/features/configuration/application/service";
-export { resolveWorkspace } from "@/features/configuration/adapters/workspace";
-export {
-  createObscuraInstaller,
-  type ObscuraArtifact,
-  type ObscuraInstaller,
-} from "@/features/configuration/adapters/installer";
+export { renameAtomically, resolveWorkspace } from "@/features/configuration/adapters/workspace";

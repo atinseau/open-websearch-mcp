@@ -1,5 +1,11 @@
 import type { InvestigationId } from "@/features/investigation";
 import { AdaptiveNavigationScheduler } from "@/features/rendering/application/scheduler";
+export {
+  createObscuraInstaller,
+  type ObscuraArtifact,
+  type ObscuraInstaller,
+} from "@/features/rendering/adapters/installer";
+export type { ObscuraTransport } from "@/features/rendering/adapters/obscura-transport";
 
 /** The only production document-rendering capability. */
 export interface Renderer {
