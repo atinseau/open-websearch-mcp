@@ -2,7 +2,6 @@ import type {
   OpenCodeRequest,
   OpenCodeStepResult,
   OrchestrationState,
-  Task,
   TaskState,
 } from "./controller-types.ts";
 import { run } from "./process-utils.ts";
@@ -15,16 +14,17 @@ import {
   setTaskState,
 } from "./state-edits.ts";
 
-export function createTrace(
-  taskId: string,
-  attempt: number,
-  stepNumber: number,
-  request: OpenCodeRequest,
-  result: OpenCodeStepResult,
-  branch: string,
-  baseSha: string,
-  headSha: string,
-): string {
+export function createTrace(input: {
+  taskId: string;
+  attempt: number;
+  stepNumber: number;
+  request: OpenCodeRequest;
+  result: OpenCodeStepResult;
+  branch: string;
+  baseSha: string;
+  headSha: string;
+}): string {
+  const { taskId, attempt, stepNumber, request, result, branch, baseSha, headSha } = input;
   const oneLine = (value: string): string => value.replace(/\s+/gu, " ").trim();
   const checks =
     result.checks.length === 0
@@ -54,6 +54,51 @@ export function createTrace(
 - Remaining work: ${oneLine(result.next_action)}
 - Exact next action: ${oneLine(result.next_action)}
 `;
+}
+
+function rootFields(input: Parameters<typeof persistStep>[0]): Record<string, string | number> {
+  const fields: Record<string, string | number> = {
+    current_task: input.taskId,
+    current_attempt: input.attempt,
+    current_worktree: input.relativeWorktree,
+    current_branch: input.branch,
+    current_base_sha: input.baseSha,
+    current_step: input.stepNumber,
+    last_trace: input.traceRelative,
+  };
+  if (input.sessionId) fields.current_session = input.sessionId;
+  if (input.headSha) fields.current_head_sha = input.headSha;
+  if (input.reviewedDiff) fields.current_reviewed_diff = input.reviewedDiff;
+  return fields;
+}
+
+function updateStateText(
+  input: Parameters<typeof persistStep>[0],
+  parsed: OrchestrationState,
+  text: string,
+): string {
+  const attempts = parsed.tasks[input.taskId]?.attempts ?? [];
+  let stateText = input.clearPriorOutcome
+    ? removeRootFields(text, ["current_session", "current_head_sha", "current_reviewed_diff"])
+    : text;
+  stateText = setTaskState(stateText, input.taskId, input.taskState);
+  stateText = setTaskEvidence(stateText, input.taskId, [
+    ...new Set([...(parsed.tasks[input.taskId]?.evidence ?? []), input.traceRelative]),
+  ]);
+  stateText = setTaskAttempts(stateText, input.taskId, [
+    ...attempts.filter((attempt) => attempt.attempt !== input.attempt),
+    {
+      attempt: input.attempt,
+      branch: input.branch,
+      worktree: input.relativeWorktree,
+      base_sha: input.baseSha,
+    },
+  ]);
+  stateText = setTableString(stateText, "environment", "controller_model", input.model);
+  return setRootFields(
+    setTableString(stateText, "environment", "controller_variant", input.variant ?? "default"),
+    rootFields(input),
+  );
 }
 
 export async function atomicWrite(path: string, content: string, cwd: string): Promise<void> {
@@ -87,49 +132,94 @@ export async function persistStep(input: {
   // Controller-owned state was validated before the step and is validated again after persistence.
   // oxlint-disable-next-line typescript/no-unsafe-type-assertion
   const parsed = Bun.TOML.parse(await Bun.file(statePath).text()) as OrchestrationState;
-  let stateText = await Bun.file(statePath).text();
-  if (input.clearPriorOutcome) {
-    stateText = removeRootFields(stateText, [
-      "current_session",
-      "current_head_sha",
-      "current_reviewed_diff",
-    ]);
-  }
-  stateText = setTaskState(stateText, input.taskId, input.taskState);
-  stateText = setTaskEvidence(stateText, input.taskId, [
-    ...new Set([...(parsed.tasks[input.taskId]?.evidence ?? []), input.traceRelative]),
-  ]);
-  const attempts = parsed.tasks[input.taskId]?.attempts ?? [];
-  stateText = setTaskAttempts(stateText, input.taskId, [
-    ...attempts.filter((attempt) => attempt.attempt !== input.attempt),
-    {
-      attempt: input.attempt,
-      branch: input.branch,
-      worktree: input.relativeWorktree,
-      base_sha: input.baseSha,
-    },
-  ]);
-  stateText = setTableString(stateText, "environment", "controller_model", input.model);
-  stateText = setTableString(
-    stateText,
-    "environment",
-    "controller_variant",
-    input.variant ?? "default",
+  await atomicWrite(
+    statePath,
+    updateStateText(input, parsed, await Bun.file(statePath).text()),
+    input.worktree,
   );
-  const rootFields: Record<string, string | number> = {
-    current_task: input.taskId,
-    current_attempt: input.attempt,
-    current_worktree: input.relativeWorktree,
-    current_branch: input.branch,
-    current_base_sha: input.baseSha,
-    current_step: input.stepNumber,
-    last_trace: input.traceRelative,
+}
+
+function prepareRequest(input: Parameters<typeof persistPrepare>[0]): OpenCodeRequest {
+  return {
+    task: input.taskId,
+    cwd: input.worktree,
+    model: input.model,
+    variant: input.variant,
+    prompt: "",
+    timeout_ms: input.timeoutMs,
   };
-  if (input.sessionId) rootFields.current_session = input.sessionId;
-  if (input.headSha) rootFields.current_head_sha = input.headSha;
-  if (input.reviewedDiff) rootFields.current_reviewed_diff = input.reviewedDiff;
-  stateText = setRootFields(stateText, rootFields);
-  await atomicWrite(statePath, stateText, input.worktree);
+}
+
+function prepareResult(
+  input: Parameters<typeof persistPrepare>[0],
+  ready: boolean,
+): OpenCodeStepResult {
+  return ready
+    ? {
+        status: "ready",
+        step: "plan",
+        session_id: "not-started",
+        summary: "Promoted the first dependency-complete planned task to ready",
+        changed_paths: [],
+        checks: [],
+        decisions: ["All declared task dependencies are factually verified on main"],
+        findings: [],
+        next_action: "Prepare the ready task worktree",
+      }
+    : {
+        status: "continue",
+        step: "plan",
+        session_id: "not-started",
+        summary: "Created or reconciled the task worktree and persisted resumable controller state",
+        changed_paths: [],
+        checks: [
+          {
+            command: `git worktree add -b ${input.branch} ${input.relativeWorktree} ${input.baseSha}`,
+            cwd: input.repository,
+            exit_code: 0,
+          },
+        ],
+        decisions: ["Use the first dependency-complete task and one repository-local worktree"],
+        findings: [],
+        next_action: "Invoke OpenCode for the first task step",
+      };
+}
+
+async function persistPreparedStep(
+  input: Parameters<typeof persistPrepare>[0],
+  taskState: TaskState,
+  suffix: string,
+): Promise<string> {
+  const stepNumber = await nextStepNumber(input.worktree, input.taskId);
+  const request = prepareRequest(input);
+  const result = prepareResult(input, taskState === "ready");
+  const traceRelative = `docs/orchestration/runs/${input.taskId}/${String(stepNumber).padStart(4, "0")}-${suffix}.md`;
+  const trace = createTrace({
+    taskId: input.taskId,
+    attempt: input.attempt,
+    stepNumber,
+    request,
+    result,
+    branch: input.branch,
+    baseSha: input.baseSha,
+    headSha: input.baseSha,
+  });
+  await persistStep({
+    worktree: input.worktree,
+    taskId: input.taskId,
+    taskState,
+    model: input.model,
+    variant: input.variant,
+    relativeWorktree: input.relativeWorktree,
+    branch: input.branch,
+    baseSha: input.baseSha,
+    attempt: input.attempt,
+    stepNumber,
+    traceRelative,
+    trace,
+    clearPriorOutcome: true,
+  });
+  return trace;
 }
 
 export async function nextStepNumber(worktree: string, taskId: string): Promise<number> {
@@ -154,104 +244,6 @@ export async function persistPrepare(input: {
   timeoutMs: number;
   markReady?: boolean;
 }): Promise<string> {
-  if (input.markReady) {
-    const readyStep = await nextStepNumber(input.worktree, input.taskId);
-    const readyRequest: OpenCodeRequest = {
-      task: input.taskId,
-      cwd: input.worktree,
-      model: input.model,
-      variant: input.variant,
-      prompt: "",
-      timeout_ms: input.timeoutMs,
-    };
-    const readyResult: OpenCodeStepResult = {
-      status: "ready",
-      step: "plan",
-      session_id: "not-started",
-      summary: "Promoted the first dependency-complete planned task to ready",
-      changed_paths: [],
-      checks: [],
-      decisions: ["All declared task dependencies are factually verified on main"],
-      findings: [],
-      next_action: "Prepare the ready task worktree",
-    };
-    const readyRelative = `docs/orchestration/runs/${input.taskId}/${String(readyStep).padStart(4, "0")}-ready.md`;
-    await persistStep({
-      worktree: input.worktree,
-      taskId: input.taskId,
-      taskState: "ready",
-      model: input.model,
-      variant: input.variant,
-      relativeWorktree: input.relativeWorktree,
-      branch: input.branch,
-      baseSha: input.baseSha,
-      attempt: input.attempt,
-      stepNumber: readyStep,
-      traceRelative: readyRelative,
-      trace: createTrace(
-        input.taskId,
-        input.attempt,
-        readyStep,
-        readyRequest,
-        readyResult,
-        input.branch,
-        input.baseSha,
-        input.baseSha,
-      ),
-      clearPriorOutcome: true,
-    });
-  }
-  const stepNumber = await nextStepNumber(input.worktree, input.taskId);
-  const request: OpenCodeRequest = {
-    task: input.taskId,
-    cwd: input.worktree,
-    model: input.model,
-    variant: input.variant,
-    prompt: "",
-    timeout_ms: input.timeoutMs,
-  };
-  const result: OpenCodeStepResult = {
-    status: "continue",
-    step: "plan",
-    session_id: "not-started",
-    summary: "Created or reconciled the task worktree and persisted resumable controller state",
-    changed_paths: [],
-    checks: [
-      {
-        command: `git worktree add -b ${input.branch} ${input.relativeWorktree} ${input.baseSha}`,
-        cwd: input.repository,
-        exit_code: 0,
-      },
-    ],
-    decisions: ["Use the first dependency-complete task and one repository-local worktree"],
-    findings: [],
-    next_action: "Invoke OpenCode for the first task step",
-  };
-  const traceRelative = `docs/orchestration/runs/${input.taskId}/${String(stepNumber).padStart(4, "0")}-prepare.md`;
-  const trace = createTrace(
-    input.taskId,
-    input.attempt,
-    stepNumber,
-    request,
-    result,
-    input.branch,
-    input.baseSha,
-    input.baseSha,
-  );
-  await persistStep({
-    worktree: input.worktree,
-    taskId: input.taskId,
-    taskState: "in_progress",
-    model: input.model,
-    variant: input.variant,
-    relativeWorktree: input.relativeWorktree,
-    branch: input.branch,
-    baseSha: input.baseSha,
-    attempt: input.attempt,
-    stepNumber,
-    traceRelative,
-    trace,
-    clearPriorOutcome: true,
-  });
-  return trace;
+  if (input.markReady) await persistPreparedStep(input, "ready", "ready");
+  return persistPreparedStep(input, "in_progress", "prepare");
 }

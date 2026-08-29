@@ -615,7 +615,16 @@ async function runControllerStep(
       ? await reviewedContentDigest(worktree, baseSha, taskId)
       : undefined;
   const traceRelative = `docs/orchestration/runs/${taskId}/${String(stepNumber).padStart(4, "0")}-${result.step}.md`;
-  const trace = createTrace(taskId, attempt, stepNumber, request, result, branch, baseSha, headSha);
+  const trace = createTrace({
+    taskId,
+    attempt,
+    stepNumber,
+    request,
+    result,
+    branch,
+    baseSha,
+    headSha,
+  });
   await persistStep({
     worktree,
     taskId,
