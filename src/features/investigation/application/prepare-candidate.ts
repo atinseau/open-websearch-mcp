@@ -1,6 +1,6 @@
 import type { Candidate } from "@/features/discovery";
 import type { ExtractorRegistry } from "@/features/extraction";
-import type { RenderedDocument } from "@/features/rendering";
+import type { RenderedDocument, RenderRequest } from "@/features/rendering";
 import { decideRobots, type RobotsPolicy } from "@/features/security";
 import type { Storage } from "@/features/storage";
 
@@ -14,7 +14,11 @@ export interface CandidatePreparation {
   readonly robots: RobotsPolicy;
   readonly extractor: ExtractorRegistry;
   readonly now: () => Date;
-  readonly render: (url: URL, context: CallContext) => Promise<RenderedDocument>;
+  readonly render: (
+    url: URL,
+    context: CallContext,
+    conditional?: RenderRequest["conditional"],
+  ) => Promise<RenderedDocument>;
 }
 
 /**
@@ -40,9 +44,15 @@ export async function prepareCandidate(
       candidate.sourceType === "local_cache"
         ? await dependencies.storage.cache.get(candidate.url, cacheRead(dependencies.now()))
         : undefined;
-    if (cached?.fresh && cached.document.mainContent)
-      return cachedPrepared(candidate, cached.document.mainContent);
-    const document = await dependencies.render(candidate.url, context);
+    const fresh = reusable(candidate, cached, cached?.fresh === true);
+    if (fresh) return fresh;
+    // A stale entry still holds the origin's validators. Asking whether it is
+    // unchanged costs one conditional request; re-rendering costs the whole
+    // page and discards evidence the origin would have confirmed.
+    const conditional = conditionalFrom(cached);
+    const document = await dependencies.render(candidate.url, context, conditional);
+    const confirmed = reusable(candidate, cached, document.notModified === true);
+    if (confirmed) return confirmed;
     const extracted = await dependencies.extractor.extract(extractionInput(document));
     if (extracted.status !== "success") return undefined;
     await storeRenderedEvidence(
@@ -56,4 +66,27 @@ export async function prepareCandidate(
   } catch {
     return undefined;
   }
+}
+
+/** Validators a stored copy can offer, or undefined when it has none to give. */
+function conditionalFrom(
+  cached: { readonly document: { readonly headers?: Headers } } | undefined,
+): RenderRequest["conditional"] {
+  const etag = cached?.document.headers?.get("etag") ?? undefined;
+  const lastModified = cached?.document.headers?.get("last-modified") ?? undefined;
+  if (etag === undefined && lastModified === undefined) return undefined;
+  return { etag, lastModified };
+}
+
+/**
+ * The stored copy, when it may stand in for a render: either still fresh, or
+ * stale but confirmed unchanged by the origin. Undefined when it cannot.
+ */
+function reusable(
+  candidate: Candidate,
+  cached: { readonly document: { readonly mainContent?: string } } | undefined,
+  usable: boolean,
+): Prepared | undefined {
+  const content = cached?.document.mainContent;
+  return usable && content ? cachedPrepared(candidate, content) : undefined;
 }

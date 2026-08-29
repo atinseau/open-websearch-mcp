@@ -76,12 +76,21 @@ disk even though its render succeeded. Covered end to end by a test that opens
 a `no-store` page and proves the cache stays empty while a cacheable page
 remains searchable.
 
-## Still open
+## Conditional revalidation, now issued
 
-Conditional revalidation is not issued. The validators are stored now, but no
-`If-None-Match`/`If-Modified-Since` request is made, so a stale entry is
-re-rendered in full rather than revalidated. That is real remaining work,
-recorded here rather than claimed as done.
+A stale entry is no longer re-rendered whole. `prepareCandidate` reads the
+stored validators and passes them to the renderer, which sets `If-None-Match`
+and `If-Modified-Since` through CDP — the only place a browser navigation can
+carry request headers. A `304` on the main document marks the render
+`notModified`, and the stored evidence is reused unchanged.
+
+Routing this through CDP rather than a separate HTTP client is deliberate: a
+side-channel fetch would bypass Obscura and therefore bypass the SSRF guarantee
+ADR-0009 delegates to it.
+
+Built test-first. The red test proved the renderer received no validator at
+all; it passes now, and asserts both that the second render carries `etag` and
+that the confirmed body is reused rather than extracted again.
 
 ## A regression this work introduced, and caught
 

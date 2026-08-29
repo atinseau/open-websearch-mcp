@@ -1,7 +1,7 @@
 import { expect, test } from "bun:test";
 
 import { createWebResearchApplication, type CallContext } from "@/features/investigation";
-import type { Renderer } from "@/features/rendering";
+import type { Renderer, RenderRequest } from "@/features/rendering";
 import { defaultConfiguration } from "@/features/configuration";
 import { openStorage } from "@/features/storage";
 import { structuredToolResultSchema } from "@/mcp/contracts";
@@ -183,5 +183,55 @@ test("CACHE-006 enforces the configured ceiling as pages are stored", async () =
   const stored = (await storage.cache.search("needle", 50)).results;
   expect(stored.length).toBeGreaterThan(0);
   expect(stored.length).toBeLessThan(4);
+  storage.close();
+});
+
+test("CACHE-005 revalidates a stale entry instead of re-extracting it", async () => {
+  // A stale entry still carries the origin's validators. Re-rendering it whole
+  // throws away work the origin told us is still current: the conditional
+  // request is what turns "expired" into "confirmed" without paying for the
+  // page again.
+  const storage = await openStorage({ workspace: workspace() });
+  const seen: (RenderRequest["conditional"] | undefined)[] = [];
+  let renders = 0;
+  // A controlled clock, because the entry's lifetime has to elapse between the
+  // two calls and wall-clock time will not oblige inside a test.
+  let clock = new Date("2026-08-29T12:00:00.000Z");
+  const conditionalRenderer: Renderer = {
+    render: async (request) => {
+      seen.push(request.conditional);
+      renders += 1;
+      // The origin confirms the stored copy is unchanged.
+      if (request.conditional?.etag === "v1")
+        return { ...document(request.url), notModified: true };
+      return {
+        ...document(request.url),
+        cacheHeaders: { etag: "v1", "cache-control": "max-age=1" },
+      };
+    },
+  };
+  const application = createWebResearchApplication({
+    storage,
+    renderer: conditionalRenderer,
+    discovery: fixtureDiscovery(["https://revalidate.example/page"]),
+    now: () => clock,
+  });
+
+  await application.webOpen({ url: new URL("https://revalidate.example/page") }, context());
+  expect(renders).toBe(1);
+  expect(seen[0]).toBeUndefined();
+
+  // Past its one-second lifetime, so the entry is stale but not gone.
+  clock = new Date(clock.getTime() + 60_000);
+  const result = structuredToolResultSchema.parse(
+    await application
+      .webSearch({ query: "needle", maxResults: 1, investigationId: "revalidate-a" }, context())
+      .then((value) => value.structuredContent),
+  );
+  expect(result.results[0]?.discovery).toBe("local_cache");
+  // The second render is a conditional check carrying the stored validator,
+  // and the confirmed body is reused rather than extracted again.
+  expect(seen[1]?.etag).toBe("v1");
+  expect(renders).toBe(2);
   storage.close();
 });

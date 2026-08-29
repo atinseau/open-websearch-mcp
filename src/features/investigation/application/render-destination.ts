@@ -1,4 +1,4 @@
-import type { RenderedDocument, Renderer } from "@/features/rendering";
+import type { RenderedDocument, Renderer, RenderRequest } from "@/features/rendering";
 
 import type { CallContext } from "../index.ts";
 import { ExpectedFailure } from "./web-research-result.ts";
@@ -13,6 +13,7 @@ export async function renderDestination(
   url: URL,
   context: CallContext,
   explicitOpen: boolean,
+  conditional?: RenderRequest["conditional"],
 ): Promise<RenderedDocument> {
   if (!renderer) throw new ExpectedFailure("renderer_unavailable");
   try {
@@ -22,6 +23,7 @@ export async function renderDestination(
       investigationId: "pending",
       kind: "destination",
       explicitOpen,
+      conditional,
     });
   } catch (error) {
     if (error instanceof Error && error.message.includes("renderer_unavailable"))

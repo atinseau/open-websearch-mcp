@@ -5,6 +5,7 @@ import type {
   Renderer,
   WebViewRendererOptions,
 } from "@/features/rendering";
+import { cacheDirectives, conditionalHeaders, headerValue } from "./webview-headers.ts";
 
 type LinkValue = { readonly href?: unknown; readonly text?: unknown };
 type TransferMonitor = {
@@ -12,6 +13,7 @@ type TransferMonitor = {
   readonly exceeded: () => boolean;
   readonly contentType: () => string | undefined;
   readonly cacheHeaders: () => Record<string, string>;
+  readonly notModified: () => boolean;
   readonly stop: () => void;
 };
 
@@ -34,11 +36,15 @@ export class WebViewRenderer implements Renderer {
         signal: request.signal,
         timeoutMs: this.#options.configuration.navigationTimeoutMs,
       },
-      (signal) => this.#renderTarget(request.url, signal),
+      (signal) => this.#renderTarget(request.url, signal, request.conditional),
     );
   }
 
-  async #renderTarget(url: URL, signal: AbortSignal): Promise<RenderedDocument> {
+  async #renderTarget(
+    url: URL,
+    signal: AbortSignal,
+    conditional?: RenderRequest["conditional"],
+  ): Promise<RenderedDocument> {
     const view = new Bun.WebView({
       backend: { type: "chrome", url: this.#options.endpoint.cdpUrl.toString() },
       dataStore: "ephemeral",
@@ -47,7 +53,17 @@ export class WebViewRenderer implements Renderer {
     const cancel = () => view.close();
     signal.addEventListener("abort", cancel, { once: true });
     try {
-      await this.#navigate(view, url, signal, monitor.exceeded);
+      await this.#navigate(view, url, signal, monitor.exceeded, conditional);
+      // A confirmed copy carries no new body: the caller keeps what it stored.
+      if (monitor.notModified())
+        return {
+          url,
+          text: "",
+          markdown: "",
+          links: [],
+          notModified: true,
+          diagnostics: { title: view.title, transferBytes: monitor.bytes(), settledMs: 0 },
+        };
       const settledAt = Date.now();
       await pause(this.#options.configuration.settleTimeoutMs, signal);
       if (monitor.exceeded()) throw new Error("download_budget_exceeded");
@@ -73,10 +89,15 @@ export class WebViewRenderer implements Renderer {
     url: URL,
     signal: AbortSignal,
     exceeded: () => boolean,
+    conditional?: RenderRequest["conditional"],
   ): Promise<void> {
     await view.navigate("about:blank");
     assertPublic(this.#options.policy, url);
     await view.cdp("Network.enable");
+    // CDP is the only place a browser navigation can carry request headers, so
+    // this is where a stored copy's validators become a conditional request.
+    const validators = conditionalHeaders(conditional);
+    if (validators) await view.cdp("Network.setExtraHTTPHeaders", { headers: validators });
     try {
       await raceAbort(view.navigate(url.toString()), signal);
     } catch (error) {
@@ -97,6 +118,7 @@ function monitorTransfer(view: Bun.WebView, maximumBytes: number): TransferMonit
   let overBudget = false;
   let documentType: string | undefined;
   let documentCacheHeaders: Record<string, string> = {};
+  let documentNotModified = false;
   const dataRequests = new Set<string>();
   const observe = (bytes: unknown): void => {
     if (typeof bytes !== "number" || !Number.isFinite(bytes)) return;
@@ -125,6 +147,7 @@ function monitorTransfer(view: Bun.WebView, maximumBytes: number): TransferMonit
     documentType ??= declaredDocumentType(payload, headers);
     if (isDocumentResponse(payload) && Object.keys(documentCacheHeaders).length === 0)
       documentCacheHeaders = cacheDirectives(headers);
+    if (isDocumentResponse(payload) && responseStatus(payload) === 304) documentNotModified = true;
     const length = headerValue(headers, "content-length");
     if (typeof length === "string" && Number(length) > maximumBytes) {
       overBudget = true;
@@ -139,6 +162,7 @@ function monitorTransfer(view: Bun.WebView, maximumBytes: number): TransferMonit
     exceeded: () => overBudget,
     contentType: () => documentType,
     cacheHeaders: () => documentCacheHeaders,
+    notModified: () => documentNotModified,
     stop: () => {
       view.removeEventListener("Network.dataReceived", data);
       view.removeEventListener("Network.loadingFinished", finished);
@@ -155,10 +179,6 @@ function responseHeaders(payload: unknown): Record<string, unknown> {
   return isRecord(payload) && isRecord(payload.response) && isRecord(payload.response.headers)
     ? payload.response.headers
     : {};
-}
-
-function headerValue(headers: Record<string, unknown>, name: string): unknown {
-  return Object.entries(headers).find(([key]) => key.toLowerCase() === name)?.[1];
 }
 
 /**
@@ -179,19 +199,10 @@ function isDocumentResponse(payload: unknown): boolean {
   return isRecord(payload) && payload.type === "Document";
 }
 
-/**
- * Keeps the response headers that decide cache freshness. Without them the
- * cache can only fall back to content-class TTLs, so an origin's own expiry and
- * validators are ignored and a conditional revalidation is impossible.
- */
-function cacheDirectives(headers: Record<string, unknown>): Record<string, string> {
-  const wanted = ["cache-control", "etag", "last-modified", "expires", "date"];
-  const kept: Record<string, string> = {};
-  for (const name of wanted) {
-    const value = headerValue(headers, name);
-    if (typeof value === "string") kept[name] = value;
-  }
-  return kept;
+function responseStatus(payload: unknown): number | undefined {
+  if (!isRecord(payload) || !isRecord(payload.response)) return undefined;
+  const status = payload.response.status;
+  return typeof status === "number" ? status : undefined;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
