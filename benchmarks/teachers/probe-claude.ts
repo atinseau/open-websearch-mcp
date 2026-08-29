@@ -260,6 +260,31 @@ function collectClaudeResults(
   toolIds: Map<string, ClaudeToolCall>,
   forbidden: Set<string>,
 ): number {
+  const matchedCall = correlateToolResult(event, toolIds, forbidden);
+  const resultValue = event.tool_use_result;
+  if (typeof resultValue === "string") return 0;
+  if (typeof resultValue !== "object" || resultValue === null) {
+    forbidden.add("tool_result:missing-payload");
+    return 0;
+  }
+  const result = record(resultValue, "Claude tool result");
+  if ("query" in result || "results" in result) {
+    return validateSearchResult(result, matchedCall, forbidden);
+  }
+  if ("url" in result || "result" in result) {
+    validateFetchResult(result, matchedCall, forbidden);
+    return 0;
+  }
+  forbidden.add("tool_result:unknown-payload");
+  return 0;
+}
+
+/** Ties a tool result back to the call that produced it. */
+function correlateToolResult(
+  event: Record<string, unknown>,
+  toolIds: Map<string, ClaudeToolCall>,
+  forbidden: Set<string>,
+): ClaudeToolCall | undefined {
   const message = record(event.message, "Claude user message");
   const contents = array(message.content, "Claude user content", true);
   if (contents.length !== 1) forbidden.add("tool_result:ambiguous-message");
@@ -275,37 +300,39 @@ function collectClaudeResults(
     if (call === undefined) forbidden.add(`tool_result:uncorrelated:${id || "missing-id"}`);
     else matchedCall = call;
   }
-  const resultValue = event.tool_use_result;
-  if (typeof resultValue === "string") return 0;
-  if (typeof resultValue !== "object" || resultValue === null) {
-    forbidden.add("tool_result:missing-payload");
+  return matchedCall;
+}
+
+/** Returns 1 when the payload is a well-formed, non-empty WebSearch result. */
+function validateSearchResult(
+  result: Record<string, unknown>,
+  matchedCall: ClaudeToolCall | undefined,
+  forbidden: Set<string>,
+): number {
+  if (matchedCall?.name !== "WebSearch") forbidden.add("WebSearch:mismatched-result");
+  if (typeof result.query !== "string" || !Array.isArray(result.results)) {
+    forbidden.add("WebSearch:malformed-result");
     return 0;
   }
-  const result = record(resultValue, "Claude tool result");
-  if ("query" in result || "results" in result) {
-    if (matchedCall?.name !== "WebSearch") forbidden.add("WebSearch:mismatched-result");
-    if (typeof result.query !== "string" || !Array.isArray(result.results)) {
-      forbidden.add("WebSearch:malformed-result");
-      return 0;
-    }
-    if (result.query !== matchedCall?.input.query) forbidden.add("WebSearch:query-mismatch");
-    if (extractedWebUrls(JSON.stringify(result.results)).length === 0) {
-      forbidden.add("WebSearch:empty-result");
-      return 0;
-    }
-    return 1;
-  }
-  if ("url" in result || "result" in result) {
-    if (matchedCall?.name !== "WebFetch") forbidden.add("WebFetch:mismatched-result");
-    if (typeof result.url !== "string" || typeof result.result !== "string") {
-      forbidden.add("WebFetch:malformed-result");
-    } else if (result.url !== matchedCall?.input.url) {
-      forbidden.add("WebFetch:url-mismatch");
-    }
+  if (result.query !== matchedCall?.input.query) forbidden.add("WebSearch:query-mismatch");
+  if (extractedWebUrls(JSON.stringify(result.results)).length === 0) {
+    forbidden.add("WebSearch:empty-result");
     return 0;
   }
-  forbidden.add("tool_result:unknown-payload");
-  return 0;
+  return 1;
+}
+
+function validateFetchResult(
+  result: Record<string, unknown>,
+  matchedCall: ClaudeToolCall | undefined,
+  forbidden: Set<string>,
+): void {
+  if (matchedCall?.name !== "WebFetch") forbidden.add("WebFetch:mismatched-result");
+  if (typeof result.url !== "string" || typeof result.result !== "string") {
+    forbidden.add("WebFetch:malformed-result");
+  } else if (result.url !== matchedCall?.input.url) {
+    forbidden.add("WebFetch:url-mismatch");
+  }
 }
 
 function inspectNestedToolUses(value: unknown, forbidden: Set<string>): void {
@@ -315,14 +342,20 @@ function inspectNestedToolUses(value: unknown, forbidden: Set<string>): void {
   }
   if (typeof value !== "object" || value === null) return;
   const object = record(value, "Claude nested event value");
+  recordForbiddenInvocation(object, forbidden);
+  for (const entry of Object.values(object)) inspectNestedToolUses(entry, forbidden);
+}
+
+/** Flags any nested invocation the teacher policy did not permit. */
+function recordForbiddenInvocation(
+  object: Record<string, unknown>,
+  forbidden: Set<string>,
+): void {
+  const name = typeof object.name === "string" ? object.name : "unknown";
   if (typeof object.type === "string" && claudeForbiddenInvocationTypes.has(object.type)) {
-    const name = typeof object.name === "string" ? object.name : "unknown";
     forbidden.add(`${object.type}:${name}`);
   }
-  if (object.type === "server_tool_use") {
-    const name = typeof object.name === "string" ? object.name : "unknown";
-    forbidden.add(`server_tool_use:${name}`);
-  }
+  if (object.type === "server_tool_use") forbidden.add(`server_tool_use:${name}`);
   if (object.type === "tool_progress") {
     const tool = typeof object.tool_name === "string" ? object.tool_name : "unknown";
     if (!claudeAllowedTools.has(tool)) forbidden.add(`tool_progress:${tool}`);
@@ -331,5 +364,4 @@ function inspectNestedToolUses(value: unknown, forbidden: Set<string>): void {
     if (typeof object.name !== "string") forbidden.add("tool_use:missing-name");
     else if (!claudeAllowedTools.has(object.name)) forbidden.add(object.name);
   }
-  for (const entry of Object.values(object)) inspectNestedToolUses(entry, forbidden);
 }
