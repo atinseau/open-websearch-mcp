@@ -1,4 +1,4 @@
-import { afterAll, expect, test } from "bun:test";
+import { expect, test } from "bun:test";
 
 import {
   createNavigationScheduler,
@@ -7,10 +7,10 @@ import {
   type RendererConfiguration,
 } from "@/features/rendering";
 import { assessPublicUrl } from "@/features/security";
+import { googleCanaryCorpus } from "./google-canary-corpus";
 
 const enabled = Bun.env.OPEN_WEBSEARCH_LIVE === "1";
 const executable = Bun.which("obscura") ?? "/Users/arthur/.local/bin/obscura";
-const supervisors: ReturnType<typeof createObscuraSupervisor>[] = [];
 const configuration: RendererConfiguration = {
   navigationTimeoutMs: 15_000,
   settleTimeoutMs: 250,
@@ -38,65 +38,86 @@ const schedulerConfiguration = {
   },
 };
 
-afterAll(async () => {
-  for (const supervisor of supervisors.splice(0)) await supervisor.shutdown();
-});
-
 test.skipIf(!enabled)(
-  "TEST-004/025 runs two serialized Google canaries as an informational report",
+  "TEST-004/018/025 runs serialized Google canaries as an informational report",
   async () => {
     expect(await Bun.file(executable).exists()).toBeTrue();
     const supervisor = createObscuraSupervisor({ executable, configuration });
-    supervisors.push(supervisor);
-    const endpoint = await supervisor.install(new AbortController().signal);
     const scheduler = createNavigationScheduler({ configuration: schedulerConfiguration });
-    const renderer = createWebViewRenderer({
-      endpoint,
-      configuration,
-      scheduler,
-      policy: { assess: assessPublicUrl },
-    });
-    const results: Array<{
-      readonly query: string;
-      readonly status: string;
-      readonly detail: string;
-    }> = [];
-    for (const query of ["Bun WebView documentation", "Model Context Protocol specification"]) {
-      try {
-        const document = await renderer.render({
-          url: new URL(`https://www.google.com/search?q=${encodeURIComponent(query)}`),
-          signal: new AbortController().signal,
-          investigationId: `live-${results.length}`,
-          kind: "google_serp",
-          explicitOpen: false,
-          profile: "google-public",
-        });
-        const text = document.text.toLowerCase();
-        results.push({
-          query,
-          status:
-            text.includes("captcha") || text.includes("unusual traffic") ? "blocked" : "rendered",
-          detail: `bytes=${document.diagnostics.transferBytes}`,
-        });
-      } catch (error) {
-        results.push({
-          query,
-          status: "external_error",
-          detail: error instanceof Error ? error.message : "unknown",
-        });
+    try {
+      const endpoint = await supervisor.install(new AbortController().signal);
+      const renderer = createWebViewRenderer({
+        endpoint,
+        configuration,
+        scheduler,
+        policy: { assess: assessPublicUrl },
+      });
+      const results: Array<{
+        readonly query: string;
+        readonly status: "rendered" | "blocked" | "external_error";
+        readonly detail: string;
+      }> = [];
+      for (const query of googleCanaryCorpus) {
+        const result = await observe(renderer, query, results.length);
+        results.push(result);
+        if (result.status === "blocked") break;
+        await Bun.sleep(1_500);
       }
+      const reportDirectory = Bun.env.BENCHMARK_REPORT_DIR ?? "/tmp/open-websearch-reports";
+      await Bun.write(
+        `${reportDirectory}/ver-003-live-canaries.json`,
+        JSON.stringify(
+          {
+            schemaVersion: 2,
+            informational: true,
+            serialized: true,
+            stoppedAfterBlock: results.at(-1)?.status === "blocked",
+            corpusSize: googleCanaryCorpus.length,
+            results,
+          },
+          null,
+          2,
+        ) + "\n",
+      );
+      expect(results.length).toBeGreaterThan(0);
+    } finally {
+      await scheduler.shutdown();
+      await supervisor.shutdown();
     }
-    const reportDirectory = Bun.env.BENCHMARK_REPORT_DIR ?? "/tmp/open-websearch-reports";
-    await Bun.write(
-      `${reportDirectory}/ver-003-live-canaries.json`,
-      JSON.stringify(
-        { schemaVersion: 1, informational: true, serialized: true, results },
-        null,
-        2,
-      ) + "\n",
-    );
-    await scheduler.shutdown();
-    expect(results).toHaveLength(2);
   },
-  45_000,
+  90_000,
 );
+
+async function observe(
+  renderer: ReturnType<typeof createWebViewRenderer>,
+  query: string,
+  index: number,
+): Promise<{
+  readonly query: string;
+  readonly status: "rendered" | "blocked" | "external_error";
+  readonly detail: string;
+}> {
+  try {
+    const document = await renderer.render({
+      url: new URL(`https://www.google.com/search?q=${encodeURIComponent(query)}`),
+      signal: new AbortController().signal,
+      investigationId: `live-${index}`,
+      kind: "google_serp",
+      explicitOpen: false,
+      profile: "google-public",
+    });
+    const text = document.text.toLowerCase();
+    return {
+      query,
+      status: text.includes("captcha") || text.includes("unusual traffic") ? "blocked" : "rendered",
+      detail: `bytes=${document.diagnostics.transferBytes}`,
+    };
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : "unknown";
+    return {
+      query,
+      status: /captcha|unusual traffic/iu.test(detail) ? "blocked" : "external_error",
+      detail,
+    };
+  }
+}
