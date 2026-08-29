@@ -8,6 +8,8 @@ import type {
   BlobReference,
   StorageDiagnostic,
 } from "../domain/types.ts";
+import { SqliteCache, type StorageCache } from "./cache.ts";
+export type { CacheReadOptions, StorageCache } from "./cache.ts";
 
 export interface StorageDatabase {
   readonly advancedLocalSearch: AdvancedLocalSearchCapability;
@@ -25,6 +27,11 @@ export interface StorageDatabaseConnection {
 export interface StorageBlobs {
   put(body: Uint8Array | string): Promise<BlobReference>;
   get(reference: BlobReference): Promise<Uint8Array>;
+  putStream(
+    body: ReadableStream<Uint8Array>,
+    limit: number,
+    observe: (bytes: number) => void,
+  ): Promise<BlobReference>;
 }
 
 export interface Storage extends InvestigationRepository {
@@ -33,7 +40,13 @@ export interface Storage extends InvestigationRepository {
   readonly blobs: {
     put(body: Uint8Array | string): Promise<BlobReference>;
     get(reference: BlobReference): Promise<Uint8Array>;
+    putStream(
+      body: ReadableStream<Uint8Array>,
+      limit: number,
+      observe: (bytes: number) => void,
+    ): Promise<BlobReference>;
   };
+  readonly cache: StorageCache;
   close(): void;
   journalMode(): string;
   migrationVersions(): readonly number[];
@@ -47,6 +60,7 @@ class WorkspaceStorage implements Storage {
   readonly diagnostics: readonly StorageDiagnostic[];
   readonly advancedLocalSearch;
   readonly blobs: Storage["blobs"];
+  readonly cache: StorageCache;
 
   constructor(
     private readonly sqlite: StorageDatabase,
@@ -57,7 +71,9 @@ class WorkspaceStorage implements Storage {
     this.blobs = {
       put: (body) => this.putBlob(body),
       get: (reference) => this.blobStore.get(reference),
+      putStream: (body, limit, observe) => this.blobStore.putStream(body, limit, observe),
     };
+    this.cache = new SqliteCache(sqlite.database);
   }
 
   async reserveConsumedPage(
