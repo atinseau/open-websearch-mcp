@@ -290,9 +290,21 @@ function sanitize(
 ): unknown {
   if (redactedScalar(value, key, sensitiveContainer, sensitiveKey)) return "[REDACTED]";
   if (typeof value === "string") return sanitizeString(value, absolutePaths);
-  if (Array.isArray(value))
-    return value.map((item) => sanitize(item, absolutePaths, undefined, sensitiveContainer, false));
+  if (Array.isArray(value)) return sanitizeArray(value, absolutePaths, sensitiveContainer);
   if (typeof value !== "object" || value === null) return value;
+  return sanitizeRecord(value, absolutePaths, sensitiveContainer, sensitiveKey);
+}
+
+function sanitizeArray(value: unknown[], absolutePaths: readonly string[], sensitiveContainer: boolean): unknown[] {
+  return value.map((item) => sanitize(item, absolutePaths, undefined, sensitiveContainer, false));
+}
+
+function sanitizeRecord(
+  value: object,
+  absolutePaths: readonly string[],
+  sensitiveContainer: boolean,
+  sensitiveKey: boolean,
+): JsonRecord {
   const result: JsonRecord = {};
   for (const [entryKey, entryValue] of Object.entries(value)) {
     let sanitizedKey = sanitizeString(entryKey, absolutePaths);
