@@ -3,6 +3,11 @@ import { expect, test } from "bun:test";
 import { normalizeTeacherRun } from "./contract.ts";
 
 test("normalizes observable Codex and Claude Web evidence", () => {
+  expectCodexNormalization();
+  expectClaudeNormalization();
+});
+
+function expectCodexNormalization(): void {
   const codex = normalizeTeacherRun(
     "codex",
     [
@@ -31,7 +36,9 @@ test("normalizes observable Codex and Claude Web evidence", () => {
     final_answer: "Bun shipped. https://bun.com/blog/bun-v1.4",
   });
   expect(codex.evidence_passages).toEqual([]);
+}
 
+function expectClaudeNormalization(): void {
   const claude = normalizeTeacherRun("claude", [
     { type: "system", subtype: "init", model: "claude-opus-5" },
     {
@@ -73,7 +80,7 @@ test("normalizes observable Codex and Claude Web evidence", () => {
     summary: "The surfaced search summary.",
   });
   expect(claude.evidence_passages).toEqual([]);
-});
+}
 
 test("classifies Codex other URL actions as opened pages rather than queries", () => {
   const normalized = normalizeTeacherRun("codex", [
