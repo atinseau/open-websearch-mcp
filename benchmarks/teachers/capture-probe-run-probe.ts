@@ -1,11 +1,10 @@
 import { inspectCodexProbe, sanitizeJsonl } from "./contract.ts";
 import { probePolicyDocument } from "./capture-probe-policy.ts";
 import { scheduleMalformedArchive } from "./capture-probe-malformed.ts";
+import { executeProbe } from "./capture-probe-execute.ts";
 import { buildTeacherRun } from "./capture-probe-run.ts";
 import type { ProbePlan } from "./capture-probe-plan.ts";
 import { withRefreshMutation } from "./refresh-lifecycle.ts";
-import { prepareProbeInvocation } from "./capture-probe-invocation.ts";
-import { commandOutput, runProcess } from "./process-controls.ts";
 import { failureOutput, writeCaptureArtifacts } from "./capture-probe-publication.ts";
 
 type CaptureInspection = ReturnType<typeof inspectCodexProbe>;
@@ -32,46 +31,9 @@ export async function runPlannedProbe(input: {
   schedulePublication: (publish: () => Promise<void>) => void;
 }): Promise<AcceptedCapture> {
   const { plan, provider, date, schedulePublication } = input;
-  const { root, target, teacherCase, promptTemplate, binary, allowedChildExecutable } = plan;
-  const { cliVersion, temporaryRoot } = plan;
-
-  const {
-    cwd,
-    prompt: commonPrompt,
-    environment,
-    args,
-  } = await prepareProbeInvocation({
-    temporaryRoot,
-    question: teacherCase?.question,
-    promptTemplate,
-    isCase: teacherCase !== undefined,
-  });
-
-  const startedAt = new Date().toISOString();
-  const result = await runProcess([binary, ...args], {
-    cwd,
-    env: environment,
-    timeoutMs: 900_000,
-    maxOutputBytes: 67_108_864,
-    allowedChildExecutables: [allowedChildExecutable],
-  });
-  const { stdout, stderr, exit_code: exitCode, duration_ms: durationMs } = result;
-  const cwdContents = await commandOutput(["/bin/ls", "-A", cwd]);
-  const paths = [temporaryRoot, Bun.env.HOME ?? ""];
-  const sanitizedStderr = JSON.parse(sanitizeJsonl(JSON.stringify({ stderr }), paths)).stderr;
-  const observation = {
-    provider,
-    cliVersion,
-    startedAt,
-    durationMs,
-    args,
-    cwdContents,
-    environment,
-    exitCode,
-    sanitizedStderr,
-    processFailure: result.failure,
-    paths,
-  };
+  const { root, target, teacherCase, cliVersion } = plan;
+  const { stdout, prompt: commonPrompt, observation } = await executeProbe({ plan, provider });
+  const { startedAt, durationMs, cwdContents, exitCode, paths, processFailure } = observation;
   let sanitizedEvents: string;
   // Every failure path archives the same way: sanitized events plus a policy
   // document under a failure-stamped output. Only the policy differs, so the
@@ -115,7 +77,7 @@ export async function runPlannedProbe(input: {
     );
     throw error;
   }
-  const accepted = inspection.accepted && exitCode === 0 && result.failure === undefined;
+  const accepted = inspection.accepted && exitCode === 0 && processFailure === undefined;
   const policy = probePolicyDocument(observation, { inspection });
   let run: unknown;
   try {
