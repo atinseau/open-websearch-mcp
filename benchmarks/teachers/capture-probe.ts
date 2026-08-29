@@ -103,6 +103,18 @@ export async function captureProbe(
       paths,
     };
     let sanitizedEvents: string;
+    // Every failure path archives the same way: sanitized events plus a policy
+    // document under a failure-stamped output. Only the policy differs, so the
+    // shared archival is stated once here instead of at each rejection.
+    const scheduleFailureArchive = (policyDocument: Record<string, unknown>): string => {
+      const archivedOutput = failureOutput(target, startedAt);
+      pendingPublication = async () => {
+        await withRefreshMutation(root, date, async () => {
+          await writeCaptureArtifacts(archivedOutput, sanitizedEvents, policyDocument);
+        });
+      };
+      return archivedOutput;
+    };
     try {
       sanitizedEvents = sanitizeJsonl(stdout, paths);
     } catch (error) {
@@ -153,15 +165,11 @@ export async function captureProbe(
         .map((line) => JSON.parse(line));
       inspection = inspectCodexProbe(events);
     } catch (error) {
-      const archivedOutput = failureOutput(target, startedAt);
-      const failurePolicy = probePolicyDocument(observation, {
-        failure: error instanceof Error ? error.message : String(error),
-      });
-      pendingPublication = async () => {
-        await withRefreshMutation(root, date, async () => {
-          await writeCaptureArtifacts(archivedOutput, sanitizedEvents, failurePolicy);
-        });
-      };
+      scheduleFailureArchive(
+        probePolicyDocument(observation, {
+          failure: error instanceof Error ? error.message : String(error),
+        }),
+      );
       throw error;
     }
     const accepted = inspection.accepted && exitCode === 0 && result.failure === undefined;
@@ -193,7 +201,6 @@ export async function captureProbe(
         validateTeacherRun(run);
       }
     } catch (error) {
-      const archivedOutput = failureOutput(target, startedAt);
       const failure = JSON.parse(
         sanitizeJsonl(
           JSON.stringify({
@@ -202,23 +209,15 @@ export async function captureProbe(
           paths,
         ),
       ).failure;
-      pendingPublication = async () => {
-        await withRefreshMutation(root, date, async () => {
-          await writeCaptureArtifacts(archivedOutput, sanitizedEvents, {
-            ...policy,
-            failure,
-          });
-        });
-      };
+      scheduleFailureArchive({ ...policy, failure });
       throw error;
     }
 
     if (!accepted) {
-      const archivedOutput = failureOutput(target, startedAt);
+      const archivedOutput = scheduleFailureArchive(policy);
+      const archiveOnly = pendingPublication;
       pendingPublication = async () => {
-        await withRefreshMutation(root, date, async () => {
-          await writeCaptureArtifacts(archivedOutput, sanitizedEvents, policy);
-        });
+        await archiveOnly?.();
         console.log(
           JSON.stringify({
             provider,
