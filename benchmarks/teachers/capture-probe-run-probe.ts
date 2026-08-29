@@ -1,8 +1,8 @@
 import { inspectCodexProbe, sanitizeJsonl } from "./contract.ts";
 import { probePolicyDocument } from "./capture-probe-policy.ts";
-import { scheduleMalformedArchive } from "./capture-probe-malformed.ts";
 import { executeProbe } from "./capture-probe-execute.ts";
 import { scheduleRejectedArchive } from "./capture-probe-rejected.ts";
+import { decodeProbeOutput } from "./capture-probe-decode.ts";
 import { buildTeacherRun } from "./capture-probe-run.ts";
 import type { ProbePlan } from "./capture-probe-plan.ts";
 import { withRefreshMutation } from "./refresh-lifecycle.ts";
@@ -35,49 +35,14 @@ export async function runPlannedProbe(input: {
   const { root, target, teacherCase, cliVersion } = plan;
   const { stdout, prompt: commonPrompt, observation } = await executeProbe({ plan, provider });
   const { startedAt, durationMs, cwdContents, exitCode, paths, processFailure } = observation;
-  let sanitizedEvents: string;
-  // Every failure path archives the same way: sanitized events plus a policy
-  // document under a failure-stamped output. Only the policy differs, so the
-  // shared archival is stated once here instead of at each rejection.
-  const scheduleFailureArchive = (policyDocument: Record<string, unknown>): string => {
-    const archivedOutput = failureOutput(target, startedAt);
-    schedulePublication(async () => {
-      await withRefreshMutation(root, date, async () => {
-        await writeCaptureArtifacts(archivedOutput, sanitizedEvents, policyDocument);
-      });
-    });
-    return archivedOutput;
-  };
-  try {
-    sanitizedEvents = sanitizeJsonl(stdout, paths);
-  } catch (error) {
-    scheduleMalformedArchive({
-      target,
-      root,
-      date,
-      stdout,
-      error,
-      observation,
-      schedulePublication,
-    });
-    throw error;
-  }
-  let events: unknown[];
-  let inspection: CaptureInspection;
-  try {
-    events = sanitizedEvents
-      .split("\n")
-      .filter(Boolean)
-      .map((line) => JSON.parse(line));
-    inspection = inspectCodexProbe(events);
-  } catch (error) {
-    scheduleFailureArchive(
-      probePolicyDocument(observation, {
-        failure: error instanceof Error ? error.message : String(error),
-      }),
-    );
-    throw error;
-  }
+  const { sanitizedEvents, events, inspection } = decodeProbeOutput({
+    stdout,
+    observation,
+    target,
+    root,
+    date,
+    schedulePublication,
+  });
   const accepted = inspection.accepted && exitCode === 0 && processFailure === undefined;
   const policy = probePolicyDocument(observation, { inspection });
   let run: unknown;
@@ -105,7 +70,12 @@ export async function runPlannedProbe(input: {
         paths,
       ),
     ).failure;
-    scheduleFailureArchive({ ...policy, failure });
+    const archivedOutput = failureOutput(target, startedAt);
+    schedulePublication(async () => {
+      await withRefreshMutation(root, date, async () => {
+        await writeCaptureArtifacts(archivedOutput, sanitizedEvents, { ...policy, failure });
+      });
+    });
     throw error;
   }
 
