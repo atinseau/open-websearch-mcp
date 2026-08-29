@@ -156,6 +156,24 @@ type ControllerStepContext = {
   state: OrchestrationState;
 };
 
+type WorktreeRecord = Record<string, string>;
+
+async function readWorktreeRecords(repository: string): Promise<WorktreeRecord[]> {
+  return (await run(["git", "worktree", "list", "--porcelain"], repository))
+    .split("\n\n")
+    .map((record) =>
+      Object.fromEntries(
+        record.split("\n").map((line) => {
+          const separator = line.indexOf(" ");
+          return separator === -1
+            ? [line, ""]
+            : [line.slice(0, separator), line.slice(separator + 1)];
+        }),
+      ),
+    )
+    .filter((record) => record.worktree);
+}
+
 async function establishRootContext(options: ControllerOptions): Promise<ControllerStepContext> {
   const repository = options.repository.replace(/\/$/u, "");
   const branch = await run(["git", "branch", "--show-current"], repository);
@@ -181,19 +199,7 @@ async function runControllerStep(
   forceFreshSession = false,
 ): Promise<OpenCodeStepResult> {
   const { repository, rootState } = await establishRootContext(options);
-  const records = (await run(["git", "worktree", "list", "--porcelain"], repository))
-    .split("\n\n")
-    .map((record) =>
-      Object.fromEntries(
-        record.split("\n").map((line) => {
-          const separator = line.indexOf(" ");
-          return separator === -1
-            ? [line, ""]
-            : [line.slice(0, separator), line.slice(separator + 1)];
-        }),
-      ),
-    )
-    .filter((record) => record.worktree);
+  const records = await readWorktreeRecords(repository);
   const [rootRecord, ...worktreeRecords] = records;
   if (worktreeRecords.length > 1) throw new Error("Only one implementation worktree may be active");
 
