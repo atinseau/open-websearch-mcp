@@ -15,6 +15,9 @@ function localizer(item: { heading?: string; fragment?: string; document_page?: 
 }
 
 function renderCodeBlock(block: EvidenceCodeBlock): string {
+  const fence = "`".repeat(
+    Math.max(3, ...[...block.text.matchAll(/`+/gu)].map(([run]) => run.length + 1)),
+  );
   const metadata = [
     `trust=${block.trust}`,
     `warnings=${JSON.stringify(block.invisible_character_warnings)}`,
@@ -23,7 +26,7 @@ function renderCodeBlock(block: EvidenceCodeBlock): string {
   ]
     .filter(Boolean)
     .join("; ");
-  return `[code_block ${metadata}]\n\`\`\`${block.language ?? ""}\n${block.text}\n\`\`\``;
+  return `[code_block ${metadata}]\n${fence}${block.language ?? ""}\n${block.text}\n${fence}`;
 }
 
 function renderResult(result: EvidenceResult): string {

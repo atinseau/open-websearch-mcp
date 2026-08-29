@@ -7,13 +7,11 @@ import {
   type FullConfiguration,
 } from "@/features/configuration/domain/configuration";
 import { defaultToml } from "@/features/configuration/domain/template";
-import {
-  ensureWorkspace,
-  renameAtomically,
-  resolveWorkspace,
-  type Workspace,
-} from "@/features/configuration/adapters/workspace";
-import type { ConfigurationSnapshot, SchedulerConfiguration } from "@/features/configuration";
+import type {
+  ConfigurationSnapshot,
+  SchedulerConfiguration,
+  Workspace,
+} from "@/features/configuration";
 
 export interface ConfigurationServiceOptions {
   readonly workspace?: Workspace;
@@ -59,7 +57,7 @@ class StatefulConfiguration implements ConfigurationService {
   #stamp = "";
   constructor(options: ConfigurationServiceOptions) {
     this.#options = options;
-    this.#workspace = this.#options.workspace ?? resolveWorkspace();
+    this.#workspace = this.#options.workspace ?? defaultWorkspace();
     this.#report =
       this.#options.diagnostic ?? ((message) => console.error(`[open-websearch-mcp] ${message}`));
     this.#snapshot = deepFreeze(
@@ -207,4 +205,41 @@ function deepFreeze<Value>(value: Value): Readonly<Value> {
     for (const item of Object.values(value)) deepFreeze(item);
   }
   return value;
+}
+
+function defaultWorkspace(): Workspace {
+  const root = `${Bun.env.HOME ?? "."}/.open-websearch-mcp`;
+  return {
+    root,
+    config: `${root}/config.toml`,
+    profile: `${root}/profiles/machine.toml`,
+    logs: `${root}/logs`,
+  };
+}
+
+function ensureWorkspace(workspace: Workspace): void {
+  const directories = [
+    "bin/obscura",
+    "cache/blobs",
+    "cache/rendered",
+    "cache/extracted",
+    "investigations",
+    "benchmarks",
+    "profiles",
+    "logs",
+  ];
+  if (
+    Bun.spawnSync([
+      "/bin/mkdir",
+      "-p",
+      workspace.root,
+      ...directories.map((item) => `${workspace.root}/${item}`),
+    ]).exitCode !== 0
+  )
+    throw new Error("workspace_directory_creation_failed");
+}
+
+function renameAtomically(from: string, to: string): void {
+  if (Bun.spawnSync(["/bin/mv", "-f", from, to]).exitCode !== 0)
+    throw new Error("atomic_rename_failed");
 }

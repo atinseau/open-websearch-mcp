@@ -1,7 +1,22 @@
-import { ensureWorkspace, type Workspace } from "@/features/configuration/adapters/workspace";
+import { ensureWorkspace } from "@/features/configuration/adapters/workspace";
+import type { Workspace } from "@/features/configuration";
 
-const forbidden =
-  /(?:cookie|secret|token|password|authorization|auth|session|body|html|environment)/iu;
+const eventFields = new Set([
+  "query",
+  "url",
+  "urls",
+  "score",
+  "scores",
+  "decision",
+  "status",
+  "size_bytes",
+  "duration_ms",
+  "retries",
+  "cache_provenance",
+  "error_code",
+  "phase",
+  "count",
+]);
 
 export interface SessionLogger {
   record(event: Record<string, unknown>): Promise<void>;
@@ -48,12 +63,47 @@ export async function createSessionLogger(
   };
 }
 
-function sanitize(value: unknown, key = ""): unknown {
-  if (forbidden.test(key)) return "[redacted]";
-  if (typeof value === "string") return value.length > 4096 ? "[omitted: too large]" : value;
-  if (Array.isArray(value)) return value.map((item) => sanitize(item));
-  if (typeof value !== "object" || value === null) return value;
+function sanitize(event: Record<string, unknown>): Record<string, unknown> {
   return Object.fromEntries(
-    Object.entries(value).map(([name, item]) => [name, sanitize(item, name)]),
+    Object.entries(event)
+      .filter(([key]) => eventFields.has(key))
+      .map(([key, value]) => [key, sanitizeValue(key, value)]),
   );
+}
+
+function sanitizeValue(key: string, value: unknown): unknown {
+  const special = sanitizeUrlField(key, value);
+  return special.handled ? special.value : sanitizeScalar(value);
+}
+
+function sanitizeUrlField(key: string, value: unknown): { handled: boolean; value: unknown } {
+  if (key === "url")
+    return {
+      handled: true,
+      value: typeof value === "string" ? sanitizeUrl(value) : "[invalid_url]",
+    };
+  if (key === "urls")
+    return {
+      handled: true,
+      value: Array.isArray(value) ? value.map((item) => sanitizeUrl(String(item))) : [],
+    };
+  return { handled: false, value: undefined };
+}
+
+function sanitizeScalar(value: unknown): unknown {
+  if (typeof value === "string") return value.length > 1024 ? "[omitted: too_large]" : value;
+  if (typeof value === "number" || typeof value === "boolean" || value === null) return value;
+  if (Array.isArray(value) && value.every((item) => typeof item === "number")) return value;
+  return "[omitted]";
+}
+
+function sanitizeUrl(value: string): string {
+  try {
+    const url = new URL(value);
+    url.search = "";
+    url.hash = "";
+    return url.href;
+  } catch {
+    return "[invalid_url]";
+  }
 }

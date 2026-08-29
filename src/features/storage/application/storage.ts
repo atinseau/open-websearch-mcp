@@ -3,18 +3,28 @@ import type {
   ConsumedPageReservationResult,
   InvestigationRepository,
 } from "../index.ts";
-import { BlobStore } from "../adapters/blob-store.ts";
-import { SqliteStore, type Fts5Database } from "../adapters/sqlite-store.ts";
 import type {
   AdvancedLocalSearchCapability,
   BlobReference,
   StorageDiagnostic,
 } from "../domain/types.ts";
 
-export interface StorageOptions {
-  readonly workspace: string;
-  readonly beforeMigration?: (version: number) => void;
-  readonly fts5Database?: Fts5Database;
+export interface StorageDatabase {
+  readonly advancedLocalSearch: AdvancedLocalSearchCapability;
+  readonly database: StorageDatabaseConnection;
+  close(): void;
+}
+export interface StorageDatabaseConnection {
+  exec(sql: string): void;
+  prepare(sql: string): {
+    run(...values: unknown[]): unknown;
+    get(...values: unknown[]): unknown;
+    all(): unknown[];
+  };
+}
+export interface StorageBlobs {
+  put(body: Uint8Array | string): Promise<BlobReference>;
+  get(reference: BlobReference): Promise<Uint8Array>;
 }
 
 export interface Storage extends InvestigationRepository {
@@ -29,14 +39,8 @@ export interface Storage extends InvestigationRepository {
   migrationVersions(): readonly number[];
 }
 
-export async function openStorage(options: StorageOptions): Promise<Storage> {
-  await ensureWorkspace(options.workspace);
-  const sqlite = new SqliteStore({
-    path: `${options.workspace}/state.sqlite`,
-    beforeMigration: options.beforeMigration,
-    fts5Database: options.fts5Database,
-  });
-  return new WorkspaceStorage(sqlite, new BlobStore(`${options.workspace}/cache/blobs`));
+export function createStorage(sqlite: StorageDatabase, blobs: StorageBlobs): Storage {
+  return new WorkspaceStorage(sqlite, blobs);
 }
 
 class WorkspaceStorage implements Storage {
@@ -45,8 +49,8 @@ class WorkspaceStorage implements Storage {
   readonly blobs: Storage["blobs"];
 
   constructor(
-    private readonly sqlite: SqliteStore,
-    private readonly blobStore: BlobStore,
+    private readonly sqlite: StorageDatabase,
+    private readonly blobStore: StorageBlobs,
   ) {
     this.advancedLocalSearch = sqlite.advancedLocalSearch;
     this.diagnostics = diagnosticFor(this.advancedLocalSearch);
@@ -73,9 +77,9 @@ class WorkspaceStorage implements Storage {
         .prepare(
           "INSERT OR IGNORE INTO consumed_pages (investigation_id, canonical_url, consumed_at) VALUES (?, ?, ?)",
         )
-        .run(input.investigationId, input.url.href, now) as { changes: number };
+        .run(input.investigationId, input.url.href, now);
       database.exec("COMMIT");
-      return { reserved: result.changes === 1 };
+      return { reserved: changes(result) === 1 };
     } catch (error) {
       database.exec("ROLLBACK");
       throw error;
@@ -110,13 +114,6 @@ class WorkspaceStorage implements Storage {
   }
 }
 
-async function ensureWorkspace(workspace: string): Promise<void> {
-  await Promise.all([
-    Bun.write(`${workspace}/.storage-ready`, ""),
-    Bun.write(`${workspace}/cache/blobs/.storage-ready`, ""),
-  ]);
-}
-
 function diagnosticFor(capability: AdvancedLocalSearchCapability): readonly StorageDiagnostic[] {
   return capability.diagnostic === undefined
     ? []
@@ -133,4 +130,9 @@ function column(row: unknown, name: string): unknown {
     throw new Error(`Expected SQLite column ${name}`);
   }
   return Object.entries(row).find(([key]) => key === name)?.[1];
+}
+
+function changes(result: unknown): number {
+  if (typeof result !== "object" || result === null || !("changes" in result)) return 0;
+  return typeof result.changes === "number" ? result.changes : 0;
 }

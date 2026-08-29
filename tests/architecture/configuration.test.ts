@@ -115,6 +115,27 @@ test("LOG-003 logging startup failure is diagnostic-only and never throws into M
   expect(reports).toContain("session_log_start_failed");
 });
 
+test("SECURITY-008 allowlisted session events cannot leak adversarial bodies or credentials", async () => {
+  const target = workspace();
+  const logger = await createSessionLogger(target, () => undefined);
+  const secret = ["se", "cret", "=x"].join("");
+  await logger.record({
+    url: `https://example.test/path?token=${secret}`,
+    error: secret,
+    content: secret,
+    markdown: secret,
+    credential: secret,
+    renamed_field: secret,
+    anything: "short page body " + secret,
+  });
+  await logger.close();
+  const name = (await Array.fromAsync(new Bun.Glob("*.jsonl").scan({ cwd: target.logs })))[0];
+  const output = await Bun.file(`${target.logs}/${name}`).text();
+  expect(output).toContain("https://example.test/path");
+  expect(output).not.toContain(secret);
+  expect(output).not.toContain("renamed_field");
+});
+
 test("INSTALL-001..003 install once, switch atomically, and retain the healthy version on rollback", async () => {
   const service = createConfigurationService({ workspace: workspace() });
   await service.prepareForCall();

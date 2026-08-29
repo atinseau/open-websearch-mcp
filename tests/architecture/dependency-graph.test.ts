@@ -59,6 +59,12 @@ test("ARCH-003 keeps the dependency direction acyclic and inward", async () => {
         );
         expect(specifier.startsWith("@/mcp"), `${file.path} imports ${specifier}`).toBe(false);
       }
+      if (file.path.includes("/application/")) {
+        expect(
+          /(?:^|\/)adapters(?:\/|$)/u.test(specifier),
+          `${file.path} imports adapter ${specifier}`,
+        ).toBe(false);
+      }
       // shared holds primitives; it must not depend on features.
       if (file.path.startsWith("shared/")) {
         expect(specifier.startsWith("@/features"), `${file.path} imports ${specifier}`).toBe(false);

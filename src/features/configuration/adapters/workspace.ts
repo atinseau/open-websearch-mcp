@@ -1,9 +1,4 @@
-export interface Workspace {
-  readonly root: string;
-  readonly config: string;
-  readonly profile: string;
-  readonly logs: string;
-}
+import type { Workspace } from "@/features/configuration";
 
 export const workspaceDirectories = [
   "bin/obscura",

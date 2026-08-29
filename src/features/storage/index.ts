@@ -1,6 +1,14 @@
 import type { InvestigationId } from "@/features/investigation";
 
-export { openStorage, type Storage, type StorageOptions } from "./application/storage.ts";
+export {
+  createStorage,
+  type Storage,
+  type StorageBlobs,
+  type StorageDatabase,
+} from "./application/storage.ts";
+export { openStorage, type StorageOptions } from "./adapters/open-storage.ts";
+export { BlobStore } from "./adapters/blob-store.ts";
+export { SqliteStore } from "./adapters/sqlite-store.ts";
 export type {
   AdvancedLocalSearchCapability,
   BlobReference,

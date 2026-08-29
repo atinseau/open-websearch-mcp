@@ -2,6 +2,9 @@
   "name": "open-websearch-mcp",
   "version": "0.0.0",
   "private": true,
+  "bin": {
+    "open-websearch-mcp": "./src/cli.ts"
+  },
   "type": "module",
   "scripts": {
     "check": "bun run format:check && bun run lint && bun run lint:limits && bun run lint:types && bun run typecheck && bun run test && bun run orchestration:validate -- --repo .",

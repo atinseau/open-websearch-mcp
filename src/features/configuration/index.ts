@@ -41,6 +41,12 @@ export interface ConfigurationProvider {
 }
 
 export type { FullConfiguration } from "@/features/configuration/domain/configuration";
+export interface Workspace {
+  readonly root: string;
+  readonly config: string;
+  readonly profile: string;
+  readonly logs: string;
+}
 export {
   configurationSchema,
   defaultConfiguration,
@@ -53,7 +59,7 @@ export {
   type DoctorReport,
   type MachineProfile,
 } from "@/features/configuration/application/service";
-export { resolveWorkspace, type Workspace } from "@/features/configuration/adapters/workspace";
+export { resolveWorkspace } from "@/features/configuration/adapters/workspace";
 export {
   createObscuraInstaller,
   type ObscuraArtifact,

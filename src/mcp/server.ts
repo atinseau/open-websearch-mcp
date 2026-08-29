@@ -12,8 +12,23 @@ import { renderCanonicalText } from "@/mcp/serialize";
 
 const protocolVersions = ["2025-06-18", "2024-11-05"];
 
+function internalError() {
+  return {
+    investigation_id: "internal-error",
+    status: "error" as const,
+    reason: "internal_error" as const,
+    confidence: "low" as const,
+    results: [],
+  };
+}
+
 function resultFor(result: Awaited<ReturnType<McpToolAdapter["webSearch"]>>) {
-  const structuredContent = structuredToolResultSchema.parse(result.structuredContent);
+  let structuredContent;
+  try {
+    structuredContent = structuredToolResultSchema.parse(result.structuredContent);
+  } catch {
+    structuredContent = internalError();
+  }
   return {
     content: [{ type: "text" as const, text: renderCanonicalText(structuredContent) }],
     structuredContent,
@@ -33,19 +48,24 @@ export function createMcpServer(tools: McpToolAdapter): McpServer {
       inputSchema: webSearchInputSchema,
       outputSchema: structuredToolResultSchema,
     },
-    async (input, context) =>
-      resultFor(
-        await tools.webSearch(
-          {
-            query: input.query,
-            investigationId: input.investigation_id,
-            maxResults: input.max_results,
-            profile: input.profile,
-            locale: input.locale,
-          },
-          context.mcpReq.signal,
-        ),
-      ),
+    async (input, context) => {
+      try {
+        return resultFor(
+          await tools.webSearch(
+            {
+              query: input.query,
+              investigationId: input.investigation_id,
+              maxResults: input.max_results,
+              profile: input.profile,
+              locale: input.locale,
+            },
+            context.mcpReq.signal,
+          ),
+        );
+      } catch {
+        return resultFor({ investigationId: "internal-error", structuredContent: internalError() });
+      }
+    },
   );
   server.registerTool(
     "web_open",
@@ -54,25 +74,33 @@ export function createMcpServer(tools: McpToolAdapter): McpServer {
       inputSchema: webOpenInputSchema,
       outputSchema: structuredToolResultSchema,
     },
-    async (input, context) =>
-      resultFor(
-        await tools.webOpen(
-          {
-            url: new URL(input.url),
-            investigationId: input.investigation_id,
-            focus: input.focus,
-            maxChars: input.max_chars,
-          },
-          context.mcpReq.signal,
-        ),
-      ),
+    async (input, context) => {
+      try {
+        return resultFor(
+          await tools.webOpen(
+            {
+              url: new URL(input.url),
+              investigationId: input.investigation_id,
+              focus: input.focus,
+              maxChars: input.max_chars,
+            },
+            context.mcpReq.signal,
+          ),
+        );
+      } catch {
+        return resultFor({ investigationId: "internal-error", structuredContent: internalError() });
+      }
+    },
   );
   return server;
 }
 
 /** Starts stdio with a bounded inbound buffer; stdout remains SDK-owned MCP frames only. */
-export async function serveStdio(tools: McpToolAdapter): Promise<void> {
+export async function serveStdio(
+  tools: McpToolAdapter,
+  maxInboundMessageBytes = MAX_INBOUND_MESSAGE_BYTES,
+): Promise<void> {
   await createMcpServer(tools).connect(
-    new StdioServerTransport(undefined, undefined, { maxBufferSize: MAX_INBOUND_MESSAGE_BYTES }),
+    new StdioServerTransport(undefined, undefined, { maxBufferSize: maxInboundMessageBytes }),
   );
 }
