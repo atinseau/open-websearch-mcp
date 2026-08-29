@@ -2,10 +2,10 @@
 
 Commit under test: `33ee087` plus the VER-002 test-only fixture changes.
 
-Server command in the harness probe:
+Server command in the Gemini CLI and OpenCode probes:
 
 ```text
-/Users/arthur/.bun/bin/bun /Users/arthur/Documents/Dev/projects/open-websearch-mcp/.worktree/ver-002/src/cli.ts
+/Users/arthur/.bun/bin/bun /Users/arthur/Documents/Dev/projects/open-websearch-mcp/.worktree/arch-bench/src/cli.ts
 ```
 
 The server was registered as a stdio MCP server. The Codex command removed that
@@ -16,8 +16,8 @@ installed, or otherwise mutated.
 | --- | --- | --- | --- |
 | Codex | `codex-cli 0.150.1` | PASS | Real stdio registration, `initialize`, tool discovery, and `web_search` call completed. Raw event output below includes both `content` and `structured_content`. |
 | Claude Code | Expected path `/Users/arthur/.local/bin/claude` is absent (`test -x` exit 1). | UNAVAILABLE | ADR-0006 also records that the prior Claude session was revoked and must not be reauthenticated by an agent. Install or restore the CLI and have a human reauthenticate before repeating this probe. |
-| Gemini CLI | `gemini` is absent from `PATH` (`command -v` exit 1). | UNAVAILABLE | Install a pinned Gemini CLI and rerun its stdio registration/probe. |
-| OpenCode | Expected path `/Users/arthur/.opencode/bin/opencode` is absent (`test -x` exit 1). | UNAVAILABLE | Install/restore the pinned OpenCode CLI at that path (or record its actual path/version), then rerun its stdio registration/probe. |
+| Gemini CLI | `gemini 0.57.0` at `/Users/arthur/.nvm/versions/node/v24.19.0/bin/gemini` | UNAVAILABLE | Real stdio registration was listed, but disabled in the untrusted worktree. A headless turn did not call the product: Gemini selected its own `google_web_search` and stopped on provider quota (`429 RESOURCE_EXHAUSTED`). |
+| OpenCode | `opencode 1.18.25` at `/Users/arthur/.nvm/versions/node/v24.19.0/bin/opencode` | UNAVAILABLE | Real stdio registration and connection completed (`✓ ... connected`). The headless agent turn stopped before `web_search`: `ProviderAuthError` reports that the Google Generative AI API key is missing. |
 
 ## Codex probe
 
@@ -42,6 +42,72 @@ Raw JSONL stdout (the UUID is runtime-generated):
 
 `blocked/captcha` is an expected live-Web outcome, not a harness failure: the
 client completed a real tool call and received the portable result envelope.
+
+## Gemini CLI probe
+
+Exact command:
+
+```sh
+HOME=/private/tmp/open-websearch-ver002-gemini /Users/arthur/.nvm/versions/node/v24.19.0/bin/gemini mcp add open-websearch-ver002 /Users/arthur/.bun/bin/bun /Users/arthur/Documents/Dev/projects/open-websearch-mcp/.worktree/arch-bench/src/cli.ts
+HOME=/private/tmp/open-websearch-ver002-gemini /Users/arthur/.nvm/versions/node/v24.19.0/bin/gemini mcp list
+HOME=/private/tmp/open-websearch-ver002-gemini /Users/arthur/.nvm/versions/node/v24.19.0/bin/gemini --skip-trust --output-format stream-json --prompt 'Use the open-websearch-ver002 MCP server. Call its web_search tool exactly once with query "MCP stdio compatibility". In your final response report the tool name and the returned status only.'
+HOME=/private/tmp/open-websearch-ver002-gemini /Users/arthur/.nvm/versions/node/v24.19.0/bin/gemini mcp remove open-websearch-ver002 --scope project
+```
+
+Raw stdout/stderr (terminal result):
+
+```text
+MCP server "open-websearch-ver002" added to project settings. (stdio)
+Warning: MCP servers are configured but disabled because this folder is untrusted.
+User-level servers are also suppressed in untrusted folders to prevent accidental side-effects.
+
+Configured MCP servers:
+
+○ open-websearch-ver002: /Users/arthur/.bun/bin/bun /Users/arthur/Documents/Dev/projects/open-websearch-mcp/.worktree/arch-bench/src/cli.ts (stdio) - Disabled
+{"type":"init","timestamp":"2026-08-29T13:58:12.098Z","session_id":"2202b23c-de36-400a-ad87-ac0f723221c2","model":"auto"}
+{"type":"message","timestamp":"2026-08-29T13:58:12.100Z","role":"user","content":"Use the open-websearch-ver002 MCP server. Call its web_search tool exactly once with query \"MCP stdio compatibility\". In your final response report the tool name and the returned status only."}
+{"type":"tool_use","timestamp":"2026-08-29T13:58:24.336Z","tool_name":"google_web_search","tool_id":"google_web_search__call_740948","parameters":{"query":"MCP stdio compatibility"}}
+Attempt 1 failed with status 429. Retrying with backoff... _ApiError: {"error":{"code":429,"message":"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ","status":"RESOURCE_EXHAUSTED"}}
+Attempt 2 failed with status 429. Retrying with backoff... _ApiError: {"error":{"code":429,"message":"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ","status":"RESOURCE_EXHAUSTED"}}
+Server "open-websearch-ver002" not found in project settings.
+```
+
+The list is limited evidence that Gemini accepted the stdio registration. It is
+not tool discovery, initialization, or a product tool call: the harness
+reported the server disabled, then chose `google_web_search` rather than the
+registered MCP tool. The failed `remove` command did not remove the generated
+worktree-local `.gemini/settings.json`; that file was deleted immediately as
+cleanup. The temporary HOME was also removed. No account was authenticated and
+no credential was entered.
+
+## OpenCode probe
+
+Exact command:
+
+```sh
+HOME=/private/tmp/open-websearch-ver002-opencode XDG_CONFIG_HOME=/private/tmp/open-websearch-ver002-opencode/config XDG_DATA_HOME=/private/tmp/open-websearch-ver002-opencode/data /Users/arthur/.nvm/versions/node/v24.19.0/bin/opencode mcp add open-websearch-ver002 -- /Users/arthur/.bun/bin/bun /Users/arthur/Documents/Dev/projects/open-websearch-mcp/.worktree/arch-bench/src/cli.ts
+HOME=/private/tmp/open-websearch-ver002-opencode XDG_CONFIG_HOME=/private/tmp/open-websearch-ver002-opencode/config XDG_DATA_HOME=/private/tmp/open-websearch-ver002-opencode/data /Users/arthur/.nvm/versions/node/v24.19.0/bin/opencode mcp list
+HOME=/private/tmp/open-websearch-ver002-opencode XDG_CONFIG_HOME=/private/tmp/open-websearch-ver002-opencode/config XDG_DATA_HOME=/private/tmp/open-websearch-ver002-opencode/data /Users/arthur/.nvm/versions/node/v24.19.0/bin/opencode run --format json 'Use the open-websearch-ver002 MCP server. Call its web_search tool exactly once with query "MCP stdio compatibility". In your final response report the tool name and the returned status only.'
+```
+
+Raw stdout/stderr:
+
+```text
+◆  MCP server "open-websearch-ver002" added to /private/tmp/open-websearch-ver002-opencode/config/opencode/opencode.jsonc
+┌  MCP Servers
+│
+●  ✓ open-websearch-ver002 connected
+│      /Users/arthur/.bun/bin/bun /Users/arthur/Documents/Dev/projects/open-websearch-mcp/.worktree/arch-bench/src/cli.ts
+│
+└  1 server(s)
+{"type":"error","timestamp":1788012110125,"sessionID":"ses_fb22c880affe6AqVzIJwrPTm8f","error":{"name":"ProviderAuthError","data":{"providerID":"google","message":"Google Generative AI API key is missing. Pass it using the 'apiKey' parameter or the GOOGLE_GENERATIVE_AI_API_KEY environment variable."}}}
+```
+
+OpenCode's connected state is partial real evidence: it started the stdio
+server and completed MCP connection setup. It does not prove `web_search`
+discovery or invocation. The agent turn is unavailable because it requires a
+provider credential before it can select a tool; no credential was supplied.
+The whole temporary HOME/XDG configuration was removed after the probe.
 
 ## Official SDK conformance
 
