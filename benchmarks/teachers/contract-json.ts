@@ -83,25 +83,22 @@ const standaloneCredentialPattern =
 export function isSensitiveKey(key: string, container?: object): boolean {
   const normalized = key.replaceAll(/[^a-z0-9]/gi, "").toLowerCase();
   if (normalized === "producttoken") return false;
-  if (normalized === "uuid") return container === undefined || "session_id" in container;
-  if (normalized === "signature") {
-    return container === undefined || ("type" in container && container.type === "thinking");
-  }
-  if (
-    tokenTelemetryKeys.has(normalized) ||
-    normalized.endsWith("inputtokens") ||
-    normalized.endsWith("outputtokens") ||
-    normalized === "estimatedtokens"
-  ) {
-    return false;
-  }
-  return (
-    sensitiveKeys.has(normalized) ||
-    sensitivePluralKeys.has(normalized) ||
-    sensitiveKeySuffixes.some((suffix) => normalized.endsWith(suffix)) ||
-    sensitivePluralSuffixes.some((suffix) => normalized.endsWith(suffix)) ||
-    normalized.endsWith("tokens")
-  );
+  if (normalized === "uuid" || normalized === "signature") return sensitiveContextKey(normalized, container);
+  if (telemetryKey(normalized)) return false;
+  return genericSensitiveKey(normalized);
+}
+
+function sensitiveContextKey(key: string, container?: object): boolean {
+  if (key === "uuid") return container === undefined || "session_id" in container;
+  return key === "signature" && (container === undefined || ("type" in container && container.type === "thinking"));
+}
+
+function telemetryKey(key: string): boolean {
+  return tokenTelemetryKeys.has(key) || key.endsWith("inputtokens") || key.endsWith("outputtokens") || key === "estimatedtokens";
+}
+
+function genericSensitiveKey(key: string): boolean {
+  return sensitiveKeys.has(key) || sensitivePluralKeys.has(key) || sensitiveKeySuffixes.some((suffix) => key.endsWith(suffix)) || sensitivePluralSuffixes.some((suffix) => key.endsWith(suffix)) || key.endsWith("tokens");
 }
 
 export function isSafeSensitiveMetadataKey(key: string): boolean {
@@ -291,17 +288,7 @@ function sanitize(
   sensitiveContainer = false,
   sensitiveKey = false,
 ): unknown {
-  if (sensitiveKey && (typeof value !== "object" || value === null || Array.isArray(value))) {
-    return "[REDACTED]";
-  }
-  if (
-    sensitiveContainer &&
-    key !== undefined &&
-    !isSafeSensitiveMetadataKey(key) &&
-    (typeof value !== "object" || value === null || Array.isArray(value))
-  ) {
-    return "[REDACTED]";
-  }
+  if (redactedScalar(value, key, sensitiveContainer, sensitiveKey)) return "[REDACTED]";
   if (typeof value === "string") return sanitizeString(value, absolutePaths);
   if (Array.isArray(value))
     return value.map((item) => sanitize(item, absolutePaths, undefined, sensitiveContainer, false));
@@ -319,6 +306,11 @@ function sanitize(
     );
   }
   return result;
+}
+
+function redactedScalar(value: unknown, key: string | undefined, sensitiveContainer: boolean, sensitiveKey: boolean): boolean {
+  if (typeof value === "object" && value !== null && !Array.isArray(value)) return false;
+  return sensitiveKey || (sensitiveContainer && key !== undefined && !isSafeSensitiveMetadataKey(key));
 }
 
 export function hasUnsanitizedString(value: string): boolean {
