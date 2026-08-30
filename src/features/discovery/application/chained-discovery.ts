@@ -42,7 +42,43 @@ export class ChainedDiscovery implements GoogleDiscoveryService {
   /** Engines are awaited one at a time, which preserves the single-SERP rule. */
   async discover(input: GoogleDiscoveryInput): Promise<GoogleDiscoveryResult> {
     const first = await this.#walk(input);
-    return this.#withFollowUp(first, input);
+    const widened = await this.#widened(first, input);
+    return this.#withFollowUp(widened, input);
+  }
+
+  /**
+   * Adds the remaining engines' destinations to the answer.
+   *
+   * One engine returns about ten unique destinations for a question. Stopping
+   * at the first answer left the whole search depending on those ten surviving
+   * render, and discarded pages another engine had surfaced: measured across
+   * three corpus questions, consulting both engines raised the pool from ten
+   * candidates to twenty-five, well inside SEARCH-009's budget of thirty.
+   *
+   * The engine that answered first still owns the result, so provenance and
+   * rank order are unchanged; the later engines only append what is new.
+   */
+  async #widened(
+    first: GoogleDiscoveryResult,
+    input: GoogleDiscoveryInput,
+  ): Promise<GoogleDiscoveryResult> {
+    if (first.status !== "success") return first;
+    const answering = this.#engines.findIndex((engine) => engine.name === first.engine);
+    const remaining = this.#engines.slice(answering + 1);
+    if (remaining.length === 0) return first;
+    const seen = new Set(first.candidates.map((candidate) => candidate.url.toString()));
+    const added = [];
+    for (const engine of remaining) {
+      const result = await engine.discover(input);
+      if (result.status !== "success") continue;
+      for (const candidate of result.candidates) {
+        const key = candidate.url.toString();
+        if (seen.has(key)) continue;
+        seen.add(key);
+        added.push(candidate);
+      }
+    }
+    return { ...first, candidates: [...first.candidates, ...added] };
   }
 
   /**
