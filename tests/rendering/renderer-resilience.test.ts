@@ -132,6 +132,77 @@ if (!obscura) {
     expect(elapsed).toBeLessThan(configuration.navigationTimeoutMs * 2);
     await scheduler.shutdown();
   }, 40_000);
+
+  test("RENDER-008 a navigation lost to a browser crash is retried once", async () => {
+    // Chrome closes its WebSocket (code 1006) under load. The renderer already
+    // reconnects, but the navigation in flight was abandoned, so every crash
+    // cost a candidate the search had already found and paid to discover.
+    const fixture = startFixture();
+    const supervisor = createObscuraSupervisor({
+      executable: obscuraPath,
+      configuration,
+      allowPrivateNetworkForTest: true,
+    });
+    supervisors.push(supervisor);
+    const scheduler = createNavigationScheduler({ configuration: schedulerConfiguration });
+    const renderer = createReconnectingRenderer(supervisor, {
+      configuration,
+      scheduler,
+      policy: localFixturePolicy,
+    });
+
+    await render(renderer, fixture.url);
+    const firstPid = supervisor.status().ownedProcessId;
+    if (firstPid === undefined) throw new Error("owned_obscura_pid_missing");
+    kill(firstPid);
+    await waitUntilUnavailable(supervisor);
+
+    // The very next navigation must succeed on its own, without the caller
+    // knowing a browser died underneath it.
+    const document = await render(renderer, fixture.url);
+
+    expect(document.text.length).toBeGreaterThan(0);
+    await scheduler.shutdown();
+  }, 40_000);
+
+  test("RENDER-008 a navigation lost to a closed CDP socket is retried, not discarded", async () => {
+    // Chrome closes its WebSocket (code 1006) under load while the process
+    // stays alive, so the supervisor still reports available and the failure
+    // fell through as an ordinary error. Every such close cost a candidate the
+    // search had already found and paid to discover.
+    const fixture = startFixture();
+    const supervisor = createObscuraSupervisor({
+      executable: obscuraPath,
+      configuration,
+      allowPrivateNetworkForTest: true,
+    });
+    supervisors.push(supervisor);
+    const scheduler = createNavigationScheduler({ configuration: schedulerConfiguration });
+    let attempts = 0;
+    const flaky = {
+      install: (signal: AbortSignal) => supervisor.install(signal),
+      status: () => supervisor.status(),
+      shutdown: () => supervisor.shutdown(),
+    };
+    const renderer = createReconnectingRenderer(flaky, {
+      configuration,
+      scheduler,
+      policy: localFixturePolicy,
+      // Injected so the closed-socket path can be exercised without waiting for
+      // Chrome to drop a connection of its own accord.
+      renderPage: async (request, delegate) => {
+        attempts += 1;
+        if (attempts === 1) throw new Error("Chrome WebSocket closed (code 1006)");
+        return delegate(request);
+      },
+    });
+
+    const document = await render(renderer, fixture.url);
+
+    expect(attempts).toBe(2);
+    expect(document.text.length).toBeGreaterThan(0);
+    await scheduler.shutdown();
+  }, 40_000);
 }
 
 function kill(pid: number): void {

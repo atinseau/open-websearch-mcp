@@ -117,7 +117,7 @@
       "category": "technical_docs",
       "split": "calibration",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "technical-pdfjs",
       "components": {
@@ -350,7 +350,7 @@
       "category": "multilingual",
       "split": "validation",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "multilingual-fr-open-data",
       "components": {
