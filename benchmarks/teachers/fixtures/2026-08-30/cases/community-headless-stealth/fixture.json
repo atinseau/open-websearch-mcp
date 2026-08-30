@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "case_id": "community-headless-stealth",
+  "question": "What conflicting claims do browser-automation communities make about stealth patches preventing bot detection, and which publicly reproducible observations support or contradict those claims?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "grounding",
+  "verification_status": "accepted",
+  "claims": [],
+  "rejected_claims": [
+    {
+      "text": "Stealth patches prevent bot detection in general.",
+      "reason": "Contradicted by the supplied evidence, which says stronger support exists only for reducing easy detections and cites broader vendor detection methods."
+    },
+    {
+      "text": "undetected-chromedriver definitively bypasses DataDome and similar anti-bot services in all cases.",
+      "reason": "The supporting statement is a project claim, but the supplied evidence also includes contrary anecdotal failure reports and says absolute claims lack strong independent reproducible evidence."
+    },
+    {
+      "text": "All listed stealth tools pass every public and commercial bot-detection test.",
+      "reason": "Overly broad and contradicted by the cited May 21, 2026 public comparison where no tested stack achieved a clean sweep."
+    },
+    {
+      "text": "Camoufox cannot be detected by JavaScript or by any other means.",
+      "reason": "The supplied evidence says Camoufox claims JavaScript inspection cannot detect Playwright in its model, but also says fingerprint inconsistencies and sophisticated behavior analysis can still detect it."
+    },
+    {
+      "text": "Community claims conflict: some stealth-tool pages make strong 'undetected' or 'passes all tests' claims, while other community sources warn stealth only beats simple detection methods.",
+      "reason": "required concept is absent from teacher-run evidence: community_conflict"
+    },
+    {
+      "text": "The supplied evidence says `puppeteer-extra-plugin-stealth` both claims it 'passes all public bot tests' and also acknowledges there are still ways to detect headless Chromium, making broad anti-detection claims internally qualified.",
+      "reason": "required concept is absent from teacher-run evidence: qualified_claim"
+    },
+    {
+      "text": "Publicly reproducible observations in the supplied evidence support a narrower claim: stealth patches can beat some public browser-surface tests such as SannySoft, fpscanner, areyouheadless, or Intoli-style checks.",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "text": "The supplied evidence also contradicts any general 'prevents bot detection' claim, because detector vendors describe broader signals beyond simple browser patches, including many browser attributes, network signals, behavior, HTTP metadata, or CDP-side effects.",
+      "reason": "required concept is absent from teacher-run evidence: general_prevention_contradicted"
+    },
+    {
+      "text": "A public May 21, 2026 comparison cited in the supplied evidence reported that none of the tested stealth stacks achieved a clean sweep, which directly undercuts universal 'passes every test' style marketing claims.",
+      "reason": "required concept is absent from teacher-run evidence: public_comparison"
+    },
+    {
+      "text": "The supplied evidence treats some failure reports as weaker, environment-sensitive support for skepticism: user reports say undetected-chromedriver hit a nowsecure.nl checkbox loop, Camoufox was blocked by DataDome in one issue, and a Patchright report depended on incorrect installation/setup.",
+      "reason": "required concept is absent from teacher-run evidence: anecdotal_failures"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "case_id": "multilingual-fr-open-data",
+  "question": "Quelles obligations et limites les sources officielles françaises décrivent-elles pour la réutilisation des données publiques sous Licence Ouverte 2.0 ?",
+  "locale": "fr-FR",
+  "derived_by": "codex",
+  "verified_by": "grounding",
+  "verification_status": "accepted",
+  "claims": [],
+  "rejected_claims": [
+    {
+      "text": "Le noyau des obligations de réutilisation sous Licence Ouverte 2.0 est léger.",
+      "reason": "Formulation inférentielle et évaluative dans la réponse fournie, pas un énoncé factuel directement établi par une source citée."
+    },
+    {
+      "text": "Une administration ne devrait pas placer sous Licence Ouverte 2.0 une information dont des droits de tiers empêcheraient la libre réutilisation.",
+      "reason": "Présenté comme une inférence dans la réponse fournie, pas comme une règle explicitement citée."
+    },
+    {
+      "text": "Les sources officielles résolvent explicitement la tension entre le droit de modifier les données et l'interdiction de les altérer ou d'en dénaturer le sens.",
+      "reason": "La réponse fournie dit au contraire qu'aucune formulation explicite de résolution n'a été trouvée."
+    },
+    {
+      "text": "Un réutilisateur sous Licence Ouverte 2.0 doit reproduire intégralement le texte de la licence, afficher son logo ou citer un identifiant SPDX.",
+      "reason": "La réponse fournie indique l'absence de bon élément probant pour ces obligations."
+    },
+    {
+      "text": "La réutilisation des informations publiques est toujours gratuite et ne peut jamais donner lieu à redevance.",
+      "reason": "Contredit par la réponse fournie, qui mentionne des cas limités de redevances possibles."
+    },
+    {
+      "text": "La Licence Ouverte 2.0 autorise une réutilisation gratuite, non exclusive, mondiale, pour une durée illimitée, y compris pour des usages commerciaux ou non et avec modification ou redistribution.",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "text": "L'obligation centrale de la Licence Ouverte 2.0 est de mentionner la paternité de l'information, au minimum la source et la date de la dernière mise à jour; une URL peut suffire si elle assure cette mention.",
+      "reason": "required concept is absent from teacher-run evidence: date_maj"
+    },
+    {
+      "text": "La mention de paternité ne doit pas donner un caractère officiel à la réutilisation ni laisser penser qu'elle est reconnue ou cautionnée par le concédant ou une autre entité publique.",
+      "reason": "required concept is absent from teacher-run evidence: pas_caution"
+    },
+    {
+      "text": "La licence précise que la réutilisation ne doit pas induire en erreur des tiers sur le contenu de l'information, sa source et sa date de mise à jour.",
+      "reason": "required concept is absent from teacher-run evidence: pas_trompeur"
+    },
+    {
+      "text": "Quand les informations comportent des données à caractère personnel, leur réutilisation doit respecter le cadre légal de protection des données; les sources citées renvoient au CRPA, à la loi Informatique et Libertés et au RGPD.",
+      "reason": "required concept is absent from teacher-run evidence: donnees_personnelles"
+    },
+    {
+      "text": "La Licence Ouverte 2.0 limite la responsabilité du concédant: l'information est fournie telle quelle, sans garantie d'absence d'erreurs ni de fourniture continue, et le réutilisateur est seul responsable de sa réutilisation.",
+      "reason": "required concept is absent from teacher-run evidence: responsabilite_reutilisateur"
+    },
+    {
+      "text": "Le CRPA ajoute qu'en l'absence d'accord de l'administration, la réutilisation est soumise à la condition que les informations ne soient pas altérées, que leur sens ne soit pas dénaturé, et que leurs sources ainsi que la date de leur dernière mise à jour soient mentionnées.",
+      "reason": "required concept is absent from teacher-run evidence: pas_alteration"
+    }
+  ]
+}

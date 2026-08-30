@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "case_id": "academic-browser-fingerprinting",
+  "question": "What do recent primary research papers demonstrate about browser-fingerprint detectability of automated Chromium sessions, and what limitations do the authors report?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "grounding",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim_5",
+      "text": "FP-Agent reported that some agents shared the same browser fingerprint and that many fingerprints primarily reflected the underlying execution environment rather than unique automation behavior.",
+      "required_concepts": ["shared_fingerprint", "execution_environment", "automation_behavior"],
+      "acceptable_patterns": [
+        "some agents shared the same browser fingerprint",
+        "fingerprints primarily reflected the underlying execution environment",
+        "rather than unique automation behavior"
+      ],
+      "sources": [
+        {
+          "url": "https://arxiv.org/html/2605.01247v1",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.9,
+      "provenance": {
+        "mode": "trace_grounded",
+        "codex_run": "2026-08-28_codex_academic-browser-fingerprinting"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "Browser fingerprint alone robustly detects all automated Chromium sessions in the wild.",
+      "reason": "Contradicted by the supplied evidence, which says browser fingerprints alone had limited discriminative power and are an incomplete detector."
+    },
+    {
+      "text": "All automated Chromium sessions are easily detectable.",
+      "reason": "Overly broad and unsupported; the supplied evidence discusses specific tested conditions and reported limitations."
+    },
+    {
+      "text": "Recent primary papers directly disagree on whether automated Chromium exposes detectable artifacts.",
+      "reason": "Unsupported by the supplied evidence, which says the reviewed papers were broadly aligned on that point."
+    },
+    {
+      "text": "A 2026 study reported a 15% soft-block rate for Chromium headless, versus about 7% for each of the other three tested browser conditions.",
+      "reason": "required concept is absent from teacher-run evidence: comparison"
+    },
+    {
+      "text": "In the same study, when `HeadlessChrome` was spoofed away in the `User-Agent` and `sec-ch-ua` headers on sites that had blocked only Chromium headless, 75% of responding sites stopped blocking.",
+      "reason": "required concept is absent from teacher-run evidence: 75_percent"
+    },
+    {
+      "text": "The 2026 measurement study also reported that 46% of sites checked JavaScript properties only present in automated browsers.",
+      "reason": "required concept is absent from teacher-run evidence: 46_percent"
+    },
+    {
+      "text": "The FP-Agent study found browser fingerprints alone had limited discriminative power, with a browser-only classifier reaching F1 = 0.7969 across browsing-agent classes and F1 = 0.8223 when humans were included.",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "text": "The Detecting Bot Detection paper reported limitations including a single datacenter vantage point, observation of explicit HTTP error responses rather than softer HTTP 200 degradations, visibility only into client-side JavaScript detection, and no true human-browsing baseline.",
+      "reason": "required concept is absent from teacher-run evidence: http_errors"
+    },
+    {
+      "text": "Beyond the Crawl reported that automated crawls missed almost half of the fingerprinting websites seen in real browsing, partly because crawlers failed to circumvent bot detection and failed to trigger interaction-gated fingerprinting scripts.",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "case_id": "multilingual-es-climate",
+  "question": "¿Qué muestran las fuentes primarias oficiales sobre la evolución reciente de la temperatura y la precipitación en España, y qué incertidumbres declaran?",
+  "locale": "es-ES",
+  "derived_by": "codex",
+  "verified_by": "grounding",
+  "verification_status": "accepted",
+  "claims": [],
+  "rejected_claims": [
+    {
+      "text": "Existe una tendencia nacional estadísticamente significativa de descenso de la precipitación en toda España desde 1961.",
+      "reason": "Contradice el resumen aportado, que indica falta de significación estadística nacional en 2023 y 2024, y en 2025 solo un descenso sin significación en la mayor parte del territorio."
+    },
+    {
+      "text": "Las fuentes oficiales publican de forma rutinaria barras de error o intervalos de confianza nacionales para las tendencias anuales de temperatura y precipitación en España.",
+      "reason": "El material aportado dice lo contrario: no se encontraron en las fuentes consultadas."
+    },
+    {
+      "text": "El cambio reciente de la precipitación en España puede atribuirse claramente al cambio climático antropogénico.",
+      "reason": "El material aportado afirma explícitamente que no es sencillo hacer esa relación por la alta variabilidad y la influencia de fenómenos naturales."
+    },
+    {
+      "text": "España se ha vuelto uniformemente más seca en todo el territorio en los últimos años.",
+      "reason": "Es demasiado amplio y contradice la evidencia resumida de 2024 y 2025 como años húmedos y de descensos significativos solo en algunas regiones."
+    },
+    {
+      "text": "La inferencia más prudente es que el calentamiento está mejor respaldado que un cambio uniforme de la precipitación a escala nacional.",
+      "reason": "Aparece en la respuesta final como inferencia del autor, no como hecho primario oficial directamente atribuible a una fuente concreta."
+    },
+    {
+      "text": "AEMET informa de que 2023 fue el segundo año más cálido de la serie nacional desde 1961, con 15,2 °C, una anomalía de +1,2 °C respecto a 1991-2020 y un aumento estimado de +1,57 °C entre 1961 y 2023.",
+      "reason": "required concept is absent from teacher-run evidence: segundo_mas_calido"
+    },
+    {
+      "text": "AEMET informa de que 2024 fue el tercer año más cálido desde 1961, con 15,1 °C, +1,1 °C sobre 1991-2020 y un ascenso acumulado de +1,69 °C entre 1961 y 2024.",
+      "reason": "required concept is absent from teacher-run evidence: tercer_mas_calido"
+    },
+    {
+      "text": "AEMET informa de que 2025 empató con 2024 como tercer año más cálido desde 1961, con 15,1 °C y +1,1 °C sobre 1991-2020; además sitúa el ascenso acumulado en +1,75 °C entre 1961 y 2025 y señala que los doce años más cálidos de la serie pertenecen al siglo XXI.",
+      "reason": "required concept is absent from teacher-run evidence: empate_2024"
+    },
+    {
+      "text": "Las fuentes resumidas por AEMET muestran una precipitación reciente desigual: 2023 tuvo 531 mm (84 % del valor normal 1991-2020) y fue el sexto año más seco de la serie, mientras que 2024 tuvo 660,1 mm (104 %) y 2025 688,7 mm (109 %), ambos clasificados como húmedos.",
+      "reason": "required concept is absent from teacher-run evidence: precipitacion"
+    },
+    {
+      "text": "A escala nacional, los informes recientes de AEMET dicen que no aparece una tendencia estadísticamente significativa de la precipitación media anual para el conjunto de España desde 1961 en 2023 y 2024; en 2025 describen un descenso desde 1961, pero sin significación estadística en la mayor parte del territorio.",
+      "reason": "required concept is absent from teacher-run evidence: precipitacion"
+    },
+    {
+      "text": "AEMET declara que no es sencillo relacionar las variaciones de la precipitación de las últimas décadas en España con el cambio climático causado por la actividad humana, por la gran variabilidad espacial y temporal y por su correlación con fenómenos naturales como la NAO.",
+      "reason": "required concept is absent from teacher-run evidence: precipitacion"
+    },
+    {
+      "text": "Un informe metodológico oficial de AEMET/INM añade incertidumbres ligadas al período instrumental y a la homogeneidad de las series observadas; además, resume problemas de homogeneidad tanto en precipitación como en temperatura.",
+      "reason": "required concept is absent from teacher-run evidence: periodo_instrumental"
+    }
+  ]
+}

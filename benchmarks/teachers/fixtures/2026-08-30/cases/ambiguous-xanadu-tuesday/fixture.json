@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "case_id": "ambiguous-xanadu-tuesday",
+  "question": "What happened to Project Xanadu last Tuesday, and why did it happen?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "grounding",
+  "verification_status": "accepted",
+  "claims": [],
+  "rejected_claims": [
+    {
+      "text": "Project Xanadu had a specific outage or incident last Tuesday.",
+      "reason": "Unsupported. The run explicitly says it could not verify a specific public event on August 25, 2026."
+    },
+    {
+      "text": "Nothing happened to Project Xanadu last Tuesday.",
+      "reason": "Overly broad. The evidence only supports lack of verified public evidence, not that nothing happened."
+    },
+    {
+      "text": "The current state of Project Xanadu was caused by a single event last Tuesday.",
+      "reason": "Contradicted by the run, which points to long-term historical and structural factors rather than a Tuesday-specific event."
+    },
+    {
+      "text": "`xanarama.net` went up for sale on August 25, 2026 and this explains what happened to Project Xanadu.",
+      "reason": "Unsupported and time-unstable. The run says it could not verify when the for-sale state began or whether it was relevant."
+    },
+    {
+      "text": "The run did not verify any specific public event affecting Project Xanadu on August 25, 2026.",
+      "reason": "required concept is absent from teacher-run evidence: no_verified_event"
+    },
+    {
+      "text": "The official Project Xanadu homepage was online and showed the page stamp `17.05.07`.",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "text": "The current official demo or instructions page was stamped `16.11.22` and said, “We do not have a product, but a preliminary capability.”",
+      "reason": "required concept is absent from teacher-run evidence: stamp_16_11_22"
+    },
+    {
+      "text": "`The NEW XANADU MODEL FOR THE WEB` page was dated `Jan 1, 2021` and said the new design “is now being written up.”",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "text": "The XanaduSpace page said the demo was a “stuck demo,” became “too tangled to improve further,” and later refactoring attempts were “beyond fixing.”",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "text": "The run stated that Wikipedia’s Project Xanadu page was last edited on August 13, 2026, not August 25, 2026.",
+      "reason": "required concept is absent from teacher-run evidence: wikipedia_edit_date"
+    },
+    {
+      "text": "The run cited historical reasons for Xanadu's long failure to ship, including a rewrite from C into Smalltalk, a missed Autodesk deadline, Autodesk's 1992 divestment, and later internal conflict and lack of investment.",
+      "reason": "required concept is absent from teacher-run evidence: historical_reasons"
+    }
+  ]
+}

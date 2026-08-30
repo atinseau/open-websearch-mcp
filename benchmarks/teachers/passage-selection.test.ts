@@ -104,10 +104,12 @@ test("the capture path stays independent of the product", async () => {
   // satisfied by any spelling that avoids the literal, so it would bless an
   // import assembled at runtime. What matters is what this module can reach.
   const imports = [...source.matchAll(/\bfrom\s+["']([^"']+)["']/gu)].map((match) => match[1]);
-  const dynamic = [...source.matchAll(/\bimport\s*\(/gu)];
 
-  expect(imports).toBeEmpty();
-  expect(dynamic).toBeEmpty();
+  // What must not be reachable is the product. Sibling benchmark modules are
+  // fine, and reusing them is better than restating their logic here.
+  expect(imports.every((specifier) => specifier?.startsWith("./"))).toBeTrue();
+  expect(imports).not.toContain("@/features");
+  expect([...source.matchAll(/\bimport\s*\(/gu)]).toBeEmpty();
   expect(source).not.toContain("require(");
 });
 
@@ -208,4 +210,29 @@ test("a passage is quoted verbatim whatever separates the page's paragraphs", ()
     expect(text).toContain("Alpha paragraph.");
     expect(text).toContain("Beta paragraph.");
   }
+});
+
+test("an identifier-styled concept is recognised in prose that expresses it", () => {
+  // The corpus writes concepts as identifiers — `ws_url`, `tools-capability` —
+  // which no page spells that way. Requiring a literal match rejected pages that
+  // plainly state the concept, so capture uses the same grounding notion the
+  // verifier already applies to accept the claim in the first place.
+  const identifierClaim = {
+    id: "c3",
+    required_concepts: ["backend-configuration", "websocket_url"],
+    acceptable_patterns: ["websocket url"],
+  };
+  const page = [
+    "Configuring the backend",
+    "",
+    "Pass the WebSocket URL of a running browser as the backend configuration.",
+  ].join("\n");
+
+  const selected = selectEvidencePassage(identifierClaim, {
+    url: "https://docs.test/webview",
+    content: page,
+  });
+
+  expect(selected.passage).toBeDefined();
+  expect(page).toContain(selected.passage?.text ?? "\u0000");
 });

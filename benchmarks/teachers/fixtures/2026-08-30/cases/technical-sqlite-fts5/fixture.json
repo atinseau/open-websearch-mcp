@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "case_id": "technical-sqlite-fts5",
+  "question": "Using primary SQLite documentation, explain how to detect FTS5 support at runtime and what guarantees or limitations apply to external-content FTS5 tables.",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "grounding",
+  "verification_status": "accepted",
+  "claims": [
+    {
+      "id": "claim_fts5_loadable_extension",
+      "text": "SQLite also documents that FTS5 can be built as a loadable extension, with entry points `sqlite3_fts_init` and `sqlite3_fts5_init`.",
+      "required_concepts": ["fts5-extension", "entry-points"],
+      "acceptable_patterns": ["loadable extension", "sqlite3_fts_init", "sqlite3_fts5_init"],
+      "sources": [
+        {
+          "url": "https://sqlite.org/fts5.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [
+        {
+          "url": "https://sqlite.org/fts5.html",
+          "text": "The code in \"fts5.c\" may then be compiled into a loadable extension or\n statically linked into an application as described in\n Compiling Loadable Extensions . There are two entry points defined, both\n of which do the same thing:"
+        }
+      ],
+      "weight": 0.88,
+      "provenance": {
+        "mode": "trace_grounded",
+        "codex_run": "2026-08-28_codex_technical-sqlite-fts5"
+      }
+    },
+    {
+      "id": "claim_external_content_definition",
+      "text": "An external-content FTS5 table is created by setting `content=` to the name of a table, virtual table, or view in the same database, and when FTS5 needs column values it queries that content object by rowid.",
+      "required_concepts": ["external-content", "content-option", "rowid-lookup"],
+      "acceptable_patterns": [
+        "content=",
+        "table, virtual table, or view",
+        "WHERE\\s+<content_rowid>\\s*=\\s*\\?"
+      ],
+      "sources": [
+        {
+          "url": "https://sqlite.org/fts5.html",
+          "equivalent_urls": []
+        },
+        {
+          "url": "https://www.sqlite.org/fts5.html",
+          "equivalent_urls": []
+        }
+      ],
+      "evidence_passages": [],
+      "weight": 0.92,
+      "provenance": {
+        "mode": "trace_grounded",
+        "codex_run": "2026-08-28_codex_technical-sqlite-fts5"
+      }
+    }
+  ],
+  "rejected_claims": [
+    {
+      "text": "SQLite documents one canonical API that determines whether FTS5 is currently usable on a specific connection regardless of whether it is built-in or loaded later.",
+      "reason": "The supplied evidence explicitly says no official SQLite page was found that states such a single canonical API."
+    },
+    {
+      "text": "If `sqlite3_compileoption_used(\"ENABLE_FTS5\")` or `sqlite_compileoption_used('ENABLE_FTS5')` returns `0`, FTS5 is definitely unavailable.",
+      "reason": "The supplied evidence says a `0` result does not prove unavailability because FTS5 may be provided by a loaded extension."
+    },
+    {
+      "text": "Creating sync triggers for an external-content FTS5 table automatically indexes pre-existing rows in the content table.",
+      "reason": "The supplied evidence says the triggers only fire for later `INSERT`, `UPDATE`, and `DELETE` operations and do not backfill existing rows."
+    },
+    {
+      "text": "SQLite documents runtime checks for compile-time FTS5 support via `sqlite3_compileoption_used(...)`, the SQL function `sqlite_compileoption_used(...)`, and `PRAGMA compile_options`, looking for `ENABLE_FTS5`/`SQLITE_ENABLE_FTS5`.",
+      "reason": "required concept is absent from teacher-run evidence: runtime-detection"
+    },
+    {
+      "text": "A positive compile-option check indicates built-in FTS5 support, but a negative compile-option result does not by itself prove FTS5 is unavailable, because FTS5 may be supplied by a loaded extension.",
+      "reason": "required concept is absent from teacher-run evidence: builtin-vs-loaded"
+    },
+    {
+      "text": "For external-content tables, SQLite says all FTS5 functionality may be used, but the user must keep the full-text index consistent with the content table or query results may be unpredictable.",
+      "reason": "required concept is absent from teacher-run evidence: consistency"
+    },
+    {
+      "text": "Triggers are a documented way to keep an external-content FTS5 index in sync, but they only affect later `INSERT`, `UPDATE`, and `DELETE` operations and do not backfill existing rows; SQLite documents the `'rebuild'` command to recreate the index from the content table.",
+      "reason": "required concept is absent from teacher-run evidence: no-backfill"
+    },
+    {
+      "text": "For external-content FTS5 tables, queries without full-text index usage are effectively passed through to the content table, while queries that use the full-text index fetch matching rowids from the index and then read columns from the content table; if the content row is missing, returned text columns may be `NULL`.",
+      "reason": "required concept is absent from teacher-run evidence: pass-through"
+    },
+    {
+      "text": "External-content FTS5 tables do not support `REPLACE` conflict handling and treat such operations using `ABORT`; for deletes and updates affecting both tables, SQLite says the FTS5 table must be updated first so old tokens can be removed correctly.",
+      "reason": "required concept is absent from teacher-run evidence: replace-limit"
+    }
+  ]
+}
