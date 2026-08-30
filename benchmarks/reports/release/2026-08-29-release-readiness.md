@@ -31,7 +31,7 @@ create a tag, or create a GitHub Release.
 | 5. No critical/high operational finding | **No** | Unresolved release-critical evidence gaps remain; this cannot be certified as clean. |
 | 6. Exact packed Bunx smoke | **Yes** | `tests/package/packed-artifact.test.ts` passed. |
 | 7. Traceability, docs, clean checkout | **No** | Clean checkout passes, but traceability has blockers and docs contain pre-publication commands presented as immediately usable. |
-| 8. Final immutable release trace | **No** | No release commit, authorization, immutable CI artifact, or REL-004 external release ledger exists. |
+| 8. Final immutable release trace | **No** | No release commit, signed authorization, or immutable CI artifact exists, and nothing has been published. REL-004's authorization parser, idempotent publish ledger and resume driver now exist and are gated, including the RELEASE-006 simulation of an npm success followed by a GitHub failure resuming without republication. |
 
 ## Remaining blockers
 

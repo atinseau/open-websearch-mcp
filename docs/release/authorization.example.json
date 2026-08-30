@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "commit": "0000000000000000000000000000000000000000",
+  "version": "0.0.0",
+  "package": "open-websearch-mcp",
+  "dist_tag": "latest",
+  "approved_by": "EXAMPLE-ONLY-not-an-authorization",
+  "tarball_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+}

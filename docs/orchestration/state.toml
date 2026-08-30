@@ -532,7 +532,7 @@ evidence = [
 ]
 
 [tasks.REL-004]
-state = "planned"
+state = "blocked_external"
 spec = "docs/spec/10-packaging-releases.md"
 depends_on = ["REL-003"]
 write_set = [
@@ -540,4 +540,13 @@ write_set = [
   "external:npm-publication",
   "docs/orchestration/runs/REL-004",
 ]
-evidence = []
+attempts = [
+  { attempt = 1, branch = "agent/rel-004", worktree = ".worktree/rel-004", base_sha = "bc2f2ebb1777f2149bd777c001a99d3d7ff788e8" },
+]
+evidence = [
+  "docs/orchestration/runs/REL-004/0001-publish-driver.md",
+  "scripts/release/publish-ledger.ts",
+  "scripts/release/publish-driver.ts",
+  "scripts/release/authorization.ts",
+  "scripts/release/main.ts",
+]
