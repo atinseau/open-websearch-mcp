@@ -1,125 +1,47 @@
-import { gradeCase, weights, type CaseResult, type TeacherFixture } from "./grader.ts";
-import { assertCompleteSplit, calibrationCaseIds, validationCaseIds } from "./split.ts";
+/**
+ * Grades a dated teacher corpus.
+ *
+ *   bun benchmarks/grader/run.ts <YYYY-MM-DD> [output] [--product-search]
+ *
+ * Without `--product-search` the runner feeds the grader source URLs carrying
+ * empty text. That probe checks URL, equivalence and rank mechanics offline and
+ * measures no answer quality; its report says so. With the flag the runner
+ * drives the product's own `web_search` tool and grades what came back.
+ */
+import { assertCompleteSplit } from "./split.ts";
+import { claimSourceUrls, corpusDateValue, loadCases, loadFixture } from "./corpus-io.ts";
+import { buildReport, type ScoringMode } from "./report.ts";
+import { closeProduct, searchWithProduct } from "./product-run.ts";
+import type { CaseResult, TeacherFixture } from "./grader.ts";
 
-const corpusDate = corpusDateValue(Bun.argv[2]);
-const root = new URL("../teachers/", import.meta.url);
-const corpus = corpusValue(await Bun.file(new URL("corpus.json", root)).text());
-assertCompleteSplit(corpus.cases.map((item) => item.id));
-const scores = [];
-let acceptedClaims = 0;
-for (const entry of corpus.cases) {
-  const fixture = fixtureValue(
-    await Bun.file(new URL(`fixtures/${corpusDate}/cases/${entry.id}/fixture.json`, root)).text(),
+const positional = Bun.argv.slice(2).filter((argument) => !argument.startsWith("--"));
+const productSearch = Bun.argv.includes("--product-search");
+const corpusDate = corpusDateValue(positional[0]);
+const output = positional[1] ?? "benchmarks/grader/report.json";
+const mode: ScoringMode = productSearch ? "product-search" : "offline-source-only-mechanics-probe";
+
+const cases = await loadCases();
+assertCompleteSplit(cases.map((entry) => entry.id));
+const fixtures: TeacherFixture[] = [];
+const results: CaseResult[] = [];
+for (const entry of cases) {
+  const fixture = await loadFixture(corpusDate, entry.id);
+  fixtures.push(fixture);
+  results.push(
+    productSearch
+      ? await searchWithProduct(entry.id, entry.question ?? entry.id)
+      : probeResult(fixture),
   );
-  // This source-only probe is intentionally not a relevance claim: it proves deterministic
-  // URL/equivalence and rank mechanics while exposing the corpus's absent passages.
-  const urls = [
-    ...new Set(
-      fixture.claims.flatMap((claim) =>
-        claim.sources.flatMap((source) => [source.url, ...source.equivalent_urls]),
-      ),
-    ),
-  ].sort();
-  acceptedClaims += fixture.claims.length;
-  const result: CaseResult = {
-    case_id: fixture.case_id,
-    results: urls.map((url) => ({ url, text: "", token_count: 0 })),
-  };
-  scores.push({
-    category: entry.category,
-    split: calibrationCaseIds.some((id) => id === entry.id) ? "calibration" : "validation",
-    ...gradeCase(fixture, result),
-  });
 }
-const report = {
-  schema_version: 1,
-  mode: "offline-source-only-mechanics-probe",
-  metric_weights: weights,
-  calibration_case_ids: calibrationCaseIds,
-  validation_case_ids: validationCaseIds,
-  scores,
-  corpus: {
-    cases: scores.length,
-    cases_with_accepted_claims: scores.filter(
-      (score) => score.components.evidenceCoverage !== "unmeasurable",
-    ).length,
-    accepted_claims: acceptedClaims,
-    claims_with_url_located_evidence_passages: 0,
-  },
-  verdict:
-    "not_gateable: every accepted claim lacks a URL-located expected evidence passage; total conformity scores are therefore unmeasurable by design.",
-};
-const output = Bun.argv[3] ?? "benchmarks/grader/report.json";
+
+await closeProduct();
+const report = buildReport({ mode, corpusDate, cases, fixtures, results });
 await Bun.write(output, `${JSON.stringify(report, null, 2)}\n`);
 console.log(JSON.stringify(report));
 
-function corpusDateValue(value: string | undefined): string {
-  if (value === undefined) throw new Error("expected teacher corpus date as YYYY-MM-DD");
-  const parsed = Date.parse(value);
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || Number.isNaN(parsed)) {
-    throw new Error("expected teacher corpus date as YYYY-MM-DD");
-  }
-  if (new Date(parsed).toISOString().slice(0, 10) !== value) {
-    throw new Error("expected teacher corpus date as YYYY-MM-DD");
-  }
-  return value;
-}
-
-function corpusValue(text: string): { cases: { id: string; category: string }[] } {
-  const value: unknown = JSON.parse(text);
-  if (!isRecord(value) || !Array.isArray(value.cases)) throw new Error("invalid teacher corpus");
+function probeResult(fixture: TeacherFixture): CaseResult {
   return {
-    cases: value.cases.map((entry) => {
-      if (!isRecord(entry) || typeof entry.id !== "string" || typeof entry.category !== "string")
-        throw new Error("invalid teacher corpus case");
-      return { id: entry.id, category: entry.category };
-    }),
+    case_id: fixture.case_id,
+    results: claimSourceUrls(fixture).map((url) => ({ url, text: "", token_count: 0 })),
   };
-}
-function fixtureValue(text: string): TeacherFixture {
-  const value: unknown = JSON.parse(text);
-  if (!isRecord(value) || typeof value.case_id !== "string" || !Array.isArray(value.claims))
-    throw new Error("invalid teacher fixture");
-  return { case_id: value.case_id, claims: value.claims.map(claimValue) };
-}
-function claimValue(value: unknown): TeacherFixture["claims"][number] {
-  if (
-    !isRecord(value) ||
-    typeof value.id !== "string" ||
-    !Array.isArray(value.required_concepts) ||
-    !Array.isArray(value.acceptable_patterns) ||
-    !Array.isArray(value.sources) ||
-    !Array.isArray(value.evidence_passages) ||
-    typeof value.weight !== "number"
-  )
-    throw new Error("invalid teacher claim");
-  return {
-    id: value.id,
-    required_concepts: strings(value.required_concepts),
-    acceptable_patterns: strings(value.acceptable_patterns),
-    sources: value.sources.map(sourceValue),
-    evidence_passages: value.evidence_passages.map(passageValue),
-    weight: value.weight,
-  };
-}
-function sourceValue(value: unknown): { url: string; equivalent_urls: string[] } {
-  if (!isRecord(value) || typeof value.url !== "string" || !Array.isArray(value.equivalent_urls))
-    throw new Error("invalid teacher source");
-  return { url: value.url, equivalent_urls: strings(value.equivalent_urls) };
-}
-function passageValue(value: unknown): { url: string; text: string } {
-  if (!isRecord(value) || typeof value.url !== "string" || typeof value.text !== "string")
-    throw new Error("invalid evidence passage");
-  return { url: value.url, text: value.text };
-}
-function strings(values: unknown[]): string[] {
-  const result: string[] = [];
-  for (const value of values) {
-    if (typeof value !== "string") throw new Error("expected strings");
-    result.push(value);
-  }
-  return result;
-}
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null;
 }

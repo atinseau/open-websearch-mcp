@@ -18,6 +18,7 @@
   "scripts": {
     "check": "bun run format:check && bun run lint && bun run lint:limits && bun run lint:types && bun run typecheck && bun run test && bun run orchestration:validate -- --repo .",
     "benchmark:grade": "bun benchmarks/grader/run.ts 2026-08-28",
+    "benchmark:grade:product": "bun benchmarks/grader/run.ts 2026-08-30 benchmarks/reports/teacher/2026-08-30-product-search.json --product-search",
     "benchmark:rank:scifact": "bun benchmarks/ranking/run-beir-scifact.ts",
     "format": "oxfmt --disable-nested-config --no-error-on-unmatched-pattern src scripts tests benchmarks/teachers benchmarks/grader benchmarks/ranking package.json tsconfig.json .oxlintrc.jsonc .oxfmtrc.jsonc",
     "format:check": "oxfmt --check --disable-nested-config --no-error-on-unmatched-pattern src scripts tests benchmarks/teachers benchmarks/grader benchmarks/ranking package.json tsconfig.json .oxlintrc.jsonc .oxfmtrc.jsonc",
