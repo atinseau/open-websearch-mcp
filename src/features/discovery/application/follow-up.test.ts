@@ -1,0 +1,165 @@
+import { expect, test } from "bun:test";
+
+import { ChainedDiscovery } from "./chained-discovery.ts";
+import type { GoogleDiscoveryResult } from "@/features/discovery";
+
+const candidate = (url: string) => ({
+  url: new URL(url),
+  sourceType: "organic" as const,
+  title: "t",
+});
+
+function engine(name: string, byQuery: Record<string, GoogleDiscoveryResult>) {
+  const queries: string[] = [];
+  return {
+    queries,
+    engine: {
+      name,
+      discover: (input: { query: string }) => {
+        queries.push(input.query);
+        return Promise.resolve(
+          byQuery[input.query] ?? {
+            status: "empty" as const,
+            candidates: [],
+            suggestedQueries: [],
+          },
+        );
+      },
+    },
+  };
+}
+
+function searchInput(query: string) {
+  return { query, investigationId: "one", signal: new AbortController().signal };
+}
+
+const verbose =
+  "What do current official PDF.js sources document about using the generic build outside a browser, extracting page text, and the runtime assumptions?";
+
+test("the agent's query is always issued first, unchanged", async () => {
+  // SEARCH-001: no silent rewriting. Whatever else happens, the authored text
+  // reaches the engine exactly as written.
+  const first = engine("google", {
+    [verbose]: {
+      status: "success",
+      candidates: [candidate("https://a.test/1")],
+      suggestedQueries: [],
+    },
+  });
+  const discovery = new ChainedDiscovery({ engines: [first.engine] });
+
+  await discovery.discover(searchInput(verbose));
+
+  expect(first.queries[0]).toBe(verbose);
+});
+
+test("a thin result triggers one keyword follow-up, and its candidates are merged", async () => {
+  // An engine answers a verbose question with a site's front page. The
+  // follow-up reaches the specific page, and both sets are kept.
+  const thin = engine("google", {
+    [verbose]: {
+      status: "success",
+      candidates: [candidate("https://a.test/front")],
+      suggestedQueries: [],
+    },
+    "official PDF.js document generic": {
+      status: "success",
+      candidates: [candidate("https://a.test/examples")],
+      suggestedQueries: [],
+    },
+  });
+  const discovery = new ChainedDiscovery({ engines: [thin.engine] });
+
+  const result = await discovery.discover(searchInput(verbose));
+
+  expect(thin.queries).toHaveLength(2);
+  expect(result.candidates.map((item) => item.url.toString())).toEqual([
+    "https://a.test/front",
+    "https://a.test/examples",
+  ]);
+});
+
+test("a long question gets its follow-up however many candidates came back", async () => {
+  // An engine answers a verbose question with forty links to a site's front
+  // page and its neighbours. Counting candidates made that first pass look
+  // rich while the page the agent asked about was absent, so the count is the
+  // wrong signal: the length of the question is what predicts the front-page
+  // answer.
+  const rich = engine("google", {
+    [verbose]: {
+      status: "success",
+      candidates: [
+        candidate("https://a.test/1"),
+        candidate("https://a.test/2"),
+        candidate("https://a.test/3"),
+      ],
+      suggestedQueries: [],
+    },
+    "official PDF.js document generic": {
+      status: "success",
+      candidates: [candidate("https://a.test/examples")],
+      suggestedQueries: [],
+    },
+  });
+  const discovery = new ChainedDiscovery({ engines: [rich.engine] });
+
+  const result = await discovery.discover(searchInput(verbose));
+
+  expect(rich.queries).toHaveLength(2);
+  expect(result.candidates.map((item) => item.url.toString())).toContain("https://a.test/examples");
+});
+
+test("a short query has no follow-up to derive, so nothing extra is requested", async () => {
+  const short = engine("google", {
+    "sqlite fts5": {
+      status: "success",
+      candidates: [candidate("https://a.test/1")],
+      suggestedQueries: [],
+    },
+  });
+  const discovery = new ChainedDiscovery({ engines: [short.engine] });
+
+  await discovery.discover(searchInput("sqlite fts5"));
+
+  expect(short.queries).toEqual(["sqlite fts5"]);
+});
+
+test("the follow-up is reported, so the second query is never silent", async () => {
+  const thin = engine("google", {
+    [verbose]: {
+      status: "success",
+      candidates: [candidate("https://a.test/front")],
+      suggestedQueries: [],
+    },
+    "official PDF.js document generic": {
+      status: "success",
+      candidates: [candidate("https://a.test/examples")],
+      suggestedQueries: [],
+    },
+  });
+  const discovery = new ChainedDiscovery({ engines: [thin.engine] });
+
+  const result = await discovery.discover(searchInput(verbose));
+
+  expect(result.followUpQuery).toBe("official PDF.js document generic");
+});
+
+test("a duplicate candidate from the follow-up is not repeated", async () => {
+  const thin = engine("google", {
+    [verbose]: {
+      status: "success",
+      candidates: [candidate("https://a.test/same")],
+      suggestedQueries: [],
+    },
+    "official PDF.js document generic": {
+      status: "success",
+      candidates: [candidate("https://a.test/same")],
+      suggestedQueries: [],
+    },
+  });
+  const discovery = new ChainedDiscovery({ engines: [thin.engine] });
+
+  const result = await discovery.discover(searchInput(verbose));
+
+  expect(result.candidates).toHaveLength(1);
+});

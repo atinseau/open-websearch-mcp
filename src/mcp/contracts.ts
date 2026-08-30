@@ -68,6 +68,8 @@ export const structuredToolResultSchema = z
     suggested_queries: z
       .array(z.object({ query: z.string(), source: z.enum(["google_related", "google_question"]) }))
       .optional(),
+    /** The derived second query, when discovery made one (SEARCH-001). */
+    follow_up_query: z.string().optional(),
   })
   .superRefine((value, context) => {
     if ((value.status === "blocked" || value.status === "error") && !value.reason)
