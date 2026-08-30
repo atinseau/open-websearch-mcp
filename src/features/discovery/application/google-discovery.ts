@@ -6,7 +6,8 @@ import type {
   RenderedDocument,
   Renderer,
 } from "@/features/discovery";
-import { parseGoogleSerp } from "@/features/discovery/domain/serp-parser";
+import { googleEngine } from "@/features/discovery/domain/engines";
+import { parseSerp } from "@/features/discovery/domain/serp-parser";
 
 export interface GoogleDiscoveryOptions {
   readonly renderer: Renderer;
@@ -53,7 +54,7 @@ export class GoogleDiscovery implements GoogleDiscoveryService {
   }
 
   #parsed(document: RenderedDocument): GoogleDiscoveryResult {
-    const parsed = parseGoogleSerp(document);
+    const parsed = parseSerp(googleEngine, document);
     if (parsed.kind === "parsed")
       return {
         status: "success",
