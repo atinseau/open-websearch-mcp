@@ -1,3 +1,5 @@
+import { conceptGrounded } from "./fixture-grounding.ts";
+
 /**
  * Rebuilds the ground truth the teacher run never exposed: given a page the
  * teacher cited, decide which bounded portion of it supports a claim.
@@ -6,6 +8,11 @@
  * page — every required concept present, at least one acceptable pattern matched.
  * Restating it in different words here would let the capture drift from the
  * thing being scored, so it is deliberately the same test.
+ *
+ * Concepts are matched the way verification matches them, not literally. The
+ * corpus writes them as identifiers — `ws_url`, `tools-capability` — which no
+ * page spells that way, so a literal test rejected pages that plainly express
+ * the concept and left the denominator nearly empty.
  */
 
 /** A claim as the sealed teacher corpus stores it. */
@@ -39,8 +46,8 @@ function normalized(value: string): string {
 }
 
 function missingConcept(claim: CapturedClaim, content: string): string | undefined {
-  const text = normalized(content);
-  return claim.required_concepts.find((concept) => !text.includes(normalized(concept)));
+  const corpus = { text: normalized(content), urls: new Set<string>() };
+  return claim.required_concepts.find((concept) => !conceptGrounded(concept, corpus));
 }
 
 function matchesAnyPattern(claim: CapturedClaim, content: string): boolean {

@@ -6,7 +6,7 @@ export type GroundingVerification = {
   rejected_claims: { id: string; reason: string }[];
 };
 
-type GroundingCorpus = { text: string; urls: Set<string> };
+export type GroundingCorpus = { text: string; urls: Set<string> };
 
 /**
  * Deterministic, LLM-free replacement for cross-model fixture verification
@@ -113,7 +113,13 @@ function rejectionReason(
  */
 const conceptProximityWindow = 160;
 
-function conceptGrounded(concept: string, corpus: GroundingCorpus): boolean {
+/**
+ * Exported so the corpus capture applies the same notion of a grounded concept
+ * that verification does. An identifier-styled label like `ws_url` is never
+ * written that way in prose, so a literal match would reject pages that plainly
+ * express the concept.
+ */
+export function conceptGrounded(concept: string, corpus: GroundingCorpus): boolean {
   const tokens = concept
     .toLowerCase()
     .split(/[^a-z0-9]+/u)

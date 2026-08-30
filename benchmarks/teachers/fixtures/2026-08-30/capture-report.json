@@ -1,0 +1,113 @@
+{
+  "total_claims": 18,
+  "captured": [
+    {
+      "case_id": "technical-bun-webview",
+      "claim_id": "c1",
+      "url": "https://bun.sh/docs/runtime/webview",
+      "content_sha256": "f95197b77cecf6203f1c2b35b07e0544975d19987fe1cf27e4ea60f4de874995",
+      "captured_at": "2026-08-30T11:34:32.961Z"
+    },
+    {
+      "case_id": "technical-bun-webview",
+      "claim_id": "c3",
+      "url": "https://bun.sh/docs/runtime/webview",
+      "content_sha256": "f95197b77cecf6203f1c2b35b07e0544975d19987fe1cf27e4ea60f4de874995",
+      "captured_at": "2026-08-30T11:34:33.122Z"
+    },
+    {
+      "case_id": "technical-mcp-stdio",
+      "claim_id": "c4",
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+      "content_sha256": "298dd6a47316392cc0f1ec04d73dc5516ff44a68bcb2bfebdfd5c510e8fb9af7",
+      "captured_at": "2026-08-30T11:34:33.407Z"
+    },
+    {
+      "case_id": "technical-sqlite-fts5",
+      "claim_id": "claim_fts5_loadable_extension",
+      "url": "https://sqlite.org/fts5.html",
+      "content_sha256": "b40324c13b593ca9dc5b8874212ae5315905774d15592d6c93605ce7a0130945",
+      "captured_at": "2026-08-30T11:34:34.944Z"
+    },
+    {
+      "case_id": "technical-pdfjs",
+      "claim_id": "c2",
+      "url": "https://mozilla.github.io/pdf.js/examples/",
+      "content_sha256": "b95c98f3561498b75163ff3503a653792b97f7ba9b313b71ef57faaf4637e122",
+      "captured_at": "2026-08-30T11:34:36.568Z"
+    },
+    {
+      "case_id": "technical-url-canonicalization",
+      "claim_id": "c6",
+      "url": "https://url.spec.whatwg.org/#url-miscellaneous",
+      "content_sha256": "2ef8102ff050996130ed6009048dfc98c97a867ffaeb80e78783584353ae5f11",
+      "captured_at": "2026-08-30T11:34:38.175Z"
+    },
+    {
+      "case_id": "technical-url-canonicalization",
+      "claim_id": "c8",
+      "url": "https://url.spec.whatwg.org/#url-parsing",
+      "content_sha256": "2ef8102ff050996130ed6009048dfc98c97a867ffaeb80e78783584353ae5f11",
+      "captured_at": "2026-08-30T11:34:39.073Z"
+    },
+    {
+      "case_id": "multilingual-ja-web-standards",
+      "claim_id": "c2",
+      "url": "https://jprs.jp/glossary/index.php?ID=0051",
+      "content_sha256": "cb9ba8bf162ef102ffd0f12b5c8d1f0859045bb18a6dc5c64c5d2f4b64d93fd0",
+      "captured_at": "2026-08-30T11:34:44.635Z"
+    }
+  ],
+  "excluded": [
+    {
+      "case_id": "technical-bun-webview",
+      "claim_id": "c2",
+      "reason": "https://bun.sh/docs/runtime/webview: page matches no acceptable pattern for this claim"
+    },
+    {
+      "case_id": "technical-bun-webview",
+      "claim_id": "c5",
+      "reason": "https://bun.sh/docs/runtime/webview: page matches no acceptable pattern for this claim"
+    },
+    {
+      "case_id": "technical-mcp-stdio",
+      "claim_id": "c6",
+      "reason": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools: page does not contain required concept: tools-array; https://modelcontextprotocol.io/specification/2026-07-28/schema: page does not contain required concept: tools-array"
+    },
+    {
+      "case_id": "technical-sqlite-fts5",
+      "claim_id": "claim_external_content_definition",
+      "reason": "https://sqlite.org/fts5.html: page does not contain required concept: rowid-lookup; https://www.sqlite.org/fts5.html: page does not contain required concept: rowid-lookup"
+    },
+    {
+      "case_id": "technical-robots-rfc",
+      "claim_id": "c7",
+      "reason": "https://datatracker.ietf.org/doc/rfc9309/: page does not contain required concept: five-hops"
+    },
+    {
+      "case_id": "technical-url-canonicalization",
+      "claim_id": "c5",
+      "reason": "https://url.spec.whatwg.org/#url-serializing: page does not contain required concept: port_serialization"
+    },
+    {
+      "case_id": "current-mcp-release",
+      "claim_id": "claim_1",
+      "reason": "https://github.com/modelcontextprotocol/modelcontextprotocol/releases: page does not contain required concept: newest; https://modelcontextprotocol.io/specification/draft: page does not contain required concept: newest; https://modelcontextprotocol.io/specification/2025-11-25: page does not contain required concept: newest"
+    },
+    {
+      "case_id": "academic-browser-fingerprinting",
+      "claim_id": "claim_5",
+      "reason": "https://arxiv.org/html/2605.01247v1: page does not contain required concept: execution_environment"
+    },
+    {
+      "case_id": "community-bun-production",
+      "claim_id": "claim_3",
+      "reason": "https://bun.sh/docs/runtime/nodejs-compat: page does not contain required concept: documented_gaps"
+    },
+    {
+      "case_id": "multilingual-ja-web-standards",
+      "claim_id": "c4",
+      "reason": "https://url.spec.whatwg.org/: page does not contain required concept: UTS #46; https://unicode.org/reports/tr46/: page does not contain required concept: domain parser"
+    }
+  ]
+}

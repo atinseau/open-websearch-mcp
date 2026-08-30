@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "case_id": "current-apple-security",
+  "question": "What is Apple's most recent macOS security update as of today, which systems does it affect, and which actively exploited issues does Apple identify?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "grounding",
+  "verification_status": "accepted",
+  "claims": [],
+  "rejected_claims": [
+    {
+      "text": "Apple explicitly states that macOS Tahoe 26.6.2 contains no actively exploited vulnerabilities.",
+      "reason": "The supplied teacher-run evidence says that conclusion is an inference from omission, not an explicit Apple statement."
+    },
+    {
+      "text": "macOS Tahoe 26.6.2 affects macOS Sequoia or macOS Sonoma systems.",
+      "reason": "The supplied teacher-run evidence says there is no good evidence for Sequoia or Sonoma on the cited Apple pages."
+    },
+    {
+      "text": "The actively exploited issues in the most recent macOS security update are Audio, ImageIO, IOGPUFamily, Kernel, WebKit, WebKit History, and WebKit Storage.",
+      "reason": "The supplied teacher-run evidence lists these as fixed issue areas, not as actively exploited issues."
+    },
+    {
+      "text": "Apple’s most recent macOS security update in the supplied teacher-run evidence is macOS Tahoe 26.6.2.",
+      "reason": "required concept is absent from teacher-run evidence: latest_update"
+    },
+    {
+      "text": "The supplied teacher-run evidence says macOS Tahoe 26.6.2 affects macOS Tahoe.",
+      "reason": "required concept is absent from teacher-run evidence: affected_systems"
+    },
+    {
+      "text": "The supplied teacher-run evidence says Apple does not identify any actively exploited issues in macOS Tahoe 26.6.2, while noting this is an inference from omission rather than an explicit Apple statement.",
+      "reason": "required concept is absent from teacher-run evidence: active_exploitation"
+    },
+    {
+      "text": "The supplied teacher-run evidence gives August 17, 2026 as the release date for macOS Tahoe 26.6.2.",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    }
+  ]
+}

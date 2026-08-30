@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "case_id": "academic-retrieval-diversity",
+  "question": "According to primary information-retrieval research, how does maximal marginal relevance trade relevance against novelty, and what evidence supports its use for diversifying search results?",
+  "locale": "en-US",
+  "derived_by": "codex",
+  "verified_by": "grounding",
+  "verification_status": "accepted",
+  "claims": [],
+  "rejected_claims": [
+    {
+      "text": "MMR consistently beats well-tuned relevance baselines on large shared-task benchmarks.",
+      "reason": "Unsupported and partly contradicted by the supplied evidence, which says strong benchmark evidence was not found and reports a later study where MMR served mainly as a weaker baseline."
+    },
+    {
+      "text": "The TREC 2009-based comparison showed MMR was the strongest diversification method.",
+      "reason": "Contradicted by the supplied evidence, which states the later paper's explicit diversification method xQuAD improved all three baselines while MMR did not."
+    },
+    {
+      "text": "The five-user pilot study established statistically significant improvements in retrieval speed or recall for MMR.",
+      "reason": "Contradicted by the supplied evidence, which says the pilot was too small to yield statistically significant trends for retrieval speed or recall."
+    },
+    {
+      "text": "Maximal marginal relevance reranks documents greedily by maximizing a relevance term to the query and subtracting a novelty penalty based on similarity to already selected documents.",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    },
+    {
+      "text": "In the original formulation, lambda controls a linear tradeoff: lambda = 1 gives ordinary relevance ranking, lambda = 0 gives maximal diversity ordering, and intermediate values trade relevance against novelty.",
+      "reason": "required concept is absent from teacher-run evidence: lambda"
+    },
+    {
+      "text": "Carbonell and Goldstein recommend smaller lambda values for exploring the information space and larger values for focusing on closely related relevant documents; they report a practical strategy of starting near 0.3 and later moving toward 0.7.",
+      "reason": "required concept is absent from teacher-run evidence: lambda"
+    },
+    {
+      "text": "The original evidence for MMR itself was limited but positive: a Reuters example showed a duplicate article moving down and a novel but still relevant document moving up as lambda decreased.",
+      "reason": "required concept is absent from teacher-run evidence: lambda"
+    },
+    {
+      "text": "The same 1998 work reports a five-user pilot study in which 4 of 5 users chose the MMR method for a final search task, while also noting that the pilot was too small for statistically significant trends in retrieval speed or recall.",
+      "reason": "required concept is absent from teacher-run evidence: not statistically significant"
+    },
+    {
+      "text": "Later primary retrieval research supports diversification as a search objective more strongly than it supports MMR as the best algorithm: TREC 2009 introduced a diversity task with novelty-aware metrics, and a later study treated MMR as a canonical baseline while xQuAD outperformed it in the reported table.",
+      "reason": "claim text is not lexically grounded in teacher-run evidence"
+    }
+  ]
+}
