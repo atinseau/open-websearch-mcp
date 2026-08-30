@@ -137,7 +137,7 @@ The table above is preserved as historical pre-implementation context only. This
 | RELEASE-003 | package/docs/workflows; package test or workflow inspection | Located; linked task traces are the artifact |
 | RELEASE-004 | package/docs/workflows; package test or workflow inspection | Located; linked task traces are the artifact |
 | RELEASE-005 | package/docs/workflows; package test or workflow inspection | Located; linked task traces are the artifact |
-| RELEASE-006 | package/docs/workflows; package test or workflow inspection | BLOCKED — detailed below |
+| RELEASE-006 | `scripts/release/` driver, ledger and simulation tests; package/docs/workflows | PARTIAL — mechanism and simulation land; publication blocked on external authority, detailed below |
 | RELEASE-007 | package/docs/workflows; package test or workflow inspection | Located; linked task traces are the artifact |
 | RENDER-001 | src/features/rendering/; rendering/download tests | Located; linked task traces are the artifact |
 | RENDER-002 | src/features/rendering/; rendering/download tests | Located; linked task traces are the artifact |
@@ -204,7 +204,7 @@ The table above is preserved as historical pre-implementation context only. This
 - **ARCH-002:** ADR-0007: the dependency-graph test is structural, not mechanical enforcement of internal feature imports, direction, or >12 imports.
 - **ARCH-007:** ADR-0008: scripts/ and benchmarks/ are outside numeric limits and the >12-import rule is not enforced.
 - **PROD-005 scope:** ADR-0012 verifies portability with Codex only. Claude Code and Gemini CLI are outside the verified-harness scope for recorded external reasons; the preserved OpenCode run is historical independence evidence, not supported-harness evidence. Official-SDK contract tests still exercise MCP `2024-11-05` and `2025-06-18`, so this limitation is not implementation coupling to Codex.
-- **RELEASE-006:** REL-004 remains planned; no release authorization, idempotent publish ledger, npm publish, tag, or GitHub Release proof exists.
+- **RELEASE-006:** partially satisfied. The authorization parser, idempotent publish ledger, and resume driver exist and are gated, and the criterion's required simulation — npm success followed by GitHub failure, resuming without republication — is an executable test in `scripts/release/publish-driver.test.ts`. Not satisfied: no signed release authorization, npm publish, tag, or GitHub Release exists. REL-004 is `blocked_external` on human authorization and npm credentials.
 - **TEST-015–017:** ADR-0013 supersedes ADR-0010: the `2026-08-30` corpus carries URL-located passages for 8 of 18 accepted claims, so the scorer is calculable. Its thresholds still cannot pass: the sample is too small to gate on, and every live search is currently refused by a Google captcha and reported `blocked` rather than scored.
 - **TEST-018:** no evidence for required BEIR/TREC/BRIGHT cases and 30–50 live canaries; only the small teacher corpus and two opt-in canaries exist.
 - **TEST-024:** the workflow gates code and packaging but cannot claim benchmark threshold compliance while TEST-015–017 are unmeasurable.
