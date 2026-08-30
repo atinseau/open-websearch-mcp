@@ -1,6 +1,7 @@
 import { gradeCase, weights, type CaseResult, type TeacherFixture } from "./grader.ts";
 import { assertCompleteSplit, calibrationCaseIds, validationCaseIds } from "./split.ts";
 
+const corpusDate = corpusDateValue(Bun.argv[2]);
 const root = new URL("../teachers/", import.meta.url);
 const corpus = corpusValue(await Bun.file(new URL("corpus.json", root)).text());
 assertCompleteSplit(corpus.cases.map((item) => item.id));
@@ -8,7 +9,7 @@ const scores = [];
 let acceptedClaims = 0;
 for (const entry of corpus.cases) {
   const fixture = fixtureValue(
-    await Bun.file(new URL(`fixtures/2026-08-28/cases/${entry.id}/fixture.json`, root)).text(),
+    await Bun.file(new URL(`fixtures/${corpusDate}/cases/${entry.id}/fixture.json`, root)).text(),
   );
   // This source-only probe is intentionally not a relevance claim: it proves deterministic
   // URL/equivalence and rank mechanics while exposing the corpus's absent passages.
@@ -48,9 +49,21 @@ const report = {
   verdict:
     "not_gateable: every accepted claim lacks a URL-located expected evidence passage; total conformity scores are therefore unmeasurable by design.",
 };
-const output = process.argv[2] ?? "benchmarks/grader/report.json";
+const output = Bun.argv[3] ?? "benchmarks/grader/report.json";
 await Bun.write(output, `${JSON.stringify(report, null, 2)}\n`);
 console.log(JSON.stringify(report));
+
+function corpusDateValue(value: string | undefined): string {
+  if (value === undefined) throw new Error("expected teacher corpus date as YYYY-MM-DD");
+  const parsed = Date.parse(value);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || Number.isNaN(parsed)) {
+    throw new Error("expected teacher corpus date as YYYY-MM-DD");
+  }
+  if (new Date(parsed).toISOString().slice(0, 10) !== value) {
+    throw new Error("expected teacher corpus date as YYYY-MM-DD");
+  }
+  return value;
+}
 
 function corpusValue(text: string): { cases: { id: string; category: string }[] } {
   const value: unknown = JSON.parse(text);
