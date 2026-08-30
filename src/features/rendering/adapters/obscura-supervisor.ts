@@ -4,6 +4,8 @@ import type {
   RendererSupervisor,
 } from "@/features/rendering";
 
+import { obscuraServeArguments } from "./obscura-arguments.ts";
+
 const startupTimeoutMs = 5_000;
 const shutdownTimeoutMs = 5_000;
 
@@ -52,19 +54,15 @@ export class ObscuraSupervisor implements RendererSupervisor {
     const port = loopbackPort();
     if (this.#options.allowPrivateNetworkForTest && Bun.env.NODE_ENV !== "test")
       throw new Error("private_network_test_switch_forbidden");
-    const testOnlyPrivateNetwork = this.#options.allowPrivateNetworkForTest
-      ? ["--allow-private-network"]
-      : [];
     const child = Bun.spawn(
       [
         this.#options.executable,
-        "serve",
-        "--host",
-        "127.0.0.1",
-        "--port",
-        `${port}`,
-        "--stealth",
-        ...testOnlyPrivateNetwork,
+        ...obscuraServeArguments({
+          host: "127.0.0.1",
+          port,
+          storageDirectory: this.#options.storageDirectory,
+          allowPrivateNetwork: this.#options.allowPrivateNetworkForTest,
+        }),
       ],
       { stdin: "ignore", stdout: "ignore", stderr: "ignore", detached: true },
     );
