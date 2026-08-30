@@ -94,3 +94,75 @@ async function run(
   ]);
   return { exitCode, output: `${stdout}${stderr}` };
 }
+
+test("a fragment names a place inside a page, not a different page", () => {
+  // The corpus cites url.spec.whatwg.org/#url-parsing; a product that returned
+  // that page scored zero because the strings differ, although the fragment is
+  // never sent to the server and the retrieved resource is identical.
+  const anchored: TeacherFixture = {
+    case_id: "technical-bun-webview",
+    claims: [
+      {
+        id: "claim",
+        required_concepts: ["alpha"],
+        acceptable_patterns: ["alpha\\s+beta"],
+        sources: [{ url: "https://spec.test/page#section-two", equivalent_urls: [] }],
+        evidence_passages: [],
+        weight: 1,
+      },
+    ],
+  };
+
+  const graded = gradeCase(anchored, {
+    case_id: "technical-bun-webview",
+    results: [{ url: "https://spec.test/page", text: "alpha beta", token_count: 2 }],
+  });
+
+  expect(graded.components.sourceRecall).toBe(25);
+});
+
+test("a trailing slash and a host case difference name the same page", () => {
+  const cased: TeacherFixture = {
+    case_id: "technical-bun-webview",
+    claims: [
+      {
+        id: "claim",
+        required_concepts: ["alpha"],
+        acceptable_patterns: ["alpha\\s+beta"],
+        sources: [{ url: "https://Spec.Test/page/", equivalent_urls: [] }],
+        evidence_passages: [],
+        weight: 1,
+      },
+    ],
+  };
+
+  const graded = gradeCase(cased, {
+    case_id: "technical-bun-webview",
+    results: [{ url: "https://spec.test/page", text: "alpha beta", token_count: 2 }],
+  });
+
+  expect(graded.components.sourceRecall).toBe(25);
+});
+
+test("a different path is still a different page", () => {
+  const other: TeacherFixture = {
+    case_id: "technical-bun-webview",
+    claims: [
+      {
+        id: "claim",
+        required_concepts: ["alpha"],
+        acceptable_patterns: ["alpha\\s+beta"],
+        sources: [{ url: "https://spec.test/page", equivalent_urls: [] }],
+        evidence_passages: [],
+        weight: 1,
+      },
+    ],
+  };
+
+  const graded = gradeCase(other, {
+    case_id: "technical-bun-webview",
+    results: [{ url: "https://spec.test/elsewhere", text: "alpha beta", token_count: 2 }],
+  });
+
+  expect(graded.components.sourceRecall).toBe(0);
+});
