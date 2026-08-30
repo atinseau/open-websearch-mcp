@@ -112,7 +112,7 @@ The table above is preserved as historical pre-implementation context only. This
 | ORCH-013 | src/features/rendering/ and scripts/orchestration/; relevant test suite | Located; linked task traces are the artifact |
 | PROD-001 | src/ cross-cutting; e2e/security/MCP suites | Located; linked task traces are the artifact |
 | PROD-002 | src/ cross-cutting; e2e/security/MCP suites | Located; linked task traces are the artifact |
-| PROD-003 | src/ cross-cutting; e2e/security/MCP suites | Located; linked task traces are the artifact |
+| PROD-003 | src/features/discovery/; tests/discovery/ | Amended by ADR-0014: the configured engines, Google first by default |
 | PROD-004 | src/ cross-cutting; e2e/security/MCP suites | Located; linked task traces are the artifact |
 | PROD-005 | benchmarks/harnesses/2026-08-29-mcp-compatibility-matrix.md | Verified; real Codex stdio registration, tool discovery, and portable `web_search` result (ADR-0012) |
 | PROD-006 | src/ cross-cutting; e2e/security/MCP suites | Located; linked task traces are the artifact |
@@ -152,7 +152,7 @@ The table above is preserved as historical pre-implementation context only. This
 | RENDER-011 | src/features/rendering/; rendering/download tests | Located; linked task traces are the artifact |
 | SEARCH-001 | src/features/discovery/; tests/discovery/google-discovery.test.ts | Located; linked task traces are the artifact |
 | SEARCH-002 | src/features/discovery/; tests/discovery/google-discovery.test.ts | Located; linked task traces are the artifact |
-| SEARCH-003 | src/features/discovery/; tests/discovery/google-discovery.test.ts | Located; linked task traces are the artifact |
+| SEARCH-003 | src/features/discovery/; tests/discovery/google-discovery.test.ts | UNMET — detailed below |
 | SEARCH-004 | src/features/discovery/; tests/discovery/google-discovery.test.ts | Located; linked task traces are the artifact |
 | SEARCH-005 | src/features/discovery/; tests/discovery/google-discovery.test.ts | Located; linked task traces are the artifact |
 | SEARCH-006 | src/features/discovery/; tests/discovery/google-discovery.test.ts | Located; linked task traces are the artifact |
@@ -200,6 +200,8 @@ The table above is preserved as historical pre-implementation context only. This
 | TEST-025 | benchmarks/ or tests/; verification suite | Located; linked task traces are the artifact |
 
 ### Explicit gaps
+
+- **SEARCH-003:** the discovery connector reports a persistent Google profile, but the renderer opens every target with an ephemeral data store, so the persistent profile it promises does not exist at runtime. Confirmed not to be the cause of the Google CAPTCHA. Tracked as its own ticket.
 
 - **ARCH-002:** enforced, with a recorded limit. `tests/architecture/dependency-graph.test.ts` reads the real import graph of `src` and fails CI when one feature reaches past another's public index, or when a computed dynamic import could hide such a reach. Per ADR-0007 this is a test rather than a linter plugin, so it covers `src` only and would not catch a violation introduced outside it.
 - **ARCH-007:** enforced, with a recorded limit. The numeric limits (300 lines, 60 lines per function, complexity 10, depth 4, 5 parameters) live in the root `.oxlintrc.jsonc` and `lint:limits` runs over `src scripts tests benchmarks`; ADR-0008's debt is cleared and `src/.oxlintrc.jsonc` was deleted so no narrower configuration can apply. Positive and negative fixtures prove each threshold rejects what it should (`tests/architecture/quality-limits.test.ts`). The 12-import ceiling is enforced by test rather than lint, because `import/max-dependencies` is unsupported by the linter (SPK-005), and that test covers `src` only.
