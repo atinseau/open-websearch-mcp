@@ -31,6 +31,7 @@ export async function prepareCandidate(
   dependencies: CandidatePreparation,
   candidate: Candidate,
   context: CallContext,
+  focus?: string,
 ): Promise<Prepared | undefined> {
   const robots = await decideRobots(
     dependencies.robots,
@@ -53,7 +54,9 @@ export async function prepareCandidate(
     const document = await dependencies.render(candidate.url, context, conditional);
     const confirmed = reusable(candidate, cached, document.notModified === true);
     if (confirmed) return confirmed;
-    const extracted = await dependencies.extractor.extract(extractionInput(document));
+    // The query is the focus: without it a long specification returned its
+    // opening section whatever the agent had asked about.
+    const extracted = await dependencies.extractor.extract(extractionInput(document, focus));
     if (extracted.status !== "success") return undefined;
     await storeRenderedEvidence(
       dependencies.storage,

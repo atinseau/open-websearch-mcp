@@ -43,15 +43,15 @@
       },
       "case_id": "technical-bun-webview",
       "components": {
-        "evidenceCoverage": 0,
+        "evidenceCoverage": 17.5,
         "sourceRecall": 25,
         "rank": 15,
         "extraction": 0,
         "diversity": 10,
         "tokenBudget": 5
       },
-      "total": 55,
-      "classification": "degraded",
+      "total": 72.5,
+      "classification": "relevant",
       "reasons": []
     },
     {
@@ -177,7 +177,7 @@
       "category": "current_news",
       "split": "validation",
       "run_status": {
-        "status": "no_relevant_results"
+        "status": "partial"
       },
       "case_id": "current-apple-security",
       "components": {
@@ -242,7 +242,7 @@
       "category": "academic_primary",
       "split": "calibration",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "academic-browser-fingerprinting",
       "components": {
