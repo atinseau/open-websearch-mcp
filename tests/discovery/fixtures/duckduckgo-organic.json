@@ -1,0 +1,37 @@
+{
+  "text": "bun webview at DuckDuckGo\nWebView | Bun Docs\nBun.WebView is a headless browser built into the runtime.",
+  "links": [
+    {
+      "url": "https://html.duckduckgo.com/html/?q=bun+webview",
+      "text": "bun webview"
+    },
+    {
+      "url": "https://html.duckduckgo.com/html/",
+      "text": "DuckDuckGo"
+    },
+    {
+      "url": "https://duckduckgo.com/l/?uddg=https%3A%2F%2Fbun.com%2Fdocs%2Fruntime%2Fwebview&rut=d3d34ee0",
+      "text": "WebView | Bun Docs"
+    },
+    {
+      "url": "https://duckduckgo.com/l/?uddg=https%3A%2F%2Fbun.com%2Fdocs%2Fruntime%2Fwebview&rut=d3d34ee0",
+      "text": "bun.com/docs/runtime/webview"
+    },
+    {
+      "url": "https://duckduckgo.com/l/?uddg=https%3A%2F%2Fnews.example%2Fbun-release&rut=aa11",
+      "text": "Top stories: Bun release news"
+    },
+    {
+      "url": "https://duckduckgo.com/l/?uddg=https%3A%2F%2Fads.example%2Fbuy&rut=bb22",
+      "text": "Sponsored result"
+    },
+    {
+      "url": "https://duckduckgo.com/y.js?ad_provider=x",
+      "text": "Ad slot"
+    },
+    {
+      "url": "https://duckduckgo.com/settings",
+      "text": "Settings"
+    }
+  ]
+}

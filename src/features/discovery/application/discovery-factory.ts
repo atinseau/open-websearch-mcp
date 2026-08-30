@@ -1,12 +1,19 @@
 import type { EngineName } from "@/features/discovery/domain/engine-names";
-import { googleEngine, type SearchEngine } from "@/features/discovery/domain/engines";
+import {
+  duckduckgoEngine,
+  googleEngine,
+  type SearchEngine,
+} from "@/features/discovery/domain/engines";
 import type { Renderer } from "@/features/discovery";
 
 import { ChainedDiscovery, type NamedEngine } from "./chained-discovery.ts";
 import { EngineDiscovery } from "./engine-discovery.ts";
 
 /** The engines that have a parser today; the rest arrive in later tickets. */
-const implemented: Partial<Record<EngineName, SearchEngine>> = { google: googleEngine };
+const implemented: Partial<Record<EngineName, SearchEngine>> = {
+  google: googleEngine,
+  duckduckgo: duckduckgoEngine,
+};
 
 export interface ChainedDiscoveryService extends ChainedDiscovery {
   engineNames(): readonly string[];
