@@ -73,9 +73,9 @@ export function buildReport(input: {
       split: calibrationCaseIds.some((id) => id === entry.id) ? "calibration" : "validation",
       run_status: result.run_status,
       ...graded,
-      // The probe's pages carry empty text by construction, and a blocked case
-      // never ran a search. Both would otherwise publish a total that reads as
-      // a quality verdict on the product.
+      // The probe's pages carry empty text by construction, and a case whose
+      // search never completed has nothing to say about quality. Both would
+      // otherwise publish a total that reads as a verdict on the product.
       ...(input.mode === "offline-source-only-mechanics-probe" || didNotSearch(result)
         ? { total: "unmeasurable" as const, classification: "unmeasurable" as const }
         : {}),
@@ -104,8 +104,18 @@ export function buildReport(input: {
   };
 }
 
+/**
+ * Whether the product failed to complete a search at all.
+ *
+ * Only `blocked` and `error` qualify. `partial` and `no_relevant_results` are
+ * completed searches — the first returned fewer results than requested, the
+ * second found nothing relevant — and both are statements about quality that
+ * the score exists to capture. Treating them as outages discarded most of the
+ * corpus behind a status that is not a failure.
+ */
 function didNotSearch(subject: { run_status?: RunStatus | undefined }): boolean {
-  return subject.run_status !== undefined && subject.run_status.status !== "success";
+  const status = subject.run_status?.status;
+  return status === "blocked" || status === "error";
 }
 
 function blockedCount(scores: readonly ReportScore[]): number {
