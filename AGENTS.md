@@ -60,3 +60,22 @@ without a new ADR.
   literals; GitHub push protection rejects the literals.
 - Every task runs in its own `.worktree/` branch, passes `bun run check`, and
   reaches `main` through a reviewed pull request (`PROD-009`).
+
+## Agent skills
+
+### Issue tracker
+
+Issues live in GitHub Issues on `atinseau/open-websearch-mcp`, via the `gh`
+CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+The five canonical triage roles, each label named after its role. See
+`docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: `CONTEXT.md` and `docs/adr/` at the repo root. The routing
+rules above stay authoritative for product work; this section only tells the
+engineering skills where to look. See `docs/agents/domain.md`.
+
