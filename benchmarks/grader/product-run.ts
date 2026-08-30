@@ -1,5 +1,6 @@
 /** Drives the product's own `web_search` tool and shapes its answer for the grader. */
 import { createProductionRoot } from "@/bootstrap";
+import { resolveWorkspace } from "@/features/configuration";
 
 import type { CaseResult, ResultPage } from "./grader.ts";
 
@@ -19,7 +20,11 @@ export async function searchWithProduct(
   caseId: string,
   question: string,
 ): Promise<ProductCaseResult> {
-  started ??= createProductionRoot({});
+  // A benchmark run may be pointed at a scratch workspace, so a stale personal
+  // config cannot silently decide what the corpus measures.
+  started ??= createProductionRoot(
+    Bun.env.OWS_WORKSPACE ? { workspace: resolveWorkspace(Bun.env.OWS_WORKSPACE) } : {},
+  );
   const root = await started;
   const result = await root.tools.webSearch({ query: question, maxResults: 10 });
   return toCaseResult(caseId, result.structuredContent);
