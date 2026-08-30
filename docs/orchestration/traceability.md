@@ -39,12 +39,12 @@ The table above is preserved as historical pre-implementation context only. This
 | ID | Implementation and automated-test location | Verification result |
 | --- | --- | --- |
 | ARCH-001 | src/; tests/architecture/ | Located; linked task traces are the artifact |
-| ARCH-002 | src/; tests/architecture/ | BLOCKED — detailed below |
+| ARCH-002 | src/; tests/architecture/dependency-graph.test.ts | Enforced by a CI-blocking test; residual limit noted below |
 | ARCH-003 | src/; tests/architecture/ | Located; linked task traces are the artifact |
 | ARCH-004 | src/; tests/architecture/ | Located; linked task traces are the artifact |
 | ARCH-005 | src/; tests/architecture/ | Located; linked task traces are the artifact |
 | ARCH-006 | src/; tests/architecture/ | Located; linked task traces are the artifact |
-| ARCH-007 | src/; tests/architecture/ | BLOCKED — detailed below |
+| ARCH-007 | .oxlintrc.jsonc; tests/architecture/quality-limits.test.ts, dependency-graph.test.ts | Enforced repository-wide; residual limit noted below |
 | ARCH-008 | src/; tests/architecture/ | Located; linked task traces are the artifact |
 | ARCH-009 | src/; tests/architecture/ | Located; linked task traces are the artifact |
 | ARCH-010 | src/; tests/architecture/ | Located; linked task traces are the artifact |
@@ -201,8 +201,8 @@ The table above is preserved as historical pre-implementation context only. This
 
 ### Explicit gaps
 
-- **ARCH-002:** ADR-0007: the dependency-graph test is structural, not mechanical enforcement of internal feature imports, direction, or >12 imports.
-- **ARCH-007:** ADR-0008: scripts/ and benchmarks/ are outside numeric limits and the >12-import rule is not enforced.
+- **ARCH-002:** enforced, with a recorded limit. `tests/architecture/dependency-graph.test.ts` reads the real import graph of `src` and fails CI when one feature reaches past another's public index, or when a computed dynamic import could hide such a reach. Per ADR-0007 this is a test rather than a linter plugin, so it covers `src` only and would not catch a violation introduced outside it.
+- **ARCH-007:** enforced, with a recorded limit. The numeric limits (300 lines, 60 lines per function, complexity 10, depth 4, 5 parameters) live in the root `.oxlintrc.jsonc` and `lint:limits` runs over `src scripts tests benchmarks`; ADR-0008's debt is cleared and `src/.oxlintrc.jsonc` was deleted so no narrower configuration can apply. Positive and negative fixtures prove each threshold rejects what it should (`tests/architecture/quality-limits.test.ts`). The 12-import ceiling is enforced by test rather than lint, because `import/max-dependencies` is unsupported by the linter (SPK-005), and that test covers `src` only.
 - **PROD-005 scope:** ADR-0012 verifies portability with Codex only. Claude Code and Gemini CLI are outside the verified-harness scope for recorded external reasons; the preserved OpenCode run is historical independence evidence, not supported-harness evidence. Official-SDK contract tests still exercise MCP `2024-11-05` and `2025-06-18`, so this limitation is not implementation coupling to Codex.
 - **RELEASE-006:** partially satisfied. The authorization parser, idempotent publish ledger, and resume driver exist and are gated, and the criterion's required simulation — npm success followed by GitHub failure, resuming without republication — is an executable test in `scripts/release/publish-driver.test.ts`. Not satisfied: no signed release authorization, npm publish, tag, or GitHub Release exists. REL-004 is `blocked_external` on human authorization and npm credentials.
 - **TEST-015–017:** ADR-0013 supersedes ADR-0010: the `2026-08-30` corpus carries URL-located passages for 8 of 18 accepted claims, so the scorer is calculable. Its thresholds still cannot pass: the sample is too small to gate on, and every live search is currently refused by a Google captcha and reported `blocked` rather than scored.
