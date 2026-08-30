@@ -69,7 +69,8 @@ Release additionally requires:
 - load controller report and limits;
 - SSRF/robots/injection/archive/redaction suites;
 - no orphan process/target/temp file;
-- MCP conformance against pinned Codex, Claude Code, Gemini CLI, and OpenCode;
+- MCP conformance against the pinned Codex compatibility harness, with the
+  official SDK contract tests covering both supported protocol revisions;
 - packed npm artifact executed through exact-version `bunx --bun`;
 - benchmark thresholds and no category regression over 5 points;
 - clean-checkout reproduction and 100% requirement traceability.
@@ -82,4 +83,3 @@ deterministic regression or repeated parser failure blocks release.
 Owned requirements: `TEST-001` through `TEST-025`. Acceptance requires tests of
 the grader itself, repeatability across two runs, and a report linking every
 score to exact fixture evidence.
-

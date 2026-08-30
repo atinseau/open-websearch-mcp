@@ -29,9 +29,10 @@ repository does not publish from local development.
 
 ## MCP harnesses
 
-Integration examples for Codex, Claude Code, Gemini CLI, and OpenCode are in
+Configuration examples for Codex, Claude Code, Gemini CLI, and OpenCode are in
 [docs/integrations/README.md](docs/integrations/README.md). Each uses the
-absolute path to `bunx` and an exact package version.
+absolute path to `bunx` and an exact package version. Only Codex is a verified
+supported harness; the other examples are not compatibility claims.
 
 ## Package contents
 

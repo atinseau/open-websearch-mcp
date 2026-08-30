@@ -25,7 +25,7 @@ create a tag, or create a GitHub Release.
 | Condition | Verdict | Evidence |
 | --- | --- | --- |
 | 1. Atomic requirement traceability | **No** | `docs/orchestration/traceability.md` now lists all 160 IDs, but it records explicit uncovered/blocking requirements below. |
-| 2. All release gates pass | **No** | Deterministic local gates pass (`bun run check`: 234 pass, 1 informational live skip, 0 fail), and `ARCH-002`/`ARCH-007` are now enforced repository-wide. The teacher thresholds remain unmeasurable (ADR-0010), and two of four harnesses stay blocked by external authority, so this condition still does not hold. |
+| 2. All release gates pass | **No** | Deterministic local gates pass (`bun run check`: 234 pass, 1 informational live skip, 0 fail), and `ARCH-002`/`ARCH-007` are now enforced repository-wide. The teacher thresholds remain unmeasurable (ADR-0010), so this condition still does not hold. PROD-005's Codex-only verified matrix is satisfied under ADR-0012. |
 | 3. Pinned WebView/Obscura probe | **Yes, version-dependent** | `tests/rendering/webview-obscura.test.ts` passed against Obscura 0.2.1. ADR-0009 requires rerunning it for any pin change. |
 | 4. Teacher benchmark thresholds | **No** | ADR-0010: all totals are unmeasurable because the corpus has zero URL-located expected passages. |
 | 5. No critical/high operational finding | **No** | Unresolved release-critical evidence gaps remain; this cannot be certified as clean. |
@@ -38,15 +38,6 @@ create a tag, or create a GitHub Release.
 1. Refresh the immutable teacher corpus with URL-located evidence passages and
    enough accepted claims to calculate TEST-015–017; then meet their fixed
    thresholds. This is the direct ADR-0010 remedy.
-2. **Partly cleared.** Gemini CLI `0.57.0` and OpenCode `1.18.25` were
-   installed and probed. OpenCode is now a second **PASS**: it discovered and
-   invoked `web_search` over real stdio using a keyless model, with no
-   credential supplied. Two of four harnesses therefore execute the product.
-   The remaining two are blocked by external authority, not by the product:
-   Gemini fails on the account's own `429` free-tier quota and prefers its
-   built-in search tool, and ADR-0006 forbids an agent reauthenticating Claude.
-   Clearing them needs a Gemini account with quota and a human-authenticated
-   Claude session.
 3. ~~Restore full ARCH-002/ARCH-007 enforcement.~~ **Cleared.** `ARCH-002` and
    the source-graph parts of `ARCH-003` are CI-blocking through
    `tests/architecture/dependency-graph.test.ts` (ADR-0007, amended).
@@ -81,8 +72,10 @@ create a tag, or create a GitHub Release.
   and the `0.1.1` exact package commands are written as usable now, although no
   npm publication exists. Treat them as post-publication instructions until
   REL-004 completes.
-- ADR-0006, ADR-0007, ADR-0008, ADR-0009, and ADR-0010 accurately describe the
-  current limitations. The new changelog also states that `0.1.1` is an
+- ADR-0006, ADR-0007, ADR-0008, ADR-0009, ADR-0010, and ADR-0012 accurately
+  describe the current limitations. In particular, ADR-0012 narrows PROD-005
+  to the measured Codex harness; it does not claim broad harness support. The
+  new changelog also states that `0.1.1` is an
   unreleased candidate.
 
 ## REL-003 decision
