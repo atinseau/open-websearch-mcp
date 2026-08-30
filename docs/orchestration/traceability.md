@@ -205,6 +205,6 @@ The table above is preserved as historical pre-implementation context only. This
 - **ARCH-007:** ADR-0008: scripts/ and benchmarks/ are outside numeric limits and the >12-import rule is not enforced.
 - **PROD-005 scope:** ADR-0012 verifies portability with Codex only. Claude Code and Gemini CLI are outside the verified-harness scope for recorded external reasons; the preserved OpenCode run is historical independence evidence, not supported-harness evidence. Official-SDK contract tests still exercise MCP `2024-11-05` and `2025-06-18`, so this limitation is not implementation coupling to Codex.
 - **RELEASE-006:** REL-004 remains planned; no release authorization, idempotent publish ledger, npm publish, tag, or GitHub Release proof exists.
-- **TEST-015–017:** ADR-0010: deterministic scorer is intentionally unmeasurable without URL-located passages; its release thresholds cannot pass.
+- **TEST-015–017:** ADR-0013 supersedes ADR-0010: the `2026-08-30` corpus carries URL-located passages for 8 of 18 accepted claims, so the scorer is calculable. Its thresholds still cannot pass: the sample is too small to gate on, and every live search is currently refused by a Google captcha and reported `blocked` rather than scored.
 - **TEST-018:** no evidence for required BEIR/TREC/BRIGHT cases and 30–50 live canaries; only the small teacher corpus and two opt-in canaries exist.
 - **TEST-024:** the workflow gates code and packaging but cannot claim benchmark threshold compliance while TEST-015–017 are unmeasurable.

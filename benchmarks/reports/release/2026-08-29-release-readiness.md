@@ -27,7 +27,7 @@ create a tag, or create a GitHub Release.
 | 1. Atomic requirement traceability | **No** | `docs/orchestration/traceability.md` now lists all 160 IDs, but it records explicit uncovered/blocking requirements below. |
 | 2. All release gates pass | **No** | Deterministic local gates pass (`bun run check`: 234 pass, 1 informational live skip, 0 fail), and `ARCH-002`/`ARCH-007` are now enforced repository-wide. The teacher thresholds remain unmeasurable (ADR-0010), so this condition still does not hold. PROD-005's Codex-only verified matrix is satisfied under ADR-0012. |
 | 3. Pinned WebView/Obscura probe | **Yes, version-dependent** | `tests/rendering/webview-obscura.test.ts` passed against Obscura 0.2.1. ADR-0009 requires rerunning it for any pin change. |
-| 4. Teacher benchmark thresholds | **No** | ADR-0010: all totals are unmeasurable because the corpus has zero URL-located expected passages. |
+| 4. Teacher benchmark thresholds | **No, for a new reason** | ADR-0010 is superseded by ADR-0013: the `2026-08-30` corpus carries captured passages for 8 of 18 accepted claims, so the benchmark is measurable. It still yields no quality score, because all 20 searches were refused by a Google captcha and are reported `blocked` rather than badly answered. The score is published and never gates a release. |
 | 5. No critical/high operational finding | **No** | Unresolved release-critical evidence gaps remain; this cannot be certified as clean. |
 | 6. Exact packed Bunx smoke | **Yes** | `tests/package/packed-artifact.test.ts` passed. |
 | 7. Traceability, docs, clean checkout | **No** | Clean checkout passes, but traceability has blockers and docs contain pre-publication commands presented as immediately usable. |
@@ -35,9 +35,12 @@ create a tag, or create a GitHub Release.
 
 ## Remaining blockers
 
-1. Refresh the immutable teacher corpus with URL-located evidence passages and
-   enough accepted claims to calculate TEST-015–017; then meet their fixed
-   thresholds. This is the direct ADR-0010 remedy.
+1. **Partly cleared.** The immutable `2026-08-30` teacher corpus now carries
+   URL-located evidence passages for 8 of 18 accepted claims, captured over
+   raw HTTP outside the product (ADR-0013), so TEST-015–017 are calculable.
+   Two obstacles remain and are not claimed as green: the sample is too small
+   to gate on, and a live quality measurement is currently blocked by a Google
+   captcha on every discovery request.
 3. ~~Restore full ARCH-002/ARCH-007 enforcement.~~ **Cleared.** `ARCH-002` and
    the source-graph parts of `ARCH-003` are CI-blocking through
    `tests/architecture/dependency-graph.test.ts` (ADR-0007, amended).
@@ -72,7 +75,7 @@ create a tag, or create a GitHub Release.
   and the `0.1.1` exact package commands are written as usable now, although no
   npm publication exists. Treat them as post-publication instructions until
   REL-004 completes.
-- ADR-0006, ADR-0007, ADR-0008, ADR-0009, ADR-0010, and ADR-0012 accurately
+- ADR-0006, ADR-0007, ADR-0008, ADR-0009, ADR-0013 (superseding ADR-0010), and ADR-0012 accurately
   describe the current limitations. In particular, ADR-0012 narrows PROD-005
   to the measured Codex harness; it does not claim broad harness support. The
   new changelog also states that `0.1.1` is an

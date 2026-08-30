@@ -1,6 +1,7 @@
 # Defer teacher-benchmark release gating until passage-bearing corpus refresh
 
-Status: challenged
+Status: superseded by
+[ADR-0013](0013-measurable-teacher-benchmark-with-captured-passages.md)
 
 ## Decision
 
