@@ -3,7 +3,7 @@ import {
   createNavigationScheduler,
   createObscuraInstaller,
   createObscuraSupervisor,
-  createWebViewRenderer,
+  createReconnectingRenderer,
   type ObscuraArtifact,
   type Renderer,
   type RendererConfiguration,
@@ -56,26 +56,15 @@ async function startRenderer(
     configuration,
     storageDirectory: runtime.storageDirectory,
   });
-  const endpoint = await supervisor.install(new AbortController().signal);
-  const renderer = createWebViewRenderer({
-    endpoint,
-    configuration,
-    scheduler,
-    policy: runtime.policy,
-  });
+  await supervisor.install(new AbortController().signal);
   return {
-    renderer: {
-      async render(request) {
-        if (!supervisor.status().available) throw new Error("renderer_unavailable");
-        try {
-          return await renderer.render(request);
-        } catch (error) {
-          if (!supervisor.status().available)
-            throw new Error("renderer_unavailable", { cause: error });
-          throw error;
-        }
-      },
-    },
+    // Follows the supervisor across restarts, so one Obscura exit does not turn
+    // every later search in a long run into renderer_unavailable.
+    renderer: createReconnectingRenderer(supervisor, {
+      configuration,
+      scheduler,
+      policy: runtime.policy,
+    }),
     close: () => supervisor.shutdown(),
   };
 }

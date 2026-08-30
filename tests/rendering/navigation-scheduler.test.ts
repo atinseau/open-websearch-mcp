@@ -22,14 +22,23 @@ class FakeClock implements SchedulerClock {
   clearTimeout(timer: unknown): void {
     if (isTimer(timer)) timer.cancelled = true;
   }
+  /**
+   * Steps to each due deadline in turn rather than jumping to the end, so a
+   * timer created by a callback during the advance starts from the time it was
+   * actually created instead of being born already expired.
+   */
   advance(milliseconds: number): void {
-    this.#now += milliseconds;
-    for (const timer of this.#timers.filter(
-      (candidate) => !candidate.cancelled && candidate.at <= this.#now,
-    )) {
-      timer.cancelled = true;
-      timer.callback();
+    const target = this.#now + milliseconds;
+    for (;;) {
+      const due = this.#timers
+        .filter((candidate) => !candidate.cancelled && candidate.at <= target)
+        .sort((left, right) => left.at - right.at)[0];
+      if (!due) break;
+      this.#now = Math.max(this.#now, due.at);
+      due.cancelled = true;
+      due.callback();
     }
+    this.#now = target;
   }
 }
 
@@ -233,3 +242,50 @@ test("ORCH-006 and ORCH-007 remove cancellation from the active slot", async () 
 function isTimer(value: unknown): value is Timer {
   return typeof value === "object" && value !== null && "cancelled" in value;
 }
+
+test("RENDER-007 the navigation timeout measures navigation, not time spent queued", async () => {
+  // A search prepares many candidates at once, so most wait behind the host
+  // limit. Counting queue time against the navigation budget made a candidate
+  // fail before its own navigation had started, which reads as a slow site
+  // rather than as our own scheduling.
+  const clock = new FakeClock();
+  const scheduler = createNavigationScheduler({ configuration: calibrated, clock });
+  const started: number[] = [];
+  const settle: Array<() => void> = [];
+  const run = (index: number) =>
+    scheduler.schedule(
+      // One host, so the per-host limit of 2 forces the rest to queue.
+      request(index, { host: "docs.test", investigationId: "one", timeoutMs: 1_000 }),
+      () => {
+        started.push(index);
+        return new Promise<string>((resolve) => settle.push(() => resolve("ok")));
+      },
+    );
+
+  const inFlight = [run(0), run(1), run(2), run(3)];
+  for (let turn = 0; turn < 5; turn += 1) await Promise.resolve();
+  expect(started).toHaveLength(2);
+
+  // The first pair navigates slowly but inside its own budget, so the queued
+  // pair has already waited most of a budget by the time its turn comes.
+  clock.advance(900);
+  settle.shift()?.();
+  settle.shift()?.();
+  for (let turn = 0; turn < 10; turn += 1) await Promise.resolve();
+  expect(started).toHaveLength(4);
+
+  // Their own navigations take 900ms too. Counted from enqueue that is 1800ms
+  // and would time out; counted from their own start it is inside budget.
+  clock.advance(900);
+  settle.shift()?.();
+  settle.shift()?.();
+  for (let turn = 0; turn < 10; turn += 1) await Promise.resolve();
+
+  const outcomes = await Promise.allSettled(inFlight);
+  const timedOut = outcomes.filter(
+    (outcome) =>
+      outcome.status === "rejected" && String(outcome.reason?.message) === "navigation_timeout",
+  );
+  expect(timedOut).toHaveLength(0);
+  await scheduler.shutdown();
+});

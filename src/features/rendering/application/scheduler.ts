@@ -86,10 +86,6 @@ export class AdaptiveNavigationScheduler implements NavigationScheduler {
       queue.push(entry);
       this.#queues.set(request.investigationId, queue);
       request.signal.addEventListener("abort", entry.cancel, { once: true });
-      entry.timeout = this.#clock.setTimeout(
-        () => this.#timeout(entry),
-        request.timeoutMs ?? this.#navigationTimeoutMs,
-      );
       this.#dispatch();
     });
   }
@@ -197,6 +193,13 @@ export class AdaptiveNavigationScheduler implements NavigationScheduler {
   #start(entry: QueueEntry<unknown>): void {
     entry.state = "active";
     entry.startedAt = this.#clock.now();
+    // The budget covers the navigation itself. Starting it when the entry was
+    // queued made a candidate waiting behind the host limit fail before its own
+    // navigation began, which reads as a slow site rather than our scheduling.
+    entry.timeout = this.#clock.setTimeout(
+      () => this.#timeout(entry),
+      entry.request.timeoutMs ?? this.#navigationTimeoutMs,
+    );
     this.#active += 1;
     this.#activeEntries.add(entry);
     this.#claim(entry);

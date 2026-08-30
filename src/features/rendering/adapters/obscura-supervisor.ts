@@ -68,7 +68,14 @@ export class ObscuraSupervisor implements RendererSupervisor {
     );
     this.#child = child;
     void child.exited.then(() => {
-      if (this.#child === child) this.#endpoint = undefined;
+      // Clear the memoized start as well as the endpoint. Keeping the resolved
+      // promise meant a supervisor whose process died could never start
+      // another one, so every later navigation failed as renderer_unavailable.
+      if (this.#child === child) {
+        this.#endpoint = undefined;
+        this.#starting = undefined;
+        this.#child = undefined;
+      }
     });
     try {
       const endpoint = await withTimeout(waitForEndpoint(port, child), startupTimeoutMs);

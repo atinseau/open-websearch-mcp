@@ -77,7 +77,7 @@
       "category": "technical_docs",
       "split": "calibration",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "technical-sqlite-fts5",
       "components": {
@@ -136,7 +136,7 @@
       "category": "technical_docs",
       "split": "calibration",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "technical-url-canonicalization",
       "components": {
@@ -242,7 +242,7 @@
       "category": "academic_primary",
       "split": "calibration",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "academic-browser-fingerprinting",
       "components": {
@@ -350,8 +350,7 @@
       "category": "multilingual",
       "split": "validation",
       "run_status": {
-        "status": "error",
-        "reason": "renderer_unavailable"
+        "status": "partial"
       },
       "case_id": "multilingual-fr-open-data",
       "components": {
@@ -373,8 +372,7 @@
       "category": "multilingual",
       "split": "validation",
       "run_status": {
-        "status": "error",
-        "reason": "renderer_unavailable"
+        "status": "partial"
       },
       "case_id": "multilingual-es-climate",
       "components": {
@@ -396,8 +394,7 @@
       "category": "multilingual",
       "split": "validation",
       "run_status": {
-        "status": "error",
-        "reason": "renderer_unavailable"
+        "status": "partial"
       },
       "case_id": "multilingual-ja-web-standards",
       "components": {
@@ -408,16 +405,15 @@
         "diversity": 0,
         "tokenBudget": 5
       },
-      "total": "unmeasurable",
-      "classification": "unmeasurable",
+      "total": 5,
+      "classification": "not_relevant",
       "reasons": []
     },
     {
       "category": "ambiguous_difficult",
       "split": "validation",
       "run_status": {
-        "status": "error",
-        "reason": "renderer_unavailable"
+        "status": "partial"
       },
       "case_id": "ambiguous-best-search",
       "components": {
@@ -439,8 +435,7 @@
       "category": "ambiguous_difficult",
       "split": "validation",
       "run_status": {
-        "status": "error",
-        "reason": "renderer_unavailable"
+        "status": "partial"
       },
       "case_id": "ambiguous-xanadu-tuesday",
       "components": {
@@ -517,6 +512,6 @@
       "reason": "no URL-located evidence passage"
     }
   ],
-  "verdict": "not_gateable: 8 of 18 accepted claims carry a URL-located evidence passage; the measured scores are published for observation and never gate a release. 5 case(s) did not complete a search and are blocked rather than badly answered.",
+  "verdict": "not_gateable: 8 of 18 accepted claims carry a URL-located evidence passage; the measured scores are published for observation and never gate a release.",
   "gates_release": false
 }
