@@ -159,3 +159,44 @@ test("TOOL-002 aborts outstanding candidate preparation once the quota is met", 
   await slowAborted.promise;
   storage.close();
 });
+
+test("SEARCH a long page is extracted for the query, not for its opening section", async () => {
+  // A search over a large specification returned its introduction, because
+  // passage selection was given no idea what had been asked. The extractor
+  // already scores passages against a focus; a search never supplied one.
+  const storage = await openStorage({ workspace: workspace() });
+  const longPage: Renderer = {
+    render: async (request) => ({
+      url: request.url,
+      text: "",
+      markdown: [
+        "# Introduction",
+        "boilerplate ".repeat(200),
+        "# Path state",
+        `single-dot path segment removal and validation error reporting. ${"detail ".repeat(150)}`,
+        "# Acknowledgements",
+        "thanks ".repeat(200),
+      ].join("\n\n"),
+      links: [],
+      diagnostics: { title: "Spec", transferBytes: 1, settledMs: 1 },
+    }),
+  };
+  const application = createWebResearchApplication({
+    storage,
+    renderer: longPage,
+    discovery: fixtureDiscovery(["https://url.spec.test/"]),
+  });
+
+  const outcome = await application.webSearch(
+    { query: "single-dot path segment validation error", maxResults: 1 },
+    context(),
+  );
+
+  const parsed = structuredToolResultSchema.parse(outcome.structuredContent);
+  const text = parsed.results
+    .flatMap((item) => item.passages.map((passage) => passage.text))
+    .join("\n")
+    .toLowerCase();
+  expect(text).toContain("single-dot path segment");
+  storage.close();
+});

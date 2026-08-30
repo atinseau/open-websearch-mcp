@@ -194,12 +194,8 @@ class WebResearchApplication implements InvestigationApplication {
     discovered: Awaited<ReturnType<GoogleDiscoveryService["discover"]>>,
   ): Promise<ToolResult> {
     const cached = await this.#storage.cache.search(input.query, input.maxResults ?? 5);
-    const results = await this.progressiveCandidates(
-      mergedCandidates(discovered, cached, input, context),
-      input,
-      investigationId,
-      context,
-    );
+    const candidates = mergedCandidates(discovered, cached, input, context);
+    const results = await this.progressiveCandidates(candidates, input, investigationId, context);
     return tool(investigationId, searchResponse(investigationId, results, input, discovered));
   }
 
@@ -212,7 +208,7 @@ class WebResearchApplication implements InvestigationApplication {
     const pending = new Map(
       candidates.map((ranked, id) =>
         startPreparation(id, ranked.candidate, ranked.score, context, (candidate, preparation) =>
-          this.prepareCandidate(candidate, preparation),
+          this.prepareCandidate(candidate, preparation, input.query),
         ),
       ),
     );
@@ -249,19 +245,20 @@ class WebResearchApplication implements InvestigationApplication {
   private prepareCandidate(
     candidate: Candidate,
     context: CallContext,
+    focus?: string,
   ): Promise<Prepared | undefined> {
-    return prepareOneCandidate(
-      {
-        storage: this.#storage,
-        robots: this.#robots,
-        extractor: this.#extractor,
-        now: this.#now,
-        render: (url, callContext, conditional) =>
-          this.render(url, callContext, false, conditional),
-      },
-      candidate,
-      context,
-    );
+    return prepareOneCandidate(this.#preparation(), candidate, context, focus);
+  }
+
+  #preparation() {
+    return {
+      storage: this.#storage,
+      robots: this.#robots,
+      extractor: this.#extractor,
+      now: this.#now,
+      render: (url: URL, call: CallContext, conditional?: RenderRequest["conditional"]) =>
+        this.render(url, call, false, conditional),
+    };
   }
 
   private async consumeSearchPage(
