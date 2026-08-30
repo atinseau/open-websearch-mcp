@@ -42,6 +42,8 @@ export interface GoogleDiscoveryInput extends DiscoveryInput {
 export interface GoogleDiscoveryResult {
   readonly status: "success" | "empty" | "blocked" | "parse_failure" | "error";
   readonly reason?: string;
+  /** Which engine produced this result, so provenance survives the chain. */
+  readonly engine?: string;
   readonly candidates: readonly Candidate[];
   readonly suggestedQueries: readonly SuggestedQuery[];
 }
@@ -61,6 +63,10 @@ export {
   type CandidateAttempt,
   type CandidateAttemptResult,
 } from "./application/candidate-attempts";
+export { ChainedDiscovery, type NamedEngine } from "./application/chained-discovery";
+export { createDiscovery, type ChainedDiscoveryService } from "./application/discovery-factory";
+export { EngineDiscovery } from "./application/engine-discovery";
+export { engineNames, type EngineName } from "./domain/engine-names";
 export {
   GoogleDiscovery,
   googleSearchUrl,
