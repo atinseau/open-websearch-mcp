@@ -26,6 +26,7 @@ export type BlockedReason = "captcha" | "waf" | "consent_required";
 
 const googleHost = /(^|\.)google\.[a-z.]+$/iu;
 const duckduckgoHost = /(^|\.)duckduckgo\.com$/iu;
+const bingHost = /(^|\.)bing\.com$/iu;
 
 /** Recovers a destination carried in one of the named query parameters. */
 export function parameterDestination(link: URL, parameters: readonly string[]): URL | undefined {
@@ -76,3 +77,43 @@ export const duckduckgoEngine: SearchEngine = {
   },
   blockedMarkers: [[/anomaly|blocked for abuse/iu, "waf"]],
 };
+
+/**
+ * Bing wraps every result in `/ck/a?...u=a1<base64url>`. Unlike Google and
+ * DuckDuckGo it encodes the destination rather than passing it through, so the
+ * marker is stripped and the remainder decoded.
+ */
+export const bingEngine: SearchEngine = {
+  name: "bing",
+  searchUrl(query, locale) {
+    const url = new URL("https://www.bing.com/search");
+    url.searchParams.set("q", query);
+    if (locale && locale !== "auto") url.searchParams.set("setlang", locale);
+    return url;
+  },
+  ownsHost: (hostname) => bingHost.test(hostname),
+  dereference(link) {
+    if (link.pathname !== "/ck/a") return undefined;
+    const encoded = link.searchParams.get("u");
+    if (!encoded?.startsWith("a1")) return undefined;
+    const decoded = decodeBase64Url(encoded.slice(2));
+    // A relative path is one of Bing's own surfaces (images, maps, videos),
+    // never a result destination.
+    if (!decoded?.startsWith("http")) return undefined;
+    try {
+      return new URL(decoded);
+    } catch {
+      return undefined;
+    }
+  },
+  blockedMarkers: [[/made us think you were a bot|unusual activity/iu, "captcha"]],
+};
+
+function decodeBase64Url(value: string): string | undefined {
+  const padded = value.replaceAll("-", "+").replaceAll("_", "/");
+  try {
+    return atob(padded + "=".repeat((4 - (padded.length % 4)) % 4));
+  } catch {
+    return undefined;
+  }
+}
