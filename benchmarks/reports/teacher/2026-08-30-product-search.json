@@ -77,19 +77,19 @@
       "category": "technical_docs",
       "split": "calibration",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "technical-sqlite-fts5",
       "components": {
         "evidenceCoverage": 17.111,
-        "sourceRecall": 0,
-        "rank": 0,
+        "sourceRecall": 25,
+        "rank": 15,
         "extraction": 0,
-        "diversity": 0,
+        "diversity": 10,
         "tokenBudget": 5
       },
-      "total": 22.111,
-      "classification": "not_relevant",
+      "total": 72.111,
+      "classification": "relevant",
       "reasons": []
     },
     {
@@ -136,7 +136,7 @@
       "category": "technical_docs",
       "split": "calibration",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "technical-url-canonicalization",
       "components": {
@@ -242,7 +242,7 @@
       "category": "academic_primary",
       "split": "calibration",
       "run_status": {
-        "status": "success"
+        "status": "partial"
       },
       "case_id": "academic-browser-fingerprinting",
       "components": {
@@ -372,7 +372,7 @@
       "category": "multilingual",
       "split": "validation",
       "run_status": {
-        "status": "partial"
+        "status": "no_relevant_results"
       },
       "case_id": "multilingual-es-climate",
       "components": {
