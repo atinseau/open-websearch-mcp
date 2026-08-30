@@ -1,4 +1,6 @@
 /** Deterministic, offline conformity grader for versioned teacher fixtures. */
+import { conceptGrounded } from "../teachers/fixture-grounding.ts";
+
 export const weights = {
   evidenceCoverage: 35,
   sourceRecall: 25,
@@ -72,10 +74,19 @@ export function gradeCase(fixture: TeacherFixture, result: CaseResult): CaseScor
 function normalized(value: string): string {
   return value.normalize("NFKC").toLocaleLowerCase("und");
 }
+/**
+ * A concept is looked for the same way the capture step looked for it.
+ *
+ * The corpus labels concepts as identifiers such as `external-content`, which
+ * no page writes that way. Matching them literally applied a stricter rule when
+ * grading than the one used to accept the claim into the corpus, so a page that
+ * plainly expressed a concept scored zero for evidence coverage.
+ */
 function evidenceMatches(claim: Claim, results: readonly ResultPage[]): boolean {
   const text = normalized(results.map((result) => result.text).join("\n"));
+  const corpus = { text, urls: new Set(results.map((result) => result.url)) };
   return (
-    claim.required_concepts.every((concept) => text.includes(normalized(concept))) &&
+    claim.required_concepts.every((concept) => conceptGrounded(concept, corpus)) &&
     claim.acceptable_patterns.some((pattern) => new RegExp(pattern, "iu").test(text))
   );
 }

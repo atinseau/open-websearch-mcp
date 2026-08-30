@@ -166,3 +166,65 @@ test("a different path is still a different page", () => {
 
   expect(graded.components.sourceRecall).toBe(0);
 });
+
+test("an identifier-styled concept is recognised in the prose that expresses it", () => {
+  // The corpus labels concepts like "external-content"; no page writes that
+  // hyphenated form. The capture step already grounds such a label through
+  // conceptGrounded, so grading it literally applied a stricter rule than the
+  // one used to accept the claim in the first place.
+  const identifiers: TeacherFixture = {
+    case_id: "technical-bun-webview",
+    claims: [
+      {
+        id: "claim",
+        required_concepts: ["external-content", "rowid-lookup"],
+        acceptable_patterns: ["content="],
+        sources: [{ url: "https://spec.test/page", equivalent_urls: [] }],
+        evidence_passages: [],
+        weight: 1,
+      },
+    ],
+  };
+
+  const graded = gradeCase(identifiers, {
+    case_id: "technical-bun-webview",
+    results: [
+      {
+        url: "https://spec.test/page",
+        text: "An external content table stores rows elsewhere. The rowid lookup uses content= to find them.",
+        token_count: 20,
+      },
+    ],
+  });
+
+  expect(graded.components.evidenceCoverage).toBe(35);
+});
+
+test("a concept absent from the page is still absent", () => {
+  const identifiers: TeacherFixture = {
+    case_id: "technical-bun-webview",
+    claims: [
+      {
+        id: "claim",
+        required_concepts: ["external-content", "vacuum-policy"],
+        acceptable_patterns: ["content="],
+        sources: [{ url: "https://spec.test/page", equivalent_urls: [] }],
+        evidence_passages: [],
+        weight: 1,
+      },
+    ],
+  };
+
+  const graded = gradeCase(identifiers, {
+    case_id: "technical-bun-webview",
+    results: [
+      {
+        url: "https://spec.test/page",
+        text: "An external content table uses content= to find rows.",
+        token_count: 20,
+      },
+    ],
+  });
+
+  expect(graded.components.evidenceCoverage).toBe(0);
+});
