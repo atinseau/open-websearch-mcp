@@ -166,7 +166,13 @@ export const defaultConfiguration: FullConfiguration = {
     settle_timeout_ms: 3_000,
     max_download_bytes: 26_214_400,
     concurrency: "auto",
-    initial_concurrency: 8,
+    // SPK-003 calibrated 8 against local fixture pages. Against public
+    // destinations that saturates the renderer: on one question, 8 returned
+    // two or three results and missed the expected page twice out of two,
+    // while 3 returned ten results and found it twice out of two — a page
+    // rendering in 4.7s alone was timing out at 30s. The ceiling below is
+    // unchanged, so the controller may still grow into it when latency allows.
+    initial_concurrency: 3,
     max_concurrency: 40,
     max_per_host: 2,
     obscura: { version: "0.2.1", variant: "aarch64-macos-stealth" },

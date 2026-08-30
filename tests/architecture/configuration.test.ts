@@ -267,3 +267,18 @@ test("CONFIG the navigation budget leaves room for a real destination", async ()
   const renderer = service.snapshot().configuration?.renderer;
   expect(renderer?.navigation_timeout_ms).toBeGreaterThanOrEqual(30_000);
 });
+
+test("CONFIG the starting concurrency reflects public pages, not local fixtures", async () => {
+  // SPK-003 calibrated 8 concurrent navigations against local fixture pages.
+  // Against public destinations that saturates the renderer: measured on the
+  // same question, 8 returned two or three results and missed the expected
+  // page twice out of two, while 3 returned ten results and found it twice out
+  // of two. A page that renders in 4.7s alone was timing out at 30s.
+  const service = createConfigurationService({ workspace: workspace() });
+  await service.prepareForCall();
+
+  expect(service.snapshot().configuration?.renderer.initial_concurrency).toBe(3);
+  // The ceiling is unchanged: the controller may still grow into it when the
+  // measured latency supports it.
+  expect(service.snapshot().configuration?.renderer.max_concurrency).toBe(40);
+});
