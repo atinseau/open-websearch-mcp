@@ -5,6 +5,23 @@ export const schemaVersion = 1;
 const positive = z.number().positive();
 const fraction = z.number().min(0).max(1);
 
+/**
+ * The engines discovery may consult, in order (ADR-0014). A misconfiguration
+ * fails at load with a named reason rather than at search time, when a shorter
+ * list would silently look like an engine that simply never answered.
+ */
+export const engineNames = ["google", "duckduckgo", "bing"] as const;
+const engineSchema = z.enum(engineNames, {
+  error: (issue) =>
+    `search.engines names unknown engine ${JSON.stringify(issue.input)}; expected one of ${engineNames.join(", ")}`,
+});
+const enginesSchema = z
+  .array(engineSchema)
+  .min(1, "search.engines must name at least one engine")
+  .refine((engines) => new Set(engines).size === engines.length, {
+    message: "search.engines must not list a duplicate engine",
+  });
+
 const controllerSchema = z
   .object({
     window_completions: positive,
@@ -31,6 +48,7 @@ export const configurationSchema = z
         candidate_budget: positive,
         timeout_ms: positive,
         default_profile: z.enum(["auto", "general", "technical", "news", "academic", "community"]),
+        engines: enginesSchema,
       })
       .strict(),
     google: z
@@ -134,6 +152,7 @@ export const defaultConfiguration: FullConfiguration = {
     candidate_budget: 30,
     timeout_ms: 30_000,
     default_profile: "auto",
+    engines: ["google", "duckduckgo", "bing"],
   },
   google: { locale: "auto", max_concurrent_serp: 1, cooldown_ms: 0 },
   mcp: { max_inbound_message_bytes: 4_194_304 },

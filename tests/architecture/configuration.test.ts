@@ -187,3 +187,49 @@ async function sha(bytes: Uint8Array): Promise<string> {
   const hash = await crypto.subtle.digest("SHA-256", new Uint8Array(bytes));
   return [...new Uint8Array(hash)].map((value) => value.toString(16).padStart(2, "0")).join("");
 }
+
+test("CONFIG: a workspace naming an unknown engine keeps the last valid snapshot and says why", async () => {
+  const diagnostics: string[] = [];
+  const service = createConfigurationService({
+    workspace: workspace(),
+    diagnostic: (item) => diagnostics.push(item),
+  });
+  await service.prepareForCall();
+  expect(service.snapshot().configuration?.search.engines).toEqual([
+    "google",
+    "duckduckgo",
+    "bing",
+  ]);
+
+  await Bun.write(
+    service.workspace().config,
+    (await Bun.file(service.workspace().config).text()).replace(
+      `engines = ["google", "duckduckgo", "bing"]`,
+      `engines = ["google", "altavista"]`,
+    ),
+  );
+  await service.prepareForCall();
+
+  // A typo must not quietly shrink the operator's engine list.
+  expect(service.snapshot().configuration?.search.engines).toEqual([
+    "google",
+    "duckduckgo",
+    "bing",
+  ]);
+  expect(diagnostics.join(" ")).toContain("altavista");
+});
+
+test("CONFIG: a workspace may reorder the engines and the snapshot follows", async () => {
+  const service = createConfigurationService({ workspace: workspace() });
+  await service.prepareForCall();
+  await Bun.write(
+    service.workspace().config,
+    (await Bun.file(service.workspace().config).text()).replace(
+      `engines = ["google", "duckduckgo", "bing"]`,
+      `engines = ["duckduckgo", "google"]`,
+    ),
+  );
+  await service.prepareForCall();
+
+  expect(service.snapshot().configuration?.search.engines).toEqual(["duckduckgo", "google"]);
+});
