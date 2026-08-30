@@ -91,7 +91,7 @@ The table above is preserved as historical pre-implementation context only. This
 | MCP-005 | src/mcp/; tests/mcp/stdio-contract.test.ts | Located; linked task traces are the artifact |
 | MCP-006 | src/mcp/; tests/mcp/stdio-contract.test.ts | Located; linked task traces are the artifact |
 | MCP-007 | src/mcp/; tests/mcp/stdio-contract.test.ts | Located; linked task traces are the artifact |
-| MCP-008 | src/mcp/; tests/mcp/stdio-contract.test.ts | BLOCKED — detailed below |
+| MCP-008 | src/mcp/; tests/mcp/stdio-contract.test.ts | Located; official-SDK contract tests negotiate both supported protocol revisions |
 | MCP-009 | src/mcp/; tests/mcp/stdio-contract.test.ts | Located; linked task traces are the artifact |
 | MCP-010 | src/mcp/; tests/mcp/stdio-contract.test.ts | Located; linked task traces are the artifact |
 | MCP-011 | src/mcp/; tests/mcp/stdio-contract.test.ts | Located; linked task traces are the artifact |
@@ -114,7 +114,7 @@ The table above is preserved as historical pre-implementation context only. This
 | PROD-002 | src/ cross-cutting; e2e/security/MCP suites | Located; linked task traces are the artifact |
 | PROD-003 | src/ cross-cutting; e2e/security/MCP suites | Located; linked task traces are the artifact |
 | PROD-004 | src/ cross-cutting; e2e/security/MCP suites | Located; linked task traces are the artifact |
-| PROD-005 | src/ cross-cutting; e2e/security/MCP suites | BLOCKED — detailed below |
+| PROD-005 | benchmarks/harnesses/2026-08-29-mcp-compatibility-matrix.md | Verified; real Codex stdio registration, tool discovery, and portable `web_search` result (ADR-0012) |
 | PROD-006 | src/ cross-cutting; e2e/security/MCP suites | Located; linked task traces are the artifact |
 | PROD-007 | src/ cross-cutting; e2e/security/MCP suites | Located; linked task traces are the artifact |
 | PROD-008 | src/ cross-cutting; e2e/security/MCP suites | Located; linked task traces are the artifact |
@@ -203,7 +203,7 @@ The table above is preserved as historical pre-implementation context only. This
 
 - **ARCH-002:** ADR-0007: the dependency-graph test is structural, not mechanical enforcement of internal feature imports, direction, or >12 imports.
 - **ARCH-007:** ADR-0008: scripts/ and benchmarks/ are outside numeric limits and the >12-import rule is not enforced.
-- **MCP-008 / PROD-005:** VER-002 performed only a Codex probe; Claude is revoked and Gemini CLI/OpenCode are unavailable.
+- **PROD-005 scope:** ADR-0012 verifies portability with Codex only. Claude Code and Gemini CLI are outside the verified-harness scope for recorded external reasons; the preserved OpenCode run is historical independence evidence, not supported-harness evidence. Official-SDK contract tests still exercise MCP `2024-11-05` and `2025-06-18`, so this limitation is not implementation coupling to Codex.
 - **RELEASE-006:** REL-004 remains planned; no release authorization, idempotent publish ledger, npm publish, tag, or GitHub Release proof exists.
 - **TEST-015–017:** ADR-0010: deterministic scorer is intentionally unmeasurable without URL-located passages; its release thresholds cannot pass.
 - **TEST-018:** no evidence for required BEIR/TREC/BRIGHT cases and 30–50 live canaries; only the small teacher corpus and two opt-in canaries exist.

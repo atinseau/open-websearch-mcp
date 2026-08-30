@@ -8,8 +8,8 @@ values cross into application modules. Maximum inbound MCP message size is
 4 MiB. Calls may execute concurrently and respond out of order by JSON-RPC ID.
 
 Support protocol negotiation for `2024-11-05` and `2025-06-18` at minimum.
-Newer revisions become supported only after the four-harness conformance matrix
-passes. Advertise tools only; do not add resources, prompts, sampling,
+Newer revisions become supported only after the verified Codex compatibility
+matrix passes. Advertise tools only; do not add resources, prompts, sampling,
 elicitation, tasks, or HTTP transport in v1.
 
 ## `web_search`
@@ -146,4 +146,6 @@ process.
 Owned requirements: `MCP-001` through `MCP-013`. `PROD-005` is a required
 cross-spec outcome owned by SPEC-00. Contract tests
 must execute the official SDK client against the real stdio server and the
-versioned Codex/Claude/Gemini/OpenCode probes.
+versioned Codex compatibility probe. The official-SDK contract tests continue
+to exercise both supported protocol revisions and therefore do not couple the
+server implementation to Codex.

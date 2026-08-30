@@ -1,4 +1,4 @@
-# MCP compatibility matrix — 2026-08-29
+# Verified Codex compatibility matrix — 2026-08-29
 
 Commit under test: `33ee087` plus the VER-002 test-only fixture changes.
 
@@ -8,16 +8,27 @@ Server command in the Gemini CLI and OpenCode probes:
 /Users/arthur/.bun/bin/bun /Users/arthur/Documents/Dev/projects/open-websearch-mcp/.worktree/arch-bench/src/cli.ts
 ```
 
-The server was registered as a stdio MCP server. The Codex command removed that
-temporary registration on completion. No unavailable harness was authenticated,
-installed, or otherwise mutated.
+The supported harness in this matrix is Codex only, as required by amended
+`PROD-005` and ADR-0012. Its verification criterion is a real stdio
+registration, tool discovery, and a completed `web_search` call returning a
+portable textual result. The Codex command removed its temporary registration
+on completion. No unavailable harness was authenticated, installed, or
+otherwise mutated.
 
 | Harness | Version / availability | Status | Evidence |
 | --- | --- | --- | --- |
-| Codex | `codex-cli 0.150.1` | PASS | Real stdio registration, `initialize`, tool discovery, and `web_search` call completed. Raw event output below includes both `content` and `structured_content`. |
-| Claude Code | Expected path `/Users/arthur/.local/bin/claude` is absent (`test -x` exit 1). | UNAVAILABLE | ADR-0006 also records that the prior Claude session was revoked and must not be reauthenticated by an agent. Install or restore the CLI and have a human reauthenticate before repeating this probe. |
-| Gemini CLI | `gemini 0.57.0` at `/Users/arthur/.nvm/versions/node/v24.19.0/bin/gemini` | UNAVAILABLE | Registration succeeds and `--skip-trust` clears the untrusted-folder block, so the server is no longer suppressed. The turn still never reaches the product: every attempt fails on the account's own `429 RESOURCE_EXHAUSTED` free-tier quota, and the model selects its built-in `google_web_search` rather than the MCP tool. Retried across models and after quota expiry. This is an external account limit, not a product defect. |
-| OpenCode | `opencode 1.18.25` at `/Users/arthur/.nvm/versions/node/v24.19.0/bin/opencode` | PASS | Real stdio registration, connection, tool discovery, and a completed `web_search` call. Run with a keyless `opencode/hy3-free` model, so no credential was supplied. Raw JSON below shows `status: "completed"` and the portable result envelope. |
+| Codex | `codex-cli 0.150.1` | SUPPORTED — VERIFIED | Real stdio registration, `initialize`, tool discovery, and `web_search` call completed. The raw event output below includes both `content` and `structured_content`. |
+
+## Harnesses outside the verified scope
+
+| Harness | Version / availability | Status | Recorded external reason |
+| --- | --- | --- | --- |
+| Claude Code | Expected path `/Users/arthur/.local/bin/claude` is absent (`test -x` exit 1). | OUT OF SCOPE | ADR-0006 records that the prior Claude session was revoked and must not be reauthenticated by an agent. It can return to scope only after the CLI is installed and a human authenticates its session. |
+| Gemini CLI | `gemini 0.57.0` at `/Users/arthur/.nvm/versions/node/v24.19.0/bin/gemini` | OUT OF SCOPE | Registration succeeds and `--skip-trust` clears the untrusted-folder block, but every headless turn fails on the account's `429 RESOURCE_EXHAUSTED` free-tier quota and chooses built-in `google_web_search` rather than the MCP tool. It can return to scope only with an account that has usable quota. |
+
+These entries are not failed support claims: amended `PROD-005` does not put
+them in the verified matrix. The recorded evidence is preserved so a future
+probe starts from the actual external constraint.
 
 ## Codex probe
 
@@ -43,7 +54,7 @@ Raw JSONL stdout (the UUID is runtime-generated):
 `blocked/captcha` is an expected live-Web outcome, not a harness failure: the
 client completed a real tool call and received the portable result envelope.
 
-## Gemini CLI probe
+## Recorded Gemini CLI probe
 
 Exact command:
 
@@ -80,7 +91,17 @@ worktree-local `.gemini/settings.json`; that file was deleted immediately as
 cleanup. The temporary HOME was also removed. No account was authenticated and
 no credential was entered.
 
-## OpenCode probe
+## Annex A — historical OpenCode independence evidence (not supported)
+
+This annex deliberately sits outside the verified compatibility matrix. It
+preserves a genuine, already measured client-independence result: OpenCode
+registered the server over stdio, discovered `web_search`, invoked it, and
+received the portable result envelope. It is **not** a claim that OpenCode is a
+supported harness under `PROD-005`.
+
+OpenCode was `1.18.25` at
+`/Users/arthur/.nvm/versions/node/v24.19.0/bin/opencode`. The successful turn
+used the keyless `opencode/hy3-free` model; no credential was supplied.
 
 Exact command:
 
@@ -119,10 +140,10 @@ Raw JSON stdout (identifiers are runtime-generated):
 {"type":"tool_use","sessionID":"ses_fb2254430ffejVHnXAuZv2UJ56","part":{"type":"tool","tool":"ver002turn_web_search","callID":"chatcmpl-tool-8ca466e00256b78b","state":{"status":"completed","input":{"query":"MCP stdio compatibility"},"output":"[investigation_id=f90057ab-581b-4368-8ca2-493ee105bee8; status=blocked; reason=captcha; confidence=low]","metadata":{"truncated":false}}}}
 ```
 
-This is a PASS on the same standard applied to Codex: a third-party client
-discovered the tool, invoked it over stdio, and received the portable result
-envelope. `blocked/captcha` is the expected live-Web outcome under SEARCH-012
-and PROD-002, not a harness failure.
+This historical run completed a third-party discovery and stdio invocation of
+the tool and received the portable result envelope. `blocked/captcha` is the
+expected live-Web outcome under SEARCH-012 and PROD-002, not a harness failure.
+It remains annex evidence only and does not establish OpenCode support.
 
 Both temporary HOME/XDG configurations were removed after the probes, and the
 `.gemini/` project settings the Gemini registration wrote into the worktree
