@@ -13,6 +13,7 @@ import {
   type Renderer,
   type RendererConfiguration,
 } from "@/features/rendering";
+import type { EngineName } from "@/features/discovery";
 import {
   assessPublicUrl,
   createDnsResolver,
@@ -63,19 +64,10 @@ export async function createProductionRoot(
     Bun.write(`${workspace.root}/.storage-ready`, ""),
     Bun.write(`${workspace.root}/cache/blobs/.storage-ready`, ""),
   ]);
-  const storage = createStorage(
-    new SqliteStore({ path: `${workspace.root}/state.sqlite` }),
-    new BlobStore(`${workspace.root}/cache/blobs`),
-  );
+  const storage = storageFor(workspace.root);
   const logger = await createSessionLogger(workspace, (message) => console.error(message));
   const installer = createObscuraInstaller(workspace, options.probe ?? probeObscura);
-  const web = createWebRuntime(
-    installer,
-    options.obscuraArtifact ??
-      configuredObscuraArtifact(first.configuration?.renderer.obscura, workspace.config),
-    rendererConfiguration(first.configuration?.renderer),
-    first.scheduler,
-  );
+  const web = webRuntimeFor(options, installer, workspace.config, first);
   const application = applicationFor(
     options.application,
     storage,
@@ -84,6 +76,7 @@ export async function createProductionRoot(
     // before connecting. Without it the static URL check passes any public
     // hostname, including one that resolves to a private address.
     options.robots ?? createRobotsPolicy({ resolver: createDnsResolver() }),
+    discoveryOptions(first.configuration?.search.engines),
   );
   bindWebRuntime(application, web.renderer, web.policy);
   const tools = makeTools(application, configuration, logger, installer);
@@ -119,13 +112,58 @@ async function probeObscura(executable: string): Promise<boolean> {
   return (await process.exited) === 0;
 }
 
+function webRuntimeFor(
+  options: ProductionRootOptions,
+  installer: ReturnType<typeof createObscuraInstaller>,
+  configPath: string,
+  first: import("@/features/configuration").ConfigurationSnapshot,
+): ReturnType<typeof createWebRuntime> {
+  return createWebRuntime(
+    installer,
+    options.obscuraArtifact ??
+      configuredObscuraArtifact(first.configuration?.renderer.obscura, configPath),
+    rendererConfiguration(first.configuration?.renderer),
+    first.scheduler,
+  );
+}
+
+function storageFor(root: string): Storage {
+  return createStorage(
+    new SqliteStore({ path: `${root}/state.sqlite` }),
+    new BlobStore(`${root}/cache/blobs`),
+  );
+}
+
+function discoveryOptions(engines: readonly EngineName[] | undefined): {
+  readonly engines: readonly EngineName[] | undefined;
+  readonly diagnostic: (message: string) => void;
+} {
+  return {
+    engines,
+    diagnostic: (message: string) => console.error(`[open-websearch-mcp] ${message}`),
+  };
+}
+
 function applicationFor(
   application: InvestigationApplication | undefined,
   storage: Storage,
   renderer: Renderer | undefined,
   robots: RobotsPolicy,
+  discovery: {
+    readonly engines: readonly EngineName[] | undefined;
+    readonly diagnostic: (message: string) => void;
+  },
 ): InvestigationApplication {
-  return application ?? createWebResearchApplication({ storage, renderer, robots });
+  return (
+    application ??
+    createWebResearchApplication({
+      storage,
+      renderer,
+      robots,
+      engines: discovery.engines,
+      diagnostic: discovery.diagnostic,
+    })
+  );
 }
 
 function rendererConfiguration(

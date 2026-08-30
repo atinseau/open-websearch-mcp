@@ -1,4 +1,6 @@
-import { GoogleDiscovery, type Candidate, type GoogleDiscoveryService } from "@/features/discovery";
+import { type Candidate, type EngineName, type GoogleDiscoveryService } from "@/features/discovery";
+
+import { discoveryFor, type WebResearchDependencies } from "./web-research-discovery.ts";
 import {
   createExtractorRegistry,
   type ExtractionResult,
@@ -40,15 +42,7 @@ import {
 
 const allowRobots: RobotsPolicy = { canCrawl: async () => true };
 
-export interface WebResearchDependencies {
-  readonly storage: Storage;
-  readonly renderer?: Renderer;
-  readonly discovery?: GoogleDiscoveryService;
-  readonly extractor?: ExtractorRegistry;
-  readonly robots?: RobotsPolicy;
-  readonly now?: () => Date;
-}
-
+export type { WebResearchDependencies };
 export function createWebResearchApplication(
   dependencies: WebResearchDependencies,
 ): InvestigationApplication & { bindWebRuntime(renderer: Renderer): void } {
@@ -63,6 +57,8 @@ class WebResearchApplication implements InvestigationApplication {
   readonly #now: () => Date;
   #renderer: Renderer | undefined;
   #discovery: GoogleDiscoveryService | undefined;
+  readonly #engines: readonly EngineName[];
+  readonly #diagnostic: ((message: string) => void) | undefined;
 
   constructor(dependencies: WebResearchDependencies) {
     this.#storage = dependencies.storage;
@@ -71,16 +67,20 @@ class WebResearchApplication implements InvestigationApplication {
     this.#robots = dependencies.robots ?? allowRobots;
     this.#now = dependencies.now ?? (() => new Date());
     this.#renderer = dependencies.renderer;
+    this.#engines = dependencies.engines ?? ["google"];
+    this.#diagnostic = dependencies.diagnostic;
     this.#discovery =
       dependencies.discovery ??
-      (dependencies.renderer
-        ? new GoogleDiscovery({ renderer: dependencies.renderer })
-        : undefined);
+      (dependencies.renderer ? this.#chainFor(dependencies.renderer) : undefined);
   }
 
   bindWebRuntime(renderer: Renderer): void {
     this.#renderer = renderer;
-    this.#discovery ??= new GoogleDiscovery({ renderer });
+    this.#discovery ??= this.#chainFor(renderer);
+  }
+
+  #chainFor(renderer: Renderer): GoogleDiscoveryService | undefined {
+    return discoveryFor({ renderer, engines: this.#engines, diagnostic: this.#diagnostic });
   }
 
   async webOpen(input: WebOpenInput, context: CallContext): Promise<ToolResult> {
