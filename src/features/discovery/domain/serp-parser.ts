@@ -6,6 +6,8 @@ import type {
 } from "@/features/discovery";
 import { assessPublicUrl } from "@/features/security";
 
+import type { BlockedReason, SearchEngine } from "./engines.ts";
+
 export type SerpParseResult =
   | {
       readonly kind: "parsed";
@@ -16,7 +18,7 @@ export type SerpParseResult =
   | { readonly kind: "empty"; readonly suggestedQueries: readonly SuggestedQuery[] }
   | { readonly kind: "parse_failure"; readonly diagnostic: "unrecognized_serp_markup" };
 
-const blockedMarkers: ReadonlyArray<readonly [RegExp, "captcha" | "waf" | "consent_required"]> = [
+const blockedMarkers: ReadonlyArray<readonly [RegExp, BlockedReason]> = [
   [/unusual traffic|recaptcha|not a robot/i, "captcha"],
   [/access denied|web application firewall|temporarily blocked/i, "waf"],
   [/before you continue|consent\.google/i, "consent_required"],
@@ -24,23 +26,26 @@ const blockedMarkers: ReadonlyArray<readonly [RegExp, "captcha" | "waf" | "conse
 const googleHost = /(^|\.)google\.[a-z.]+$/i;
 const authentication = /(?:^|[./_-])(login|signin|sign-in|auth|account)(?:[./_-]|$)/i;
 
-/** Parses only rendered Google evidence; no text from a SERP authorizes navigation. */
-export function parseGoogleSerp(document: RenderedDocument): SerpParseResult {
-  const blocked = blockedReason(document.text);
+/**
+ * Parses one engine's rendered results page. No text from a results page
+ * authorizes navigation: only links that survive candidate admission do.
+ */
+export function parseSerp(engine: SearchEngine, document: RenderedDocument): SerpParseResult {
+  const blocked = blockedReason(engine, document.text);
   if (blocked) return { kind: "blocked", reason: blocked };
   const suggestedQueries = suggestions(document);
-  const candidates = candidatesFrom(document);
+  const candidates = candidatesFrom(engine, document);
   if (candidates.length > 0) return { kind: "parsed", candidates, suggestedQueries };
   if (emptySerp(document.text)) return { kind: "empty", suggestedQueries };
   return { kind: "parse_failure", diagnostic: "unrecognized_serp_markup" };
 }
 
-function candidatesFrom(document: RenderedDocument): readonly Candidate[] {
+function candidatesFrom(engine: SearchEngine, document: RenderedDocument): readonly Candidate[] {
   const seen = new Set<string>();
   const candidates: Candidate[] = [];
   for (const link of document.links) {
-    const url = destination(link.url);
-    if (!url || !isCandidate(url, link.url, link.text)) continue;
+    const url = destination(engine, link.url);
+    if (!url || !isCandidate(engine, url, link.url, link.text)) continue;
     const key = url.toString();
     if (seen.has(key)) continue;
     seen.add(key);
@@ -49,19 +54,13 @@ function candidatesFrom(document: RenderedDocument): readonly Candidate[] {
   return candidates;
 }
 
-function destination(link: URL): URL | undefined {
-  if (!googleHost.test(link.hostname)) return link;
-  if (!/^\/(?:url|imgres)$/u.test(link.pathname)) return undefined;
-  const target = link.searchParams.get("q") ?? link.searchParams.get("url");
-  try {
-    return target ? new URL(target) : undefined;
-  } catch {
-    return undefined;
-  }
+function destination(engine: SearchEngine, link: URL): URL | undefined {
+  if (!engine.ownsHost(link.hostname)) return link;
+  return engine.dereference(link);
 }
 
-function isCandidate(url: URL, original: URL, text: string): boolean {
-  if (!assessPublicUrl(url).allowed || googleHost.test(url.hostname)) return false;
+function isCandidate(engine: SearchEngine, url: URL, original: URL, text: string): boolean {
+  if (!assessPublicUrl(url).allowed || engine.ownsHost(url.hostname)) return false;
   if (original.pathname.includes("aclk") || original.searchParams.has("adurl")) return false;
   return (
     text.trim().length > 0 &&
@@ -105,8 +104,9 @@ function suggestionSource(url: URL, text: string): SuggestedQuery["source"] | un
     : undefined;
 }
 
-function blockedReason(text: string): "captcha" | "waf" | "consent_required" | undefined {
-  return blockedMarkers.find(([pattern]) => pattern.test(text))?.[1];
+function blockedReason(engine: SearchEngine, text: string): BlockedReason | undefined {
+  const markers = [...blockedMarkers, ...(engine.blockedMarkers ?? [])];
+  return markers.find(([pattern]) => pattern.test(text))?.[1];
 }
 function emptySerp(text: string): boolean {
   return /did not match any documents|no results found/i.test(text);
