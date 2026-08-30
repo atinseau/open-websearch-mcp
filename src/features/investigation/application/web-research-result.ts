@@ -133,6 +133,9 @@ export function searchResponse(
     confidence,
     results,
     suggested_queries: discovered.suggestedQueries,
+    ...(discovered.followUpQuery === undefined
+      ? {}
+      : { follow_up_query: discovered.followUpQuery }),
   };
 }
 export class ExpectedFailure extends Error {

@@ -44,6 +44,8 @@ export interface GoogleDiscoveryResult {
   readonly reason?: string;
   /** Which engine produced this result, so provenance survives the chain. */
   readonly engine?: string;
+  /** The derived second query, when a thin first pass triggered one. */
+  readonly followUpQuery?: string;
   readonly candidates: readonly Candidate[];
   readonly suggestedQueries: readonly SuggestedQuery[];
 }

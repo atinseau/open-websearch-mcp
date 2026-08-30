@@ -39,7 +39,7 @@
       "category": "technical_docs",
       "split": "calibration",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "technical-bun-webview",
       "components": {
@@ -77,7 +77,7 @@
       "category": "technical_docs",
       "split": "calibration",
       "run_status": {
-        "status": "success"
+        "status": "partial"
       },
       "case_id": "technical-sqlite-fts5",
       "components": {
@@ -117,7 +117,7 @@
       "category": "technical_docs",
       "split": "calibration",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "technical-pdfjs",
       "components": {
@@ -155,7 +155,7 @@
       "category": "current_news",
       "split": "calibration",
       "run_status": {
-        "status": "partial"
+        "status": "no_relevant_results"
       },
       "case_id": "current-bun-release",
       "components": {
@@ -204,10 +204,10 @@
       "case_id": "current-mcp-release",
       "components": {
         "evidenceCoverage": 0,
-        "sourceRecall": 0,
-        "rank": 0,
+        "sourceRecall": 25,
+        "rank": 2.143,
         "extraction": "unmeasurable",
-        "diversity": 0,
+        "diversity": 10,
         "tokenBudget": 5
       },
       "total": "unmeasurable",
@@ -242,7 +242,7 @@
       "category": "academic_primary",
       "split": "calibration",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "academic-browser-fingerprinting",
       "components": {
@@ -372,7 +372,7 @@
       "category": "multilingual",
       "split": "validation",
       "run_status": {
-        "status": "no_relevant_results"
+        "status": "partial"
       },
       "case_id": "multilingual-es-climate",
       "components": {

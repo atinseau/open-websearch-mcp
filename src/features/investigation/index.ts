@@ -69,6 +69,11 @@ export interface StructuredToolResult {
   readonly confidence: Confidence;
   readonly results: readonly EvidenceResult[];
   readonly suggested_queries?: readonly SuggestedQuery[];
+  /**
+   * The keyword query discovery derived after a thin first pass. Reported so
+   * the second search is visible to the agent rather than silent (SEARCH-001).
+   */
+  readonly follow_up_query?: string;
 }
 
 export interface EvidenceResult {
