@@ -32,6 +32,7 @@ const controllerSchema = z
     error_decrease_threshold: fraction,
     timeout_decrease_threshold: fraction,
     p95_baseline_multiplier: positive,
+    warm_p95_baseline_ms: positive,
     rss_budget_ratio: fraction,
     decrease_factor: fraction,
     rss_budget_bytes: z.number().nonnegative(),
@@ -157,7 +158,11 @@ export const defaultConfiguration: FullConfiguration = {
   google: { locale: "auto", max_concurrent_serp: 1, cooldown_ms: 0 },
   mcp: { max_inbound_message_bytes: 4_194_304 },
   renderer: {
-    navigation_timeout_ms: 15_000,
+    // A public destination observed here takes 10-15s to render. 15s left no
+    // margin, so under concurrency nearly every candidate timed out and the
+    // search discarded pages it had already discovered (RENDER-007 makes this
+    // a configurable default, not a fixed limit).
+    navigation_timeout_ms: 30_000,
     settle_timeout_ms: 3_000,
     max_download_bytes: 26_214_400,
     concurrency: "auto",
@@ -206,6 +211,11 @@ export const defaultConfiguration: FullConfiguration = {
       error_decrease_threshold: 0.15,
       timeout_decrease_threshold: 0.1,
       p95_baseline_multiplier: 2,
+      // SPK-003 measured 456ms against local fixture pages. A real destination
+      // takes seconds, so that baseline marked every window unhealthy and the
+      // controller halved capacity continuously. 6s reflects observed public
+      // pages; SPK-003's local figure stays available by configuring it.
+      warm_p95_baseline_ms: 6_000,
       rss_budget_ratio: 0.8,
       decrease_factor: 0.5,
       rss_budget_bytes: 0,

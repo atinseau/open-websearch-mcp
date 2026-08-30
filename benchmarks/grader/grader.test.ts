@@ -94,3 +94,137 @@ async function run(
   ]);
   return { exitCode, output: `${stdout}${stderr}` };
 }
+
+test("a fragment names a place inside a page, not a different page", () => {
+  // The corpus cites url.spec.whatwg.org/#url-parsing; a product that returned
+  // that page scored zero because the strings differ, although the fragment is
+  // never sent to the server and the retrieved resource is identical.
+  const anchored: TeacherFixture = {
+    case_id: "technical-bun-webview",
+    claims: [
+      {
+        id: "claim",
+        required_concepts: ["alpha"],
+        acceptable_patterns: ["alpha\\s+beta"],
+        sources: [{ url: "https://spec.test/page#section-two", equivalent_urls: [] }],
+        evidence_passages: [],
+        weight: 1,
+      },
+    ],
+  };
+
+  const graded = gradeCase(anchored, {
+    case_id: "technical-bun-webview",
+    results: [{ url: "https://spec.test/page", text: "alpha beta", token_count: 2 }],
+  });
+
+  expect(graded.components.sourceRecall).toBe(25);
+});
+
+test("a trailing slash and a host case difference name the same page", () => {
+  const cased: TeacherFixture = {
+    case_id: "technical-bun-webview",
+    claims: [
+      {
+        id: "claim",
+        required_concepts: ["alpha"],
+        acceptable_patterns: ["alpha\\s+beta"],
+        sources: [{ url: "https://Spec.Test/page/", equivalent_urls: [] }],
+        evidence_passages: [],
+        weight: 1,
+      },
+    ],
+  };
+
+  const graded = gradeCase(cased, {
+    case_id: "technical-bun-webview",
+    results: [{ url: "https://spec.test/page", text: "alpha beta", token_count: 2 }],
+  });
+
+  expect(graded.components.sourceRecall).toBe(25);
+});
+
+test("a different path is still a different page", () => {
+  const other: TeacherFixture = {
+    case_id: "technical-bun-webview",
+    claims: [
+      {
+        id: "claim",
+        required_concepts: ["alpha"],
+        acceptable_patterns: ["alpha\\s+beta"],
+        sources: [{ url: "https://spec.test/page", equivalent_urls: [] }],
+        evidence_passages: [],
+        weight: 1,
+      },
+    ],
+  };
+
+  const graded = gradeCase(other, {
+    case_id: "technical-bun-webview",
+    results: [{ url: "https://spec.test/elsewhere", text: "alpha beta", token_count: 2 }],
+  });
+
+  expect(graded.components.sourceRecall).toBe(0);
+});
+
+test("an identifier-styled concept is recognised in the prose that expresses it", () => {
+  // The corpus labels concepts like "external-content"; no page writes that
+  // hyphenated form. The capture step already grounds such a label through
+  // conceptGrounded, so grading it literally applied a stricter rule than the
+  // one used to accept the claim in the first place.
+  const identifiers: TeacherFixture = {
+    case_id: "technical-bun-webview",
+    claims: [
+      {
+        id: "claim",
+        required_concepts: ["external-content", "rowid-lookup"],
+        acceptable_patterns: ["content="],
+        sources: [{ url: "https://spec.test/page", equivalent_urls: [] }],
+        evidence_passages: [],
+        weight: 1,
+      },
+    ],
+  };
+
+  const graded = gradeCase(identifiers, {
+    case_id: "technical-bun-webview",
+    results: [
+      {
+        url: "https://spec.test/page",
+        text: "An external content table stores rows elsewhere. The rowid lookup uses content= to find them.",
+        token_count: 20,
+      },
+    ],
+  });
+
+  expect(graded.components.evidenceCoverage).toBe(35);
+});
+
+test("a concept absent from the page is still absent", () => {
+  const identifiers: TeacherFixture = {
+    case_id: "technical-bun-webview",
+    claims: [
+      {
+        id: "claim",
+        required_concepts: ["external-content", "vacuum-policy"],
+        acceptable_patterns: ["content="],
+        sources: [{ url: "https://spec.test/page", equivalent_urls: [] }],
+        evidence_passages: [],
+        weight: 1,
+      },
+    ],
+  };
+
+  const graded = gradeCase(identifiers, {
+    case_id: "technical-bun-webview",
+    results: [
+      {
+        url: "https://spec.test/page",
+        text: "An external content table uses content= to find rows.",
+        token_count: 20,
+      },
+    ],
+  });
+
+  expect(graded.components.evidenceCoverage).toBe(0);
+});

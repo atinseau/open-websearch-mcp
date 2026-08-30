@@ -1,4 +1,6 @@
 /** Deterministic, offline conformity grader for versioned teacher fixtures. */
+import { conceptGrounded } from "../teachers/fixture-grounding.ts";
+
 export const weights = {
   evidenceCoverage: 35,
   sourceRecall: 25,
@@ -72,18 +74,51 @@ export function gradeCase(fixture: TeacherFixture, result: CaseResult): CaseScor
 function normalized(value: string): string {
   return value.normalize("NFKC").toLocaleLowerCase("und");
 }
+/**
+ * A concept is looked for the same way the capture step looked for it.
+ *
+ * The corpus labels concepts as identifiers such as `external-content`, which
+ * no page writes that way. Matching them literally applied a stricter rule when
+ * grading than the one used to accept the claim into the corpus, so a page that
+ * plainly expressed a concept scored zero for evidence coverage.
+ */
 function evidenceMatches(claim: Claim, results: readonly ResultPage[]): boolean {
   const text = normalized(results.map((result) => result.text).join("\n"));
+  const corpus = { text, urls: new Set(results.map((result) => result.url)) };
   return (
-    claim.required_concepts.every((concept) => text.includes(normalized(concept))) &&
+    claim.required_concepts.every((concept) => conceptGrounded(concept, corpus)) &&
     claim.acceptable_patterns.some((pattern) => new RegExp(pattern, "iu").test(text))
   );
 }
+/**
+ * Compares the page a URL identifies, not the string that spells it.
+ *
+ * The corpus cites anchored URLs such as `.../#url-parsing`. A fragment is
+ * never sent to the server, so a product returning the same document scored
+ * zero for a difference that names a place inside the page rather than a
+ * different page. Host case and a trailing slash are the same kind of
+ * difference. The path itself is left alone: it does distinguish pages.
+ */
+function pageIdentity(value: string): string {
+  try {
+    const url = new URL(value);
+    url.hash = "";
+    url.hostname = url.hostname.toLowerCase();
+    if (url.pathname.length > 1 && url.pathname.endsWith("/"))
+      url.pathname = url.pathname.slice(0, -1);
+    return url.toString();
+  } catch {
+    return value;
+  }
+}
+
 function sourceRanks(claim: Claim, results: readonly ResultPage[]): number[] {
   const accepted = new Set(
-    claim.sources.flatMap((source) => [source.url, ...source.equivalent_urls]),
+    claim.sources.flatMap((source) => [source.url, ...source.equivalent_urls].map(pageIdentity)),
   );
-  return results.flatMap((result, index) => (accepted.has(result.url) ? [index + 1] : []));
+  return results.flatMap((result, index) =>
+    accepted.has(pageIdentity(result.url)) ? [index + 1] : [],
+  );
 }
 function rankRatio(
   claims: readonly Claim[],

@@ -172,6 +172,48 @@ test("a blocked case scores unmeasurable rather than a near-zero total", () => {
   expect(report.scores[0]?.classification).toBe("unmeasurable");
 });
 
+test("a partial search is scored: it answered, just with fewer results than asked", () => {
+  // `partial` means the product returned fewer results than max_results, which
+  // is a completed search with a real answer. Discarding its total would hide
+  // most of the corpus behind a status that is not a failure.
+  const report = buildReport({
+    mode: "product-search",
+    corpusDate: "2026-08-30",
+    cases: [entry("technical-pdfjs")],
+    fixtures: [captured],
+    results: [
+      {
+        case_id: "technical-pdfjs",
+        results: [{ url: "https://spec.test/a", text: "alpha beta", token_count: 20 }],
+        run_status: { status: "partial", reason: undefined },
+      },
+    ],
+  });
+
+  expect(report.scores[0]?.total).not.toBe("unmeasurable");
+  expect(report.scores[0]?.classification).not.toBe("unmeasurable");
+});
+
+test("a case reporting no relevant results is scored rather than discarded", () => {
+  // The product searched and found nothing relevant. That is an answer about
+  // quality, not an outage.
+  const report = buildReport({
+    mode: "product-search",
+    corpusDate: "2026-08-30",
+    cases: [entry("technical-pdfjs")],
+    fixtures: [captured],
+    results: [
+      {
+        case_id: "technical-pdfjs",
+        results: [],
+        run_status: { status: "no_relevant_results", reason: undefined },
+      },
+    ],
+  });
+
+  expect(report.scores[0]?.total).not.toBe("unmeasurable");
+});
+
 test("promotion stays refused whatever the score", () => {
   const report = buildReport({
     mode: "product-search",

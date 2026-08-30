@@ -70,7 +70,9 @@ test("MCP-001 real package bin initializes, lists tools, and accepts web_search"
   const search = await client.callTool({ name: "web_search", arguments: { query: "evidence" } });
   expect(search.structuredContent).toMatchObject({ status: expect.any(String) });
   await client.close();
-}, 30_000);
+  // This performs a real search, so its budget must exceed one navigation
+  // budget (RENDER-007, now 30s) plus the discovery page ahead of it.
+}, 120_000);
 
 test("MCP-002/MCP-003: SDK rejects invalid arguments before application dispatch", async () => {
   const client = createClient();

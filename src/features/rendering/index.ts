@@ -174,3 +174,5 @@ export function createObscuraSupervisor(options: ObscuraSupervisorOptions): Rend
 export function createWebViewRenderer(options: WebViewRendererOptions): Renderer {
   return new WebViewRenderer(options);
 }
+
+export { createReconnectingRenderer } from "./adapters/reconnecting-renderer";

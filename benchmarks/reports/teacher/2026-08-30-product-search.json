@@ -39,8 +39,7 @@
       "category": "technical_docs",
       "split": "calibration",
       "run_status": {
-        "status": "blocked",
-        "reason": "captcha"
+        "status": "partial"
       },
       "case_id": "technical-bun-webview",
       "components": {
@@ -51,16 +50,15 @@
         "diversity": 0,
         "tokenBudget": 5
       },
-      "total": "unmeasurable",
-      "classification": "unmeasurable",
+      "total": 5,
+      "classification": "not_relevant",
       "reasons": []
     },
     {
       "category": "technical_docs",
       "split": "calibration",
       "run_status": {
-        "status": "blocked",
-        "reason": "captcha"
+        "status": "success"
       },
       "case_id": "technical-mcp-stdio",
       "components": {
@@ -71,36 +69,34 @@
         "diversity": 0,
         "tokenBudget": 5
       },
-      "total": "unmeasurable",
-      "classification": "unmeasurable",
+      "total": 5,
+      "classification": "not_relevant",
       "reasons": []
     },
     {
       "category": "technical_docs",
       "split": "calibration",
       "run_status": {
-        "status": "blocked",
-        "reason": "captcha"
+        "status": "success"
       },
       "case_id": "technical-sqlite-fts5",
       "components": {
-        "evidenceCoverage": 0,
-        "sourceRecall": 0,
-        "rank": 0,
+        "evidenceCoverage": 17.111,
+        "sourceRecall": 25,
+        "rank": 15,
         "extraction": 0,
-        "diversity": 0,
+        "diversity": 10,
         "tokenBudget": 5
       },
-      "total": "unmeasurable",
-      "classification": "unmeasurable",
+      "total": 72.111,
+      "classification": "relevant",
       "reasons": []
     },
     {
       "category": "technical_docs",
       "split": "calibration",
       "run_status": {
-        "status": "blocked",
-        "reason": "captcha"
+        "status": "partial"
       },
       "case_id": "technical-robots-rfc",
       "components": {
@@ -121,8 +117,7 @@
       "category": "technical_docs",
       "split": "calibration",
       "run_status": {
-        "status": "blocked",
-        "reason": "captcha"
+        "status": "partial"
       },
       "case_id": "technical-pdfjs",
       "components": {
@@ -133,36 +128,34 @@
         "diversity": 0,
         "tokenBudget": 5
       },
-      "total": "unmeasurable",
-      "classification": "unmeasurable",
+      "total": 5,
+      "classification": "not_relevant",
       "reasons": []
     },
     {
       "category": "technical_docs",
       "split": "calibration",
       "run_status": {
-        "status": "blocked",
-        "reason": "captcha"
+        "status": "success"
       },
       "case_id": "technical-url-canonicalization",
       "components": {
         "evidenceCoverage": 0,
-        "sourceRecall": 0,
-        "rank": 0,
+        "sourceRecall": 25,
+        "rank": 15,
         "extraction": 0,
-        "diversity": 0,
+        "diversity": 10,
         "tokenBudget": 5
       },
-      "total": "unmeasurable",
-      "classification": "unmeasurable",
+      "total": 55,
+      "classification": "degraded",
       "reasons": []
     },
     {
       "category": "current_news",
       "split": "calibration",
       "run_status": {
-        "status": "blocked",
-        "reason": "captcha"
+        "status": "partial"
       },
       "case_id": "current-bun-release",
       "components": {
@@ -184,8 +177,7 @@
       "category": "current_news",
       "split": "validation",
       "run_status": {
-        "status": "blocked",
-        "reason": "captcha"
+        "status": "partial"
       },
       "case_id": "current-apple-security",
       "components": {
@@ -207,8 +199,7 @@
       "category": "current_news",
       "split": "calibration",
       "run_status": {
-        "status": "blocked",
-        "reason": "captcha"
+        "status": "partial"
       },
       "case_id": "current-mcp-release",
       "components": {
@@ -229,8 +220,7 @@
       "category": "academic_primary",
       "split": "calibration",
       "run_status": {
-        "status": "blocked",
-        "reason": "captcha"
+        "status": "partial"
       },
       "case_id": "academic-bm25",
       "components": {
@@ -252,8 +242,7 @@
       "category": "academic_primary",
       "split": "calibration",
       "run_status": {
-        "status": "blocked",
-        "reason": "captcha"
+        "status": "partial"
       },
       "case_id": "academic-browser-fingerprinting",
       "components": {
@@ -274,8 +263,7 @@
       "category": "academic_primary",
       "split": "calibration",
       "run_status": {
-        "status": "blocked",
-        "reason": "captcha"
+        "status": "partial"
       },
       "case_id": "academic-retrieval-diversity",
       "components": {
@@ -297,8 +285,7 @@
       "category": "community_contradictory",
       "split": "calibration",
       "run_status": {
-        "status": "blocked",
-        "reason": "captcha"
+        "status": "partial"
       },
       "case_id": "community-bun-production",
       "components": {
@@ -319,8 +306,7 @@
       "category": "community_contradictory",
       "split": "calibration",
       "run_status": {
-        "status": "blocked",
-        "reason": "captcha"
+        "status": "partial"
       },
       "case_id": "community-robots-ethics",
       "components": {
@@ -342,8 +328,7 @@
       "category": "community_contradictory",
       "split": "calibration",
       "run_status": {
-        "status": "blocked",
-        "reason": "captcha"
+        "status": "partial"
       },
       "case_id": "community-headless-stealth",
       "components": {
@@ -365,8 +350,7 @@
       "category": "multilingual",
       "split": "validation",
       "run_status": {
-        "status": "blocked",
-        "reason": "captcha"
+        "status": "partial"
       },
       "case_id": "multilingual-fr-open-data",
       "components": {
@@ -388,8 +372,7 @@
       "category": "multilingual",
       "split": "validation",
       "run_status": {
-        "status": "blocked",
-        "reason": "captcha"
+        "status": "no_relevant_results"
       },
       "case_id": "multilingual-es-climate",
       "components": {
@@ -411,8 +394,7 @@
       "category": "multilingual",
       "split": "validation",
       "run_status": {
-        "status": "blocked",
-        "reason": "captcha"
+        "status": "partial"
       },
       "case_id": "multilingual-ja-web-standards",
       "components": {
@@ -423,16 +405,15 @@
         "diversity": 0,
         "tokenBudget": 5
       },
-      "total": "unmeasurable",
-      "classification": "unmeasurable",
+      "total": 5,
+      "classification": "not_relevant",
       "reasons": []
     },
     {
       "category": "ambiguous_difficult",
       "split": "validation",
       "run_status": {
-        "status": "blocked",
-        "reason": "captcha"
+        "status": "partial"
       },
       "case_id": "ambiguous-best-search",
       "components": {
@@ -454,8 +435,7 @@
       "category": "ambiguous_difficult",
       "split": "validation",
       "run_status": {
-        "status": "blocked",
-        "reason": "captcha"
+        "status": "partial"
       },
       "case_id": "ambiguous-xanadu-tuesday",
       "components": {
@@ -532,6 +512,6 @@
       "reason": "no URL-located evidence passage"
     }
   ],
-  "verdict": "not_gateable: 8 of 18 accepted claims carry a URL-located evidence passage; the measured scores are published for observation and never gate a release. 20 case(s) did not complete a search and are blocked rather than badly answered.",
+  "verdict": "not_gateable: 8 of 18 accepted claims carry a URL-located evidence passage; the measured scores are published for observation and never gate a release.",
   "gates_release": false
 }
