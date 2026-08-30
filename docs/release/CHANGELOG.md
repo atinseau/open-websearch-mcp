@@ -14,5 +14,7 @@
 - Local-first MCP stdio server with `web_search` and `web_open`.
 - Deterministic discovery, rendering, extraction, ranking, cache, and
   investigation behavior validated by the repository's deterministic suites.
-- Not released: the teacher benchmark is deliberately unmeasurable pending a
-  passage-bearing corpus refresh (ADR-0010).
+- Not released: the teacher benchmark is now measurable against the
+  `2026-08-30` captured corpus (ADR-0013, superseding ADR-0010), but it is
+  published for observation and never gates a release, and a live quality
+  score is currently blocked by a Google captcha on every discovery request.
