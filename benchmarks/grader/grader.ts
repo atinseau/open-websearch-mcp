@@ -91,6 +91,26 @@ function evidenceMatches(claim: Claim, results: readonly ResultPage[]): boolean 
   );
 }
 /**
+ * Hosts that serve the same documents under two names.
+ *
+ * Bun's documentation moved from `bun.sh` to `bun.com`; both still answer, and
+ * the two responses are byte-identical (307,391 characters, verified against
+ * the live pages). The sealed corpus cites the older name, so without this a
+ * product returning the very page the corpus points at scores zero — measuring
+ * a rename rather than recall.
+ *
+ * Deliberately a fixed list, not a heuristic: only hosts observed to mirror
+ * each other belong here, and the path must still match exactly.
+ */
+const mirroredHosts: ReadonlyArray<ReadonlySet<string>> = [new Set(["bun.sh", "bun.com"])];
+
+function canonicalHost(hostname: string): string {
+  const host = hostname.replace(/^www\./u, "");
+  const mirror = mirroredHosts.find((group) => group.has(host));
+  return mirror ? [...mirror].sort()[0]! : host;
+}
+
+/**
  * Compares the page a URL identifies, not the string that spells it.
  *
  * The corpus cites anchored URLs such as `.../#url-parsing`. A fragment is
@@ -103,7 +123,7 @@ function pageIdentity(value: string): string {
   try {
     const url = new URL(value);
     url.hash = "";
-    url.hostname = url.hostname.toLowerCase();
+    url.hostname = canonicalHost(url.hostname.toLowerCase());
     if (url.pathname.length > 1 && url.pathname.endsWith("/"))
       url.pathname = url.pathname.slice(0, -1);
     return url.toString();

@@ -44,13 +44,13 @@
       "case_id": "technical-bun-webview",
       "components": {
         "evidenceCoverage": 0,
-        "sourceRecall": 0,
-        "rank": 0,
+        "sourceRecall": 25,
+        "rank": 7.5,
         "extraction": 0,
-        "diversity": 0,
+        "diversity": 10,
         "tokenBudget": 5
       },
-      "total": 5,
+      "total": 47.5,
       "classification": "not_relevant",
       "reasons": []
     },
@@ -58,7 +58,7 @@
       "category": "technical_docs",
       "split": "calibration",
       "run_status": {
-        "status": "success"
+        "status": "partial"
       },
       "case_id": "technical-mcp-stdio",
       "components": {
@@ -82,14 +82,14 @@
       "case_id": "technical-sqlite-fts5",
       "components": {
         "evidenceCoverage": 17.111,
-        "sourceRecall": 25,
-        "rank": 15,
+        "sourceRecall": 0,
+        "rank": 0,
         "extraction": 0,
-        "diversity": 10,
+        "diversity": 0,
         "tokenBudget": 5
       },
-      "total": 72.111,
-      "classification": "relevant",
+      "total": 22.111,
+      "classification": "not_relevant",
       "reasons": []
     },
     {
@@ -155,7 +155,7 @@
       "category": "current_news",
       "split": "calibration",
       "run_status": {
-        "status": "no_relevant_results"
+        "status": "partial"
       },
       "case_id": "current-bun-release",
       "components": {
@@ -204,10 +204,10 @@
       "case_id": "current-mcp-release",
       "components": {
         "evidenceCoverage": 0,
-        "sourceRecall": 25,
-        "rank": 2.143,
+        "sourceRecall": 0,
+        "rank": 0,
         "extraction": "unmeasurable",
-        "diversity": 10,
+        "diversity": 0,
         "tokenBudget": 5
       },
       "total": "unmeasurable",
@@ -350,7 +350,7 @@
       "category": "multilingual",
       "split": "validation",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "multilingual-fr-open-data",
       "components": {
