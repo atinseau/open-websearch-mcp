@@ -35,11 +35,10 @@ test("an engine with no parser yet is skipped, and the operator is told", () => 
     diagnostic: (message) => diagnostics.push(message),
   });
 
-  expect(discovery.engineNames()).toEqual(["google"]);
-  expect(diagnostics.join(" ")).toContain("duckduckgo");
+  expect(discovery.engineNames()).toEqual(["google", "duckduckgo"]);
   expect(diagnostics.join(" ")).toContain("bing");
 });
 
 test("a chain with no usable engine at all is refused rather than silently mute", () => {
-  expect(() => createDiscovery({ renderer, engines: ["duckduckgo"] })).toThrow(/no usable engine/i);
+  expect(() => createDiscovery({ renderer, engines: ["bing"] })).toThrow(/no usable engine/i);
 });

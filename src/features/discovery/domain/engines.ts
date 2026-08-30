@@ -25,6 +25,7 @@ export interface SearchEngine {
 export type BlockedReason = "captcha" | "waf" | "consent_required";
 
 const googleHost = /(^|\.)google\.[a-z.]+$/iu;
+const duckduckgoHost = /(^|\.)duckduckgo\.com$/iu;
 
 /** Recovers a destination carried in one of the named query parameters. */
 export function parameterDestination(link: URL, parameters: readonly string[]): URL | undefined {
@@ -53,4 +54,25 @@ export const googleEngine: SearchEngine = {
     if (!/^\/(?:url|imgres)$/u.test(link.pathname)) return undefined;
     return parameterDestination(link, ["q", "url"]);
   },
+};
+
+/**
+ * DuckDuckGo's HTML endpoint, which returns a server-rendered results page.
+ * Every result link is wrapped in `/l/?uddg=<encoded destination>`, so the
+ * destination is recovered exactly as it is for Google.
+ */
+export const duckduckgoEngine: SearchEngine = {
+  name: "duckduckgo",
+  searchUrl(query, locale) {
+    const url = new URL("https://html.duckduckgo.com/html/");
+    url.searchParams.set("q", query);
+    if (locale && locale !== "auto") url.searchParams.set("kl", locale);
+    return url;
+  },
+  ownsHost: (hostname) => duckduckgoHost.test(hostname),
+  dereference(link) {
+    if (link.pathname !== "/l/") return undefined;
+    return parameterDestination(link, ["uddg"]);
+  },
+  blockedMarkers: [[/anomaly|blocked for abuse/iu, "waf"]],
 };
