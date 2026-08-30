@@ -102,6 +102,36 @@ if (!obscura) {
     expect(supervisor.status().ownedProcessId).not.toBe(firstPid);
     await scheduler.shutdown();
   }, 40_000);
+
+  test("RENDER starting the browser is not charged to the first navigation's budget", async () => {
+    // Obscura's startup happened inside the first render, so its cost came out of
+    // that navigation's budget. The first search of a process returned one result
+    // where later identical searches returned nine.
+    const fixture = startFixture();
+    const supervisor = createObscuraSupervisor({
+      executable: obscuraPath,
+      configuration,
+      allowPrivateNetworkForTest: true,
+    });
+    supervisors.push(supervisor);
+    const scheduler = createNavigationScheduler({ configuration: schedulerConfiguration });
+    const renderer = createReconnectingRenderer(supervisor, {
+      configuration,
+      scheduler,
+      policy: localFixturePolicy,
+    });
+
+    // The supervisor is asked for its endpoint before anything is scheduled.
+    const started = Date.now();
+    const document = await render(renderer, fixture.url);
+    const elapsed = Date.now() - started;
+
+    expect(document.text.length).toBeGreaterThan(0);
+    // Startup plus one local navigation must fit well inside a single budget,
+    // which it cannot if both are billed to the same timer.
+    expect(elapsed).toBeLessThan(configuration.navigationTimeoutMs * 2);
+    await scheduler.shutdown();
+  }, 40_000);
 }
 
 function kill(pid: number): void {
