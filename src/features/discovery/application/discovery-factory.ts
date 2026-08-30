@@ -1,5 +1,6 @@
 import type { EngineName } from "@/features/discovery/domain/engine-names";
 import {
+  bingEngine,
   duckduckgoEngine,
   googleEngine,
   type SearchEngine,
@@ -13,6 +14,7 @@ import { EngineDiscovery } from "./engine-discovery.ts";
 const implemented: Partial<Record<EngineName, SearchEngine>> = {
   google: googleEngine,
   duckduckgo: duckduckgoEngine,
+  bing: bingEngine,
 };
 
 export interface ChainedDiscoveryService extends ChainedDiscovery {
@@ -24,10 +26,13 @@ export function createDiscovery(options: {
   readonly engines: readonly EngineName[];
   readonly cooldownMs?: number;
   readonly diagnostic?: (message: string) => void;
+  /** Test-only override of which engines have a parser. */
+  readonly implemented?: Partial<Record<EngineName, SearchEngine>>;
 }): ChainedDiscoveryService {
+  const available = options.implemented ?? implemented;
   const engines: NamedEngine[] = [];
   for (const name of options.engines) {
-    const engine = implemented[name];
+    const engine = available[name];
     // Skipped rather than fatal, so a default configuration naming an engine
     // whose parser lands later cannot make discovery unavailable. The operator
     // is told, because a shorter chain otherwise looks like engines that never
