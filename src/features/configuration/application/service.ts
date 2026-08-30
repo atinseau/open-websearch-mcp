@@ -174,7 +174,7 @@ function toSnapshot(
     perHostCapacity: config.renderer.max_per_host,
     googleSerpCapacity: config.google.max_concurrent_serp,
     safeRssBudgetBytes,
-    warmP95BaselineMs: 456,
+    warmP95BaselineMs: controller.warm_p95_baseline_ms,
     memoryTelemetryAbsentMaximumCapacity: persistedCapacity,
     growthStep: controller.growth_step,
     healthyWindowsRequired: controller.healthy_windows_before_growth,

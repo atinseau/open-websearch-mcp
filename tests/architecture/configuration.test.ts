@@ -233,3 +233,37 @@ test("CONFIG: a workspace may reorder the engines and the snapshot follows", asy
 
   expect(service.snapshot().configuration?.search.engines).toEqual(["duckduckgo", "google"]);
 });
+
+test("CONFIG the warm P95 baseline is configurable, not a hard-coded local-page number", async () => {
+  // SPK-003 measured 456ms against local fixture pages. Real destinations take
+  // seconds, so that baseline declared every window unhealthy and the
+  // controller halved capacity continuously, which starved a search of the
+  // candidates it had already discovered.
+  const service = createConfigurationService({ workspace: workspace() });
+  await service.prepareForCall();
+  // The default reflects observed public pages rather than local fixtures.
+  expect(service.snapshot().scheduler.warmP95BaselineMs).toBe(6_000);
+
+  await Bun.write(
+    service.workspace().config,
+    (await Bun.file(service.workspace().config).text()).replace(
+      "warm_p95_baseline_ms = 6000",
+      "warm_p95_baseline_ms = 456",
+    ),
+  );
+  await service.prepareForCall();
+
+  // SPK-003's local-page figure stays reachable by configuring it.
+  expect(service.snapshot().scheduler.warmP95BaselineMs).toBe(456);
+});
+
+test("CONFIG the navigation budget leaves room for a real destination", async () => {
+  // Observed public pages take 10-15s to render. A 15s budget left no margin,
+  // so under any concurrency almost every candidate timed out and a search
+  // discarded pages it had already found.
+  const service = createConfigurationService({ workspace: workspace() });
+  await service.prepareForCall();
+
+  const renderer = service.snapshot().configuration?.renderer;
+  expect(renderer?.navigation_timeout_ms).toBeGreaterThanOrEqual(30_000);
+});
