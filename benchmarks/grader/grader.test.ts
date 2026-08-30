@@ -53,3 +53,44 @@ test("TEST-017 refuses promotion where totals are unmeasurable", () => {
     ).promoted,
   ).toBeFalse();
 });
+
+test("grades the named dated teacher corpus", async () => {
+  const repository = new URL("../../", import.meta.url).pathname;
+  const datedOutput = `${Bun.env.TMPDIR ?? "/private/tmp"}/grader-${crypto.randomUUID()}.json`;
+  try {
+    const outcome = await run(
+      ["bun", "benchmarks/grader/run.ts", "2026-08-27", datedOutput],
+      repository,
+    );
+
+    expect(outcome.exitCode, outcome.output).toBe(0);
+    expect(JSON.parse(outcome.output).corpus.accepted_claims).toBe(100);
+  } finally {
+    if (await Bun.file(datedOutput).exists()) await Bun.file(datedOutput).delete();
+  }
+});
+
+test("requires a teacher corpus date in YYYY-MM-DD format", async () => {
+  const repository = new URL("../../", import.meta.url).pathname;
+
+  const missing = await run(["bun", "benchmarks/grader/run.ts"], repository);
+  expect(missing.exitCode).not.toBe(0);
+  expect(missing.output).toContain("expected teacher corpus date as YYYY-MM-DD");
+
+  const malformed = await run(["bun", "benchmarks/grader/run.ts", "2026-08-2x"], repository);
+  expect(malformed.exitCode).not.toBe(0);
+  expect(malformed.output).toContain("expected teacher corpus date as YYYY-MM-DD");
+});
+
+async function run(
+  command: string[],
+  cwd: string,
+): Promise<{ readonly exitCode: number; readonly output: string }> {
+  const process = Bun.spawn(command, { cwd, stdout: "pipe", stderr: "pipe" });
+  const [stdout, stderr, exitCode] = await Promise.all([
+    new Response(process.stdout).text(),
+    new Response(process.stderr).text(),
+    process.exited,
+  ]);
+  return { exitCode, output: `${stdout}${stderr}` };
+}
