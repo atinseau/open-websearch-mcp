@@ -8,6 +8,7 @@ export const workspaceDirectories = [
   "investigations",
   "benchmarks",
   "profiles",
+  "profiles/search-public",
   "logs",
 ] as const;
 

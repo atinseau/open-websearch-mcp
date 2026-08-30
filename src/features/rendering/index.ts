@@ -93,10 +93,17 @@ export interface RendererConfiguration {
   readonly maxDownloadBytes: number;
 }
 
+export { obscuraServeArguments } from "./adapters/obscura-arguments";
+
 export interface ObscuraSupervisorOptions {
   readonly executable: string;
   readonly configuration: RendererConfiguration;
   readonly diagnostic?: (message: string) => void;
+  /**
+   * Persistent profile directory for the public search profile (SEARCH-003).
+   * Omitted keeps the store ephemeral.
+   */
+  readonly storageDirectory?: string;
   /** Test fixtures only; production rejects this switch unconditionally. */
   readonly allowPrivateNetworkForTest?: boolean;
 }
