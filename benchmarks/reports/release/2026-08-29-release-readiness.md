@@ -25,7 +25,7 @@ create a tag, or create a GitHub Release.
 | Condition | Verdict | Evidence |
 | --- | --- | --- |
 | 1. Atomic requirement traceability | **No** | `docs/orchestration/traceability.md` now lists all 160 IDs, but it records explicit uncovered/blocking requirements below. |
-| 2. All release gates pass | **No** | Deterministic local gates pass (`bun run check`: 234 pass, 1 informational live skip, 0 fail), and `ARCH-002`/`ARCH-007` are now enforced repository-wide. The teacher thresholds remain unmeasurable (ADR-0010), so this condition still does not hold. PROD-005's Codex-only verified matrix is satisfied under ADR-0012. |
+| 2. All release gates pass | **No** | Deterministic local gates pass (`bun run check` on `646b8ba`: 280 pass, 1 informational live skip, 0 fail), and `ARCH-002`/`ARCH-007` are enforced repository-wide. The teacher thresholds are now calculable under ADR-0013 but still unmet: the sample is too small to gate on, and every live search is refused by a Google captcha. PROD-005's Codex-only verified matrix is satisfied under ADR-0012. |
 | 3. Pinned WebView/Obscura probe | **Yes, version-dependent** | `tests/rendering/webview-obscura.test.ts` passed against Obscura 0.2.1. ADR-0009 requires rerunning it for any pin change. |
 | 4. Teacher benchmark thresholds | **No, for a new reason** | ADR-0010 is superseded by ADR-0013: the `2026-08-30` corpus carries captured passages for 8 of 18 accepted claims, so the benchmark is measurable. It still yields no quality score, because all 20 searches were refused by a Google captcha and are reported `blocked` rather than badly answered. The score is published and never gates a release. |
 | 5. No critical/high operational finding | **No** | Unresolved release-critical evidence gaps remain; this cannot be certified as clean. |
@@ -66,6 +66,13 @@ create a tag, or create a GitHub Release.
 5. Complete REL-004 only after explicit human release authorization: exact
    commit/version/package/dist-tag/identity, idempotent ledger, npm publish,
    tag, and GitHub Release. REL-003 deliberately does none of these.
+6. Google discovery is currently captcha-blocked from this network, so no live
+   quality measurement is obtainable here. This was confirmed rather than
+   assumed: opening the SERP URL directly returns Google's "unusual traffic"
+   interstitial naming the requesting IP address, and the parser classifies it
+   correctly as `captcha`. The renderer, extractor, and `web_open` path all
+   work on the same pages. This is an environment limit on the discovery
+   surface, not a product defect, and it is not claimed as resolved.
 
 ## Documentation audit
 
