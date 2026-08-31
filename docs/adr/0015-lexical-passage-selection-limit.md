@@ -94,6 +94,32 @@ target. The two passages the product returns overlap 43%, so they are close to
 redundant already, and removing that redundancy does not move a group ranked
 16th into the top two.
 
+### The ceiling is arithmetic, not a matter of tuning
+
+Fourteen of SQLite's 145 grouped passages score **strictly above** the passage
+holding the expected evidence, and 27 more tie with it. A tie-break decides only
+the order among equals, so the best rank that passage can reach under any
+tie-breaking rule is **15th**, and the worst is 42nd. Two passages are returned.
+
+That bound holds however the tie is broken, so no refinement of the tie-break
+can lift it. Only a rule that changes which passages score *above* it could, and
+the deciding terms there are `using`, `primary`, `support`, `and`, `tables` -
+the vocabulary a reference manual repeats everywhere.
+
+Three further rankings were measured against this bound and did not clear it:
+
+| Ranking | Rank of the passage holding the evidence |
+| --- | --- |
+| Current term count | 16th of 145 |
+| Term frequency (occurrences, not presence) | 17th |
+| Terms rare within the page only | 22nd |
+| Identifier-shaped terms weighted 3x | 24th |
+| Code-shaped tokens weighted | 12th |
+
+The best of them reaches 12th against a floor of 15th for tie-breaking alone,
+which is the measurement that closes this line of work: the gap is not one a
+scoring function of surface features can close.
+
 ## Decision
 
 Lexical passage selection stays as it is. The `extraction` component is
