@@ -78,6 +78,22 @@ the two returned match nine terms each, differing only by that filler.
 A weighting scheme reorders a ranking. It cannot break a 42-way tie whose
 members are indistinguishable to the feature being weighted.
 
+### The evidence is reachable; the ranking cannot reach it
+
+Two passages are enough, in principle. On SQLite's FTS5 page the patterns for
+both of the case's claims sit in group 9 (`loadable extension`,
+`sqlite3_fts_init`, `sqlite3_fts5_init`) and groups 34/37 (`content=`, the
+`content_rowid` pattern). Sixteen of the 145 grouped passages carry at least one
+expected pattern, so the target is not out of reach by construction.
+
+The ranking cannot deliver them. Group 9 ranks 16th and group 37 ranks 20th,
+where two are returned. A redundancy rule was measured on the same page - refuse
+a second passage sharing 40% or more of its vocabulary with the first - and it
+changes the second pick from group 138 to group 29 without reaching either
+target. The two passages the product returns overlap 43%, so they are close to
+redundant already, and removing that redundancy does not move a group ranked
+16th into the top two.
+
 ## Decision
 
 Lexical passage selection stays as it is. The `extraction` component is
