@@ -54,7 +54,7 @@ export function siteFollowUp(
   // query `evidence`, the ask derived `site:cambridge.org evidence` - a
   // dictionary that happened to rank twice - and the call took 170 seconds
   // where the same call takes about 20.
-  if (query.trim().split(/\s+/u).filter(Boolean).length < 3) return undefined;
+  if (wordCount(query) < 3) return undefined;
   const host = dominantHost(found);
   if (host === undefined) return undefined;
   const reached = found.filter((url) => siteOf(url) === host);
@@ -92,6 +92,31 @@ function newestVersion(reached: readonly URL[], alsoSeen: readonly string[]): st
 }
 
 const datedPath = /\/((?:19|20)\d{2}-\d{2}-\d{2})(?:\/|$)/u;
+
+/**
+ * How many words a question is made of.
+ *
+ * Splitting on whitespace counts spaces, not words, and Japanese, Chinese and
+ * Thai write without them. The corpus's Japanese question counted two that way
+ * and was discarded as a bare topic, so the scoped pass never ran on it -
+ * segmented as words it counts thirty-two, and it names its subject as plainly
+ * as any English question does.
+ *
+ * Segmentation is left to the runtime's own word boundaries, so a
+ * space-separated question counts exactly as it did before: `evidence` is
+ * still one word and still too bare to scope.
+ */
+function wordCount(query: string): number {
+  let words = 0;
+  for (const piece of wordBoundaries.segment(query)) if (piece.isWordLike === true) words += 1;
+  return words;
+}
+
+/**
+ * Boundaries are read without naming a locale, because the question's language
+ * is not known here and the runtime infers it from the text's own script.
+ */
+const wordBoundaries = new Intl.Segmenter(undefined, { granularity: "word" });
 
 /**
  * Whether the source's own pages already include the one the question asks for.
