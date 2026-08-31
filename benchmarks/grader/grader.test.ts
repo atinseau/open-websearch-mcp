@@ -221,3 +221,44 @@ test("TEST-012 collapsing whitespace does not make unrelated text match", () => 
 
   expect(graded.components.extraction).toBe(0);
 });
+
+/**
+ * A capture that ends on a link keeps the space the markup put around it, so
+ * the corpus holds "compiling loadable extensions ." where the page reads
+ * "compiling loadable extensions." - a space the browser never shows and the
+ * reader never sees. Measured on SQLite's FTS5 page, this single character was
+ * the whole difference between the expected passage and the returned one.
+ */
+test("TEST-012 a space the markup left before punctuation is not a difference", () => {
+  const spaced: TeacherFixture = {
+    case_id: "technical-bun-webview",
+    claims: [
+      {
+        id: "claim",
+        required_concepts: ["alpha"],
+        acceptable_patterns: ["alpha"],
+        sources: [{ url: "https://example.test/a", equivalent_urls: [] }],
+        evidence_passages: [
+          {
+            url: "https://example.test/a",
+            text: "as described in compiling extensions . there are two",
+          },
+        ],
+        weight: 1,
+      },
+    ],
+  };
+
+  const graded = gradeCase(spaced, {
+    case_id: "technical-bun-webview",
+    results: [
+      {
+        url: "https://example.test/a",
+        text: "alpha: as described in compiling extensions. there are two entry points",
+        token_count: 12,
+      },
+    ],
+  });
+
+  expect(graded.components.extraction).toBe(10);
+});

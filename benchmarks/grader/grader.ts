@@ -85,10 +85,20 @@ function normalized(value: string): string {
  * rendered page has "extension or\nstatically" - same words, same order, same
  * page - and the product scored zero for extraction on that difference alone.
  *
- * Only runs of whitespace are affected. Different words remain different.
+ * A capture that ends on a link also keeps the space the markup put around it,
+ * so the corpus holds "compiling loadable extensions ." where the page reads
+ * "compiling loadable extensions." - a space the browser never renders and the
+ * reader never sees. On the same page that one character was the entire
+ * difference between the expected passage and the returned one.
+ *
+ * Only whitespace is affected. Different words remain different.
  */
 function flattened(value: string): string {
-  return normalized(value).replaceAll(/\s+/gu, " ").trim();
+  return normalized(value)
+    .replaceAll(/\s+/gu, " ")
+    .replaceAll(/ ([.,;:!?)\]])/gu, "$1")
+    .replaceAll(/([([]) /gu, "$1")
+    .trim();
 }
 /**
  * A concept is looked for the same way the capture step looked for it.
