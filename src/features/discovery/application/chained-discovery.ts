@@ -1,5 +1,4 @@
 import type {
-  Candidate,
   GoogleDiscoveryInput,
   GoogleDiscoveryResult,
   GoogleDiscoveryService,
@@ -93,24 +92,10 @@ export class ChainedDiscovery implements GoogleDiscoveryService {
       },
     );
     if (scoped === undefined) return first;
-    // Every engine is asked, not just the first that answers. A single engine
-    // returns different pages for one query from one second to the next:
-    // measured over four runs of an identical derived query, DuckDuckGo
-    // returned the page asked about twice and a draft of it the other twice,
-    // halving that case's score. The first pass already widens across engines;
-    // an ask spent because the search never reached the page has more reason to.
+    const result = await this.#walk({ ...input, query: scoped });
+    if (result.status !== "success") return first;
     const seen = new Set(first.candidates.map((candidate) => candidate.url.toString()));
-    const added: Candidate[] = [];
-    for (const engine of this.#engines) {
-      const result = await engine.discover({ ...input, query: scoped });
-      if (result.status !== "success") continue;
-      for (const found of result.candidates) {
-        const key = found.url.toString();
-        if (seen.has(key)) continue;
-        seen.add(key);
-        added.push(found);
-      }
-    }
+    const added = result.candidates.filter((candidate) => !seen.has(candidate.url.toString()));
     if (added.length === 0) return first;
     return { ...first, candidates: interleaved(added, first.candidates), followUpQuery: scoped };
   }
