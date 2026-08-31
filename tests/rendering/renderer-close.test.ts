@@ -95,6 +95,38 @@ test("RENDER a page that embeds a frame keeps its own identity", async () => {
   expect(document.url.toString()).toBe("https://mozilla.github.io/pdf.js/examples/");
 });
 
+/**
+ * Extraction reads structure from Markdown headings, and the renderer was
+ * handing it the plain text twice: `markdown` was a copy of `text`, which
+ * carries no `#`. Every page therefore parsed as one long run of headingless
+ * prose, so passage selection could not tell a specification's section on the
+ * subject from its bibliography, and per-heading diversity had nothing to work
+ * with. SPK-004 named native Markdown the baseline; this is that baseline
+ * actually reaching the extractor.
+ */
+test("RENDER a rendered page carries its heading structure, not just its prose", async () => {
+  const view = fakeView({ closeThrows: false, headings: true });
+  const renderer = createWebViewRenderer({
+    endpoint: { cdpUrl: new URL("ws://127.0.0.1:9222") },
+    configuration: { navigationTimeoutMs: 2_000, settleTimeoutMs: 1, maxDownloadBytes: 1024 },
+    scheduler: immediateScheduler,
+    policy: { assess: () => ({ allowed: true }) },
+    openView: () => view.handle,
+  });
+
+  const document = await renderer.render({
+    url: new URL("https://example.test/spec"),
+    signal: new AbortController().signal,
+    investigationId: "structure",
+    kind: "destination",
+    explicitOpen: true,
+  });
+
+  expect(document.markdown).toContain("## Path state");
+  // The plain text stays plain: it is what a reader would see on the page.
+  expect(document.text).not.toContain("##");
+});
+
 const immediateScheduler: NavigationScheduler = {
   schedule: (request, operation) => operation(request.signal),
   shutdown: async () => {},
@@ -105,6 +137,7 @@ function fakeView(behaviour: {
   navigateThrows?: string;
   url?: string;
   mainDocumentUrl?: string;
+  headings?: boolean;
 }) {
   let closeAttempts = 0;
   const handle: RenderView = Object.assign(new EventTarget(), {
@@ -118,6 +151,9 @@ function fakeView(behaviour: {
     // the frame's, which is exactly the confusion under test.
     evaluate: async () => ({
       text: "Rendered body text.",
+      ...(behaviour.headings
+        ? { markdown: "## Path state\n\nA single-dot path segment is removed here." }
+        : {}),
       location: behaviour.mainDocumentUrl,
       links: [],
     }),
