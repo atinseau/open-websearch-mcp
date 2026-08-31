@@ -18,7 +18,8 @@ import { decideRobots, type RobotsPolicy } from "@/features/security";
 import { canonicalizeUrl, type Storage } from "@/features/storage";
 
 import { createInvestigationService, type InvestigationService } from "./investigations.ts";
-import { startPreparation, type Prepared } from "./search-preparation.ts";
+import type { Prepared } from "./search-preparation.ts";
+import { fillFromBestCandidates } from "./fill-results.ts";
 import type {
   CallContext,
   EvidenceResult,
@@ -205,32 +206,12 @@ class WebResearchApplication implements InvestigationApplication {
     investigationId: string,
     context: CallContext,
   ): Promise<readonly EvidenceResult[]> {
-    const pending = new Map(
-      candidates.map((ranked, id) =>
-        startPreparation(id, ranked.candidate, ranked.score, context, (candidate, preparation) =>
-          this.prepareCandidate(candidate, preparation, input.query),
-        ),
-      ),
-    );
-    const results: EvidenceResult[] = [];
-    while (
-      pending.size &&
-      results.length < (input.maxResults ?? 5) &&
-      !context.abortController.signal.aborted
-    ) {
-      const settled = await Promise.race(Array.from(pending.values(), (task) => task.promise));
-      pending.delete(settled.id);
-      if (!settled.prepared) continue;
-      const emitted = await this.consumeSearchPage(
-        settled.prepared,
-        settled.score,
-        investigationId,
-        context,
-      );
-      if (emitted) results.push(emitted);
-    }
-    for (const task of pending.values()) task.controller.abort(new Error("search_quota_met"));
-    return results.sort((a, b) => b.score - a.score);
+    const results = await fillFromBestCandidates(candidates, input.maxResults ?? 5, context, {
+      prepare: (candidate, preparation) =>
+        this.prepareCandidate(candidate, preparation, input.query),
+      emit: (prepared, score) => this.consumeSearchPage(prepared, score, investigationId, context),
+    });
+    return [...results].sort((a, b) => b.score - a.score);
   }
 
   private async render(

@@ -86,6 +86,47 @@ test("TOOL-002 returns a fast page before a slow candidate settles", async () =>
   storage.close();
 });
 
+/**
+ * Selecting the first pages to settle is a race, and the race is biased
+ * against exactly the pages a question wants. A specification or a reference
+ * manual is large and slow; the blog posts and aggregators that mention it are
+ * small and fast. Measured live, the pages the corpus expects are the heaviest
+ * of their result set, so filling the quota by arrival handed their places to
+ * lighter material that scored worse.
+ *
+ * Progressive delivery still matters, so the rule is not "wait for everything":
+ * a candidate is emitted early only when no better-scoring candidate is still
+ * being prepared.
+ */
+test("TOOL-002 a better candidate is not displaced by a faster one", async () => {
+  const storage = await openStorage({ workspace: workspace() });
+  // The fixture ranks candidates by discovery order, so the first URL is the
+  // best one. It is also the slow one, as a specification page would be.
+  const discovery = fixtureDiscovery([
+    "https://best.example/needle",
+    "https://filler-one.example/needle",
+    "https://filler-two.example/needle",
+  ]);
+  const delayed: Renderer = {
+    render: async (request) => {
+      if (request.url.hostname === "best.example")
+        await new Promise((resolve) => setTimeout(resolve, 300));
+      return document(request.url);
+    },
+  };
+  const application = createWebResearchApplication({ storage, renderer: delayed, discovery });
+
+  const result = structuredToolResultSchema.parse(
+    await application
+      .webSearch({ query: "needle", maxResults: 1 }, context())
+      .then((value) => value.structuredContent),
+  );
+
+  expect(result.results).toHaveLength(1);
+  expect(result.results[0]?.final_url).toContain("best.example");
+  storage.close();
+});
+
 test("PROD-007 concurrent progressive searches emit a page once", async () => {
   const storage = await openStorage({ workspace: workspace() });
   const application = createWebResearchApplication({
