@@ -96,15 +96,19 @@ test("a parse failure ends the chain, so our own defect stays visible", async ()
   expect(result.status).toBe("parse_failure");
 });
 
-test("the chain stops at the first engine that answers", async () => {
+test("the engine that answers first still owns the result", async () => {
+  // Later engines are consulted to widen the candidate pool, but they never
+  // displace the answer: provenance and rank order belong to the first engine
+  // that produced one.
   const { discovery, consulted } = chain(
     engine("google", { status: "success", candidates: [candidate] }),
     engine("duckduckgo", { status: "success", candidates: [candidate] }),
   );
 
-  await discovery.discover(searchInput());
+  const result = await discovery.discover(searchInput());
 
-  expect(consulted).toEqual(["google"]);
+  expect(consulted).toEqual(["google", "duckduckgo"]);
+  expect(result.engine).toBe("google");
 });
 
 test("exhausting every engine reports blocked and names the last refusal", async () => {
