@@ -113,8 +113,27 @@ function evidenceMatches(claim: Claim, results: readonly ResultPage[]): boolean 
   const corpus = { text, urls: new Set(results.map((result) => result.url)) };
   return (
     claim.required_concepts.every((concept) => conceptGrounded(concept, corpus)) &&
-    claim.acceptable_patterns.some((pattern) => new RegExp(pattern, "iu").test(text))
+    claim.acceptable_patterns.some((pattern) => new RegExp(unquoted(pattern), "iu").test(text))
   );
+}
+
+/**
+ * Reads a pattern's backticks as the markup they are.
+ *
+ * A pattern quoting an identifier - `cannot be combined with \`path\` or
+ * \`argv\`` - is quoting the page's Markdown source. A browser renders that as
+ * code styling and drops the characters, so a product returning the very
+ * sentence fails on punctuation no reader ever sees.
+ *
+ * Measured on `bun.com/docs/runtime/webview`, the product returns "cannot be
+ * combined with path or argv" while the pattern requires the backticks; two of
+ * that case's four claims fail this way on a page it renders and ranks first.
+ *
+ * Only the backtick is affected, and only where a pattern spells one
+ * literally. Different words remain different.
+ */
+function unquoted(pattern: string): string {
+  return pattern.replaceAll("\\`", "`").replaceAll("`", "`?");
 }
 /**
  * Hosts that serve the same documents under two names.
