@@ -130,3 +130,38 @@ test("a page with no results and no empty marker is a parse failure, not an empt
 
   expect(result).toEqual({ kind: "parse_failure", diagnostic: "unrecognized_serp_markup" });
 });
+
+/**
+ * A search engine refuses in the language it was asked in. Measured on the
+ * corpus's Japanese question, Google returns
+ * "お使いのコンピュータ ネットワークから通常と異なるトラフィックが検出されました"
+ * - its unusual-traffic CAPTCHA, in Japanese - and the English-only markers
+ * missed it. A refusal read as `parse_failure` stops the engine chain by
+ * design (ADR-0014), so the search never reached DuckDuckGo, which answers that
+ * same question with 42 results. The case scored `network_error` on every run.
+ *
+ * A refusal must be recognised whatever language it is written in.
+ */
+test("SEARCH-012 a CAPTCHA in the page's own language is a refusal, not a parse failure", () => {
+  const japanese = parseSerp(
+    googleEngine,
+    document(
+      "このページについて お使いのコンピュータ ネットワークから通常と異なるトラフィックが検出されました。",
+      [],
+    ),
+  );
+
+  expect(japanese).toEqual({ kind: "blocked", reason: "captcha" });
+});
+
+test("SEARCH-012 a page that merely mentions traffic is not a refusal", () => {
+  // The marker must be the refusal itself, not any page discussing traffic.
+  const article = parseSerp(
+    googleEngine,
+    document("ネットワーク トラフィックの測定方法について解説します。", [
+      { url: "https://example.test/a", text: "記事" },
+    ]),
+  );
+
+  expect(article.kind).toBe("parsed");
+});
