@@ -11,6 +11,7 @@ import { identifyMime, isRawGitHub } from "@/features/extraction/domain/mime";
 import { extractPdfText } from "@/features/extraction/domain/pdf";
 import { codeWarnings } from "@/features/extraction/domain/safe-content";
 import { documentText } from "@/features/extraction/domain/document-text";
+import { isNavigation } from "@/features/extraction/domain/navigation";
 
 const VERSION = "1";
 const DEFAULT_PASSAGES = 2;
@@ -189,37 +190,6 @@ function score(text: string, focus: ReadonlySet<string>): number {
   return isNavigation(text) ? matched * NAVIGATION_WEIGHT : matched;
 }
 
-/**
- * Whether a passage is a page's navigation rather than its content.
- *
- * A rendered documentation page opens with its whole menu collapsed into one
- * run, because each label is its own element with no text between them:
- * `Documentation IndexFetch the complete...Skip to main contentModel Context
- * Protocol home pageVersion 2026-07-28`. That run names every section a site
- * has, so it matches more of any question than the section that answers one.
- *
- * Measured on `modelcontextprotocol.io`, it was the first of 58 blocks, 2,462
- * characters, and scored 14 where the block holding "MUST declare the tools
- * capability" scored 5 and ranked tenth - the case scored zero for evidence
- * coverage with that sentence on the page.
- *
- * The glue is the signal: 2.84 lowercase-uppercase joins per 100 characters
- * there against 0.76 in the prose, and only 4 of that page's 58 blocks exceed
- * two. Prose that merely names products or people stays well under it.
- */
-function isNavigation(text: string): boolean {
-  if (text.length < NAVIGATION_MINIMUM) return false;
-  const joins = (text.match(/\p{Ll}\p{Lu}/gu) ?? []).length;
-  return joins / (text.length / 100) >= NAVIGATION_JOINS_PER_100;
-}
-
-/**
- * Short runs are not menus, whatever their capitalisation. An oversized block
- * is cut into passage-sized pieces before anything is scored, so the threshold
- * has to admit a piece of a menu, not only a whole one.
- */
-const NAVIGATION_MINIMUM = 200;
-const NAVIGATION_JOINS_PER_100 = 2;
 /**
  * Navigation still counts, faintly: a page that is only a menu must still rank
  * something rather than returning nothing.
