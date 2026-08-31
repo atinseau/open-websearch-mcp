@@ -93,6 +93,39 @@ test("the scoped ask carries the sharpened terms, not the verbose question", asy
   expect(site.queries).toContain("site:docs.test PDF.js outside extracting runtime");
 });
 
+/**
+ * A scoped ask is spent because the earlier passes did not reach the page the
+ * question is about, so what it finds is the answer to that failure - not an
+ * afterthought. Appending its candidates behind everything already found left
+ * them last in a pool the renderer only reaches part-way down: measured on the
+ * PDF.js question, the engine returns `pdf.js/examples/` for the derived query
+ * and it never appeared in the results.
+ */
+test("what the scoped ask found leads the pool it was spent to fix", async () => {
+  const scoped = engine("google", {
+    [verbose]: {
+      status: "success",
+      candidates: [candidate("https://docs.test/"), candidate("https://docs.test/start")],
+      suggestedQueries: [],
+    },
+    "PDF.js outside extracting runtime": {
+      status: "success",
+      candidates: [candidate("https://docs.test/"), candidate("https://docs.test/start")],
+      suggestedQueries: [],
+    },
+    "site:docs.test PDF.js outside extracting runtime": {
+      status: "success",
+      candidates: [candidate("https://docs.test/examples/")],
+      suggestedQueries: [],
+    },
+  });
+  const discovery = new ChainedDiscovery({ engines: [scoped.engine] });
+
+  const result = await discovery.discover(searchInput(verbose));
+
+  expect(result.candidates[0]?.url.toString()).toBe("https://docs.test/examples/");
+});
+
 test("a search already inside the source spends no scoped ask", async () => {
   // Neither the candidate count nor depth is the signal: what decides is that
   // the source's own pages already include the one the question asks about.

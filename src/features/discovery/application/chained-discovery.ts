@@ -92,7 +92,12 @@ export class ChainedDiscovery implements GoogleDiscoveryService {
     const seen = new Set(first.candidates.map((candidate) => candidate.url.toString()));
     const added = result.candidates.filter((candidate) => !seen.has(candidate.url.toString()));
     if (added.length === 0) return first;
-    return { ...first, candidates: [...first.candidates, ...added], followUpQuery: scoped };
+    // What this ask found leads the pool. The ask is spent precisely because
+    // the earlier passes did not reach the page the question is about, so its
+    // answer is not an afterthought to append behind them: appending left it
+    // last in a pool the renderer only reaches part-way down, and the page the
+    // engine returned for the derived query never appeared in the results.
+    return { ...first, candidates: [...added, ...first.candidates], followUpQuery: scoped };
   }
 
   /**
