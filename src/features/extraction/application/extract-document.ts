@@ -158,8 +158,9 @@ function select(
   url: URL,
 ): readonly EvidencePassage[] {
   const tokens = new Set((focus ?? "").toLowerCase().match(/[\p{L}\p{N}_-]+/gu) ?? []);
+  const weights = tokenWeights(passages, tokens);
   const ranked = passages
-    .map((passage) => ({ passage, score: score(passage.text, tokens) }))
+    .map((passage) => ({ passage, score: score(passage.text, tokens, weights) }))
     .sort((a, b) => b.score - a.score);
   const selected: EvidencePassage[] = [];
   for (const item of ranked) {
@@ -182,10 +183,40 @@ function select(
   return selected;
 }
 
-function score(text: string, focus: ReadonlySet<string>): number {
+/**
+ * How much each focus term says about where an answer is.
+ *
+ * Counting matched terms equally let a table of contents win: it names every
+ * keyword in a question and explains none of them. A term concentrated in a
+ * few passages locates the answer; one spread across the whole page does not,
+ * so weight falls as a term becomes more common.
+ */
+function tokenWeights(
+  passages: readonly { readonly text: string }[],
+  focus: ReadonlySet<string>,
+): ReadonlyMap<string, number> {
+  const weights = new Map<string, number>();
+  if (passages.length === 0) return weights;
+  for (const token of focus) {
+    const occurrences = passages.filter((passage) =>
+      passage.text.toLowerCase().includes(token),
+    ).length;
+    weights.set(token, occurrences === 0 ? 0 : Math.log(1 + passages.length / occurrences));
+  }
+  return weights;
+}
+
+function score(
+  text: string,
+  focus: ReadonlySet<string>,
+  weights: ReadonlyMap<string, number>,
+): number {
   if (focus.size === 0) return Math.min(text.length, PASSAGE_SIZE) / PASSAGE_SIZE;
   const lowered = text.toLowerCase();
-  return [...focus].reduce((value, token) => value + (lowered.includes(token) ? 1 : 0), 0);
+  return [...focus].reduce(
+    (value, token) => value + (lowered.includes(token) ? (weights.get(token) ?? 1) : 0),
+    0,
+  );
 }
 
 function codeBlocksFrom(

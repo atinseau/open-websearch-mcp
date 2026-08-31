@@ -67,7 +67,12 @@ test("MCP-001 real package bin initializes, lists tools, and accepts web_search"
     "web_open",
     "web_search",
   ]);
-  const search = await client.callTool({ name: "web_search", arguments: { query: "evidence" } });
+  // A real search now consults both configured engines, so the client's own
+  // request timeout has to outlast one, not just one navigation.
+  const search = await client.callTool(
+    { name: "web_search", arguments: { query: "evidence" } },
+    { timeout: 180_000 },
+  );
   expect(search.structuredContent).toMatchObject({ status: expect.any(String) });
   await client.close();
   // This performs a real search, so its budget must exceed one navigation

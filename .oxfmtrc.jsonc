@@ -7,5 +7,11 @@
   "tabWidth": 2,
   "trailingComma": "all",
   "useTabs": false,
-  "ignorePatterns": [".worktree/**", "tests/architecture/fixtures/**"],
+  // Captured pages are evidence, reformatting them would change what the test
+  // reads.
+  "ignorePatterns": [
+    ".worktree/**",
+    "tests/architecture/fixtures/**",
+    "tests/extraction/fixtures/**",
+  ],
 }
