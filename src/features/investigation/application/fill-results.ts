@@ -9,6 +9,17 @@ export interface RankedCandidate {
 }
 
 /**
+ * How many candidates are prepared at once.
+ *
+ * Starting all of them floods a renderer that navigates only a few pages
+ * concurrently: the best candidate then queues behind material that will never
+ * be emitted, and the search runs out of time with a partial answer. A window
+ * wide enough to cover the largest quota plus losses, and narrow enough that
+ * the best candidates are the ones actually in flight.
+ */
+const preparationWindow = 8;
+
+/**
  * Fills a result quota from ranked candidates, best candidate first.
  *
  * Every candidate is prepared concurrently, but a page is only taken once no
@@ -33,18 +44,34 @@ export async function fillFromBestCandidates<Result>(
   },
 ): Promise<readonly Result[]> {
   const ordered = [...candidates].sort((a, b) => b.score - a.score);
-  const pending = new Map(
-    ordered.map((ranked, id) =>
-      startPreparation(id, ranked.candidate, ranked.score, context, steps.prepare),
-    ),
-  );
   const results: Result[] = [];
+  const pending = new Map<number, ReturnType<typeof startPreparation<Prepared>>[1]>();
+  let started = 0;
+  const fillWindow = (): void => {
+    while (pending.size < preparationWindow && started < ordered.length) {
+      const ranked = ordered[started];
+      if (!ranked) break;
+      const [id, task] = startPreparation(
+        started,
+        ranked.candidate,
+        ranked.score,
+        context,
+        steps.prepare,
+      );
+      pending.set(id, task);
+      started += 1;
+    }
+  };
+  fillWindow();
   // `pending` is ordered best-first, so awaiting its head consumes candidates
-  // in score order while every one of them is already being prepared.
+  // in score order while the whole window is already being prepared.
   for (const [id, task] of pending) {
     if (results.length >= wanted || context.abortController.signal.aborted) break;
     const settled = await task.promise;
     pending.delete(id);
+    // Map iteration reaches entries added during the walk, so refilling here
+    // keeps the window full without restarting the loop.
+    fillWindow();
     if (!settled.prepared) continue;
     const emitted = await steps.emit(settled.prepared, settled.score);
     if (emitted) results.push(emitted);

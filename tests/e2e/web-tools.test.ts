@@ -127,6 +127,44 @@ test("TOOL-002 a better candidate is not displaced by a faster one", async () =>
   storage.close();
 });
 
+/**
+ * Preparing every candidate at once floods a renderer that only navigates a
+ * few pages concurrently, so the best candidate waits behind material that
+ * will never be emitted and the search runs out of time with a partial answer.
+ * Only a window of the best candidates is in flight at once, and it refills as
+ * they settle.
+ */
+test("TOOL-002 does not start every candidate at once", async () => {
+  const storage = await openStorage({ workspace: workspace() });
+  const urls = Array.from({ length: 20 }, (_, index) => `https://c${index}.example/needle`);
+  let inFlight = 0;
+  let peak = 0;
+  const counted: Renderer = {
+    render: async (request) => {
+      inFlight += 1;
+      peak = Math.max(peak, inFlight);
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      inFlight -= 1;
+      return document(request.url);
+    },
+  };
+  const application = createWebResearchApplication({
+    storage,
+    renderer: counted,
+    discovery: fixtureDiscovery(urls),
+  });
+
+  const result = structuredToolResultSchema.parse(
+    await application
+      .webSearch({ query: "needle", maxResults: 3 }, context())
+      .then((value) => value.structuredContent),
+  );
+
+  expect(result.results).toHaveLength(3);
+  expect(peak).toBeLessThanOrEqual(8);
+  storage.close();
+});
+
 test("PROD-007 concurrent progressive searches emit a page once", async () => {
   const storage = await openStorage({ workspace: workspace() });
   const application = createWebResearchApplication({
