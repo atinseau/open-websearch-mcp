@@ -5,6 +5,7 @@ import type {
   GoogleProfile,
 } from "@/features/discovery";
 import { keywordFollowUp } from "@/features/discovery/domain/follow-up-query";
+import { siteFollowUp } from "@/features/discovery/domain/site-query";
 
 /** One engine's connector, named so a result can report where it came from. */
 export interface NamedEngine {
@@ -25,6 +26,7 @@ export class ChainedDiscovery implements GoogleDiscoveryService {
   readonly #engines: readonly NamedEngine[];
   readonly #thinResultCount: number;
   readonly #widenedCandidateLimit: number;
+  readonly #scopedAskBelow: number;
 
   constructor(options: {
     readonly engines: readonly NamedEngine[];
@@ -32,11 +34,14 @@ export class ChainedDiscovery implements GoogleDiscoveryService {
     readonly thinResultCount?: number;
     /** Ceiling on the pool after later engines widen it. */
     readonly widenedCandidateLimit?: number;
+    /** Below this many candidates the search earns one domain-scoped ask. */
+    readonly scopedAskBelow?: number;
   }) {
     if (options.engines.length === 0) throw new Error("discovery requires at least one engine");
     this.#engines = options.engines;
     this.#thinResultCount = options.thinResultCount ?? 6;
     this.#widenedCandidateLimit = options.widenedCandidateLimit ?? 14;
+    this.#scopedAskBelow = options.scopedAskBelow ?? 6;
   }
 
   profile(): GoogleProfile {
@@ -47,7 +52,41 @@ export class ChainedDiscovery implements GoogleDiscoveryService {
   async discover(input: GoogleDiscoveryInput): Promise<GoogleDiscoveryResult> {
     const first = await this.#walk(input);
     const widened = await this.#widened(first, input);
-    return this.#withFollowUp(widened, input);
+    return this.#withScopedAsk(await this.#withFollowUp(widened, input), input);
+  }
+
+  /**
+   * Asks the same question once more, scoped to the domain the results agree on.
+   *
+   * An engine answers a question about a project with that project's front page,
+   * and the page the question is actually about sits one level in: measured
+   * live, the PDF.js question returned `mozilla.github.io/pdf.js/` where the
+   * expected page is `pdf.js/examples/`, and the same terms scoped to that
+   * domain returned the expected page first.
+   *
+   * Spent only when the earlier passes left the result short, so a search that
+   * already found enough pages pays nothing. SEARCH-001 is preserved: the
+   * authored query was issued first and unchanged, a query the agent already
+   * scoped is left alone, and the derived query is reported under SEARCH-008
+   * rather than applied silently.
+   */
+  async #withScopedAsk(
+    first: GoogleDiscoveryResult,
+    input: GoogleDiscoveryInput,
+  ): Promise<GoogleDiscoveryResult> {
+    if (first.status !== "success" || first.candidates.length >= this.#scopedAskBelow) return first;
+    const asked = first.followUpQuery ?? input.query;
+    const scoped = siteFollowUp(
+      asked,
+      first.candidates.map((candidate) => candidate.url),
+    );
+    if (scoped === undefined) return first;
+    const result = await this.#walk({ ...input, query: scoped });
+    if (result.status !== "success") return first;
+    const seen = new Set(first.candidates.map((candidate) => candidate.url.toString()));
+    const added = result.candidates.filter((candidate) => !seen.has(candidate.url.toString()));
+    if (added.length === 0) return first;
+    return { ...first, candidates: [...first.candidates, ...added], followUpQuery: scoped };
   }
 
   /**

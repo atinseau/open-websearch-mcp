@@ -36,6 +36,56 @@ function searchInput(query: string) {
 const verbose =
   "What do current official PDF.js sources document about using the generic build outside a browser, extracting page text, and the runtime assumptions?";
 
+/**
+ * An engine answers a question about a project with that project's front page,
+ * and the page the question is about sits one level in. When the first passes
+ * have already agreed on a domain, asking the same terms scoped to it reaches
+ * that page.
+ */
+test("a result that never reached the subject's own pages earns one scoped ask", async () => {
+  const scoped = engine("google", {
+    [verbose]: {
+      status: "success",
+      candidates: [candidate("https://docs.test/"), candidate("https://docs.test/start")],
+      suggestedQueries: [],
+    },
+    "PDF.js outside extracting runtime": {
+      status: "success",
+      candidates: [candidate("https://docs.test/"), candidate("https://docs.test/start")],
+      suggestedQueries: [],
+    },
+    "site:docs.test PDF.js outside extracting runtime": {
+      status: "success",
+      candidates: [candidate("https://docs.test/examples/")],
+      suggestedQueries: [],
+    },
+  });
+  const discovery = new ChainedDiscovery({ engines: [scoped.engine] });
+
+  const result = await discovery.discover(searchInput(verbose));
+
+  expect(result.candidates.map((item) => item.url.toString())).toContain(
+    "https://docs.test/examples/",
+  );
+  // SEARCH-008: the derived query is reported, never applied silently.
+  expect(result.followUpQuery).toContain("site:docs.test");
+});
+
+test("a search that already found enough pages spends no scoped ask", async () => {
+  const rich = engine("google", {
+    [verbose]: {
+      status: "success",
+      candidates: Array.from({ length: 8 }, (_, index) => candidate(`https://docs.test/${index}`)),
+      suggestedQueries: [],
+    },
+  });
+  const discovery = new ChainedDiscovery({ engines: [rich.engine] });
+
+  await discovery.discover(searchInput(verbose));
+
+  expect(rich.queries.some((query) => query.startsWith("site:"))).toBeFalse();
+});
+
 test("the agent's query is always issued first, unchanged", async () => {
   // SEARCH-001: no silent rewriting. Whatever else happens, the authored text
   // reaches the engine exactly as written.
@@ -72,7 +122,7 @@ test("a thin result triggers one keyword follow-up, and its candidates are merge
 
   const result = await discovery.discover(searchInput(verbose));
 
-  expect(thin.queries).toHaveLength(2);
+  expect(thin.queries[1]).toBe("PDF.js outside extracting runtime");
   expect(result.candidates.map((item) => item.url.toString())).toEqual([
     "https://a.test/front",
     "https://a.test/examples",
@@ -105,7 +155,7 @@ test("a long question gets its follow-up however many candidates came back", asy
 
   const result = await discovery.discover(searchInput(verbose));
 
-  expect(rich.queries).toHaveLength(2);
+  expect(rich.queries[1]).toBe("PDF.js outside extracting runtime");
   expect(result.candidates.map((item) => item.url.toString())).toContain("https://a.test/examples");
 });
 
