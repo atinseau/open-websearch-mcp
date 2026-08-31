@@ -71,6 +71,28 @@ test("a result that never reached the subject's own pages earns one scoped ask",
   expect(result.followUpQuery).toContain("site:docs.test");
 });
 
+/**
+ * The scope answers "which source", not "what to ask it". Pairing it with the
+ * verbose question reproduces the very phrasing that made the engine answer
+ * with a front page, so the scoped ask asks the sharp terms - measured live,
+ * scoping the whole PDF.js question still missed `examples/` where the
+ * keywords found it first.
+ */
+test("the scoped ask carries the sharpened terms, not the verbose question", async () => {
+  const site = engine("google", {
+    [verbose]: {
+      status: "success",
+      candidates: [candidate("https://docs.test/"), candidate("https://docs.test/start")],
+      suggestedQueries: [],
+    },
+  });
+  const discovery = new ChainedDiscovery({ engines: [site.engine] });
+
+  await discovery.discover(searchInput(verbose));
+
+  expect(site.queries).toContain("site:docs.test PDF.js outside extracting runtime");
+});
+
 test("a search already inside the source spends no scoped ask", async () => {
   // Neither the candidate count nor depth is the signal: what decides is that
   // the source's own pages already include the one the question asks about.

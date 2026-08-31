@@ -75,7 +75,10 @@ export class ChainedDiscovery implements GoogleDiscoveryService {
     // absent. Whether the source was reached in depth is what distinguishes
     // them, and `siteFollowUp` answers that.
     if (first.status !== "success") return first;
-    const asked = first.followUpQuery ?? input.query;
+    // The scope answers which source to ask; the terms answer what to ask it.
+    // Pairing the scope with the verbose question reproduces the phrasing that
+    // made the engine answer with a front page in the first place.
+    const asked = first.followUpQuery ?? keywordFollowUp(input.query) ?? input.query;
     const scoped = siteFollowUp(
       asked,
       first.candidates.map((candidate) => candidate.url),
