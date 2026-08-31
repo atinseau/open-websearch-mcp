@@ -140,3 +140,49 @@ test("RANK-003 a question not about documentation earns no documentation bonus",
   const gap = (r: readonly { readonly score: number }[]) => r[0]!.score - r[1]!.score;
   expect(gap(scoped)).toBeGreaterThan(gap(selected));
 });
+
+/**
+ * A versioned documentation site keeps every release live, and an engine
+ * returns pages from several of them at once - not always the same page under
+ * two versions. Measured on the Model Context Protocol question, one run in
+ * five returns `/specification/2025-06-18` and
+ * `/specification/2026-07-28/server/tools`: different pages, different releases,
+ * and the older one wins on engine position. That run scored 22.5 where its
+ * four neighbours scored 82.5.
+ *
+ * Requiring an identical path around the date was too strict. A question asking
+ * for what is current is asking about the newest release of the site, whichever
+ * of its pages is on offer.
+ */
+test("RANK-005 a stale release loses to a newer one even on a different page", () => {
+  const selected = selectPreRenderCandidates(
+    [
+      candidate("specification/2025-06-18", { googlePosition: 1 }),
+      candidate("specification/2026-07-28/server/tools", { googlePosition: 9 }),
+    ],
+    "what does the current specification require during initialize",
+    "general",
+    1,
+  );
+
+  expect(selected[0]?.candidate.url.pathname).toContain("2026-07-28");
+});
+
+test("RANK-005 a release on another site is not compared against it", () => {
+  // Two sites version independently; the newer date on one says nothing about
+  // the other's pages.
+  const selected = selectPreRenderCandidates(
+    [
+      { ...candidate("specification/2025-06-18", { googlePosition: 1 }) },
+      {
+        ...candidate("archive/2026-07-28/notes", { googlePosition: 9 }),
+        url: new URL("https://other.test/archive/2026-07-28/notes"),
+      },
+    ],
+    "what does the current specification require during initialize",
+    "general",
+    1,
+  );
+
+  expect(selected[0]?.candidate.url.hostname).toBe("example.test");
+});

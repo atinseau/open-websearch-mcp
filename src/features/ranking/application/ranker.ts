@@ -101,11 +101,22 @@ function datedVersion(url: URL): string | undefined {
   return datedPath.exec(url.pathname)?.[1];
 }
 
-/** The same page under two versions: identical host and identical path around the date. */
+/**
+ * Two dated pages of one site, which is what a release comparison needs.
+ *
+ * Requiring an identical path around the date was too strict: an engine
+ * returns pages from several releases at once, not always the same page twice.
+ * Measured on the Model Context Protocol question, one run in five returned
+ * `/specification/2025-06-18` and `/specification/2026-07-28/server/tools` -
+ * different pages, different releases - and the stale one won on position,
+ * scoring that run 22.5 against its neighbours' 82.5.
+ *
+ * A question asking for what is current asks about the site's newest release,
+ * whichever page of it the engine offers. Two sites version independently, so
+ * the host must still match.
+ */
 function sameVersionedPage(left: URL, right: URL): boolean {
-  if (left.hostname !== right.hostname) return false;
-  const strip = (url: URL) => url.pathname.replace(datedPath, "/");
-  return strip(left) === strip(right);
+  return left.hostname === right.hostname;
 }
 
 function rank(input: RankingInput, configuration: FullConfiguration): RankingResult {
