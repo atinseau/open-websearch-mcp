@@ -71,19 +71,29 @@ test("a result that never reached the subject's own pages earns one scoped ask",
   expect(result.followUpQuery).toContain("site:docs.test");
 });
 
-test("a search that already found enough pages spends no scoped ask", async () => {
-  const rich = engine("google", {
+test("a search already inside the source spends no scoped ask", async () => {
+  // The candidate count is not the signal - ten links to a site's surface is
+  // still a surface. Having reached the source's interior pages is.
+  const deep = engine("google", {
     [verbose]: {
       status: "success",
-      candidates: Array.from({ length: 8 }, (_, index) => candidate(`https://docs.test/${index}`)),
+      candidates: [
+        candidate("https://docs.test/guide/examples/node"),
+        candidate("https://docs.test/guide/api/reference"),
+      ],
+      suggestedQueries: [],
+    },
+    "PDF.js outside extracting runtime": {
+      status: "success",
+      candidates: [candidate("https://docs.test/guide/examples/node")],
       suggestedQueries: [],
     },
   });
-  const discovery = new ChainedDiscovery({ engines: [rich.engine] });
+  const discovery = new ChainedDiscovery({ engines: [deep.engine] });
 
   await discovery.discover(searchInput(verbose));
 
-  expect(rich.queries.some((query) => query.startsWith("site:"))).toBeFalse();
+  expect(deep.queries.some((query) => query.startsWith("site:"))).toBeFalse();
 });
 
 test("the agent's query is always issued first, unchanged", async () => {

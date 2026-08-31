@@ -26,7 +26,6 @@ export class ChainedDiscovery implements GoogleDiscoveryService {
   readonly #engines: readonly NamedEngine[];
   readonly #thinResultCount: number;
   readonly #widenedCandidateLimit: number;
-  readonly #scopedAskBelow: number;
 
   constructor(options: {
     readonly engines: readonly NamedEngine[];
@@ -34,14 +33,11 @@ export class ChainedDiscovery implements GoogleDiscoveryService {
     readonly thinResultCount?: number;
     /** Ceiling on the pool after later engines widen it. */
     readonly widenedCandidateLimit?: number;
-    /** Below this many candidates the search earns one domain-scoped ask. */
-    readonly scopedAskBelow?: number;
   }) {
     if (options.engines.length === 0) throw new Error("discovery requires at least one engine");
     this.#engines = options.engines;
     this.#thinResultCount = options.thinResultCount ?? 6;
     this.#widenedCandidateLimit = options.widenedCandidateLimit ?? 14;
-    this.#scopedAskBelow = options.scopedAskBelow ?? 6;
   }
 
   profile(): GoogleProfile {
@@ -74,7 +70,11 @@ export class ChainedDiscovery implements GoogleDiscoveryService {
     first: GoogleDiscoveryResult,
     input: GoogleDiscoveryInput,
   ): Promise<GoogleDiscoveryResult> {
-    if (first.status !== "success" || first.candidates.length >= this.#scopedAskBelow) return first;
+    // The candidate count is deliberately not the signal: a first pass can
+    // return ten links to a site's surface while the page asked about is
+    // absent. Whether the source was reached in depth is what distinguishes
+    // them, and `siteFollowUp` answers that.
+    if (first.status !== "success") return first;
     const asked = first.followUpQuery ?? input.query;
     const scoped = siteFollowUp(
       asked,

@@ -15,7 +15,7 @@ import { siteFollowUp } from "./site-query.ts";
 test("a domain already found becomes the scope for a sharper second ask", () => {
   const follow = siteFollowUp("PDF.js outside extracting rendering", [
     new URL("https://mozilla.github.io/pdf.js/"),
-    new URL("https://mozilla.github.io/pdf.js/getting_started/"),
+    new URL("https://mozilla.github.io/pdf.js/index.html"),
     new URL("https://github.com/mozilla/pdf.js/"),
   ]);
 
@@ -64,4 +64,31 @@ test("the most frequent qualifying host wins, because agreement is evidence", ()
  */
 test("a single page from a host is not enough to scope onto it", () => {
   expect(siteFollowUp("terms", [new URL("https://one.example/a")])).toBeUndefined();
+});
+/**
+ * The number of candidates is the wrong signal, and the keyword follow-up
+ * already learned this: a first pass can return ten links to a site's front
+ * page and its neighbours while the page the question is about is absent. What
+ * distinguishes that result is not how many candidates came back but that the
+ * source's own pages are all at its surface.
+ */
+test("a domain found only at its surface earns the scoped ask", () => {
+  const follow = siteFollowUp("terms", [
+    new URL("https://docs.test/"),
+    new URL("https://docs.test/index.html"),
+    new URL("https://other.test/a/b/c"),
+  ]);
+
+  expect(follow).toBe("site:docs.test terms");
+});
+
+test("a domain already reached in depth needs no scoped ask", () => {
+  // Its interior pages are already in hand; asking again would spend a
+  // navigation to find what the search has.
+  const follow = siteFollowUp("terms", [
+    new URL("https://docs.test/guide/examples/node"),
+    new URL("https://docs.test/guide/api/reference"),
+  ]);
+
+  expect(follow).toBeUndefined();
 });

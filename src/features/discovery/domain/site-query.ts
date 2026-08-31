@@ -25,7 +25,18 @@ const generalPurposeHosts =
 export function siteFollowUp(query: string, found: readonly URL[]): string | undefined {
   if (/(?:^|\s)-?site:/iu.test(query)) return undefined;
   const host = dominantHost(found);
-  return host ? `site:${host} ${query}` : undefined;
+  if (host === undefined) return undefined;
+  // Already inside the source: its interior pages are in hand, and asking
+  // again would spend a navigation to find what the search already has.
+  const reached = found.filter((url) => url.hostname.toLowerCase() === host);
+  if (reached.some((url) => depth(url) > 1)) return undefined;
+  return `site:${host} ${query}`;
+}
+
+/** How far into a site a URL sits; a front page and its index are the surface. */
+function depth(url: URL): number {
+  return url.pathname.split("/").filter((segment) => segment && !/^index\.\w+$/iu.test(segment))
+    .length;
 }
 
 /**
