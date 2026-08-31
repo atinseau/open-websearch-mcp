@@ -92,12 +92,7 @@ export class ChainedDiscovery implements GoogleDiscoveryService {
     const seen = new Set(first.candidates.map((candidate) => candidate.url.toString()));
     const added = result.candidates.filter((candidate) => !seen.has(candidate.url.toString()));
     if (added.length === 0) return first;
-    // What this ask found leads the pool. The ask is spent precisely because
-    // the earlier passes did not reach the page the question is about, so its
-    // answer is not an afterthought to append behind them: appending left it
-    // last in a pool the renderer only reaches part-way down, and the page the
-    // engine returned for the derived query never appeared in the results.
-    return { ...first, candidates: [...added, ...first.candidates], followUpQuery: scoped };
+    return { ...first, candidates: interleaved(added, first.candidates), followUpQuery: scoped };
   }
 
   /**
@@ -186,6 +181,31 @@ export class ChainedDiscovery implements GoogleDiscoveryService {
     }
     return last ?? { status: "blocked", candidates: [], suggestedQueries: [] };
   }
+}
+
+/**
+ * Merges what a scoped ask found with what the search already had.
+ *
+ * The ask is spent because the earlier passes did not reach the page the
+ * question is about, so its answer leads rather than trailing: appended, it sat
+ * last in a pool the renderer only works part-way down, and the page the engine
+ * returned for the derived query never appeared in the results.
+ *
+ * It does not displace them either. Leading with all of it buried the very page
+ * the earlier passes had found: on the Bun.WebView question the ask returned
+ * five reference pages and pushed `bun.com/docs/runtime/webview` into last
+ * place, taking that source recall from 25 to 0. Interleaving keeps both
+ * reachable, with the ask first.
+ */
+function interleaved<Value>(leading: readonly Value[], existing: readonly Value[]): Value[] {
+  const merged: Value[] = [];
+  for (let index = 0; index < Math.max(leading.length, existing.length); index += 1) {
+    const next = leading[index];
+    const previous = existing[index];
+    if (next !== undefined) merged.push(next);
+    if (previous !== undefined) merged.push(previous);
+  }
+  return merged;
 }
 
 function producedNoAnswer(status: GoogleDiscoveryResult["status"]): boolean {
