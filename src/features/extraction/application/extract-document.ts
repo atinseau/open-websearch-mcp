@@ -158,9 +158,8 @@ function select(
   url: URL,
 ): readonly EvidencePassage[] {
   const tokens = new Set((focus ?? "").toLowerCase().match(/[\p{L}\p{N}_-]+/gu) ?? []);
-  const weights = discrimination(tokens, passages);
   const ranked = passages
-    .map((passage) => ({ passage, score: score(passage.text, weights) }))
+    .map((passage) => ({ passage, score: score(passage.text, tokens) }))
     .sort((a, b) => b.score - a.score);
   const selected: EvidencePassage[] = [];
   for (const item of ranked) {
@@ -183,40 +182,10 @@ function select(
   return selected;
 }
 
-function score(text: string, weights: ReadonlyMap<string, number>): number {
-  if (weights.size === 0) return Math.min(text.length, PASSAGE_SIZE) / PASSAGE_SIZE;
+function score(text: string, focus: ReadonlySet<string>): number {
+  if (focus.size === 0) return Math.min(text.length, PASSAGE_SIZE) / PASSAGE_SIZE;
   const lowered = text.toLowerCase();
-  let total = 0;
-  for (const [token, weight] of weights) if (lowered.includes(token)) total += weight;
-  return total;
-}
-
-/**
- * How much each of the question's terms tells one part of a page from another.
- *
- * Counting matched terms equally let a passage that happened to use several
- * ordinary words beat one that used the rare term naming the subject. Measured
- * against the WHATWG URL Standard, the two returned passages carried
- * "validation error" - a phrase that page uses throughout - while the section
- * on the path percent-encode set, which the question was about, was left
- * behind.
- *
- * A term found in every passage cannot point anywhere, and a term found in one
- * points straight at it, so a term's weight is how few passages contain it.
- */
-function discrimination(
-  tokens: ReadonlySet<string>,
-  passages: readonly { readonly text: string }[],
-): ReadonlyMap<string, number> {
-  const weights = new Map<string, number>();
-  if (tokens.size === 0 || passages.length === 0) return weights;
-  const lowered = passages.map((passage) => passage.text.toLowerCase());
-  for (const token of tokens) {
-    const carrying = lowered.filter((text) => text.includes(token)).length;
-    if (carrying === 0) continue;
-    weights.set(token, lowered.length / carrying);
-  }
-  return weights;
+  return [...focus].reduce((value, token) => value + (lowered.includes(token) ? 1 : 0), 0);
 }
 
 function codeBlocksFrom(
