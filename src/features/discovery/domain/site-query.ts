@@ -220,9 +220,26 @@ function siteOf(url: URL): string {
  * Suffixes under which each name is a separate site. `mozilla.github.io` and
  * `someone-else.github.io` are unrelated projects, so folding them together
  * would scope one project's search onto another's pages.
+ *
+ * Registry suffixes are listed the same way and for the same reason. Japan
+ * publishes `ad.jp`, `co.jp` and `or` alike as places to register under, so
+ * two names sharing one of them share only a country: measured on the
+ * corpus's Japanese question, the results carried `nic.ad.jp` twice and the
+ * derived ask was `site:ad.jp` - every network organisation in Japan.
  */
 const compoundSuffixes = new Set([
   "co.uk",
+  "ac.jp",
+  "ad.jp",
+  "ne.jp",
+  "or.jp",
+  "go.jp",
+  "co.kr",
+  "or.kr",
+  "com.cn",
+  "co.in",
+  "co.za",
+  "co.nz",
   "com.au",
   "com.br",
   "co.jp",

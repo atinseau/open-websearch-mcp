@@ -135,6 +135,24 @@ test("a project's blog and its documentation count as one source", () => {
   expect(follow).toBe("site:docs.test version negotiation message framing");
 });
 
+/**
+ * Under a public suffix, each name is a separate organisation. Japan's
+ * `ad.jp` is such a suffix, so folding two of its names together scopes the
+ * ask onto a whole national registry rather than onto one site.
+ *
+ * Measured on the corpus's Japanese question, the results carried
+ * `nic.ad.jp` twice and the derived ask was `site:ad.jp` - every network
+ * organisation in Japan - where the source actually found was `nic.ad.jp`.
+ */
+test("a national public suffix is not a site that pages can share", () => {
+  const follow = siteFollowUp("Punycode A-label conversion explained", [
+    new URL("https://www.nic.ad.jp/ja/dom/idn.html"),
+    new URL("https://www.nic.ad.jp/ja/dom/system.html"),
+  ]);
+
+  expect(follow).toBe("site:nic.ad.jp Punycode A-label conversion explained");
+});
+
 test("a version on any of a site's subdomains is a version it has", () => {
   const follow = siteFollowUp(
     "version negotiation message framing",
