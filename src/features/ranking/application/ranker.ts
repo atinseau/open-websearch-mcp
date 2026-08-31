@@ -50,8 +50,62 @@ export function selectPreRenderCandidates(
 ): readonly RankedCandidate[] {
   const analysis = analyzeQuery(query, profile);
   return sort(
-    candidates.map((candidate) => ({ candidate, score: preRenderScore(candidate, analysis) })),
+    candidates.map((candidate) => ({
+      candidate,
+      score:
+        preRenderScore(candidate, analysis) + versionPreference(candidate, candidates, analysis),
+    })),
   ).slice(0, budget);
+}
+
+/**
+ * Prefers the newest version of a source a question asked about currently.
+ *
+ * Documentation sites keep every version live under a dated path, and search
+ * engines index the older ones best: measured against `modelcontextprotocol.io`,
+ * discovery returns `/specification/2025-03-26/`, `/2025-06-18/` and
+ * `/2025-11-25/` while the same engines return `/2026-07-28/` when the date is
+ * named. The question does not name it - it says "current" - and RANK-005
+ * already recognises that as temporal intent.
+ *
+ * The date in a URL is evidence the product already holds, so this reorders
+ * candidates rather than rewriting the query, and only among versions of the
+ * same page. A question without that intent is untouched.
+ */
+function versionPreference(
+  candidate: CandidateRankingInput,
+  all: readonly CandidateRankingInput[],
+  analysis: QueryAnalysis,
+): number {
+  if (!analysis.temporal) return 0;
+  const own = datedVersion(candidate.url);
+  if (own === undefined) return 0;
+  const newer = all.some((other) => {
+    const theirs = datedVersion(other.url);
+    return theirs !== undefined && sameVersionedPage(candidate.url, other.url) && theirs > own;
+  });
+  return newer ? 0 : VERSION_BONUS;
+}
+
+/**
+ * Enough to overcome the position gap between versions of one page, and no
+ * more. Measured on the case this exists for, an engine placed the older
+ * version at rank 1 and the newer at rank 4. Position carries 0.25 of the
+ * score, so versions several places apart need more than that gap to reorder.
+ * Relevance, which carries 0.45, still decides between different pages.
+ */
+const VERSION_BONUS = 0.25;
+const datedPath = /\/((?:19|20)\d{2}-\d{2}-\d{2})(?:\/|$)/u;
+
+function datedVersion(url: URL): string | undefined {
+  return datedPath.exec(url.pathname)?.[1];
+}
+
+/** The same page under two versions: identical host and identical path around the date. */
+function sameVersionedPage(left: URL, right: URL): boolean {
+  if (left.hostname !== right.hostname) return false;
+  const strip = (url: URL) => url.pathname.replace(datedPath, "/");
+  return strip(left) === strip(right);
 }
 
 function rank(input: RankingInput, configuration: FullConfiguration): RankingResult {
