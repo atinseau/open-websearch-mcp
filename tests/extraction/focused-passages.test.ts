@@ -44,3 +44,47 @@ test("without a focus the same page falls back to its longest passages", async (
   expect(unfocused.status).toBe("success");
   expect(unfocused.passages.length).toBeGreaterThan(0);
 });
+
+/**
+ * A page that arrives as plain prose is one very long run, so it is cut into
+ * passage-sized pieces before anything is scored. The cut is blind to the
+ * question, and the pieces are then ranked as peers of every other passage on
+ * the page - so a piece that merely mentions ordinary words can win over the
+ * piece holding the sentence that answers.
+ *
+ * Measured against SQLite's FTS5 page, the highest-scoring block carried the
+ * expected evidence and was 2,395 characters; it was split, and neither
+ * returned passage kept the evidence.
+ */
+/**
+ * A question's ordinary words - "to", "at", "and", "or" - appear in nearly
+ * every passage of a page, so counting matched terms equally lets grammar
+ * decide which passage is evidence.
+ *
+ * Measured against SQLite's FTS5 page: the returned passage matched
+ * `["using","primary","to","fts5","support","at","and","or","tables"]` and
+ * carried one expected phrase, while the section titled "Building a Loadable
+ * Extension" carried three and lost, because it happened to use four fewer
+ * connectives.
+ */
+test("EXTRACT-009 connectives do not decide which passage is evidence", async () => {
+  // Both passages are the same length and match the same count of question
+  // terms. One matches only connectives; the other matches the terms that name
+  // the subject. Counting matches equally makes them tie, and the first wins.
+  const connectives =
+    "This part is about tables and support at a level, and it relates to other parts. ".repeat(14);
+  const subject = "The sqlite3_fts5_init symbol is the loadable extension entry point. ".repeat(14);
+  const page = `<p>${connectives}</p><p>${subject}</p>`;
+
+  const focused = await registry.extract({
+    documentUrl: new URL("https://sqlite.test/fts5"),
+    renderedText: page,
+    markdown: page,
+    links: [],
+    headers: new Headers({ "content-type": "text/html" }),
+    focus: "sqlite3_fts5_init loadable extension and support at tables",
+  });
+
+  expect(focused.status).toBe("success");
+  expect(focused.passages[0]?.text.toLowerCase()).toContain("sqlite3_fts5_init");
+});
