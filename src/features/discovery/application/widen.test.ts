@@ -102,3 +102,31 @@ test("a blocked second engine leaves the first engine's answer intact", async ()
   expect(result.status).toBe("success");
   expect(result.candidates).toHaveLength(1);
 });
+
+test("the widened pool is capped, so extra engines add reserve without flooding render", async () => {
+  // Twenty-five candidates per search drove Chrome into repeated "WebView
+  // closed" failures: the wider pool cost more results than it recovered. The
+  // cap keeps the reserve while staying inside what the renderer sustains.
+  const many = (prefix: string, count: number) =>
+    Array.from({ length: count }, (unused, index) => candidate(`https://${prefix}.test/${index}`));
+  const first = engine("duckduckgo", {
+    status: "success",
+    candidates: many("a", 10),
+    suggestedQueries: [],
+  });
+  const second = engine("bing", {
+    status: "success",
+    candidates: many("b", 15),
+    suggestedQueries: [],
+  });
+  const discovery = new ChainedDiscovery({
+    engines: [first.engine, second.engine],
+    widenedCandidateLimit: 14,
+  });
+
+  const result = await discovery.discover(searchInput());
+
+  expect(result.candidates).toHaveLength(14);
+  // The answering engine's candidates are kept in full and come first.
+  expect(result.candidates.slice(0, 10).every((item) => item.url.hostname === "a.test")).toBe(true);
+});

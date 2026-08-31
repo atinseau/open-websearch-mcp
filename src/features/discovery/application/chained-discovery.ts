@@ -24,15 +24,19 @@ export interface NamedEngine {
 export class ChainedDiscovery implements GoogleDiscoveryService {
   readonly #engines: readonly NamedEngine[];
   readonly #thinResultCount: number;
+  readonly #widenedCandidateLimit: number;
 
   constructor(options: {
     readonly engines: readonly NamedEngine[];
     /** Below this many candidates a long query earns one keyword follow-up. */
     readonly thinResultCount?: number;
+    /** Ceiling on the pool after later engines widen it. */
+    readonly widenedCandidateLimit?: number;
   }) {
     if (options.engines.length === 0) throw new Error("discovery requires at least one engine");
     this.#engines = options.engines;
     this.#thinResultCount = options.thinResultCount ?? 6;
+    this.#widenedCandidateLimit = options.widenedCandidateLimit ?? 14;
   }
 
   profile(): GoogleProfile {
@@ -52,8 +56,13 @@ export class ChainedDiscovery implements GoogleDiscoveryService {
    * One engine returns about ten unique destinations for a question. Stopping
    * at the first answer left the whole search depending on those ten surviving
    * render, and discarded pages another engine had surfaced: measured across
-   * three corpus questions, consulting both engines raised the pool from ten
-   * candidates to twenty-five, well inside SEARCH-009's budget of thirty.
+   * three corpus questions, consulting both engines raises the pool from ten
+   * candidates to twenty-five.
+   *
+   * The pool is capped, because rendering all twenty-five drove Chrome into
+   * repeated "WebView closed" failures and cost more results than the wider
+   * pool recovered. The extra candidates are a reserve for pages that fail to
+   * render, not a larger workload.
    *
    * The engine that answered first still owns the result, so provenance and
    * rank order are unchanged; the later engines only append what is new.
@@ -68,6 +77,8 @@ export class ChainedDiscovery implements GoogleDiscoveryService {
     if (remaining.length === 0) return first;
     const seen = new Set(first.candidates.map((candidate) => candidate.url.toString()));
     const added = [];
+    const room = Math.max(0, this.#widenedCandidateLimit - first.candidates.length);
+    if (room === 0) return first;
     for (const engine of remaining) {
       const result = await engine.discover(input);
       if (result.status !== "success") continue;
@@ -76,7 +87,9 @@ export class ChainedDiscovery implements GoogleDiscoveryService {
         if (seen.has(key)) continue;
         seen.add(key);
         added.push(candidate);
+        if (added.length >= room) break;
       }
+      if (added.length >= room) break;
     }
     return { ...first, candidates: [...first.candidates, ...added] };
   }

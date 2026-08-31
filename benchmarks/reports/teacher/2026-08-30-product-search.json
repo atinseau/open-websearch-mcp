@@ -43,14 +43,14 @@
       },
       "case_id": "technical-bun-webview",
       "components": {
-        "evidenceCoverage": 17.5,
+        "evidenceCoverage": 26.25,
         "sourceRecall": 25,
         "rank": 15,
         "extraction": 0,
         "diversity": 10,
         "tokenBudget": 5
       },
-      "total": 72.5,
+      "total": 81.25,
       "classification": "relevant",
       "reasons": []
     },
@@ -77,7 +77,7 @@
       "category": "technical_docs",
       "split": "calibration",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "technical-sqlite-fts5",
       "components": {
@@ -96,7 +96,7 @@
       "category": "technical_docs",
       "split": "calibration",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "technical-robots-rfc",
       "components": {
@@ -177,7 +177,7 @@
       "category": "current_news",
       "split": "validation",
       "run_status": {
-        "status": "partial"
+        "status": "no_relevant_results"
       },
       "case_id": "current-apple-security",
       "components": {
@@ -199,7 +199,7 @@
       "category": "current_news",
       "split": "calibration",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "current-mcp-release",
       "components": {
@@ -220,7 +220,7 @@
       "category": "academic_primary",
       "split": "calibration",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "academic-bm25",
       "components": {
@@ -263,7 +263,7 @@
       "category": "academic_primary",
       "split": "calibration",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "academic-retrieval-diversity",
       "components": {
@@ -285,7 +285,7 @@
       "category": "community_contradictory",
       "split": "calibration",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "community-bun-production",
       "components": {
@@ -306,7 +306,7 @@
       "category": "community_contradictory",
       "split": "calibration",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "community-robots-ethics",
       "components": {
@@ -372,7 +372,7 @@
       "category": "multilingual",
       "split": "validation",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "multilingual-es-climate",
       "components": {
@@ -394,7 +394,7 @@
       "category": "multilingual",
       "split": "validation",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "multilingual-ja-web-standards",
       "components": {
@@ -435,7 +435,7 @@
       "category": "ambiguous_difficult",
       "split": "validation",
       "run_status": {
-        "status": "partial"
+        "status": "success"
       },
       "case_id": "ambiguous-xanadu-tuesday",
       "components": {
