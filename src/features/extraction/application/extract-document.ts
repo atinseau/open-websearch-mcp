@@ -11,7 +11,6 @@ import { identifyMime, isRawGitHub } from "@/features/extraction/domain/mime";
 import { extractPdfText } from "@/features/extraction/domain/pdf";
 import { codeWarnings } from "@/features/extraction/domain/safe-content";
 import { documentText } from "@/features/extraction/domain/document-text";
-import { hash, select } from "./select-passages.ts";
 
 const VERSION = "1";
 const DEFAULT_PASSAGES = 2;
@@ -152,6 +151,43 @@ function splitOversized(text: string): readonly string[] {
   return pieces;
 }
 
+function select(
+  passages: readonly Omit<EvidencePassage, "sourceUrl" | "trust" | "score" | "passageHash">[],
+  focus: string | undefined,
+  limit: number,
+  url: URL,
+): readonly EvidencePassage[] {
+  const tokens = new Set((focus ?? "").toLowerCase().match(/[\p{L}\p{N}_-]+/gu) ?? []);
+  const ranked = passages
+    .map((passage) => ({ passage, score: score(passage.text, tokens) }))
+    .sort((a, b) => b.score - a.score);
+  const selected: EvidencePassage[] = [];
+  for (const item of ranked) {
+    // Diversity is per heading, but an absent heading is not a shared heading.
+    // Treating `undefined === undefined` as a duplicate collapsed every
+    // headingless slice of an unstructured page into one passage, so a page
+    // whose navigation chrome scored first lost all of its substantive text.
+    const duplicate =
+      item.passage.heading !== undefined &&
+      selected.some((value) => value.heading === item.passage.heading);
+    if (selected.length >= limit || duplicate) continue;
+    selected.push({
+      ...item.passage,
+      sourceUrl: url,
+      trust: "external_untrusted",
+      score: item.score,
+      passageHash: hash(item.passage.text),
+    });
+  }
+  return selected;
+}
+
+function score(text: string, focus: ReadonlySet<string>): number {
+  if (focus.size === 0) return Math.min(text.length, PASSAGE_SIZE) / PASSAGE_SIZE;
+  const lowered = text.toLowerCase();
+  return [...focus].reduce((value, token) => value + (lowered.includes(token) ? 1 : 0), 0);
+}
+
 function codeBlocksFrom(
   blocks: readonly ContentBlock[],
   input: ExtractionInput,
@@ -211,4 +247,8 @@ function empty(
     navigationLinks: [],
     media,
   };
+}
+
+function hash(value: string): string {
+  return new Bun.CryptoHasher("sha256").update(value).digest("hex");
 }
