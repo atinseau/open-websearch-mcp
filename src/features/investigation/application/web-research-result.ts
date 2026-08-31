@@ -10,7 +10,12 @@ import type {
   WebSearchInput,
 } from "../index.ts";
 
-export function extractionInput(document: RenderedDocument, focus?: string, maxChars?: number) {
+export function extractionInput(
+  document: RenderedDocument,
+  focus?: string,
+  maxChars?: number,
+  maxPassages?: number,
+) {
   return {
     documentUrl: document.url,
     renderedText: document.text,
@@ -21,6 +26,7 @@ export function extractionInput(document: RenderedDocument, focus?: string, maxC
     headers: new Headers({ "content-type": document.contentType ?? "text/html" }),
     focus,
     maxChars,
+    maxPassages,
   };
 }
 export function pageResult(input: {

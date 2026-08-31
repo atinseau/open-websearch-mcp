@@ -67,6 +67,12 @@ export interface ExtractionInput {
   readonly links?: readonly RenderedLink[];
   readonly focus?: string;
   readonly maxChars?: number;
+  /**
+   * How many passages this extraction may return. CONFIG-004 makes the output
+   * limits configurable, and `[output].search_passages_per_source` is the
+   * value a search supplies; omitted falls back to the built-in default.
+   */
+  readonly maxPassages?: number;
   readonly documentPage?: number;
 }
 

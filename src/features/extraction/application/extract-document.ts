@@ -61,7 +61,7 @@ function passagesFrom(
   const grouped = groupText(blocks, input.documentPage);
   const limit = input.maxChars
     ? Math.max(1, Math.ceil(input.maxChars / PASSAGE_SIZE))
-    : DEFAULT_PASSAGES;
+    : (input.maxPassages ?? DEFAULT_PASSAGES);
   return select(grouped, input.focus, limit, input.documentUrl);
 }
 
