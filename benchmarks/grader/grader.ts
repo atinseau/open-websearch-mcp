@@ -109,7 +109,13 @@ function flattened(value: string): string {
  * plainly expressed a concept scored zero for evidence coverage.
  */
 function evidenceMatches(claim: Claim, results: readonly ResultPage[]): boolean {
-  const text = normalized(results.map((result) => result.text).join("\n"));
+  // Read the way `extraction` reads a page. `normalized` keeps the line breaks
+  // and the pre-punctuation spaces a browser never shows, so one grader read a
+  // page two ways: a passage could be credited as extracted while the same
+  // wording was refused as evidence. Measured live on
+  // `bun.com/docs/runtime/webview`, `cannot be combined with \`path\` or
+  // \`argv\`` fails one reading and matches the other.
+  const text = flattened(results.map((result) => result.text).join("\n"));
   const corpus = { text, urls: new Set(results.map((result) => result.url)) };
   return (
     claim.required_concepts.every((concept) => conceptGrounded(concept, corpus)) &&
