@@ -134,12 +134,12 @@ async function documentFrom(
     // pages that inject them as visible-but-unstyled nodes, and that text then
     // becomes "evidence". Strip non-content nodes from a detached clone first;
     // links are still read from the live document so hrefs stay resolved.
-    "(() => { const body = document.body; let text = ''; if (body) { const clone = body.cloneNode(true); for (const n of clone.querySelectorAll('script,style,noscript,template,svg')) n.remove(); text = clone.innerText || clone.textContent || ''; } return { text, links: Array.from(document.links, link => ({ href: link.href, text: link.innerText || link.textContent || '' })) }; })()",
+    "(() => { const body = document.body; let text = ''; if (body) { const clone = body.cloneNode(true); for (const n of clone.querySelectorAll('script,style,noscript,template,svg')) n.remove(); text = clone.innerText || clone.textContent || ''; } return { text, location: document.location.href, links: Array.from(document.links, link => ({ href: link.href, text: link.innerText || link.textContent || '' })) }; })()",
   );
   const content = isRecord(evaluated) ? evaluated : {};
   const text = typeof content.text === "string" ? content.text : "";
   return {
-    url: new URL(view.url || url.toString()),
+    url: settledUrl(content.location, view.url, url),
     text,
     markdown: text,
     links: links(content.links),
@@ -154,6 +154,30 @@ async function documentFrom(
 }
 
 function links(value: unknown): readonly RenderedLink[] {
+  return linksFrom(value);
+}
+
+/**
+ * The address of the page the text came from.
+ *
+ * `view.url` reports whichever frame settled last, so a page embedding a
+ * third-party iframe was identified as that stranger: PDF.js's examples page
+ * came back as `jsfiddle.net`. The main document knows its own address, and
+ * the evaluation runs in that document, so it is asked directly. The view and
+ * then the requested URL remain as fallbacks, since a redirect the main
+ * document did follow must still be honoured.
+ */
+function settledUrl(reported: unknown, viewUrl: string, requested: URL): URL {
+  for (const candidate of [reported, viewUrl]) {
+    if (typeof candidate !== "string" || candidate.length === 0) continue;
+    try {
+      return new URL(candidate);
+    } catch {}
+  }
+  return new URL(requested.toString());
+}
+
+function linksFrom(value: unknown): readonly RenderedLink[] {
   if (!Array.isArray(value)) return [];
   const output: RenderedLink[] = [];
   for (const item of value) {

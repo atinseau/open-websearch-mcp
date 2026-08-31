@@ -61,21 +61,66 @@ test("RENDER a failing close does not mask the navigation's own error", async ()
   expect(failure).toBe("origin_unreachable");
 });
 
+/**
+ * A page that embeds a third-party iframe must still be the page that was
+ * asked for. `view.url` reports whatever frame settled last, so PDF.js's
+ * examples page - which embeds a jsfiddle - came back identified as
+ * `jsfiddle.net`. The document was right and its identity was wrong, so a
+ * caller looking for the page it requested could not find it, and stored
+ * evidence was filed under a stranger's URL.
+ */
+test("RENDER a page that embeds a frame keeps its own identity", async () => {
+  const view = fakeView({
+    closeThrows: false,
+    // The view reports the frame that settled last; the document reports itself.
+    url: "https://jsfiddle.net/embedded/",
+    mainDocumentUrl: "https://mozilla.github.io/pdf.js/examples/",
+  });
+  const renderer = createWebViewRenderer({
+    endpoint: { cdpUrl: new URL("ws://127.0.0.1:9222") },
+    configuration: { navigationTimeoutMs: 2_000, settleTimeoutMs: 1, maxDownloadBytes: 1024 },
+    scheduler: immediateScheduler,
+    policy: { assess: () => ({ allowed: true }) },
+    openView: () => view.handle,
+  });
+
+  const document = await renderer.render({
+    url: new URL("https://mozilla.github.io/pdf.js/examples/"),
+    signal: new AbortController().signal,
+    investigationId: "framed",
+    kind: "destination",
+    explicitOpen: true,
+  });
+
+  expect(document.url.toString()).toBe("https://mozilla.github.io/pdf.js/examples/");
+});
+
 const immediateScheduler: NavigationScheduler = {
   schedule: (request, operation) => operation(request.signal),
   shutdown: async () => {},
 };
 
-function fakeView(behaviour: { closeThrows: boolean; navigateThrows?: string }) {
+function fakeView(behaviour: {
+  closeThrows: boolean;
+  navigateThrows?: string;
+  url?: string;
+  mainDocumentUrl?: string;
+}) {
   let closeAttempts = 0;
   const handle: RenderView = Object.assign(new EventTarget(), {
-    url: "https://example.test/page",
+    url: behaviour.url ?? "https://example.test/page",
     title: "Fake page",
     navigate: async () => {
       if (behaviour.navigateThrows) throw new Error(behaviour.navigateThrows);
     },
     cdp: async () => undefined,
-    evaluate: async () => ({ text: "Rendered body text.", links: [] }),
+    // The main document reports its own address; a framed page's view URL is
+    // the frame's, which is exactly the confusion under test.
+    evaluate: async () => ({
+      text: "Rendered body text.",
+      location: behaviour.mainDocumentUrl,
+      links: [],
+    }),
     close: () => {
       closeAttempts += 1;
       if (behaviour.closeThrows) throw new Error("WebView closed");
