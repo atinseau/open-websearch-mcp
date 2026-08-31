@@ -62,6 +62,22 @@ Two further rankings were measured without shipping: repeat-count weighting
 moves the holder from 18th to 12th of 145, and inverse document frequency moves
 it to 36th. Two passages are returned.
 
+### Why no weighting can separate them
+
+Scoring by term count does not merely pick the wrong passage on these pages; on
+the page it was measured against it stops discriminating at all. Grouped as the
+extractor groups them, SQLite's FTS5 page yields 145 passages, and **42 of them
+tie at the top score**. The passage holding the expected evidence is one of the
+42, ranked 16th by an ordering that is arbitrary among equals.
+
+The terms deciding those ties are `using`, `primary`, `support`, `and` and
+`tables` - ordinary vocabulary a reference manual repeats on every page. The
+passage that answers matches `sqlite`, `how`, `to`, `fts5`, `at`, `and`, `or`;
+the two returned match nine terms each, differing only by that filler.
+
+A weighting scheme reorders a ranking. It cannot break a 42-way tie whose
+members are indistinguishable to the feature being weighted.
+
 ## Decision
 
 Lexical passage selection stays as it is. The `extraction` component is
