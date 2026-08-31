@@ -1,6 +1,7 @@
 import type { Candidate } from "@/features/discovery";
 
 import type { CallContext } from "../index.ts";
+import { HostAllowance } from "./host-allowance.ts";
 import { startPreparation, type Prepared } from "./search-preparation.ts";
 
 export interface RankedCandidate {
@@ -46,20 +47,30 @@ export async function fillFromBestCandidates<Result>(
   const ordered = [...candidates].sort((a, b) => b.score - a.score);
   const results: Result[] = [];
   const pending = new Map<number, ReturnType<typeof startPreparation<Prepared>>[1]>();
-  let started = 0;
+  const hostOf = new Map<number, string>();
+  const allowance = new HostAllowance();
+  const waiting = [...ordered];
+  let issued = 0;
   const fillWindow = (): void => {
-    while (pending.size < preparationWindow && started < ordered.length) {
-      const ranked = ordered[started];
+    while (pending.size < preparationWindow) {
+      // The best candidate the host allowance currently admits. A held-back
+      // page keeps its place in the order rather than losing it.
+      const at = waiting.findIndex((entry) => !allowance.closed(entry.candidate.url.hostname));
+      if (at < 0) break;
+      const ranked = waiting.splice(at, 1)[0];
       if (!ranked) break;
+      const host = ranked.candidate.url.hostname;
       const [id, task] = startPreparation(
-        started,
+        issued,
         ranked.candidate,
         ranked.score,
         context,
         steps.prepare,
       );
+      issued += 1;
+      hostOf.set(id, host);
+      allowance.started(host);
       pending.set(id, task);
-      started += 1;
     }
   };
   fillWindow();
@@ -69,6 +80,8 @@ export async function fillFromBestCandidates<Result>(
     if (results.length >= wanted || context.abortController.signal.aborted) break;
     const settled = await task.promise;
     pending.delete(id);
+    const host = hostOf.get(id);
+    if (host !== undefined) allowance.settled(host, settled.prepared !== undefined);
     // Map iteration reaches entries added during the walk, so refilling here
     // keeps the window full without restarting the loop.
     fillWindow();
