@@ -252,3 +252,41 @@ test("matching within the newest release is arriving", () => {
 
   expect(follow).toBeUndefined();
 });
+
+/**
+ * The newest release a run happens to return is not the newest release there
+ * is. Measured on the Model Context Protocol question across three runs, the
+ * ask alternated between naming 2025-06-18 and 2026-07-28 depending on which
+ * versions the first pass had surfaced, and the run that named the older one
+ * scored 22.5 where its neighbour scored 55.
+ *
+ * A release date is also written in a page's title and its own text, not only
+ * in its path, and a site that publishes several versions links them. Taking
+ * the newest date the results carry anywhere - not merely the newest among the
+ * paths - makes the ask the same one every run.
+ */
+test("the newest release is taken from everything the results carry", () => {
+  const follow = siteFollowUp(
+    "version negotiation message framing",
+    [
+      new URL("https://docs.test/specification/2025-06-18/server/tools"),
+      new URL("https://docs.test/specification/2025-06-18/basic"),
+    ],
+    { current: true, versionsSeen: ["2025-06-18", "2026-07-28"] },
+  );
+
+  expect(follow).toBe("site:docs.test 2026-07-28 version negotiation message framing");
+});
+
+test("without a newer release seen elsewhere the paths still decide", () => {
+  const follow = siteFollowUp(
+    "version negotiation message framing",
+    [
+      new URL("https://docs.test/specification/2025-06-18/server/tools"),
+      new URL("https://docs.test/specification/2025-06-18/basic"),
+    ],
+    { current: true },
+  );
+
+  expect(follow).toBe("site:docs.test 2025-06-18 version negotiation message framing");
+});

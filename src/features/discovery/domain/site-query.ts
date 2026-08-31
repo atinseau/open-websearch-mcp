@@ -37,7 +37,15 @@ export function asksForCurrent(query: string): boolean {
 export function siteFollowUp(
   query: string,
   found: readonly URL[],
-  intent: { readonly current?: boolean } = {},
+  intent: {
+    readonly current?: boolean;
+    /**
+     * Release dates the results carry outside their paths - in a title or a
+     * page's own text. A run only surfaces some of a site's versions, so the
+     * newest among the paths is not the newest there is.
+     */
+    readonly versionsSeen?: readonly string[];
+  } = {},
 ): string | undefined {
   if (/(?:^|\s)-?site:/iu.test(query)) return undefined;
   // A scoped ask narrows a search onto one site, which helps only when the
@@ -50,7 +58,7 @@ export function siteFollowUp(
   const host = dominantHost(found);
   if (host === undefined) return undefined;
   const reached = found.filter((url) => siteOf(url) === host);
-  const version = intent.current ? newestVersion(reached) : undefined;
+  const version = intent.current ? newestVersion(reached, intent.versionsSeen ?? []) : undefined;
   // A question asking for what is current is only answered inside the release
   // it asked for: matching `/2025-06-18/server/tools` while the newest release
   // is `2026-07-28` reached the right page of the wrong version, and declaring
@@ -73,8 +81,13 @@ export function siteFollowUp(
  * return, so naming it asks about a version the search already found — the
  * same move as scoping to a host the search already found.
  */
-function newestVersion(reached: readonly URL[]): string | undefined {
-  const dates = reached.flatMap((url) => datedPath.exec(url.pathname)?.[1] ?? []);
+function newestVersion(reached: readonly URL[], alsoSeen: readonly string[]): string | undefined {
+  // A run surfaces only some of a site's versions, and the newest among those
+  // is not the newest there is: measured across three runs of one question the
+  // ask alternated between naming 2025-06-18 and 2026-07-28 depending on which
+  // the first pass happened to return, and naming the older one cost that run
+  // half its score. Dates the results carry elsewhere count too.
+  const dates = [...reached.flatMap((url) => datedPath.exec(url.pathname)?.[1] ?? []), ...alsoSeen];
   return dates.length > 0 ? dates.sort().at(-1) : undefined;
 }
 

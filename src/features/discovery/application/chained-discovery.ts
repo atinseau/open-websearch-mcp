@@ -84,7 +84,12 @@ export class ChainedDiscovery implements GoogleDiscoveryService {
       first.candidates.map((candidate) => candidate.url),
       // A question asking what is current wants the newest release a versioned
       // site keeps live, and engines index the older ones best.
-      { current: asksForCurrent(input.query) },
+      {
+        current: asksForCurrent(input.query),
+        // A run surfaces only some of a site's versions in its paths, so the
+        // dates its titles carry are counted too.
+        versionsSeen: datesIn(first.candidates.map((candidate) => candidate.title ?? "")),
+      },
     );
     if (scoped === undefined) return first;
     const result = await this.#walk({ ...input, query: scoped });
@@ -206,6 +211,14 @@ function interleaved<Value>(leading: readonly Value[], existing: readonly Value[
     if (previous !== undefined) merged.push(previous);
   }
   return merged;
+}
+
+/** Release dates named in what the engines returned, outside the URLs themselves. */
+function datesIn(texts: readonly string[]): readonly string[] {
+  const dates = new Set<string>();
+  for (const text of texts)
+    for (const match of text.matchAll(/(?:19|20)\d{2}-\d{2}-\d{2}/gu)) dates.add(match[0]);
+  return [...dates];
 }
 
 function producedNoAnswer(status: GoogleDiscoveryResult["status"]): boolean {
