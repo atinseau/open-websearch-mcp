@@ -34,6 +34,35 @@ test("without a host to scope to there is nothing to ask", () => {
 });
 
 /**
+ * A scoped ask narrows a search onto one site, which only helps when the
+ * question is about a particular source. A broad question has no such source,
+ * and scoping it spends a navigation to search a site the question never named:
+ * measured on the query "evidence", the ask derived
+ * `site:cambridge.org evidence` - a dictionary - and the call took 170 seconds
+ * where the same call takes about 20.
+ *
+ * A question of one or two ordinary words is a topic, not a source.
+ */
+test("a broad question is not narrowed onto whichever site happened to rank", () => {
+  expect(
+    siteFollowUp("evidence", [
+      new URL("https://dictionary.cambridge.org/dictionary/english/evidence"),
+      new URL("https://dictionary.cambridge.org/us/dictionary/english/evidence"),
+      new URL("https://www.merriam-webster.com/dictionary/evidence"),
+    ]),
+  ).toBeUndefined();
+});
+
+test("a question naming a subject still earns its scoped ask", () => {
+  expect(
+    siteFollowUp("PDF.js outside extracting runtime", [
+      new URL("https://docs.test/"),
+      new URL("https://docs.test/start"),
+    ]),
+  ).toBe("site:docs.test PDF.js outside extracting runtime");
+});
+
+/**
  * Aggregators and code hosts carry a project's material without being its
  * documentation, and scoping to one of them asks the wrong site. The host must
  * look like the subject's own home.
@@ -49,13 +78,13 @@ test("a general-purpose host is not treated as a project's own site", () => {
 });
 
 test("the most frequent qualifying host wins, because agreement is evidence", () => {
-  const follow = siteFollowUp("terms", [
+  const follow = siteFollowUp("named subject terms", [
     new URL("https://one.example/a"),
     new URL("https://two.example/a"),
     new URL("https://two.example/b"),
   ]);
 
-  expect(follow).toBe("site:two.example terms");
+  expect(follow).toBe("site:two.example named subject terms");
 });
 
 /**
@@ -63,7 +92,42 @@ test("the most frequent qualifying host wins, because agreement is evidence", ()
  * spend a navigation narrowing the search onto whatever happened to rank once.
  */
 test("a single page from a host is not enough to scope onto it", () => {
-  expect(siteFollowUp("terms", [new URL("https://one.example/a")])).toBeUndefined();
+  expect(siteFollowUp("named subject terms", [new URL("https://one.example/a")])).toBeUndefined();
+});
+
+/**
+ * A project's blog and its documentation are one source under two names, and
+ * which of them a run happens to return decides nothing about where the answer
+ * lives. Measured on the Model Context Protocol question, one run returned two
+ * blog posts and one documentation page and scoped onto
+ * `blog.modelcontextprotocol.io` — a subdomain that carries announcements, not
+ * the specification the question asked about — and that run scored 22.5 where
+ * its neighbour scored 55.
+ *
+ * Counting a site's pages together, and scoping to the site rather than to
+ * whichever subdomain led, makes the ask the same one every run.
+ */
+test("a project's blog and its documentation count as one source", () => {
+  const follow = siteFollowUp("version negotiation message framing", [
+    new URL("https://blog.docs.test/posts/announcement"),
+    new URL("https://blog.docs.test/posts/release"),
+    new URL("https://docs.test/specification/2025-06-18"),
+  ]);
+
+  expect(follow).toBe("site:docs.test version negotiation message framing");
+});
+
+test("a version on any of a site's subdomains is a version it has", () => {
+  const follow = siteFollowUp(
+    "version negotiation message framing",
+    [
+      new URL("https://blog.docs.test/posts/2026-07-28/"),
+      new URL("https://docs.test/specification/2025-06-18"),
+    ],
+    { current: true },
+  );
+
+  expect(follow).toBe("site:docs.test 2026-07-28 version negotiation message framing");
 });
 
 /**
@@ -79,7 +143,7 @@ test("a single page from a host is not enough to scope onto it", () => {
  */
 test("a version the results already carry sharpens the scoped ask", () => {
   const follow = siteFollowUp(
-    "negotiation framing",
+    "version negotiation message framing",
     [
       new URL("https://docs.test/specification/2025-06-18/server/tools"),
       new URL("https://docs.test/specification/2026-07-28/basic/transports"),
@@ -87,26 +151,26 @@ test("a version the results already carry sharpens the scoped ask", () => {
     { current: true },
   );
 
-  expect(follow).toBe("site:docs.test 2026-07-28 negotiation framing");
+  expect(follow).toBe("site:docs.test 2026-07-28 version negotiation message framing");
 });
 
 test("a question not asking for the current version names no version", () => {
-  const follow = siteFollowUp("negotiation framing", [
+  const follow = siteFollowUp("version negotiation message framing", [
     new URL("https://docs.test/specification/2025-06-18/server/tools"),
     new URL("https://docs.test/specification/2026-07-28/basic/transports"),
   ]);
 
-  expect(follow).toBe("site:docs.test negotiation framing");
+  expect(follow).toBe("site:docs.test version negotiation message framing");
 });
 
 test("an undated site is scoped without a version, as before", () => {
   const follow = siteFollowUp(
-    "terms",
+    "named subject terms",
     [new URL("https://docs.test/a"), new URL("https://docs.test/b")],
     { current: true },
   );
 
-  expect(follow).toBe("site:docs.test terms");
+  expect(follow).toBe("site:docs.test named subject terms");
 });
 /**
  * Neither the number of candidates nor how deep they sit says whether the
@@ -148,4 +212,43 @@ test("a term too common to identify a page does not count as arrival", () => {
   ]);
 
   expect(follow).toBe("site:docs.test widget docs configuration");
+});
+
+/**
+ * Reaching a page whose path matches the question is not arriving when it is
+ * the wrong release of that page. Measured on the Model Context Protocol
+ * question, one run held /specification/2025-06-18/server/tools and
+ * /specification/2026-07-28/basic/transports: "tools" matched, arrival was
+ * declared, and the ask that would have found /2026-07-28/server/tools was
+ * never spent. That run scored 22.5 where its neighbour scored 55.
+ *
+ * When a question asks for what is current, a match on an older release does
+ * not answer it.
+ */
+test("matching an older release is not arriving at the current one", () => {
+  const follow = siteFollowUp(
+    "tools list negotiation",
+    [
+      new URL("https://docs.test/specification/2025-06-18/server/tools"),
+      new URL("https://docs.test/specification/2026-07-28/basic/transports"),
+    ],
+    { current: true },
+  );
+
+  expect(follow).toBe("site:docs.test 2026-07-28 tools list negotiation");
+});
+
+test("matching within the newest release is arriving", () => {
+  // The page asked about is in hand at the release asked for, so the ask would
+  // spend a navigation to find what the search already has.
+  const follow = siteFollowUp(
+    "tools list negotiation",
+    [
+      new URL("https://docs.test/specification/2026-07-28/server/tools"),
+      new URL("https://docs.test/specification/2026-07-28/basic/transports"),
+    ],
+    { current: true },
+  );
+
+  expect(follow).toBeUndefined();
 });

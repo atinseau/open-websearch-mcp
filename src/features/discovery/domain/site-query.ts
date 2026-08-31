@@ -40,11 +40,23 @@ export function siteFollowUp(
   intent: { readonly current?: boolean } = {},
 ): string | undefined {
   if (/(?:^|\s)-?site:/iu.test(query)) return undefined;
+  // A scoped ask narrows a search onto one site, which helps only when the
+  // question is about that site's subject. A bare topic has no such subject,
+  // and scoping it searches a site the question never named: measured on the
+  // query `evidence`, the ask derived `site:cambridge.org evidence` - a
+  // dictionary that happened to rank twice - and the call took 170 seconds
+  // where the same call takes about 20.
+  if (query.trim().split(/\s+/u).filter(Boolean).length < 3) return undefined;
   const host = dominantHost(found);
   if (host === undefined) return undefined;
-  const reached = found.filter((url) => url.hostname.toLowerCase() === host);
-  if (arrived(reached, host, query)) return undefined;
+  const reached = found.filter((url) => siteOf(url) === host);
   const version = intent.current ? newestVersion(reached) : undefined;
+  // A question asking for what is current is only answered inside the release
+  // it asked for: matching `/2025-06-18/server/tools` while the newest release
+  // is `2026-07-28` reached the right page of the wrong version, and declaring
+  // arrival there spent no ask and left the question unanswered.
+  const answering = version ? reached.filter((url) => url.pathname.includes(version)) : reached;
+  if (arrived(answering, host, query)) return undefined;
   return version ? `site:${host} ${version} ${query}` : `site:${host} ${query}`;
 }
 
@@ -132,7 +144,7 @@ function questionTerms(query: string): readonly string[] {
 function dominantHost(found: readonly URL[]): string | undefined {
   const counts = new Map<string, number>();
   for (const url of found) {
-    const host = url.hostname.toLowerCase();
+    const host = siteOf(url);
     if (generalPurposeHosts.test(host)) continue;
     counts.set(host, (counts.get(host) ?? 0) + 1);
   }
@@ -142,3 +154,44 @@ function dominantHost(found: readonly URL[]): string | undefined {
   // agreeing that this domain is the subject's own home.
   return best && best.count > 1 ? best.host : undefined;
 }
+
+/**
+ * The site a page belongs to, with a subdomain folded into it.
+ *
+ * A project's blog and its documentation are one source under two names, and
+ * which of them a run happens to return says nothing about where the answer
+ * lives. Measured on the Model Context Protocol question, one run returned two
+ * blog posts and one documentation page, scoped onto
+ * `blog.modelcontextprotocol.io` - which carries announcements, not the
+ * specification asked about - and scored 22.5 where its neighbour scored 55.
+ *
+ * Only the registrable name is kept, so pages of one project count together
+ * however they are served, and the ask goes to the site rather than to
+ * whichever subdomain happened to lead.
+ */
+function siteOf(url: URL): string {
+  const host = url.hostname.toLowerCase().replace(/^www\./u, "");
+  const labels = host.split(".");
+  if (labels.length <= 2) return host;
+  // A two-part public suffix such as `co.uk` or `github.io` keeps three labels.
+  const tail = labels.slice(-2).join(".");
+  return compoundSuffixes.has(tail) ? labels.slice(-3).join(".") : tail;
+}
+
+/**
+ * Suffixes under which each name is a separate site. `mozilla.github.io` and
+ * `someone-else.github.io` are unrelated projects, so folding them together
+ * would scope one project's search onto another's pages.
+ */
+const compoundSuffixes = new Set([
+  "co.uk",
+  "com.au",
+  "com.br",
+  "co.jp",
+  "github.io",
+  "gitlab.io",
+  "netlify.app",
+  "pages.dev",
+  "readthedocs.io",
+  "vercel.app",
+]);
