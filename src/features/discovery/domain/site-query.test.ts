@@ -65,6 +65,49 @@ test("the most frequent qualifying host wins, because agreement is evidence", ()
 test("a single page from a host is not enough to scope onto it", () => {
   expect(siteFollowUp("terms", [new URL("https://one.example/a")])).toBeUndefined();
 });
+
+/**
+ * A versioned documentation site keeps every release live under a dated path,
+ * and search engines index the older ones best. Measured against
+ * `modelcontextprotocol.io`, discovery returns `/2025-03-26/`, `/2025-06-18/`
+ * and `/2025-11-25/` where the question asks for what is current — and the
+ * same engines return `/2026-07-28/server/tools` when that date is named.
+ *
+ * The date is not invented: the results themselves carry it, on the sibling
+ * pages the engines did return. Naming a version the search already found is
+ * the same move as scoping to a host the search already found.
+ */
+test("a version the results already carry sharpens the scoped ask", () => {
+  const follow = siteFollowUp(
+    "negotiation framing",
+    [
+      new URL("https://docs.test/specification/2025-06-18/server/tools"),
+      new URL("https://docs.test/specification/2026-07-28/basic/transports"),
+    ],
+    { current: true },
+  );
+
+  expect(follow).toBe("site:docs.test 2026-07-28 negotiation framing");
+});
+
+test("a question not asking for the current version names no version", () => {
+  const follow = siteFollowUp("negotiation framing", [
+    new URL("https://docs.test/specification/2025-06-18/server/tools"),
+    new URL("https://docs.test/specification/2026-07-28/basic/transports"),
+  ]);
+
+  expect(follow).toBe("site:docs.test negotiation framing");
+});
+
+test("an undated site is scoped without a version, as before", () => {
+  const follow = siteFollowUp(
+    "terms",
+    [new URL("https://docs.test/a"), new URL("https://docs.test/b")],
+    { current: true },
+  );
+
+  expect(follow).toBe("site:docs.test terms");
+});
 /**
  * Neither the number of candidates nor how deep they sit says whether the
  * question was answered. Measured live, the PDF.js search reached

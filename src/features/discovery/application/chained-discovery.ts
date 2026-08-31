@@ -5,7 +5,7 @@ import type {
   GoogleProfile,
 } from "@/features/discovery";
 import { keywordFollowUp } from "@/features/discovery/domain/follow-up-query";
-import { siteFollowUp } from "@/features/discovery/domain/site-query";
+import { asksForCurrent, siteFollowUp } from "@/features/discovery/domain/site-query";
 
 /** One engine's connector, named so a result can report where it came from. */
 export interface NamedEngine {
@@ -82,6 +82,9 @@ export class ChainedDiscovery implements GoogleDiscoveryService {
     const scoped = siteFollowUp(
       asked,
       first.candidates.map((candidate) => candidate.url),
+      // A question asking what is current wants the newest release a versioned
+      // site keeps live, and engines index the older ones best.
+      { current: asksForCurrent(input.query) },
     );
     if (scoped === undefined) return first;
     const result = await this.#walk({ ...input, query: scoped });

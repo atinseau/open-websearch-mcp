@@ -22,14 +22,51 @@
 const generalPurposeHosts =
   /(^|\.)(?:github\.com|gitlab\.com|stackoverflow\.com|stackexchange\.com|wikipedia\.org|wikimedia\.org|reddit\.com|medium\.com|npmjs\.com|deepwiki\.com|youtube\.com|x\.com|twitter\.com|facebook\.com|linkedin\.com|quora\.com|blogspot\.com|wordpress\.com|substack\.com|dev\.to|hashnode\.dev)$/iu;
 
-export function siteFollowUp(query: string, found: readonly URL[]): string | undefined {
+/**
+ * Words with which a question asks for the newest version of a source rather
+ * than any version of it. Kept here rather than imported from ranking, which
+ * this feature must not reach into (ARCH-002).
+ */
+const currentWords = /\b(?:current|currently|latest|newest|now|today|up-to-date)\b/iu;
+
+/** True when a question asks for what is current rather than for any version. */
+export function asksForCurrent(query: string): boolean {
+  return currentWords.test(query);
+}
+
+export function siteFollowUp(
+  query: string,
+  found: readonly URL[],
+  intent: { readonly current?: boolean } = {},
+): string | undefined {
   if (/(?:^|\s)-?site:/iu.test(query)) return undefined;
   const host = dominantHost(found);
   if (host === undefined) return undefined;
   const reached = found.filter((url) => url.hostname.toLowerCase() === host);
   if (arrived(reached, host, query)) return undefined;
-  return `site:${host} ${query}`;
+  const version = intent.current ? newestVersion(reached) : undefined;
+  return version ? `site:${host} ${version} ${query}` : `site:${host} ${query}`;
 }
+
+/**
+ * The newest release the results themselves already name.
+ *
+ * A versioned documentation site keeps every release live under a dated path,
+ * and engines index the older ones best: measured against
+ * `modelcontextprotocol.io`, discovery returns `/2025-03-26/`, `/2025-06-18/`
+ * and `/2025-11-25/` where the question asks for what is current, while the
+ * same engines return `/2026-07-28/server/tools` when that date is named.
+ *
+ * The date is not invented. It is read off the sibling pages the engines did
+ * return, so naming it asks about a version the search already found — the
+ * same move as scoping to a host the search already found.
+ */
+function newestVersion(reached: readonly URL[]): string | undefined {
+  const dates = reached.flatMap((url) => datedPath.exec(url.pathname)?.[1] ?? []);
+  return dates.length > 0 ? dates.sort().at(-1) : undefined;
+}
+
+const datedPath = /\/((?:19|20)\d{2}-\d{2}-\d{2})(?:\/|$)/u;
 
 /**
  * Whether the source's own pages already include the one the question asks for.
