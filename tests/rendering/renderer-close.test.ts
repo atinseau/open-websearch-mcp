@@ -95,6 +95,52 @@ test("RENDER a page that embeds a frame keeps its own identity", async () => {
   expect(document.url.toString()).toBe("https://mozilla.github.io/pdf.js/examples/");
 });
 
+/**
+ * A page whose content settles early must not be held until a fixed deadline.
+ *
+ * Measured on `modelcontextprotocol.io`, the whole site renders 21,613
+ * characters of its documentation and then, between 1.5s and 2s, replaces the
+ * document with "Error 500 Error loading page". Waiting the configured 3s
+ * returned 92 characters of that error from a page that had already delivered
+ * its evidence, and every path on the host behaved identically while its blog
+ * subdomain rendered normally.
+ *
+ * Reading once the text has stopped changing takes the page as it was when it
+ * was ready, and still waits the full budget for a page that is genuinely slow.
+ */
+test("RENDER a page is read once its content settles, not at a fixed deadline", async () => {
+  let reads = 0;
+  // The page is ready immediately and destroys itself part-way through the
+  // settling budget, exactly as the measured site does between 1.5s and 2s.
+  const started = Date.now();
+  const view = fakeView({
+    closeThrows: false,
+    textAt: () => {
+      reads += 1;
+      return Date.now() - started < 1_200 ? "Ready content." : "Error 500";
+    },
+  });
+  const renderer = createWebViewRenderer({
+    endpoint: { cdpUrl: new URL("ws://127.0.0.1:9222") },
+    configuration: { navigationTimeoutMs: 5_000, settleTimeoutMs: 3_000, maxDownloadBytes: 1024 },
+    scheduler: immediateScheduler,
+    policy: { assess: () => ({ allowed: true }) },
+    openView: () => view.handle,
+  });
+
+  const document = await renderer.render({
+    url: new URL("https://example.test/spec"),
+    signal: new AbortController().signal,
+    investigationId: "settled",
+    kind: "destination",
+    explicitOpen: true,
+  });
+
+  expect(document.text).toBe("Ready content.");
+  // It must also not have spent the whole budget on a page that was ready.
+  expect(Date.now() - started).toBeLessThan(2_000);
+});
+
 const immediateScheduler: NavigationScheduler = {
   schedule: (request, operation) => operation(request.signal),
   shutdown: async () => {},
@@ -105,6 +151,7 @@ function fakeView(behaviour: {
   navigateThrows?: string;
   url?: string;
   mainDocumentUrl?: string;
+  textAt?: () => string;
 }) {
   let closeAttempts = 0;
   const handle: RenderView = Object.assign(new EventTarget(), {
@@ -117,7 +164,7 @@ function fakeView(behaviour: {
     // The main document reports its own address; a framed page's view URL is
     // the frame's, which is exactly the confusion under test.
     evaluate: async () => ({
-      text: "Rendered body text.",
+      text: behaviour.textAt ? behaviour.textAt() : "Rendered body text.",
       location: behaviour.mainDocumentUrl,
       links: [],
     }),

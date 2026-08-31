@@ -67,13 +67,23 @@ export class WebViewRenderer implements Renderer {
           diagnostics: { title: view.title, transferBytes: monitor.bytes(), settledMs: 0 },
         };
       const settledAt = Date.now();
-      await pause(this.#options.configuration.settleTimeoutMs, signal);
-      if (monitor.exceeded()) throw new Error("download_budget_exceeded");
-      const document = await documentFrom(view, url, settledAt, {
-        transferBytes: monitor.bytes(),
-        contentType: monitor.contentType(),
-        cacheHeaders: monitor.cacheHeaders(),
-      });
+      const document = await settledDocument(
+        view,
+        url,
+        settledAt,
+        {
+          budgetMs: this.#options.configuration.settleTimeoutMs,
+          signal,
+          assertWithinBudget: () => {
+            if (monitor.exceeded()) throw new Error("download_budget_exceeded");
+          },
+        },
+        {
+          transferBytes: monitor.bytes(),
+          contentType: monitor.contentType(),
+          cacheHeaders: monitor.cacheHeaders(),
+        },
+      );
       // WebView resolves redirects internally. Rejecting the resolved URL prevents any
       // redirected document from becoming evidence; production Obscura itself has no
       // private-network exemption, so a private redirect cannot be loaded either.
@@ -109,6 +119,60 @@ export class WebViewRenderer implements Renderer {
     if (exceeded()) throw new Error("download_budget_exceeded");
   }
 }
+
+/**
+ * Reads the page once its text has stopped changing.
+ *
+ * Waiting a fixed settling budget assumes a page only ever gains content. A
+ * page can also destroy it: measured on `modelcontextprotocol.io`, every path
+ * on the host renders its documentation and then, between 1.5s and 2s,
+ * replaces the document with "Error 500 Error loading page". Holding the full
+ * 3s returned 92 characters of that error from a page that had already
+ * delivered 21,613 characters of evidence.
+ *
+ * The page is therefore sampled while the budget runs, and taken as soon as
+ * two consecutive reads agree. A page that is genuinely slow still gets the
+ * whole budget, because its text keeps changing until it is done.
+ */
+async function settledDocument(
+  view: RenderView,
+  url: URL,
+  settledAt: number,
+  settling: {
+    readonly budgetMs: number;
+    readonly signal: AbortSignal;
+    readonly assertWithinBudget: () => void;
+  },
+  observed: {
+    readonly transferBytes: number;
+    readonly contentType: string | undefined;
+    readonly cacheHeaders: Readonly<Record<string, string>>;
+  },
+): Promise<RenderedDocument> {
+  const deadline = Date.now() + settling.budgetMs;
+  let previous: RenderedDocument | undefined;
+  while (Date.now() < deadline) {
+    await pause(Math.min(SAMPLE_MS, Math.max(0, deadline - Date.now())), settling.signal);
+    settling.assertWithinBudget();
+    const current = await documentFrom(view, url, settledAt, observed);
+    // Two agreeing reads mean the page has stopped changing. An empty read is
+    // never settled: a document that has not painted yet agrees with itself.
+    if (previous && current.text.length > 0 && previous.text === current.text) return current;
+    previous = current;
+  }
+  settling.assertWithinBudget();
+  return previous ?? (await documentFrom(view, url, settledAt, observed));
+}
+
+/**
+ * How often the page is sampled while its settling budget runs.
+ *
+ * Short enough to catch a page between becoming ready and destroying itself:
+ * the measured site replaces its document somewhere between 1.5s and 2s, and a
+ * sample that lands only twice in that window can miss the ready state
+ * entirely.
+ */
+const SAMPLE_MS = 120;
 
 function assertPublic(policy: WebViewRendererOptions["policy"], url: URL): void {
   const assessment = policy.assess(url);
