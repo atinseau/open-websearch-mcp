@@ -119,42 +119,6 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
 }
 
-const pageScript = `(() => {
-  const body = document.body;
-  if (!body) return { text: '', markdown: '', location: document.location.href, links: [] };
-  const clone = body.cloneNode(true);
-  for (const n of clone.querySelectorAll('script,style,noscript,template,svg')) n.remove();
-  const text = clone.innerText || clone.textContent || '';
-  const parts = [];
-  const walk = (node) => {
-    for (const child of node.children) {
-      const tag = child.tagName;
-      const level = /^H([1-6])$/.exec(tag);
-      const own = (child.innerText || child.textContent || '').trim();
-      if (level) { if (own) parts.push('#'.repeat(Number(level[1])) + ' ' + own); }
-      else if (tag === 'PRE') { if (own) parts.push('\\u0060\\u0060\\u0060' + String.fromCharCode(10) + own + String.fromCharCode(10) + '\\u0060\\u0060\\u0060'); }
-      else if (child.querySelector('h1,h2,h3,h4,h5,h6,p,pre,li') !== null) { walk(child); }
-      else if (own) { parts.push(own); }
-    }
-  };
-  walk(clone);
-  return {
-    text,
-    markdown: parts.join(String.fromCharCode(10, 10)),
-    location: document.location.href,
-    links: Array.from(document.links, (link) => ({ href: link.href, text: link.innerText || link.textContent || '' })),
-  };
-})()`;
-
-/**
- * Reads a settled page: its prose, its structure, its address and its links.
- *
- * The Markdown comes from the same walk as the text because extraction reads
- * structure from headings, and `markdown` used to be a copy of the plain text,
- * which carries no `#`. Every page parsed as one long headingless run, so
- * passage selection could not tell a specification section on the subject from
- * its bibliography, and per-heading diversity had nothing to work with.
- */
 async function documentFrom(
   view: RenderView,
   url: URL,
@@ -170,21 +134,14 @@ async function documentFrom(
     // pages that inject them as visible-but-unstyled nodes, and that text then
     // becomes "evidence". Strip non-content nodes from a detached clone first;
     // links are still read from the live document so hrefs stay resolved.
-    // The same walk also emits Markdown, because extraction reads structure
-    // from headings: `markdown` used to be a copy of the plain text, which
-    // carries no `#`, so every page parsed as one long headingless run and
-    // passage selection could not tell a specification's section on the
-    // subject from its bibliography.
-    pageScript,
+    "(() => { const body = document.body; let text = ''; if (body) { const clone = body.cloneNode(true); for (const n of clone.querySelectorAll('script,style,noscript,template,svg')) n.remove(); text = clone.innerText || clone.textContent || ''; } return { text, location: document.location.href, links: Array.from(document.links, link => ({ href: link.href, text: link.innerText || link.textContent || '' })) }; })()",
   );
   const content = isRecord(evaluated) ? evaluated : {};
   const text = typeof content.text === "string" ? content.text : "";
-  const markdown =
-    typeof content.markdown === "string" && content.markdown ? content.markdown : text;
   return {
     url: settledUrl(content.location, view.url, url),
     text,
-    markdown,
+    markdown: text,
     links: links(content.links),
     contentType: observed.contentType,
     cacheHeaders: observed.cacheHeaders,
