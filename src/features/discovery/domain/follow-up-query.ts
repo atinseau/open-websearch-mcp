@@ -80,6 +80,46 @@ const questionWords = new Set([
 ]);
 
 /**
+ * Words that survive the question scaffolding but still name no subject.
+ *
+ * These describe a document rather than identify one, and an engine matches
+ * them against anything: measured live, "document" in a PDF.js follow-up
+ * returned a French dictionary entry and a clinic's site, which then spent
+ * result places the real documentation needed. They are dropped only when a
+ * more distinctive term is available, so a question made entirely of them
+ * still asks something.
+ */
+const genericWords = new Set([
+  "api",
+  "build",
+  "case",
+  "content",
+  "data",
+  "detail",
+  "details",
+  "document",
+  "documentation",
+  "example",
+  "examples",
+  "feature",
+  "file",
+  "general",
+  "generic",
+  "guide",
+  "information",
+  "official",
+  "page",
+  "primary",
+  "reference",
+  "source",
+  "text",
+  "type",
+  "value",
+  "version",
+  "way",
+]);
+
+/**
  * Four terms, measured rather than guessed. Against a question an engine
  * answers with a site's front page, the first three to four distinctive terms
  * reach the specific page; adding more re-introduces the verbosity that caused
@@ -94,10 +134,25 @@ export function keywordFollowUp(query: string): string | undefined {
     match[0].trim(),
   );
   const remainder = query.replace(/"[^"\n]+"/gu, " ").replace(/(?:^|\s)-?\w+:[^\s]+/gu, " ");
-  const terms = distinctiveTerms(remainder).slice(0, maximumTerms - preserved.length);
+  const terms = mostDistinctive(distinctiveTerms(remainder), maximumTerms - preserved.length);
   const follow = [...preserved, ...terms].join(" ").trim();
   if (!follow || follow.length >= query.length) return undefined;
   return follow;
+}
+
+/**
+ * Takes the terms that identify a subject, keeping the question's own order.
+ *
+ * Taking simply the first few surviving words took whatever the sentence
+ * happened to say early, which is usually the words describing the answer
+ * rather than naming its subject. Identifiers and proper nouns are preferred,
+ * ordinary vocabulary is used only to fill what remains.
+ */
+function mostDistinctive(terms: readonly string[], wanted: number): string[] {
+  if (wanted <= 0) return [];
+  const identifying = terms.filter((term) => !genericWords.has(term.toLowerCase()));
+  const chosen = new Set((identifying.length > 0 ? identifying : terms).slice(0, wanted));
+  return terms.filter((term) => chosen.has(term));
 }
 
 /**

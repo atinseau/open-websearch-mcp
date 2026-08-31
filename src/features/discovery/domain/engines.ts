@@ -33,6 +33,43 @@ export interface SearchEngine {
 export type BlockedReason = "captcha" | "waf" | "consent_required";
 
 const googleHost = /(^|\.)google\.[a-z.]+$/iu;
+
+/**
+ * Scripts that identify the language a question was written in, so a question
+ * that states no locale is still asked in its own language rather than in the
+ * one the machine happens to sit in.
+ */
+const scriptLocales: ReadonlyArray<readonly [RegExp, string]> = [
+  [/[\p{Script=Hiragana}\p{Script=Katakana}]/u, "ja-JP"],
+  [/[\p{Script=Hangul}]/u, "ko-KR"],
+  [/[\p{Script=Han}]/u, "zh-CN"],
+  [/[\p{Script=Cyrillic}]/u, "ru-RU"],
+  [/[\p{Script=Arabic}]/u, "ar"],
+  [/[\p{Script=Hebrew}]/u, "he-IL"],
+  [/[\p{Script=Greek}]/u, "el-GR"],
+  [/[\p{Script=Thai}]/u, "th-TH"],
+  [/[\p{Script=Devanagari}]/u, "hi-IN"],
+];
+
+/**
+ * The language an engine is asked in.
+ *
+ * An engine asked without a language answers from where the machine is rather
+ * than from what was asked. Measured live from France, Bing answered an
+ * English question about PDF.js with a doctor-booking site, a French-English
+ * dictionary and a public-health page - three of its ten results, none about
+ * PDF.js - while the same query with a stated language returned the project's
+ * own documentation first.
+ *
+ * A locale the agent stated is always sent unchanged. Otherwise the question's
+ * own script decides, because that is evidence about what was asked, and the
+ * machine's location is not. A question in Latin script falls back to English,
+ * which is the language of the specifications such questions ask about.
+ */
+function requestedLocale(query: string, locale: string | undefined): string {
+  if (locale && locale !== "auto") return locale;
+  return scriptLocales.find(([script]) => script.test(query))?.[1] ?? "en-US";
+}
 const duckduckgoHost = /(^|\.)duckduckgo\.com$/iu;
 const bingHost = /(^|\.)bing\.com$/iu;
 
@@ -66,7 +103,7 @@ export const googleEngine: SearchEngine = {
   searchUrl(query, locale) {
     const url = new URL("https://www.google.com/search");
     url.searchParams.set("q", query);
-    if (locale && locale !== "auto") url.searchParams.set("hl", locale);
+    url.searchParams.set("hl", requestedLocale(query, locale));
     return url;
   },
   ownsHost: (hostname) => googleHost.test(hostname),
@@ -86,7 +123,7 @@ export const duckduckgoEngine: SearchEngine = {
   searchUrl(query, locale) {
     const url = new URL("https://html.duckduckgo.com/html/");
     url.searchParams.set("q", query);
-    if (locale && locale !== "auto") url.searchParams.set("kl", locale);
+    url.searchParams.set("kl", requestedLocale(query, locale));
     return url;
   },
   ownsHost: (hostname) => duckduckgoHost.test(hostname),
@@ -108,7 +145,7 @@ export const bingEngine: SearchEngine = {
   searchUrl(query, locale) {
     const url = new URL("https://www.bing.com/search");
     url.searchParams.set("q", query);
-    if (locale && locale !== "auto") url.searchParams.set("setlang", locale);
+    url.searchParams.set("setlang", requestedLocale(query, locale));
     return url;
   },
   ownsHost: (hostname) => bingHost.test(hostname),
