@@ -3,19 +3,14 @@ import type {
   RenderedLink,
   RenderRequest,
   Renderer,
+  RenderView,
   WebViewRendererOptions,
 } from "@/features/rendering";
-import { cacheDirectives, conditionalHeaders, headerValue } from "./webview-headers.ts";
+import { conditionalHeaders } from "./webview-headers.ts";
+import { closeQuietly } from "./webview-close.ts";
+import { monitorTransfer } from "./webview-transfer.ts";
 
 type LinkValue = { readonly href?: unknown; readonly text?: unknown };
-type TransferMonitor = {
-  readonly bytes: () => number;
-  readonly exceeded: () => boolean;
-  readonly contentType: () => string | undefined;
-  readonly cacheHeaders: () => Record<string, string>;
-  readonly notModified: () => boolean;
-  readonly stop: () => void;
-};
 
 /** The selected adapter: each destination gets one ephemeral WebView target. */
 export class WebViewRenderer implements Renderer {
@@ -40,17 +35,24 @@ export class WebViewRenderer implements Renderer {
     );
   }
 
+  #openView(): RenderView {
+    return (
+      this.#options.openView?.() ??
+      new Bun.WebView({
+        backend: { type: "chrome", url: this.#options.endpoint.cdpUrl.toString() },
+        dataStore: "ephemeral",
+      })
+    );
+  }
+
   async #renderTarget(
     url: URL,
     signal: AbortSignal,
     conditional?: RenderRequest["conditional"],
   ): Promise<RenderedDocument> {
-    const view = new Bun.WebView({
-      backend: { type: "chrome", url: this.#options.endpoint.cdpUrl.toString() },
-      dataStore: "ephemeral",
-    });
+    const view = this.#openView();
     const monitor = monitorTransfer(view, this.#options.configuration.maxDownloadBytes);
-    const cancel = () => view.close();
+    const cancel = () => closeQuietly(view);
     signal.addEventListener("abort", cancel, { once: true });
     try {
       await this.#navigate(view, url, signal, monitor.exceeded, conditional);
@@ -80,12 +82,12 @@ export class WebViewRenderer implements Renderer {
     } finally {
       signal.removeEventListener("abort", cancel);
       monitor.stop();
-      view.close();
+      closeQuietly(view);
     }
   }
 
   async #navigate(
-    view: Bun.WebView,
+    view: RenderView,
     url: URL,
     signal: AbortSignal,
     exceeded: () => boolean,
@@ -113,104 +115,12 @@ function assertPublic(policy: WebViewRendererOptions["policy"], url: URL): void 
   if (!assessment.allowed) throw new Error(assessment.reason ?? "non_public_destination");
 }
 
-function monitorTransfer(view: Bun.WebView, maximumBytes: number): TransferMonitor {
-  let transferBytes = 0;
-  let overBudget = false;
-  let documentType: string | undefined;
-  let documentCacheHeaders: Record<string, string> = {};
-  let documentNotModified = false;
-  const dataRequests = new Set<string>();
-  const observe = (bytes: unknown): void => {
-    if (typeof bytes !== "number" || !Number.isFinite(bytes)) return;
-    transferBytes += bytes;
-    if (transferBytes > maximumBytes) {
-      overBudget = true;
-      view.close();
-    }
-  };
-  const data = (event: Event) => {
-    const payload = messageData(event);
-    if (!isRecord(payload)) return;
-    const requestId = payload.requestId;
-    if (typeof requestId === "string") dataRequests.add(requestId);
-    observe(payload.encodedDataLength);
-  };
-  const finished = (event: Event) => {
-    const payload = messageData(event);
-    if (!isRecord(payload)) return;
-    if (typeof payload.requestId === "string" && dataRequests.has(payload.requestId)) return;
-    observe(payload.encodedDataLength);
-  };
-  const response = (event: Event) => {
-    const payload = messageData(event);
-    const headers = responseHeaders(payload);
-    documentType ??= declaredDocumentType(payload, headers);
-    if (isDocumentResponse(payload) && Object.keys(documentCacheHeaders).length === 0)
-      documentCacheHeaders = cacheDirectives(headers);
-    if (isDocumentResponse(payload) && responseStatus(payload) === 304) documentNotModified = true;
-    const length = headerValue(headers, "content-length");
-    if (typeof length === "string" && Number(length) > maximumBytes) {
-      overBudget = true;
-      view.close();
-    }
-  };
-  view.addEventListener("Network.dataReceived", data);
-  view.addEventListener("Network.loadingFinished", finished);
-  view.addEventListener("Network.responseReceived", response);
-  return {
-    bytes: () => transferBytes,
-    exceeded: () => overBudget,
-    contentType: () => documentType,
-    cacheHeaders: () => documentCacheHeaders,
-    notModified: () => documentNotModified,
-    stop: () => {
-      view.removeEventListener("Network.dataReceived", data);
-      view.removeEventListener("Network.loadingFinished", finished);
-      view.removeEventListener("Network.responseReceived", response);
-    },
-  };
-}
-
-function messageData(event: Event): unknown {
-  return event instanceof MessageEvent ? event.data : undefined;
-}
-
-function responseHeaders(payload: unknown): Record<string, unknown> {
-  return isRecord(payload) && isRecord(payload.response) && isRecord(payload.response.headers)
-    ? payload.response.headers
-    : {};
-}
-
-/**
- * Reads the content type the origin declared for the main document. Sub-resource
- * responses are ignored, so a page's own type is not shadowed by an image or
- * script it happens to load first.
- */
-function declaredDocumentType(
-  payload: unknown,
-  headers: Record<string, unknown>,
-): string | undefined {
-  if (!isDocumentResponse(payload)) return undefined;
-  const declared = headerValue(headers, "content-type");
-  return typeof declared === "string" ? declared : undefined;
-}
-
-function isDocumentResponse(payload: unknown): boolean {
-  return isRecord(payload) && payload.type === "Document";
-}
-
-function responseStatus(payload: unknown): number | undefined {
-  if (!isRecord(payload) || !isRecord(payload.response)) return undefined;
-  const status = payload.response.status;
-  return typeof status === "number" ? status : undefined;
-}
-
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
 }
 
 async function documentFrom(
-  view: Bun.WebView,
+  view: RenderView,
   url: URL,
   settledAt: number,
   observed: {
@@ -219,13 +129,14 @@ async function documentFrom(
     readonly cacheHeaders: Readonly<Record<string, string>>;
   },
 ): Promise<RenderedDocument> {
-  const content = await view.evaluate<{ text?: unknown; links?: unknown }>(
+  const evaluated = await view.evaluate(
     // `innerText` on the live body captures inline script and style bodies on
     // pages that inject them as visible-but-unstyled nodes, and that text then
     // becomes "evidence". Strip non-content nodes from a detached clone first;
     // links are still read from the live document so hrefs stay resolved.
     "(() => { const body = document.body; let text = ''; if (body) { const clone = body.cloneNode(true); for (const n of clone.querySelectorAll('script,style,noscript,template,svg')) n.remove(); text = clone.innerText || clone.textContent || ''; } return { text, links: Array.from(document.links, link => ({ href: link.href, text: link.innerText || link.textContent || '' })) }; })()",
   );
+  const content = isRecord(evaluated) ? evaluated : {};
   const text = typeof content.text === "string" ? content.text : "";
   return {
     url: new URL(view.url || url.toString()),

@@ -1,7 +1,7 @@
 import { expect, test } from "bun:test";
 
 import { parseSerp } from "./serp-parser.ts";
-import { googleEngine } from "./engines.ts";
+import { bingEngine, duckduckgoEngine, googleEngine } from "./engines.ts";
 import type { RenderedDocument } from "@/features/discovery";
 
 function document(text: string, links: readonly { url: string; text: string }[]): RenderedDocument {
@@ -53,6 +53,74 @@ test("a blocked page is reported as blocked whichever engine served it", () => {
   const result = parseSerp(googleEngine, document("Our systems have detected unusual traffic", []));
 
   expect(result).toEqual({ kind: "blocked", reason: "captcha" });
+});
+
+/**
+ * A results page carries the engine's own product chrome — sign-in, help,
+ * account, corporate pages — on hosts the engine does not "own" by name.
+ * Admitting those as candidates spent places in a capped pool on links that
+ * can never answer a question, and pushed the real source out of the results.
+ */
+test("an engine's own product chrome on a sibling host is not a candidate", () => {
+  const result = parseSerp(
+    bingEngine,
+    document("Results", [
+      { url: "https://help.bing.microsoft.com/#apex/18/en/10020/-1", text: "Help" },
+      { url: "https://myaccount.microsoft.com/", text: "My account" },
+      { url: "https://www.microsoft.com/en-us/microsoft-products-and-apps", text: "Microsoft" },
+      { url: "https://go.microsoft.com/fwlink/?linkid=1", text: "Privacy" },
+      {
+        url: "https://www.bing.com/ck/a?u=a1aHR0cHM6Ly9leGFtcGxlLmNvbS9kb2Nz",
+        text: "Example docs",
+      },
+    ]),
+  );
+
+  expect(result.kind).toBe("parsed");
+  if (result.kind !== "parsed") return;
+  expect(result.candidates.map((candidate) => candidate.url.toString())).toEqual([
+    "https://example.com/docs",
+  ]);
+});
+
+test("a genuine result on a chrome-adjacent host is still admitted", () => {
+  // The rule must reject an engine's own chrome, not an entire company's
+  // documentation: learn.microsoft.com answers real technical questions.
+  const result = parseSerp(
+    bingEngine,
+    document("Results", [
+      {
+        url: "https://www.bing.com/ck/a?u=a1aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2RvY3M",
+        text: "Microsoft Learn docs",
+      },
+    ]),
+  );
+
+  expect(result.kind).toBe("parsed");
+  if (result.kind !== "parsed") return;
+  expect(result.candidates.map((candidate) => candidate.url.hostname)).toEqual([
+    "learn.microsoft.com",
+  ]);
+});
+
+test("DuckDuckGo's own chrome is rejected without rejecting its results", () => {
+  const result = parseSerp(
+    duckduckgoEngine,
+    document("Results", [
+      { url: "https://duckduckgo.com/settings", text: "Settings" },
+      { url: "https://spreadprivacy.com/tag/privacy-newsletter/", text: "Newsletter" },
+      {
+        url: "https://html.duckduckgo.com/l/?uddg=https%3A%2F%2Fexample.org%2Fspec",
+        text: "Example spec",
+      },
+    ]),
+  );
+
+  expect(result.kind).toBe("parsed");
+  if (result.kind !== "parsed") return;
+  expect(result.candidates.map((candidate) => candidate.url.toString())).toEqual([
+    "https://example.org/spec",
+  ]);
 });
 
 test("a page with no results and no empty marker is a parse failure, not an empty result", () => {

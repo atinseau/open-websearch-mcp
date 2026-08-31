@@ -61,6 +61,7 @@ function destination(engine: SearchEngine, link: URL): URL | undefined {
 
 function isCandidate(engine: SearchEngine, url: URL, original: URL, text: string): boolean {
   if (!assessPublicUrl(url).allowed || engine.ownsHost(url.hostname)) return false;
+  if (engine.isOwnChrome?.(url)) return false;
   if (original.pathname.includes("aclk") || original.searchParams.has("adurl")) return false;
   return (
     text.trim().length > 0 &&

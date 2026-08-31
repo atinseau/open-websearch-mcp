@@ -13,6 +13,14 @@ export interface SearchEngine {
   /** True when a link belongs to the engine's own site rather than a result. */
   ownsHost(hostname: string): boolean;
   /**
+   * True when a link is the engine's own product surface — sign-in, help,
+   * account, corporate and legal pages — served from a host the engine does
+   * not own by name. These links appear on every results page and can never
+   * answer a question, so admitting them spends places in a capped candidate
+   * pool and pushes real sources out of the results.
+   */
+  isOwnChrome?(url: URL): boolean;
+  /**
    * Recovers the real destination from an engine result link. Engines wrap
    * results in a redirect carrying the destination in a query parameter.
    * Returns undefined for an engine link that is not a result wrapper.
@@ -27,6 +35,17 @@ export type BlockedReason = "captcha" | "waf" | "consent_required";
 const googleHost = /(^|\.)google\.[a-z.]+$/iu;
 const duckduckgoHost = /(^|\.)duckduckgo\.com$/iu;
 const bingHost = /(^|\.)bing\.com$/iu;
+
+/**
+ * Bing's results page links its operator's own surfaces: help, account, the
+ * corporate site and the `go.microsoft.com` link forwarder. `learn` and
+ * `developer` are deliberately absent — those host documentation that answers
+ * real questions and must stay eligible.
+ */
+const bingChromeHost =
+  /^(?:help\.bing|myaccount|account|login|privacy|support|go|www)\.microsoft\.com$/iu;
+/** DuckDuckGo's blog and corporate surfaces, which are never results. */
+const duckduckgoChromeHost = /(^|\.)(?:spreadprivacy\.com|duck\.com)$/iu;
 
 /** Recovers a destination carried in one of the named query parameters. */
 export function parameterDestination(link: URL, parameters: readonly string[]): URL | undefined {
@@ -71,6 +90,7 @@ export const duckduckgoEngine: SearchEngine = {
     return url;
   },
   ownsHost: (hostname) => duckduckgoHost.test(hostname),
+  isOwnChrome: (url) => duckduckgoChromeHost.test(url.hostname),
   dereference(link) {
     if (link.pathname !== "/l/") return undefined;
     return parameterDestination(link, ["uddg"]);
@@ -92,6 +112,7 @@ export const bingEngine: SearchEngine = {
     return url;
   },
   ownsHost: (hostname) => bingHost.test(hostname),
+  isOwnChrome: (url) => bingChromeHost.test(url.hostname),
   dereference(link) {
     if (link.pathname !== "/ck/a") return undefined;
     const encoded = link.searchParams.get("u");
