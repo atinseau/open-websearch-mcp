@@ -211,7 +211,13 @@ function extractionRatio(
       claim.evidence_passages.every((passage) =>
         results.some(
           (result) =>
-            result.url === passage.url && flattened(result.text).includes(flattened(passage.text)),
+            // The same identity `sourceRecall` and `rank` compare with. Comparing
+            // these two as strings scored one run 25 of 25 for finding a page and
+            // 0 of 10 for extracting from it, differing only in whether the host
+            // was spelled `bun.sh` or `bun.com`. The passage text is still
+            // required in full.
+            pageIdentity(result.url) === pageIdentity(passage.url) &&
+            flattened(result.text).includes(flattened(passage.text)),
         ),
       ),
     ) / passageWeight

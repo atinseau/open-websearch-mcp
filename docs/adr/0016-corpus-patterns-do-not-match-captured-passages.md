@@ -39,6 +39,36 @@ in the captured passage, or in the raw 729KB of HTML.
 A product returning the exact span the corpus points at therefore fails the
 check the corpus applies to it.
 
+### The patterns quote the teacher, not the page
+
+The table above compares each pattern to the corpus's own captured passage.
+The same patterns were later checked against the **live page as the product
+renders it**, which is the text the grader actually reads. The failures are of
+one kind: the pattern spells out a sentence the page never writes.
+
+On `modelcontextprotocol.io/specification/2026-07-28/server/tools`, claim c5's
+three patterns require the prose "method is `tools/list`", "optional cursor in
+`params`" and "result includes a `tools` array". None occurs. The page states
+the same facts as a JSON request block — `"method": "tools/list"` with
+`"params": { "cursor": ... }` — and never narrates it. All three patterns fail
+on a page rendered whole, at rank 1, carrying the answer.
+
+On `bun.com/docs/runtime/webview`, claim c3 requires "Chrome `backend.url`
+option is a Chrome-only `ws://` URL". The strings `backend.url` and
+`Chrome-only` appear nowhere in the page's 27,145 rendered characters. The
+page writes the same fact as a parameter table row: "url string | false
+(chrome only) ws:// URL of an existing Chrome's DevTools endpoint, or false to
+skip auto-detect and always spawn."
+
+A neighbouring pattern shows how narrow the miss is. Claim c4 requires
+"connects over WebSocket instead of spawning"; the page reads "Bun connects to
+that browser over WebSocket instead of spawning a new one". Same clause, four
+words inserted.
+
+This is the same finding as the table above, confirmed from the other
+direction: the patterns describe how a teacher summarised a page, and a
+deterministic grader can only match what the page says.
+
 ## Alternatives measured and rejected
 
 | Approach | Corpus score | Why it failed |
