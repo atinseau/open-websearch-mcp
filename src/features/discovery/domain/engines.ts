@@ -175,3 +175,27 @@ function decodeBase64Url(value: string): string | undefined {
     return undefined;
   }
 }
+
+/**
+ * Google's own product surfaces, which its own parser already rejects because
+ * Google owns their hosts. Another engine linking one of them is linking the
+ * same dead end, so the host list is kept here rather than inside the Google
+ * engine, where only Google could see it.
+ */
+const googleChromeHost =
+  /(^|\.)(?:consent|accounts|policies|support|myaccount)\.google\.[a-z.]+$/iu;
+
+/**
+ * True when a URL is any configured engine's own surface.
+ *
+ * Chrome is a property of the destination, not of the page that linked it. A
+ * consent screen answers no question whichever engine returned it, and
+ * admitting one spends a place in a capped pool that a real source would take.
+ */
+export function anyEngineChrome(url: URL): boolean {
+  return (
+    googleChromeHost.test(url.hostname) ||
+    duckduckgoChromeHost.test(url.hostname) ||
+    bingChromeHost.test(url.hostname)
+  );
+}

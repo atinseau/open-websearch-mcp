@@ -123,6 +123,35 @@ test("DuckDuckGo's own chrome is rejected without rejecting its results", () => 
   ]);
 });
 
+/**
+ * A search engine's own surface is chrome on whichever page it appears.
+ * Chrome was recognised only by the engine being read, so Google's consent
+ * screen - which Google itself rejects - was admitted as a result when
+ * DuckDuckGo linked it. Measured on the corpus's Japanese question, it took
+ * one of the ten returned places and can answer no question at all.
+ */
+test("another engine's surface is chrome too, whoever returned it", () => {
+  const result = parseSerp(
+    duckduckgoEngine,
+    document("Results", [
+      {
+        url: "https://html.duckduckgo.com/l/?uddg=https%3A%2F%2Fconsent.google.co.jp%2Fm%3Fcontinue%3Dhttps%3A%2F%2Ftranslate.google.co.jp%2F",
+        text: "Google",
+      },
+      {
+        url: "https://html.duckduckgo.com/l/?uddg=https%3A%2F%2Fexample.org%2Fspec",
+        text: "Example spec",
+      },
+    ]),
+  );
+
+  expect(result.kind).toBe("parsed");
+  if (result.kind !== "parsed") return;
+  expect(result.candidates.map((candidate) => candidate.url.toString())).toEqual([
+    "https://example.org/spec",
+  ]);
+});
+
 test("a page with no results and no empty marker is a parse failure, not an empty result", () => {
   // Reporting this as empty would turn our own parsing defect into a claim
   // that the engine found nothing.
