@@ -120,6 +120,42 @@ The best of them reaches 12th against a floor of 15th for tie-breaking alone,
 which is the measurement that closes this line of work: the gap is not one a
 scoring function of surface features can close.
 
+### A deeper budget for the leading source, measured and withdrawn
+
+The 4-passage and 6-passage rows above raise every source at once, which costs
+about four times the tokens. A narrower variant was measured separately:
+spend the unused budget on the best-ranked source alone. A search spends
+roughly 3,000 tokens of the grader's 6,000 across four corpus cases, so one
+source at eight passages fits inside that headroom.
+
+Extracted in isolation from a full render, it looked decisive: at eight
+passages SQLite's FTS5 page carries `loadable extension` and the WHATWG URL
+Standard carries its third claim's pattern, where two passages carry neither.
+
+It was implemented, and the corpus scored **61.46 — unchanged**, with
+`evidenceCoverage` still 0 on both cases. The leading source did receive its
+eight passages on every run, and `loadable extension` was in none of them,
+three runs out of three.
+
+The isolation measurement had extracted without a focus. Asked for the same
+page at the same budget, once with no focus and once with the corpus question
+as focus:
+
+| Focus | Passages | Carries `loadable extension` |
+| --- | --- | --- |
+| none | 10 | yes |
+| the corpus question | 10 | no |
+
+The focus does not fail to find the evidence: it ranks it out. Ten passages
+chosen by the question exclude a passage that ten passages chosen by nothing
+include. This is the same bound as the rest of this record, reached from the
+other side — more passages do not help while the ordering that fills them is
+the one being measured.
+
+The change was withdrawn rather than kept: it also contradicts `MCP-012`,
+which fixes two passages per source, and it bought nothing to weigh against
+that.
+
 ## Decision
 
 Lexical passage selection stays as it is. The `extraction` component is
