@@ -72,20 +72,21 @@ test("a result that never reached the subject's own pages earns one scoped ask",
 });
 
 test("a search already inside the source spends no scoped ask", async () => {
-  // The candidate count is not the signal - ten links to a site's surface is
-  // still a surface. Having reached the source's interior pages is.
+  // Neither the candidate count nor depth is the signal: what decides is that
+  // the source's own pages already include the one the question asks about.
+  // `extracting` is one of the question's terms and one page carries it.
   const deep = engine("google", {
     [verbose]: {
       status: "success",
       candidates: [
-        candidate("https://docs.test/guide/examples/node"),
-        candidate("https://docs.test/guide/api/reference"),
+        candidate("https://docs.test/extracting-page-text"),
+        candidate("https://docs.test/reference"),
       ],
       suggestedQueries: [],
     },
     "PDF.js outside extracting runtime": {
       status: "success",
-      candidates: [candidate("https://docs.test/guide/examples/node")],
+      candidates: [candidate("https://docs.test/extracting-page-text")],
       suggestedQueries: [],
     },
   });

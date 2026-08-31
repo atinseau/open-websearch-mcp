@@ -26,17 +26,66 @@ export function siteFollowUp(query: string, found: readonly URL[]): string | und
   if (/(?:^|\s)-?site:/iu.test(query)) return undefined;
   const host = dominantHost(found);
   if (host === undefined) return undefined;
-  // Already inside the source: its interior pages are in hand, and asking
-  // again would spend a navigation to find what the search already has.
   const reached = found.filter((url) => url.hostname.toLowerCase() === host);
-  if (reached.some((url) => depth(url) > 1)) return undefined;
+  if (arrived(reached, host, query)) return undefined;
   return `site:${host} ${query}`;
 }
 
-/** How far into a site a URL sits; a front page and its index are the surface. */
-function depth(url: URL): number {
-  return url.pathname.split("/").filter((segment) => segment && !/^index\.\w+$/iu.test(segment))
-    .length;
+/**
+ * Whether the source's own pages already include the one the question asks for.
+ *
+ * Neither the number of candidates nor how deep a page sits says this.
+ * Measured live, the PDF.js search reached `pdf.js/getting_started/` - inside
+ * the site, one level down - while the page it asked about, `examples/`, was
+ * absent: depth said the search had arrived when it had not.
+ *
+ * A documentation site says what a page is about in its path, and the question
+ * says what it wants in its own terms, so the two are compared. A term only
+ * counts when it tells the source's pages apart: the subject's own name is in
+ * the question and in every one of its paths - `pdf` in `/pdf.js/` and in
+ * `/pdf.js/getting_started/` - so matching it would report arrival at the very
+ * front page the search needs to get past. Terms every site uses for its own
+ * structure are excluded for the same reason.
+ */
+function arrived(reached: readonly URL[], host: string, query: string): boolean {
+  const paths = reached.map((url) => url.pathname.toLowerCase());
+  return questionTerms(query).some(
+    (term) =>
+      !host.includes(term) &&
+      paths.some((path) => path.includes(term)) &&
+      !paths.every((path) => path.includes(term)),
+  );
+}
+
+/** Path words every documentation site uses, which identify no page. */
+const structuralTerms = new Set([
+  "api",
+  "blog",
+  "doc",
+  "docs",
+  "documentation",
+  "en",
+  "guide",
+  "guides",
+  "html",
+  "index",
+  "latest",
+  "learn",
+  "main",
+  "manual",
+  "page",
+  "pages",
+  "reference",
+  "site",
+  "web",
+  "www",
+]);
+
+function questionTerms(query: string): readonly string[] {
+  const terms: string[] = [];
+  for (const match of query.toLowerCase().matchAll(/[\p{L}\p{N}]{3,}/gu))
+    if (!structuralTerms.has(match[0])) terms.push(match[0]);
+  return terms;
 }
 
 /**

@@ -66,29 +66,43 @@ test("a single page from a host is not enough to scope onto it", () => {
   expect(siteFollowUp("terms", [new URL("https://one.example/a")])).toBeUndefined();
 });
 /**
- * The number of candidates is the wrong signal, and the keyword follow-up
- * already learned this: a first pass can return ten links to a site's front
- * page and its neighbours while the page the question is about is absent. What
- * distinguishes that result is not how many candidates came back but that the
- * source's own pages are all at its surface.
+ * Neither the number of candidates nor how deep they sit says whether the
+ * question was answered. Measured live, the PDF.js search reached
+ * `pdf.js/getting_started/` - inside the site, one level down - while the page
+ * it asked about, `examples/`, was absent. Depth said "already there"; the
+ * search had not arrived.
+ *
+ * What the question asks for is written in its own terms, and a documentation
+ * site says what a page is about in its path. So the test is whether any page
+ * found on that host carries a term the question used.
  */
-test("a domain found only at its surface earns the scoped ask", () => {
-  const follow = siteFollowUp("terms", [
+test("a source found without any page matching the question earns the scoped ask", () => {
+  const follow = siteFollowUp("PDF.js examples node", [
     new URL("https://docs.test/"),
-    new URL("https://docs.test/index.html"),
-    new URL("https://other.test/a/b/c"),
+    new URL("https://docs.test/getting_started/"),
   ]);
 
-  expect(follow).toBe("site:docs.test terms");
+  expect(follow).toBe("site:docs.test PDF.js examples node");
 });
 
-test("a domain already reached in depth needs no scoped ask", () => {
-  // Its interior pages are already in hand; asking again would spend a
-  // navigation to find what the search has.
-  const follow = siteFollowUp("terms", [
-    new URL("https://docs.test/guide/examples/node"),
-    new URL("https://docs.test/guide/api/reference"),
+test("a source whose pages already answer the question needs no scoped ask", () => {
+  // `examples` is one of the question's own terms, and a page on the host
+  // carries it: the search arrived, and asking again would spend a navigation.
+  const follow = siteFollowUp("PDF.js examples node", [
+    new URL("https://docs.test/"),
+    new URL("https://docs.test/examples/"),
   ]);
 
   expect(follow).toBeUndefined();
+});
+
+test("a term too common to identify a page does not count as arrival", () => {
+  // Every documentation site has a `docs` path; matching it would declare
+  // arrival everywhere.
+  const follow = siteFollowUp("widget docs configuration", [
+    new URL("https://docs.test/"),
+    new URL("https://docs.test/docs/"),
+  ]);
+
+  expect(follow).toBe("site:docs.test widget docs configuration");
 });
