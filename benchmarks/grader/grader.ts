@@ -74,6 +74,22 @@ export function gradeCase(fixture: TeacherFixture, result: CaseResult): CaseScor
 function normalized(value: string): string {
   return value.normalize("NFKC").toLocaleLowerCase("und");
 }
+
+/**
+ * Compares what a passage says, not how its source file wrapped it.
+ *
+ * The corpus captured its expected passages from page HTML, where a line break
+ * inside a sentence carries the source file's own indentation; a browser
+ * collapses that to one space. Measured on SQLite's FTS5 page, the two strings
+ * differ only where the corpus has "extension or\n statically" and the
+ * rendered page has "extension or\nstatically" - same words, same order, same
+ * page - and the product scored zero for extraction on that difference alone.
+ *
+ * Only runs of whitespace are affected. Different words remain different.
+ */
+function flattened(value: string): string {
+  return normalized(value).replaceAll(/\s+/gu, " ").trim();
+}
 /**
  * A concept is looked for the same way the capture step looked for it.
  *
@@ -166,8 +182,7 @@ function extractionRatio(
       claim.evidence_passages.every((passage) =>
         results.some(
           (result) =>
-            result.url === passage.url &&
-            normalized(result.text).includes(normalized(passage.text)),
+            result.url === passage.url && flattened(result.text).includes(flattened(passage.text)),
         ),
       ),
     ) / passageWeight

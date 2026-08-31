@@ -156,3 +156,68 @@ test("a concept absent from the page is still absent", () => {
 
   expect(graded.components.evidenceCoverage).toBe(0);
 });
+
+/**
+ * The corpus captured its expected passages from page HTML, where a line break
+ * inside a sentence is followed by the source file's own indentation. A browser
+ * collapses that to a single space, so a product returning the very sentence the
+ * corpus points at failed an exact-substring test on invisible whitespace.
+ *
+ * Measured on SQLite's FTS5 page, the two strings differ only where the corpus
+ * has "extension or\n statically" and the rendered page has
+ * "extension or\nstatically" - same words, same order, same page.
+ */
+test("TEST-012 an expected passage matches whatever whitespace the page used", () => {
+  const wrapped: TeacherFixture = {
+    case_id: "technical-bun-webview",
+    claims: [
+      {
+        id: "claim",
+        required_concepts: ["alpha"],
+        acceptable_patterns: ["alpha\\s+beta"],
+        sources: [{ url: "https://example.test/a", equivalent_urls: [] }],
+        evidence_passages: [
+          { url: "https://example.test/a", text: "alpha beta compiled\n   into one thing" },
+        ],
+        weight: 1,
+      },
+    ],
+  };
+
+  const graded = gradeCase(wrapped, {
+    case_id: "technical-bun-webview",
+    results: [
+      {
+        url: "https://example.test/a",
+        text: "alpha beta compiled\ninto one thing",
+        token_count: 6,
+      },
+    ],
+  });
+
+  expect(graded.components.extraction).toBe(10);
+});
+
+/** Different words are still different, however the whitespace falls. */
+test("TEST-012 collapsing whitespace does not make unrelated text match", () => {
+  const wrapped: TeacherFixture = {
+    case_id: "technical-bun-webview",
+    claims: [
+      {
+        id: "claim",
+        required_concepts: ["alpha"],
+        acceptable_patterns: ["alpha"],
+        sources: [{ url: "https://example.test/a", equivalent_urls: [] }],
+        evidence_passages: [{ url: "https://example.test/a", text: "alpha beta gamma" }],
+        weight: 1,
+      },
+    ],
+  };
+
+  const graded = gradeCase(wrapped, {
+    case_id: "technical-bun-webview",
+    results: [{ url: "https://example.test/a", text: "alpha beta delta", token_count: 3 }],
+  });
+
+  expect(graded.components.extraction).toBe(0);
+});
