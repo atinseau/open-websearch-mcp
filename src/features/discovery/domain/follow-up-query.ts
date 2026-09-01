@@ -117,6 +117,57 @@ const genericWords = new Set([
   "value",
   "version",
   "way",
+  // The same words in the scripts the corpus asks in. A question frames itself
+  // in its own language, and this list was spelled in English only: measured
+  // live, the Japanese question opens by asking for 一次情報 and 公式仕様 -
+  // primary sources, official specification - and the follow-up kept exactly
+  // those, deriving 日本語 一次 情報 公式. That names "Japanese primary
+  // information official" and nothing the question is about, while dropping
+  // URL, ドメイン and 国際, which are what an engine needs.
+  "情報",
+  "公式",
+  "一次",
+  "仕様",
+  "文書",
+  "資料",
+  "内容",
+  "詳細",
+  "例",
+  "参考",
+  "説明",
+  "정보",
+  "공식",
+  "문서",
+  "자료",
+]);
+
+/**
+ * Fragments an unspaced script leaves behind that are grammar, not words.
+ *
+ * A segmenter splits Japanese into morphemes, so a verb's inflection arrives
+ * as its own token: `使って` ("using") yields `使` and `って`. These pass the
+ * English scaffolding list because they are not in it, and they identify
+ * nothing. A language named as the answer's language - `日本語`, `한국어` -
+ * frames the question the same way "in English" would.
+ */
+const scriptFragments = new Set([
+  "って",
+  "して",
+  "され",
+  "れる",
+  "する",
+  "ある",
+  "など",
+  "よう",
+  "どの",
+  "ため",
+  "こと",
+  "もの",
+  "くだ",
+  "さい",
+  "日本語",
+  "한국어",
+  "中文",
 ]);
 
 /**
@@ -150,7 +201,9 @@ export function keywordFollowUp(query: string): string | undefined {
  */
 function mostDistinctive(terms: readonly string[], wanted: number): string[] {
   if (wanted <= 0) return [];
-  const identifying = terms.filter((term) => !genericWords.has(term.toLowerCase()));
+  const identifying = terms.filter(
+    (term) => !genericWords.has(term.toLowerCase()) && !scriptFragments.has(term),
+  );
   const chosen = new Set((identifying.length > 0 ? identifying : terms).slice(0, wanted));
   return terms.filter((term) => chosen.has(term));
 }

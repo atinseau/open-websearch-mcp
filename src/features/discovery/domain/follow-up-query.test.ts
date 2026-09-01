@@ -80,3 +80,28 @@ test("a non-latin question keeps its distinctive terms", () => {
       .length,
   );
 });
+
+/**
+ * The words a question uses to frame itself name no subject in any language.
+ *
+ * `genericWords` exists because "documentation" or "official" match anything
+ * an engine indexes, and it is spelled in English only. The corpus's Japanese
+ * question opens by asking for 一次情報 (primary sources) and 公式仕様
+ * (official specification) - exactly that kind of framing - and those words
+ * are what the follow-up kept.
+ *
+ * Measured live, the derived query was 日本語 一次 情報 公式, which names
+ * "Japanese primary information official" and nothing the question is about.
+ * The subject it dropped - URL, ドメイン, 国際 - is what an engine needs to
+ * find the specifications the question asks for.
+ */
+test("framing words name no subject in Japanese either", () => {
+  const follow = keywordFollowUp(
+    "日本語の一次情報と公式仕様を使って、URL の国際化ドメイン名がブラウザーでどのように解析・表示されるか説明してください。",
+  );
+
+  expect(follow).toContain("URL");
+  expect(follow).toContain("ドメイン");
+  expect(follow).not.toContain("一次");
+  expect(follow).not.toContain("公式");
+});
