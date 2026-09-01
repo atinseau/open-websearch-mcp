@@ -88,6 +88,30 @@ reason no normalisation addresses.
 That claim is one of two carrying a passage on this case, which is why its
 `extraction` scores 5 of 10 rather than 10.
 
+### Two passages joined cannot reconstruct a 2,478-character capture
+
+`technical-pdfjs`'s only evidence passage is 2,478 characters against a
+1,200-character passage size, so no single group can hold it. The grader joins
+a page's returned passages with a newline before comparing, which raised a
+possibility worth measuring: if the capture spans adjacent groups and both are
+returned, the joined text would carry it.
+
+Measured, `mozilla.github.io/pdf.js/examples/` yields three groups, and two of
+them do cover the capture — one starting at offset 911 of it, the other at
+2,090. They are returned ranked rather than in document order, so the joined
+text reads the second half before the first.
+
+Returning them in document order was implemented and measured. The joined text
+still does not carry the capture: two groups of at most 1,200 characters
+cannot span 2,478, whichever order they are in, and the third group is
+navigation chrome that scores below both. The change was withdrawn — it also
+contradicts `TOOL-001`, which holds that a focused page leads with the
+passage that answers the focus rather than with whatever the page opens on.
+
+This case is therefore bounded by the capture's length against `MCP-012`'s
+two passages of about 1,200 characters, which is why it scores 90 with
+`extraction` at 0.
+
 ## Alternatives measured and rejected
 
 | Approach | Corpus score | Why it failed |
