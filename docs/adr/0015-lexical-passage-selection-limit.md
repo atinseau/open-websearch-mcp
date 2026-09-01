@@ -185,6 +185,34 @@ where breadth is a liability. Choosing a passage inside a page it has already
 found is the opposite problem — the surrounding words are what identify the
 section — and the same reduction that sharpens the first blurs the second.
 
+### Refusing candidates that match only scaffolding, measured and rejected
+
+A candidate pool carries visible noise. Measured live, the Bun.WebView
+question — which opens "According to current official Bun documentation" —
+returned four dictionary entries for the phrase "according to" from
+WordReference, Reverso, Cambridge and Larousse; the WHATWG URL question
+returned four pages about Windows Terminal's quake mode, and on another run
+four `ccm.net` pages including a PDF converter and two Spanish medical
+articles. They arrive last in the pool, where the later engines widen it.
+
+The widening is not the defect: on the MCP question it contributes accepted
+sources as deep as twentieth place, and on PDF.js as deep as eighteenth.
+
+Refusing a candidate that shares no subject term with the question was
+implemented against a failing test and then withdrawn, because the
+discriminator does not exist. Only a title and a URL are known before
+rendering, and against the Bun.WebView question:
+
+| Candidate | Lexical coverage |
+| --- | --- |
+| `wordreference.com/enfr/according to` — a dictionary | **0.105** |
+| `bun.com/docs/runtime/webview` — the expected page | 0.053 |
+
+The noise scores twice what the answer scores, because a dictionary entry for
+a phrase repeats that phrase and a documentation page states its subject once.
+No threshold on this signal separates them, and admitting on the engine's own
+judgement is what the pool already does.
+
 ## Decision
 
 Lexical passage selection stays as it is. The `extraction` component is
