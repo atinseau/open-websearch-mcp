@@ -291,6 +291,32 @@ That is the same conclusion as the rest of this record, now established for
 the pair rather than for the passage, and it closes the direction the
 enumeration suggested.
 
+### The two low cases are the two without a scoped ask, and that is not the cause
+
+A correlation stands out across the corpus: every case that spends a scoped
+`site:` ask scores well — PDF.js 90, Bun WebView 86.25, MCP 82.5 — and the two
+that do not are the two at 55.
+
+They do not spend it because `arrived` reports the search has already reached
+the source. That report is literally true and looks wrong: on
+`sqlite.org/fts5.html` the question's term `fts5` is in the path, so arrival is
+declared at the page that names the subject rather than at the section
+answering the question.
+
+The ask was issued directly to see what it would have found. On
+`site:sqlite.org SQLite detect FTS5 support` it returns `fts5.html` and
+`search?q=fts5` — the pages the first pass already had — then `docs.html`,
+`sqlite.org/` and three forum posts. On
+`site:whatwg.org WHATWG URL Standard normalization` it returns
+`url.spec.whatwg.org/`, `spec.whatwg.org/`, `whatwg.org/`, the wiki, and two
+blog posts.
+
+Neither surfaces a page the first pass missed, and neither reaches the anchored
+sections the corpus cites — those are anchors within a page already held, not
+separate documents an engine can return. The correlation is real and the
+causation runs the other way: these two cases cite sections of a single page,
+which is also why their passages must be selected rather than discovered.
+
 ## Decision
 
 Lexical passage selection stays as it is. The `extraction` component is
