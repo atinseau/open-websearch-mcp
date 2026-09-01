@@ -102,7 +102,7 @@ configuration, replacing the command path with the output of `which bunx`:
 ```toml
 [mcp_servers.open_websearch]
 command = "/absolute/path/to/bunx"
-args = ["--bun", "open-websearch-mcp@0.2.0"]
+args = ["--bun", "open-websearch-mcp@0.2.1"]
 ```
 
 Configuration examples for Claude Code, Gemini CLI, and OpenCode are available

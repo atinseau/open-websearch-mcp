@@ -1,6 +1,6 @@
 {
   "name": "open-websearch-mcp",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Local-first MCP server for deterministic Web evidence retrieval.",
   "homepage": "https://github.com/atinseau/open-websearch-mcp",
   "bugs": {
