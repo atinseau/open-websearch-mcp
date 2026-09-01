@@ -2,7 +2,15 @@
   "name": "open-websearch-mcp",
   "version": "0.2.0",
   "description": "Local-first MCP server for deterministic Web evidence retrieval.",
+  "homepage": "https://github.com/atinseau/open-websearch-mcp",
+  "bugs": {
+    "url": "https://github.com/atinseau/open-websearch-mcp/issues"
+  },
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atinseau/open-websearch-mcp.git"
+  },
   "bin": {
     "open-websearch-mcp": "./bin/open-websearch-mcp.ts"
   },
