@@ -317,6 +317,25 @@ separate documents an engine can return. The correlation is real and the
 causation runs the other way: these two cases cite sections of a single page,
 which is also why their passages must be selected rather than discovered.
 
+### Stripping page chrome before extraction, measured and rejected
+
+The renderer removes `script`, `style`, `noscript`, `template` and `svg` from
+the DOM it reads. It keeps `nav`, `header`, `footer` and `aside`, which are
+chrome by definition: a site's menu appears on every one of its pages and
+answers no question. Removing them too was measured on each case, reading both
+versions from the same loaded DOM:
+
+| Case | As read today | With chrome removed | Claims satisfied |
+| --- | --- | --- | --- |
+| technical-sqlite-fts5 | 159,658 chars | 159,658 | 0 → 0 |
+| technical-url-canonicalization | 143,215 | 141,849 | 0 → 0 |
+| technical-bun-webview | 27,711 | 25,928 | 3 → 3 |
+| technical-pdfjs | 3,550 | 3,053 | 1 → 1 |
+
+Chrome is 1% to 14% of a page and no claim changes. SQLite's page has no
+chrome elements at all — its navigation is a table — which is why the
+structural-Markdown attempt above helped some pages and hurt others.
+
 ## Decision
 
 Lexical passage selection stays as it is. The `extraction` component is
