@@ -76,9 +76,11 @@ jobs:
           test -n "$tarball"
           sha=$(shasum -a 256 "$tarball" | cut -d' ' -f1)
           cp "$tarball" "$REPORT_DIR/"
-          echo "tarball=$tarball" >> "$GITHUB_OUTPUT"
+          echo "tarball=$REPORT_DIR/$(basename "$tarball")" >> "$GITHUB_OUTPUT"
           echo "sha256=$sha" >> "$GITHUB_OUTPUT"
 
+      # The smoke test packs its own copy and deletes it from the repository
+      # root when it finishes, so publication reads the evidence copy above.
       - name: Smoke-test the packed artifact through Bunx
         run: bun test --parallel --isolate tests/package/packed-artifact.test.ts 2>&1 | tee "$REPORT_DIR/smoke.log"
 
