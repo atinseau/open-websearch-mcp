@@ -43,15 +43,16 @@ test("a dry run plans the steps and performs no publication", async () => {
   expect(plan).toMatchObject({ dry_run: true, published: false });
 });
 
-test("a real run is refused until publication effects are configured", async () => {
+test("a real run is refused without the artifact the authorization approved", async () => {
   const path = `${repository}/docs/release/authorization.example.json`;
 
   const outcome = await run([path]);
 
-  // REL-004 keeps npm credentials and trusted publishing external; the driver
-  // must fail loudly rather than pretend to publish.
+  // An authorization records one tarball's SHA-256. Publishing whatever the
+  // working tree holds would publish something nobody approved, so a real run
+  // without `--tarball` must fail rather than guess.
   expect(outcome.exitCode).not.toBe(0);
-  expect(outcome.output).toMatch(/not configured|credential|external/i);
+  expect(outcome.output).toMatch(/tarball/i);
 });
 
 test("the example artifact cannot be mistaken for a real authorization", async () => {
