@@ -108,3 +108,32 @@ fetched everything from the network, and scored:
 
 Identical, case by case. The published scores measure discovery, rendering and
 selection rather than what a workspace happened to have kept.
+
+## The baseline was re-measured, not quoted
+
+The `34.38` this branch is compared against came from a report committed at
+`f7c20bf`, before several of the fixes below and under whatever network
+conditions held that day. It was re-measured rather than trusted: `main` at
+`8370ec5`, run against its own empty workspace holding only a copied
+`config.toml`, on the same day and the same network as the branch run above.
+
+| Case | main | this branch |
+| --- | --- | --- |
+| technical-pdfjs | **5** | **90** |
+| technical-mcp-stdio | **5** | **82.5** |
+| technical-bun-webview | 81.25 | 86.25 |
+| technical-sqlite-fts5 | 55 | 55 |
+| technical-url-canonicalization | 55 | 55 |
+| multilingual-ja-web-standards | 5 | 5 |
+| **mean** | **34.38** | **62.29** |
+
+`main` reproduces its committed score exactly, so the comparison is controlled
+rather than inherited.
+
+Two cases carry the whole difference, and both move from 5 — a score that
+means the expected source was not found at all — to a relevant result. Neither
+came from tuning: `technical-mcp-stdio` was reached by reading a page for the
+question that was asked and by comparing releases across a site, and
+`technical-pdfjs` by the scoped `site:` pass. The three cases that do not move
+are the three this record and
+[ADR-0015](0015-lexical-passage-selection-limit.md) bound.
