@@ -46,6 +46,21 @@ Markdown from the DOM walk, which scored 37.33 against a 42.0 baseline: it
 helps pages whose headings are real sections and hurts wherever a page's
 headings are its navigation.
 
+That first comparison was made on one case. Extended to every case carrying a
+measurable claim, with the same extractor and the same two-passage budget:
+
+| Case | Claims | Satisfied today | Satisfied from native Markdown | Code blocks recovered |
+| --- | --- | --- | --- | --- |
+| technical-bun-webview | 4 | 3 | 3 | 31 |
+| technical-mcp-stdio | 2 | **1** | **0** | 24 |
+| technical-pdfjs | 1 | **1** | **0** | 5 |
+| technical-sqlite-fts5 | 2 | 0 | 0 | 111 |
+| technical-url-canonicalization | 3 | 0 | 0 | 17 |
+
+Native Markdown recovers 188 code blocks across these pages and satisfies no
+claim that flat text does not already satisfy, while losing two. The
+regression is not confined to the case first measured.
+
 ## Decision
 
 The defect is recorded rather than fixed. `EXTRACT-006`, `EXTRACT-001` and
@@ -57,6 +72,14 @@ downstream component reads. It should be taken as its own task, measured over
 the full corpus, and paired with a corpus refresh — the captured passages were
 taken from rendered text and would need recapturing against whatever the
 renderer emits.
+
+A narrower option exists and is recorded rather than taken: keep flat text for
+passages and read code blocks from native Markdown, so `EXTRACT-006` is met
+without moving passage selection. `ExtractionInput` already separates
+`renderedText` from `markdown`, but `document-text.ts` prefers `markdown`
+wherever it is present, so both readings cannot coexist without giving the
+extractor two bodies and deciding per output which to read. That is a change
+to the extraction seam, not a setting, and it belongs with the task above.
 
 ## Consequences
 
