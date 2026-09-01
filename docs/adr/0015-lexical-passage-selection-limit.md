@@ -413,3 +413,38 @@ Nothing is changed here. The corpus is sealed, the grader's reading is the one
 verified against, and altering either would move a measurement rather than a
 behaviour. It is recorded because a probe that normalises differently from the
 grader will disagree with it, which is how this was found.
+
+### Twenty-one passages per source, measured through the grader
+
+Earlier attempts in this record measured passage depth with hand-written
+predicates that normalise differently from the grader, and one of them
+contradicted itself. This measurement calls `gradeCase` directly, so the
+comparison is the benchmark's own.
+
+Substituting a deep read of each case's leading source, keeping every other
+source as the search returned it:
+
+| Case | Two passages | Leading source read deep |
+| --- | --- | --- |
+| technical-sqlite-fts5 | 55 | **81.44** |
+| technical-url-canonicalization | 55 | 54.36 |
+| technical-mcp-stdio | 82.5 | 82.5 |
+| technical-bun-webview | 86.25 | 86.25 |
+| technical-pdfjs | 90 | 90 |
+
+SQLite's page yields 21 passages at any budget above that, which is 23,385
+characters — 15% of the page, not the whole of it. Its first claim is
+satisfied only at 21; three, four, six, eight and twelve all score zero, so
+there is no intermediate setting that buys the gain more cheaply.
+
+Run over the corpus with `search_passages_per_source = 21`, which is
+configuration rather than a code change (`CONFIG-004`), the mean moves
+**62.29 → 62.85**. The gain on SQLite is real and large, and it is almost
+entirely spent: `tokenBudget` falls from 5 to 0 on three cases and the
+Japanese case drops from 5 to 3.5.
+
+So the setting trades a 22-point gain on one case for five points of budget on
+three others, and nets 0.56. It is recorded rather than adopted: `MCP-012`
+fixes two passages per source by default, the corpus is the only evidence that
+21 is better, and a token budget spent on one page is a cost every caller pays
+whether or not their question resembles this corpus.
