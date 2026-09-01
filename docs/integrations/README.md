@@ -18,7 +18,7 @@ examples, not compatibility or support claims.
 ```toml
 [mcp_servers.open_websearch]
 command = "/absolute/path/to/bunx"
-args = ["--bun", "open-websearch-mcp@0.2.0"]
+args = ["--bun", "open-websearch-mcp@0.2.1"]
 ```
 
 ## Claude Code
@@ -30,7 +30,7 @@ Add this server entry to Claude Code's MCP configuration:
   "mcpServers": {
     "open-websearch": {
       "command": "/absolute/path/to/bunx",
-      "args": ["--bun", "open-websearch-mcp@0.2.0"]
+      "args": ["--bun", "open-websearch-mcp@0.2.1"]
     }
   }
 }
@@ -45,7 +45,7 @@ Add this server entry to Gemini CLI's MCP configuration:
   "mcpServers": {
     "open-websearch": {
       "command": "/absolute/path/to/bunx",
-      "args": ["--bun", "open-websearch-mcp@0.2.0"]
+      "args": ["--bun", "open-websearch-mcp@0.2.1"]
     }
   }
 }
@@ -60,7 +60,7 @@ Add this server entry to OpenCode's MCP configuration:
   "mcp": {
     "open-websearch": {
       "type": "local",
-      "command": ["/absolute/path/to/bunx", "--bun", "open-websearch-mcp@0.2.0"],
+      "command": ["/absolute/path/to/bunx", "--bun", "open-websearch-mcp@0.2.1"],
       "enabled": true
     }
   }
