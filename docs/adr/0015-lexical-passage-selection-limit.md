@@ -448,3 +448,48 @@ three others, and nets 0.56. It is recorded rather than adopted: `MCP-012`
 fixes two passages per source by default, the corpus is the only evidence that
 21 is better, and a token budget spent on one page is a cost every caller pays
 whether or not their question resembles this corpus.
+
+### The earlier depth measurement was capped by `web_open`, and understated the gain
+
+The measurement recorded above went through `web_open`, which `MCP-003` caps
+at 25,000 characters — 21 passages at 1,200 each. The search path passes
+`maxPassages` instead and is not capped that way, and the pages yield far more
+groups than 21: 104 for the WHATWG URL Standard, 145 for SQLite's FTS5 page.
+
+Re-measured on the uncapped path, grading through `gradeCase`:
+
+| Case | 2 | 21 | 40 | 60 | 104 |
+| --- | --- | --- | --- | --- | --- |
+| technical-url-canonicalization | 55 | 55 | 54.0 | **84.4** | 83.3 |
+| technical-sqlite-fts5 | 55 | **82.1** | 80.9 | 77.9 | 77.1 |
+
+So `url-canonicalization` is **not** bounded by passage ranking, which this
+record concluded from a capped measurement. Its evidence sits past passage 40
+and is reachable at 60.
+
+Run over the corpus with `search_passages_per_source = 60`:
+
+| | mean | url-canon | sqlite | multilingual-ja |
+| --- | --- | --- | --- | --- |
+| two passages | 62.29 | 55 | 55 | 5 |
+| sixty passages, run 1 | **70.28** | 83.3 | 77.1 | 17.5 |
+| sixty passages, run 2 | **73.20** | 83.3 | 77.1 | 35 |
+
+Both runs are large gains, and the Japanese case moves for the first time in
+this record — from 5 to 17.5 and 35 — because more of each page reaches the
+grader. `tokenBudget` is 0 on every case, which is the whole of the cost.
+
+### Why it is recorded rather than adopted
+
+`MCP-012` fixes two passages per source of about 1,200 characters. Sixty is
+thirty times that, and `tokenBudget` scoring zero everywhere is the benchmark
+saying the answer is too long, not that it is better.
+
+The corpus rewards recall and charges almost nothing for length: five of the
+hundred points. A caller pays that length on every call. Changing the default
+is a product decision about what `web_search` returns, not a tuning choice,
+and it belongs with whoever owns `MCP-012`.
+
+What this does establish is that two of the three cases this record treats as
+ranking-bound are not: their evidence is reachable, at a token cost the
+benchmark barely prices.
