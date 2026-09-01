@@ -81,3 +81,30 @@ overstatement.
   the Google captcha as the live obstacle to a quality measurement.
 - Raising the capture rate, or measuring quality through a discovery path that
   is not captcha-blocked, is worthwhile future work. Neither is claimed here.
+
+## The measured score does not depend on a warm cache
+
+A search merges discovered candidates with the workspace's local cache
+(`mergedCandidates`), so a workspace used for repeated runs and for direct
+page opens accumulates evidence that a fresh install would have to fetch. The
+scores in this record were all produced in one such workspace, which had 1,346
+cache entries — 524 of them still live, including `url.spec.whatwg.org` and
+`jprs.jp/glossary` with no expiry at all — and several were written by probes
+rather than by benchmark runs.
+
+The benchmark was therefore re-run against an empty workspace holding only a
+copied `config.toml`. It wrote 194 cache entries of its own, confirming it
+fetched everything from the network, and scored:
+
+| Case | Warm workspace | Empty workspace |
+| --- | --- | --- |
+| technical-pdfjs | 90 | 90 |
+| technical-bun-webview | 86.25 | 86.25 |
+| technical-mcp-stdio | 82.5 | 82.5 |
+| technical-sqlite-fts5 | 55 | 55 |
+| technical-url-canonicalization | 55 | 55 |
+| multilingual-ja-web-standards | 5 | 5 |
+| **mean** | **62.29** | **62.29** |
+
+Identical, case by case. The published scores measure discovery, rendering and
+selection rather than what a workspace happened to have kept.
