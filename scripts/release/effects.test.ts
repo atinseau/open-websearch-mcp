@@ -3,9 +3,14 @@ import { expect, test } from "bun:test";
 import { createReleaseEffects, type EffectCommands } from "./effects.ts";
 import type { Authorization } from "./publish-ledger.ts";
 
+// Observation and tagging read the manifest's own version, so these fixtures
+// answer for whatever this checkout declares rather than a version frozen here.
+const MANIFEST_VERSION: string = manifestVersion(await Bun.file("package.json").json());
+const TAG = `v${MANIFEST_VERSION}`;
+
 const authorization: Authorization = {
   commit: "c894e41aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-  version: "0.1.1",
+  version: MANIFEST_VERSION,
   package: "open-websearch-mcp",
   distTag: "latest",
   approvedBy: "atinseau",
@@ -30,16 +35,16 @@ function recorder(responses: Record<string, { stdout?: string; code?: number }> 
  */
 test("RELEASE-006 observes npm, tag, and release state before deciding", async () => {
   const { calls, run } = recorder({
-    "npm view": { stdout: JSON.stringify({ version: "0.1.1", dist: { shasum: "abc" } }) },
-    "git ls-remote": { stdout: "deadbeef\trefs/tags/v0.1.1\n" },
-    "gh release": { stdout: "v0.1.1" },
+    "npm view": { stdout: JSON.stringify({ version: MANIFEST_VERSION, dist: { shasum: "abc" } }) },
+    "git ls-remote": { stdout: "deadbeef\trefs/tags/" + TAG + "\n" },
+    "gh release": { stdout: TAG },
   });
 
   const observed = await createReleaseEffects({ run, tarballPath: "/tmp/pkg.tgz" }).observe();
 
-  expect(observed.npm).toEqual({ version: "0.1.1", shasum: "abc" });
-  expect(observed.tag).toBe("v0.1.1");
-  expect(observed.githubRelease).toBe("v0.1.1");
+  expect(observed.npm).toEqual({ version: MANIFEST_VERSION, shasum: "abc" });
+  expect(observed.tag).toBe(TAG);
+  expect(observed.githubRelease).toBe(TAG);
   expect(calls.length).toBe(3);
 });
 
@@ -91,6 +96,15 @@ test("RELEASE-006 tags the authorized commit", async () => {
   // The commit is named when the tag is created; the push only moves the ref.
   const tagged = (calls[0] ?? []).join(" ");
   expect(tagged).toContain(authorization.commit);
-  expect(tagged).toContain("v0.1.1");
-  expect((calls.at(-1) ?? []).join(" ")).toContain("refs/tags/v0.1.1");
+  expect(tagged).toContain(TAG);
+  expect((calls.at(-1) ?? []).join(" ")).toContain("refs/tags/" + TAG);
 });
+
+/** Reads a manifest's version without trusting the parsed shape. */
+function manifestVersion(value: unknown): string {
+  if (typeof value === "object" && value !== null && "version" in value) {
+    const version: unknown = (value as Record<string, unknown>).version;
+    if (typeof version === "string") return version;
+  }
+  throw new Error("package.json declares no version");
+}
