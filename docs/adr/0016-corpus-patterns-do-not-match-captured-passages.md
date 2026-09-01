@@ -140,6 +140,35 @@ The discovery fix is kept because it is correct on its own terms and the
 English questions derive exactly what they derived before. This case stays
 bounded by what the engines return for it.
 
+#### Five of its six accepted sources render; discovery reaches none of them
+
+Each accepted source was opened directly:
+
+| Source | Result |
+| --- | --- |
+| `www.nic.ad.jp/ja/dom/idn.html` | error after 18s, 0 characters |
+| `jprs.jp/glossary/index.php?ID=0051` | success, 2,137 characters |
+| `datatracker.ietf.org/doc/rfc5890/` | success |
+| `datatracker.ietf.org/doc/html/rfc3492` | success |
+| `url.spec.whatwg.org/` | success, 2,277 characters |
+| `unicode.org/reports/tr46/` | success, 1,704 characters |
+
+So the case is not bounded by rendering. Five sources are renderable and
+discovery surfaces none of them under any query measured; the sixth is the
+only one it does surface, and it is the one that fails.
+
+The scoped pass makes this worse rather than better. It derives
+`site:nic.ad.jp`, and the pool it produces is 11 `nic.ad.jp` pages out of 23 -
+close to half a pool spent on a host where every page fails. `HostAllowance`
+stops the search after two of them, so the remaining nine are candidates that
+can never be reached, and a navigation was spent deriving them.
+
+The scoped pass cannot know this. It runs inside discovery, before anything is
+rendered, while the host's failures are only learned later in `fill-results`.
+Carrying that knowledge backwards would make one call's rendering outcomes
+decide another call's discovery, which is a larger change than this case
+justifies and is not made here.
+
 ## Alternatives measured and rejected
 
 | Approach | Corpus score | Why it failed |
