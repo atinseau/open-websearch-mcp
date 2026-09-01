@@ -87,3 +87,26 @@ A caller relying on `code_blocks` receives an empty array from every HTML
 page and cannot tell that from a page with no code. That is the user-visible
 cost of leaving this open, and it is larger than the benchmark's, which is
 zero: the corpus's patterns ask for prose, not for code.
+
+## `EXTRACT-012` fails the same way, and its fallback invents locators
+
+`EXTRACT-012` requires every passage to carry a real fragment where one is
+available, and states that no locator may be invented. Measured on
+`url.spec.whatwg.org`, every passage the product returns carries
+`fragment: null` — the same cause, since fragments are derived from Markdown
+headings and the renderer emits none.
+
+Opening `#url-parsing` and `#url-miscellaneous` returns byte-identical results
+to opening the page with no anchor, so a caller naming a section is answered
+with the page's opening text.
+
+Reading the same page from native Markdown fills 44 of 45 fragments, which
+shows the mechanism works. It also shows the fallback is wrong: it derives
+`#4-4-url-parsing` by slugifying a numbered heading, where the page publishes
+`id="url-parsing"`. None of the four anchors the corpus cites is among the
+fragments produced. A locator that does not resolve on the page it names is
+invented, which is what `EXTRACT-012` forbids.
+
+Both belong with the renderer task above: real fragments are read from the
+document's own `id` attributes, which the current `innerText` evaluation
+discards along with everything else structural.
