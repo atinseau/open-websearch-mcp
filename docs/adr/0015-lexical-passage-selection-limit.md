@@ -380,3 +380,36 @@ resolved here, so no claim is made about what a deeper budget would score.
 What stands is the bound this record establishes by arithmetic rather than by
 sampling: the passage carrying the evidence is outscored by more groups than
 the two that are returned, whichever grouping it is measured in.
+
+## Why two readings of one page can disagree
+
+`conceptGrounded` accepts a concept two ways. Its tokens may be *adjacent* —
+joined by any run of non-alphanumeric characters, of any length — or they may
+be within `conceptProximityWindow`, 160 characters measured between the
+outermost matched tokens.
+
+The window is a character count, so collapsing whitespace moves it. Measured
+directly, with the same words in the same order and other words between them:
+
+| Reading | Length | `entry-points` grounded |
+| --- | --- | --- |
+| as a source file wraps it | 350 chars | **no** |
+| whitespace collapsed | 166 chars | **yes** |
+
+The adjacent rule hides this for most concepts: `entry` followed by two
+hundred newlines and `points` matches it, because the separator is entirely
+non-alphanumeric. The window is only consulted when other *words* sit between
+the tokens, and that is exactly where a wrapped page and a flattened one part
+company.
+
+This matters because the two sides of the benchmark read differently.
+`evidenceCoverage` grounds concepts in `flattened` text — whitespace collapsed
+— while `selectEvidencePassage` grounds them in `normalized` text, which keeps
+the wrapping. A concept can therefore be grounded for the grader and not for
+the capture, or the reverse.
+
+Nothing is changed here. The corpus is sealed, the grader's reading is the one
+[ADR-0016](0016-corpus-patterns-do-not-match-captured-passages.md)'s correction
+verified against, and altering either would move a measurement rather than a
+behaviour. It is recorded because a probe that normalises differently from the
+grader will disagree with it, which is how this was found.
