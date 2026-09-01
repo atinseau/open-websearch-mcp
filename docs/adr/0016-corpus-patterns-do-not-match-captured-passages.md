@@ -112,6 +112,34 @@ This case is therefore bounded by the capture's length against `MCP-012`'s
 two passages of about 1,200 characters, which is why it scores 90 with
 `extraction` at 0.
 
+### The Japanese case is bounded twice over
+
+`multilingual-ja-web-standards` scores 5 with every component at 0 but the
+token budget, and the cause is not one defect but two in series.
+
+Discovery was the first. The follow-up query kept the question's framing words
+— 一次情報, 公式仕様 — and derived `日本語 一次 情報 公式`, naming nothing
+the question is about. Reading those as framing in Japanese as well as in
+English derives `URL 国際 ドメイン ブラウザー`, and the expected source moves
+from third place in the candidate pool to first, with a second copy of it
+alongside.
+
+The score did not move, because the source that discovery now leads with is
+`www.nic.ad.jp`, every page of which fails to render: measured across its
+`idn.html`, `system.html`, `dom/` and `index.html`, all four exhaust the
+renderer's full thirty-second navigation deadline and return nothing, while
+`jprs.jp` and Japanese Wikipedia render from the same browser in seconds.
+
+Of the claim's six accepted sources, that unrenderable host is the only one
+discovery surfaces at all. The others — `jprs.jp/glossary`, two IETF RFCs,
+`url.spec.whatwg.org` and `unicode.org/reports/tr46/` — are absent from the
+pool under every query measured, including the question itself, its keywords,
+and three hand-written technical phrasings.
+
+The discovery fix is kept because it is correct on its own terms and the
+English questions derive exactly what they derived before. This case stays
+bounded by what the engines return for it.
+
 ## Alternatives measured and rejected
 
 | Approach | Corpus score | Why it failed |
