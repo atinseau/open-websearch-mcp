@@ -237,3 +237,40 @@ carrying terms the question does not contain and the reachable pages do not
 supply. That is outside
 [ADR-0006](0006-codex-only-teacher-with-deterministic-grounding.md)'s
 deterministic boundary rather than a defect in discovery.
+
+## Correction — the headline count measured the wrong condition
+
+The table above counts patterns absent from each captured passage, and the
+sentence drawn from it — "no claim in the corpus has a captured passage that
+satisfies all of its own patterns: 0 of 8" — is true and irrelevant.
+
+`evidenceCoverage` requires **at least one** pattern to match, as this record's
+own Context paragraph states. Measured against that condition, with concepts
+grounded the way the grader grounds them:
+
+**All 8 claims carrying a captured passage satisfy the grader's actual test.**
+
+Every captured passage matches between one and three of its patterns:
+`multilingual-ja` 2 of 3, `url-canonicalization` 1 of 4 and 3 of 5,
+`bun-webview` 1 of 2 twice, `pdfjs` 1 of 2, `mcp-stdio` 2 of 3,
+`sqlite-fts5` 1 of 3. That is what the capture step guarantees:
+`selectEvidencePassage` refuses to store a span unless a pattern matches it.
+
+`benchmarks/grader/corpus-self-consistency.test.ts` asserted the `every`
+condition and recorded zero, which made a capture invariant look like a corpus
+defect.
+
+### What this changes
+
+The corpus is not the binding constraint on these claims. A product returning
+the captured span would score them, so the gap is entirely which passages
+selection returns — which is
+[ADR-0015](0015-lexical-passage-selection-limit.md)'s arithmetic bound, not a
+corpus fault.
+
+The individual findings below stand: `technical-pdfjs`'s capture is 2,478
+characters against 1,200-character passages, `bun-webview`'s table capture
+carries cell separators the renderer does not emit, and the prose-quoting
+patterns still fail against the *pages* even though one pattern each matches
+the *captured passage*. Those are the real bounds; the headline count was not
+one of them.

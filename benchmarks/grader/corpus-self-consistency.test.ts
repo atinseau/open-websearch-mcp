@@ -30,14 +30,22 @@ test("VER-001 the corpus's patterns are measured against its own passages", asyn
       const captured = (claim.evidence_passages ?? []).map((passage) => passage.text).join(" ");
       if (!captured) continue;
       withPassage += 1;
-      if (claim.acceptable_patterns.every((pattern) => new RegExp(pattern, "iu").test(captured)))
+      // `evidenceCoverage` requires at least one pattern to match, not all of
+      // them. Asserting `every` measured a condition the grader never applies
+      // and recorded zero, which made a capture invariant look like a corpus
+      // defect: `selectEvidencePassage` refuses to store a span unless a
+      // pattern matches it, so this count is 8 by construction and its value is
+      // as a guard against a refresh that breaks that invariant.
+      if (claim.acceptable_patterns.some((pattern) => new RegExp(pattern, "iu").test(captured)))
         selfConsistent += 1;
     }
   }
 
   expect(withPassage).toBe(8);
-  // ADR-0016: none of them. Raise this when a corpus refresh earns it.
-  expect(selfConsistent).toBe(0);
+  // Every captured passage matches a pattern of its own claim, which is what
+  // the capture step guarantees. A refresh that stores an unmatched span makes
+  // this fail.
+  expect(selfConsistent).toBe(8);
 });
 
 interface ClaimShape {
