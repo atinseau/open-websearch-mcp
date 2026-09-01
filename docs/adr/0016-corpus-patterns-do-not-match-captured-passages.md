@@ -202,3 +202,38 @@ gates a release.
 
 Until then, the measured scores stay what they are: a floor, not a ceiling. The
 product is credited only where the corpus can see it.
+
+## The Japanese case needs a query in a language it is not written in
+
+Three measurements narrow that case to one cause.
+
+The requested locale is not it. The same query returns the same ten results
+from DuckDuckGo under `hl=ja-JP` and `hl=en-US`, with `nic.ad.jp` — the one
+unrenderable source — the only accepted source in either.
+
+The query's language is. Asked in English, the same subject reaches sources
+the Japanese phrasing never does:
+
+| Query | Accepted sources reached |
+| --- | --- |
+| `URL 国際 ドメイン ブラウザー` (what the product derives) | `nic.ad.jp`, which cannot render |
+| `IDNA UTS46 ToASCII internationalized domain name browser` | `unicode.org/reports/tr46/` |
+| `WHATWG URL Standard host parser IDNA ToASCII` | `url.spec.whatwg.org/` |
+
+Both English phrasings reach a renderable accepted source, and neither can be
+derived. The question contains exactly one Latin term, `URL`; `IDNA`, `UTS46`
+and `ToASCII` are technical vocabulary a translation would have to supply, and
+the product holds no lexicon and no model.
+
+Taking identifiers from the pages the first pass did reach was measured as the
+deterministic alternative. Those pages do carry Latin identifiers —
+`Punycode`, `IDNA`, `ASCII`, `Unicode`, `RFC` — so a follow-up built from them
+invents nothing. Three such queries were issued and reached no accepted
+source: the terms that worked were `UTS46` and `ToASCII`, which appear on none
+of the reachable Japanese pages.
+
+So this case needs a query in a language the question is not written in,
+carrying terms the question does not contain and the reachable pages do not
+supply. That is outside
+[ADR-0006](0006-codex-only-teacher-with-deterministic-grounding.md)'s
+deterministic boundary rather than a defect in discovery.
