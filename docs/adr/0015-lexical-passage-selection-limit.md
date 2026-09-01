@@ -213,6 +213,51 @@ a phrase repeats that phrase and a documentation page states its subject once.
 No threshold on this signal separates them, and admitting on the engine's own
 judgement is what the pool already does.
 
+### What two passages could reach, computed exhaustively
+
+Earlier sections measure where the expected passage ranks. A stronger question
+is whether *any* pair of a page's groups satisfies a claim, since two are
+returned. That is decidable by enumeration rather than by another corpus run.
+
+Every pair of groups was tested against each claim's concepts and patterns:
+
+| Case | Claim | A satisfying pair |
+| --- | --- | --- |
+| technical-url-canonicalization | 0 | none |
+| technical-url-canonicalization | 1 | groups 0 + 52 |
+| technical-url-canonicalization | 2 | groups 0 + 54 |
+| technical-sqlite-fts5 | 0 | groups 0 + 14 |
+| technical-sqlite-fts5 | 1 | none |
+
+Three claims are reachable within the two-passage budget, and every satisfying
+pair contains group 0 — which the product already returns. Exactly one passage
+is missing in each case, at rank 52, 54 and 14.
+
+Read against the whole of every accepted source, seven of these cases' eleven
+claims are reachable at best, and four are not: they fail on a concept or a
+pattern the pages never carry, which is
+[ADR-0016](0016-corpus-patterns-do-not-match-captured-passages.md)'s finding.
+
+So the ceiling is not uniform. Two cases are bounded by the ranking rather
+than by the corpus, worth about 39 points between them, and the gap is one
+passage each.
+
+### Weighting a section's own title, measured and rejected
+
+A section title is a page's claim about what follows, and it is weighted no
+differently from the prose beneath it. On SQLite's page the missing group opens
+with `2.2. Building a Loadable Extension`, which names the claim exactly.
+
+Counting a question's terms twice when they appear in a group's opening title
+line was measured. It changes which passages are chosen — SQLite picks 8 and
+47 rather than 0 and 1, URL canonicalization picks 1 and 0 rather than 0 and
+47 — and satisfies no additional claim on either case. It also loses group 0,
+which every satisfying pair needs.
+
+On the WHATWG page the missing groups score 0.8 against a leading 12, so no
+bonus of this size reaches them; on SQLite's the missing group scores 7
+against 9, and the title bonus moves other groups further.
+
 ## Decision
 
 Lexical passage selection stays as it is. The `extraction` component is
