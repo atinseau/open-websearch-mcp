@@ -534,13 +534,14 @@ evidence = ["docs/orchestration/runs/REL-002/0001-packed-artifact-smoke.md"]
 state = "verified"
 spec = "docs/spec/10-packaging-releases.md"
 depends_on = ["BOOT-004", "REL-002", "VER-004"]
-write_set = [".github/workflows/release.yml", "docs/release"]
+write_set = [".github/workflows/publish.yml", "docs/release"]
 attempts = [
   { attempt = 1, branch = "agent/ver-004-a1", worktree = ".worktree/ver-004", base_sha = "4c5344f0cc9eece4339b787d998376a54fdaf11f" },
 ]
 evidence = [
   "docs/orchestration/runs/REL-003/0001-release-candidate-workflow.md",
-  ".github/workflows/release.yml",
+  "docs/orchestration/runs/REL-003/0002-publish-workflow-supersedes-candidate.md",
+  ".github/workflows/publish.yml",
   "docs/release/CHANGELOG.md",
 ]
 
