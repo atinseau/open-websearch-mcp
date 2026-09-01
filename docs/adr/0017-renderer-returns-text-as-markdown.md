@@ -110,3 +110,23 @@ invented, which is what `EXTRACT-012` forbids.
 Both belong with the renderer task above: real fragments are read from the
 document's own `id` attributes, which the current `innerText` evaluation
 discards along with everything else structural.
+
+## This defect was recorded before, and partly fixed
+
+[ADR-0011](0011-reject-self-referential-passage-derived-teacher-refresh.md)
+observed the same renderer behaviour while trialling a passage-bearing corpus
+refresh: "its renderer provides plain rendered text as `markdown` while
+declaring `text/html`". Three consequences were diagnosed and fixed there —
+oversized blocks were dropped rather than split, newlines were collapsed by
+HTML sanitisation, and the non-HTML branch never sanitised at all.
+
+What that amendment fixed was passages being erased. What it left standing is
+the cause: `markdown` is still the page's flat text, so no fence exists and no
+code block or real fragment can be derived. The measurements above quantify
+what remains, and the finding is not that the behaviour is newly discovered but
+that it still costs `EXTRACT-001`, `EXTRACT-006`, `EXTRACT-012` and
+`MCP-005` their guarantees.
+
+ADR-0011 also concluded that fixing this "is valuable product work, but alone
+does not make its output independent extraction ground truth". That remains
+true and is why the renderer task and the corpus task are separate.
