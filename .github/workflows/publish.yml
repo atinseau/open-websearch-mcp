@@ -1,0 +1,132 @@
+name: publish
+
+# A tag is the authorization to publish. Pushing `v<version>` on a commit that
+# is on `main` publishes that exact commit to npm, creates its GitHub Release,
+# and records each step in the append-only ledger. RELEASE-006 requires the run
+# to resume idempotently, so re-running a partially failed tag repeats only the
+# steps the ledger does not already record as succeeded.
+
+on:
+  push:
+    tags: ["v*"]
+
+concurrency:
+  # Never two publications of one tag; never cancel one midway, because a
+  # cancelled publish leaves the ledger describing work that did happen.
+  group: publish-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: macos-15
+    timeout-minutes: 45
+    # The npm token lives in this environment, so a publication cannot run from
+    # a workflow that did not ask for it.
+    environment: production
+    permissions:
+      contents: write
+      id-token: write
+    env:
+      REPORT_DIR: /tmp/open-websearch-publish
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version: 1.4.0
+
+      - name: Refuse a tag that is not on main
+        run: |
+          set -euo pipefail
+          git fetch origin main --depth=0
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/main; then
+            echo "RELEASE-005: only commits already on main may be released" >&2
+            exit 1
+          fi
+
+      - name: Refuse a tag that disagrees with the manifest
+        run: |
+          set -euo pipefail
+          mkdir -p "$REPORT_DIR"
+          tag="${GITHUB_REF_NAME#v}"
+          manifest=$(bun -e 'console.log((await Bun.file("package.json").json()).version)')
+          if [ "$tag" != "$manifest" ]; then
+            echo "tag v$tag does not match package version $manifest" >&2
+            exit 1
+          fi
+
+      - name: Install from the lockfile
+        run: bun install --frozen-lockfile --ignore-scripts
+
+      - name: Run the full deterministic gate
+        run: bun run check 2>&1 | tee "$REPORT_DIR/gate.log"
+
+      - name: Build the artifact the authorization will name
+        id: pack
+        run: |
+          set -euo pipefail
+          bun pm pack --ignore-scripts 2>&1 | tee "$REPORT_DIR/pack.log"
+          tarball=$(find . -maxdepth 1 -name '*.tgz' -type f -print -quit)
+          test -n "$tarball"
+          sha=$(shasum -a 256 "$tarball" | cut -d' ' -f1)
+          cp "$tarball" "$REPORT_DIR/"
+          echo "tarball=$tarball" >> "$GITHUB_OUTPUT"
+          echo "sha256=$sha" >> "$GITHUB_OUTPUT"
+
+      - name: Smoke-test the packed artifact through Bunx
+        run: bun test --parallel --isolate tests/package/packed-artifact.test.ts 2>&1 | tee "$REPORT_DIR/smoke.log"
+
+      - name: Write the authorization this tag stands for
+        run: |
+          set -euo pipefail
+          version="${GITHUB_REF_NAME#v}"
+          cat > "$REPORT_DIR/authorization.json" <<JSON
+          {
+            "schema_version": 1,
+            "commit": "$GITHUB_SHA",
+            "version": "$version",
+            "package": "open-websearch-mcp",
+            "dist_tag": "latest",
+            "approved_by": "$GITHUB_ACTOR",
+            "tarball_sha256": "${{ steps.pack.outputs.sha256 }}"
+          }
+          JSON
+          bun scripts/release/main.ts "$REPORT_DIR/authorization.json" --dry-run | tee "$REPORT_DIR/plan.json"
+
+      - name: Generate the release changelog
+        run: |
+          set -euo pipefail
+          mkdir -p docs/release
+          previous=$(git describe --tags --abbrev=0 "$GITHUB_SHA^" 2>/dev/null || true)
+          {
+            printf '# %s\n\n' "$GITHUB_REF_NAME"
+            printf 'Commit: `%s`\n\n' "$GITHUB_SHA"
+            printf '## Changes\n\n'
+            if [ -n "$previous" ]; then
+              git log --format='- %s (%h)' "$previous..$GITHUB_SHA"
+            else
+              git log --format='- %s (%h)' -20 "$GITHUB_SHA"
+            fi
+          } > docs/release/CHANGELOG.md
+          cp docs/release/CHANGELOG.md "$REPORT_DIR/"
+
+      - name: Publish, tag, and release
+        run: |
+          set -euo pipefail
+          bun scripts/release/main.ts "$REPORT_DIR/authorization.json" \
+            --tarball "${{ steps.pack.outputs.tarball }}" 2>&1 | tee "$REPORT_DIR/publish.json"
+
+      - name: Upload publication evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: publish-${{ github.ref_name }}-${{ github.run_attempt }}
+          path: ${{ env.REPORT_DIR }}
+          if-no-files-found: error
+          retention-days: 90

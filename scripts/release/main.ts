@@ -3,13 +3,18 @@
  *
  *   bun scripts/release/main.ts <authorization.json> [--dry-run]
  *
- * It plans an authorized release and, in a real run, would execute it through
- * configured publication effects. No credential, registry token, or trusted
- * publishing identity lives here: those are external-authority bootstrap
- * concerns per the packaging spec, so a real run fails loudly until they are
- * supplied rather than appearing to publish.
+ * It plans an authorized release and executes it through publication effects.
+ * No credential lives here: `npm` reads `NODE_AUTH_TOKEN` and `gh` reads
+ * `GH_TOKEN` from the environment the workflow supplies, so this file cannot
+ * carry a token into an argument list or a log.
+ *
+ * A real run requires `--tarball`, because the authorization records the
+ * SHA-256 of one exact artifact and publishing anything else would publish
+ * something nobody approved.
  */
 import { parseAuthorization } from "./authorization.ts";
+import { createReleaseEffects, spawnCommands } from "./effects.ts";
+import { runRelease } from "./publish-driver.ts";
 import { planRelease, type LedgerEntry } from "./publish-ledger.ts";
 
 const [path, ...flags] = Bun.argv.slice(2);
@@ -27,34 +32,66 @@ if (!(await file.exists())) {
 
 const authorization = parseAuthorization(await file.text());
 const ledger: LedgerEntry[] = await readLedger();
-// Without configured effects the remote is unobserved; a dry run reports the
-// steps a first authorized run would take.
-const plan = planRelease({
-  authorization,
-  ledger,
-  remote: { npm: undefined, tag: undefined, githubRelease: undefined },
-});
 
-if (!flags.includes("--dry-run")) {
-  console.error(
-    "publication effects are not configured: npm credentials, trusted publishing, and GitHub release authority are external bootstrap concerns. Re-run with --dry-run to inspect the plan.",
+if (flags.includes("--dry-run")) {
+  // A dry run observes nothing, so it reports the steps a first authorized run
+  // would take rather than pretending to know the remote.
+  const plan = planRelease({
+    authorization,
+    ledger,
+    remote: { npm: undefined, tag: undefined, githubRelease: undefined },
+  });
+  console.log(
+    JSON.stringify({
+      dry_run: true,
+      published: false,
+      commit: authorization.commit,
+      version: authorization.version,
+      package: authorization.package,
+      dist_tag: authorization.distTag,
+      approved_by: authorization.approvedBy,
+      steps: plan.steps,
+      conflict: plan.conflict ?? null,
+    }),
   );
-  process.exit(3);
+  process.exit(0);
 }
 
+const tarball = flagValue(flags, "--tarball");
+if (tarball === undefined) {
+  console.error(
+    "a real run requires --tarball <path>: the authorization records one artifact's SHA-256",
+  );
+  process.exit(2);
+}
+
+const outcome = await runRelease({
+  authorization,
+  ledger,
+  effects: createReleaseEffects({
+    run: (argv) => spawnCommands.run(argv),
+    tarballPath: tarball,
+  }),
+});
+
+await Bun.write("docs/release/publish-ledger.json", `${JSON.stringify(outcome.ledger, null, 2)}\n`);
 console.log(
   JSON.stringify({
-    dry_run: true,
-    published: false,
+    dry_run: false,
+    published: outcome.completed,
     commit: authorization.commit,
     version: authorization.version,
-    package: authorization.package,
-    dist_tag: authorization.distTag,
-    approved_by: authorization.approvedBy,
-    steps: plan.steps,
-    conflict: plan.conflict ?? null,
+    conflict: outcome.conflict ?? null,
+    failure: outcome.failure ?? null,
   }),
 );
+// A conflict or failure must fail the job: the ledger records where to resume.
+if (!outcome.completed) process.exit(1);
+
+function flagValue(argv: readonly string[], name: string): string | undefined {
+  const at = argv.indexOf(name);
+  return at >= 0 ? argv[at + 1] : undefined;
+}
 
 async function readLedger(): Promise<LedgerEntry[]> {
   const ledgerFile = Bun.file("docs/release/publish-ledger.json");
