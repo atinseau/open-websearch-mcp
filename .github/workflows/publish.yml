@@ -41,6 +41,15 @@ jobs:
         with:
           bun-version: 1.4.0
 
+      # npm reads its credential from an npmrc, not from the environment alone.
+      # setup-node writes that file; this workflow runs on Bun, so it writes the
+      # same one line itself. The token stays in the environment, never in the
+      # file, so nothing here can be committed or printed.
+      - name: Point npm at the registry credential
+        run: |
+          set -euo pipefail
+          echo '//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}' > "$HOME/.npmrc"
+
       - name: Refuse a tag that is not on main
         run: |
           set -euo pipefail
