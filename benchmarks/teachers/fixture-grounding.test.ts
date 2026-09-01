@@ -1,6 +1,6 @@
 import { expect, test } from "bun:test";
 
-import { verifyDraftGrounding } from "./fixture-grounding.ts";
+import { conceptGrounded, verifyDraftGrounding } from "./fixture-grounding.ts";
 
 const evidence = {
   runs: [
@@ -230,4 +230,40 @@ test("finds a bounded window after many earlier occurrences of a token", () => {
       acceptable_patterns: ["alpha"],
     }).accepted_claim_ids,
   ).toEqual(["c1"]);
+});
+
+/**
+ * The proximity window is a character count, so how a page is wrapped decides
+ * whether a concept is grounded by it.
+ *
+ * The adjacency rule hides this for most concepts — its separator is any run
+ * of non-alphanumeric characters, so `entry` and `points` two hundred newlines
+ * apart are still adjacent. The window is only consulted when other *words*
+ * sit between the tokens, and there a source file's wrapping and a collapsed
+ * reading of the same text disagree.
+ *
+ * This matters because the two sides of the benchmark read differently:
+ * `evidenceCoverage` grounds concepts in whitespace-collapsed text, while the
+ * corpus capture grounds them in text that keeps its wrapping. The behaviour is
+ * recorded rather than changed — see
+ * ADR-0015 — and this test exists so it is not rediscovered by a probe that
+ * normalises differently and appears to contradict the grader.
+ */
+test("the proximity window moves with how the text is wrapped", () => {
+  const between = Array.from({ length: 22 }, () => "detail").join("\n        ");
+  const wrapped = `entry\n        ${between}\n        points`;
+  const collapsed = wrapped.replaceAll(/\s+/gu, " ");
+
+  const grounded = (text: string) => conceptGrounded("entry-points", { text, urls: new Set() });
+
+  expect(wrapped.length).toBeGreaterThan(collapsed.length);
+  expect(grounded(wrapped)).toBe(false);
+  expect(grounded(collapsed)).toBe(true);
+});
+
+/** Adjacency ignores separator length, which is why most concepts are stable. */
+test("tokens separated only by whitespace stay adjacent however long it runs", () => {
+  const text = `entry${"\n".repeat(200)}points`;
+
+  expect(conceptGrounded("entry-points", { text, urls: new Set() })).toBe(true);
 });

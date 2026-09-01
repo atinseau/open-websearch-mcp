@@ -499,6 +499,19 @@ evidence = [
   "benchmarks/reports/release/2026-08-29-release-readiness.md",
 ]
 
+[tasks.VER-005]
+state = "planned"
+spec = "docs/spec/09-verification-benchmarks.md"
+depends_on = ["VER-004"]
+write_set = ["benchmarks/teachers", "benchmarks/grader", "docs/adr"]
+requirements = ["TEST-012", "TEST-014"]
+acceptance_gates = ["command:bun run check"]
+evidence = [
+  "docs/orchestration/tasks/VER-005.md",
+  "docs/adr/0015-lexical-passage-selection-limit.md",
+  "docs/adr/0016-corpus-patterns-do-not-match-captured-passages.md",
+]
+
 [tasks.REL-001]
 state = "verified"
 spec = "docs/spec/10-packaging-releases.md"

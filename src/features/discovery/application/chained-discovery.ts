@@ -5,6 +5,7 @@ import type {
   GoogleProfile,
 } from "@/features/discovery";
 import { keywordFollowUp } from "@/features/discovery/domain/follow-up-query";
+import { asksForCurrent, siteFollowUp } from "@/features/discovery/domain/site-query";
 
 /** One engine's connector, named so a result can report where it came from. */
 export interface NamedEngine {
@@ -47,7 +48,56 @@ export class ChainedDiscovery implements GoogleDiscoveryService {
   async discover(input: GoogleDiscoveryInput): Promise<GoogleDiscoveryResult> {
     const first = await this.#walk(input);
     const widened = await this.#widened(first, input);
-    return this.#withFollowUp(widened, input);
+    return this.#withScopedAsk(await this.#withFollowUp(widened, input), input);
+  }
+
+  /**
+   * Asks the same question once more, scoped to the domain the results agree on.
+   *
+   * An engine answers a question about a project with that project's front page,
+   * and the page the question is actually about sits one level in: measured
+   * live, the PDF.js question returned `mozilla.github.io/pdf.js/` where the
+   * expected page is `pdf.js/examples/`, and the same terms scoped to that
+   * domain returned the expected page first.
+   *
+   * Spent only when the earlier passes left the result short, so a search that
+   * already found enough pages pays nothing. SEARCH-001 is preserved: the
+   * authored query was issued first and unchanged, a query the agent already
+   * scoped is left alone, and the derived query is reported under SEARCH-008
+   * rather than applied silently.
+   */
+  async #withScopedAsk(
+    first: GoogleDiscoveryResult,
+    input: GoogleDiscoveryInput,
+  ): Promise<GoogleDiscoveryResult> {
+    // The candidate count is deliberately not the signal: a first pass can
+    // return ten links to a site's surface while the page asked about is
+    // absent. Whether the source was reached in depth is what distinguishes
+    // them, and `siteFollowUp` answers that.
+    if (first.status !== "success") return first;
+    // The scope answers which source to ask; the terms answer what to ask it.
+    // Pairing the scope with the verbose question reproduces the phrasing that
+    // made the engine answer with a front page in the first place.
+    const asked = first.followUpQuery ?? keywordFollowUp(input.query) ?? input.query;
+    const scoped = siteFollowUp(
+      asked,
+      first.candidates.map((candidate) => candidate.url),
+      // A question asking what is current wants the newest release a versioned
+      // site keeps live, and engines index the older ones best.
+      {
+        current: asksForCurrent(input.query),
+        // A run surfaces only some of a site's versions in its paths, so the
+        // dates its titles carry are counted too.
+        versionsSeen: datesIn(first.candidates.map((candidate) => candidate.title ?? "")),
+      },
+    );
+    if (scoped === undefined) return first;
+    const result = await this.#walk({ ...input, query: scoped });
+    if (result.status !== "success") return first;
+    const seen = new Set(first.candidates.map((candidate) => candidate.url.toString()));
+    const added = result.candidates.filter((candidate) => !seen.has(candidate.url.toString()));
+    if (added.length === 0) return first;
+    return { ...first, candidates: interleaved(added, first.candidates), followUpQuery: scoped };
   }
 
   /**
@@ -136,6 +186,39 @@ export class ChainedDiscovery implements GoogleDiscoveryService {
     }
     return last ?? { status: "blocked", candidates: [], suggestedQueries: [] };
   }
+}
+
+/**
+ * Merges what a scoped ask found with what the search already had.
+ *
+ * The ask is spent because the earlier passes did not reach the page the
+ * question is about, so its answer leads rather than trailing: appended, it sat
+ * last in a pool the renderer only works part-way down, and the page the engine
+ * returned for the derived query never appeared in the results.
+ *
+ * It does not displace them either. Leading with all of it buried the very page
+ * the earlier passes had found: on the Bun.WebView question the ask returned
+ * five reference pages and pushed `bun.com/docs/runtime/webview` into last
+ * place, taking that source recall from 25 to 0. Interleaving keeps both
+ * reachable, with the ask first.
+ */
+function interleaved<Value>(leading: readonly Value[], existing: readonly Value[]): Value[] {
+  const merged: Value[] = [];
+  for (let index = 0; index < Math.max(leading.length, existing.length); index += 1) {
+    const next = leading[index];
+    const previous = existing[index];
+    if (next !== undefined) merged.push(next);
+    if (previous !== undefined) merged.push(previous);
+  }
+  return merged;
+}
+
+/** Release dates named in what the engines returned, outside the URLs themselves. */
+function datesIn(texts: readonly string[]): readonly string[] {
+  const dates = new Set<string>();
+  for (const text of texts)
+    for (const match of text.matchAll(/(?:19|20)\d{2}-\d{2}-\d{2}/gu)) dates.add(match[0]);
+  return [...dates];
 }
 
 function producedNoAnswer(status: GoogleDiscoveryResult["status"]): boolean {

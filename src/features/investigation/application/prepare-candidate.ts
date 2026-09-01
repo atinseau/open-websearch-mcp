@@ -56,7 +56,16 @@ export async function prepareCandidate(
     if (confirmed) return confirmed;
     // The query is the focus: without it a long specification returned its
     // opening section whatever the agent had asked about.
-    const extracted = await dependencies.extractor.extract(extractionInput(document, focus));
+    const extracted = await dependencies.extractor.extract(
+      // CONFIG-004: how many passages a source may contribute is configuration,
+      // not a constant buried in the extractor.
+      extractionInput(
+        document,
+        focus,
+        undefined,
+        context.configuration.configuration?.output.search_passages_per_source,
+      ),
+    );
     if (extracted.status !== "success") return undefined;
     await storeRenderedEvidence(
       dependencies.storage,

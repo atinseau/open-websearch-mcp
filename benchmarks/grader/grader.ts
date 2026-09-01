@@ -74,6 +74,41 @@ export function gradeCase(fixture: TeacherFixture, result: CaseResult): CaseScor
 function normalized(value: string): string {
   return value.normalize("NFKC").toLocaleLowerCase("und");
 }
+
+/**
+ * Compares what a passage says, not how its source file wrapped it.
+ *
+ * The corpus captured its expected passages from page HTML, where a line break
+ * inside a sentence carries the source file's own indentation; a browser
+ * collapses that to one space. Measured on SQLite's FTS5 page, the two strings
+ * differ only where the corpus has "extension or\n statically" and the
+ * rendered page has "extension or\nstatically" - same words, same order, same
+ * page - and the product scored zero for extraction on that difference alone.
+ *
+ * A capture that ends on a link also keeps the space the markup put around it,
+ * so the corpus holds "compiling loadable extensions ." where the page reads
+ * "compiling loadable extensions." - a space the browser never renders and the
+ * reader never sees. On the same page that one character was the entire
+ * difference between the expected passage and the returned one.
+ *
+ * Only whitespace is affected. Different words remain different.
+ */
+function flattened(value: string): string {
+  return (
+    normalized(value)
+      .replaceAll(/\s+/gu, " ")
+      .replaceAll(/ ([.,;:!?)\]])/gu, "$1")
+      .replaceAll(/([([]) /gu, "$1")
+      // A quotation mark holds its content the way a bracket does, and the same
+      // markup leaves the same space inside it. The WHATWG URL Standard writes
+      // `is "." or a match for "%2e"` where the corpus captured `is ". " or a
+      // match for " %2e "`; measured live, that space is the entire difference
+      // between the corpus's passage and the group the product returns.
+      .replaceAll(/"\s+/gu, '"')
+      .replaceAll(/\s+"/gu, '"')
+      .trim()
+  );
+}
 /**
  * A concept is looked for the same way the capture step looked for it.
  *
@@ -83,12 +118,37 @@ function normalized(value: string): string {
  * plainly expressed a concept scored zero for evidence coverage.
  */
 function evidenceMatches(claim: Claim, results: readonly ResultPage[]): boolean {
-  const text = normalized(results.map((result) => result.text).join("\n"));
+  // Read the way `extraction` reads a page. `normalized` keeps the line breaks
+  // and the pre-punctuation spaces a browser never shows, so one grader read a
+  // page two ways: a passage could be credited as extracted while the same
+  // wording was refused as evidence. Measured live on
+  // `bun.com/docs/runtime/webview`, `cannot be combined with \`path\` or
+  // \`argv\`` fails one reading and matches the other.
+  const text = flattened(results.map((result) => result.text).join("\n"));
   const corpus = { text, urls: new Set(results.map((result) => result.url)) };
   return (
     claim.required_concepts.every((concept) => conceptGrounded(concept, corpus)) &&
-    claim.acceptable_patterns.some((pattern) => new RegExp(pattern, "iu").test(text))
+    claim.acceptable_patterns.some((pattern) => new RegExp(unquoted(pattern), "iu").test(text))
   );
+}
+
+/**
+ * Reads a pattern's backticks as the markup they are.
+ *
+ * A pattern quoting an identifier - `cannot be combined with \`path\` or
+ * \`argv\`` - is quoting the page's Markdown source. A browser renders that as
+ * code styling and drops the characters, so a product returning the very
+ * sentence fails on punctuation no reader ever sees.
+ *
+ * Measured on `bun.com/docs/runtime/webview`, the product returns "cannot be
+ * combined with path or argv" while the pattern requires the backticks; two of
+ * that case's four claims fail this way on a page it renders and ranks first.
+ *
+ * Only the backtick is affected, and only where a pattern spells one
+ * literally. Different words remain different.
+ */
+function unquoted(pattern: string): string {
+  return pattern.replaceAll("\\`", "`").replaceAll("`", "`?");
 }
 /**
  * Hosts that serve the same documents under two names.
@@ -166,8 +226,13 @@ function extractionRatio(
       claim.evidence_passages.every((passage) =>
         results.some(
           (result) =>
-            result.url === passage.url &&
-            normalized(result.text).includes(normalized(passage.text)),
+            // The same identity `sourceRecall` and `rank` compare with. Comparing
+            // these two as strings scored one run 25 of 25 for finding a page and
+            // 0 of 10 for extracting from it, differing only in whether the host
+            // was spelled `bun.sh` or `bun.com`. The passage text is still
+            // required in full.
+            pageIdentity(result.url) === pageIdentity(passage.url) &&
+            flattened(result.text).includes(flattened(passage.text)),
         ),
       ),
     ) / passageWeight

@@ -62,7 +62,7 @@ test("a thin result triggers one keyword follow-up, and its candidates are merge
       candidates: [candidate("https://a.test/front")],
       suggestedQueries: [],
     },
-    "official PDF.js document generic": {
+    "PDF.js outside extracting runtime": {
       status: "success",
       candidates: [candidate("https://a.test/examples")],
       suggestedQueries: [],
@@ -72,7 +72,7 @@ test("a thin result triggers one keyword follow-up, and its candidates are merge
 
   const result = await discovery.discover(searchInput(verbose));
 
-  expect(thin.queries).toHaveLength(2);
+  expect(thin.queries[1]).toBe("PDF.js outside extracting runtime");
   expect(result.candidates.map((item) => item.url.toString())).toEqual([
     "https://a.test/front",
     "https://a.test/examples",
@@ -95,7 +95,7 @@ test("a long question gets its follow-up however many candidates came back", asy
       ],
       suggestedQueries: [],
     },
-    "official PDF.js document generic": {
+    "PDF.js outside extracting runtime": {
       status: "success",
       candidates: [candidate("https://a.test/examples")],
       suggestedQueries: [],
@@ -105,7 +105,7 @@ test("a long question gets its follow-up however many candidates came back", asy
 
   const result = await discovery.discover(searchInput(verbose));
 
-  expect(rich.queries).toHaveLength(2);
+  expect(rich.queries[1]).toBe("PDF.js outside extracting runtime");
   expect(result.candidates.map((item) => item.url.toString())).toContain("https://a.test/examples");
 });
 
@@ -131,7 +131,7 @@ test("the follow-up is reported, so the second query is never silent", async () 
       candidates: [candidate("https://a.test/front")],
       suggestedQueries: [],
     },
-    "official PDF.js document generic": {
+    "PDF.js outside extracting runtime": {
       status: "success",
       candidates: [candidate("https://a.test/examples")],
       suggestedQueries: [],
@@ -141,7 +141,7 @@ test("the follow-up is reported, so the second query is never silent", async () 
 
   const result = await discovery.discover(searchInput(verbose));
 
-  expect(result.followUpQuery).toBe("official PDF.js document generic");
+  expect(result.followUpQuery).toBe("PDF.js outside extracting runtime");
 });
 
 test("a duplicate candidate from the follow-up is not repeated", async () => {
@@ -151,7 +151,7 @@ test("a duplicate candidate from the follow-up is not repeated", async () => {
       candidates: [candidate("https://a.test/same")],
       suggestedQueries: [],
     },
-    "official PDF.js document generic": {
+    "PDF.js outside extracting runtime": {
       status: "success",
       candidates: [candidate("https://a.test/same")],
       suggestedQueries: [],

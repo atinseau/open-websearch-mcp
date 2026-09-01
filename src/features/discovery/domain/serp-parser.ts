@@ -6,7 +6,7 @@ import type {
 } from "@/features/discovery";
 import { assessPublicUrl } from "@/features/security";
 
-import type { BlockedReason, SearchEngine } from "./engines.ts";
+import { anyEngineChrome, type BlockedReason, type SearchEngine } from "./engines.ts";
 
 export type SerpParseResult =
   | {
@@ -22,6 +22,17 @@ const blockedMarkers: ReadonlyArray<readonly [RegExp, BlockedReason]> = [
   [/unusual traffic|recaptcha|not a robot/i, "captcha"],
   [/access denied|web application firewall|temporarily blocked/i, "waf"],
   [/before you continue|consent\.google/i, "consent_required"],
+  // An engine refuses in the language it was asked in. Measured on the corpus's
+  // Japanese question, Google returns its unusual-traffic CAPTCHA as
+  // "通常と異なるトラフィックが検出されました", and the English-only markers missed it.
+  // A refusal read as `parse_failure` stops the engine chain by design
+  // (ADR-0014), so the search never reached DuckDuckGo - which answers that
+  // same question with 42 results - and the case failed on every run.
+  [/通常と異なるトラフィック|ロボットではない|私はロボットではありません/u, "captcha"],
+  [/트래픽이 감지되었습니다|로봇이 아닙니다/u, "captcha"],
+  [/necesitamos comprobar|tráfico inusual/iu, "captcha"],
+  [/trafic inhabituel|je ne suis pas un robot/iu, "captcha"],
+  [/ungewöhnlicher datenverkehr|ich bin kein roboter/iu, "captcha"],
 ];
 const googleHost = /(^|\.)google\.[a-z.]+$/i;
 const authentication = /(?:^|[./_-])(login|signin|sign-in|auth|account)(?:[./_-]|$)/i;
@@ -61,6 +72,12 @@ function destination(engine: SearchEngine, link: URL): URL | undefined {
 
 function isCandidate(engine: SearchEngine, url: URL, original: URL, text: string): boolean {
   if (!assessPublicUrl(url).allowed || engine.ownsHost(url.hostname)) return false;
+  // A search engine's own surface is chrome on whichever page it appears, not
+  // only on its own. Asking the engine being read meant Google's consent
+  // screen - which Google itself rejects - was admitted as a result when
+  // DuckDuckGo linked it, taking one of the ten returned places on the
+  // corpus's Japanese question.
+  if (anyEngineChrome(url)) return false;
   if (original.pathname.includes("aclk") || original.searchParams.has("adurl")) return false;
   return (
     text.trim().length > 0 &&

@@ -219,3 +219,34 @@ test("EXTRACT-004 resists entity-encoded concealment and a lying content type", 
   expect(lied.passages.map((passage) => passage.text).join(" ")).not.toContain("<script");
   expect(lied.passages.map((passage) => passage.text).join(" ")).toContain("VISIBLE");
 });
+
+/**
+ * A fragment must locate the passage on the page it names.
+ *
+ * `EXTRACT-012` requires a real fragment where one is available and forbids
+ * inventing a locator. The fallback slugifies a heading, which is right when a
+ * page derives its anchors that way and wrong whenever it does not: measured
+ * on `url.spec.whatwg.org`, a numbered heading yields `#4-4-url-parsing` while
+ * the page publishes `id="url-parsing"`. None of the four anchors that corpus
+ * cites appears among the fragments produced.
+ *
+ * A slug that does not resolve is worse than no fragment: it sends a reader to
+ * a place that does not exist, and it cannot be told apart from one that does.
+ */
+test("EXTRACT-012 does not invent a fragment from a numbered heading", async () => {
+  const result = await registry.extract(
+    input({ markdown: "## 4.4. URL parsing\n\nEvidence about parsing" }),
+  );
+
+  const passage = result.passages[0];
+  expect(passage?.fragment).toBeUndefined();
+});
+
+/** A heading a page would anchor verbatim still yields its fragment. */
+test("EXTRACT-012 keeps a fragment a page's own anchor would match", async () => {
+  const result = await registry.extract(
+    input({ markdown: "## URL parsing\n\nEvidence about parsing" }),
+  );
+
+  expect(result.passages[0]?.fragment).toBe("#url-parsing");
+});

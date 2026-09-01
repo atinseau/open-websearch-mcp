@@ -13,6 +13,14 @@ export interface SearchEngine {
   /** True when a link belongs to the engine's own site rather than a result. */
   ownsHost(hostname: string): boolean;
   /**
+   * True when a link is the engine's own product surface — sign-in, help,
+   * account, corporate and legal pages — served from a host the engine does
+   * not own by name. These links appear on every results page and can never
+   * answer a question, so admitting them spends places in a capped candidate
+   * pool and pushes real sources out of the results.
+   */
+  isOwnChrome?(url: URL): boolean;
+  /**
    * Recovers the real destination from an engine result link. Engines wrap
    * results in a redirect carrying the destination in a query parameter.
    * Returns undefined for an engine link that is not a result wrapper.
@@ -25,8 +33,56 @@ export interface SearchEngine {
 export type BlockedReason = "captcha" | "waf" | "consent_required";
 
 const googleHost = /(^|\.)google\.[a-z.]+$/iu;
+
+/**
+ * Scripts that identify the language a question was written in, so a question
+ * that states no locale is still asked in its own language rather than in the
+ * one the machine happens to sit in.
+ */
+const scriptLocales: ReadonlyArray<readonly [RegExp, string]> = [
+  [/[\p{Script=Hiragana}\p{Script=Katakana}]/u, "ja-JP"],
+  [/[\p{Script=Hangul}]/u, "ko-KR"],
+  [/[\p{Script=Han}]/u, "zh-CN"],
+  [/[\p{Script=Cyrillic}]/u, "ru-RU"],
+  [/[\p{Script=Arabic}]/u, "ar"],
+  [/[\p{Script=Hebrew}]/u, "he-IL"],
+  [/[\p{Script=Greek}]/u, "el-GR"],
+  [/[\p{Script=Thai}]/u, "th-TH"],
+  [/[\p{Script=Devanagari}]/u, "hi-IN"],
+];
+
+/**
+ * The language an engine is asked in.
+ *
+ * An engine asked without a language answers from where the machine is rather
+ * than from what was asked. Measured live from France, Bing answered an
+ * English question about PDF.js with a doctor-booking site, a French-English
+ * dictionary and a public-health page - three of its ten results, none about
+ * PDF.js - while the same query with a stated language returned the project's
+ * own documentation first.
+ *
+ * A locale the agent stated is always sent unchanged. Otherwise the question's
+ * own script decides, because that is evidence about what was asked, and the
+ * machine's location is not. A question in Latin script falls back to English,
+ * which is the language of the specifications such questions ask about.
+ */
+function requestedLocale(query: string, locale: string | undefined): string {
+  if (locale && locale !== "auto") return locale;
+  return scriptLocales.find(([script]) => script.test(query))?.[1] ?? "en-US";
+}
 const duckduckgoHost = /(^|\.)duckduckgo\.com$/iu;
 const bingHost = /(^|\.)bing\.com$/iu;
+
+/**
+ * Bing's results page links its operator's own surfaces: help, account, the
+ * corporate site and the `go.microsoft.com` link forwarder. `learn` and
+ * `developer` are deliberately absent — those host documentation that answers
+ * real questions and must stay eligible.
+ */
+const bingChromeHost =
+  /^(?:help\.bing|myaccount|account|login|privacy|support|go|www)\.microsoft\.com$/iu;
+/** DuckDuckGo's blog and corporate surfaces, which are never results. */
+const duckduckgoChromeHost = /(^|\.)(?:spreadprivacy\.com|duck\.com)$/iu;
 
 /** Recovers a destination carried in one of the named query parameters. */
 export function parameterDestination(link: URL, parameters: readonly string[]): URL | undefined {
@@ -47,7 +103,7 @@ export const googleEngine: SearchEngine = {
   searchUrl(query, locale) {
     const url = new URL("https://www.google.com/search");
     url.searchParams.set("q", query);
-    if (locale && locale !== "auto") url.searchParams.set("hl", locale);
+    url.searchParams.set("hl", requestedLocale(query, locale));
     return url;
   },
   ownsHost: (hostname) => googleHost.test(hostname),
@@ -67,10 +123,11 @@ export const duckduckgoEngine: SearchEngine = {
   searchUrl(query, locale) {
     const url = new URL("https://html.duckduckgo.com/html/");
     url.searchParams.set("q", query);
-    if (locale && locale !== "auto") url.searchParams.set("kl", locale);
+    url.searchParams.set("kl", requestedLocale(query, locale));
     return url;
   },
   ownsHost: (hostname) => duckduckgoHost.test(hostname),
+  isOwnChrome: (url) => duckduckgoChromeHost.test(url.hostname),
   dereference(link) {
     if (link.pathname !== "/l/") return undefined;
     return parameterDestination(link, ["uddg"]);
@@ -88,10 +145,11 @@ export const bingEngine: SearchEngine = {
   searchUrl(query, locale) {
     const url = new URL("https://www.bing.com/search");
     url.searchParams.set("q", query);
-    if (locale && locale !== "auto") url.searchParams.set("setlang", locale);
+    url.searchParams.set("setlang", requestedLocale(query, locale));
     return url;
   },
   ownsHost: (hostname) => bingHost.test(hostname),
+  isOwnChrome: (url) => bingChromeHost.test(url.hostname),
   dereference(link) {
     if (link.pathname !== "/ck/a") return undefined;
     const encoded = link.searchParams.get("u");
@@ -116,4 +174,28 @@ function decodeBase64Url(value: string): string | undefined {
   } catch {
     return undefined;
   }
+}
+
+/**
+ * Google's own product surfaces, which its own parser already rejects because
+ * Google owns their hosts. Another engine linking one of them is linking the
+ * same dead end, so the host list is kept here rather than inside the Google
+ * engine, where only Google could see it.
+ */
+const googleChromeHost =
+  /(^|\.)(?:consent|accounts|policies|support|myaccount)\.google\.[a-z.]+$/iu;
+
+/**
+ * True when a URL is any configured engine's own surface.
+ *
+ * Chrome is a property of the destination, not of the page that linked it. A
+ * consent screen answers no question whichever engine returned it, and
+ * admitting one spends a place in a capped pool that a real source would take.
+ */
+export function anyEngineChrome(url: URL): boolean {
+  return (
+    googleChromeHost.test(url.hostname) ||
+    duckduckgoChromeHost.test(url.hostname) ||
+    bingChromeHost.test(url.hostname)
+  );
 }

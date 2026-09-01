@@ -93,8 +93,25 @@ function isContentLine(line: string): boolean {
 
 function fragment(heading: string | undefined): string | undefined {
   if (!heading) return undefined;
-  return `#${heading
+  // `EXTRACT-012` requires a real fragment and forbids inventing a locator.
+  // Slugifying a heading is right when a page derives its anchors that way and
+  // wrong whenever it does not: measured on `url.spec.whatwg.org`, the heading
+  // "4.4. URL parsing" yields `#4-4-url-parsing` where the page publishes
+  // `id="url-parsing"`, and none of the four anchors that corpus cites appears
+  // among the fragments produced.
+  //
+  // A section number is the reliable signal that a heading is not its own
+  // anchor, because a numbered heading is renumbered when the document
+  // changes while its anchor stays put. Those headings yield no fragment
+  // rather than one that resolves nowhere: an absent locator is honest, an
+  // invented one cannot be told from a working one.
+  if (numberedHeading.test(heading)) return undefined;
+  const slug = heading
     .toLowerCase()
     .replace(/[^\p{L}\p{N}]+/gu, "-")
-    .replace(/^-|-$/g, "")}`;
+    .replace(/^-|-$/g, "");
+  return slug ? `#${slug}` : undefined;
 }
+
+/** A heading opening with its section number, such as "4.4." or "2 ". */
+const numberedHeading = /^\s*\d+(?:\.\d+)*\.?\s/u;

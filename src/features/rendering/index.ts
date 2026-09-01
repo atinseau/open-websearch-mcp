@@ -114,6 +114,26 @@ export interface WebViewRendererOptions {
   readonly scheduler: NavigationScheduler;
   /** Mandatory public-destination gate. It is evaluated before every navigation. */
   readonly policy: PublicUrlPolicy;
+  /**
+   * Test seam for the view a navigation runs in. Production opens an ephemeral
+   * WebView on the owned Obscura endpoint; tests substitute a view whose
+   * lifecycle can be driven without a browser.
+   */
+  readonly openView?: () => RenderView;
+}
+
+/**
+ * The whole of a browser view the renderer depends on: navigate, read, close.
+ * Naming it keeps the adapter honest about its surface and lets a test drive a
+ * view's lifecycle — a close that fails, above all — without a browser.
+ */
+export interface RenderView extends EventTarget {
+  readonly url: string;
+  readonly title: string;
+  navigate(url: string): Promise<unknown>;
+  cdp(method: string, parameters?: Record<string, unknown>): Promise<unknown>;
+  evaluate(source: string): Promise<unknown>;
+  close(): void;
 }
 
 /** Process-global, fair, cancellable navigation scheduling seam. */

@@ -11,6 +11,7 @@ import { identifyMime, isRawGitHub } from "@/features/extraction/domain/mime";
 import { extractPdfText } from "@/features/extraction/domain/pdf";
 import { codeWarnings } from "@/features/extraction/domain/safe-content";
 import { documentText } from "@/features/extraction/domain/document-text";
+import { isNavigation } from "@/features/extraction/domain/navigation";
 
 const VERSION = "1";
 const DEFAULT_PASSAGES = 2;
@@ -61,7 +62,7 @@ function passagesFrom(
   const grouped = groupText(blocks, input.documentPage);
   const limit = input.maxChars
     ? Math.max(1, Math.ceil(input.maxChars / PASSAGE_SIZE))
-    : DEFAULT_PASSAGES;
+    : (input.maxPassages ?? DEFAULT_PASSAGES);
   return select(grouped, input.focus, limit, input.documentUrl);
 }
 
@@ -185,8 +186,15 @@ function select(
 function score(text: string, focus: ReadonlySet<string>): number {
   if (focus.size === 0) return Math.min(text.length, PASSAGE_SIZE) / PASSAGE_SIZE;
   const lowered = text.toLowerCase();
-  return [...focus].reduce((value, token) => value + (lowered.includes(token) ? 1 : 0), 0);
+  const matched = [...focus].reduce((value, token) => value + (lowered.includes(token) ? 1 : 0), 0);
+  return isNavigation(text) ? matched * NAVIGATION_WEIGHT : matched;
 }
+
+/**
+ * Navigation still counts, faintly: a page that is only a menu must still rank
+ * something rather than returning nothing.
+ */
+const NAVIGATION_WEIGHT = 0.1;
 
 function codeBlocksFrom(
   blocks: readonly ContentBlock[],
