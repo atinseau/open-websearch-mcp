@@ -356,3 +356,27 @@ deterministic boundary, not a tuning exercise, and it is not taken here.
 
 The five withdrawals above are kept in the branch history rather than squashed
 away. Each costs a 20-minute corpus run to rediscover.
+
+### Passage ranks in this record are not directly comparable
+
+The rank figures above — 14th of 145, 52nd of 104, 16th at best — were each
+measured by opening a page with a large `maxChars` budget. That budget changes
+the grouping itself, not only how many groups are returned: `url.spec.whatwg.org`
+yields 10 groups at the default budget and 21 at 900,000 characters, and an
+earlier measurement of the same page reported 104.
+
+So a rank is meaningful only against the grouping it was taken from, and the
+enumerated pairs `0+52` and `0+14` describe one grouping while a search sees
+another. Re-enumerated over the grouping a deep extraction of the rendered body
+produces, the satisfying pairs are `0+3` for SQLite's first claim and `1+17`
+for the URL Standard's third — nearer than the earlier numbers suggest, and
+still outside the two passages returned.
+
+Two probes over that same grouping disagreed on whether four passages satisfy
+SQLite's first claim, because `conceptGrounded` is proximity-based and its
+verdict moves with how the joined text is normalised. That disagreement is not
+resolved here, so no claim is made about what a deeper budget would score.
+
+What stands is the bound this record establishes by arithmetic rather than by
+sampling: the passage carrying the evidence is outscored by more groups than
+the two that are returned, whichever grouping it is measured in.
