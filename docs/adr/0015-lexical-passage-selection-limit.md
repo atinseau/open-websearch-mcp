@@ -258,6 +258,39 @@ On the WHATWG page the missing groups score 0.8 against a leading 12, so no
 bonus of this size reaches them; on SQLite's the missing group scores 7
 against 9, and the title bonus moves other groups further.
 
+### Choosing the second passage for what it adds, measured and rejected
+
+Every satisfying pair is `0 + X`, so the second pick should arguably be chosen
+for what it adds to the first rather than for its own score. Three complement
+rules were measured against the enumerated ground truth: terms the first pick
+does not already carry; the same tie-broken by own score; and a preference for
+normative wording — the "is a", "must", "if … then" a specification uses to
+define or prescribe — with citation lists excluded.
+
+None satisfies an additional claim on either case. The rules pick groups 9, 6,
+47 and 2 where the winners are 14, 52 and 54.
+
+### The pair is bounded arithmetically, as the single passage was
+
+The earlier bound in this record is about where one expected passage can rank.
+The same computation on the *pair* closes the line that the enumeration above
+opened:
+
+| Case | Second passage needed | Groups scoring strictly above it | Best reachable rank |
+| --- | --- | --- | --- |
+| technical-sqlite-fts5 | group 14 | 15 | 16th |
+| technical-url-canonicalization | group 52 | 12 | 13th |
+| technical-url-canonicalization | group 54 | 12 | 13th |
+
+Two passages are returned. These are not ties a tie-break could settle: twelve
+to fifteen groups share strictly more of the question's terms than the passage
+that answers it. A rule reaching them must demote passages that are, by the
+only signal available before reading, more relevant.
+
+That is the same conclusion as the rest of this record, now established for
+the pair rather than for the passage, and it closes the direction the
+enumeration suggested.
+
 ## Decision
 
 Lexical passage selection stays as it is. The `extraction` component is
