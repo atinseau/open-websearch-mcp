@@ -222,3 +222,50 @@ test("CACHE-005 expires an entry at the origin's own max-age", async () => {
   expect((await storage.cache.get(url, read(120)))?.fresh).toBeFalse();
   storage.close();
 });
+
+/**
+ * Two pages that render the same text are not the same page.
+ *
+ * A representative is chosen by exact `main_content` equality before the
+ * MinHash threshold is consulted, and that equality asks nothing about where
+ * the text came from. Anti-bot interstitials, cookie walls and "verifying your
+ * browser" screens render identically on unrelated hosts, so the first one
+ * cached claims every later one — and a page stored under another page's URL
+ * is a page the search can no longer find.
+ *
+ * Observed in a benchmark workspace: `dl.acm.org/doi/10.1145/3658644.3670339`
+ * is recorded as an alias of a Reverso dictionary entry. Their MinHash
+ * similarity is 0, so the threshold did not fold them; exact content equality
+ * did, on a 43-word verification screen.
+ *
+ * `CACHE-011` requires that distinct pages are not collapsed, and identical
+ * bytes from different origins are the case where that is easiest to get
+ * wrong.
+ */
+test("CACHE-011 identical text from two hosts does not collapse them", async () => {
+  const storage = await openStorage({ workspace: workspace() });
+  const interstitial =
+    "Performing security verification. This page is displayed while we verify you are not a bot.";
+  const body = await storage.blobs.put(interstitial);
+
+  await storage.cache.put(document("https://first.test/paper", body, interstitial), {
+    nearDuplicateThreshold: 0.9,
+  });
+  await storage.cache.put(document("https://second.test/entry", body, interstitial), {
+    nearDuplicateThreshold: 0.9,
+  });
+
+  const first = await storage.cache.get(new URL("https://first.test/paper"), {
+    now: fetchedAt,
+    ttls,
+  });
+  const second = await storage.cache.get(new URL("https://second.test/entry"), {
+    now: fetchedAt,
+    ttls,
+  });
+  storage.close();
+
+  // The second page must resolve to itself, not to the first one cached.
+  expect(first?.document.url.href).toBe("https://first.test/paper");
+  expect(second?.document.url.href).toBe("https://second.test/entry");
+});

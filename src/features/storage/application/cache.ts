@@ -130,7 +130,16 @@ export class SqliteCache implements StorageCache {
     if (content === undefined || options.nearDuplicateThreshold === undefined) return canonicalUrl;
     const match = findNearDuplicate(
       content,
-      duplicateCandidates(this.database),
+      // Only pages of the same origin may represent one another. Identical text
+      // is evidence of one page within one site, and evidence of nothing across
+      // sites: anti-bot interstitials, cookie walls and verification screens
+      // render the same bytes on unrelated hosts. Observed in a benchmark
+      // workspace, an ACM paper was stored as an alias of a Reverso dictionary
+      // entry, both showing a 43-word verification screen. `CACHE-011` requires
+      // that distinct pages are not collapsed.
+      duplicateCandidates(this.database).filter(
+        (candidate) => candidate.canonicalUrl.origin === canonicalUrl.origin,
+      ),
       options.nearDuplicateThreshold,
     );
     return match?.canonicalUrl ?? canonicalUrl;
@@ -164,9 +173,17 @@ export class SqliteCache implements StorageCache {
         .get(canonicalUrl.href);
     return this.database
       .prepare(
-        "SELECT canonical_url FROM cache_entries WHERE canonical_url = ? OR main_content = ?",
+        // Identical text is evidence of one page only within one origin. Anti-bot
+        // interstitials, cookie walls and verification screens render the same
+        // bytes on unrelated hosts, and the first one cached was claiming every
+        // later one: observed in a benchmark workspace, an ACM paper was stored
+        // as an alias of a Reverso dictionary entry on a 43-word verification
+        // screen. Their MinHash similarity is 0, so the threshold never saw
+        // them - exact equality folded them first. `CACHE-011` requires that
+        // distinct pages are not collapsed.
+        "SELECT canonical_url FROM cache_entries WHERE canonical_url = ? OR (main_content = ? AND canonical_url LIKE ?)",
       )
-      .get(canonicalUrl.href, content);
+      .get(canonicalUrl.href, content, `${canonicalUrl.origin}/%`);
   }
 }
 
