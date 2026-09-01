@@ -190,3 +190,21 @@ export function cachedPrepared(candidate: Candidate, markdown: string) {
   };
   return { candidate, document, extracted };
 }
+/**
+ * How much of a page an open returns.
+ *
+ * `MCP-003` states a default of 12,000 characters and a maximum of 25,000,
+ * both configurable. `[output].open_default_chars` and `open_max_chars` were
+ * validated in every workspace TOML and read nowhere, so an open naming no
+ * budget fell through to the extractor's two-passage constant and a workspace
+ * lowering the ceiling was ignored. The MCP schema applies its own default, so
+ * a client over stdio was unaffected; the configuration was the promise that
+ * broke.
+ */
+export function openBudget(
+  asked: number | undefined,
+  output: { readonly open_default_chars: number; readonly open_max_chars: number } | undefined,
+): number | undefined {
+  if (!output) return asked;
+  return Math.min(asked ?? output.open_default_chars, output.open_max_chars);
+}

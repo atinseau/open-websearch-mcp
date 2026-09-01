@@ -32,6 +32,7 @@ import {
   empty,
   ExpectedFailure,
   extractionInput,
+  openBudget,
   pageResult,
   discoveryFailure,
   reasonForRuntimeFailure,
@@ -117,7 +118,16 @@ class WebResearchApplication implements InvestigationApplication {
           });
         const document = await this.render(input.url, context, true);
         const extracted = await this.#extractor.extract(
-          extractionInput(document, input.focus, input.maxChars),
+          // CONFIG-004: how much of a page an open returns is configuration.
+          // `[output].open_default_chars` was validated in every workspace TOML
+          // and read nowhere, so an open naming no budget fell through to the
+          // extractor's two-passage constant and the file promised a control
+          // that did not exist.
+          extractionInput(
+            document,
+            input.focus,
+            openBudget(input.maxChars, context.configuration.configuration?.output),
+          ),
         );
         if (extracted.status !== "success")
           throw new ExpectedFailure(reasonForExtraction(extracted));
