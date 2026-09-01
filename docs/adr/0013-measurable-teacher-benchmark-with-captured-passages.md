@@ -137,3 +137,14 @@ question that was asked and by comparing releases across a site, and
 `technical-pdfjs` by the scoped `site:` pass. The three cases that do not move
 are the three this record and
 [ADR-0015](0015-lexical-passage-selection-limit.md) bound.
+
+### The origin restriction was verified not to cost anything
+
+Restricting near-duplicate representation to one origin changes what the cache
+stores, so the benchmark was re-run against a fresh empty workspace afterwards.
+It scored 62.29 — 90, 86.25, 82.5, 55, 55, 5 — identical case by case to the
+run before the change.
+
+That was worth checking rather than assuming: the same mechanism that folded an
+ACM paper into a dictionary entry also folds a site's own duplicate pages, and
+narrowing it could have cost a case its cached evidence.
