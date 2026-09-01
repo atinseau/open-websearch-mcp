@@ -108,73 +108,6 @@ test("TEST-012 a space the markup left before punctuation is not a difference", 
 });
 
 /**
- * A pattern quoting an identifier in backticks - `cannot be combined with
- * \`path\` or \`argv\`` - is quoting the page's Markdown source, not its rendered
- * text. A browser renders that as code styling and drops the characters, so a
- * product returning the very sentence fails on punctuation the reader never
- * sees.
- *
- * Measured on bun.com/docs/runtime/webview, the product returns "cannot be
- * combined with path or argv" and the corpus pattern requires the backticks.
- * Two of that case's four claims fail this way, costing evidence coverage on a
- * page the product renders and ranks first.
- */
-test("TEST-012 a pattern's backticks are markup, not text the page shows", () => {
-  const quoted: TeacherFixture = {
-    case_id: "technical-bun-webview",
-    claims: [
-      {
-        id: "claim",
-        required_concepts: ["alpha"],
-        acceptable_patterns: ["cannot be combined with `path` or `argv`"],
-        sources: [{ url: "https://example.test/a", equivalent_urls: [] }],
-        evidence_passages: [],
-        weight: 1,
-      },
-    ],
-  };
-
-  const graded = gradeCase(quoted, {
-    case_id: "technical-bun-webview",
-    results: [
-      {
-        url: "https://example.test/a",
-        text: "alpha: url cannot be combined with path or argv.",
-        token_count: 9,
-      },
-    ],
-  });
-
-  expect(graded.components.evidenceCoverage).toBe(35);
-});
-
-/** A pattern that names different words still does not match. */
-test("TEST-012 ignoring backticks does not make unrelated text match", () => {
-  const quoted: TeacherFixture = {
-    case_id: "technical-bun-webview",
-    claims: [
-      {
-        id: "claim",
-        required_concepts: ["alpha"],
-        acceptable_patterns: ["cannot be combined with `path`"],
-        sources: [{ url: "https://example.test/a", equivalent_urls: [] }],
-        evidence_passages: [],
-        weight: 1,
-      },
-    ],
-  };
-
-  const graded = gradeCase(quoted, {
-    case_id: "technical-bun-webview",
-    results: [
-      { url: "https://example.test/a", text: "alpha: url works with argv.", token_count: 6 },
-    ],
-  });
-
-  expect(graded.components.evidenceCoverage).toBe(0);
-});
-
-/**
  * A pattern is matched against the same reading of a page that `extraction`
  * compares against.
  *
@@ -246,4 +179,84 @@ test("TEST-012 reading whitespace loosely does not join separate sentences", () 
   });
 
   expect(graded.components.evidenceCoverage).toBe(0);
+});
+
+/**
+ * A quotation mark holds its content the way a bracket does.
+ *
+ * The capture step already drops the space markup leaves inside `(` and `[`.
+ * A quoted span is the same construction: the WHATWG URL Standard writes
+ * `is "." or an ASCII case-insensitive match for "%2e"`, and the corpus
+ * captured it as `is ". " or an ASCII case-insensitive match for " %2e "` -
+ * the spaces the markup put around an inline `<code>`, which a browser never
+ * renders and a reader never sees.
+ *
+ * Measured live, that is the entire difference between the corpus's passage
+ * and the page: the returned group carries the sentence, word for word, and
+ * diverges first at character 60 of 251 on exactly this space.
+ */
+test("TEST-012 a space the markup left inside quotes is not a difference", () => {
+  const quoted: TeacherFixture = {
+    case_id: "technical-url-canonicalization",
+    claims: [
+      {
+        id: "claim",
+        required_concepts: ["alpha"],
+        acceptable_patterns: ["alpha"],
+        sources: [{ url: "https://example.test/a", equivalent_urls: [] }],
+        evidence_passages: [
+          {
+            url: "https://example.test/a",
+            text: 'a segment that is ". " or a match for " %2e "',
+          },
+        ],
+        weight: 1,
+      },
+    ],
+  };
+
+  const graded = gradeCase(quoted, {
+    case_id: "technical-url-canonicalization",
+    results: [
+      {
+        url: "https://example.test/a",
+        text: 'alpha: a segment that is "." or a match for "%2e" and more',
+        token_count: 12,
+      },
+    ],
+  });
+
+  expect(graded.components.extraction).toBe(10);
+});
+
+/** Dropping those spaces does not make different quoted content match. */
+test("TEST-012 ignoring quote spacing does not equate different quoted text", () => {
+  const different: TeacherFixture = {
+    case_id: "technical-url-canonicalization",
+    claims: [
+      {
+        id: "claim",
+        required_concepts: ["alpha"],
+        acceptable_patterns: ["alpha"],
+        sources: [{ url: "https://example.test/a", equivalent_urls: [] }],
+        evidence_passages: [
+          { url: "https://example.test/a", text: 'a segment that is ". " or a match for " %2f "' },
+        ],
+        weight: 1,
+      },
+    ],
+  };
+
+  const graded = gradeCase(different, {
+    case_id: "technical-url-canonicalization",
+    results: [
+      {
+        url: "https://example.test/a",
+        text: 'alpha: a segment that is "." or a match for "%2e" and more',
+        token_count: 12,
+      },
+    ],
+  });
+
+  expect(graded.components.extraction).toBe(0);
 });

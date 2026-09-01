@@ -94,11 +94,20 @@ function normalized(value: string): string {
  * Only whitespace is affected. Different words remain different.
  */
 function flattened(value: string): string {
-  return normalized(value)
-    .replaceAll(/\s+/gu, " ")
-    .replaceAll(/ ([.,;:!?)\]])/gu, "$1")
-    .replaceAll(/([([]) /gu, "$1")
-    .trim();
+  return (
+    normalized(value)
+      .replaceAll(/\s+/gu, " ")
+      .replaceAll(/ ([.,;:!?)\]])/gu, "$1")
+      .replaceAll(/([([]) /gu, "$1")
+      // A quotation mark holds its content the way a bracket does, and the same
+      // markup leaves the same space inside it. The WHATWG URL Standard writes
+      // `is "." or a match for "%2e"` where the corpus captured `is ". " or a
+      // match for " %2e "`; measured live, that space is the entire difference
+      // between the corpus's passage and the group the product returns.
+      .replaceAll(/"\s+/gu, '"')
+      .replaceAll(/\s+"/gu, '"')
+      .trim()
+  );
 }
 /**
  * A concept is looked for the same way the capture step looked for it.
