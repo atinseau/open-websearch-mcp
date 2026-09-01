@@ -69,6 +69,25 @@ This is the same finding as the table above, confirmed from the other
 direction: the patterns describe how a teacher summarised a page, and a
 deterministic grader can only match what the page says.
 
+### A captured table is not the table the page renders
+
+`technical-bun-webview`'s first claim cites a 1,084-character passage that is
+the WebView options table. The corpus captured it with its cells separated —
+`Option Type Default Description` — and the renderer returns them run
+together: `optiontypedefaultdescriptionwidthnumber800viewport width in css
+pixels`. The rendered `text` and `markdown` are byte-identical, so the cell
+boundaries are gone before extraction sees the document, and no grader-side
+reading can restore information the page text no longer carries.
+
+Comparing the two with **all** whitespace removed — the most permissive
+reading available, and one that would be indefensible to ship — still does not
+find the passage. So the difference is not only the cell boundaries: the two
+texts diverge in their characters, and this passage is out of reach for a
+reason no normalisation addresses.
+
+That claim is one of two carrying a passage on this case, which is why its
+`extraction` scores 5 of 10 rather than 10.
+
 ## Alternatives measured and rejected
 
 | Approach | Corpus score | Why it failed |

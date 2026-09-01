@@ -156,6 +156,35 @@ The change was withdrawn rather than kept: it also contradicts `MCP-012`,
 which fixes two passages per source, and it bought nothing to weigh against
 that.
 
+### Focusing extraction on the question's distinctive terms, measured and rejected
+
+This record's diagnosis is that the terms deciding a tie are grammar and
+generic vocabulary. `keywordFollowUp` already strips exactly those — it exists
+because engines answer a verbose question with a site's front page — and it had
+never been tried as the extraction focus. Three focuses were measured on the
+four cases that carry a URL-located passage, asking where each expected passage
+ranks among the page's groups:
+
+| Case | Passage | Question | Keywords | Both |
+| --- | --- | --- | --- | --- |
+| technical-sqlite-fts5 | 228 chars | 14th | **4th** | 14th |
+| technical-url-canonicalization | 261 chars | 52nd | 49th | 52nd |
+| technical-url-canonicalization | 224 chars | 54th | 62nd | 54th |
+| technical-bun-webview | 1,084 chars | absent | absent | absent |
+| technical-bun-webview | 249 chars | **1st** | 3rd | 2nd |
+| technical-mcp-stdio | 934 chars | **1st** | absent | **1st** |
+
+Keywords help exactly where this record said the noise was — SQLite's passage
+moves from 14th to 4th — and lose the two passages that are currently reached.
+Two passages are returned, so what matters is how many land in the top two:
+the question reaches two, keywords reach none, both reach one.
+
+The distinctive terms are the wrong instrument here for a reason worth
+recording: a keyword query is built to make an *engine* return the right page,
+where breadth is a liability. Choosing a passage inside a page it has already
+found is the opposite problem — the surrounding words are what identify the
+section — and the same reduction that sharpens the first blurs the second.
+
 ## Decision
 
 Lexical passage selection stays as it is. The `extraction` component is
