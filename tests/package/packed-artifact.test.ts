@@ -3,8 +3,11 @@ import { Client } from "@modelcontextprotocol/client";
 import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
 
 const packageName = "open-websearch-mcp";
-const packageVersion = "0.1.1";
 const repository = `${import.meta.dir}/../..`;
+// Read from the manifest rather than repeated here: a hard-coded version makes
+// this test fail on the version bump of every release, which is exactly when a
+// packaging test must be trustworthy.
+const packageVersion: string = manifestVersion(await Bun.file(`${repository}/package.json`).json());
 
 async function assertPackedArchive(tarball: string): Promise<void> {
   const inspected = await run(["tar", "-tzf", tarball]);
@@ -105,4 +108,13 @@ async function run(command: string[], cwd?: string): Promise<{ exitCode: number;
     process.exited,
   ]);
   return { exitCode, output: `${output}${error}` };
+}
+
+/** Reads a manifest's version without trusting the parsed shape. */
+function manifestVersion(value: unknown): string {
+  if (typeof value === "object" && value !== null && "version" in value) {
+    const version: unknown = (value as Record<string, unknown>).version;
+    if (typeof version === "string") return version;
+  }
+  throw new Error("package.json declares no version");
 }
